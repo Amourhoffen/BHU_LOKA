@@ -1,0 +1,34 @@
+# ==============================================================================
+# BHU LOKA (भूलोक) - Git Ignore Configuration
+# ==============================================================================
+
+# 1. AI Skills Repos (Google DeepMind Science Skills & internal agents)
+Skills/
+
+# 2. Discussion Summaries & Chat Logs
+Summery/
+
+# 3. Persistent Agent Memory Context
+Memory/
+
+# 4. Python Build Artifacts & Bytecode Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# 5. Environment Variables & Secret Files
+.env
+*.env.*
+.venv/
+env/
+venv/
+ENV/
+
+# 6. OS & Cache Files
+.DS_Store
+Thumbs.db
+.matplotlib/
+*.tmp
+.vscode/
+
