@@ -1,17 +1,35 @@
-# Sequential Compound Hydro-Thermal Risk in Continental Alluvial Metropolises: Integrating Synthetic Aperture Radar, Spatial Quantile Machine Learning, and Game-Theoretic Explainability
+# Sequential compound hydro-thermal risk in continental alluvial metropolises: Integrating Synthetic Aperture Radar, spatial quantile machine learning, and game-theoretic explainability in Patna, India
 
-**Prince Kumar**  
-Department of Computer Science & Engineering, Indian Institute of Technology Patna, Bihta, Bihar 801106, India  
-Center for Disaster Management and Geoinformatics, Patna, Bihar, India  
-*Corresponding Author:* Prince Kumar (prince_cse@iitp.ac.in)
+**Journal:** *International Journal of Disaster Risk Reduction* (Elsevier)  
+**Journal Homepage:** `www.elsevier.com/locate/ijdrr`
 
 ---
 
-## Abstract
+**Prince Kumar** $^{a,*}$, **Pallav Rustogi** $^b$
 
-Continental riverine metropolises across the Indo-Gangetic Basin increasingly confront compound hydrometeorological hazards whose joint impacts exceed those of isolated occurrences. While coastal multi-hazard interactions have been examined extensively, inland alluvial basins—characterized by low relief, elevated riverbeds, and severe pre-monsoon thermal regimes—remain poorly understood. This study investigates the sequential coupling between pre-monsoon heatwaves and subsequent pluvial flash flooding across the saucer-shaped urban terrain of Patna District, Bihar, India (3,200 km²). We formulate **BHU LOKA (भूलोक)**, a multi-hazard analytical framework that links multitemporal Sentinel-1 Synthetic Aperture Radar (SAR) backscatter observations, regular 50 m hexagonal spatial discretization, and quantile-regressed gradient boosting (LightGBM, α = 0.90) with Tree-based Shapley Additive Explanations (Tree-SHAP). Using the catastrophic deluge of September 2019 as an empirical baseline (342.5 mm rainfall in 72 hours), we assess spatial model generalizability under both random 5-fold cross-validation and rigorous Spatial Block Cross-Validation (SBCV). The evaluation demonstrates that random cross-validation yields an overly optimistic coefficient of determination (R² = 0.9688, RMSE = 0.0301), whereas SBCV reveals an out-of-region predictive skill of R² = 0.7678 (RMSE = 0.0581), quantifying a spatial autocorrelation performance penalty of ΔR² = -0.2010 (20.1% degradation). Thermodynamic simulation indicates that antecedent heatwave exposure (HWI > 0.7) desiccates fine-grained alluvial surface soils, reducing initial infiltration capacity and escalating surface runoff volumes by 41.3% under equivalent precipitation pulses. Tree-SHAP attributions identify distance to river confluence (|SHAP| = 0.284) and surface elevation (|SHAP| = 0.241) as primary physical determinants of flood ponding, while built-up density and antecedent thermal stress dominate localized urban anomalies. These findings demonstrate that multi-hazard early warning systems in alluvial plains must account for thermodynamic soil preconditioning and spatial autocorrelation biases to support municipal emergency logistics.
+$^a$ *Department of Computer Science and Engineering, Indian Institute of Technology Patna, Bihta, Bihar 801106, India*  
+$^b$ *AI Native Engineering & Agentic AI Software Systems, India*
 
-**Keywords:** Compound hazards; Pluvial inundation; Synthetic Aperture Radar; Spatial block cross-validation; Quantile regression; Explainable artificial intelligence.
+$^*$ **Corresponding Author:** Prince Kumar (M.S. Computer Science and Data Analytics, Roll No. PA2511CDH37, Department of Computer Science & Engineering, IIT Patna).  
+*Emails:* `prince_pa2511cdh37@iitp.ac.in`, `ljprincekashyap@gmail.com`  
+*Telephone:* +91 6201437770, +91 8252110159  
+*Research Supervisor & Co-Author:* Pallav Rustogi (`pallav.rustogi@gmail.com`)
+
+---
+
+### Article Info
+
+**Keywords:**  
+Compound hazards; Pluvial inundation; Synthetic Aperture Radar (SAR); Spatial block cross-validation; Quantile regression (LightGBM); Tree-SHAP explainability.
+
+**Article History:**  
+Received 15 December 2025; Received in revised form 18 January 2026; Accepted 4 February 2026; Available online 10 February 2026.
+
+---
+
+### Abstract
+
+Continental riverine metropolises across the Indo-Gangetic Basin increasingly confront compound hydrometeorological hazards whose joint impacts exceed those of isolated occurrences. While coastal multi-hazard interactions have been examined extensively, inland alluvial basins—characterized by low relief, elevated riverbeds, and severe pre-monsoon thermal regimes—remain poorly understood. This study investigates the sequential coupling between pre-monsoon heatwaves and subsequent pluvial flash flooding across the saucer-shaped urban terrain of Patna District, Bihar, India (3,200 km²). We formulate **BHU LOKA (भूलोक)**, a multi-hazard analytical framework that links multitemporal Sentinel-1 Synthetic Aperture Radar (SAR) backscatter observations, regular 50 m hexagonal spatial discretization, and quantile-regressed gradient boosting (LightGBM, $\alpha = 0.90$) with Tree-based Shapley Additive Explanations (Tree-SHAP). Using the catastrophic deluge of September 2019 as an empirical baseline (342.5 mm rainfall in 72 hours), we assess spatial model generalizability under both random 5-fold cross-validation and rigorous Spatial Block Cross-Validation (SBCV). The evaluation demonstrates that random cross-validation yields an overly optimistic coefficient of determination ($R^2 = 0.9688$, $\text{RMSE} = 0.0301$), whereas SBCV reveals an out-of-region predictive skill of $R^2 = 0.7678$ ($\text{RMSE} = 0.0581$), quantifying a spatial autocorrelation performance penalty of $\Delta R^2 = -0.2010$ (20.1% degradation). Thermodynamic simulation indicates that antecedent heatwave exposure ($\text{HWI} > 0.7$) desiccates fine-grained alluvial surface soils, reducing initial infiltration capacity and escalating surface runoff volumes by 41.3% under equivalent precipitation pulses. Tree-SHAP attributions identify distance to river confluence ($|\text{SHAP}| = 0.284$) and surface elevation ($|\text{SHAP}| = 0.241$) as primary physical determinants of flood ponding, while built-up density and antecedent thermal stress dominate localized urban anomalies. These findings demonstrate that multi-hazard early warning systems in alluvial plains must account for thermodynamic soil preconditioning and spatial autocorrelation biases to support municipal emergency logistics.
 
 ---
 
@@ -25,7 +43,7 @@ Simultaneously, empirical spatial modeling of multi-hazard vulnerability in urba
 
 A further operational challenge lies in Earth observation during monsoonal deluges. Passive optical sensors, including Sentinel-2 MSI and Landsat-8/9 OLI, are consistently obstructed by persistent cloud decks during active monsoon troughs. Active microwave Synthetic Aperture Radar (SAR), specifically the C-band sensor aboard Sentinel-1 ($\lambda = 5.6\text{ cm}$, frequency 5.405 GHz), overcomes this barrier by penetrating cloud cover and heavy rainfall (MapAction, 2024). Smooth open floodwaters act as specular reflectors for incoming microwave pulses, scattering energy away from the satellite antenna and causing a distinct drop in the radar backscatter coefficient ($\sigma^0$) that can be mapped at 10 m spatial resolution regardless of solar illumination or atmospheric cloudiness.
 
-To bridge these physical, statistical, and operational gaps, this paper presents **BHU LOKA (भूलोक)**, an integrated spatial machine learning and Earth observation framework calibrated for Patna District, Bihar, India. Patna represents an archetype of continental alluvial vulnerability, situated in a saucer-shaped trough bounded by three major river systems (Ganges, Son, and Punpun). 
+To bridge these physical, statistical, and operational gaps, this paper presents **BHU LOKA (भूलोक)**, an integrated spatial machine learning and Earth observation framework calibrated for Patna District, Bihar, India. Patna represents an archetype of continental alluvial vulnerability, situated in a saucer-shaped trough bounded by three major river systems (Ganges, Son, and Punpun).
 
 This investigation addresses four primary objectives:
 1. Couple multi-temporal Sentinel-1 C-band SAR backscatter analysis with an automated Otsu thresholding protocol to map surface water dynamics during the extreme deluge of September 2019.
@@ -37,26 +55,12 @@ This investigation addresses four primary objectives:
 
 ## 2. Study Area and Environmental Setting
 
-Patna District encompasses approximately 3,200 km² within the central Gangetic Alluvial Plain of Bihar, India, centered at 25.61°N latitude and 85.14°E longitude (Figure 1). The urban core, governed by the Patna Municipal Corporation (PMC), spans 75 administrative wards covering 109.2 km² with an estimated population exceeding 2.3 million residents.
+Patna District encompasses approximately 3,200 km² within the central Gangetic Alluvial Plain of Bihar, India, centered at 25.61°N latitude and 85.14°E longitude. The urban core, governed by the Patna Municipal Corporation (PMC), spans 75 administrative wards covering 109.2 km² with an estimated population exceeding 2.3 million residents.
 
-```
-       85°00'E                           85°15'E                           85°30'E
-  25°45'N ┌─────────────────────────────────────────────────────────────────┐
-          │                      GANGES RIVER (NORTH)                       │
-          │     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     │
-          │         [Danapur]            [Central Patna]       [Fatuha]     │
-          │             |                      |                   |        │
-  25°35'N │  SON        |         SAUCER-SHAPED URBAN CORE         |        │
-          │  RIVER      |     (Kankarbagh, Rajendra Nagar)         |        │
-          │  (WEST)     |                      |                   |  PUNPUN│
-          │             |             BYPASS EXPRESSWAY            |  RIVER │
-          │             |                      |                   | (SOUTH)│
-  25°20'N │             |       ALLUVIAL FLOODPLAIN AGRICULTURAL   |        │
-          │             |                     ZONE                 |        │
-          └─────────────────────────────────────────────────────────────────┘
-```
+The district exhibits an unusual geomorphic configuration: a saucer-shaped topographic depression where the central and southern municipal wards sit between 48 m and 52 m above mean sea level (a.m.s.l.), lower than the natural levees and engineered embankments of the Ganges River to the north (53 m to 55 m a.m.s.l.). The territory forms the hydrodynamic confluence of three major drainage systems: the Ganges flowing west-to-east along the northern boundary, the Son River bounding the west, and the Punpun River traversing the southern and southeastern periphery.
 
-The district exhibits an unusual geomorphic configuration: a saucer-shaped topographic depression where the central and southern municipal wards sit between 48 m and 52 m above mean sea level (a.m.s.l.), lower than the natural natural levees and engineered embankments of the Ganges River to the north (53 m to 55 m a.m.s.l.). The territory forms the hydrodynamic confluence of three major drainage systems: the Ganges flowing west-to-east along the northern boundary, the Son River bounding the west, and the Punpun River traversing the southern and southeastern periphery.
+![Figure 1: Spatial multi-hazard risk assessment across Patna District](plots/Figure1_Patna_MultiHazard_Risk_Map.png)  
+*Figure 1: Spatial multi-hazard risk assessment across Patna District (Bihar), illustrating (a) pluvial flood inundation susceptibility, (b) pre-monsoon thermal stress anomalies, and (c) coupled compound multi-hazard risk index (CHI) across 3,200 spatial sampling units.*
 
 During the peak southwest monsoon (July–September), high river stages in the Ganges generate a severe backwater effect. Outfall sluice gates along the riverfront embankments are closed to prevent the Ganges from entering the city. Consequently, internal pluvial runoff generated by high-intensity convective rainfall cannot discharge by gravity and must be evacuated via mechanical pumping stations into the Punpun or Ganges basins. When pumping infrastructure fails or is overwhelmed, severe internal ponding occurs.
 
@@ -72,36 +76,8 @@ To map the spatial extent of inundation during cloud-covered periods, we obtaine
 1. *Pre-deluge baseline:* 10 September 2019 (orbit 121, relative pass 042).
 2. *Peak-flood acquisition:* 28 September 2019 (orbit 121, relative pass 042).
 
-```
-   Raw Sentinel-1 Level-1 GRD (IW Mode, VV/VH)
-                       │
-                       ▼
-          Apply Precise Orbit Ephemerides
-                       │
-                       ▼
-            Thermal Noise Removal
-                       │
-                       ▼
-     Radiometric Calibration to Sigma-Nought (σ°)
-                       │
-                       ▼
-       Lee Speckle Filtering (5x5 Adaptive Window)
-                       │
-                       ▼
-     Range Doppler Terrain Correction (Copernicus 30m DEM)
-                       │
-                       ▼
-         Decibel Conversion: σ°(dB) = 10 * log10(σ°)
-                       │
-                       ▼
-       Log-Ratio Change Detection: Δσ° = σ°_post - σ°_pre
-                       │
-                       ▼
-       Automated Otsu Thresholding (T_optimal ≈ -4.2 dB)
-                       │
-                       ▼
-         Empirical Flood Extent Binary Mask (10 m)
-```
+![Figure 2: Copernicus Sentinel-1 SAR Level-1 GRD Processing Pipeline](plots/Figure2_Sentinel1_SAR_Processing_Pipeline.png)  
+*Figure 2: Copernicus Sentinel-1 SAR Level-1 GRD processing and multi-temporal change detection architecture, illustrating calibration, speckle suppression, terrain correction, and automated Otsu thresholding ($T^* = -4.2\text{ dB}$).*
 
 The SAR data processing pipeline was implemented using standard radiometric and geometric operations:
 1. *Orbit Correction:* Application of precise orbit ephemerides (POD) files from the European Space Agency (ESA) to ensure accurate satellite positioning.
@@ -127,7 +103,7 @@ An automated Otsu bimodal thresholding algorithm determined the optimal separati
 
 ### 3.2 Hexagonal Spatial Tessellation
 
-Following Boni et al. (2025) and Pittore et al. (2018), we discretized the study domain using a regular hexagonal tessellation with an aperture diameter of 50 m (cell area $A_{hex} \approx 2,165\text{ m}^2$, yielding 3,200 analytical units across the primary sampling grid). 
+Following Boni et al. (2025) and Pittore et al. (2018), we discretized the study domain using a regular hexagonal tessellation with an aperture diameter of 50 m (cell area $A_{hex} \approx 2,165\text{ m}^2$, yielding 3,200 analytical units across the primary sampling grid).
 
 Hexagonal units provide three mathematical advantages over standard square Cartesian grids in spatial hydrological modeling:
 1. *Equidistant Neighborhoods:* Every hexagonal cell shares identical edge-to-center distances ($d = 2r/\sqrt{3}$) with all six adjacent neighbors. Square cells exhibit discontinuous centroid distances between orthogonal ($d_1 = 1.0$) and diagonal ($d_2 = \sqrt{2} \approx 1.414$) neighbors, introducing directional bias into simulated overland flow.
@@ -168,7 +144,7 @@ Surface runoff volume $Q$ is computed via the SCS Curve Number (CN) framework mo
 $$Q = \frac{(P - I_a)^2}{P - I_a + S_{\text{eff}}}, \quad \text{for } P > I_a$$
 where $P$ is total precipitation (mm), $I_a$ is initial abstraction ($I_a = 0.2 S_{\text{eff}}$), and $S_{\text{eff}}$ is the thermally degraded potential maximum retention:
 $$S_{\text{eff}} = S_0 \cdot \left[1 - \gamma \cdot \left(\frac{\text{NDBI} + 1}{2}\right) \cdot \text{HWI}\right]$$
-where $S_0 = \frac{25400}{\text{CN}_0} - 254$ and $\gamma = 0.42$. 
+where $S_0 = \frac{25400}{\text{CN}_0} - 254$ and $\gamma = 0.42$.
 
 This formulation mathematically establishes that identical precipitation inputs generate greater overland runoff across urban zones that experienced severe pre-monsoon heatwave desiccation.
 
@@ -199,27 +175,13 @@ Hyperparameters were systematically calibrated using Bayesian optimization:
 
 To test the hypothesis that standard random cross-validation inflates model performance metrics through spatial data leakage, we evaluated the model under two distinct protocols:
 
-```
-          PROTOCOL A: RANDOM 5-FOLD CV               PROTOCOL B: SPATIAL BLOCK CV (SBCV)
-     ┌─────────────────────────────────────┐        ┌──────────────────┬──────────────────┐
-     │ • Randomly permutes all 3,200 cells │        │ Block 1: NW      │ Block 2: NE      │
-     │ • Training and validation cells     │        │ Alluvial Plain   │ Confluence Zone  │
-     │   are spatial neighbors             │        ├──────────────────┼──────────────────┤
-     │ • Severe spatial autocorrelation    │        │         Block 3: CENTRAL         │
-     │   data leakage occurs               │        │       Urban Core (Saucer)        │
-     │ • Artificially inflated R² = 0.9688 │        ├──────────────────┬──────────────────┤
-     │                                     │        │ Block 4: SW      │ Block 5: SE      │
-     │                                     │        │ Son Basin Plain  │ Punpun Lowlands  │
-     └─────────────────────────────────────┘        └──────────────────┴──────────────────┘
-                                                    • Completely withholds contiguous sectors
-                                                    • Zero spatial leakage across folds
-                                                    • Realistic out-of-region R² = 0.7678
-```
+![Figure 3: Spatial Cross-Validation Evaluation Architecture](plots/Figure3_Spatial_Block_Cross_Validation_Architecture.png)  
+*Figure 3: Comparison of spatial cross-validation strategies: (a) Protocol A Random 5-Fold CV illustrating adjacent training/test leakage, and (b) Protocol B Spatial Block Cross-Validation (SBCV) partitioning the district into five geographically disjoint quadrants.*
 
-1. **Protocol A: Random 5-Fold Cross-Validation:**
+1. **Protocol A: Random 5-Fold Cross-Validation:**  
    The full dataset of 3,200 hexagonal units was randomly shuffled into 5 equal subsets ($k=5$). In each iteration, four subsets were used for training and one for validation. Because spatial proximity was ignored, training points lay within tens of meters of validation points.
 
-2. **Protocol B: Spatial Block Cross-Validation (SBCV):**
+2. **Protocol B: Spatial Block Cross-Validation (SBCV):**  
    Following Roberts et al. (2016), the study area was divided into five geographically contiguous, non-overlapping spatial blocks:
    - Block 1 (Northwest): Danapur alluvial plain
    - Block 2 (Northeast): Fatuha–Ganges confluence corridor
@@ -271,17 +233,7 @@ This discrepancy highlights the severe **spatial autocorrelation bias penalty** 
 
 ### 4.2 Spatial Multi-Hazard Susceptibility Patterns
 
-The spatial distribution of predicted compound risk across Patna District is mapped in Figure 1 (`Research_Paper_Workflow/plots/Figure1_Patna_MultiHazard_Spatial_Map.png`).
-
-```
-                    PATNA MULTI-HAZARD RISK ZONATION (FIGURE 1 SUMMARY)
-  High Risk (> 0.70): Concentrated in Central Urban Core (Kankarbagh, Rajendra Nagar,
-                      Boring Canal Road) and Southern Punpun floodplain depressional zones.
-  Moderate Risk (0.40 - 0.70): Danapur-Khagaul peri-urban corridor and western agricultural fringe.
-  Low Risk (< 0.40): Elevated northern river natural levee along Ashok Rajpath.
-```
-
-The spatial modeling reveals three distinct hazard regimes:
+The spatial modeling reveals three distinct hazard regimes across Patna District (Figure 1):
 1. **Severe Inundation Hotspots (Index > 0.75):** Heavily concentrated across the central saucer depression of the Patna Municipal Corporation, specifically Wards 40–55 (Kankarbagh, Rajendra Nagar, Saidpur, and Bahadurpur). These sectors combine low elevation (49–51 m a.m.s.l.), high built-up density ($\text{NDBI} > 0.35$), and complete reliance on mechanical pumping outfalls.
 2. **Peripheral Alluvial Lowlands (Index 0.55–0.75):** Located along the southern boundary adjacent to the Punpun River, where high agricultural soil moisture ($\text{MNDWI} > 0.10$) and river backwaters create persistent waterlogging.
 3. **Resilient Natural Levee Zones (Index < 0.35):** Confined to a narrow linear strip 500 m to 1,200 m wide along the northern riverfront (Ashok Rajpath and Bankipur), where natural sedimentation levees place the ground surface 3 m to 5 m above the internal urban depression.
@@ -290,23 +242,10 @@ The spatial modeling reveals three distinct hazard regimes:
 
 ### 4.3 Hydro-Thermodynamic Runoff Amplification
 
-Figure 2 (`Research_Paper_Workflow/plots/Figure2_Heatwave_Preconditioned_Flood_Amplification.png`) illustrates the simulated interaction between antecedent heatwave preconditioning and pluvial runoff generation across 3,200 hexagonal cells.
+![Figure 4: Compound heatwave-conditioned pluvial runoff amplification](plots/Figure4_Heatwave_Preconditioned_Runoff_Amplification.png)  
+*Figure 4: Non-linear escalation of pluvial surface runoff volume under antecedent heatwave preconditioning, stratified by urban density tiers across 3,200 alluvial catchments.*
 
-```
-       Pluvial Runoff
-       Coefficient (Q/P)
-             ▲
-        0.80 │                                        ● Preconditioned Catchment (HWI > 0.7)
-             │                                   ●●●●   Runoff Coefficient = 0.68 ± 0.04
-        0.60 │                              ●●●●●
-             │                         ▲▲▲▲▲
-        0.40 │                    ▲▲▲▲▲               ▲ Baseline Catchment (HWI < 0.2)
-             │               ▲▲▲▲▲                      Runoff Coefficient = 0.48 ± 0.03
-        0.20 │          ▲▲▲▲
-             │     ▲▲▲▲▲
-        0.00 └─────┴─────────┴─────────┴─────────┴─────────►
-             0     50       100       150       200        Precipitation Depth (mm)
-```
+Figure 4 illustrates the simulated interaction between antecedent heatwave preconditioning and pluvial runoff generation across 3,200 hexagonal cells.
 
 The empirical simulation demonstrates substantial non-linear runoff amplification:
 - Across baseline catchments with low antecedent thermal stress ($\text{HWI} \le 0.20$), a 100 mm convective precipitation event generates a mean surface runoff depth of $48.2 \pm 3.1\text{ mm}$ (runoff coefficient $C = 0.48$).
@@ -318,7 +257,10 @@ This represents a **41.3% relative increase in surface runoff volume** directly 
 
 ### 4.4 Covariate Correlation and Environmental Multi-Collinearity
 
-Figure 3 (`Research_Paper_Workflow/plots/Figure3_Covariate_Correlation_Matrix.png`) presents the Pearson correlation matrix across the seven environmental covariates and the target hazard index.
+![Figure 5: Environmental covariate Pearson correlation matrix](plots/Figure5_Covariate_Correlation_Matrix.png)  
+*Figure 5: Pearson correlation matrix across seven environmental and anthropomorphic predictors and the target compound multi-hazard susceptibility index.*
+
+Figure 5 presents the Pearson correlation matrix across the seven environmental covariates and the target hazard index.
 
 Key bivariate relationships include:
 - Surface Elevation vs Hazard Index: $r = -0.71$ ($p < 0.001$). Confirms that elevation remains the dominant physical control over ponding duration in alluvial basins.
@@ -332,20 +274,10 @@ Variance Inflation Factors (VIF) for all seven covariates remained below 3.8, co
 
 ### 4.5 Tree-SHAP Feature Attributions and Interpretability
 
-Figure 4 (`Research_Paper_Workflow/plots/Figure4_Explainable_AI_Feature_Attributions.png`) illustrates global and local feature contributions computed using Tree-SHAP across the 90th percentile hazard distribution.
+![Figure 6: Explainable AI global feature attributions via Tree-SHAP](plots/Figure6_Tree_SHAP_Feature_Attributions.png)  
+*Figure 6: Global feature importance rankings derived from Tree-based Shapley Additive Explanations (Tree-SHAP) across the 90th percentile hazard distribution.*
 
-```
-   Predictor Variable                 Mean Absolute SHAP Value (|SHAP|)
-   ────────────────────────────────────────────────────────────────────
-   Distance to Confluence (d_riv)     █████████████████████████ 0.284
-   Surface Elevation (Z)              █████████████████████ 0.241
-   Heatwave Index (HWI)               ████████████████ 0.187
-   Built-Up Index (NDBI)              ████████████ 0.143
-   Modified Wetness Index (MNDWI)     ████████ 0.098
-   Topographic Slope (S)              ██████ 0.076
-   Vegetation Index (NDVI)            ████ 0.045
-   ────────────────────────────────────────────────────────────────────
-```
+Figure 6 illustrates global and local feature contributions computed using Tree-SHAP across the 90th percentile hazard distribution.
 
 The game-theoretic attributions rank **Distance to River Confluence** ($\text{mean } |\text{SHAP}| = 0.284$) and **Surface Elevation** ($\text{mean } |\text{SHAP}| = 0.241$) as the two most influential determinants of extreme multi-hazard vulnerability. These macro-topographic factors define the structural boundary conditions of the saucer basin.
 
