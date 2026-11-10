@@ -1,0 +1,118 @@
+{
+  "dataset_name": "Patna Urban Crime and Women Safety Index",
+  "data_sources": [
+    "National Crime Records Bureau (NCRB) - Crime in India (Metropolitan Cities)",
+    "Patna Police Thana Jurisdictions & Law-and-Order Zones",
+    "OpenStreetMap (OSM) Night Streetlight & Police Station Proximity Proxies"
+  ],
+  "localities": {
+    "danapur cantonment": {
+      "thana_jurisdiction": "Danapur Thana / Military Cantonment Zone",
+      "crime_rate_index": "Very Low (Army presence, perimeter checkpoints)",
+      "women_safety_rating": "High (Secure, restricted access, low harassment history)",
+      "police_station_distance_km": 0.8,
+      "night_lighting_quality": "High",
+      "overall_social_safety_score": 92.0,
+      "notes": "Excellent security environment near Cantonment and Saguna More."
+    },
+    "bailey road / saguna more": {
+      "thana_jurisdiction": "Rupaspur Thana / Danapur Thana",
+      "crime_rate_index": "Low (Major arterial highway, continuous PCR van patrols)",
+      "women_safety_rating": "High (Well-lit, wide roads, 24x7 traffic, CCTV coverage)",
+      "police_station_distance_km": 1.2,
+      "night_lighting_quality": "High",
+      "overall_social_safety_score": 88.0,
+      "notes": "Prime family and working women residential corridor."
+    },
+    "rps more / canal road": {
+      "thana_jurisdiction": "Rupaspur Thana",
+      "crime_rate_index": "Low (Gated residential apartments, high CCTV concentration)",
+      "women_safety_rating": "High (Active residential mobility, reliable transit)",
+      "police_station_distance_km": 1.0,
+      "night_lighting_quality": "High",
+      "overall_social_safety_score": 89.0,
+      "notes": "Highly sought after for young families and college students."
+    },
+    "boring road / sk puri": {
+      "thana_jurisdiction": "SK Puri Thana / Kotwali Sub-Division",
+      "crime_rate_index": "Low to Moderate (Commercial petty theft, chain snatching)",
+      "women_safety_rating": "High (Active student/commercial hub, well-lit till late night)",
+      "police_station_distance_km": 0.5,
+      "night_lighting_quality": "Very High",
+      "overall_social_safety_score": 86.0,
+      "notes": "Safe social ecosystem for women; major drawback is waterlogging."
+    },
+    "patliputra colony": {
+      "thana_jurisdiction": "Patliputra Thana",
+      "crime_rate_index": "Low (Gated residential cooperative society, night guards)",
+      "women_safety_rating": "High (Quiet, secure family neighborhood)",
+      "police_station_distance_km": 0.7,
+      "night_lighting_quality": "Moderate to High",
+      "overall_social_safety_score": 85.0,
+      "notes": "Historically prestigious and secure colony; moderate stormwater issues."
+    },
+    "digha / kurji": {
+      "thana_jurisdiction": "Digha Thana",
+      "crime_rate_index": "Moderate (Rapid peri-urban growth, sporadic property disputes)",
+      "women_safety_rating": "Moderate to High (Well-connected via JP Ganga Path)",
+      "police_station_distance_km": 1.4,
+      "night_lighting_quality": "Moderate",
+      "overall_social_safety_score": 79.0,
+      "notes": "Near riverfront levee; good elevation, developing residential infrastructure."
+    },
+    "gardanibagh / anishabad": {
+      "thana_jurisdiction": "Gardanibagh Thana / Gardanibagh Hospital Outpost",
+      "crime_rate_index": "Low to Moderate (Government quarters zone, organized grid)",
+      "women_safety_rating": "Moderate to High (Peaceful residential, well-patrolled)",
+      "police_station_distance_km": 0.9,
+      "night_lighting_quality": "Moderate",
+      "overall_social_safety_score": 80.0,
+      "notes": "Good law-and-order presence; moderate waterlogging during extreme cloudbursts."
+    },
+    "phulwari sharif": {
+      "thana_jurisdiction": "Phulwari Sharif Thana",
+      "crime_rate_index": "Moderate (Dense old markets, traffic congestion)",
+      "women_safety_rating": "Moderate (Active daylight commerce, narrow interior lanes)",
+      "police_station_distance_km": 1.1,
+      "night_lighting_quality": "Moderate",
+      "overall_social_safety_score": 71.0,
+      "notes": "Close to AIIMS Patna; high density, variable infrastructure."
+    },
+    "gandhi maidan / ashok rajpath": {
+      "thana_jurisdiction": "Gandhi Maidan Thana / Pirbahore Thana",
+      "crime_rate_index": "Moderate (Heavy congestion, pickpocketing, dense market zone)",
+      "women_safety_rating": "Moderate (Crowded market, requires situational awareness at night)",
+      "police_station_distance_km": 0.3,
+      "night_lighting_quality": "High",
+      "overall_social_safety_score": 72.0,
+      "notes": "High police presence but very crowded and commercial."
+    },
+    "kankarbagh colony": {
+      "thana_jurisdiction": "Kankarbagh Thana / Agamkuan Thana",
+      "crime_rate_index": "Moderate (High density, vehicle theft, residential burglary)",
+      "women_safety_rating": "Moderate to Safe in central blocks; isolated pockets in south bypass",
+      "police_station_distance_km": 1.1,
+      "night_lighting_quality": "Moderate",
+      "overall_social_safety_score": 74.0,
+      "notes": "Moderate social safety; major risk remains chronic 1-2m waterlogging."
+    },
+    "rajendra nagar": {
+      "thana_jurisdiction": "Kadamkuan Thana / Rajendra Nagar",
+      "crime_rate_index": "Moderate (Dense old town colonies, petty theft)",
+      "women_safety_rating": "Moderate (Safe interior colonies during day, deserted during floods)",
+      "police_station_distance_km": 0.9,
+      "night_lighting_quality": "Moderate",
+      "overall_social_safety_score": 73.0,
+      "notes": "Social safety acceptable, but extreme flood vulnerability makes it high risk."
+    },
+    "patna bypass / transport nagar": {
+      "thana_jurisdiction": "Ramkrishna Nagar Thana / Agamkuan",
+      "crime_rate_index": "High (Isolated heavy vehicle corridor, highway robberies)",
+      "women_safety_rating": "Low (Poor street lighting, deserted stretches at night)",
+      "police_station_distance_km": 3.5,
+      "night_lighting_quality": "Low",
+      "overall_social_safety_score": 41.0,
+      "notes": "Unsuitable for family/women residential purchase."
+    }
+}
+}

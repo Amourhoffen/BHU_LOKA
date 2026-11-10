@@ -1,0 +1,24 @@
+{
+  "benchmark_name": "UN-SPIDER vs BHU LOKA Urban SAR Comparison",
+  "study_area": "Patna Municipal Corporation (PMC)",
+  "pmc_total_area_km2": 133.87,
+  "unspider_algorithm": {
+    "source_repo": "Repos/flood-mapping-tool",
+    "principle": "Specular backscatter attenuation (open water surface)",
+    "threshold_applied": "Delta sigma0 <= -2.0 dB",
+    "detected_inundation_km2": 4.01,
+    "detected_fraction_of_pmc_pct": 2.99
+  },
+  "bhu_loka_algorithm": {
+    "source": "BHU LOKA Sovereign Multi-Hazard Engine",
+    "principle": "Bimodal Inundation Physics (Specular Drop + Urban Dihedral Corner Double-Bounce)",
+    "open_specular_flood_km2": 1.15,
+    "urban_double_bounce_flood_km2": 94.08,
+    "total_detected_inundation_km2": 99.6,
+    "detected_fraction_of_pmc_pct": 74.4
+  },
+  "scientific_findings": {
+    "unspider_urban_omission_error_pct": 95.98,
+    "physical_root_cause": "Urban street canyons (Rajendra Nagar, Kankarbagh) act as 90-degree corner reflectors with building facades, increasing SAR backscatter (+1.5 to +8.0 dB) rather than decreasing it. Naive UN-SPIDER thresholds fail in dense built-up cities."
+  }
+}

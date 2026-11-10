@@ -1,4 +1,4 @@
-#  Master Research Compendium & Academic Defense Blueprint: Project BHU LOKA (भूलोक)
+# Master Research Compendium & Academic Defense Blueprint: Project BHU LOKA (भूलोक)
 
 **Title:** Sequential Compound Hydro-Thermal Risk in Continental Alluvial Metropolises: Integrating Synthetic Aperture Radar (SAR), Spatial Quantile Machine Learning, and Game-Theoretic Explainability  
 **Principal Investigator & Author:** Prince Kumar (Department of Computer Science & Engineering / Civil & Environmental Engineering, IIT Patna)  
@@ -10,7 +10,7 @@
 
 ## Executive Abstract
 
-Urban risk management across the Indo-Gangetic Basin is confronted with escalating hydrometeorological compound events. While coastal multi-hazard dynamics have received extensive attention, continental flat alluvial basins—characterized by complex riverine confluences, saucer-shaped geomorphology, and intense pre-monsoon thermal regimes—remain critically under-researched. 
+Urban risk management across the Indo-Gangetic Basin is confronted with escalating hydrometeorological compound events. While coastal multi-hazard dynamics have received extensive attention, continental flat alluvial basins—characterized by complex riverine confluences, saucer-shaped geomorphology, and intense pre-monsoon thermal regimes—remain critically under-researched.
 
 This master compendium establishes the definitive theoretical, mathematical, computational, and operational architecture of **BHU LOKA (भूलोक)** for Patna District, Bihar, India ($\approx 3,200\text{ km}^2$). We rigorously synthesize eight foundational scientific pillars, reconcile the physics of Synthetic Aperture Radar (SAR) Earth observation with spatial machine learning, formulate an empirical Spatial Block Cross-Validation benchmark demonstrating an unprecedented $20.1\%$ spatial autocorrelation penalty, and deliver an operational decision-support matrix aligned with the NASA International Space Apps Challenge (*Dancing with SARs*) and the Bihar State Disaster Management Authority (BSDMA).
 
@@ -20,20 +20,13 @@ This master compendium establishes the definitive theoretical, mathematical, com
 
 A rigorous doctoral-level research framework requires grounding in peer-reviewed literature. BHU LOKA synthesizes eight foundational scientific works across hydro-climatology, geoinformatics, spatial statistics, and civil protection:
 
-```
-                                    ┌──────────────────────────────────────────────┐
-                                    │    BHU LOKA MULTI-DISCIPLINARY SYNTHESIS    │
-                                    └──────────────────────┬───────────────────────┘
-                                                           │
-         ┌──────────────────────────────┬──────────────────┴───────────────┬──────────────────────────────┐
-         ▼                              ▼                                  ▼                              ▼
-┌──────────────────┐           ┌──────────────────┐               ┌──────────────────┐           ┌──────────────────┐
-│ Pillar I & II    │           │ Pillar III & IV  │               │ Pillar V & VI    │           │ Pillar VII & VIII│
-│ Thermodynamics & │           │ Spatial AI &     │               │ Atmospheric &    │           │ Civil Protection │
-│ Spatial Rigor    │           │ Tail Risk        │               │ Geoinformatics   │           │ & NWP Downscaling│
-│ • Ganguli (2025) │           │ • Singh (2026)   │               │ • Rohini (2025)  │           │ • Boni (2025)    │
-│ • Roberts (2016) │           │ • Jato-Espino    │               │ • van Westen     │           │ • Tallapragada   │
-└──────────────────┘           └──────────────────┘               └──────────────────┘           └──────────────────┘
+```mermaid
+flowchart TD
+    CORE["BHU LOKA Multi-Disciplinary Synthesis"]
+    CORE --> P1["Pillars I & II: Thermodynamics & Spatial Rigor<br/>• Ganguli et al. (2025)<br/>• Roberts et al. (2016)"]
+    CORE --> P2["Pillars III & IV: Spatial AI & Tail Risk<br/>• Singh et al. (2026)<br/>• Jato-Espino et al. (2024)"]
+    CORE --> P3["Pillars V & VI: Atmospheric & Geoinformatics<br/>• Rohini et al. (2025)<br/>• van Westen et al. (2011)"]
+    CORE --> P4["Pillars VII & VIII: Civil Protection & NWP Downscaling<br/>• Boni et al. (2025)<br/>• Tallapragada et al. (2026)"]
 ```
 
 ### Pillar 1: Sequential Compound Extremes & Thermodynamic Preconditioning
@@ -129,7 +122,7 @@ A hallmark of scientific integrity in peer review is transparently stating limit
 Our reproducible computational pipeline executed across Patna District ($N = 3,200$ spatial sampling sites across 7 environmental covariates) generated three breakthrough findings:
 
 ### Finding 1: The Spatial Autocorrelation Bias Penalty ($\Delta R^2 = -0.2010$)
-We quantitatively validated the warning of Roberts et al. (2016). When evaluated using naive random 5-fold cross-validation, our Random Forest/Gradient Boosting model achieved an inflated, overfitted $R^2$ of **$0.9688$** ($\text{RMSE} = 0.0301$). When subjected to **Spatial Block Cross-Validation (SBCV)** across 5 independent geographic quadrants, the true out-of-region generalization skill was established at **$R^2 = 0.7678$** ($\text{RMSE} = 0.0581$). 
+We quantitatively validated the warning of Roberts et al. (2016). When evaluated using naive random 5-fold cross-validation, our Random Forest/Gradient Boosting model achieved an inflated, overfitted $R^2$ of **$0.9688$** ($\text{RMSE} = 0.0301$). When subjected to **Spatial Block Cross-Validation (SBCV)** across 5 independent geographic quadrants, the true out-of-region generalization skill was established at **$R^2 = 0.7678$** ($\text{RMSE} = 0.0581$).
 
 > **Scientific Conclusion:** Naive spatial models in Indian disaster research suffer from a $\sim 20\%$ artificial performance inflation due to spatial coordinate memorization.
 
@@ -147,21 +140,11 @@ Tree-SHAP game-theoretic decomposition reveals a structural divergence between m
 
 The NASA International Space Apps Challenge track **"Dancing with SARs"** challenges researchers to harness Synthetic Aperture Radar (SAR) data for disaster observation. BHU LOKA directly answers this mandate:
 
-```
-                            ┌──────────────────────────────────────────────┐
-                            │    SAR ACTIVE MICROWAVE SENSING PHYSICS     │
-                            └──────────────────────┬───────────────────────┘
-                                                   │
-                ┌──────────────────────────────────┴──────────────────────────────────┐
-                ▼                                                                     ▼
-    ┌──────────────────────┐                                              ┌──────────────────────┐
-    │  ROUGH URBAN SURFACES│                                              │  SMOOTH FLOOD WATER  │
-    │  • Diffuse / Double  │                                              │  • Specular Mirror   │
-    │    Bounce Scattering │                                              │    Reflection        │
-    │  • High Backscatter  │                                              │  • Low Backscatter   │
-    │    (σ0 > -10 dB)     │                                              │    (σ0 < -18 dB)     │
-    │  • BRIGHT PIXELS     │                                              │  • DARK PIXELS       │
-    └──────────────────────┘                                              └──────────────────────┘
+```mermaid
+flowchart TD
+    SAR["SAR Active Microwave Sensing Physics (Sentinel-1 C-Band)"]
+    SAR --> URBAN["Rough Urban Surfaces<br/>• Diffuse and Double-Bounce Scattering<br/>• High Backscatter: σ⁰ > -10 dB<br/>• Bright Pixels"]
+    SAR --> WATER["Smooth Flood Water Surfaces<br/>• Specular Mirror Reflection Away From Sensor<br/>• Low Backscatter: σ⁰ < -18 dB<br/>• Dark Pixels"]
 ```
 
 ### 6.1 Radar Remote Sensing Physics
@@ -177,7 +160,7 @@ During September 27–30, 2019, Patna experienced catastrophic pluvial inundatio
 
 To submit to *International Journal of Disaster Risk Reduction* (Elsevier) or *Geophysical Research Letters* (AGU):
 
-```
+```text
 1. TITLE & ABSTRACT: Concise, problem-centric, highlighting compound risk & spatial ML.
 2. INTRODUCTION: Research gap, Ganguli (2025), Singh (2026), and continental alluvial necessity.
 3. STUDY AREA & DATA: Patna geographic coordinates (25.30N-25.70N, 84.85E-85.35E), Sentinel-1/2, SRTM, IMD.

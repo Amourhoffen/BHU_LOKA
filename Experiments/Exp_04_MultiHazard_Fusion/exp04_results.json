@@ -1,0 +1,46 @@
+{
+  "experiment": "Exp_04_MultiHazard_Fusion",
+  "pmc_population_total": 214281,
+  "citizens_exposed_to_inundation": 167246,
+  "citizens_in_depression_sinks": 60790,
+  "citizens_in_compound_hazard": 49380,
+  "mean_pmc_suitability_score": 52.27,
+  "zone_distribution_pct": {
+    "S1_high_suitability": 20.1,
+    "S2_moderate_suitability": 27.7,
+    "S3_low_suitability": 33.1,
+    "S4_critical_hazard": 19.1
+  },
+  "locality_profiles": {
+    "Danapur Cantonment": {
+      "ulsi": 89.4,
+      "zone": "Zone S1 (Prime)",
+      "verdict": "Safest residential zone; high natural levee, excellent gravity drainage."
+    },
+    "Bailey Road / Khagaul": {
+      "ulsi": 86.2,
+      "zone": "Zone S1 (Prime)",
+      "verdict": "Highly suitable for purchasing land/flats; minimal waterlogging risk."
+    },
+    "Patliputra Colony": {
+      "ulsi": 66.8,
+      "zone": "Zone S2 (Moderate)",
+      "verdict": "Suitable with standard municipal storm drainage; moderate flood history."
+    },
+    "Gandhi Maidan": {
+      "ulsi": 64.5,
+      "zone": "Zone S2 (Moderate)",
+      "verdict": "Intermediate river levee terrace; commercial/residential suitable."
+    },
+    "Kankarbagh Colony": {
+      "ulsi": 28.2,
+      "zone": "Zone S4 (Critical)",
+      "verdict": "High risk of 1-2m waterlogging; buyers must inspect plinth & pump setups."
+    },
+    "Rajendra Nagar": {
+      "ulsi": 21.6,
+      "zone": "Zone S4 (Critical)",
+      "verdict": "Severe natural depression sink; chronic flood hazard zone."
+    }
+  }
+}

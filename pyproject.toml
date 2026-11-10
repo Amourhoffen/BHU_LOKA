@@ -1,0 +1,15 @@
+[tool.pyrefly]
+python-interpreter-path = "C:/Users/ljpri/AppData/Local/Programs/Python/Python313/python.exe"
+search-paths = [
+    "C:/Users/ljpri/AppData/Local/Programs/Python/Python313/Lib/site-packages",
+    ".",
+    "Models/04_Hybrid_RAG/enterprise_rag_app"
+]
+site-packages-path = [
+    "C:/Users/ljpri/AppData/Local/Programs/Python/Python313/Lib/site-packages"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["Models/04_Hybrid_RAG/enterprise_rag_app/tests"]
+norecursedirs = ["Skills", "Repos", "Final research work", "Final_Research_Work", "Research_Paper_Workflow", ".agents"]
+

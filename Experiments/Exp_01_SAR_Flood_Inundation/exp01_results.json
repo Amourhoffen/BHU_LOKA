@@ -1,0 +1,12 @@
+{
+  "experiment": "Exp_01_SAR_Flood_Inundation",
+  "total_bbox_area_km2": 444.68,
+  "true_pmc_area_km2": 133.87,
+  "pmc_open_specular_water_km2": 0.07,
+  "pmc_urban_double_bounce_km2": 99.52,
+  "pmc_total_inundated_km2": 99.6,
+  "pmc_true_inundation_fraction_pct": 74.4,
+  "calibration_offset_db": -52.0,
+  "otsu_delta_threshold_db": -3.8,
+  "urban_double_bounce_threshold_db": 1.5
+}

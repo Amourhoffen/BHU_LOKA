@@ -11,21 +11,40 @@ Summery/
 # 3. Persistent Agent Memory Context
 Memory/
 
-# 4. Python Build Artifacts & Bytecode Cache
+# 4. Embedded Third-Party Reference Repositories (separate git clones)
+Repos/
+
+# 5. Large Raw Satellite / Elevation Scenes (>50 MB / Re-downloadable archives)
+Data/02_SAR_Sentinel1/*.tif
+Data/04_DEM_SRTM/*.tif
+Data/06_LST_Thermal/raw_hdf/
+Data/MOD11A2_061-*/
+Data/01_Boundaries/*.gpkg
+**/.celestrak_gp_cache.json
+
+# 6. Archives, Backups & Temporary Scratch Artifacts
+Final_Research_Work.zip
+*.bak
+scratch/
+.pytest_cache/
+**/node_modules/
+
+# 7. Python Build Artifacts & Bytecode Cache
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 
-# 5. Environment Variables & Secret Files
+# 8. Environment Variables & Secret Files
 .env
-*.env.*
+.env.*
+!BhuLoka_API_Config.env.example
 .venv/
 env/
 venv/
 ENV/
 
-# 6. OS & Cache Files
+# 9. OS & Cache Files
 .DS_Store
 Thumbs.db
 .matplotlib/

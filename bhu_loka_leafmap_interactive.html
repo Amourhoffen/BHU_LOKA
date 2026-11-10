@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BHU LOKA (भूलोक) · Google Earth, Heritage, Satellites &amp; Sovereign India GIS</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="Assets/vendor/leaflet.css" />
+  <script src="Assets/vendor/leaflet.js"></script>
+  <script src="Assets/vendor/satellite.min.js"></script>
+  <script src="Assets/vendor/tailwindcss.js"></script>
+  <!-- Sovereign India Boundaries (6.75N-37.10N, 36 States/UTs) + Bihar 38 Districts + Sentinel-1 / DEM / MODIS Rasters -->
+  <script src="Data/08_Processed_Outputs/bhu_loka_real_geodata.js"></script>
+  <!-- Universal Location-Aware Intelligence Engine (15 Modules + Provenance) -->
+  <script src="Assets/vendor/bhu_loka_location_engine.js"></script>
+  <style>
+    body,
+    html {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: #080b10;
+      font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+      overflow: hidden;
+    }
+
+    .mono {
+      font-family: 'IBM Plex Mono', 'Consolas', monospace;
+      font-variant-numeric: tabular-nums;
+    }
+
+    #map {
+      height: calc(100vh - 56px);
+      width: 100%;
+      background: #06090f;
+    }
+
+    .leaflet-popup-content-wrapper {
+      background: #0d1219;
+      color: #f1f5f9;
+      border: 1px solid #334155;
+      border-radius: 4px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
+    }
+
+    .leaflet-popup-tip {
+      background: #334155;
+    }
+
+    .leaflet-control-layers {
+      background: rgba(13, 18, 25, 0.94) !important;
+      color: #e2e8f0 !important;
+      border: 1px solid #334155 !important;
+      border-radius: 4px !important;
+      font-family: 'IBM Plex Mono', monospace !important;
+      font-size: 11px !important;
+      max-height: calc(100vh - 104px);
+      overflow-y: auto;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45) !important;
+    }
+
+    .leaflet-control-layers-toggle {
+      background-color: #0d1219 !important;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2338bdf8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='12 2 2 7 12 12 22 7 12 2'/%3E%3Cpolyline points='2 17 12 22 22 17'/%3E%3Cpolyline points='2 12 12 17 22 12'/%3E%3C/svg%3E") !important;
+      background-size: 20px 20px !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+      border: 1px solid rgba(56, 189, 248, 0.5) !important;
+      border-radius: 4px !important;
+      width: 34px !important;
+      height: 34px !important;
+    }
+
+    .leaflet-tooltip {
+      background: #0d1219;
+      color: #e2e8f0;
+      border: 1px solid #38bdf8;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+    }
+  </style>
+</head>
+
+<body class="text-slate-100">
+
+  <!-- TOP SOVEREIGN GIS TOOLBAR -->
+  <header class="h-14 bg-[#0d1219] border-b border-slate-800 px-3 flex items-center justify-between gap-2">
+    <div class="flex items-center gap-2.5 min-w-0">
+      <svg width="24" height="24" viewBox="0 0 28 28" fill="none" class="shrink-0" aria-hidden="true">
+        <rect x="1.5" y="1.5" width="25" height="25" rx="4" stroke="#334155" stroke-width="1.2" fill="#090d13" />
+        <circle cx="14" cy="14" r="7" stroke="#38bdf8" stroke-width="1.2" />
+        <circle cx="14" cy="14" r="2" fill="#10b981" />
+      </svg>
+      <div class="min-w-0">
+        <div class="flex items-center gap-2">
+          <h1 class="text-xs md:text-sm font-bold tracking-tight text-slate-100 truncate">
+            BHU LOKA <span class="text-slate-400 font-medium">/ Google Earth &amp; Multi-Scale GIS</span>
+          </h1>
+          <span
+            class="mono text-[10px] bg-emerald-500/15 text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-500/35 font-semibold shrink-0">36
+            STATES · 38 BIHAR DIST</span>
+          <span
+            class="mono text-[10px] bg-sky-500/15 text-sky-300 px-1.5 py-0.5 rounded border border-sky-500/35 font-semibold shrink-0"
+            id="gis-sat-badge">SATS: SYNCING</span>
+        </div>
+        <p class="mono text-[10px] text-slate-400 truncate">Google Earth (gl=IN) · Sentinel-1 SAR + Copernicus DEM +
+          Live NORAD Satellites + ASI Heritage</p>
+      </div>
+    </div>
+
+    <!-- CLEAN SEGMENTED MAP SWITCHERS & ADDRESS JUMP -->
+    <div class="flex items-center gap-1 text-[10px] mono shrink-0 overflow-x-auto">
+      <div class="hidden xl:flex items-center gap-1 mr-1">
+          <input id="gis-addr-input" type="text" placeholder="Place or lat, lon (Mumbai, 34.1526, 77.5771)..."
+          class="bg-[#070b12] border border-slate-700/80 rounded px-2 py-1 text-[10px] text-slate-100 w-56 focus:outline-none focus:border-sky-500"
+          onkeydown="if(event.key==='Enter') searchAndFlyAddress()">
+        <button type="button" onclick="searchAndFlyAddress()"
+          class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-2 py-1 rounded font-medium
+          transition">
+          Go
+        </button>
+      </div>
+      <button onclick="setBaseMode('hybrid')" id="btn-base-hybrid"
+        class="bg-slate-800 text-sky-300 border border-slate-700 px-2 py-1 rounded font-medium transition">
+        Earth Hybrid
+      </button>
+      <button onclick="setBaseMode('gmaps')" id="btn-base-gmaps"
+        class="bg-[#070b12] hover:bg-slate-800 text-slate-300 border border-slate-700 px-2 py-1 rounded font-medium
+        transition">
+        Google Maps
+      </button>
+      <button onclick="setBaseMode('dark')" id="btn-base-dark"
+        class="bg-[#070b12] hover:bg-slate-800 text-slate-300 border border-slate-700 px-2 py-1 rounded font-medium
+        transition">
+        Dark Slate
+      </button>
+      <span class="h-5 w-px bg-slate-800 mx-0.5"></span>
+      <button onclick="focusIndiaMacro()"
+        class="bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 px-2 py-1 rounded font-medium
+        transition">
+        India 36
+      </button>
+      <button onclick="focusBiharDistricts()"
+        class="bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 px-2 py-1 rounded font-medium
+        transition">
+        Bihar 38
+      </button>
+      <button onclick="focusHeritageAndLand()"
+        class="bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 px-2 py-1 rounded font-medium
+        transition">
+        Heritage &amp; Land
+      </button>
+      <button onclick="focusPatnaFlood()"
+        class="bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 px-2 py-1 rounded font-medium
+        transition">
+        Patna SAR
+      </button>
+      <button onclick="focusPatnaDEM()"
+        class="bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 px-2 py-1 rounded font-medium
+        transition">
+        DEM / ULSI
+      </button>
+      <a id="link-open-3d-workstation" href="bhu_loka_cyber_dashboard.html"
+        class="bg-sky-500 hover:bg-sky-400 text-slate-950 px-2.5 py-1 rounded font-semibold transition">
+        3D Workstation &rarr;
+      </a>
+    </div>
+  </header>
+
+  <!-- LEAFLET INTERACTIVE MAP -->
+  <div id="map"></div>
+
+  <!-- FLOATING TELEMETRY & LINE COLOR LEGEND CARD -->
+  <div class="absolute bottom-5 left-5 bg-[#0d1219]/95 border border-slate-700 rounded p-3 w-80 text-xs shadow-xl"
+    style="z-index: 1000;">
+    <div
+      class="mono text-[10px] font-semibold text-slate-200 border-b border-slate-800 pb-1.5 mb-2 flex justify-between items-center">
+      <span id="legend-title">SOVEREIGN INDIA · GOOGLE EARTH</span>
+      <span class="text-emerald-400">VERIFIED gl=IN</span>
+    </div>
+    <div class="space-y-1.5 text-[10px] mono text-slate-300">
+      <div class="flex items-start gap-2">
+        <span class="w-3 h-3 mt-0.5 rounded-sm border-2 border-sky-400 shrink-0"></span>
+        <span><b class="text-sky-300">BLUE/CYAN:</b> Sovereign Border (6.75°N–37.10°N), Bay of Bengal LPS, &amp; S1 Open
+          Water (-3.8 dB)</span>
+      </div>
+      <div class="flex items-start gap-2">
+        <span class="w-3 h-3 mt-0.5 rounded-sm bg-rose-500 shrink-0"></span>
+        <span><b class="text-rose-400">RED/ROSE:</b> Bihar Benchmark, S1 Urban Double-Bounce Flood (94.08 km²) &amp;
+          Zone S4 Hubs</span>
+      </div>
+      <div class="flex items-start gap-2">
+        <span class="w-3 h-3 mt-0.5 rounded-sm bg-emerald-500 shrink-0"></span>
+        <span><b class="text-emerald-400">GREEN:</b> Ladakh/J&amp;K Crown, Safe S1 Corridors (&gt;52m, Low-Flood Land)
+          &amp; IOD Jet</span>
+      </div>
+      <div class="flex items-start gap-2">
+        <span class="w-3 h-3 mt-0.5 rounded-sm bg-fuchsia-500 shrink-0"></span>
+        <span><b class="text-fuchsia-400">PURPLE:</b> Himalayan Cryosphere Melt Feeder &amp; Copernicus &lt;47m Sinks
+          (47.24 km²)</span>
+      </div>
+      <div class="flex items-start gap-2">
+        <span class="w-3 h-3 mt-0.5 rounded-sm bg-amber-500 shrink-0"></span>
+        <span><b class="text-amber-400">AMBER/GOLD:</b> MODIS Heatwave (46.25°C), Ramayana Circuit &amp; Harappan IVC
+          Sites</span>
+      </div>
+    </div>
+
+    <div class="mt-2 pt-1.5 border-t border-slate-800 mono text-[10px] text-sky-300 flex justify-between items-center gap-2">
+      <span id="gis-live-label" class="truncate max-w-[125px]">Active Live:</span>
+      <span id="gis-live-readout" class="text-right">Synchronizing...</span>
+    </div>
+    <div class="mt-1 mono text-[10px] text-emerald-300 flex justify-between items-center">
+      <span>Live Orbit:</span>
+      <span id="gis-sat-readout">Checking CelesTrak / ISS...</span>
+    </div>
+
+    <div class="mt-1.5 pt-1.5 border-t border-slate-800 mono text-[10px] text-slate-400 flex justify-between">
+      <span>Prince Kumar (PA2511CDH37)</span>
+      <span>Guide: Pallav Rustogi</span>
+    </div>
+  </div>
+
+  <script>
+    const D = window.BHU_LOKA_REAL_DATA || {};
+    const FASTAPI_BASE = 'http://127.0.0.1:8000';
+
+    const map = L.map('map', {
+      center: [22.4, 82.8],
+      zoom: 4.75,
+      zoomSnap: 0.25,
+      zoomDelta: 0.5,
+      zoomControl: true
+    });
+
+    map.fitBounds([[6.5, 67.8], [37.4, 97.6]], { padding: [16, 16] });
+
+    // ATTACH UNIVERSAL LOCATION-AWARE INTELLIGENCE ENGINE (AUTO-REFRESH ON ANY MAP CLICK)
+    if (window.BhuLokaLocationEngine) {
+      window.BhuLokaLocationEngine.attachMap('2d', map);
+    }
+
+    // GOOGLE EARTH + GOOGLE MAPS INDIA (gl=IN) + ESRI BASEMAPS (ZERO OSM 403 BLOCKS!)
+    const googleEarthHybrid = L.tileLayer('https://mt{s}.google.com/vt/lyrs=y&gl=IN&x={x}&y={y}&z={z}', {
+      subdomains: ['0', '1', '2', '3'],
+      attribution: '&copy; Google Earth Satellite + India View (gl=IN)',
+      maxZoom: 20
+    }).addTo(map);
+
+    const googleMapsIndia = L.tileLayer('https://mt{s}.google.com/vt/lyrs=m&gl=IN&x={x}&y={y}&z={z}', {
+      subdomains: ['0', '1', '2', '3'],
+      attribution: '&copy; Google Maps Official India View (gl=IN)',
+      maxZoom: 20
+    });
+
+    const googleEarthSat = L.tileLayer('https://mt{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+      subdomains: ['0', '1', '2', '3'],
+      attribution: '&copy; Google Earth High-Res Satellite',
+      maxZoom: 20
+    });
+
+    const googleTerrainIndia = L.tileLayer('https://mt{s}.google.com/vt/lyrs=p&gl=IN&x={x}&y={y}&z={z}', {
+      subdomains: ['0', '1', '2', '3'],
+      attribution: '&copy; Google Terrain India (gl=IN)',
+      maxZoom: 20
+    });
+
+    const esriSat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      attribution: '&copy; Esri, Maxar, Earthstar Geographics',
+      maxZoom: 19
+    });
+
+    const esriDarkCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+      attribution: '&copy; Esri World Dark Gray Base',
+      maxZoom: 16
+    });
+
+    const offlineVectorCanvas = L.layerGroup();
+
+    const baseMaps = {
+      "Google Earth Hybrid India (gl=IN)": googleEarthHybrid,
+      "Google Maps India Sovereign (gl=IN)": googleMapsIndia,
+      "Google Earth Pure Satellite": googleEarthSat,
+      "Google Terrain Relief (gl=IN)": googleTerrainIndia,
+      "Esri Maxar World Imagery": esriSat,
+      "Esri Dark Slate Canvas": esriDarkCanvas,
+      "Offline Sovereign Vector Canvas": offlineVectorCanvas
+    };
+
+    const allBaseLayers = [
+      googleEarthHybrid, googleMapsIndia, googleEarthSat,
+      googleTerrainIndia, esriSat, esriDarkCanvas, offlineVectorCanvas
+    ];
+
+    function setBaseMode(mode) {
+      allBaseLayers.forEach((l) => { if (map.hasLayer(l)) map.removeLayer(l); });
+      const bHyb = document.getElementById('btn-base-hybrid');
+      const bGmp = document.getElementById('btn-base-gmaps');
+      const bDrk = document.getElementById('btn-base-dark');
+      const offCls = "bg-[#090d13] hover:bg-slate-800 text-slate-300 border border-slate-700 px-2 py-1 rounded font-semibold transition";
+      const onCls = "bg-sky-500/20 text-sky-300 border border-sky-500/45 px-2 py-1 rounded font-semibold transition";
+      bHyb.className = offCls;
+      bGmp.className = offCls;
+      bDrk.className = offCls;
+
+      if (mode === 'gmaps') {
+        map.addLayer(googleMapsIndia);
+        bGmp.className = onCls;
+      } else if (mode === 'dark') {
+        map.addLayer(esriDarkCanvas);
+        bDrk.className = onCls;
+      } else {
+        map.addLayer(googleEarthHybrid);
+        bHyb.className = onCls;
+      }
+    }
+
+    const indiaCountryLayer = D.india_country ? L.geoJSON(D.india_country, {
+      style: { color: '#38bdf8', weight: 2.4, fillColor: '#0284c7', fillOpacity: 0.04 }
+    }).addTo(map) : L.layerGroup();
+
+    const indiaStatesLayer = D.india_states ? L.geoJSON(D.india_states, {
+      style: (feat) => {
+        const nm = feat.properties.name;
+        const isBihar = nm === 'Bihar';
+        const isNorthCrown = (nm === 'Ladakh' || nm === 'Jammu and Kashmir');
+        return {
+          color: isBihar ? '#f43f5e' : (isNorthCrown ? '#10b981' : '#38bdf8'),
+          weight: isBihar ? 2.2 : (isNorthCrown ? 1.8 : 0.9),
+          fillColor: isBihar ? '#f43f5e' : (isNorthCrown ? '#10b981' : '#0284c7'),
+          fillOpacity: isBihar ? 0.16 : (isNorthCrown ? 0.12 : 0.02)
+        };
+      },
+      onEachFeature: (feat, layer) => {
+        layer.bindTooltip(`${feat.properties.name} (${feat.properties.type || 'State/UT'})`, { sticky: true });
+      }
+    }).addTo(map) : L.layerGroup();
+
+    const northFloodDists = new Set(['Araria', 'Darbhanga', 'Kishanganj', 'Madhepura', 'Madhubani', 'Muzaffarpur', 'Purba Champaran', 'Pashchim Champaran', 'Saharsa', 'Samastipur', 'Sitamarhi', 'Supaul', 'Khagaria', 'Katihar', 'Purnia']);
+    const southUplandDists = new Set(['Gaya', 'Rohtas', 'Kaimur', 'Nawada', 'Jamui', 'Banka', 'Aurangabad', 'Nalanda']);
+
+    const biharDistrictsLayer = D.bihar_districts ? L.geoJSON(D.bihar_districts, {
+      style: (feat) => {
+        const nm = feat.properties.name;
+        const isPatna = nm === 'Patna';
+        const isUpland = southUplandDists.has(nm);
+        const col = isPatna ? '#10b981' : (isUpland ? '#34d399' : '#f472b6');
+        return {
+          color: col,
+          weight: isPatna ? 2.4 : 1.0,
+          fillColor: col,
+          fillOpacity: isPatna ? 0.14 : 0.04,
+          dashArray: isPatna ? null : '3,3'
+        };
+      },
+      onEachFeature: (feat, layer) => {
+        const nm = feat.properties.name;
+        const zone = southUplandDists.has(nm)
+          ? 'South Bihar Stable Upland Fringe'
+          : (northFloodDists.has(nm) ? 'North Bihar Active Alluvial Floodplain' : 'Central Ganga/Son Alluvial Terrace');
+        layer.bindTooltip(`District: ${nm}, Bihar (${zone})`, { sticky: true });
+      }
+    }).addTo(map) : L.layerGroup();
+
+    const patnaDistrictLayer = D.patna_district ? L.geoJSON(D.patna_district, {
+      style: { color: '#f59e0b', weight: 2.0, fillOpacity: 0.04, dashArray: '5,4' },
+      interactive: false
+    }) : L.layerGroup();
+
+    const patnaUrbanLayer = D.patna_urban ? L.geoJSON(D.patna_urban, {
+      style: { color: '#38bdf8', weight: 2.4, fillColor: '#38bdf8', fillOpacity: 0.04 },
+      interactive: false
+    }) : L.layerGroup();
+
+    const floodRasterLayer = D.overlays ? L.imageOverlay(D.overlays.flood_b64, D.dem_bounds, { opacity: 0.86, interactive: false }) : L.layerGroup();
+    const demRasterLayer = D.overlays ? L.imageOverlay(D.overlays.dem_b64, D.dem_bounds, { opacity: 0.80, interactive: false }) : L.layerGroup();
+    const ulsiRasterLayer = D.overlays ? L.imageOverlay(D.overlays.ulsi_b64, D.dem_bounds, { opacity: 0.82, interactive: false }) : L.layerGroup();
+    const lstRasterLayer = D.overlays ? L.imageOverlay(D.overlays.lst_b64, D.lst_bounds, { opacity: 0.65, interactive: false }) : L.layerGroup();
+
+    const teleconnectionsLayer = L.layerGroup([
+      L.polyline([[14.5, 89.0], [18.5, 87.5], [22.2, 86.2], [25.59, 85.14]], { color: '#38bdf8', weight: 2.4, dashArray: '8,6' })
+        .bindPopup("<b>Bay of Bengal LPS Track</b><br>Convective cloudbursts (&gt;200mm/48h) into Patna."),
+      L.polyline([[4.0, 70.0], [10.0, 75.0], [16.0, 83.0], [22.5, 90.0], [26.14, 91.74]], { color: '#10b981', weight: 2.1, dashArray: '6,6' })
+        .bindPopup("<b>Indian Ocean Dipole &amp; ENSO Jet</b><br>Moisture convergence into Assam and Bihar."),
+      L.polyline([[11.0, 64.0], [15.5, 69.0], [19.08, 72.88]], { color: '#f59e0b', weight: 2.1, dashArray: '6,6' })
+        .bindPopup("<b>Arabian Sea Surge Feed</b><br>Extreme coastal rain over Konkan &amp; Mumbai."),
+      L.polyline([[34.15, 77.58], [30.55, 79.56], [28.4, 83.2], [26.8, 84.5], [25.62, 85.15]], { color: '#a78bfa', weight: 2.2 })
+        .bindPopup("<b>Trans-Himalayan Cryosphere Melt</b><br>Elevates Ganga river stage past 49.5m danger threshold.")
+    ]);
+
+    function wireMarkerLocationClick(marker, coords, label) {
+      marker.on('click', (ev) => {
+        if (ev && ev.originalEvent) L.DomEvent.stopPropagation(ev);
+        if (window.BhuLokaLocationEngine && Array.isArray(coords)) {
+          window.BhuLokaLocationEngine.setLocation(coords[0], coords[1], label, { source: 'map_click' });
+        }
+      });
+      return marker;
+    }
+
+    // RAMAYANA HERITAGE CIRCUIT LAYER (ASI & VALMIKI GEOGRAPHY)
+    const ramayanaSites = [
+      { name: "Ayodhya (Sarayu / Kosala)", coords: [26.795, 82.194], note: "Birthplace of Shri Rama & Kosala capital on Sarayu terrace" },
+      { name: "Buxar / Siddhashram (Bihar)", coords: [25.565, 83.978], note: "Vedic Ashram of Sage Vishvamitra along Ganga levee" },
+      { name: "Sitamarhi / Mithila-Janakpur", coords: [26.591, 85.490], note: "Videha / Mithila region sacred to Mata Sita" },
+      { name: "Chitrakoot (UP / MP)", coords: [25.199, 80.854], note: "Vindhyan forest sanctuary along Mandakini River" },
+      { name: "Panchavati / Nashik (MH)", coords: [20.006, 73.790], note: "Dandakaranya & Godavari valley transit" },
+      { name: "Kishkindha / Hampi (KA)", coords: [15.335, 76.460], note: "Tungabhadra granite boulder hill kingdom" },
+      { name: "Rameswaram / Dhanushkodi (TN)", coords: [9.288, 79.313], note: "Palk Strait coastal point (Adam's Bridge / Rama Setu)" }
+    ];
+    const ramayanaLayer = L.layerGroup();
+    L.polyline(ramayanaSites.map((s) => s.coords), { color: '#f59e0b', weight: 2.2, dashArray: '5,5', interactive: false }).addTo(ramayanaLayer);
+    ramayanaSites.forEach((s) => {
+      const m = L.circleMarker(s.coords, { radius: 6, color: '#fef3c7', weight: 1.5, fillColor: '#f59e0b', fillOpacity: 0.95 })
+        .bindTooltip(`<span class="mono">${s.name}</span>`, { sticky: true });
+      wireMarkerLocationClick(m, s.coords, s.name).addTo(ramayanaLayer);
+    });
+
+    // HARAPPAN / INDUS-SARASVATI ASI HERITAGE SITES
+    const harappanSites = [
+      { name: "Rakhigarhi (Haryana)", coords: [29.291, 76.112], note: "Largest Harappan metropolis in India (~350+ ha) along Ghaggar-Drishadvati plain" },
+      { name: "Banawali (Haryana)", coords: [29.598, 75.390], note: "Planned radial Bronze Age citadel in Sarasvati basin" },
+      { name: "Kalibangan (Rajasthan)", coords: [29.474, 74.130], note: "Earliest excavated ploughed field & fire altars along dry Ghaggar bed" },
+      { name: "Ropar / Rupnagar (Punjab)", coords: [30.966, 76.523], note: "Sutlej riverbank post-Partition excavated IVC settlement" },
+      { name: "Dholavira UNESCO (Gujarat)", coords: [23.886, 70.213], note: "Stone water-conservation metropolis in Rann of Kutch" },
+      { name: "Lothal Dockyard (Gujarat)", coords: [22.521, 72.249], note: "Harappan tidal brick dockyard & Gulf of Khambhat trade port" },
+      { name: "Harappa Type-Site (Ravi)", coords: [30.631, 72.865], note: "Indus Valley Civilization original type-site (present Pakistan Punjab)" },
+      { name: "Mohenjo-daro (Indus)", coords: [27.324, 68.136], note: "Lower Indus citadel & Great Bath (present Pakistan Sindh)" }
+    ];
+    const harappanLayer = L.layerGroup();
+    harappanSites.forEach((s) => {
+      const m = L.circleMarker(s.coords, { radius: 6, color: '#fed7aa', weight: 1.5, fillColor: '#ea580c', fillOpacity: 0.95 })
+        .bindTooltip(`<span class="mono">${s.name}</span>`, { sticky: true });
+      wireMarkerLocationClick(m, s.coords, s.name).addTo(harappanLayer);
+    });
+
+    // PAN-INDIA BEST LOW-HAZARD LAND CORRIDORS
+    const landCorridors = [
+      { name: "Bihta / IIT Patna High Levee", coords: [25.536, 84.851], info: "55.2m | Flood 0.8% | ULSI 91.5 (Calibrated Zone S1)" },
+      { name: "Bengaluru Deccan Plateau Ridge", coords: [12.971, 77.594], info: "~910m Plateau | Seismic Zone II | Low Riverine Flood" },
+      { name: "Hyderabad Granite Shield", coords: [17.385, 78.486], info: "~542m Crystalline Shield | Seismic Zone II" },
+      { name: "Pune Western Deccan Foothills", coords: [18.520, 73.856], info: "~560m Basalt Upland | Avoid Riverbank Floodlines" },
+      { name: "Chandigarh Shivalik Apron", coords: [30.733, 76.779], info: "~330m Planned Stormwater Sector Grid" },
+      { name: "Gaya-Rajgir Vindhyan Ridge (Bihar)", coords: [24.910, 85.210], info: "~110m+ Precambrian Highland outside Ganga backwaters" }
+    ];
+    const landCorridorsLayer = L.layerGroup();
+    landCorridors.forEach((l) => {
+      const m = L.circleMarker(l.coords, { radius: 7, color: '#dcfce7', weight: 1.8, fillColor: '#10b981', fillOpacity: 0.95 })
+        .bindTooltip(`<span class="mono">${l.name} · ${l.info}</span>`, { sticky: true });
+      wireMarkerLocationClick(m, l.coords, l.name).addTo(landCorridorsLayer);
+    });
+
+    const indiaHubsLayer = L.layerGroup();
+    (D.india_hazard_hubs || []).forEach(hub => {
+      const col = hub.severity === 'SAFE' ? '#10b981' : (hub.severity === 'CRITICAL' ? '#f43f5e' : '#f59e0b');
+      const m = L.circleMarker(hub.coords, {
+        radius: hub.severity === 'CRITICAL' ? 8 : 6.5,
+        color: '#f8fafc',
+        weight: 1.5,
+        fillColor: col,
+        fillOpacity: 0.94
+      }).bindTooltip(`<span class="mono">${hub.name} (${hub.metric})</span>`, { sticky: true });
+      wireMarkerLocationClick(m, hub.coords, hub.name).addTo(indiaHubsLayer);
+    });
+
+    const wards = [
+      { name: "Bihta / IIT Patna High Levee", coords: [25.536, 84.851], elev: "55.2m", flood: "0.80% (Safe)", crime: "88/100", ulsi: "91.5 (Zone S1)", col: "#10b981" },
+      { name: "Danapur Cantonment", coords: [25.630, 85.040], elev: "52.8m", flood: "1.10% (Safe)", crime: "92/100 (Army)", ulsi: "89.4 (Zone S1)", col: "#10b981" },
+      { name: "Bailey Road / Saguna More", coords: [25.612, 85.055], elev: "52.4m", flood: "2.40% (Safe)", crime: "88/100 (PCR)", ulsi: "86.2 (Zone S1)", col: "#10b981" },
+      { name: "Boring Road / SK Puri", coords: [25.615, 85.120], elev: "49.5m", flood: "42.1% (Ponding)", crime: "86/100", ulsi: "64.0 (Zone S2)", col: "#f59e0b" },
+      { name: "Patliputra Colony", coords: [25.625, 85.108], elev: "50.8m", flood: "18.5% (Low)", crime: "85/100", ulsi: "81.0 (Zone S1)", col: "#10b981" },
+      { name: "Gandhi Maidan", coords: [25.618, 85.144], elev: "50.2m", flood: "34.0% (Ponding)", crime: "82/100", ulsi: "68.5 (Zone S2)", col: "#f59e0b" },
+      { name: "Kankarbagh Colony", coords: [25.588, 85.148], elev: "45.1m", flood: "98.88% (Severe)", crime: "74/100", ulsi: "28.2 (Zone S4)", col: "#f43f5e" },
+      { name: "Rajendra Nagar Deep Bowl", coords: [25.595, 85.158], elev: "44.5m", flood: "99.40% (Critical)", crime: "73/100", ulsi: "21.6 (Zone S4)", col: "#f43f5e" },
+      { name: "Patna Bypass / Transport Nagar", coords: [25.580, 85.185], elev: "46.8m", flood: "72.5% (High)", crime: "41/100", ulsi: "24.5 (Zone S4)", col: "#ef4444" }
+    ];
+    const wardMarkersLayer = L.layerGroup();
+    wards.forEach(w => {
+      const m = L.circleMarker(w.coords, {
+        radius: 6.5, color: '#ffffff', weight: 1.5, fillColor: w.col, fillOpacity: 0.92
+      }).bindTooltip(`<span class="mono">${w.name} · Elev ${w.elev} · ${w.ulsi}</span>`, { sticky: true });
+      wireMarkerLocationClick(m, w.coords, w.name).addTo(wardMarkersLayer);
+    });
+
+    // LIVE ORBITAL SATELLITES LAYER (REAL NORAD / CELESTRAK + WHERETHEISS) - OPT-IN
+    const liveSatellitesLayer = L.layerGroup();
+
+    const overlays = {
+      "Full India Composite Border (37.1°N)": indiaCountryLayer,
+      "All 36 Sovereign States/UTs (LA, JK, AR)": indiaStatesLayer,
+      "All 38 Bihar Districts": biharDistrictsLayer,
+      "Live Satellites (Starlink / ISS / EO / ISRO)": liveSatellitesLayer,
+      "Ramayana Historical Circuit (ASI)": ramayanaLayer,
+      "Harappan / IVC Sites (ASI)": harappanLayer,
+      "Pan-India Best Land Corridors": landCorridorsLayer,
+      "Macro Oceanic &amp; Monsoon Arcs": teleconnectionsLayer,
+      "Pan-India Multi-Hazard Hubs": indiaHubsLayer,
+      "Patna District Boundary (OSM)": patnaDistrictLayer,
+      "Patna PMC Core Boundary (OSM)": patnaUrbanLayer,
+      "Real S1 SAR Flood Raster (PNG)": floodRasterLayer,
+      "Real Copernicus 30m DEM + Sinks (PNG)": demRasterLayer,
+      "Real ULSI Suitability Raster (PNG)": ulsiRasterLayer,
+      "Real NASA MODIS Peak LST (PNG)": lstRasterLayer,
+      "Patna &amp; Bihta Ward Markers": wardMarkersLayer
+    };
+
+    L.control.layers(baseMaps, overlays, { collapsed: true, position: 'topright' }).addTo(map);
+    L.control.scale({ imperial: false, position: 'bottomright' }).addTo(map);
+
+    const gisSearchPinLayer = L.layerGroup().addTo(map);
+
+    function dropAddressPin(lat, lon, label, zoomLvl = 15) {
+      gisSearchPinLayer.clearLayers();
+      map.flyTo([lat, lon], zoomLvl, { duration: 1.0 });
+      L.marker([lat, lon])
+        .bindPopup(`<div class="mono text-xs"><div class="font-bold text-emerald-300">${label}</div><div class="text-slate-300 mt-1">Coords: ${Number(lat).toFixed(5)}°, ${Number(lon).toFixed(5)}°</div><div class="text-slate-400 text-[10px] mt-1">Google Earth Hybrid (gl=IN) Real View</div></div>`)
+        .addTo(gisSearchPinLayer)
+        .openPopup();
+      const lt = document.getElementById('legend-title');
+      if (lt) lt.innerText = `REAL EARTH: ${String(label).toUpperCase().slice(0, 28)}`;
+    }
+
+    async function searchAndFlyAddress(rawQuery) {
+      const inp = document.getElementById('gis-addr-input');
+      const q = (rawQuery || (inp ? inp.value : '') || '').trim();
+      if (!q) {
+        if (window.BhuLokaLocationEngine) window.BhuLokaLocationEngine.notifyError('Enter a place name or lat, lon coordinates.');
+        return;
+      }
+      if (window.BhuLokaLocationEngine) {
+        await window.BhuLokaLocationEngine.searchPlace(q, { openDrawer: true });
+      }
+    }
+
+    function updateGisLocationHUD(ctx, intel, meta = {}) {
+      if (!ctx) return;
+      const inp = document.getElementById('gis-addr-input');
+      if (inp && ctx.source !== 'default' && document.activeElement !== inp) {
+        inp.value = ctx.placeName || '';
+      }
+      const lt = document.getElementById('legend-title');
+      const lbl = document.getElementById('gis-live-label');
+      const out = document.getElementById('gis-live-readout');
+      if (lt && (ctx.source !== 'default' || (meta && meta.stage === 'complete'))) {
+        lt.innerText = ctx.source === 'default'
+          ? 'SOVEREIGN INDIA · GOOGLE EARTH'
+          : `REAL EARTH: ${String(ctx.placeName || '').toUpperCase().slice(0, 28)}`;
+      }
+      if (lbl) lbl.innerText = `${String(ctx.placeName || 'Active').split(',')[0].slice(0, 16)} Live:`;
+      if (out) {
+        if (!intel || (meta && meta.isLoading)) {
+          out.innerText = 'Syncing telemetry...';
+        } else {
+          const mods = intel.modules || {};
+          const wx = mods['1_weather_temperature'] || {};
+          const rv = mods['3_rivers_waterbodies'] || {};
+          const te = mods['9_terrain_elevation'] || {};
+          const tStr = wx.air_temp_c != null ? `${wx.air_temp_c}°C` : 'UNAVAIL';
+          const qStr = rv.current_discharge_m3_s != null ? `${Number(rv.current_discharge_m3_s).toFixed(0)} m³/s` : 'Flow N/A';
+          const eStr = te.elevation_masl_m != null ? ` · ${te.elevation_masl_m}m` : '';
+          out.innerText = `${tStr} · ${qStr}${eStr}`;
+        }
+      }
+    }
+
+    if (window.BhuLokaLocationEngine) {
+      window.BhuLokaLocationEngine.subscribe((ctx, intel, meta) => {
+        updateGisLocationHUD(ctx, intel, meta);
+      });
+    }
+
+    // Restore synchronized location from URL params or localStorage on page load
+    (function bootSyncedLocation() {
+      if (!window.BhuLokaLocationEngine) return;
+      const initState = window.BhuLokaLocationEngine.readInitialState();
+      if (initState.found) {
+        setBaseMode('hybrid');
+        const inp = document.getElementById('gis-addr-input');
+        if (inp && initState.placeName) inp.value = initState.placeName;
+        window.BhuLokaLocationEngine.setLocation(initState.latitude, initState.longitude, initState.placeName, {
+          radiusKm: initState.analysisRadius,
+          source: initState.source,
+          zoom: initState.zoom || 12,
+          openDrawer: true
+        });
+      } else {
+        window.BhuLokaLocationEngine.setLocation(25.594, 85.137, 'Patna', {
+          source: 'default',
+          openDrawer: false,
+          skipFly: true
+        });
+      }
+    })();
+
+    function focusIndiaMacro() {
+      map.flyToBounds([[6.5, 67.8], [37.4, 97.6]], { padding: [16, 16], duration: 1.0 });
+      map.addLayer(indiaCountryLayer);
+      map.addLayer(indiaStatesLayer);
+      map.addLayer(teleconnectionsLayer);
+      map.addLayer(indiaHubsLayer);
+      document.getElementById('legend-title').innerText = "SOVEREIGN INDIA · GOOGLE EARTH";
+    }
+
+    function focusBiharDistricts() {
+      map.flyTo([25.75, 85.6], 7.5, { duration: 1.0 });
+      map.addLayer(biharDistrictsLayer);
+      map.addLayer(wardMarkersLayer);
+      document.getElementById('legend-title').innerText = "BIHAR 38 DISTRICTS · GADM v4.1";
+    }
+
+    function focusHeritageAndLand() {
+      map.flyTo([24.2, 80.5], 5.0, { duration: 1.0 });
+      map.addLayer(ramayanaLayer);
+      map.addLayer(harappanLayer);
+      map.addLayer(landCorridorsLayer);
+      document.getElementById('legend-title').innerText = "ASI HERITAGE & SAFE LAND CORRIDORS";
+    }
+
+    function focusPatnaFlood() {
+      map.flyTo([25.595, 85.13], 12, { duration: 1.0 });
+      map.addLayer(patnaDistrictLayer);
+      map.addLayer(patnaUrbanLayer);
+      map.addLayer(floodRasterLayer);
+      map.addLayer(wardMarkersLayer);
+      map.removeLayer(demRasterLayer);
+      map.removeLayer(ulsiRasterLayer);
+      document.getElementById('legend-title').innerText = "REAL S1 SAR FLOOD (GOOGLE EARTH)";
+    }
+
+    function focusPatnaDEM() {
+      map.flyTo([25.595, 85.13], 12, { duration: 1.0 });
+      map.addLayer(patnaUrbanLayer);
+      map.addLayer(demRasterLayer);
+      map.addLayer(ulsiRasterLayer);
+      map.addLayer(wardMarkersLayer);
+      map.removeLayer(floodRasterLayer);
+      document.getElementById('legend-title').innerText = "COPERNICUS 30m DEM & ULSI";
+    }
+
+    // Fetch Real Live Satellites (FastAPI :8000 OR Direct CelesTrak + WhereTheISS)
+    (async function syncGisSatellites() {
+      const badge = document.getElementById('gis-sat-badge');
+      const readout = document.getElementById('gis-sat-readout');
+      let satPayload = null;
+
+      try {
+        const ctrl = new AbortController();
+        const tid = setTimeout(() => ctrl.abort(), 2500);
+        const r = await fetch(`${FASTAPI_BASE}/api/v1/satellites`, { signal: ctrl.signal });
+        clearTimeout(tid);
+        if (r.ok) satPayload = await r.json();
+      } catch (e) { }
+
+      if (!satPayload || !satPayload.live_online) {
+        try {
+          const [issRes, resRes] = await Promise.all([
+            fetch('https://api.wheretheiss.at/v1/satellites/25544'),
+            fetch('https://celestrak.org/NORAD/elements/gp.php?GROUP=resource&FORMAT=tle')
+          ]);
+          const sats = [];
+          let issLive = null;
+          if (issRes.ok) {
+            const ij = await issRes.json();
+            issLive = { norad_id: 25544, name: 'ISS (ZARYA)', category: 'station', lat: ij.latitude, lon: ij.longitude, alt_km: ij.altitude };
+            sats.push(issLive);
+          }
+          if (resRes.ok && typeof satellite !== 'undefined') {
+            const tleTxt = await resRes.text();
+            const lines = tleTxt.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+            const nowDate = new Date();
+            const gmst = satellite.gstime(nowDate);
+            for (let i = 0; i + 2 < lines.length && sats.length < 75; i += 3) {
+              const name = lines[i], l1 = lines[i + 1], l2 = lines[i + 2];
+              if (!l1.startsWith('1 ') || !l2.startsWith('2 ')) continue;
+              const satrec = satellite.twoline2satrec(l1, l2);
+              const pv = satellite.propagate(satrec, nowDate);
+              if (pv && pv.position) {
+                const geo = satellite.eciToGeodetic(pv.position, gmst);
+                sats.push({
+                  name,
+                  norad_id: satrec.satnum,
+                  category: name.toUpperCase().includes('CARTOSAT') || name.toUpperCase().includes('RESOURCESAT') ? 'isro' : 'eo',
+                  lat: satellite.degreesLat(geo.latitude),
+                  lon: satellite.degreesLong(geo.longitude),
+                  alt_km: geo.height
+                });
+              }
+            }
+          }
+          if (sats.length > 0) {
+            satPayload = { live_online: true, iss_live: issLive, counts: { eo_plus_isro: sats.length }, satellites: sats };
+          }
+        } catch (e) { }
+      }
+
+      if (satPayload && satPayload.live_online && satPayload.satellites) {
+        liveSatellitesLayer.clearLayers();
+        satPayload.satellites.forEach((s) => {
+          if (typeof s.lat !== 'number' || typeof s.lon !== 'number') return;
+          const cat = s.category || 'eo';
+          const col = cat === 'station' ? '#38bdf8' : (cat === 'isro' ? '#f59e0b' : (cat === 'starlink' ? '#e2e8f0' : '#10b981'));
+          const rad = cat === 'starlink' ? 2.5 : (cat === 'station' ? 6.5 : 4.2);
+          L.circleMarker([s.lat, s.lon], {
+            radius: rad,
+            color: '#0f172a',
+            weight: 1,
+            fillColor: col,
+            fillOpacity: 0.92
+          }).bindPopup(`<div class="mono text-xs"><div class="font-bold text-sky-300">${s.name}</div><div>NORAD ID: ${s.norad_id || 'LIVE'} · Type: ${cat.toUpperCase()}</div><div>Coords: ${Number(s.lat).toFixed(2)}°, ${Number(s.lon).toFixed(2)}° | Alt: ${s.alt_km ? Number(s.alt_km).toFixed(0) : '--'} km</div><div class="text-slate-500 text-[10px] mt-1">Source: Live CelesTrak GP / WhereTheISS</div></div>`).addTo(liveSatellitesLayer);
+        });
+        const cnt = satPayload.counts || {};
+        const totLabel = cnt.total_active_catalog ? `${cnt.total_active_catalog.toLocaleString()} ACTIVE (${(cnt.starlink_active || 0).toLocaleString()} STARLINK)` : `${satPayload.satellites.length} TRACKED`;
+        if (badge) badge.innerText = `SATS: ${totLabel}`;
+        if (readout) {
+          const iss = satPayload.iss_live;
+          readout.innerText = iss ? `ISS ${Number(iss.lat).toFixed(1)}°, ${Number(iss.lon).toFixed(1)}° (${Number(iss.alt_km).toFixed(0)}km)` : `${satPayload.satellites.length} Live Tracks`;
+        }
+      } else {
+        if (badge) badge.innerText = 'SATS: OFFLINE';
+        if (readout) readout.innerText = 'CelesTrak Unreachable (Offline)';
+      }
+    })();
+  </script>
+</body>
+
+</html>

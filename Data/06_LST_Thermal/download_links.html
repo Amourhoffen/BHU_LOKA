@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BHU LOKA - NASA MODIS LST Direct Downloads (Patna 2019)</title>
+    <style>
+        body { font-family: Segoe UI, sans-serif; background: #0f172a; color: #f8fafc; padding: 24px; }
+        h1 { color: #38bdf8; font-size: 20px; }
+        p { color: #94a3b8; font-size: 14px; }
+        .instructions { background: #1e293b; padding: 14px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #38bdf8; }
+        .file-list { display: flex; flex-direction: column; gap: 8px; }
+        .card { background: #1e293b; padding: 12px 16px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; }
+        .card:hover { background: #334155; }
+        .name { font-weight: 600; color: #e2e8f0; font-size: 13px; }
+        .desc { font-size: 12px; color: #94a3b8; }
+        .btn { background: #0284c7; color: white; padding: 6px 14px; border-radius: 4px; text-decoration: none; font-size: 12px; font-weight: 600; }
+        .btn:hover { background: #0369a1; }
+        .btn-all { background: #10b981; color: white; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: bold; display: inline-block; margin-bottom: 15px; cursor: pointer; border: none; }
+        .btn-all:hover { background: #059669; }
+    </style>
+</head>
+<body>
+    <h1>NASA MODIS LST (MOD11A2) - Pre-Monsoon Heatwave 2019 (Patna Tile h25v06)</h1>
+    <div class="instructions">
+        <p><strong>Aap Earthdata par already logged in hain!</strong></p>
+        <p>Neeche diye gaye buttons par click kijiye. Files direct aapke browser se bina kisi error ke download ho jayengi (Each file is ~4 MB).</p>
+        <p>Download hone ke baad in files ko <code>Bhu Loka - भूलोक\Data\06_LST_Thermal\</code> folder mein move kar dijiye.</p>
+    </div>
+
+    <button class="btn-all" onclick="downloadAll()">Download All 12 Files (1-Click)</button>
+
+    <div class="file-list">
+        <div class="card">
+            <div>
+                <div class="name">MOD11A2.A2019145.h25v06 (25 May 2019 - Peak Heatwave 44°C)</div>
+                <div class="desc">Julian Day 145 | Patna Alluvial Thermal Bake</div>
+            </div>
+            <a class="btn" href="https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/MOD11A2.061/MOD11A2.A2019145.h25v06.061.2020354014045/MOD11A2.A2019145.h25v06.061.2020354014045.hdf" target="_blank" download>Download .HDF</a>
+        </div>
+        <div class="card">
+            <div>
+                <div class="name">MOD11A2.A2019137.h25v06 (17 May 2019 - High Thermal)</div>
+                <div class="desc">Julian Day 137 | Patna LST</div>
+            </div>
+            <a class="btn" href="https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/MOD11A2.061/MOD11A2.A2019137.h25v06.061.2020353083911/MOD11A2.A2019137.h25v06.061.2020353083911.hdf" target="_blank" download>Download .HDF</a>
+        </div>
+        <div class="card">
+            <div>
+                <div class="name">MOD11A2.A2019153.h25v06 (02 June 2019 - Pre-Monsoon Peak)</div>
+                <div class="desc">Julian Day 153 | Patna LST</div>
+            </div>
+            <a class="btn" href="https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/MOD11A2.061/MOD11A2.A2019153.h25v06.061.2020354125423/MOD11A2.A2019153.h25v06.061.2020354125423.hdf" target="_blank" download>Download .HDF</a>
+        </div>
+        <div class="card">
+            <div>
+                <div class="name">MOD11A2.A2019161.h25v06 (10 June 2019)</div>
+                <div class="desc">Julian Day 161 | Patna LST</div>
+            </div>
+            <a class="btn" href="https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/MOD11A2.061/MOD11A2.A2019161.h25v06.061.2020354200935/MOD11A2.A2019161.h25v06.061.2020354200935.hdf" target="_blank" download>Download .HDF</a>
+        </div>
+        <div class="card">
+            <div>
+                <div class="name">MOD11A2.A2019169.h25v06 (18 June 2019)</div>
+                <div class="desc">Julian Day 169 | Patna LST</div>
+            </div>
+            <a class="btn" href="https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/MOD11A2.061/MOD11A2.A2019169.h25v06.061.2020355044455/MOD11A2.A2019169.h25v06.061.2020355044455.hdf" target="_blank" download>Download .HDF</a>
+        </div>
+        <div class="card">
+            <div>
+                <div class="name">MOD11A2.A2019177.h25v06 (26 June 2019 - Pre-Monsoon End)</div>
+                <div class="desc">Julian Day 177 | Patna LST</div>
+            </div>
+            <a class="btn" href="https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/MOD11A2.061/MOD11A2.A2019177.h25v06.061.2020355121942/MOD11A2.A2019177.h25v06.061.2020355121942.hdf" target="_blank" download>Download .HDF</a>
+        </div>
+        <div class="card">
+            <div>
+                <div class="name">MOD11A2.A2019129.h25v06 (09 May 2019)</div>
+                <div class="desc">Julian Day 129 | Patna LST</div>
+            </div>
+            <a class="btn" href="https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/MOD11A2.061/MOD11A2.A2019129.h25v06.061.2020353004458/MOD11A2.A2019129.h25v06.061.2020353004458.hdf" target="_blank" download>Download .HDF</a>
+        </div>
+        <div class="card">
+            <div>
+                <div class="name">MOD11A2.A2019121.h25v06 (01 May 2019)</div>
+                <div class="desc">Julian Day 121 | Patna LST</div>
+            </div>
+            <a class="btn" href="https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/MOD11A2.061/MOD11A2.A2019121.h25v06.061.2020353002435/MOD11A2.A2019121.h25v06.061.2020353002435.hdf" target="_blank" download>Download .HDF</a>
+        </div>
+        <div class="card">
+            <div>
+                <div class="name">MOD11A2.A2019113.h25v06 (23 April 2019)</div>
+                <div class="desc">Julian Day 113 | Patna LST</div>
+            </div>
+            <a class="btn" href="https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/MOD11A2.061/MOD11A2.A2019113.h25v06.061.2020353000224/MOD11A2.A2019113.h25v06.061.2020353000224.hdf" target="_blank" download>Download .HDF</a>
+        </div>
+        <div class="card">
+            <div>
+                <div class="name">MOD11A2.A2019105.h25v06 (15 April 2019)</div>
+                <div class="desc">Julian Day 105 | Patna LST</div>
+            </div>
+            <a class="btn" href="https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/MOD11A2.061/MOD11A2.A2019105.h25v06.061.2020352234040/MOD11A2.A2019105.h25v06.061.2020352234040.hdf" target="_blank" download>Download .HDF</a>
+        </div>
+        <div class="card">
+            <div>
+                <div class="name">MOD11A2.A2019097.h25v06 (07 April 2019)</div>
+                <div class="desc">Julian Day 097 | Patna LST</div>
+            </div>
+            <a class="btn" href="https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/MOD11A2.061/MOD11A2.A2019097.h25v06.061.2020352231814/MOD11A2.A2019097.h25v06.061.2020352231814.hdf" target="_blank" download>Download .HDF</a>
+        </div>
+        <div class="card">
+            <div>
+                <div class="name">MOD11A2.A2019089.h25v06 (30 March 2019)</div>
+                <div class="desc">Julian Day 089 | Patna LST</div>
+            </div>
+            <a class="btn" href="https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/MOD11A2.061/MOD11A2.A2019089.h25v06.061.2020352225637/MOD11A2.A2019089.h25v06.061.2020352225637.hdf" target="_blank" download>Download .HDF</a>
+        </div>
+    </div>
+
+    <script>
+        function downloadAll() {
+            const links = document.querySelectorAll('.card a.btn');
+            links.forEach((link, index) => {
+                setTimeout(() => {
+                    link.click();
+                }, index * 800);
+            });
+        }
+    </script>
+</body>
+</html>
+

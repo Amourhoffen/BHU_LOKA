@@ -1,4 +1,4 @@
-#  Senior Researcher Supervisory Blueprint: Project BHU LOKA (भूलोक)
+# Senior Researcher Supervisory Blueprint: Project BHU LOKA (भूलोक)
 
 **Role:** Senior Principal Investigator & Research Supervisor (Geospatial AI & Hydro-Climatology)  
 **Researcher:** Prince Kumar (IIT Patna)  
@@ -23,19 +23,19 @@ Prince, ek Senior Researcher aur PI ke taur par maine aapke collected 7 research
 
 ## 2. Hamara Original Research Contribution (The Scientific "Hook")
 
-Top-tier journals (GRL / Nature Communications / RSE) tab paper accept karte hain jab unhe ek **unresolved scientific question** aur **novel methodology** milti hai. 
+Top-tier journals (GRL / Nature Communications / RSE) tab paper accept karte hain jab unhe ek **unresolved scientific question** aur **novel methodology** milti hai.
 
 Hamara hook kya hai?
 > **"Why Patna is Unique and Globally Relevant:"**  
-> Patna duniya ke sabse flat alluvial river basins (Ganges, Son, Punpun confluence) mein sthit ek saucer-shaped depression hai. Yahan pre-monsoon mein severe continental heatwaves ($>44^\circ\text{C}$) aati hain, jisse Gangetic alluvial clay crust harden ho jaata hai. Jab monsoon trough cloudburst hota hai, toh river backflow + subterranean pump failure + loss of infiltration milkar 2019 jaisi catastrophic pluvial deluge trigger karte hain. 
-> 
+> Patna duniya ke sabse flat alluvial river basins (Ganges, Son, Punpun confluence) mein sthit ek saucer-shaped depression hai. Yahan pre-monsoon mein severe continental heatwaves ($>44^\circ\text{C}$) aati hain, jisse Gangetic alluvial clay crust harden ho jaata hai. Jab monsoon trough cloudburst hota hai, toh river backflow + subterranean pump failure + loss of infiltration milkar 2019 jaisi catastrophic pluvial deluge trigger karte hain.
+>
 > **Scientific Gap:** Coastal cities par compound hazard research ho chuki hai, par continental flat alluvial basins mein thermodynamic preconditioning + spatial quantile ML abhi tak unstudied hai!
 
 ---
 
 ## 3. Phase-Wise Execution Roadmap (Step-by-Step)
 
-```
+```text
 PHASE 1: Real Earth Observation Ingestion (Week 1–2)
   ├── Patna Boundary: GADM / Bihar GIS Administrative Polygon
   ├── Topography: NASA SRTM 30m DEM → TWI, Slope, Depression Sinks

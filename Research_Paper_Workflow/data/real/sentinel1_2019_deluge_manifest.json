@@ -1,0 +1,52 @@
+{
+  "baseline_dry_scene": {
+    "id": "S1A_IW_GRDH_1SDV_20190923T002026_20190923T002051_029141_034EEC",
+    "datetime": "2019-09-23T00:20:38.543895Z",
+    "orbit_state": "descending",
+    "polarizations": [
+      "VV",
+      "VH"
+    ],
+    "assets_summary": [
+      "vh",
+      "vv",
+      "thumbnail",
+      "safe-manifest",
+      "schema-noise-vh",
+      "schema-noise-vv",
+      "schema-product-vh",
+      "schema-product-vv",
+      "schema-calibration-vh",
+      "schema-calibration-vv",
+      "tilejson",
+      "rendered_preview"
+    ],
+    "rendered_preview_url": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=sentinel-1-grd&item=S1A_IW_GRDH_1SDV_20190923T002026_20190923T002051_029141_034EEC&assets=vv&assets=vh&expression=vv;vh;vv%2Fvh&rescale=0,600&rescale=0,270&rescale=0,9&asset_as_band=True&tile_format=png&format=png",
+    "vv_polarization_url": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/23/IW/DV/S1A_IW_GRDH_1SDV_20190923T002026_20190923T002051_029141_034EEC_C941/measurement/iw-vv.tiff?st=2026-11-04T21%3A07%3A06Z&se=2026-11-05T21%3A52%3A06Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-11-05T20%3A43%3A32Z&ske=2026-11-12T20%3A43%3A32Z&sks=b&skv=2025-07-05&sig=qBD4AaxAGfCpODiIjqd/JfMiSHExBMAiTgyesu2pgnA%3D"
+  },
+  "peak_flood_scene": {
+    "id": "S1B_IW_GRDH_1SDV_20190929T001924_20190929T001949_018245_0225AB",
+    "datetime": "2019-09-29T00:19:37.110578Z",
+    "orbit_state": "descending",
+    "polarizations": [
+      "VV",
+      "VH"
+    ],
+    "assets_summary": [
+      "vh",
+      "vv",
+      "thumbnail",
+      "safe-manifest",
+      "schema-noise-vh",
+      "schema-noise-vv",
+      "schema-product-vh",
+      "schema-product-vv",
+      "schema-calibration-vh",
+      "schema-calibration-vv",
+      "tilejson",
+      "rendered_preview"
+    ],
+    "rendered_preview_url": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=sentinel-1-grd&item=S1B_IW_GRDH_1SDV_20190929T001924_20190929T001949_018245_0225AB&assets=vv&assets=vh&expression=vv;vh;vv%2Fvh&rescale=0,600&rescale=0,270&rescale=0,9&asset_as_band=True&tile_format=png&format=png",
+    "vv_polarization_url": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/29/IW/DV/S1B_IW_GRDH_1SDV_20190929T001924_20190929T001949_018245_0225AB_A737/measurement/iw-vv.tiff?st=2026-11-04T21%3A07%3A09Z&se=2026-11-05T21%3A52%3A09Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-11-05T20%3A02%3A15Z&ske=2026-11-12T20%3A02%3A15Z&sks=b&skv=2025-07-05&sig=eeQmkxpnzLo775cJSDXYoWKebSfF6AIzCz9Dl3Lfcv4%3D"
+  }
+}

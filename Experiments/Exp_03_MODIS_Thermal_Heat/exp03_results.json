@@ -1,0 +1,68 @@
+{
+  "experiment": "Exp_03_MODIS_Thermal_Heat",
+  "satellite_sensor": "NASA Terra MODIS (MOD11A1 v061 1km Thermal Infrared)",
+  "pre_monsoon_window": "2019-04-01 to 2019-06-30",
+  "total_scenes_processed": 91,
+  "clear_sky_scenes": 61,
+  "mean_urban_lst_celsius": 37.29,
+  "mean_rural_lst_celsius": 38.32,
+  "surface_urban_heat_island_delta_celsius": -1.03,
+  "peak_urban_lst_celsius": 46.25,
+  "hottest_day_recorded": {
+    "doy": 139,
+    "date_approx": "2019-DOY-139",
+    "urban_lst_celsius": 45.32
+  },
+  "time_series_sample": [
+    {
+      "doy": 91,
+      "date_approx": "2019-DOY-091",
+      "urban_lst_celsius": 32.81
+    },
+    {
+      "doy": 92,
+      "date_approx": "2019-DOY-092",
+      "urban_lst_celsius": 30.65
+    },
+    {
+      "doy": 93,
+      "date_approx": "2019-DOY-093",
+      "urban_lst_celsius": 38.44
+    },
+    {
+      "doy": 94,
+      "date_approx": "2019-DOY-094",
+      "urban_lst_celsius": 34.82
+    },
+    {
+      "doy": 95,
+      "date_approx": "2019-DOY-095",
+      "urban_lst_celsius": 31.09
+    },
+    {
+      "doy": 96,
+      "date_approx": "2019-DOY-096",
+      "urban_lst_celsius": 32.75
+    },
+    {
+      "doy": 98,
+      "date_approx": "2019-DOY-098",
+      "urban_lst_celsius": 32.72
+    },
+    {
+      "doy": 100,
+      "date_approx": "2019-DOY-100",
+      "urban_lst_celsius": 34.9
+    },
+    {
+      "doy": 101,
+      "date_approx": "2019-DOY-101",
+      "urban_lst_celsius": 31.9
+    },
+    {
+      "doy": 103,
+      "date_approx": "2019-DOY-103",
+      "urban_lst_celsius": 36.5
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "model_name": "BHU_LOKA_Spatial_Random_Forest_v1",
+  "evaluation_method": "5-Fold Spatial Block Cross-Validation (SBCV)",
+  "num_samples": 60000,
+  "mean_roc_auc": 0.7498,
+  "std_roc_auc": 0.0497,
+  "mean_f1_score": 0.653,
+  "mean_accuracy_pct": 68.88,
+  "mean_brier_score": 0.2003,
+  "feature_importances": {
+    "SAR_Post_dB": 0.3676,
+    "Delta_Sigma0": 0.2993,
+    "Elevation_m": 0.1263,
+    "Population": 0.1049,
+    "Slope_deg": 0.0876,
+    "Is_Sink": 0.0143,
+    "SAR_Pre_dB": 0.0
+  },
+  "fold_results": [
+    {
+      "fold": 1,
+      "train_samples": 48949,
+      "test_samples": 11051,
+      "accuracy": 0.6689892317437336,
+      "precision": 0.4591549295774648,
+      "recall": 0.5369871218927823,
+      "f1_score": 0.4950303699613473,
+      "roc_auc": 0.6854529418764035,
+      "brier_score": 0.2173291779460275
+    },
+    {
+      "fold": 2,
+      "train_samples": 48143,
+      "test_samples": 11857,
+      "accuracy": 0.7197436113688117,
+      "precision": 0.7225378787878788,
+      "recall": 0.6724836946941654,
+      "f1_score": 0.6966128001460787,
+      "roc_auc": 0.789994376576457,
+      "brier_score": 0.18499523267022633
+    },
+    {
+      "fold": 3,
+      "train_samples": 47754,
+      "test_samples": 12246,
+      "accuracy": 0.7261963089988568,
+      "precision": 0.7788110262371305,
+      "recall": 0.6988526300104306,
+      "f1_score": 0.736668499175371,
+      "roc_auc": 0.7998658245162893,
+      "brier_score": 0.18101936382113562
+    },
+    {
+      "fold": 4,
+      "train_samples": 47255,
+      "test_samples": 12745,
+      "accuracy": 0.693919183993723,
+      "precision": 0.8186813186813187,
+      "recall": 0.6550684587363397,
+      "f1_score": 0.7277928965180378,
+      "roc_auc": 0.7802088142697321,
+      "brier_score": 0.1939038388584083
+    },
+    {
+      "fold": 5,
+      "train_samples": 47899,
+      "test_samples": 12101,
+      "accuracy": 0.6350714816957276,
+      "precision": 0.6909163987138264,
+      "recall": 0.5443318556048131,
+      "f1_score": 0.6089266737513284,
+      "roc_auc": 0.6936570523996074,
+      "brier_score": 0.22401236254729293
+    }
+  ]
+}

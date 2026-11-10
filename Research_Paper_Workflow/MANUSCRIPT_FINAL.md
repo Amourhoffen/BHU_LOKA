@@ -46,6 +46,7 @@ A further operational challenge lies in Earth observation during monsoonal delug
 To bridge these physical, statistical, and operational gaps, this paper presents **BHU LOKA (भूलोक)**, an integrated spatial machine learning and Earth observation framework calibrated for Patna District, Bihar, India. Patna represents an archetype of continental alluvial vulnerability, situated in a saucer-shaped trough bounded by three major river systems (Ganges, Son, and Punpun).
 
 This investigation addresses four primary objectives:
+
 1. Couple multi-temporal Sentinel-1 C-band SAR backscatter analysis with an automated Otsu thresholding protocol to map surface water dynamics during the extreme deluge of September 2019.
 2. Formulate a coupled hydro-thermodynamic runoff function that captures infiltration suppression resulting from antecedent heatwave desiccation.
 3. Quantify the empirical performance degradation caused by spatial autocorrelation by contrasting random 5-fold cross-validation against a 5-quadrant Spatial Block Cross-Validation protocol using Quantile Gradient Boosted Regression (LightGBM, $\alpha = 0.90$).
@@ -73,6 +74,7 @@ This vulnerability materialized between 27 and 30 September 2019, when a late-mo
 ### 3.1 Earth Observation and SAR Inundation Extraction
 
 To map the spatial extent of inundation during cloud-covered periods, we obtained Level-1 Ground Range Detected (GRD) products from the Sentinel-1A/B constellation operating in Interferometric Wide (IW) swath mode with dual polarization (VV and VH). Two primary granules were ingested:
+
 1. *Pre-deluge baseline:* 10 September 2019 (orbit 121, relative pass 042).
 2. *Peak-flood acquisition:* 28 September 2019 (orbit 121, relative pass 042).
 
@@ -80,6 +82,7 @@ To map the spatial extent of inundation during cloud-covered periods, we obtaine
 *Figure 2: Copernicus Sentinel-1 SAR Level-1 GRD processing and multi-temporal change detection architecture, illustrating calibration, speckle suppression, terrain correction, and automated Otsu thresholding ($T^* = -4.2\text{ dB}$).*
 
 The SAR data processing pipeline was implemented using standard radiometric and geometric operations:
+
 1. *Orbit Correction:* Application of precise orbit ephemerides (POD) files from the European Space Agency (ESA) to ensure accurate satellite positioning.
 2. *Thermal Noise Removal:* Removal of additive thermal noise across cross-polarization channels, particularly at the image margins.
 3. *Radiometric Calibration:* Conversion of digital pixel values to normalized radar backscatter cross-sections ($\sigma^0$):
@@ -91,6 +94,7 @@ The SAR data processing pipeline was implemented using standard radiometric and 
    $$\sigma^0\text{ (dB)} = 10 \cdot \log_{10}(\sigma^0)$$
 
 Open water exhibits low backscatter due to specular reflection, whereas urban structures and dense vegetation generate high backscatter through volume and double-bounce scattering:
+
 - Baseline urban backscatter ($\sigma_{\text{VV}}^0$): $-10.8\text{ dB to } -13.2\text{ dB}$
 - Inundated plain backscatter ($\sigma_{\text{VV}}^0$): $-18.5\text{ dB to } -23.1\text{ dB}$
 
@@ -106,6 +110,7 @@ An automated Otsu bimodal thresholding algorithm determined the optimal separati
 Following Boni et al. (2025) and Pittore et al. (2018), we discretized the study domain using a regular hexagonal tessellation with an aperture diameter of 50 m (cell area $A_{hex} \approx 2,165\text{ m}^2$, yielding 3,200 analytical units across the primary sampling grid).
 
 Hexagonal units provide three mathematical advantages over standard square Cartesian grids in spatial hydrological modeling:
+
 1. *Equidistant Neighborhoods:* Every hexagonal cell shares identical edge-to-center distances ($d = 2r/\sqrt{3}$) with all six adjacent neighbors. Square cells exhibit discontinuous centroid distances between orthogonal ($d_1 = 1.0$) and diagonal ($d_2 = \sqrt{2} \approx 1.414$) neighbors, introducing directional bias into simulated overland flow.
 2. *Isotropic Dispersion:* Cellular boundary contacts are balanced across 360°, producing realistic hydrodynamic radial dispersion models.
 3. *Vector Overlay Legibility:* As documented by Boni et al. (2025), hexagonal binning prevents graphical vector overlap errors at 1:10,000 cartographic scales, enabling direct aggregation of municipal census data, road networks, and drainage channels into a single spatial layer.
@@ -161,6 +166,7 @@ $$\mathcal{L}_\alpha = \frac{1}{N} \sum_{i=1}^N L_\alpha(y_i, \hat{y}_i)$$
 By selecting $\alpha = 0.90$, we force the gradient boosting estimator to minimize penalties along the upper 10th percentile of the flood hazard distribution, isolating high-depth inundation risks critical for emergency rescue planning.
 
 Hyperparameters were systematically calibrated using Bayesian optimization:
+
 - Number of boosting iterations: 450
 - Learning rate: 0.03
 - Maximum tree depth: 6
@@ -234,6 +240,7 @@ This discrepancy highlights the severe **spatial autocorrelation bias penalty** 
 ### 4.2 Spatial Multi-Hazard Susceptibility Patterns
 
 The spatial modeling reveals three distinct hazard regimes across Patna District (Figure 1):
+
 1. **Severe Inundation Hotspots (Index > 0.75):** Heavily concentrated across the central saucer depression of the Patna Municipal Corporation, specifically Wards 40–55 (Kankarbagh, Rajendra Nagar, Saidpur, and Bahadurpur). These sectors combine low elevation (49–51 m a.m.s.l.), high built-up density ($\text{NDBI} > 0.35$), and complete reliance on mechanical pumping outfalls.
 2. **Peripheral Alluvial Lowlands (Index 0.55–0.75):** Located along the southern boundary adjacent to the Punpun River, where high agricultural soil moisture ($\text{MNDWI} > 0.10$) and river backwaters create persistent waterlogging.
 3. **Resilient Natural Levee Zones (Index < 0.35):** Confined to a narrow linear strip 500 m to 1,200 m wide along the northern riverfront (Ashok Rajpath and Bankipur), where natural sedimentation levees place the ground surface 3 m to 5 m above the internal urban depression.
@@ -248,6 +255,7 @@ The spatial modeling reveals three distinct hazard regimes across Patna District
 Figure 4 illustrates the simulated interaction between antecedent heatwave preconditioning and pluvial runoff generation across 3,200 hexagonal cells.
 
 The empirical simulation demonstrates substantial non-linear runoff amplification:
+
 - Across baseline catchments with low antecedent thermal stress ($\text{HWI} \le 0.20$), a 100 mm convective precipitation event generates a mean surface runoff depth of $48.2 \pm 3.1\text{ mm}$ (runoff coefficient $C = 0.48$).
 - In catchments subjected to severe antecedent heatwaves ($\text{HWI} \ge 0.70$), the same 100 mm event generates $68.1 \pm 4.2\text{ mm}$ of runoff ($C = 0.68$).
 
@@ -263,6 +271,7 @@ This represents a **41.3% relative increase in surface runoff volume** directly 
 Figure 5 presents the Pearson correlation matrix across the seven environmental covariates and the target hazard index.
 
 Key bivariate relationships include:
+
 - Surface Elevation vs Hazard Index: $r = -0.71$ ($p < 0.001$). Confirms that elevation remains the dominant physical control over ponding duration in alluvial basins.
 - NDBI vs Heatwave Index (HWI): $r = +0.72$ ($p < 0.001$). Demonstrates strong coupling between urban surface impermeability, asphalt/concrete fraction, and intense micro-climatic surface urban heat islands.
 - MNDWI vs Elevation: $r = -0.68$ ($p < 0.001$). Demonstrates that surface depressions systematically accumulate antecedent moisture.
@@ -290,6 +299,7 @@ Crucially, **Antecedent Heatwave Index (HWI)** ranks third ($\text{mean } |\text
 ### 5.1 Physical Mechanisms in Saucer-Shaped Continental Basins
 
 The results demonstrate that compound flood dynamics in continental river basins cannot be captured through conventional uncoupled flood risk models. In coastal zones, compound flooding is driven by the coincidence of oceanic storm surge and river discharge (Ganguli et al., 2025). In continental alluvial plains like Patna, the compounding mechanism is sequential and hydro-thermodynamic:
+
 1. *Pre-monsoon Stage (May–June):* Extreme solar irradiance and low relative humidity desiccate alluvial soils. In fine-grained silty clays, thermal baking contracts clay lattices, closes macropores, and hardens the topsoil layer into an impermeable crust (Rohini et al., 2025).
 2. *Atmospheric Preconditioning:* High surface temperatures elevate convective available potential energy (CAPE) and increase tropospheric moisture holding capacity ($6.5\%\text{ K}^{-1}$ Clausius-Clapeyron scaling). When the monsoon trough destabilizes, this thermodynamic charge produces intense, short-duration convective cloudbursts.
 3. *Deluge and Backwater Stage (July–September):* The desiccated urban surface behaves like an impermeable concrete apron during the initial hours of rainfall, increasing the runoff coefficient by 41.3%. Concurrently, high regional runoff swells the Ganges and Punpun, raising river stages above internal urban elevation. Sluice gates are shut, gravity outfalls cease functioning, and the saucer basin fills rapidly.
@@ -311,6 +321,7 @@ When the same architecture is tested under Spatial Block Cross-Validation (SBCV)
 Adopting a 50 m hexagonal tessellation, as proposed by Boni et al. (2025), resolves a persistent operational challenge in disaster management. Traditional GIS disaster platforms generate complex vector polygons representing flood zones, heat islands, and demographic blocks. When overlaid, these intersecting polygons produce sliver geometries, topology errors, and unreadable maps at municipal operational scales (1:10,000).
 
 By binning multi-sensor Earth observation data into discrete 50 m hexagons, every spatial unit maintains uniform topological properties and isotropic connectivity. This structure supports direct integration into emergency dispatch platforms:
+
 - Emergency call centers can aggregate incoming distress calls into discrete hexagonal bins.
 - Routing algorithms can treat hexagons as uniform graph nodes to calculate rescue boat trajectories around inundated roads.
 - The Bihar State Disaster Management Authority (BSDMA) can deploy targeted SMS Cell-Broadcast alerts to specific hexagonal clusters without boundary ambiguity.
@@ -348,14 +359,14 @@ The complete Python computational pipeline, spatial datasets, and analysis scrip
 
 ## References
 
-1. Boni, R., Faiella, A., Gazzola, A., & Pergalani, F. (2025). Civil protection multi-hazard operational procedures using regular hexagonal spatial discretization and topological interaction matrices. *International Journal of Disaster Risk Reduction*, 119, 105343. https://doi.org/10.1016/j.ijdrr.2025.105343
-2. Ganguli, P., Kumar, D., & Gaurav, K. (2025). Amplification of pluvial flood runoff following compound pre-monsoon heatwave desiccation in peninsular India. *Geophysical Research Letters*, 52(4), e2024GL113456. https://doi.org/10.1029/2024GL113456
-3. Jato-Espino, D., Sillanpää, N., & Rodriguez-Hernandez, J. (2024). A parsimonious multi-criteria decision analysis framework for compound urban heat island and pluvial hazard prioritization. *Sustainable Cities and Society*, 102, 105218. https://doi.org/10.1016/j.scs.2024.105218
+1. Boni, R., Faiella, A., Gazzola, A., & Pergalani, F. (2025). Civil protection multi-hazard operational procedures using regular hexagonal spatial discretization and topological interaction matrices. *International Journal of Disaster Risk Reduction*, 119, 105343. <https://doi.org/10.1016/j.ijdrr.2025.105343>
+2. Ganguli, P., Kumar, D., & Gaurav, K. (2025). Amplification of pluvial flood runoff following compound pre-monsoon heatwave desiccation in peninsular India. *Geophysical Research Letters*, 52(4), e2024GL113456. <https://doi.org/10.1029/2024GL113456>
+3. Jato-Espino, D., Sillanpää, N., & Rodriguez-Hernandez, J. (2024). A parsimonious multi-criteria decision analysis framework for compound urban heat island and pluvial hazard prioritization. *Sustainable Cities and Society*, 102, 105218. <https://doi.org/10.1016/j.scs.2024.105218>
 4. Lundberg, S. M., & Lee, S.-I. (2017). A unified approach to interpreting model predictions. *Advances in Neural Information Processing Systems (NeurIPS 2017)*, 30, 4765–4774.
 5. MapAction. (2024). *Automated Sentinel-1 Synthetic Aperture Radar Flood Mapping Tool: Methodological Manual and Operational Algorithms*. MapAction Geomatics Division, London, UK.
-6. Pittore, M., Haas, M., & Megalooikonomou, V. (2018). Discrete global grid systems for multi-scale disaster risk representation and exposure aggregation. *ISPRS International Journal of Geo-Information*, 7(9), 342. https://doi.org/10.3390/ijgi7090342
-7. Roberts, D. R., Bahn, V., Ciuti, S., Boyce, M. S., Elith, J., Guillera-Arroita, G., Hauenstein, S., Lahoz-Monfort, J. J., Schröder, B., Thuiller, W., & Dormann, C. F. (2016). Cross-validation strategies for data with temporal, spatial or phylogenetic structure. *Ecography*, 40(8), 913–929. https://doi.org/10.1111/ecog.02881
+6. Pittore, M., Haas, M., & Megalooikonomou, V. (2018). Discrete global grid systems for multi-scale disaster risk representation and exposure aggregation. *ISPRS International Journal of Geo-Information*, 7(9), 342. <https://doi.org/10.3390/ijgi7090342>
+7. Roberts, D. R., Bahn, V., Ciuti, S., Boyce, M. S., Elith, J., Guillera-Arroita, G., Hauenstein, S., Lahoz-Monfort, J. J., Schröder, B., Thuiller, W., & Dormann, C. F. (2016). Cross-validation strategies for data with temporal, spatial or phylogenetic structure. *Ecography*, 40(8), 913–929. <https://doi.org/10.1111/ecog.02881>
 8. Rohini, P., Soni, V. K., Safai, P. D., & Singh, S. (2025). *Precipitation Chemistry and Atmospheric Scavenging Dynamics across Indian Global Atmosphere Watch Stations*. IMD Meteorological Monograph No. MoES/IMD/HS/02(2024)/64, India Meteorological Department, New Delhi, India.
-9. Singh, A., Chatterjee, S., & Bandyopadhyay, S. (2026). Quantile gradient boosting regression with asymmetric pinball loss and game-theoretic Tree-SHAP for urban multi-hazard risk assessment. *Applied Sciences*, 16(6), 2411. https://doi.org/10.3390/app16062411
+9. Singh, A., Chatterjee, S., & Bandyopadhyay, S. (2026). Quantile gradient boosting regression with asymmetric pinball loss and game-theoretic Tree-SHAP for urban multi-hazard risk assessment. *Applied Sciences*, 16(6), 2411. <https://doi.org/10.3390/app16062411>
 10. Tallapragada, V., Zheng, W., Li, H., & Yang, F. (2026). Diurnal precipitation cycle biases and spatial downscaling evaluation of NOAA/IMD Unified Forecast System prototypes over the Indian Monsoon Trough. *MAUSAM: Quarterly Journal of Meteorology, Hydrology & Geophysics*, 75(4), 1261–1284.
 11. van Westen, C. J., Alkema, D., Damen, M. C. J., Kerle, N., & Kingma, N. C. (2011). *Multi-Hazard Risk Assessment: Distance Education Course Guide*. United Nations University - Faculty of Geo-Information Science and Earth Observation (ITC), University of Twente, Enschede, The Netherlands.

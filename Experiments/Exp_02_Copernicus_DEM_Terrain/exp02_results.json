@@ -1,0 +1,12 @@
+{
+  "experiment": "Exp_02_Copernicus_DEM_Terrain",
+  "pmc_area_km2": 142.48,
+  "elevation_min_m": 40.0,
+  "elevation_max_m": 72.99,
+  "elevation_mean_m": 53.99,
+  "elevation_std_m": 3.0,
+  "mean_slope_degrees": 2.31,
+  "flat_terrain_fraction_pct": 25.24,
+  "depression_sinks_area_km2": 47.24,
+  "depression_sinks_fraction_pct": 33.15
+}

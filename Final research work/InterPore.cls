@@ -48,12 +48,12 @@
 \newcommand{\vordate}[1]{\def\@vordate{#1}}
 \newcommand{\rhauthor}[1]{\def\@rhauthor{#1}}
 \newcommand{\citethisarticle}[1]{\def\@citethisarticle{#1}}
-\newcommand{\orc}[1]{\href{https://orcid.org/#1}{\textcolor{interporeblue}{~[ORCID:#1]}}}
+\newcommand{\orc}[1]{\href{https://orcid.org/#1}{\textcolor{interporeblue}{[#1]}}}
 \newcommand{\email}[1]{\href{mailto:#1}{\texttt{#1}}}
 
-\renewcommand{\author}[2][]{\g@addto@macro\@authorlines{\textbf{#2}$^{#1}$ \quad }}
+\renewcommand{\author}[2][]{\g@addto@macro\@authorlines{\textbf{#2}\textsuperscript{#1}\quad }}
 \newcommand{\@authorlines}{}
-\newcommand{\affil}[2][]{\g@addto@macro\@affillines{$^{#1}$ \textit{#2}\\} }
+\newcommand{\affil}[2][]{\g@addto@macro\@affillines{\textsuperscript{#1}\textit{#2}\\} }
 \newcommand{\@affillines}{}
 \newcommand{\corau}[1]{\def\@corau{#1}}
 \renewcommand{\abstract}[1]{\def\@abstract{#1}}
@@ -64,7 +64,7 @@
     \begin{center}
         \vspace*{-1cm}
         {\raggedright \textbf{\color{interporeorange}\MakeUppercase{\@artcategory}} \hfill \small \textit{InterPore Journal} | \@cpyear\par}
-        \hrule height 1.5pt \vspace{0.8em}
+        \vspace{0.4em}\hrule height 1.5pt \vspace{1em}
         {\LARGE \bfseries \@title \par}
         \vspace{1.2em}
         {\large \@authorlines \par}
@@ -77,22 +77,18 @@
     \end{center}
     \vspace{1em}
     \begin{center}
-    \fcolorbox{interporeblue!30}{white}{
         \begin{minipage}{0.96\textwidth}
-            \vspace{0.3em}
+            \hrule height 0.5pt \vspace{0.8em}
             {\small \textbf{Abstract:} \@abstract \par}
-            \vspace{0.5em}
+            \vspace{0.6em}
             {\small \textbf{Keywords:} \@keyword \par}
             \ifdefined\@whypapermatters
-            \vspace{0.5em}
+            \vspace{0.6em}
             {\small \textbf{Why This Paper Matters:} \textit{\@whypapermatters} \par}
             \fi
-            \vspace{0.3em}
+            \vspace{0.8em}\hrule height 0.5pt
         \end{minipage}
-    }
     \end{center}
-    \vspace{1.5em}
-    \hrule
     \vspace{1.5em}
 }
 

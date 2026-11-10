@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "bhu-loka-geospatial": {
+      "command": "C:\\Users\\ljpri\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "args": [
+        "c:\\Users\\ljpri\\OneDrive\\Desktop\\Learning Pathways\\LearningPathways\\Bhu Loka - भूलोक\\Pipelines\\bhu_loka_mcp_server.py",
+        "--transport",
+        "stdio"
+      ],
+      "env": {
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUNBUFFERED": "1"
+      }
+    }
+  }
+}

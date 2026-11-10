@@ -1,0 +1,2086 @@
+{
+  "type": "FeatureCollection",
+  "links": [
+    {
+      "rel": "root",
+      "type": "application/json",
+      "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+    },
+    {
+      "rel": "self",
+      "type": "application/geo+json",
+      "href": "https://planetarycomputer.microsoft.com/api/stac/v1/search?collections=sentinel-1-grd"
+    }
+  ],
+  "features": [
+    {
+      "id": "S1A_IW_GRDH_1SDV_20191002T122934_20191002T123003_029280_0353C0",
+      "bbox": [
+        82.52035255,
+        24.11989431,
+        85.30471792,
+        26.15782382
+      ],
+      "type": "Feature",
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd/items/S1A_IW_GRDH_1SDV_20191002T122934_20191002T123003_029280_0353C0"
+        },
+        {
+          "rel": "license",
+          "href": "https://sentinel.esa.int/documents/247904/690755/Sentinel_Data_Legal_Notice"
+        },
+        {
+          "rel": "preview",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=sentinel-1-grd&item=S1A_IW_GRDH_1SDV_20191002T122934_20191002T123003_029280_0353C0",
+          "title": "Map of item",
+          "type": "text/html"
+        }
+      ],
+      "assets": {
+        "vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/10/2/IW/DV/S1A_IW_GRDH_1SDV_20191002T122934_20191002T123003_029280_0353C0_F3DE/measurement/iw-vh.tiff",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "title": "VH: vertical transmit, horizontal receive",
+          "description": "Amplitude of signal transmitted with vertical polarization and received with horizontal polarization with radiometric terrain correction applied."
+        },
+        "vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/10/2/IW/DV/S1A_IW_GRDH_1SDV_20191002T122934_20191002T123003_029280_0353C0_F3DE/measurement/iw-vv.tiff",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "title": "VV: vertical transmit, vertical receive",
+          "description": "Amplitude of signal transmitted with vertical polarization and received with vertical polarization with radiometric terrain correction applied."
+        },
+        "thumbnail": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/10/2/IW/DV/S1A_IW_GRDH_1SDV_20191002T122934_20191002T123003_029280_0353C0_F3DE/preview/quick-look.png",
+          "type": "image/png",
+          "roles": [
+            "thumbnail"
+          ],
+          "title": "Preview Image",
+          "description": "An averaged, decimated preview image in PNG format. Single polarisation products are represented with a grey scale image. Dual polarisation products are represented by a single composite colour image in RGB with the red channel (R) representing the  co-polarisation VV or HH), the green channel (G) represents the cross-polarisation (VH or HV) and the blue channel (B) represents the ratio of the cross an co-polarisations."
+        },
+        "safe-manifest": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/10/2/IW/DV/S1A_IW_GRDH_1SDV_20191002T122934_20191002T123003_029280_0353C0_F3DE/manifest.safe",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Manifest File",
+          "description": "General product metadata in XML format. Contains a high-level textual description of the product and references to all of product's components, the product metadata, including the product identification and the resource references, and references to the physical location of each component file contained in the product."
+        },
+        "schema-noise-vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/10/2/IW/DV/S1A_IW_GRDH_1SDV_20191002T122934_20191002T123003_029280_0353C0_F3DE/annotation/calibration/noise-iw-vh.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Noise Schema",
+          "description": "Estimated thermal noise look-up tables"
+        },
+        "schema-noise-vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/10/2/IW/DV/S1A_IW_GRDH_1SDV_20191002T122934_20191002T123003_029280_0353C0_F3DE/annotation/calibration/noise-iw-vv.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Noise Schema",
+          "description": "Estimated thermal noise look-up tables"
+        },
+        "schema-product-vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/10/2/IW/DV/S1A_IW_GRDH_1SDV_20191002T122934_20191002T123003_029280_0353C0_F3DE/annotation/iw-vh.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Product Schema",
+          "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc."
+        },
+        "schema-product-vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/10/2/IW/DV/S1A_IW_GRDH_1SDV_20191002T122934_20191002T123003_029280_0353C0_F3DE/annotation/iw-vv.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Product Schema",
+          "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc."
+        },
+        "schema-calibration-vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/10/2/IW/DV/S1A_IW_GRDH_1SDV_20191002T122934_20191002T123003_029280_0353C0_F3DE/annotation/calibration/calibration-iw-vh.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Calibration Schema",
+          "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration."
+        },
+        "schema-calibration-vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/10/2/IW/DV/S1A_IW_GRDH_1SDV_20191002T122934_20191002T123003_029280_0353C0_F3DE/annotation/calibration/calibration-iw-vv.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Calibration Schema",
+          "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration."
+        },
+        "tilejson": {
+          "title": "TileJSON with default rendering",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=sentinel-1-grd&item=S1A_IW_GRDH_1SDV_20191002T122934_20191002T123003_029280_0353C0&assets=vv&assets=vh&expression=vv;vh;vv%2Fvh&rescale=0,600&rescale=0,270&rescale=0,9&asset_as_band=True&tile_format=png&format=png",
+          "type": "application/json",
+          "roles": [
+            "tiles"
+          ]
+        },
+        "rendered_preview": {
+          "title": "Rendered preview",
+          "rel": "preview",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=sentinel-1-grd&item=S1A_IW_GRDH_1SDV_20191002T122934_20191002T123003_029280_0353C0&assets=vv&assets=vh&expression=vv;vh;vv%2Fvh&rescale=0,600&rescale=0,270&rescale=0,9&asset_as_band=True&tile_format=png&format=png",
+          "roles": [
+            "overview"
+          ],
+          "type": "image/png"
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              82.8735228,
+              24.1198943
+            ],
+            [
+              83.2438041,
+              24.1855404
+            ],
+            [
+              83.4924798,
+              24.2290858
+            ],
+            [
+              83.8658085,
+              24.2936428
+            ],
+            [
+              84.1149028,
+              24.3361718
+            ],
+            [
+              84.4888541,
+              24.3991993
+            ],
+            [
+              84.7383598,
+              24.4407054
+            ],
+            [
+              85.3047179,
+              24.5332829
+            ],
+            [
+              85.2587456,
+              24.7718273
+            ],
+            [
+              85.1869867,
+              25.1330811
+            ],
+            [
+              85.1142303,
+              25.4941622
+            ],
+            [
+              84.9846654,
+              26.1578238
+            ],
+            [
+              84.6636009,
+              26.1069137
+            ],
+            [
+              84.4104962,
+              26.0662337
+            ],
+            [
+              84.1575671,
+              26.0251112
+            ],
+            [
+              83.7785058,
+              25.9626001
+            ],
+            [
+              83.5260219,
+              25.9203761
+            ],
+            [
+              83.1476351,
+              25.8562179
+            ],
+            [
+              82.8956052,
+              25.8128995
+            ],
+            [
+              82.5203525,
+              25.7475336
+            ],
+            [
+              82.6637621,
+              25.0825987
+            ],
+            [
+              82.7439259,
+              24.7208652
+            ],
+            [
+              82.8228901,
+              24.3589229
+            ],
+            [
+              82.8735228,
+              24.1198943
+            ]
+          ]
+        ]
+      },
+      "collection": "sentinel-1-grd",
+      "properties": {
+        "datetime": "2019-10-02T12:29:49.130359Z",
+        "platform": "SENTINEL-1A",
+        "s1:shape": [
+          25720,
+          19415
+        ],
+        "end_datetime": "2019-10-02 12:30:03.640547+00:00",
+        "constellation": "Sentinel-1",
+        "s1:resolution": "high",
+        "s1:datatake_id": "218048",
+        "start_datetime": "2019-10-02 12:29:34.620171+00:00",
+        "s1:orbit_source": "RESORB",
+        "s1:slice_number": "1",
+        "s1:total_slices": "15",
+        "sar:looks_range": 5,
+        "sat:orbit_state": "ascending",
+        "sar:product_type": "GRD",
+        "sar:looks_azimuth": 1,
+        "sar:polarizations": [
+          "VV",
+          "VH"
+        ],
+        "sar:frequency_band": "C",
+        "sat:absolute_orbit": 29280,
+        "sat:relative_orbit": 158,
+        "s1:processing_level": "1",
+        "sar:instrument_mode": "IW",
+        "sar:center_frequency": 5.405,
+        "sar:resolution_range": 20,
+        "s1:product_timeliness": "Fast-24h",
+        "sar:resolution_azimuth": 22,
+        "sar:pixel_spacing_range": 10,
+        "sar:observation_direction": "right",
+        "sar:pixel_spacing_azimuth": 10,
+        "sar:looks_equivalent_number": 4.4,
+        "s1:instrument_configuration_ID": "6",
+        "sat:platform_international_designator": "2014-016A"
+      },
+      "stac_extensions": [
+        "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/eo/v1.0.0/schema.json"
+      ],
+      "stac_version": "1.0.0"
+    },
+    {
+      "id": "S1A_IW_GRDH_1SDV_20190930T001154_20190930T001219_029243_035286",
+      "bbox": [
+        84.83858485,
+        24.74211877,
+        87.60859092,
+        26.65959103
+      ],
+      "type": "Feature",
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd/items/S1A_IW_GRDH_1SDV_20190930T001154_20190930T001219_029243_035286"
+        },
+        {
+          "rel": "license",
+          "href": "https://sentinel.esa.int/documents/247904/690755/Sentinel_Data_Legal_Notice"
+        },
+        {
+          "rel": "preview",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=sentinel-1-grd&item=S1A_IW_GRDH_1SDV_20190930T001154_20190930T001219_029243_035286",
+          "title": "Map of item",
+          "type": "text/html"
+        }
+      ],
+      "assets": {
+        "vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/30/IW/DV/S1A_IW_GRDH_1SDV_20190930T001154_20190930T001219_029243_035286_1F63/measurement/iw-vh.tiff",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "title": "VH: vertical transmit, horizontal receive",
+          "description": "Amplitude of signal transmitted with vertical polarization and received with horizontal polarization with radiometric terrain correction applied."
+        },
+        "vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/30/IW/DV/S1A_IW_GRDH_1SDV_20190930T001154_20190930T001219_029243_035286_1F63/measurement/iw-vv.tiff",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "title": "VV: vertical transmit, vertical receive",
+          "description": "Amplitude of signal transmitted with vertical polarization and received with vertical polarization with radiometric terrain correction applied."
+        },
+        "thumbnail": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/30/IW/DV/S1A_IW_GRDH_1SDV_20190930T001154_20190930T001219_029243_035286_1F63/preview/quick-look.png",
+          "type": "image/png",
+          "roles": [
+            "thumbnail"
+          ],
+          "title": "Preview Image",
+          "description": "An averaged, decimated preview image in PNG format. Single polarisation products are represented with a grey scale image. Dual polarisation products are represented by a single composite colour image in RGB with the red channel (R) representing the  co-polarisation VV or HH), the green channel (G) represents the cross-polarisation (VH or HV) and the blue channel (B) represents the ratio of the cross an co-polarisations."
+        },
+        "safe-manifest": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/30/IW/DV/S1A_IW_GRDH_1SDV_20190930T001154_20190930T001219_029243_035286_1F63/manifest.safe",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Manifest File",
+          "description": "General product metadata in XML format. Contains a high-level textual description of the product and references to all of product's components, the product metadata, including the product identification and the resource references, and references to the physical location of each component file contained in the product."
+        },
+        "schema-noise-vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/30/IW/DV/S1A_IW_GRDH_1SDV_20190930T001154_20190930T001219_029243_035286_1F63/annotation/calibration/noise-iw-vh.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Noise Schema",
+          "description": "Estimated thermal noise look-up tables"
+        },
+        "schema-noise-vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/30/IW/DV/S1A_IW_GRDH_1SDV_20190930T001154_20190930T001219_029243_035286_1F63/annotation/calibration/noise-iw-vv.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Noise Schema",
+          "description": "Estimated thermal noise look-up tables"
+        },
+        "schema-product-vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/30/IW/DV/S1A_IW_GRDH_1SDV_20190930T001154_20190930T001219_029243_035286_1F63/annotation/iw-vh.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Product Schema",
+          "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc."
+        },
+        "schema-product-vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/30/IW/DV/S1A_IW_GRDH_1SDV_20190930T001154_20190930T001219_029243_035286_1F63/annotation/iw-vv.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Product Schema",
+          "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc."
+        },
+        "schema-calibration-vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/30/IW/DV/S1A_IW_GRDH_1SDV_20190930T001154_20190930T001219_029243_035286_1F63/annotation/calibration/calibration-iw-vh.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Calibration Schema",
+          "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration."
+        },
+        "schema-calibration-vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/30/IW/DV/S1A_IW_GRDH_1SDV_20190930T001154_20190930T001219_029243_035286_1F63/annotation/calibration/calibration-iw-vv.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Calibration Schema",
+          "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration."
+        },
+        "tilejson": {
+          "title": "TileJSON with default rendering",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=sentinel-1-grd&item=S1A_IW_GRDH_1SDV_20190930T001154_20190930T001219_029243_035286&assets=vv&assets=vh&expression=vv;vh;vv%2Fvh&rescale=0,600&rescale=0,270&rescale=0,9&asset_as_band=True&tile_format=png&format=png",
+          "type": "application/json",
+          "roles": [
+            "tiles"
+          ]
+        },
+        "rendered_preview": {
+          "title": "Rendered preview",
+          "rel": "preview",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=sentinel-1-grd&item=S1A_IW_GRDH_1SDV_20190930T001154_20190930T001219_029243_035286&assets=vv&assets=vh&expression=vv;vh;vv%2Fvh&rescale=0,600&rescale=0,270&rescale=0,9&asset_as_band=True&tile_format=png&format=png",
+          "roles": [
+            "overview"
+          ],
+          "type": "image/png"
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              87.6085909,
+              26.2503887
+            ],
+            [
+              87.2437141,
+              26.3135928
+            ],
+            [
+              86.9935489,
+              26.3563488
+            ],
+            [
+              86.6179585,
+              26.4196639
+            ],
+            [
+              86.3673387,
+              26.4613263
+            ],
+            [
+              85.9910731,
+              26.5229958
+            ],
+            [
+              85.7400076,
+              26.5635579
+            ],
+            [
+              85.4887664,
+              26.6036778
+            ],
+            [
+              85.1335469,
+              26.659591
+            ],
+            [
+              84.957698,
+              25.7560727
+            ],
+            [
+              84.922273,
+              25.5753783
+            ],
+            [
+              84.8385848,
+              25.1541842
+            ],
+            [
+              85.1892141,
+              25.0976895
+            ],
+            [
+              85.4372203,
+              25.0571929
+            ],
+            [
+              85.6850629,
+              25.0162831
+            ],
+            [
+              86.0565174,
+              24.9541456
+            ],
+            [
+              86.3039457,
+              24.912207
+            ],
+            [
+              86.6747731,
+              24.8485313
+            ],
+            [
+              86.9217796,
+              24.8055705
+            ],
+            [
+              87.2820695,
+              24.7421188
+            ],
+            [
+              87.3743691,
+              25.1641013
+            ],
+            [
+              87.6085909,
+              26.2503887
+            ]
+          ]
+        ]
+      },
+      "collection": "sentinel-1-grd",
+      "properties": {
+        "datetime": "2019-09-30T00:12:07.361956Z",
+        "platform": "SENTINEL-1A",
+        "s1:shape": [
+          25409,
+          16749
+        ],
+        "end_datetime": "2019-09-30 00:12:19.861216+00:00",
+        "constellation": "Sentinel-1",
+        "s1:resolution": "high",
+        "s1:datatake_id": "217734",
+        "start_datetime": "2019-09-30 00:11:54.862696+00:00",
+        "s1:orbit_source": "RESORB",
+        "s1:slice_number": "9",
+        "s1:total_slices": "14",
+        "sar:looks_range": 5,
+        "sat:orbit_state": "descending",
+        "sar:product_type": "GRD",
+        "sar:looks_azimuth": 1,
+        "sar:polarizations": [
+          "VV",
+          "VH"
+        ],
+        "sar:frequency_band": "C",
+        "sat:absolute_orbit": 29243,
+        "sat:relative_orbit": 121,
+        "s1:processing_level": "1",
+        "sar:instrument_mode": "IW",
+        "sar:center_frequency": 5.405,
+        "sar:resolution_range": 20,
+        "s1:product_timeliness": "Fast-24h",
+        "sar:resolution_azimuth": 22,
+        "sar:pixel_spacing_range": 10,
+        "sar:observation_direction": "right",
+        "sar:pixel_spacing_azimuth": 10,
+        "sar:looks_equivalent_number": 4.4,
+        "s1:instrument_configuration_ID": "6",
+        "sat:platform_international_designator": "2014-016A"
+      },
+      "stac_extensions": [
+        "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/eo/v1.0.0/schema.json"
+      ],
+      "stac_version": "1.0.0"
+    },
+    {
+      "id": "S1B_IW_GRDH_1SDV_20190929T001924_20190929T001949_018245_0225AB",
+      "bbox": [
+        82.80759266,
+        24.87572189,
+        85.58047982,
+        26.79298942
+      ],
+      "type": "Feature",
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd/items/S1B_IW_GRDH_1SDV_20190929T001924_20190929T001949_018245_0225AB"
+        },
+        {
+          "rel": "license",
+          "href": "https://sentinel.esa.int/documents/247904/690755/Sentinel_Data_Legal_Notice"
+        },
+        {
+          "rel": "preview",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=sentinel-1-grd&item=S1B_IW_GRDH_1SDV_20190929T001924_20190929T001949_018245_0225AB",
+          "title": "Map of item",
+          "type": "text/html"
+        }
+      ],
+      "assets": {
+        "vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/29/IW/DV/S1B_IW_GRDH_1SDV_20190929T001924_20190929T001949_018245_0225AB_A737/measurement/iw-vh.tiff",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "title": "VH: vertical transmit, horizontal receive",
+          "description": "Amplitude of signal transmitted with vertical polarization and received with horizontal polarization with radiometric terrain correction applied."
+        },
+        "vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/29/IW/DV/S1B_IW_GRDH_1SDV_20190929T001924_20190929T001949_018245_0225AB_A737/measurement/iw-vv.tiff",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "title": "VV: vertical transmit, vertical receive",
+          "description": "Amplitude of signal transmitted with vertical polarization and received with vertical polarization with radiometric terrain correction applied."
+        },
+        "thumbnail": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/29/IW/DV/S1B_IW_GRDH_1SDV_20190929T001924_20190929T001949_018245_0225AB_A737/preview/quick-look.png",
+          "type": "image/png",
+          "roles": [
+            "thumbnail"
+          ],
+          "title": "Preview Image",
+          "description": "An averaged, decimated preview image in PNG format. Single polarisation products are represented with a grey scale image. Dual polarisation products are represented by a single composite colour image in RGB with the red channel (R) representing the  co-polarisation VV or HH), the green channel (G) represents the cross-polarisation (VH or HV) and the blue channel (B) represents the ratio of the cross an co-polarisations."
+        },
+        "safe-manifest": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/29/IW/DV/S1B_IW_GRDH_1SDV_20190929T001924_20190929T001949_018245_0225AB_A737/manifest.safe",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Manifest File",
+          "description": "General product metadata in XML format. Contains a high-level textual description of the product and references to all of product's components, the product metadata, including the product identification and the resource references, and references to the physical location of each component file contained in the product."
+        },
+        "schema-noise-vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/29/IW/DV/S1B_IW_GRDH_1SDV_20190929T001924_20190929T001949_018245_0225AB_A737/annotation/calibration/noise-iw-vh.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Noise Schema",
+          "description": "Estimated thermal noise look-up tables"
+        },
+        "schema-noise-vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/29/IW/DV/S1B_IW_GRDH_1SDV_20190929T001924_20190929T001949_018245_0225AB_A737/annotation/calibration/noise-iw-vv.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Noise Schema",
+          "description": "Estimated thermal noise look-up tables"
+        },
+        "schema-product-vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/29/IW/DV/S1B_IW_GRDH_1SDV_20190929T001924_20190929T001949_018245_0225AB_A737/annotation/iw-vh.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Product Schema",
+          "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc."
+        },
+        "schema-product-vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/29/IW/DV/S1B_IW_GRDH_1SDV_20190929T001924_20190929T001949_018245_0225AB_A737/annotation/iw-vv.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Product Schema",
+          "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc."
+        },
+        "schema-calibration-vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/29/IW/DV/S1B_IW_GRDH_1SDV_20190929T001924_20190929T001949_018245_0225AB_A737/annotation/calibration/calibration-iw-vh.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Calibration Schema",
+          "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration."
+        },
+        "schema-calibration-vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/29/IW/DV/S1B_IW_GRDH_1SDV_20190929T001924_20190929T001949_018245_0225AB_A737/annotation/calibration/calibration-iw-vv.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Calibration Schema",
+          "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration."
+        },
+        "tilejson": {
+          "title": "TileJSON with default rendering",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=sentinel-1-grd&item=S1B_IW_GRDH_1SDV_20190929T001924_20190929T001949_018245_0225AB&assets=vv&assets=vh&expression=vv;vh;vv%2Fvh&rescale=0,600&rescale=0,270&rescale=0,9&asset_as_band=True&tile_format=png&format=png",
+          "type": "application/json",
+          "roles": [
+            "tiles"
+          ]
+        },
+        "rendered_preview": {
+          "title": "Rendered preview",
+          "rel": "preview",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=sentinel-1-grd&item=S1B_IW_GRDH_1SDV_20190929T001924_20190929T001949_018245_0225AB&assets=vv&assets=vh&expression=vv;vh;vv%2Fvh&rescale=0,600&rescale=0,270&rescale=0,9&asset_as_band=True&tile_format=png&format=png",
+          "roles": [
+            "overview"
+          ],
+          "type": "image/png"
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              85.5804798,
+              26.3839903
+            ],
+            [
+              85.2182323,
+              26.4466491
+            ],
+            [
+              84.96896,
+              26.4891916
+            ],
+            [
+              84.5947101,
+              26.5521895
+            ],
+            [
+              84.3449846,
+              26.5936424
+            ],
+            [
+              83.9700614,
+              26.6550008
+            ],
+            [
+              83.7198915,
+              26.6953574
+            ],
+            [
+              83.4695465,
+              26.7352736
+            ],
+            [
+              83.1022239,
+              26.7929894
+            ],
+            [
+              82.8552678,
+              25.528112
+            ],
+            [
+              82.8075927,
+              25.287583
+            ],
+            [
+              83.1701442,
+              25.2292676
+            ],
+            [
+              83.4172494,
+              25.1889778
+            ],
+            [
+              83.6641916,
+              25.1482762
+            ],
+            [
+              84.0342965,
+              25.0864537
+            ],
+            [
+              84.2808257,
+              25.0447269
+            ],
+            [
+              84.6503056,
+              24.9813713
+            ],
+            [
+              84.8964146,
+              24.9386256
+            ],
+            [
+              85.2540855,
+              24.8757219
+            ],
+            [
+              85.306675,
+              25.1167052
+            ],
+            [
+              85.5804798,
+              26.3839903
+            ]
+          ]
+        ]
+      },
+      "collection": "sentinel-1-grd",
+      "properties": {
+        "datetime": "2019-09-29T00:19:37.110578Z",
+        "platform": "SENTINEL-1B",
+        "s1:shape": [
+          25296,
+          16765
+        ],
+        "end_datetime": "2019-09-29 00:19:49.609659+00:00",
+        "constellation": "Sentinel-1",
+        "s1:resolution": "high",
+        "s1:datatake_id": "140715",
+        "start_datetime": "2019-09-29 00:19:24.611496+00:00",
+        "s1:orbit_source": "RESORB",
+        "s1:slice_number": "2",
+        "s1:total_slices": "13",
+        "sar:looks_range": 5,
+        "sat:orbit_state": "descending",
+        "sar:product_type": "GRD",
+        "sar:looks_azimuth": 1,
+        "sar:polarizations": [
+          "VV",
+          "VH"
+        ],
+        "sar:frequency_band": "C",
+        "sat:absolute_orbit": 18245,
+        "sat:relative_orbit": 19,
+        "s1:processing_level": "1",
+        "sar:instrument_mode": "IW",
+        "sar:center_frequency": 5.405,
+        "sar:resolution_range": 20,
+        "s1:product_timeliness": "Fast-24h",
+        "sar:resolution_azimuth": 22,
+        "sar:pixel_spacing_range": 10,
+        "sar:observation_direction": "right",
+        "sar:pixel_spacing_azimuth": 10,
+        "sar:looks_equivalent_number": 4.4,
+        "s1:instrument_configuration_ID": "1",
+        "sat:platform_international_designator": "2016-025A"
+      },
+      "stac_extensions": [
+        "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/eo/v1.0.0/schema.json"
+      ],
+      "stac_version": "1.0.0"
+    },
+    {
+      "id": "S1A_IW_GRDH_1SDV_20190927T122127_20190927T122152_029207_03512E",
+      "bbox": [
+        84.542491,
+        24.40378165,
+        87.30761397,
+        26.32173605
+      ],
+      "type": "Feature",
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd/items/S1A_IW_GRDH_1SDV_20190927T122127_20190927T122152_029207_03512E"
+        },
+        {
+          "rel": "license",
+          "href": "https://sentinel.esa.int/documents/247904/690755/Sentinel_Data_Legal_Notice"
+        },
+        {
+          "rel": "preview",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=sentinel-1-grd&item=S1A_IW_GRDH_1SDV_20190927T122127_20190927T122152_029207_03512E",
+          "title": "Map of item",
+          "type": "text/html"
+        }
+      ],
+      "assets": {
+        "vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/27/IW/DV/S1A_IW_GRDH_1SDV_20190927T122127_20190927T122152_029207_03512E_3D01/measurement/iw-vh.tiff",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "title": "VH: vertical transmit, horizontal receive",
+          "description": "Amplitude of signal transmitted with vertical polarization and received with horizontal polarization with radiometric terrain correction applied."
+        },
+        "vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/27/IW/DV/S1A_IW_GRDH_1SDV_20190927T122127_20190927T122152_029207_03512E_3D01/measurement/iw-vv.tiff",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "title": "VV: vertical transmit, vertical receive",
+          "description": "Amplitude of signal transmitted with vertical polarization and received with vertical polarization with radiometric terrain correction applied."
+        },
+        "thumbnail": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/27/IW/DV/S1A_IW_GRDH_1SDV_20190927T122127_20190927T122152_029207_03512E_3D01/preview/quick-look.png",
+          "type": "image/png",
+          "roles": [
+            "thumbnail"
+          ],
+          "title": "Preview Image",
+          "description": "An averaged, decimated preview image in PNG format. Single polarisation products are represented with a grey scale image. Dual polarisation products are represented by a single composite colour image in RGB with the red channel (R) representing the  co-polarisation VV or HH), the green channel (G) represents the cross-polarisation (VH or HV) and the blue channel (B) represents the ratio of the cross an co-polarisations."
+        },
+        "safe-manifest": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/27/IW/DV/S1A_IW_GRDH_1SDV_20190927T122127_20190927T122152_029207_03512E_3D01/manifest.safe",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Manifest File",
+          "description": "General product metadata in XML format. Contains a high-level textual description of the product and references to all of product's components, the product metadata, including the product identification and the resource references, and references to the physical location of each component file contained in the product."
+        },
+        "schema-noise-vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/27/IW/DV/S1A_IW_GRDH_1SDV_20190927T122127_20190927T122152_029207_03512E_3D01/annotation/calibration/noise-iw-vh.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Noise Schema",
+          "description": "Estimated thermal noise look-up tables"
+        },
+        "schema-noise-vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/27/IW/DV/S1A_IW_GRDH_1SDV_20190927T122127_20190927T122152_029207_03512E_3D01/annotation/calibration/noise-iw-vv.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Noise Schema",
+          "description": "Estimated thermal noise look-up tables"
+        },
+        "schema-product-vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/27/IW/DV/S1A_IW_GRDH_1SDV_20190927T122127_20190927T122152_029207_03512E_3D01/annotation/iw-vh.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Product Schema",
+          "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc."
+        },
+        "schema-product-vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/27/IW/DV/S1A_IW_GRDH_1SDV_20190927T122127_20190927T122152_029207_03512E_3D01/annotation/iw-vv.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Product Schema",
+          "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc."
+        },
+        "schema-calibration-vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/27/IW/DV/S1A_IW_GRDH_1SDV_20190927T122127_20190927T122152_029207_03512E_3D01/annotation/calibration/calibration-iw-vh.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Calibration Schema",
+          "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration."
+        },
+        "schema-calibration-vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/27/IW/DV/S1A_IW_GRDH_1SDV_20190927T122127_20190927T122152_029207_03512E_3D01/annotation/calibration/calibration-iw-vv.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Calibration Schema",
+          "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration."
+        },
+        "tilejson": {
+          "title": "TileJSON with default rendering",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=sentinel-1-grd&item=S1A_IW_GRDH_1SDV_20190927T122127_20190927T122152_029207_03512E&assets=vv&assets=vh&expression=vv;vh;vv%2Fvh&rescale=0,600&rescale=0,270&rescale=0,9&asset_as_band=True&tile_format=png&format=png",
+          "type": "application/json",
+          "roles": [
+            "tiles"
+          ]
+        },
+        "rendered_preview": {
+          "title": "Rendered preview",
+          "rel": "preview",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=sentinel-1-grd&item=S1A_IW_GRDH_1SDV_20190927T122127_20190927T122152_029207_03512E&assets=vv&assets=vh&expression=vv;vh;vv%2Fvh&rescale=0,600&rescale=0,270&rescale=0,9&asset_as_band=True&tile_format=png&format=png",
+          "roles": [
+            "overview"
+          ],
+          "type": "image/png"
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              84.8705853,
+              24.4037816
+            ],
+            [
+              85.2369482,
+              24.4685383
+            ],
+            [
+              85.4871502,
+              24.5122136
+            ],
+            [
+              85.8627764,
+              24.5769495
+            ],
+            [
+              86.1134075,
+              24.6195872
+            ],
+            [
+              86.4896714,
+              24.6827617
+            ],
+            [
+              86.7407235,
+              24.7243549
+            ],
+            [
+              87.307614,
+              24.8166177
+            ],
+            [
+              87.2702447,
+              24.9969254
+            ],
+            [
+              87.2350678,
+              25.1776728
+            ],
+            [
+              87.1988799,
+              25.3582553
+            ],
+            [
+              87.0106092,
+              26.321736
+            ],
+            [
+              86.6908556,
+              26.2711711
+            ],
+            [
+              86.4364002,
+              26.2303809
+            ],
+            [
+              86.182123,
+              26.1891416
+            ],
+            [
+              85.8010449,
+              26.1264427
+            ],
+            [
+              85.54722,
+              26.0840851
+            ],
+            [
+              85.166827,
+              26.0197142
+            ],
+            [
+              84.9134634,
+              25.9762455
+            ],
+            [
+              84.542491,
+              25.9117386
+            ],
+            [
+              84.7116914,
+              25.1274488
+            ],
+            [
+              84.7508933,
+              24.9464154
+            ],
+            [
+              84.790748,
+              24.7654978
+            ],
+            [
+              84.8295519,
+              24.584395
+            ],
+            [
+              84.8705853,
+              24.4037816
+            ]
+          ]
+        ]
+      },
+      "collection": "sentinel-1-grd",
+      "properties": {
+        "datetime": "2019-09-27T12:21:40.018932Z",
+        "platform": "SENTINEL-1A",
+        "s1:shape": [
+          25804,
+          16732
+        ],
+        "end_datetime": "2019-09-27 12:21:52.518283+00:00",
+        "constellation": "Sentinel-1",
+        "s1:resolution": "high",
+        "s1:datatake_id": "217390",
+        "start_datetime": "2019-09-27 12:21:27.519580+00:00",
+        "s1:orbit_source": "RESORB",
+        "s1:slice_number": "5",
+        "s1:total_slices": "20",
+        "sar:looks_range": 5,
+        "sat:orbit_state": "ascending",
+        "sar:product_type": "GRD",
+        "sar:looks_azimuth": 1,
+        "sar:polarizations": [
+          "VV",
+          "VH"
+        ],
+        "sar:frequency_band": "C",
+        "sat:absolute_orbit": 29207,
+        "sat:relative_orbit": 85,
+        "s1:processing_level": "1",
+        "sar:instrument_mode": "IW",
+        "sar:center_frequency": 5.405,
+        "sar:resolution_range": 20,
+        "s1:product_timeliness": "Fast-24h",
+        "sar:resolution_azimuth": 22,
+        "sar:pixel_spacing_range": 10,
+        "sar:observation_direction": "right",
+        "sar:pixel_spacing_azimuth": 10,
+        "sar:looks_equivalent_number": 4.4,
+        "s1:instrument_configuration_ID": "6",
+        "sat:platform_international_designator": "2014-016A"
+      },
+      "stac_extensions": [
+        "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/eo/v1.0.0/schema.json"
+      ],
+      "stac_version": "1.0.0"
+    },
+    {
+      "id": "S1A_IW_GRDH_1SDV_20190923T002026_20190923T002051_029141_034EEC",
+      "bbox": [
+        82.5722485,
+        23.66841317,
+        85.32278078,
+        25.58712069
+      ],
+      "type": "Feature",
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd/items/S1A_IW_GRDH_1SDV_20190923T002026_20190923T002051_029141_034EEC"
+        },
+        {
+          "rel": "license",
+          "href": "https://sentinel.esa.int/documents/247904/690755/Sentinel_Data_Legal_Notice"
+        },
+        {
+          "rel": "preview",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=sentinel-1-grd&item=S1A_IW_GRDH_1SDV_20190923T002026_20190923T002051_029141_034EEC",
+          "title": "Map of item",
+          "type": "text/html"
+        }
+      ],
+      "assets": {
+        "vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/23/IW/DV/S1A_IW_GRDH_1SDV_20190923T002026_20190923T002051_029141_034EEC_C941/measurement/iw-vh.tiff",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "title": "VH: vertical transmit, horizontal receive",
+          "description": "Amplitude of signal transmitted with vertical polarization and received with horizontal polarization with radiometric terrain correction applied."
+        },
+        "vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/23/IW/DV/S1A_IW_GRDH_1SDV_20190923T002026_20190923T002051_029141_034EEC_C941/measurement/iw-vv.tiff",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "title": "VV: vertical transmit, vertical receive",
+          "description": "Amplitude of signal transmitted with vertical polarization and received with vertical polarization with radiometric terrain correction applied."
+        },
+        "thumbnail": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/23/IW/DV/S1A_IW_GRDH_1SDV_20190923T002026_20190923T002051_029141_034EEC_C941/preview/quick-look.png",
+          "type": "image/png",
+          "roles": [
+            "thumbnail"
+          ],
+          "title": "Preview Image",
+          "description": "An averaged, decimated preview image in PNG format. Single polarisation products are represented with a grey scale image. Dual polarisation products are represented by a single composite colour image in RGB with the red channel (R) representing the  co-polarisation VV or HH), the green channel (G) represents the cross-polarisation (VH or HV) and the blue channel (B) represents the ratio of the cross an co-polarisations."
+        },
+        "safe-manifest": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/23/IW/DV/S1A_IW_GRDH_1SDV_20190923T002026_20190923T002051_029141_034EEC_C941/manifest.safe",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Manifest File",
+          "description": "General product metadata in XML format. Contains a high-level textual description of the product and references to all of product's components, the product metadata, including the product identification and the resource references, and references to the physical location of each component file contained in the product."
+        },
+        "schema-noise-vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/23/IW/DV/S1A_IW_GRDH_1SDV_20190923T002026_20190923T002051_029141_034EEC_C941/annotation/calibration/noise-iw-vh.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Noise Schema",
+          "description": "Estimated thermal noise look-up tables"
+        },
+        "schema-noise-vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/23/IW/DV/S1A_IW_GRDH_1SDV_20190923T002026_20190923T002051_029141_034EEC_C941/annotation/calibration/noise-iw-vv.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Noise Schema",
+          "description": "Estimated thermal noise look-up tables"
+        },
+        "schema-product-vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/23/IW/DV/S1A_IW_GRDH_1SDV_20190923T002026_20190923T002051_029141_034EEC_C941/annotation/iw-vh.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Product Schema",
+          "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc."
+        },
+        "schema-product-vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/23/IW/DV/S1A_IW_GRDH_1SDV_20190923T002026_20190923T002051_029141_034EEC_C941/annotation/iw-vv.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Product Schema",
+          "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc."
+        },
+        "schema-calibration-vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/23/IW/DV/S1A_IW_GRDH_1SDV_20190923T002026_20190923T002051_029141_034EEC_C941/annotation/calibration/calibration-iw-vh.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Calibration Schema",
+          "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration."
+        },
+        "schema-calibration-vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/23/IW/DV/S1A_IW_GRDH_1SDV_20190923T002026_20190923T002051_029141_034EEC_C941/annotation/calibration/calibration-iw-vv.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Calibration Schema",
+          "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration."
+        },
+        "tilejson": {
+          "title": "TileJSON with default rendering",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=sentinel-1-grd&item=S1A_IW_GRDH_1SDV_20190923T002026_20190923T002051_029141_034EEC&assets=vv&assets=vh&expression=vv;vh;vv%2Fvh&rescale=0,600&rescale=0,270&rescale=0,9&asset_as_band=True&tile_format=png&format=png",
+          "type": "application/json",
+          "roles": [
+            "tiles"
+          ]
+        },
+        "rendered_preview": {
+          "title": "Rendered preview",
+          "rel": "preview",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=sentinel-1-grd&item=S1A_IW_GRDH_1SDV_20190923T002026_20190923T002051_029141_034EEC&assets=vv&assets=vh&expression=vv;vh;vv%2Fvh&rescale=0,600&rescale=0,270&rescale=0,9&asset_as_band=True&tile_format=png&format=png",
+          "roles": [
+            "overview"
+          ],
+          "type": "image/png"
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              85.3227808,
+              25.1760766
+            ],
+            [
+              84.9608183,
+              25.2395383
+            ],
+            [
+              84.7137087,
+              25.2823149
+            ],
+            [
+              84.3427215,
+              25.3457038
+            ],
+            [
+              84.0951834,
+              25.3874443
+            ],
+            [
+              83.7235592,
+              25.4492744
+            ],
+            [
+              83.4756004,
+              25.4899723
+            ],
+            [
+              83.2274755,
+              25.5302515
+            ],
+            [
+              82.8723315,
+              25.5871207
+            ],
+            [
+              82.7298942,
+              24.8644512
+            ],
+            [
+              82.6927836,
+              24.683992
+            ],
+            [
+              82.62113,
+              24.3226511
+            ],
+            [
+              82.5722485,
+              24.0823004
+            ],
+            [
+              83.1680677,
+              23.9842
+            ],
+            [
+              83.4129814,
+              23.9431586
+            ],
+            [
+              83.7800609,
+              23.8808659
+            ],
+            [
+              84.024585,
+              23.8388518
+            ],
+            [
+              84.3910756,
+              23.7751047
+            ],
+            [
+              84.9928213,
+              23.6684132
+            ],
+            [
+              85.0463384,
+              23.9092075
+            ],
+            [
+              85.1250058,
+              24.2712499
+            ],
+            [
+              85.1657319,
+              24.4520247
+            ],
+            [
+              85.2439619,
+              24.8141484
+            ],
+            [
+              85.3227808,
+              25.1760766
+            ]
+          ]
+        ]
+      },
+      "collection": "sentinel-1-grd",
+      "properties": {
+        "datetime": "2019-09-23T00:20:38.543895Z",
+        "platform": "SENTINEL-1A",
+        "s1:shape": [
+          25335,
+          16748
+        ],
+        "end_datetime": "2019-09-23 00:20:51.043377+00:00",
+        "constellation": "Sentinel-1",
+        "s1:resolution": "high",
+        "s1:datatake_id": "216812",
+        "start_datetime": "2019-09-23 00:20:26.044413+00:00",
+        "s1:orbit_source": "RESORB",
+        "s1:slice_number": "6",
+        "s1:total_slices": "11",
+        "sar:looks_range": 5,
+        "sat:orbit_state": "descending",
+        "sar:product_type": "GRD",
+        "sar:looks_azimuth": 1,
+        "sar:polarizations": [
+          "VV",
+          "VH"
+        ],
+        "sar:frequency_band": "C",
+        "sat:absolute_orbit": 29141,
+        "sat:relative_orbit": 19,
+        "s1:processing_level": "1",
+        "sar:instrument_mode": "IW",
+        "sar:center_frequency": 5.405,
+        "sar:resolution_range": 20,
+        "s1:product_timeliness": "Fast-24h",
+        "sar:resolution_azimuth": 22,
+        "sar:pixel_spacing_range": 10,
+        "sar:observation_direction": "right",
+        "sar:pixel_spacing_azimuth": 10,
+        "sar:looks_equivalent_number": 4.4,
+        "s1:instrument_configuration_ID": "6",
+        "sat:platform_international_designator": "2014-016A"
+      },
+      "stac_extensions": [
+        "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/eo/v1.0.0/schema.json"
+      ],
+      "stac_version": "1.0.0"
+    },
+    {
+      "id": "S1A_IW_GRDH_1SDV_20190923T002001_20190923T002026_029141_034EEC",
+      "bbox": [
+        82.86728652,
+        25.17674157,
+        85.64685233,
+        27.09370232
+      ],
+      "type": "Feature",
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd/items/S1A_IW_GRDH_1SDV_20190923T002001_20190923T002026_029141_034EEC"
+        },
+        {
+          "rel": "license",
+          "href": "https://sentinel.esa.int/documents/247904/690755/Sentinel_Data_Legal_Notice"
+        },
+        {
+          "rel": "preview",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=sentinel-1-grd&item=S1A_IW_GRDH_1SDV_20190923T002001_20190923T002026_029141_034EEC",
+          "title": "Map of item",
+          "type": "text/html"
+        }
+      ],
+      "assets": {
+        "vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/23/IW/DV/S1A_IW_GRDH_1SDV_20190923T002001_20190923T002026_029141_034EEC_FD89/measurement/iw-vh.tiff",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "title": "VH: vertical transmit, horizontal receive",
+          "description": "Amplitude of signal transmitted with vertical polarization and received with horizontal polarization with radiometric terrain correction applied."
+        },
+        "vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/23/IW/DV/S1A_IW_GRDH_1SDV_20190923T002001_20190923T002026_029141_034EEC_FD89/measurement/iw-vv.tiff",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "title": "VV: vertical transmit, vertical receive",
+          "description": "Amplitude of signal transmitted with vertical polarization and received with vertical polarization with radiometric terrain correction applied."
+        },
+        "thumbnail": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/23/IW/DV/S1A_IW_GRDH_1SDV_20190923T002001_20190923T002026_029141_034EEC_FD89/preview/quick-look.png",
+          "type": "image/png",
+          "roles": [
+            "thumbnail"
+          ],
+          "title": "Preview Image",
+          "description": "An averaged, decimated preview image in PNG format. Single polarisation products are represented with a grey scale image. Dual polarisation products are represented by a single composite colour image in RGB with the red channel (R) representing the  co-polarisation VV or HH), the green channel (G) represents the cross-polarisation (VH or HV) and the blue channel (B) represents the ratio of the cross an co-polarisations."
+        },
+        "safe-manifest": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/23/IW/DV/S1A_IW_GRDH_1SDV_20190923T002001_20190923T002026_029141_034EEC_FD89/manifest.safe",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Manifest File",
+          "description": "General product metadata in XML format. Contains a high-level textual description of the product and references to all of product's components, the product metadata, including the product identification and the resource references, and references to the physical location of each component file contained in the product."
+        },
+        "schema-noise-vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/23/IW/DV/S1A_IW_GRDH_1SDV_20190923T002001_20190923T002026_029141_034EEC_FD89/annotation/calibration/noise-iw-vh.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Noise Schema",
+          "description": "Estimated thermal noise look-up tables"
+        },
+        "schema-noise-vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/23/IW/DV/S1A_IW_GRDH_1SDV_20190923T002001_20190923T002026_029141_034EEC_FD89/annotation/calibration/noise-iw-vv.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Noise Schema",
+          "description": "Estimated thermal noise look-up tables"
+        },
+        "schema-product-vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/23/IW/DV/S1A_IW_GRDH_1SDV_20190923T002001_20190923T002026_029141_034EEC_FD89/annotation/iw-vh.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Product Schema",
+          "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc."
+        },
+        "schema-product-vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/23/IW/DV/S1A_IW_GRDH_1SDV_20190923T002001_20190923T002026_029141_034EEC_FD89/annotation/iw-vv.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Product Schema",
+          "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc."
+        },
+        "schema-calibration-vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/23/IW/DV/S1A_IW_GRDH_1SDV_20190923T002001_20190923T002026_029141_034EEC_FD89/annotation/calibration/calibration-iw-vh.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Calibration Schema",
+          "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration."
+        },
+        "schema-calibration-vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/23/IW/DV/S1A_IW_GRDH_1SDV_20190923T002001_20190923T002026_029141_034EEC_FD89/annotation/calibration/calibration-iw-vv.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Calibration Schema",
+          "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration."
+        },
+        "tilejson": {
+          "title": "TileJSON with default rendering",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=sentinel-1-grd&item=S1A_IW_GRDH_1SDV_20190923T002001_20190923T002026_029141_034EEC&assets=vv&assets=vh&expression=vv;vh;vv%2Fvh&rescale=0,600&rescale=0,270&rescale=0,9&asset_as_band=True&tile_format=png&format=png",
+          "type": "application/json",
+          "roles": [
+            "tiles"
+          ]
+        },
+        "rendered_preview": {
+          "title": "Rendered preview",
+          "rel": "preview",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=sentinel-1-grd&item=S1A_IW_GRDH_1SDV_20190923T002001_20190923T002026_029141_034EEC&assets=vv&assets=vh&expression=vv;vh;vv%2Fvh&rescale=0,600&rescale=0,270&rescale=0,9&asset_as_band=True&tile_format=png&format=png",
+          "roles": [
+            "overview"
+          ],
+          "type": "image/png"
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              85.6468523,
+              26.6850942
+            ],
+            [
+              85.2824644,
+              26.747918
+            ],
+            [
+              85.0321358,
+              26.7904925
+            ],
+            [
+              84.656295,
+              26.853525
+            ],
+            [
+              84.4055049,
+              26.894992
+            ],
+            [
+              84.0289789,
+              26.9563582
+            ],
+            [
+              83.7777366,
+              26.9967109
+            ],
+            [
+              83.5263161,
+              27.036616
+            ],
+            [
+              83.1612722,
+              27.0937023
+            ],
+            [
+              82.8672865,
+              25.5882016
+            ],
+            [
+              83.2275291,
+              25.5305213
+            ],
+            [
+              83.4756546,
+              25.4902422
+            ],
+            [
+              83.723614,
+              25.4495443
+            ],
+            [
+              84.0952389,
+              25.3877143
+            ],
+            [
+              84.3427777,
+              25.3459739
+            ],
+            [
+              84.7137657,
+              25.282585
+            ],
+            [
+              84.9608758,
+              25.2398084
+            ],
+            [
+              85.320599,
+              25.1767416
+            ],
+            [
+              85.4898377,
+              25.9610216
+            ],
+            [
+              85.6468523,
+              26.6850942
+            ]
+          ]
+        ]
+      },
+      "collection": "sentinel-1-grd",
+      "properties": {
+        "datetime": "2019-09-23T00:20:13.543439Z",
+        "platform": "SENTINEL-1A",
+        "s1:shape": [
+          25341,
+          16748
+        ],
+        "end_datetime": "2019-09-23 00:20:26.042920+00:00",
+        "constellation": "Sentinel-1",
+        "s1:resolution": "high",
+        "s1:datatake_id": "216812",
+        "start_datetime": "2019-09-23 00:20:01.043957+00:00",
+        "s1:orbit_source": "RESORB",
+        "s1:slice_number": "5",
+        "s1:total_slices": "11",
+        "sar:looks_range": 5,
+        "sat:orbit_state": "descending",
+        "sar:product_type": "GRD",
+        "sar:looks_azimuth": 1,
+        "sar:polarizations": [
+          "VV",
+          "VH"
+        ],
+        "sar:frequency_band": "C",
+        "sat:absolute_orbit": 29141,
+        "sat:relative_orbit": 19,
+        "s1:processing_level": "1",
+        "sar:instrument_mode": "IW",
+        "sar:center_frequency": 5.405,
+        "sar:resolution_range": 20,
+        "s1:product_timeliness": "Fast-24h",
+        "sar:resolution_azimuth": 22,
+        "sar:pixel_spacing_range": 10,
+        "sar:observation_direction": "right",
+        "sar:pixel_spacing_azimuth": 10,
+        "sar:looks_equivalent_number": 4.4,
+        "s1:instrument_configuration_ID": "6",
+        "sat:platform_international_designator": "2014-016A"
+      },
+      "stac_extensions": [
+        "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/eo/v1.0.0/schema.json"
+      ],
+      "stac_version": "1.0.0"
+    },
+    {
+      "id": "S1A_IW_GRDH_1SDV_20190920T122934_20190920T123003_029105_034DBA",
+      "bbox": [
+        82.5213551,
+        24.11980578,
+        85.30563722,
+        26.15781558
+      ],
+      "type": "Feature",
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd/items/S1A_IW_GRDH_1SDV_20190920T122934_20190920T123003_029105_034DBA"
+        },
+        {
+          "rel": "license",
+          "href": "https://sentinel.esa.int/documents/247904/690755/Sentinel_Data_Legal_Notice"
+        },
+        {
+          "rel": "preview",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=sentinel-1-grd&item=S1A_IW_GRDH_1SDV_20190920T122934_20190920T123003_029105_034DBA",
+          "title": "Map of item",
+          "type": "text/html"
+        }
+      ],
+      "assets": {
+        "vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/20/IW/DV/S1A_IW_GRDH_1SDV_20190920T122934_20190920T123003_029105_034DBA_E856/measurement/iw-vh.tiff",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "title": "VH: vertical transmit, horizontal receive",
+          "description": "Amplitude of signal transmitted with vertical polarization and received with horizontal polarization with radiometric terrain correction applied."
+        },
+        "vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/20/IW/DV/S1A_IW_GRDH_1SDV_20190920T122934_20190920T123003_029105_034DBA_E856/measurement/iw-vv.tiff",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "title": "VV: vertical transmit, vertical receive",
+          "description": "Amplitude of signal transmitted with vertical polarization and received with vertical polarization with radiometric terrain correction applied."
+        },
+        "thumbnail": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/20/IW/DV/S1A_IW_GRDH_1SDV_20190920T122934_20190920T123003_029105_034DBA_E856/preview/quick-look.png",
+          "type": "image/png",
+          "roles": [
+            "thumbnail"
+          ],
+          "title": "Preview Image",
+          "description": "An averaged, decimated preview image in PNG format. Single polarisation products are represented with a grey scale image. Dual polarisation products are represented by a single composite colour image in RGB with the red channel (R) representing the  co-polarisation VV or HH), the green channel (G) represents the cross-polarisation (VH or HV) and the blue channel (B) represents the ratio of the cross an co-polarisations."
+        },
+        "safe-manifest": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/20/IW/DV/S1A_IW_GRDH_1SDV_20190920T122934_20190920T123003_029105_034DBA_E856/manifest.safe",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Manifest File",
+          "description": "General product metadata in XML format. Contains a high-level textual description of the product and references to all of product's components, the product metadata, including the product identification and the resource references, and references to the physical location of each component file contained in the product."
+        },
+        "schema-noise-vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/20/IW/DV/S1A_IW_GRDH_1SDV_20190920T122934_20190920T123003_029105_034DBA_E856/annotation/calibration/noise-iw-vh.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Noise Schema",
+          "description": "Estimated thermal noise look-up tables"
+        },
+        "schema-noise-vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/20/IW/DV/S1A_IW_GRDH_1SDV_20190920T122934_20190920T123003_029105_034DBA_E856/annotation/calibration/noise-iw-vv.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Noise Schema",
+          "description": "Estimated thermal noise look-up tables"
+        },
+        "schema-product-vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/20/IW/DV/S1A_IW_GRDH_1SDV_20190920T122934_20190920T123003_029105_034DBA_E856/annotation/iw-vh.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Product Schema",
+          "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc."
+        },
+        "schema-product-vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/20/IW/DV/S1A_IW_GRDH_1SDV_20190920T122934_20190920T123003_029105_034DBA_E856/annotation/iw-vv.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Product Schema",
+          "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc."
+        },
+        "schema-calibration-vh": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/20/IW/DV/S1A_IW_GRDH_1SDV_20190920T122934_20190920T123003_029105_034DBA_E856/annotation/calibration/calibration-iw-vh.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Calibration Schema",
+          "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration."
+        },
+        "schema-calibration-vv": {
+          "href": "https://sentinel1euwest.blob.core.windows.net/s1-grd/GRD/2019/9/20/IW/DV/S1A_IW_GRDH_1SDV_20190920T122934_20190920T123003_029105_034DBA_E856/annotation/calibration/calibration-iw-vv.xml",
+          "type": "application/xml",
+          "roles": [
+            "metadata"
+          ],
+          "title": "Calibration Schema",
+          "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration."
+        },
+        "tilejson": {
+          "title": "TileJSON with default rendering",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=sentinel-1-grd&item=S1A_IW_GRDH_1SDV_20190920T122934_20190920T123003_029105_034DBA&assets=vv&assets=vh&expression=vv;vh;vv%2Fvh&rescale=0,600&rescale=0,270&rescale=0,9&asset_as_band=True&tile_format=png&format=png",
+          "type": "application/json",
+          "roles": [
+            "tiles"
+          ]
+        },
+        "rendered_preview": {
+          "title": "Rendered preview",
+          "rel": "preview",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=sentinel-1-grd&item=S1A_IW_GRDH_1SDV_20190920T122934_20190920T123003_029105_034DBA&assets=vv&assets=vh&expression=vv;vh;vv%2Fvh&rescale=0,600&rescale=0,270&rescale=0,9&asset_as_band=True&tile_format=png&format=png",
+          "roles": [
+            "overview"
+          ],
+          "type": "image/png"
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              82.874542,
+              24.1198058
+            ],
+            [
+              83.2448228,
+              24.1854527
+            ],
+            [
+              83.4934982,
+              24.2289985
+            ],
+            [
+              83.8668266,
+              24.2935562
+            ],
+            [
+              84.1159206,
+              24.3360857
+            ],
+            [
+              84.4898715,
+              24.399114
+            ],
+            [
+              84.7393769,
+              24.4406205
+            ],
+            [
+              85.3056372,
+              24.5331835
+            ],
+            [
+              85.2596652,
+              24.771728
+            ],
+            [
+              85.1879071,
+              25.1329822
+            ],
+            [
+              85.1151505,
+              25.4940634
+            ],
+            [
+              84.9855686,
+              26.1578156
+            ],
+            [
+              84.6646027,
+              26.1069204
+            ],
+            [
+              84.4114981,
+              26.06624
+            ],
+            [
+              84.1585691,
+              26.025117
+            ],
+            [
+              83.7795079,
+              25.9626052
+            ],
+            [
+              83.5270241,
+              25.9203808
+            ],
+            [
+              83.1486374,
+              25.8562219
+            ],
+            [
+              82.8966076,
+              25.812903
+            ],
+            [
+              82.5213551,
+              25.7475363
+            ],
+            [
+              82.6647831,
+              25.0825108
+            ],
+            [
+              82.744947,
+              24.7207773
+            ],
+            [
+              82.8239098,
+              24.3588345
+            ],
+            [
+              82.874542,
+              24.1198058
+            ]
+          ]
+        ]
+      },
+      "collection": "sentinel-1-grd",
+      "properties": {
+        "datetime": "2019-09-20T12:29:48.576562Z",
+        "platform": "SENTINEL-1A",
+        "s1:shape": [
+          25719,
+          19416
+        ],
+        "end_datetime": "2019-09-20 12:30:03.087461+00:00",
+        "constellation": "Sentinel-1",
+        "s1:resolution": "high",
+        "s1:datatake_id": "216506",
+        "start_datetime": "2019-09-20 12:29:34.065662+00:00",
+        "s1:orbit_source": "RESORB",
+        "s1:slice_number": "1",
+        "s1:total_slices": "15",
+        "sar:looks_range": 5,
+        "sat:orbit_state": "ascending",
+        "sar:product_type": "GRD",
+        "sar:looks_azimuth": 1,
+        "sar:polarizations": [
+          "VV",
+          "VH"
+        ],
+        "sar:frequency_band": "C",
+        "sat:absolute_orbit": 29105,
+        "sat:relative_orbit": 158,
+        "s1:processing_level": "1",
+        "sar:instrument_mode": "IW",
+        "sar:center_frequency": 5.405,
+        "sar:resolution_range": 20,
+        "s1:product_timeliness": "Fast-24h",
+        "sar:resolution_azimuth": 22,
+        "sar:pixel_spacing_range": 10,
+        "sar:observation_direction": "right",
+        "sar:pixel_spacing_azimuth": 10,
+        "sar:looks_equivalent_number": 4.4,
+        "s1:instrument_configuration_ID": "6",
+        "sat:platform_international_designator": "2014-016A"
+      },
+      "stac_extensions": [
+        "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/eo/v1.0.0/schema.json"
+      ],
+      "stac_version": "1.0.0"
+    }
+  ],
+  "numberReturned": 7
+}

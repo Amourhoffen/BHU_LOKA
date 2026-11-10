@@ -1,0 +1,38 @@
+{
+  "source": "OpenStreetMap Nominatim API",
+  "coordinate_reference_system": "EPSG:4326 (WGS84)",
+  "patna_district": {
+    "display_name": "Patna, Bihar, India",
+    "osm_id": 1960296,
+    "stats": {
+      "geometry_type": "Polygon",
+      "vertex_count": 5649,
+      "min_longitude": 84.68693,
+      "max_longitude": 86.06893,
+      "min_latitude": 25.20326,
+      "max_latitude": 25.73288,
+      "centroid_longitude": 85.3361,
+      "centroid_latitude": 25.39395,
+      "bbox_east_west_km": 138.58,
+      "bbox_north_south_km": 58.79,
+      "bbox_bounding_area_km2": 8146.75
+    }
+  },
+  "patna_urban": {
+    "display_name": "Patna, Patna Rural, Patna, Bihar, India",
+    "osm_id": 21860173,
+    "stats": {
+      "geometry_type": "Polygon",
+      "vertex_count": 2001,
+      "min_longitude": 85.01184,
+      "max_longitude": 85.26419,
+      "min_latitude": 25.53895,
+      "max_latitude": 25.65105,
+      "centroid_longitude": 85.09512,
+      "centroid_latitude": 25.57619,
+      "bbox_east_west_km": 25.27,
+      "bbox_north_south_km": 12.44,
+      "bbox_bounding_area_km2": 314.37
+    }
+  }
+}

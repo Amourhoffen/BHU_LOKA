@@ -1,0 +1,16 @@
+{
+  "name": "bhu-loka-chromium-desktop",
+  "version": "1.0.0",
+  "description": "BHU LOKA (भूलोक) Sovereign Geospatial AI Platform built on Chromium Engine (Electron + Node.js)",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --enable-logging"
+  },
+  "author": "Prince Kumar (IIT Patna, PA2511CDH37) | Supervisor: Pallav Rustogi",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^33.0.0"
+  }
+}
+

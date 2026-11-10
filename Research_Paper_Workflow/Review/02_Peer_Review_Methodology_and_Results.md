@@ -1,4 +1,4 @@
-#  Peer-Review Ready Manuscript Section: Methodology, Empirical Analysis, and Limitations
+# Peer-Review Ready Manuscript Section: Methodology, Empirical Analysis, and Limitations
 
 **Title:** Quantifying Sequential Compound Multi-Hazard Susceptibility in Flat Alluvial Basins: A Coupled Earth Observation, Spatial Quantile Machine Learning, and Game-Theoretic Framework (Patna Case Study)  
 **Authors:** Prince Kumar et al. (IIT Patna / BHU LOKA Lab)  
@@ -40,31 +40,18 @@ For pixel location $\mathbf{s} = (x, y)$, the joint compound hazard $\mathcal{H}
 $$\mathcal{H}(\mathbf{s}) = \sqrt{w_1 \cdot \text{PFHI}(\mathbf{s})^2 + w_2 \cdot \text{THI}(\mathbf{s})^2} + \lambda \big(\text{PFHI}(\mathbf{s}) \cdot \text{THI}(\mathbf{s})\big)$$
 where $w_1 = 0.55$, $w_2 = 0.45$, and $\lambda = 0.25$ accounts for the positive synergistic interaction during compounding events.
 
-```
-                              ┌──────────────────────────────────┐
-                              │  Earth Observation Ingestion     │
-                              │  (Sentinel-1, S-2, SRTM, IMD)    │
-                              └─────────────────┬────────────────┘
-                                                │
-                                                ▼
-                              ┌──────────────────────────────────┐
-                              │ Spatial Feature Engineering      │
-                              │ Elevation, Slope, LST, Rainfall  │
-                              └─────────────────┬────────────────┘
-                                                │
-                                                ▼
-                              ┌──────────────────────────────────┐
-                              │ Spatial Block Cross-Validation   │
-                              │ 5 Independent Regional Blocks    │
-                              └─────────────────┬────────────────┘
-                                                │
-                        ┌───────────────────────┴───────────────────────┐
-                        ▼                                               ▼
-          ┌───────────────────────────┐                   ┌───────────────────────────┐
-          │ Quantile LightGBM/GBR     │                   │ Game-Theoretic XAI        │
-          │ Median (q=0.50)           │                   │ Tree-SHAP Values          │
-          │ Tail Risk (q=0.90)        │                   │ Local Driver Attribution  │
-          └───────────────────────────┘                   └───────────────────────────┘
+```mermaid
+flowchart TD
+    EO["Earth Observation Ingestion<br/>(Sentinel-1 C-SAR, Sentinel-2 MSI, NASA SRTM, IMD Gridded Rainfall)"]
+    FE["Spatial Feature Engineering<br/>(Elevation, Slope, LST, Impervious Fraction, Design Rainfall)"]
+    SBCV["Spatial Block Cross-Validation<br/>(5 Spatially Contiguous Regional Blocks)"]
+    QLGBM["Quantile LightGBM / GBR<br/>• Median Hazard Regime (α = 0.50)<br/>• Catastrophic Tail Risk (α = 0.90)"]
+    SHAP["Game-Theoretic Explainability<br/>• Tree-SHAP Feature Attributions<br/>• Ward-Level Municipal Decision Limits"]
+
+    EO --> FE
+    FE --> SBCV
+    SBCV --> QLGBM
+    SBCV --> SHAP
 ```
 
 ---
