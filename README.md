@@ -17,7 +17,43 @@ During catastrophic monsoon floods in South Asia, optical satellites (such as La
 
 ---
 
-## 2. Key Interactive Features
+## 2. Five Role-Based Workspaces & Key Capabilities
+
+To make complex Earth observation data directly useful for everyone from disaster relief commanders to smallholder farmers, Bhu Loka organizes geospatial intelligence into **five dedicated workspaces** alongside an executive city dashboard, backed by a single persistent, zero-reload Leaflet map:
+
+1. 🌊 **Flood (SAR) Workspace [Core Deliverable - Dancing with the SARs]:**
+   - **Interactive Hardware-Accelerated Swipe Curtain:** Real-time side-by-side comparison of pre-flood baseline (23 Sep 2019 Sentinel-1A) vs peak deluge (29 Sep 2019 Sentinel-1B).
+   - **"Naya Paani" Flood Gain Layer:** $26.54\text{ km}^2$ of newly inundated land isolated via Otsu bimodal logarithmic backscatter difference ($\Delta\sigma^0 \le -3.80\text{ dB}$).
+   - **Permanent Ganga Riverbed Mask:** $113.82\text{ km}^2$ permanent channel separated cleanly from ephemeral floodwaters.
+   - **Ward Exposure Ranking Table:** Ranked list of Patna wards by inundation percentage, elevation AMSL, and exposed population.
+   - **Live Pixel Backscatter Inspector HUD:** Real-time hover $\sigma^0$ dB readout categorizing specular open water ($-24\text{ dB}$ to $-42\text{ dB}$), urban double-bounce ($-4\text{ dB}$), and vegetative soil.
+
+2. 🏢 **Business & Commercial Site Intelligence Workspace:**
+   - **Click-to-Move Analysis Buffer Rings:** Interactively drop $500\text{ m}$, $1\text{ km}$, or $2\text{ km}$ buffer circles on the map.
+   - **Instant Catchment Demographics:** Dynamically calculates estimated population, households, and commercial footfall index within the active radius.
+   - **Multi-Hazard Vulnerability Scorecard:** Evaluates commercial site viability against historical deluge inundation and drainage sinks.
+
+3. 🌾 **Farmer (किसान) Precision Agriculture Workspace:**
+   - **Operational Field Boundaries:** Interactive delineation and selection of operational farm plots across Bihar (Bihta Research Plot, Danapur Peri-Urban Farm, Purnia Maize Basin).
+   - **Sentinel-2 NDVI Vegetative Health:** Real-time canopy health tracking ($0.74$ Healthy Vegetative Canopy) with 10-day time-series trajectory.
+   - **FAO-56 Penman-Monteith Advisory:** Live crop water deficit calculation using Open-Meteo evapotranspiration ($\text{ET}_0$) and soil moisture telemetry.
+   - **Historical SAR Deluge Resilience:** Verifies whether the plot was inundated or remained elevated during the 2019 deluge.
+
+4. 🏥 **Public Health & Emergency Hotspots Workspace:**
+   - **Atmospheric & Thermal Stress KPIs:** Live PM2.5 AQI ($158$ Moderate) and WBGT Heat Stress ($26.2^\circ\text{C}$ Safe Window) from Open-Meteo & CAMS.
+   - **Emergency Healthcare Triage Locator:** Interactive markers for apex trauma centres and flood evacuation commands (AIIMS Patna, PMCH, IGIMS, NMCH) detailing bed capacity, ICU availability, and all-weather road access.
+   - **Scientific Disclaimer:** Strictly demarcated as informational guidance, not medical diagnosis.
+
+5. 🏡 **Safe Home Finder Workspace:**
+   - **Interactive Multi-Criteria Filter Sliders:** Filter localities by Maximum Flood Tolerance ($0\% - 100\%$) and Minimum Elevation Threshold ($40\text{m} - 60\text{m}$ AMSL).
+   - **Composite Area Safety Scorecard ($0 - 100$):** Real-time ranking of safe natural alluvial ridges (Boring Road, Bihta Levee) vs pluvial subsidence sinks (Rajendra Nagar, Kankarbagh).
+
+6. 🤖 **BHU LOKA AI (भूलोक AI) Collapsible Drawer:**
+   - Scientific, evidence-grounded bilingual assistant (Hindi + English) with Web Speech STT/TTS and visible tool execution traces. Zero third-party assistant character branding.
+
+---
+
+## 3. Key Interactive Features
 
 - **Interactive Before/After Swipe Slider:**
   Hardware-accelerated vertical curtain slider comparing the Pre-Flood dry baseline (23 Sep 2019, Sentinel-1A) with the Peak Flood deluge (29 Sep 2019, Sentinel-1B).
