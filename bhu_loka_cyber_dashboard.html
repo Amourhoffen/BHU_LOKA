@@ -6057,9 +6057,16 @@
     function clearChatFeed() { const c = document.getElementById('chat-feed'); if (c) c.innerHTML = ''; }
     function injectQuery(q) { document.getElementById('user-input').value = q; return submitQuery(); }
 
-        function buildGroundingPayload() {
+    function buildGroundingPayload() {
       let loc = { lat: 25.5941, lon: 85.1376, name: 'Patna, Bihar, India' };
-      if (window.BhuLokaLocationEngine && typeof window.BhuLokaLocationEngine.getLocation === 'function') {
+      if (window.BhuAppState && Number.isFinite(window.BhuAppState.lat) && Number.isFinite(window.BhuAppState.lon)) {
+        const s = window.BhuAppState;
+        loc = {
+          lat: s.lat,
+          lon: s.lon,
+          name: s.placeName ? `${s.placeName}${s.state ? ', ' + s.state : ''}, ${s.country || 'India'}` : 'Patna, Bihar, India'
+        };
+      } else if (window.BhuLokaLocationEngine && typeof window.BhuLokaLocationEngine.getLocation === 'function') {
         loc = window.BhuLokaLocationEngine.getLocation();
       } else if (window.BhuLokaLocationEngine && window.BhuLokaLocationEngine.currentContext) {
         const c = window.BhuLokaLocationEngine.currentContext;
@@ -6095,9 +6102,12 @@
         }
       }
 
+      const isNow = (bhuTmCurrentYear >= 2025 || (window.BhuAppState && window.BhuAppState.isNow));
+      const effectiveYear = isNow ? 2026 : bhuTmCurrentYear;
       const selectedDate = {
-        year: bhuTmCurrentYear,
-        formatted: typeof formatBhuDate === 'function' ? formatBhuDate(bhuTmCurrentYear) : `${bhuTmCurrentYear} CE`
+        year: effectiveYear,
+        isNow: isNow,
+        formatted: isNow ? formatBhuDate(2026) : (typeof formatBhuDate === 'function' ? formatBhuDate(effectiveYear) : `${effectiveYear} CE`)
       };
 
       let visibleSatellitesCount = 0;
@@ -6192,6 +6202,7 @@
       }
 
       // 2. Satellite mission verification against temporal epoch
+      const isNow = Boolean(payload.selected_date && (payload.selected_date.isNow || payload.selected_date.year >= 2025));
       const epochYear = payload.selected_date ? payload.selected_date.year : 2026;
       const satChecks = [
         { name: 'Starlink', terms: ['starlink'], minYear: 2019 },
@@ -6203,7 +6214,7 @@
 
       for (const sc of satChecks) {
         const mentions = sc.terms.some((t) => text.includes(t));
-        if (mentions && epochYear < sc.minYear) {
+        if (!isNow && mentions && epochYear < sc.minYear) {
           const isNegated = sc.terms.some((t) => {
             const idx = text.indexOf(t);
             const win = text.substring(Math.max(0, idx - 35), Math.min(text.length, idx + 40));
@@ -6795,6 +6806,16 @@
       if (topCoordsLabel && Number.isFinite(lat) && Number.isFinite(lon) && activeMode !== 'solar') {
         topCoordsLabel.innerText = `${Math.abs(lat).toFixed(4)}°${lat >= 0 ? 'N' : 'S'}, ${Math.abs(lon).toFixed(4)}°${lon >= 0 ? 'E' : 'W'}`;
       }
+
+      if (typeof window !== 'undefined' && Number.isFinite(lat) && Number.isFinite(lon)) {
+        window.BhuAppState = window.BhuAppState || {};
+        window.BhuAppState.lat = lat;
+        window.BhuAppState.lon = lon;
+        window.BhuAppState.placeName = ctx.placeName || 'Location';
+        window.BhuAppState.country = ctx.country || 'India';
+        window.BhuAppState.district = ctx.district;
+        window.BhuAppState.state = ctx.state;
+      }
     }
 
     function syncResponsiveRails() {
@@ -6995,7 +7016,14 @@
     }
 
     function bhuTimeMachineSeek(yearVal) {
-      bhuTmCurrentYear = parseInt(yearVal, 10);
+      let yr = parseInt(yearVal, 10);
+      if (!Number.isFinite(yr) || yr >= 2025) yr = 2026;
+      bhuTmCurrentYear = yr;
+      if (typeof window !== 'undefined') {
+        window.BhuAppState = window.BhuAppState || {};
+        window.BhuAppState.year = yr;
+        window.BhuAppState.isNow = (yr === 2026);
+      }
       const displayEl = document.getElementById('tm-date-display');
       const statusEl = document.getElementById('tm-status-line');
       const satCountEl = document.getElementById('sat-total-count');
@@ -7529,7 +7557,7 @@
       <div id="tm-date-display"
         style="font-family:monospace;font-size:11px;color:#f1f5f9;text-align:center;margin-bottom:3px;white-space:nowrap;">
         13 Nov 2026</div>
-      <input type="range" id="tm-slider" min="-50000" max="2026" value="2026" step="1"
+      <input type="range" id="tm-slider" min="-3000" max="2026" value="2026" step="1"
         style="width:100%;height:3px;cursor:pointer;accent-color:#2d9cdb;" oninput="bhuTimeMachineSeek(this.value)">
       <div
         style="display:flex;justify-content:space-between;font-family:monospace;font-size:9px;color:#475569;margin-top:2px;pointer-events:none;">

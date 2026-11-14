@@ -1744,27 +1744,11 @@
           this.broadcastChannel = new BroadcastChannel('bhu_loka_sync_channel');
           this.broadcastChannel.onmessage = (evt) => {
             const data = evt.data;
-            if (data && data.type === 'LOCATION_SYNC' && data.source !== this.mapType) {
-              this.setLocation(data.latitude, data.longitude, data.placeName, {
-                source: 'cross_sync',
-                skipBroadcast: true,
-                skipFly: false,
-                zoom: data.zoom,
-                date: data.date,
-                selectedRegion: data.selectedRegion
-              });
-              if (typeof window !== 'undefined') {
-                window.dispatchEvent(new CustomEvent('bhu-loka:global-state-sync', {
-                  detail: {
-                    latitude: data.latitude,
-                    longitude: data.longitude,
-                    zoom: data.zoom,
-                    date: data.date,
-                    selectedRegion: data.selectedRegion,
-                    source: data.source
-                  }
-                }));
-              }
+            // Strict user action discipline: listeners NEVER silently call setLocation
+            if (data && data.type === 'LOCATION_SYNC' && typeof window !== 'undefined') {
+              window.dispatchEvent(new CustomEvent('bhu-loka:external-location-advisory', {
+                detail: data
+              }));
             }
           };
         } catch (e) { }
@@ -1772,19 +1756,11 @@
 
       if (typeof window !== 'undefined') {
         window.addEventListener('storage', (evt) => {
-          if (evt.key === STORAGE_KEY && evt.newValue) {
+          // Strict user action discipline: storage changes never silently call setLocation
+          if (evt.key === STORAGE_KEY && evt.newValue && typeof window !== 'undefined') {
             try {
               const saved = JSON.parse(evt.newValue);
-              if (saved && saved.latitude && saved.longitude) {
-                if (Math.abs(saved.latitude - this.currentContext.latitude) > 0.0001 ||
-                  Math.abs(saved.longitude - this.currentContext.longitude) > 0.0001) {
-                  this.setLocation(saved.latitude, saved.longitude, saved.placeName, {
-                    source: 'storage_sync',
-                    skipPersist: true,
-                    skipBroadcast: true,
-                  });
-                }
-              }
+              window.dispatchEvent(new CustomEvent('bhu-loka:storage-advisory', { detail: saved }));
             } catch (e) { }
           }
         });
@@ -1809,16 +1785,7 @@
           if (ev.key !== STORAGE_KEY || !ev.newValue) return;
           try {
             const saved = JSON.parse(ev.newValue);
-            const check = validateCoordinates(saved?.latitude, saved?.longitude);
-            if (!check.valid) return;
-            const cur = this.currentContext;
-            if (cur && Math.abs(cur.latitude - check.lat) < 0.0001 && Math.abs(cur.longitude - check.lon) < 0.0001) return;
-            this.setLocation(check.lat, check.lon, saved.placeName || null, {
-              radiusKm: Number(saved.analysisRadius) || 10.0,
-              source: 'cross_view_sync',
-              openDrawer: false,
-              skipPersist: true
-            });
+            window.dispatchEvent(new CustomEvent('bhu-loka:storage-advisory', { detail: saved }));
           } catch (e) { }
         });
       }
@@ -1915,7 +1882,12 @@
               try { window.localStorage.removeItem(STORAGE_KEY); } catch (e) { }
               return { found: false };
             }
-            if (saved.placeName && /oualata|mauritania|hodh ech chargui|arabian sea/i.test(saved.placeName)) {
+            if (saved.placeName && /oualata|mauritania|hodh ech chargui|arabian sea|sahiwal|pakistan|lahore|karachi/i.test(saved.placeName)) {
+              try { window.localStorage.removeItem(STORAGE_KEY); } catch (e) { }
+              return { found: false };
+            }
+            // Strict Sovereign India bounds (6.5N - 37.5N, 68.0E - 97.5E)
+            if (check.lat < 6.5 || check.lat > 37.5 || check.lon < 68.0 || check.lon > 97.5) {
               try { window.localStorage.removeItem(STORAGE_KEY); } catch (e) { }
               return { found: false };
             }
@@ -2043,19 +2015,35 @@
       this.lastError = null;
       if (openDrawer) this.drawerUserClosed = false;
 
+      let calibratedLat = validLat;
+      let calibratedLon = validLon;
+      const lowerCustom = (customName || '').toLowerCase().trim();
+      for (const [k, fb] of Object.entries(OFFLINE_CITY_FALLBACK)) {
+        if (lowerCustom.includes(k)) {
+          const dLat = Math.abs(calibratedLat - fb.lat);
+          const dLon = Math.abs(calibratedLon - fb.lon);
+          if (dLat > 1.2 || dLon > 1.2) {
+            console.warn(`[BHU LOKA CALIBRATION] City '${fb.name}' coordinates calibrated from drifted (${calibratedLat}, ${calibratedLon}) to canonical (${fb.lat}, ${fb.lon})`);
+            calibratedLat = fb.lat;
+            calibratedLon = fb.lon;
+          }
+          break;
+        }
+      }
+
       // Immediately construct CLEAN LocationContext (zero leaked locality/district/state!)
-      const localAdmin = matchAdminFromGeoJSON(validLat, validLon);
+      const localAdmin = matchAdminFromGeoJSON(calibratedLat, calibratedLon);
       if (!localAdmin.inIndia) {
-        console.warn(`[BHU LOKA ADVISORY] Coordinates (${validLat.toFixed(4)}N, ${validLon.toFixed(4)}E) are outside Sovereign India bounding grid. Retaining global coordinate reference.`);
+        console.warn(`[BHU LOKA ADVISORY] Coordinates (${calibratedLat.toFixed(4)}N, ${calibratedLon.toFixed(4)}E) are outside Sovereign India bounding grid. Retaining global coordinate reference.`);
       }
       const nowIso = new Date().toISOString();
       const provisionalPlace = customName
         || (localAdmin.district && localAdmin.state ? `${localAdmin.district}, ${localAdmin.state}` : localAdmin.state)
-        || `Selected Point (${validLat.toFixed(3)}°, ${validLon.toFixed(3)}°)`;
+        || `Selected Point (${calibratedLat.toFixed(3)}°, ${calibratedLon.toFixed(3)}°)`;
 
       this.currentContext = createContextObject({
-        latitude: validLat,
-        longitude: validLon,
+        latitude: calibratedLat,
+        longitude: calibratedLon,
         placeName: provisionalPlace,
         locality: null,
         district: localAdmin.district,
@@ -2067,6 +2055,16 @@
         geocodingSource: localAdmin.inIndia ? 'Sovereign GeoJSON + Resolving Online' : 'Resolving WGS84 Reverse Geocode',
         reverseGeocodeStatus: 'PENDING'
       });
+
+      if (typeof window !== 'undefined') {
+        window.BhuAppState = window.BhuAppState || {};
+        window.BhuAppState.lat = calibratedLat;
+        window.BhuAppState.lon = calibratedLon;
+        window.BhuAppState.placeName = provisionalPlace;
+        window.BhuAppState.country = localAdmin.inIndia ? 'India' : 'Global Reference';
+        window.BhuAppState.district = localAdmin.district;
+        window.BhuAppState.state = localAdmin.state;
+      }
 
       this.updateStatusHUD('loading', `SYNCING ${validLat.toFixed(3)}°, ${validLon.toFixed(3)}°...`);
       this.syncMapDisplay(this.currentContext, options);
@@ -2109,6 +2107,15 @@
 
         this.currentContext = intel.location_context;
         this.currentIntelligence = intel;
+        if (typeof window !== 'undefined') {
+          window.BhuAppState = window.BhuAppState || {};
+          window.BhuAppState.lat = this.currentContext.latitude;
+          window.BhuAppState.lon = this.currentContext.longitude;
+          window.BhuAppState.placeName = this.currentContext.placeName;
+          window.BhuAppState.country = this.currentContext.country;
+          window.BhuAppState.district = this.currentContext.district;
+          window.BhuAppState.state = this.currentContext.state;
+        }
         this.cache.set(cacheKey, { ts: Date.now(), context: this.currentContext, data: intel });
 
         if (!options.skipPersist) this.persistLocationState(this.currentContext);
