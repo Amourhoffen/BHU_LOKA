@@ -431,6 +431,12 @@
         class="badge-chip bg-sky-500/10 hover:bg-sky-500/20 text-sky-300 border-sky-500/35 transition cursor-pointer hidden md:inline-flex">
         2D Earth &rarr;
       </a>
+      <a id="link-open-sar-hero" href="index.html" target="_blank"
+        class="badge-chip bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border-amber-500/50 font-bold tracking-wide transition cursor-pointer flex items-center gap-1.5 shadow-[0_0_12px_rgba(245,158,11,0.3)]"
+        title="Open NASA Space Apps Challenge 2026: Dancing with the SARs (Patna Flood & Radar Intelligence)">
+        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+        🛰️ DANCING WITH THE SARS (NASA 2026) &rarr;
+      </a>
     </div>
 
     <!-- CENTER: 5 TOP-LEVEL WORKSTATION HUBS -->
@@ -6076,6 +6082,33 @@
           name: c.placeName || `${c.district || 'Patna'}, ${c.state || 'Bihar'}, India`
         };
       }
+
+      // Check active target in the HUD to prevent target/payload mismatch
+      const targetEl = document.getElementById('target-label');
+      const targetText = targetEl ? targetEl.innerText.toUpperCase() : '';
+      if (targetText.includes('CHENNAI')) {
+        loc = { lat: 13.0820, lon: 80.2700, name: 'Chennai, Tamil Nadu, India' };
+      } else if (targetText.includes('BIHAR SHARIF')) {
+        loc = { lat: 25.2000, lon: 85.5200, name: 'Bihar Sharif, Bihar, India' };
+      } else if (targetText.includes('BIHTA') || targetText.includes('IIT PATNA')) {
+        loc = { lat: 25.5350, lon: 84.8510, name: 'Bihta / IIT Patna, Bihar, India' };
+      } else if (targetText.includes('PATNA') && !targetText.includes('BIHTA')) {
+        loc = { lat: 25.5941, lon: 85.1376, name: 'Patna, Bihar, India' };
+      } else if (targetText.includes('DELHI')) {
+        loc = { lat: 28.6139, lon: 77.2090, name: 'Delhi NCR, India' };
+      } else if (targetText.includes('MUMBAI')) {
+        loc = { lat: 19.0760, lon: 72.8777, name: 'Mumbai, Maharashtra, India' };
+      } else if (targetText.includes('BENGALURU')) {
+        loc = { lat: 12.9716, lon: 77.5946, name: 'Bengaluru, Karnataka, India' };
+      } else if (targetText.includes('AYODHYA')) {
+        loc = { lat: 26.7950, lon: 82.1940, name: 'Ayodhya, Uttar Pradesh, India' };
+      }
+
+      // Purge any stale Sahiwal / Pakistan references if not specifically targeted
+      if (loc && loc.name && /sahiwal|pakistan/i.test(loc.name) && !targetText.includes('HARAPPA') && !targetText.includes('SAHIWAL')) {
+        loc = { lat: 25.5941, lon: 85.1376, name: 'Patna, Bihar, India' };
+      }
+
       const navCtx = window.BhuGeographicNavigator ? window.BhuGeographicNavigator.getCurrentContext() : { level: 'earth', name: 'Earth System', stack: ['Earth System'] };
 
       const scaleMap = {
@@ -6088,9 +6121,12 @@
         'district': 'District (Patna District)',
         'city': 'City (Patna Urban DEM)',
         'patna': 'City (Patna Urban DEM)',
+        'terrain': 'City (Patna Urban DEM)',
         'ward': 'Ward / Local Area (IIT Patna / Bihta)'
       };
-      const currentScaleLevel = scaleMap[navCtx.level] || scaleMap[activeMode] || navCtx.name;
+      // Explicitly tie scale to activeMode if available
+      const effMode = (typeof activeMode !== 'undefined') ? activeMode : (navCtx.level || 'world');
+      const currentScaleLevel = scaleMap[effMode] || scaleMap[navCtx.level] || 'Earth System';
 
       const activeLayersWithOpacity = {};
       for (const [key, isAct] of Object.entries(window.BHU_LOKA_LAYER_STATE || {})) {
@@ -6102,7 +6138,13 @@
         }
       }
 
-      const isNow = (bhuTmCurrentYear >= 2025 || (window.BhuAppState && window.BhuAppState.isNow));
+      // Timeline epoch validation & bounds clamping
+      if (typeof bhuTmCurrentYear !== 'number' || !Number.isFinite(bhuTmCurrentYear) || bhuTmCurrentYear > 2026 || bhuTmCurrentYear < -3000) {
+        bhuTmCurrentYear = 2026;
+      }
+      const sliderEl = document.getElementById('tm-slider');
+      const sliderVal = sliderEl ? parseInt(sliderEl.value, 10) : 2026;
+      const isNow = (sliderVal >= 2025 || bhuTmCurrentYear >= 2025 || (window.BhuAppState && window.BhuAppState.isNow !== false));
       const effectiveYear = isNow ? 2026 : bhuTmCurrentYear;
       const selectedDate = {
         year: effectiveYear,
@@ -6979,7 +7021,11 @@
       if (window.BhuLokaLocationEngine) {
         const initState = window.BhuLokaLocationEngine.readInitialState();
         if (initState.found && initState.latitude && initState.longitude &&
-            initState.source !== 'default' && !String(initState.placeName || '').toLowerCase().includes('arabian sea')) {
+            initState.source !== 'default' &&
+            !String(initState.placeName || '').toLowerCase().includes('arabian sea') &&
+            !String(initState.placeName || '').toLowerCase().includes('sahiwal') &&
+            !String(initState.placeName || '').toLowerCase().includes('mauritania') &&
+            !String(initState.placeName || '').toLowerCase().includes('pakistan')) {
           window.BhuLokaLocationEngine.setLocation(initState.latitude, initState.longitude, initState.placeName, {
             radiusKm: initState.analysisRadius,
             source: initState.source,
@@ -7168,24 +7214,43 @@
         if (btn) btn.classList.toggle('active', p === tab);
       });
 
+      // Close panels when navigating away from them
+      if (tab !== 'agri' && window.BhuLokaAgri && typeof window.BhuLokaAgri.closeWorkspace === 'function') {
+        window.BhuLokaAgri.closeWorkspace();
+      }
+      if (tab !== 'worker' && window.BhuLokaWorker && typeof window.BhuLokaWorker.hide === 'function') {
+        window.BhuLokaWorker.hide();
+      }
+
       if (tab === 'home') {
         if (typeof switchView === 'function') switchView('world');
       } else if (tab === 'universe') {
         if (typeof switchView === 'function') switchView('solar');
       } else if (tab === 'agri') {
-        if (window.BhuLokaAgri && typeof window.BhuLokaAgri.toggleWorkspace === 'function') {
+        // If currently in solar or world view, switch back to earth / regional agricultural view
+        if (typeof activeMode !== 'undefined' && (activeMode === 'solar' || activeMode === 'world')) {
+          if (typeof switchView === 'function') switchView('bihar');
+        }
+        if (window.BhuLokaAgri && typeof window.BhuLokaAgri.openWorkspace === 'function') {
+          window.BhuLokaAgri.openWorkspace('MAP');
+        } else if (window.BhuLokaAgri && typeof window.BhuLokaAgri.toggleWorkspace === 'function') {
           window.BhuLokaAgri.toggleWorkspace('MAP');
-        } else if (window.BhuLokaAgri && typeof window.BhuLokaAgri.openWorkspace === 'function') {
-          window.BhuLokaAgri.openWorkspace();
         }
       } else if (tab === 'worker') {
-        if (typeof window.toggleWorkerHealthPanel === 'function') {
-          window.toggleWorkerHealthPanel();
-        } else if (window.BhuLokaWorker && typeof window.BhuLokaWorker.openWorkspace === 'function') {
+        // If currently in solar or world view, switch back to regional view
+        if (typeof activeMode !== 'undefined' && (activeMode === 'solar' || activeMode === 'world')) {
+          if (typeof switchView === 'function') switchView('bihar');
+        }
+        if (window.BhuLokaWorker && typeof window.BhuLokaWorker.openWorkspace === 'function') {
           window.BhuLokaWorker.openWorkspace();
+        } else if (typeof window.toggleWorkerHealthPanel === 'function') {
+          window.toggleWorkerHealthPanel();
         }
       } else if (tab === 'ai') {
-        if (typeof switchRightDockTab === 'function') switchRightDockTab('chat');
+        if (typeof activeMode !== 'undefined' && activeMode === 'solar') {
+          if (typeof switchView === 'function') switchView('world');
+        }
+        if (typeof switchRightDockTab === 'function') switchRightDockTab('ai');
         const qInp = document.getElementById('query-input');
         if (qInp) qInp.focus();
       }
@@ -7300,8 +7365,9 @@
       if (!ev || !ev.detail) return;
       const d = ev.detail;
       if (d.date && typeof bhuTimeMachineSeek === 'function') {
-        const yr = parseInt(String(d.date).slice(0, 4), 10);
-        if (Number.isFinite(yr) && yr !== bhuTmCurrentYear) {
+        let yr = parseInt(String(d.date).slice(0, 4), 10);
+        if (!Number.isFinite(yr) || yr < -3000 || yr >= 2025) yr = 2026;
+        if (yr !== bhuTmCurrentYear) {
           bhuTimeMachineSeek(yr);
         }
       }
@@ -7512,6 +7578,13 @@
       if (qp.get('autoTest') === '1') {
         window.skipBhuIntro();
         runStep1AutomatedTests();
+      }
+      const initTab = qp.get('tab');
+      if (initTab && typeof window.setNasaNavTab === 'function') {
+        window.skipBhuIntro();
+        const splash = document.getElementById('bhu-intro-overlay');
+        if (splash) splash.style.display = 'none';
+        window.setNasaNavTab(initTab);
       }
     } catch (e) {}
   </script>

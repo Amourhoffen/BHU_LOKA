@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "name": "bhu-loka-patna-intelligence",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/desktop", "destination": "/bhu_loka_desktop.html" },
+    { "source": "/sar", "destination": "/index.html" },
+    { "source": "/workstation", "destination": "/bhu_loka_cyber_dashboard.html" },
+    { "source": "/map", "destination": "/bhu_loka_leafmap_interactive.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+# Netlify configuration for Bhu Loka (NASA Space Apps Challenge 2026)
+[build]
+  publish = "."
+  command = "echo 'Static deployment ready'"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Access-Control-Allow-Origin = "*"
+
+[[redirects]]
+  from = "/desktop"
+  to = "/bhu_loka_desktop.html"
+  status = 200
+
+[[redirects]]
+  from = "/sar"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/workstation"
+  to = "/bhu_loka_cyber_dashboard.html"
+  status = 200
+
+[[redirects]]
+  from = "/map"
+  to = "/bhu_loka_leafmap_interactive.html"
+  status = 200
