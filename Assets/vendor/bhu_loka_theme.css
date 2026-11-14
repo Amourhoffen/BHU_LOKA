@@ -249,3 +249,12 @@
 .bhu-workstation ::-webkit-scrollbar-thumb:hover {
   background: #475569;
 }
+
+/* Global Time Machine Collapsed State */
+#bhu-time-machine {
+  transition: height 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#bhu-time-machine.tm-collapsed {
+  height: 24px !important;
+}

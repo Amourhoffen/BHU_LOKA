@@ -1072,6 +1072,15 @@
           <button type="button" id="bhu-ag-sat-fetch" class="bhu-ag-btn">Fetch EO + SAR</button>
         </div>
 
+        <!-- 3D ELEVATION MESH & MULTI-HAZARD PROJECTION BUTTON -->
+        <button type="button" id="bhu-ag-3d-project-btn" class="bhu-ag-btn"
+          style="background: linear-gradient(135deg, #0ea5e9, #10b981); color: #fff; font-weight: 700; width: 100%; margin-top: 8px; margin-bottom: 4px; padding: 8px 12px; border-radius: 6px; box-shadow: 0 0 12px rgba(14,165,233,0.3); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 11px; cursor: pointer; border: 1px solid rgba(56,189,248,0.5);"
+          title="Project this 2D farm polygon into the 3D elevation mesh and run multi-hazard flood prediction">
+          ⚡ Project into 3D Elevation Mesh (Multi-Hazard Prediction) &rarr;
+        </button>
+        <div>
+        </div>
+
         <div class="bhu-ag-card" style="display:flex;justify-content:space-between;align-items:center;">
           <span style="font-size:10px;color:#cbd5e1;">Optical Pipeline Status</span>
           <span class="bhu-ag-badge" style="color:${col};border-color:${col}66;">${esc(st.status)}</span>
@@ -1538,6 +1547,17 @@
       panel.querySelectorAll('.bhu-ag-select-farm').forEach((btn) => {
         btn.onclick = () => this.selectFarm(btn.dataset.farm);
       });
+
+      const proj3dBtn = panel.querySelector('#bhu-ag-3d-project-btn');
+      if (proj3dBtn && this.activeFarm) {
+        proj3dBtn.onclick = () => {
+          if (typeof window !== 'undefined' && typeof window.projectFarmInto3D === 'function') {
+            window.projectFarmInto3D(this.activeFarm);
+          } else {
+            alert('3D elevation projection active for ' + (this.activeFarm.farm_name || 'Farm Plot'));
+          }
+        };
+      }
 
       const satBtn = panel.querySelector('#bhu-ag-sat-fetch');
       if (satBtn) satBtn.onclick = () => this.fetchSatelliteIndices(false);
