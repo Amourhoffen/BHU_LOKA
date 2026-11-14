@@ -574,6 +574,17 @@
     <!-- LEFT RAIL: DOCKED SCIENTIFIC EXPLORER (SCENE & HYDROMET | INDIA INTEL A-F) -->
         <!-- LEFT RAIL: DOCKED AI RESEARCH ASSISTANT -->
     <aside id="left-rail" class="order-2 lg:order-1 flex flex-col gap-1.5 min-h-0 lg:h-full lg:pr-0.5 shrink-0">
+
+      <!-- BHU LOKA TACTILE DRAWER HANDLE / DRAGGER TAB -->
+      <div id="bhu-drawer-handle" onclick="toggleLeftRail()" title="Click to toggle drawer / Hover to slide open"
+        class="hidden lg:flex absolute top-1/2 -translate-y-1/2 -right-3.5 z-40 w-3.5 h-16 rounded-r-md bg-slate-900/90 border border-l-0 border-cyan-500/30 items-center justify-center cursor-pointer shadow-[2px_0_10px_rgba(0,0,0,0.5)] hover:bg-cyan-950/80 hover:border-cyan-400 transition group select-none">
+        <div class="flex flex-col items-center gap-0.5 text-slate-400 group-hover:text-cyan-300">
+          <span class="text-[9px] font-mono leading-none">⋮</span>
+          <span id="drawer-handle-chevron" class="text-[8px] leading-none transition-transform duration-300">‹</span>
+          <span class="text-[9px] font-mono leading-none">⋮</span>
+        </div>
+      </div>
+
       <div id="left-dock-tabs" class="bhu-dock-tabbar shrink-0 flex items-center justify-between px-1" role="tablist" aria-label="Left Workspace View">
         <div class="flex items-center gap-1 min-w-0">
           <button type="button" id="left-tab-btn-ai" role="tab" aria-selected="true"
@@ -584,13 +595,25 @@
             onclick="switchLeftDockTab('insights')" class="bhu-dock-tab">
             ✦ Insights
           </button>
+          <button type="button" id="left-tab-btn-vitals" role="tab" aria-selected="false"
+            onclick="switchLeftDockTab('vitals')" class="bhu-dock-tab">
+            🫁 Vitals
+          </button>
         </div>
-        <button type="button" id="btn-toggle-left" onclick="toggleLeftRail()" title="Collapse Left AI Rail"
-          class="p-1 rounded text-slate-400 hover:text-slate-100 hover:bg-slate-800 transition shrink-0">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
+        <div class="flex items-center gap-1">
+          <button type="button" id="btn-pin-drawer" onclick="togglePinDrawer()" title="Pin Drawer Open (Disable auto-close)"
+            class="p-1 rounded text-slate-400 hover:text-cyan-400 hover:bg-slate-800 transition shrink-0 mr-1">
+            <svg id="pin-icon-svg" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+            </svg>
+          </button>
+          <button type="button" id="btn-toggle-left" onclick="toggleLeftRail()" title="Collapse Left AI Rail"
+            class="p-1 rounded text-slate-400 hover:text-slate-100 hover:bg-slate-800 transition shrink-0">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+        </div>
       </div>
 
       <div id="left-ai-view" class="panel p-2.5 flex-1 min-h-[320px] lg:min-h-0 flex flex-col overflow-hidden">
@@ -769,6 +792,109 @@
           </div>
         </div>
 
+      </div>
+
+      
+      <!-- HEALTRIX / VERIDIA CLINICAL VITALS & CITIZEN HEALTH CARD -->
+      <div id="left-health-vitals" class="hidden flex flex-col gap-2 p-2.5 overflow-y-auto">
+        <!-- CITIZEN PROFILE -->
+        <div class="bhu-nasa-glass p-2.5 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-cyan-600 to-sky-400 flex items-center justify-center text-white font-black text-xs shadow-[0_0_12px_rgba(56,189,248,0.5)]">
+              PAT
+            </div>
+            <div>
+              <div class="text-xs font-bold text-slate-100 flex items-center gap-1.5">
+                <span>Patna Citizen Vitals</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="text-[9px] mono text-slate-400">Exposure Zone: S4 (&lt;46m Sinks) · Resilient</div>
+            </div>
+          </div>
+          <span class="px-2 py-0.5 rounded-full text-[9px] mono bg-cyan-950/80 text-cyan-300 border border-cyan-800">ACTIVE</span>
+        </div>
+
+        <!-- 4 CLINICAL VITALS WITH SVG WAVEFORMS (HEALTRIX STYLE) -->
+        <div class="grid grid-cols-2 gap-2">
+          <!-- Heart Rate with ECG Wave -->
+          <div class="bhu-nasa-glass p-2">
+            <div class="flex items-center justify-between text-[9px] mono text-slate-400">
+              <span>HEART RATE</span>
+              <span class="text-rose-400">❤️</span>
+            </div>
+            <div class="flex items-baseline gap-1 my-0.5">
+              <span class="text-lg font-black text-slate-100 font-mono">72</span>
+              <span class="text-[9px] mono text-slate-400">bpm</span>
+            </div>
+            <!-- ECG Wave Line SVG -->
+            <svg class="w-full h-5 mt-1" viewBox="0 0 100 20" preserveAspectRatio="none">
+              <path d="M0,10 L30,10 L35,2 L40,18 L45,6 L50,14 L55,10 L100,10" fill="none" stroke="#f43f5e" stroke-width="1.8"/>
+            </svg>
+          </div>
+
+          <!-- Blood Pressure with Arc Gauge -->
+          <div class="bhu-nasa-glass p-2">
+            <div class="flex items-center justify-between text-[9px] mono text-slate-400">
+              <span>BLOOD PRESSURE</span>
+              <span class="text-sky-400">🩺</span>
+            </div>
+            <div class="flex items-baseline gap-1 my-0.5">
+              <span class="text-lg font-black text-slate-100 font-mono">120/78</span>
+              <span class="text-[8px] mono text-slate-400">SYS/DIA</span>
+            </div>
+            <!-- Radial Bar / Arc Gauge -->
+            <div class="w-full bg-slate-800 rounded-full h-1.5 mt-2.5 overflow-hidden">
+              <div class="bg-sky-400 h-1.5 rounded-full" style="width: 78%;"></div>
+            </div>
+          </div>
+
+          <!-- SpO2 Oxygen -->
+          <div class="bhu-nasa-glass p-2">
+            <div class="flex items-center justify-between text-[9px] mono text-slate-400">
+              <span>OXYGEN (SpO2)</span>
+              <span class="text-emerald-400">💧</span>
+            </div>
+            <div class="flex items-baseline gap-1 my-0.5">
+              <span class="text-lg font-black text-emerald-400 font-mono">98%</span>
+              <span class="text-[8px] mono text-emerald-300">Optimal</span>
+            </div>
+            <div class="w-full bg-slate-800 rounded-full h-1.5 mt-2.5 overflow-hidden">
+              <div class="bg-emerald-400 h-1.5 rounded-full" style="width: 98%;"></div>
+            </div>
+          </div>
+
+          <!-- Respiration Rate -->
+          <div class="bhu-nasa-glass p-2">
+            <div class="flex items-center justify-between text-[9px] mono text-slate-400">
+              <span>RESPIRATION</span>
+              <span class="text-amber-400">🫁</span>
+            </div>
+            <div class="flex items-baseline gap-1 my-0.5">
+              <span class="text-lg font-black text-slate-100 font-mono">16</span>
+              <span class="text-[8px] mono text-slate-400">rpm</span>
+            </div>
+            <svg class="w-full h-5 mt-1" viewBox="0 0 100 20" preserveAspectRatio="none">
+              <path d="M0,15 Q25,2 50,15 T100,15" fill="none" stroke="#f59e0b" stroke-width="1.8"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- CIRCULAR HEALTH SCORE CARD (VERIDIA STYLE) -->
+        <div class="bhu-nasa-glass p-3 flex items-center justify-between">
+          <div>
+            <div class="text-[10px] font-semibold text-slate-300">Resilient Health Score</div>
+            <div class="text-sm font-bold text-emerald-400 mt-0.5">86 / 100</div>
+            <div class="text-[8.5px] text-slate-400 mt-0.5">Hydration &amp; pulmonary resilience high</div>
+          </div>
+          <!-- Circular Progress Ring SVG -->
+          <div class="relative w-12 h-12 flex items-center justify-center">
+            <svg class="w-12 h-12 -rotate-90" viewBox="0 0 36 36">
+              <circle cx="18" cy="18" r="15" fill="none" stroke="#1e293b" stroke-width="3"></circle>
+              <circle cx="18" cy="18" r="15" fill="none" stroke="#10b981" stroke-width="3" stroke-dasharray="94.2" stroke-dashoffset="13.2" stroke-linecap="round"></circle>
+            </svg>
+            <span class="absolute text-[10px] font-mono font-black text-slate-100">86%</span>
+          </div>
+        </div>
       </div>
 
       <div id="left-insights-view" class="hidden flex-1 min-h-0 flex flex-col gap-2 overflow-y-auto pr-1">
@@ -1068,6 +1194,136 @@
         <!-- THREE.JS WEBGL2 CANVAS CONTAINER -->
         <div id="three-canvas-wrap" class="relative flex-1 w-full min-h-0 lg:min-h-[215px] overflow-hidden viewport-bg">
           <div id="three-canvas" class="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing"></div>
+
+          <!-- HEALTRIX & VERIDIA FLOATING SCIENTIFIC CALLOUTS OVERLAY -->
+          <div id="human-callouts-overlay" class="hidden absolute inset-0 pointer-events-none z-20 flex flex-col justify-between p-3.5 overflow-hidden select-none">
+            <!-- SVG CONNECTOR LEADER LINES LAYER (HEALTRIX & VERIDIA HUD) -->
+            <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1000 560" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+                <filter id="glow-amber" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+                <filter id="glow-rose" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <!-- Leader Line 1: Anomaly Callout -> Right Clavicle / Scapula -->
+              <path d="M 255,75 L 360,75 L 452,145" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="4 3" filter="url(#glow-amber)" opacity="0.9"/>
+              <circle cx="452" cy="145" r="4.5" fill="#ef4444" filter="url(#glow-amber)"/>
+              <circle cx="452" cy="145" r="8" fill="none" stroke="#f59e0b" stroke-width="1.2" opacity="0.75"/>
+
+              <!-- Leader Line 2: Pulmonary Callout -> Pulmonary Lungs -->
+              <path d="M 745,75 L 640,75 L 555,195" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-dasharray="4 3" filter="url(#glow-cyan)" opacity="0.9"/>
+              <circle cx="555" cy="195" r="4.5" fill="#22d3ee" filter="url(#glow-cyan)"/>
+              <circle cx="555" cy="195" r="8" fill="none" stroke="#06b6d4" stroke-width="1.2" opacity="0.75"/>
+
+              <!-- Leader Line 3: Cardiac Callout -> Cardiovascular Heart -->
+              <path d="M 255,425 L 370,425 L 485,225" fill="none" stroke="#f43f5e" stroke-width="1.8" stroke-dasharray="4 3" filter="url(#glow-rose)" opacity="0.9"/>
+              <circle cx="485" cy="225" r="4.5" fill="#f43f5e" filter="url(#glow-rose)"/>
+              <circle cx="485" cy="225" r="8" fill="none" stroke="#f43f5e" stroke-width="1.2" opacity="0.75"/>
+
+              <!-- Leader Line 4: GI Purity Callout -> Abdomen & S4 Sinks -->
+              <path d="M 745,425 L 635,425 L 520,315" fill="none" stroke="#10b981" stroke-width="1.8" stroke-dasharray="4 3" opacity="0.9"/>
+              <circle cx="520" cy="315" r="4.5" fill="#10b981"/>
+              <circle cx="520" cy="315" r="8" fill="none" stroke="#10b981" stroke-width="1.2" opacity="0.75"/>
+            </svg>
+            <!-- TOP ROW CALLOUTS: ANOMALY AUDIT (LEFT) & PULMONARY ALVEOLAR ZONE (RIGHT) -->
+            <div class="flex items-start justify-between w-full pointer-events-auto gap-4">
+              <!-- HEALTRIX ANOMALY AUDIT (UPPER SCAPULAR & CLAVICULAR ZONE) -->
+              <div id="callout-anomaly" class="max-w-[250px] bhu-nasa-glass p-2.5 rounded-xl border border-amber-500/40 shadow-[0_8px_28px_rgba(245,158,11,0.2)] transition-all duration-300 relative group">
+                <div class="flex items-center justify-between text-[9px] mono text-amber-400 font-bold mb-1">
+                  <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>SCANNING...</span>
+                  <span class="text-[8px] px-1.5 py-0.2 rounded bg-amber-950/80 text-amber-300 border border-amber-700">ANOMALY AUDIT</span>
+                </div>
+                <div class="text-[11px] font-bold text-slate-100">Supraclavicular Zone</div>
+                <div class="text-[9px] text-slate-300 mt-0.5 leading-tight">Tissue stress index: +18%. Flood vector risk in lowland &lt;46m sinks.</div>
+                <div class="flex items-center justify-between mt-1.5 pt-1.5 border-t border-slate-800 text-[8.5px] mono">
+                  <span class="text-slate-400">Bio-Risk: 1.2%</span>
+                  <span class="text-emerald-400 font-bold">Stable</span>
+                </div>
+              </div>
+
+              <!-- VERIDIA PULMONARY RESPIRATORY CALLOUT -->
+              <div id="callout-pulmonary" class="max-w-[250px] bhu-nasa-glass p-2.5 rounded-xl border border-cyan-500/40 shadow-[0_8px_28px_rgba(6,182,212,0.2)] transition-all duration-300 relative group">
+                <div class="flex items-center justify-between text-[9px] mono text-cyan-400 font-bold mb-1">
+                  <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-cyan-400"></span>🫁 PULMONARY ZONE</span>
+                  <span class="text-[8px] px-1.5 py-0.2 rounded bg-cyan-950/80 text-cyan-300 border border-cyan-700">PM2.5 ALERT</span>
+                </div>
+                <div class="text-[11px] font-bold text-slate-100">Bronchial Load: 42.1 μg/m³</div>
+                <div class="text-[9px] text-slate-300 mt-0.5 leading-tight">Alveolar stress moderate due to winter smog. Rx: N95 Mask + NAC / Vit C.</div>
+                <div class="flex items-center justify-between mt-1.5 pt-1.5 border-t border-slate-800 text-[8.5px] mono">
+                  <span class="text-slate-400">FEV1: 92%</span>
+                  <span class="text-cyan-300 font-bold">Normal Resp</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- BOTTOM ROW CALLOUTS: CARDIAC HEMODYNAMICS (LEFT) & GI WATER METABOLISM (RIGHT) -->
+            <div class="flex items-end justify-between w-full pointer-events-auto gap-4 mb-16">
+              <!-- VERIDIA CARDIAC CALLOUT -->
+              <div id="callout-cardiac" class="max-w-[250px] bhu-nasa-glass p-2.5 rounded-xl border border-rose-500/40 shadow-[0_8px_28px_rgba(244,63,94,0.2)] transition-all duration-300 relative group">
+                <div class="flex items-center justify-between text-[9px] mono text-rose-400 font-bold mb-1">
+                  <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-rose-400 animate-pulse"></span>❤️ CARDIAC RHYTHM</span>
+                  <span class="text-[8px] px-1.5 py-0.2 rounded bg-rose-950/80 text-rose-300 border border-rose-700">72 BPM</span>
+                </div>
+                <div class="text-[11px] font-bold text-slate-100">Sinus Normal · Heat Stress: Low</div>
+                <div class="text-[9px] text-slate-300 mt-0.5 leading-tight">MODIS LST thermal load monitored. Hydrate with electrolyte minerals.</div>
+                <div class="flex items-center justify-between mt-1.5 pt-1.5 border-t border-slate-800 text-[8.5px] mono">
+                  <span class="text-slate-400">ECG: Normal</span>
+                  <span class="text-rose-300 font-bold">72 bpm</span>
+                </div>
+              </div>
+
+              <!-- GI METABOLISM & FLOOD RUNOFF CALLOUT -->
+              <div id="callout-gi" class="max-w-[250px] bhu-nasa-glass p-2.5 rounded-xl border border-emerald-500/40 shadow-[0_8px_28px_rgba(16,185,129,0.2)] transition-all duration-300 relative group">
+                <div class="flex items-center justify-between text-[9px] mono text-emerald-400 font-bold mb-1">
+                  <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>🧬 GI &amp; WATER PURITY</span>
+                  <span class="text-[8px] px-1.5 py-0.2 rounded bg-emerald-950/80 text-emerald-300 border border-emerald-700">S4 SINK WATCH</span>
+                </div>
+                <div class="text-[11px] font-bold text-slate-100">Pathogen Barrier Active</div>
+                <div class="text-[9px] text-slate-300 mt-0.5 leading-tight">Lowland runoff protection. Recommendation: Boiled RO water + Zinc/Probiotics.</div>
+                <div class="flex items-center justify-between mt-1.5 pt-1.5 border-t border-slate-800 text-[8.5px] mono">
+                  <span class="text-slate-400">Coliform Barrier</span>
+                  <span class="text-emerald-300 font-bold">Safe</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- HEALTRIX-STYLE FLOATING ANATOMICAL LAYER SWITCHER DOCK (BOTTOM OF 3D VIEWPORT) -->
+          <div id="human-layer-switcher" class="hidden absolute bottom-3 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1.5 p-1 rounded-full bg-slate-950/85 backdrop-blur-xl border border-cyan-500/30 shadow-[0_8px_32px_rgba(0,0,0,0.85)] select-none">
+            <button type="button" id="layer-btn-all" onclick="setHumanAnatomyLayer('all')"
+              class="px-3 py-1 rounded-full text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.4)] transition">
+              ✨ Full Hologram
+            </button>
+            <button type="button" id="layer-btn-respiratory" onclick="setHumanAnatomyLayer('respiratory')"
+              class="px-2.5 py-1 rounded-full text-[10px] mono text-slate-400 hover:text-slate-200 bg-slate-900/60 border border-slate-800 transition">
+              🫁 Respiratory
+            </button>
+            <button type="button" id="layer-btn-cardiac" onclick="setHumanAnatomyLayer('cardiac')"
+              class="px-2.5 py-1 rounded-full text-[10px] mono text-slate-400 hover:text-slate-200 bg-slate-900/60 border border-slate-800 transition">
+              ❤️ Cardiac
+            </button>
+            <button type="button" id="layer-btn-neural" onclick="setHumanAnatomyLayer('neural')"
+              class="px-2.5 py-1 rounded-full text-[10px] mono text-slate-400 hover:text-slate-200 bg-slate-900/60 border border-slate-800 transition">
+              🧠 Neural
+            </button>
+            <button type="button" id="layer-btn-organs" onclick="setHumanAnatomyLayer('organs')"
+              class="px-2.5 py-1 rounded-full text-[10px] mono text-slate-400 hover:text-slate-200 bg-slate-900/60 border border-slate-800 transition">
+              🧬 Organs / Gut
+            </button>
+            <button type="button" id="layer-btn-skeleton" onclick="setHumanAnatomyLayer('skeleton')"
+              class="px-2.5 py-1 rounded-full text-[10px] mono text-slate-400 hover:text-slate-200 bg-slate-900/60 border border-slate-800 transition">
+              🦴 Skeleton
+            </button>
+          </div>
+
 
           <!-- NASA CENTRAL CINEMATIC EXPLORE BUTTON -->
           <div id="bhu-explore-wrap" class="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
@@ -2318,7 +2574,7 @@
         </div>
 
         
-        <!-- 🎬 EDUCATIONAL VIDEO: SAR FLOOD & DENGUE DEFENSE -->
+        <!-- 🎬 EDUCATIONAL VIDEO: SAR FLOOD & DENGUE DEFENSE (TACTICAL SIMULATOR) -->
         <div class="bhu-nasa-glass p-2.5 flex flex-col gap-1.5 shrink-0">
           <div class="flex items-center justify-between border-b border-slate-800/80 pb-1">
             <span class="text-[11px] font-semibold text-rose-300 tracking-wide flex items-center gap-1.5">
@@ -2326,17 +2582,51 @@
             </span>
             <span class="mono text-[8.5px] text-rose-400 bg-rose-950/60 px-1.5 py-0.5 rounded border border-rose-800">SAR PROTOCOL</span>
           </div>
-          <!-- Embedded Video Player / Simulation Player -->
-          <div class="w-full aspect-video rounded-lg overflow-hidden border border-slate-800 relative bg-black flex flex-col justify-between p-2">
-            <iframe class="w-full h-full rounded"
-              src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=0&mute=1&controls=1"
-              title="Sentinel-1 SAR Deluge & Waterborne Disease Prevention Protocol"
-              frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-            </iframe>
+
+          <!-- High-Tech Medical Tactical Video Player -->
+          <div class="w-full aspect-video rounded-lg overflow-hidden border border-cyan-500/30 relative bg-[#040812] flex flex-col justify-between p-2.5 shadow-[inset_0_0_20px_rgba(0,0,0,0.8)] group select-none">
+            <!-- Video Top Status HUD -->
+            <div class="flex items-center justify-between z-10">
+              <span class="flex items-center gap-1.5 text-[8.5px] mono font-bold text-rose-400 bg-rose-950/80 px-2 py-0.5 rounded border border-rose-800/60 shadow">
+                <span class="w-1.5 h-1.5 rounded-full bg-rose-400 animate-ping"></span>
+                <span>REC // FIELD SAT FEED</span>
+              </span>
+              <span class="text-[8.5px] mono text-cyan-300 bg-slate-900/90 px-1.5 py-0.5 rounded border border-cyan-800/60">PATNA FLOOD PROTOCOL</span>
+            </div>
+
+            <!-- Video Center: Tactical Animated Medical Visualizer -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center p-3 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent">
+              <div class="relative flex items-center justify-center">
+                <div class="absolute w-14 h-14 rounded-full bg-rose-500/20 animate-ping"></div>
+                <button type="button" onclick="alert('Playing Patna Sentinel-1 SAR Disaster Health & Dengue Defense Protocol (AI Voice Guidance Active)')"
+                  class="w-11 h-11 rounded-full bg-gradient-to-tr from-rose-600 to-rose-400 border border-rose-300 flex items-center justify-center text-white shadow-[0_0_25px_rgba(244,63,94,0.7)] cursor-pointer hover:scale-110 active:scale-95 transition z-10">
+                  <svg class="w-5 h-5 translate-x-0.5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+              </div>
+              <div class="text-[10.5px] font-bold text-slate-100 mt-2.5 text-center tracking-wide flex items-center gap-1.5">
+                <span>Floodwater Pathogen &amp; Vector Triage</span>
+                <span class="text-[8px] px-1 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">VERIFIED</span>
+              </div>
+              <div class="text-[8.5px] mono text-slate-400 mt-0.5 text-center">
+                Sentinel-1 SAR S4 Sinks (&lt;46m) · WHO / ICMR Protocol 2026
+              </div>
+            </div>
+
+            <!-- Video Bottom HUD Controls -->
+            <div class="flex items-center justify-between z-10 pt-1.5 border-t border-slate-800/80 text-[8.5px] mono text-slate-400">
+              <div class="flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                <span class="text-emerald-300 font-semibold">03:42 / 08:15</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-cyan-400 font-bold hover:underline cursor-pointer">1080p HD</span>
+                <span class="text-slate-300 hover:underline cursor-pointer">Hindi / English Audio</span>
+              </div>
+            </div>
           </div>
-          <div class="text-[8.5px] mono text-slate-400 flex items-center justify-between">
+          <div class="text-[8.5px] mono text-slate-400 flex items-center justify-between mt-1">
             <span>Topic: Standing Floodwater Larva Treatment</span>
-            <span class="text-emerald-400 font-semibold">PMC Verified Protocol</span>
+            <span class="text-emerald-400 font-bold">PMC Verified Protocol</span>
           </div>
         </div>
 
@@ -2503,6 +2793,55 @@
             location, or ward row to inspect
             15-module telemetry and provenance.</div>
         </div>
+      
+        <!-- 🩺 RECENT DIAGNOSTIC SCANS GALLERY (VERIDIA HEALTH SUITE STYLE) -->
+        <div class="bhu-nasa-glass p-2.5 flex flex-col gap-2 shrink-0">
+          <div class="flex items-center justify-between border-b border-slate-800/80 pb-1">
+            <span class="text-[11px] font-semibold text-cyan-300 tracking-wide flex items-center gap-1.5">
+              <span>🩺</span> Recent Diagnostic Scans (Clinical Grounding)
+            </span>
+            <span class="mono text-[8.5px] text-cyan-400 bg-cyan-950/60 px-1.5 py-0.5 rounded border border-cyan-800">3 VERIFIED</span>
+          </div>
+
+          <div class="grid grid-cols-3 gap-1.5">
+            <!-- Scan 1: Chest X-Ray -->
+            <div class="bg-slate-950/80 p-1.5 rounded-lg border border-slate-800 flex flex-col items-center text-center group hover:border-cyan-500/50 transition">
+              <div class="w-full h-12 rounded bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 flex items-center justify-center relative overflow-hidden">
+                <div class="absolute inset-0 flex items-center justify-center opacity-40 group-hover:opacity-70 transition">
+                  <svg class="w-8 h-8 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="1.5" d="M12 4v16m-4-12a4 4 0 018 0v8a4 4 0 01-8 0V8z"/></svg>
+                </div>
+                <span class="text-[8px] mono text-cyan-300 z-10">CHEST X-RAY</span>
+              </div>
+              <div class="text-[9px] font-bold text-slate-200 mt-1">PA View</div>
+              <div class="text-[7.5px] mono text-emerald-400">Normal · Clear</div>
+            </div>
+
+            <!-- Scan 2: Cardiac Echo / MRI -->
+            <div class="bg-slate-950/80 p-1.5 rounded-lg border border-slate-800 flex flex-col items-center text-center group hover:border-rose-500/50 transition">
+              <div class="w-full h-12 rounded bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 flex items-center justify-center relative overflow-hidden">
+                <div class="absolute inset-0 flex items-center justify-center opacity-40 group-hover:opacity-70 transition">
+                  <svg class="w-8 h-8 text-rose-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                </div>
+                <span class="text-[8px] mono text-rose-300 z-10">CARDIAC ECHO</span>
+              </div>
+              <div class="text-[9px] font-bold text-slate-200 mt-1">LVEF 64%</div>
+              <div class="text-[7.5px] mono text-sky-400">Sinus 72 bpm</div>
+            </div>
+
+            <!-- Scan 3: Cranial CT -->
+            <div class="bg-slate-950/80 p-1.5 rounded-lg border border-slate-800 flex flex-col items-center text-center group hover:border-emerald-500/50 transition">
+              <div class="w-full h-12 rounded bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 flex items-center justify-center relative overflow-hidden">
+                <div class="absolute inset-0 flex items-center justify-center opacity-40 group-hover:opacity-70 transition">
+                  <svg class="w-8 h-8 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="8" stroke-width="1.5"/><path stroke-width="1.5" d="M12 8v8m-4-4h8"/></svg>
+                </div>
+                <span class="text-[8px] mono text-emerald-300 z-10">CRANIAL CT</span>
+              </div>
+              <div class="text-[9px] font-bold text-slate-200 mt-1">Axial Slice</div>
+              <div class="text-[7.5px] mono text-emerald-400">Intact · Low Stress</div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       
@@ -6246,10 +6585,30 @@
         else if (activeMode === 'hologram' && !holoRotPaused) hologramGroup.rotation.y += 0.0016;
         else if (activeMode === 'india') indiaGroup.rotation.y = Math.sin(Date.now() * 0.0004) * 0.18;
         if (activeMode === 'human' && typeof human3dGroup !== 'undefined') {
-        if (!isDragging) human3dGroup.rotation.y += 0.0025;
+        if (!isDragging) human3dGroup.rotation.y += 0.0022; // smooth cyber rotation
+        const nowMs = Date.now();
+        // Dual-Phase Heartbeat (lub-dub 72 bpm sinus rhythm)
         if (humanHeartMesh) {
-          const pulse = 1.0 + Math.sin(Date.now() * 0.006) * 0.08;
-          humanHeartMesh.scale.set(0.9 * pulse, 1.1 * pulse, 0.9 * pulse);
+          const t = (nowMs % 833) / 833; // 72 bpm cycle
+          const cardiacPulse = 1.0 + (t < 0.15 ? Math.sin(t * Math.PI / 0.15) * 0.14 : (t > 0.22 && t < 0.35 ? Math.sin((t - 0.22) * Math.PI / 0.13) * 0.08 : 0));
+          humanHeartMesh.scale.set(0.85 * cardiacPulse, 1.15 * cardiacPulse, 0.95 * cardiacPulse);
+          if (humanHeartMesh.material) {
+            humanHeartMesh.material.emissiveIntensity = 0.5 + (cardiacPulse - 1.0) * 3.5;
+          }
+        }
+        // Pulmonary Respiratory Expansion (16 breaths per min)
+        if (humanLungsMeshL && humanLungsMeshR) {
+          const breath = 1.0 + Math.sin(nowMs * 0.0016) * 0.08;
+          humanLungsMeshL.scale.set(0.72 * breath, 1.35 * breath, 0.85 * breath);
+          humanLungsMeshR.scale.set(0.72 * breath, 1.35 * breath, 0.85 * breath);
+        }
+        // Vertical Laser Scanning Plane (Healtrix oscillating scan)
+        if (humanScanPlane) {
+          humanScanPlane.position.y = 1.2 + Math.sin(nowMs * 0.0022) * 2.3;
+        }
+        // Floating Bio-Data Particles Drift
+        if (humanParticles) {
+          humanParticles.rotation.y = nowMs * 0.0003;
         }
       }
       }
@@ -6260,7 +6619,7 @@
 
     
     // -------------------------------------------------------------------------
-    // 3D HUMAN ANATOMICAL MODEL & GLOWING ORGAN STRESS (THREE.JS CENTER STAGE)
+    // SCIENTIFIC HOLOGRAPHIC DIGITAL-TWIN ANATOMY (HEALTRIX & VERIDIA MASTERPIECE)
     // -------------------------------------------------------------------------
     let humanHeartMesh = null;
     let humanBrainMesh = null;
@@ -6268,144 +6627,426 @@
     let humanLungsMeshR = null;
     let humanKidneysMesh = null;
     let humanCoreMesh = null;
+    let humanLiverMesh = null;
+    let humanScanPlane = null;
+    let humanParticles = null;
+    let humanSpineGroup = null;
+    let humanRibcageGroup = null;
+    let humanLimbsGroup = null;
+    let humanSkullMesh = null;
+    let humanShroudMesh = null;
+    let humanAnomalyGroup = null;
+    let humanActiveLayer = 'all';
 
     function build3DHumanAnatomyCenterStage() {
-      if (!human3dGroup || human3dGroup.children.length > 0) return;
+      if (!human3dGroup) return;
+      // Clear existing children
+      while (human3dGroup.children.length > 0) {
+        human3dGroup.remove(human3dGroup.children[0]);
+      }
 
-      // 1. Faceless Cranium / Head (Smooth cyber wireframe)
-      const headMat = new THREE.MeshStandardMaterial({
+      // Dedicated Medical Hologram Lighting (Cyan Rim + Ambient + Crimson Core)
+      const humanChestLight = new THREE.PointLight(0x38bdf8, 4.2, 22);
+      humanChestLight.position.set(0, 2.2, 4.0);
+      human3dGroup.add(humanChestLight);
+
+      const humanBackLight = new THREE.DirectionalLight(0x0ea5e9, 2.8);
+      humanBackLight.position.set(-2.5, 3.2, -3.5);
+      human3dGroup.add(humanBackLight);
+
+      const humanHeartLight = new THREE.PointLight(0xf43f5e, 3.5, 6.0);
+      humanHeartLight.position.set(-0.15, 1.95, 0.45);
+      human3dGroup.add(humanHeartLight);
+
+
+      // Material Palettes (Dark Obsidian Sci-Fi & High-Tech Medical Glass)
+      const boneMat = new THREE.MeshStandardMaterial({
+        color: 0x94a3b8,
+        emissive: 0x0ea5e9,
+        emissiveIntensity: 0.45,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.82,
+        roughness: 0.2
+      });
+
+      const solidBoneMat = new THREE.MeshStandardMaterial({
+        color: 0x64748b,
+        emissive: 0x0284c7,
+        emissiveIntensity: 0.35,
+        roughness: 0.3,
+        metalness: 0.4
+      });
+
+      // 1. ANATOMICAL CRANIUM & FACIAL SKELETON (HEALTRIX SKULL STANDARD)
+      humanSkullMesh = new THREE.Group();
+      
+      // Cranial Vault Dome
+      const skullGeom = new THREE.IcosahedronGeometry(0.82, 3);
+      skullGeom.scale(0.85, 1.12, 0.96);
+      const skullVault = new THREE.Mesh(skullGeom, boneMat);
+      skullVault.position.set(0, 3.65, 0.04);
+      humanSkullMesh.add(skullVault);
+
+      // Zygomatic Cheekbone Arches
+      const cheekL = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.55, 8), solidBoneMat);
+      cheekL.rotation.z = 0.55;
+      cheekL.position.set(-0.48, 3.35, 0.38);
+      const cheekR = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.55, 8), solidBoneMat);
+      cheekR.rotation.z = -0.55;
+      cheekR.position.set(0.48, 3.35, 0.38);
+      humanSkullMesh.add(cheekL, cheekR);
+
+      // Orbital Eye Sockets (Dual glowing cyan biometric scan rings)
+      const eyeRingL = new THREE.Mesh(new THREE.TorusGeometry(0.14, 0.025, 8, 20), boneMat);
+      eyeRingL.position.set(-0.28, 3.48, 0.58);
+      const eyeRingR = new THREE.Mesh(new THREE.TorusGeometry(0.14, 0.025, 8, 20), boneMat);
+      eyeRingR.position.set(0.28, 3.48, 0.58);
+      humanSkullMesh.add(eyeRingL, eyeRingR);
+
+      // Mandible Jawline & Chin
+      const jawGeom = new THREE.TorusGeometry(0.38, 0.05, 8, 20, Math.PI);
+      const jawMesh = new THREE.Mesh(jawGeom, boneMat);
+      jawMesh.rotation.x = Math.PI / 2;
+      jawMesh.position.set(0, 3.02, 0.26);
+      humanSkullMesh.add(jawMesh);
+      human3dGroup.add(humanSkullMesh);
+
+      // 2. VERTEBRAL COLUMN: 24 Stacked Vertebrae with S-Lordosis Curve & Glowing Spinal Cord
+      humanSpineGroup = new THREE.Group();
+      for (let i = 0; i < 24; i++) {
+        const vGeom = new THREE.CylinderGeometry(0.19 - i * 0.0025, 0.21 - i * 0.0025, 0.075, 14);
+        const vMesh = new THREE.Mesh(vGeom, boneMat);
+        const yPos = 2.95 - i * 0.138;
+        const zCurve = Math.sin(i * 0.28) * 0.11 - 0.12; // Anatomical lordosis/kyphosis S-curve
+        vMesh.position.set(0, yPos, zCurve);
+        humanSpineGroup.add(vMesh);
+      }
+      // Glowing Cyan Spinal Cord Core
+      const spineCordGeom = new THREE.CylinderGeometry(0.045, 0.045, 3.3, 8);
+      const spineCordMat = new THREE.MeshBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.95 });
+      const spineCordMesh = new THREE.Mesh(spineCordGeom, spineCordMat);
+      spineCordMesh.position.set(0, 1.42, -0.09);
+      humanSpineGroup.add(spineCordMesh);
+      human3dGroup.add(humanSpineGroup);
+
+      // 3. THORACIC RIBCAGE (10 Anatomical Rib Pairs T1-T10 + Sternum + Clavicles)
+      humanRibcageGroup = new THREE.Group();
+      for (let r = 0; r < 10; r++) {
+        const radX = 0.56 + Math.sin((r / 9) * Math.PI) * 0.46;
+        const radZ = 0.42 + Math.sin((r / 9) * Math.PI) * 0.32;
+        const ribGeom = new THREE.TorusGeometry(radX, 0.028, 8, 28, Math.PI * 1.84);
+        const ribMesh = new THREE.Mesh(ribGeom, boneMat);
+        ribMesh.rotation.x = Math.PI / 2 + (r * 0.038);
+        ribMesh.rotation.z = Math.PI / 2;
+        ribMesh.position.set(0, 2.5 - r * 0.18, 0.02);
+        humanRibcageGroup.add(ribMesh);
+      }
+      // 3-Piece Sternum Plate (Breastbone)
+      const sternumGeom = new THREE.CylinderGeometry(0.07, 0.05, 1.4, 8);
+      const sternumMesh = new THREE.Mesh(sternumGeom, solidBoneMat);
+      sternumMesh.position.set(0, 1.9, 0.52);
+      humanRibcageGroup.add(sternumMesh);
+
+      // S-Curved Clavicles (Collarbones)
+      const clavicleCurveL = new THREE.CatmullRomCurve3([
+        new THREE.Vector3(-0.06, 2.72, 0.45),
+        new THREE.Vector3(-0.55, 2.76, 0.35),
+        new THREE.Vector3(-1.12, 2.68, 0.12)
+      ]);
+      const clavicleMeshL = new THREE.Mesh(new THREE.TubeGeometry(clavicleCurveL, 16, 0.045, 8, false), solidBoneMat);
+      const clavicleCurveR = new THREE.CatmullRomCurve3([
+        new THREE.Vector3(0.06, 2.72, 0.45),
+        new THREE.Vector3(0.55, 2.76, 0.35),
+        new THREE.Vector3(1.12, 2.68, 0.12)
+      ]);
+      const clavicleMeshR = new THREE.Mesh(new THREE.TubeGeometry(clavicleCurveR, 16, 0.045, 8, false), solidBoneMat);
+      humanRibcageGroup.add(clavicleMeshL, clavicleMeshR);
+
+      // Dual Scapulae (Shoulder Blade Wings on Posterior Wall)
+      const scapulaGeom = new THREE.BufferGeometry();
+      const scapVertsL = new Float32Array([
+        -0.45, 2.45, -0.28,  -1.05, 2.38, -0.15,  -0.65, 1.65, -0.25
+      ]);
+      scapulaGeom.setAttribute('position', new THREE.BufferAttribute(scapVertsL, 3));
+      scapulaGeom.computeVertexNormals();
+      const scapulaMeshL = new THREE.Mesh(scapulaGeom, solidBoneMat);
+      const scapulaGeomR = new THREE.BufferGeometry();
+      const scapVertsR = new Float32Array([
+        0.45, 2.45, -0.28,   1.05, 2.38, -0.15,   0.65, 1.65, -0.25
+      ]);
+      scapulaGeomR.setAttribute('position', new THREE.BufferAttribute(scapVertsR, 3));
+      scapulaGeomR.computeVertexNormals();
+      const scapulaMeshR = new THREE.Mesh(scapulaGeomR, solidBoneMat);
+      humanRibcageGroup.add(scapulaMeshL, scapulaMeshR);
+      human3dGroup.add(humanRibcageGroup);
+
+      // 4. HEALTRIX SIGNATURE ANOMALY HEATMAP (UPPER SCAPULAR & CLAVICULAR ZONE)
+      humanAnomalyGroup = new THREE.Group();
+      // Glowing Amber / Crimson Anomaly Heatmap Nodes
+      const anomMat = new THREE.MeshStandardMaterial({
+        color: 0xf59e0b,
+        emissive: 0xef4444,
+        emissiveIntensity: 0.95,
+        roughness: 0.15
+      });
+      const anomCore = new THREE.Mesh(new THREE.SphereGeometry(0.14, 12, 12), anomMat);
+      anomCore.position.set(-0.85, 2.62, 0.22);
+      // Pulsing radar ring
+      const anomRing = new THREE.Mesh(new THREE.RingGeometry(0.16, 0.32, 24), new THREE.MeshBasicMaterial({ color: 0xf59e0b, wireframe: true, transparent: true, opacity: 0.8, side: THREE.DoubleSide }));
+      anomRing.position.set(-0.85, 2.62, 0.22);
+      humanAnomalyGroup.add(anomCore, anomRing);
+      human3dGroup.add(humanAnomalyGroup);
+
+      // 5. PELVIC GIRDLE & SKELETAL LIMBS
+      humanLimbsGroup = new THREE.Group();
+      const pelvisGeom = new THREE.TorusGeometry(0.74, 0.07, 10, 28);
+      const pelvisMesh = new THREE.Mesh(pelvisGeom, solidBoneMat);
+      pelvisMesh.rotation.x = Math.PI / 2;
+      pelvisMesh.position.set(0, 0.45, 0);
+      humanLimbsGroup.add(pelvisMesh);
+
+      // Joint Node Spheres
+      const jointMat = new THREE.MeshStandardMaterial({
+        color: 0x38bdf8,
+        emissive: 0x0284c7,
+        emissiveIntensity: 0.7,
+        roughness: 0.2
+      });
+      const jointGeom = new THREE.SphereGeometry(0.09, 12, 12);
+      const addBoneChain = (pts) => {
+        const lineMat = new THREE.LineBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.85 });
+        const geom = new THREE.BufferGeometry().setFromPoints(pts.map(p => new THREE.Vector3(...p)));
+        humanLimbsGroup.add(new THREE.Line(geom, lineMat));
+        pts.forEach(p => {
+          const jMesh = new THREE.Mesh(jointGeom, jointMat);
+          jMesh.position.set(...p);
+          humanLimbsGroup.add(jMesh);
+        });
+      };
+      // Arms (Shoulder -> Elbow -> Wrist)
+      addBoneChain([[-1.12, 2.68, 0.12], [-1.55, 1.62, 0.08], [-1.82, 0.52, 0.18]]);
+      addBoneChain([[1.12, 2.68, 0.12], [1.55, 1.62, 0.08], [1.82, 0.52, 0.18]]);
+      // Legs (Hip -> Knee -> Ankle)
+      addBoneChain([[-0.52, 0.42, 0], [-0.58, -1.25, 0.08], [-0.62, -2.85, -0.05]]);
+      addBoneChain([[0.52, 0.42, 0], [0.58, -1.25, 0.08], [0.62, -2.85, -0.05]]);
+      human3dGroup.add(humanLimbsGroup);
+
+      // 6. TRANSLUCENT HOLOGRAPHIC BODY SHROUD (VERIDIA GLASS SILHOUETTE)
+      const shroudMat = new THREE.MeshStandardMaterial({
+        color: 0x0284c7,
+        emissive: 0x0369a1,
+        emissiveIntensity: 0.35,
+        transparent: true,
+        opacity: 0.16,
+        roughness: 0.15,
+        metalness: 0.2
+      });
+      // Torso & Upper Body Volumetric Glass Capsule
+      const shroudGeom = new THREE.CylinderGeometry(1.22, 0.85, 2.4, 24);
+      shroudGeom.scale(1.15, 1.0, 0.72);
+      humanShroudMesh = new THREE.Mesh(shroudGeom, shroudMat);
+      humanShroudMesh.position.set(0, 1.85, 0.05);
+      human3dGroup.add(humanShroudMesh);
+
+      // 7. VOLUMETRIC LUMINOUS ORGANS (VERIDIA SCIENTIFIC GLOW)
+      // A. Pulmonary Lungs (Dual Anatomical Respiratory Lobes + Bronchial Tree)
+      const lungsMat = new THREE.MeshStandardMaterial({
+        color: 0x06b6d4,
+        emissive: 0x0891b2,
+        emissiveIntensity: 0.72,
+        roughness: 0.18,
+        metalness: 0.22,
+        transparent: true,
+        opacity: 0.94
+      });
+      const lungGeomL = new THREE.SphereGeometry(0.36, 18, 16);
+      lungGeomL.scale(0.74, 1.38, 0.86);
+      humanLungsMeshL = new THREE.Mesh(lungGeomL, lungsMat);
+      humanLungsMeshL.position.set(-0.38, 1.88, 0.08);
+
+      const lungGeomR = new THREE.SphereGeometry(0.36, 18, 16);
+      lungGeomR.scale(0.74, 1.38, 0.86);
+      humanLungsMeshR = new THREE.Mesh(lungGeomR, lungsMat);
+      humanLungsMeshR.position.set(0.38, 1.88, 0.08);
+      human3dGroup.add(humanLungsMeshL, humanLungsMeshR);
+
+      // Trachea Bronchial Tree
+      const tracheaGeom = new THREE.CylinderGeometry(0.065, 0.055, 0.75, 12);
+      const tracheaMat = new THREE.MeshBasicMaterial({ color: 0x22d3ee, transparent: true, opacity: 0.85 });
+      const tracheaMesh = new THREE.Mesh(tracheaGeom, tracheaMat);
+      tracheaMesh.position.set(0, 2.52, 0.08);
+      human3dGroup.add(tracheaMesh);
+
+      // B. Cardiovascular Heart (Pulsing Cardiac Mass with Ascending Aorta Arch)
+      const heartMat = new THREE.MeshStandardMaterial({
+        color: 0xf43f5e,
+        emissive: 0xe11d48,
+        emissiveIntensity: 0.85,
+        roughness: 0.15,
+        metalness: 0.35
+      });
+      const heartGeom = new THREE.SphereGeometry(0.26, 18, 16);
+      heartGeom.scale(0.86, 1.18, 0.96);
+      humanHeartMesh = new THREE.Mesh(heartGeom, heartMat);
+      humanHeartMesh.position.set(-0.15, 1.94, 0.24);
+      // Aorta Loop
+      const aortaGeom = new THREE.TorusGeometry(0.11, 0.035, 8, 20, Math.PI);
+      const aortaMesh = new THREE.Mesh(aortaGeom, heartMat);
+      aortaMesh.position.set(-0.15, 2.18, 0.22);
+      humanHeartMesh.add(aortaMesh);
+      human3dGroup.add(humanHeartMesh);
+
+      // C. Cranial Brain (Neural Cortex + Synaptic Core inside Cranium)
+      const brainMat = new THREE.MeshStandardMaterial({
+        color: 0x10b981,
+        emissive: 0x059669,
+        emissiveIntensity: 0.65,
+        roughness: 0.15,
+        metalness: 0.2
+      });
+      const brainGeom = new THREE.SphereGeometry(0.46, 20, 18);
+      brainGeom.scale(0.96, 0.84, 1.16);
+      humanBrainMesh = new THREE.Mesh(brainGeom, brainMat);
+      humanBrainMesh.position.set(0, 3.68, 0.06);
+      human3dGroup.add(humanBrainMesh);
+
+      // D. Kidneys (Dual Retroperitoneal Organs)
+      const kidneyMat = new THREE.MeshStandardMaterial({
+        color: 0xf59e0b,
+        emissive: 0xd97706,
+        emissiveIntensity: 0.55,
+        roughness: 0.28
+      });
+      const kGeom = new THREE.SphereGeometry(0.19, 14, 12);
+      kGeom.scale(0.65, 1.1, 0.75);
+      const kL = new THREE.Mesh(kGeom, kidneyMat);
+      kL.position.set(-0.36, 1.05, -0.16);
+      const kR = new THREE.Mesh(kGeom, kidneyMat);
+      kR.position.set(0.36, 1.05, -0.16);
+      humanKidneysMesh = new THREE.Group();
+      humanKidneysMesh.add(kL, kR);
+      human3dGroup.add(humanKidneysMesh);
+
+      // E. Visceral Core & GI Tract (Metabolic Runoff Analysis)
+      const coreMat = new THREE.MeshStandardMaterial({
+        color: 0xec4899,
+        emissive: 0xdb2777,
+        emissiveIntensity: 0.6,
+        roughness: 0.35,
+        transparent: true,
+        opacity: 0.9
+      });
+      const coreGeom = new THREE.SphereGeometry(0.4, 16, 14);
+      coreGeom.scale(1.15, 0.85, 0.95);
+      humanCoreMesh = new THREE.Mesh(coreGeom, coreMat);
+      humanCoreMesh.position.set(0, 0.92, 0.14);
+      human3dGroup.add(humanCoreMesh);
+
+      // 8. OSCILLATING LASER SCANNING RING & POINT-CLOUD PLEXUS
+      const planeGeom = new THREE.RingGeometry(0.2, 1.8, 40);
+      const planeMat = new THREE.MeshBasicMaterial({
         color: 0x38bdf8,
         wireframe: true,
         transparent: true,
         opacity: 0.55,
-        roughness: 0.3
+        side: THREE.DoubleSide
       });
-      const headGeom = new THREE.SphereGeometry(0.72, 22, 18);
-      headGeom.scale(0.85, 1.15, 0.95);
-      const headMesh = new THREE.Mesh(headGeom, headMat);
-      headMesh.position.set(0, 3.6, 0);
-      human3dGroup.add(headMesh);
+      humanScanPlane = new THREE.Mesh(planeGeom, planeMat);
+      humanScanPlane.rotation.x = Math.PI / 2;
+      humanScanPlane.position.set(0, 2.0, 0);
+      human3dGroup.add(humanScanPlane);
 
-      // Neck
-      const neckGeom = new THREE.CylinderGeometry(0.24, 0.28, 0.45, 14);
-      const neckMesh = new THREE.Mesh(neckGeom, headMat);
-      neckMesh.position.set(0, 2.75, 0);
-      human3dGroup.add(neckMesh);
+      // 360 Luminous Bio-Data Particles
+      const partCount = 360;
+      const partGeom = new THREE.BufferGeometry();
+      const partPos = new Float32Array(partCount * 3);
+      for (let p = 0; p < partCount * 3; p += 3) {
+        partPos[p] = (Math.random() - 0.5) * 3.0;
+        partPos[p + 1] = Math.random() * 6.5 - 2.5;
+        partPos[p + 2] = (Math.random() - 0.5) * 2.0;
+      }
+      partGeom.setAttribute('position', new THREE.BufferAttribute(partPos, 3));
+      const partMat = new THREE.PointsMaterial({
+        color: 0x38bdf8,
+        size: 0.055,
+        transparent: true,
+        opacity: 0.75
+      });
+      humanParticles = new THREE.Points(partGeom, partMat);
+      human3dGroup.add(humanParticles);
 
-      // 2. Ribcage & Torso Shell
-      const torsoMat = new THREE.MeshStandardMaterial({
-        color: 0x1e293b,
+      // Concentric Rotating Azimuth Base Pedestal
+      const baseOuter = new THREE.RingGeometry(1.5, 2.6, 52);
+      const baseMat = new THREE.MeshBasicMaterial({
+        color: 0x0ea5e9,
         wireframe: true,
         transparent: true,
-        opacity: 0.35,
-        roughness: 0.4
+        opacity: 0.5,
+        side: THREE.DoubleSide
       });
-      const chestGeom = new THREE.CylinderGeometry(0.95, 0.75, 1.6, 18);
-      const chestMesh = new THREE.Mesh(chestGeom, torsoMat);
-      chestMesh.position.set(0, 1.7, 0);
-      human3dGroup.add(chestMesh);
+      const baseMesh = new THREE.Mesh(baseOuter, baseMat);
+      baseMesh.rotation.x = Math.PI / 2;
+      baseMesh.position.set(0, -2.85, 0);
+      human3dGroup.add(baseMesh);
 
-      // Pelvis Shell
-      const pelvisGeom = new THREE.CylinderGeometry(0.75, 0.8, 0.9, 16);
-      const pelvisMesh = new THREE.Mesh(pelvisGeom, torsoMat);
-      pelvisMesh.position.set(0, 0.5, 0);
-      human3dGroup.add(pelvisMesh);
-
-      // Limbs (Slender cyber wireframe cylinders)
-      const limbMat = new THREE.LineBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.65 });
-      const addLimb = (pts) => {
-        const geom = new THREE.BufferGeometry().setFromPoints(pts.map(p => new THREE.Vector3(...p)));
-        human3dGroup.add(new THREE.Line(geom, limbMat));
-      };
-      // Arms
-      addLimb([[-1.0, 2.3, 0], [-1.5, 1.3, 0], [-1.7, 0.3, 0]]);
-      addLimb([[1.0, 2.3, 0], [1.5, 1.3, 0], [1.7, 0.3, 0]]);
-      // Legs
-      addLimb([[-0.45, 0.1, 0], [-0.55, -1.3, 0], [-0.6, -2.8, 0]]);
-      addLimb([[0.45, 0.1, 0], [0.55, -1.3, 0], [0.6, -2.8, 0]]);
-
-      // Holographic Pedestal / Floor Grid
-      const pedestalGeom = new THREE.RingGeometry(1.2, 2.2, 32);
-      const pedestalMat = new THREE.MeshBasicMaterial({ color: 0x0ea5e9, wireframe: true, transparent: true, opacity: 0.35, side: THREE.DoubleSide });
-      const pedestal = new THREE.Mesh(pedestalGeom, pedestalMat);
-      pedestal.rotation.x = Math.PI / 2;
-      pedestal.position.set(0, -2.85, 0);
-      human3dGroup.add(pedestal);
-
-      // -------------------------------------------------------------
-      // 3. GLOWING INTERACTIVE VITAL ORGANS
-      // -------------------------------------------------------------
-
-      // A. Brain (Cranium: Cognitive / Thermal Heat Strain)
-      const brainMat = new THREE.MeshStandardMaterial({
-        color: 0x10b981,
-        emissive: 0x047857,
-        roughness: 0.2,
-        metalness: 0.1
-      });
-      const brainGeom = new THREE.SphereGeometry(0.36, 16, 14);
-      brainGeom.scale(1.0, 0.8, 1.2);
-      humanBrainMesh = new THREE.Mesh(brainGeom, brainMat);
-      humanBrainMesh.position.set(0, 3.65, 0.05);
-      human3dGroup.add(humanBrainMesh);
-
-      // B. Heart (Chest: Pulsing Cardiac Load)
-      const heartMat = new THREE.MeshStandardMaterial({
-        color: 0xf43f5e,
-        emissive: 0xbe123c,
-        roughness: 0.25
-      });
-      const heartGeom = new THREE.SphereGeometry(0.24, 16, 14);
-      heartGeom.scale(0.9, 1.1, 0.9);
-      humanHeartMesh = new THREE.Mesh(heartGeom, heartMat);
-      humanHeartMesh.position.set(-0.16, 1.85, 0.2);
-      human3dGroup.add(humanHeartMesh);
-
-      // C. Lungs (Respiratory: PM2.5 Inhalation Stress)
-      const lungsMat = new THREE.MeshStandardMaterial({
-        color: 0x38bdf8,
-        emissive: 0x0284c7,
-        roughness: 0.3,
-        transparent: true,
-        opacity: 0.85
-      });
-      const lungGeom = new THREE.SphereGeometry(0.26, 14, 12);
-      lungGeom.scale(0.7, 1.3, 0.8);
-      humanLungsMeshL = new THREE.Mesh(lungGeom, lungsMat);
-      humanLungsMeshL.position.set(-0.35, 1.8, 0.08);
-      humanLungsMeshR = new THREE.Mesh(lungGeom, lungsMat);
-      humanLungsMeshR.position.set(0.35, 1.8, 0.08);
-      human3dGroup.add(humanLungsMeshL, humanLungsMeshR);
-
-      // D. Kidneys (Dehydration & Heat Stroke)
-      const kidneyMat = new THREE.MeshStandardMaterial({
-        color: 0xf59e0b,
-        emissive: 0xb45309,
-        roughness: 0.3
-      });
-      const kidneyGeom = new THREE.SphereGeometry(0.18, 12, 10);
-      kidneyGeom.scale(0.7, 1.1, 0.7);
-      const kL = new THREE.Mesh(kidneyGeom, kidneyMat);
-      kL.position.set(-0.32, 1.0, -0.15);
-      const kR = new THREE.Mesh(kidneyGeom, kidneyMat);
-      kR.position.set(0.32, 1.0, -0.15);
-      human3dGroup.add(kL, kR);
-
-      // E. Core / GI Tract (Waterborne Pathogens & Cholera Risk)
-      const coreMat = new THREE.MeshStandardMaterial({
-        color: 0xec4899,
-        emissive: 0x9d174d,
-        roughness: 0.35
-      });
-      const coreGeom = new THREE.SphereGeometry(0.32, 14, 12);
-      coreGeom.scale(1.1, 0.8, 0.9);
-      humanCoreMesh = new THREE.Mesh(coreGeom, coreMat);
-      humanCoreMesh.position.set(0, 0.95, 0.1);
-      human3dGroup.add(humanCoreMesh);
-
-      // Labels Sprite
-      human3dGroup.position.set(0, -0.5, 0);
+      // Master Scale & Centering: Upper body fills center stage with dignity
+      human3dGroup.scale.set(1.36, 1.36, 1.36);
+      human3dGroup.position.set(0, -1.05, 0);
     }
+
+    // Anatomical Layer Isolation (Healtrix / Veridia Layer Filtering)
+    window.setHumanAnatomyLayer = function (layer) {
+      humanActiveLayer = layer;
+      const layers = ['all', 'respiratory', 'cardiac', 'neural', 'organs', 'skeleton'];
+      layers.forEach(l => {
+        const btn = document.getElementById(`layer-btn-${l}`);
+        if (btn) {
+          btn.className = (l === layer)
+            ? "px-3 py-1 rounded-full text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.4)] transition"
+            : "px-2.5 py-1 rounded-full text-[10px] mono text-slate-400 hover:text-slate-200 bg-slate-900/60 border border-slate-800 transition";
+        }
+      });
+
+      // Adjust mesh visibilities based on active layer
+      if (humanRibcageGroup) humanRibcageGroup.visible = (layer === 'all' || layer === 'skeleton');
+      if (humanSpineGroup) humanSpineGroup.visible = (layer === 'all' || layer === 'skeleton');
+      if (humanLimbsGroup) humanLimbsGroup.visible = (layer === 'all' || layer === 'skeleton');
+      if (humanSkullMesh) humanSkullMesh.visible = (layer === 'all' || layer === 'skeleton' || layer === 'neural');
+      if (humanShroudMesh) humanShroudMesh.visible = (layer === 'all');
+      if (humanAnomalyGroup) humanAnomalyGroup.visible = (layer === 'all' || layer === 'skeleton');
+      if (humanLungsMeshL && humanLungsMeshR) {
+        humanLungsMeshL.visible = (layer === 'all' || layer === 'respiratory');
+        humanLungsMeshR.visible = (layer === 'all' || layer === 'respiratory');
+      }
+      if (humanHeartMesh) humanHeartMesh.visible = (layer === 'all' || layer === 'cardiac');
+      if (humanBrainMesh) humanBrainMesh.visible = (layer === 'all' || layer === 'neural');
+      if (humanCoreMesh) humanCoreMesh.visible = (layer === 'all' || layer === 'organs');
+      if (humanKidneysMesh) humanKidneysMesh.visible = (layer === 'all' || layer === 'organs');
+
+      // Update callouts visibility based on layer
+      const calloutResp = document.getElementById('callout-pulmonary');
+      const calloutCard = document.getElementById('callout-cardiac');
+      const calloutAnom = document.getElementById('callout-anomaly');
+      const calloutGI = document.getElementById('callout-gi');
+      if (calloutResp) calloutResp.style.opacity = (layer === 'all' || layer === 'respiratory') ? '1' : '0.2';
+      if (calloutCard) calloutCard.style.opacity = (layer === 'all' || layer === 'cardiac') ? '1' : '0.2';
+      if (calloutAnom) calloutAnom.style.opacity = (layer === 'all' || layer === 'skeleton') ? '1' : '0.2';
+      if (calloutGI) calloutGI.style.opacity = (layer === 'all' || layer === 'organs') ? '1' : '0.2';
+
+      // Camera Focus & Smooth Glide
+      if (layer === 'respiratory') {
+        targetCameraY = 1.45; targetCameraDistance = 5.2;
+      } else if (layer === 'cardiac') {
+        targetCameraY = 1.5; targetCameraDistance = 4.6;
+      } else if (layer === 'neural') {
+        targetCameraY = 3.65; targetCameraDistance = 4.4;
+      } else if (layer === 'organs') {
+        targetCameraY = 0.65; targetCameraDistance = 5.0;
+      } else {
+        targetCameraY = 1.35; targetCameraDistance = 6.8;
+      }
+    };
 
     function switchView(mode, autoBuild = true, skipNavSync = false) {
       activeMode = mode;
@@ -6440,12 +7081,11 @@
         human3dGroup.visible = (mode === 'human');
         if (mode === 'human') {
           if (typeof build3DHumanAnatomyCenterStage === 'function') build3DHumanAnatomyCenterStage();
-          targetCameraDistance = 9.2;
-          targetCameraY = 1.0;
-          camera.position.set(0, 1.0, 9.2);
-          camera.lookAt(0, 1.0, 0);
-          if (typeof camera !== 'undefined') camera.position.set(0, 0.8, 10);
-          if (typeof controls !== 'undefined' && controls) controls.target.set(0, 0.8, 0);
+          targetCameraDistance = 6.8;
+          targetCameraY = 1.35;
+          camera.position.set(0, 1.35, 6.8);
+          camera.lookAt(0, 1.35, 0);
+          if (typeof controls !== 'undefined' && controls) controls.target.set(0, 1.35, 0);
           const targetLbl = document.getElementById('target-label');
           if (targetLbl) targetLbl.innerText = 'TARGET: HUMAN ANATOMICAL 3D (CLIMATE & FLOOD HEALTH)';
           const coordsLbl = document.getElementById('coords-label');
@@ -6459,6 +7099,10 @@
       const bps = document.getElementById('btn-patna-sat');
       const pip = document.getElementById('holo-2d-pip');
       const solarHud = document.getElementById('holo-solar-hud');
+      const hls = document.getElementById('human-layer-switcher');
+      const hco = document.getElementById('human-callouts-overlay');
+      if (hls) { hls.classList.toggle('hidden', mode !== 'human'); hls.classList.toggle('flex', mode === 'human'); }
+      if (hco) { hco.classList.toggle('hidden', mode !== 'human'); hco.classList.toggle('flex', mode === 'human'); }
       if (ws) { ws.classList.toggle('hidden', mode !== 'world'); ws.classList.toggle('flex', mode === 'world'); }
       if (ss) { ss.classList.toggle('hidden', mode !== 'solar'); ss.classList.toggle('flex', mode === 'solar'); }
       if (hs) { hs.classList.toggle('hidden', mode !== 'hologram'); hs.classList.toggle('flex', mode === 'hologram'); }
@@ -7693,20 +8337,37 @@
     }
 
     function _applyLeftDockTab(tab) {
-      const aiView = document.getElementById('left-ai-view') || document.getElementById('right-ai-view');
-      const insightsView = document.getElementById('left-insights-view') || document.getElementById('right-insights-view');
+      const aiView = document.getElementById('left-ai-view');
+      const insightsView = document.getElementById('left-insights-view');
+      const vitalsView = document.getElementById('left-health-vitals');
       const btnAi = document.getElementById('left-tab-btn-ai');
       const btnInsights = document.getElementById('left-tab-btn-insights');
-      const showAi = tab !== 'insights';
-      if (aiView) aiView.classList.toggle('hidden', !showAi);
-      if (insightsView) insightsView.classList.toggle('hidden', showAi);
+      const btnVitals = document.getElementById('left-tab-btn-vitals');
+
+      if (aiView) {
+        aiView.style.display = (tab === 'ai') ? 'flex' : 'none';
+        aiView.classList.toggle('hidden', tab !== 'ai');
+      }
+      if (insightsView) {
+        insightsView.style.display = (tab === 'insights') ? 'flex' : 'none';
+        insightsView.classList.toggle('hidden', tab !== 'insights');
+      }
+      if (vitalsView) {
+        vitalsView.style.display = (tab === 'vitals') ? 'flex' : 'none';
+        vitalsView.classList.toggle('hidden', tab !== 'vitals');
+      }
+
       if (btnAi) {
-        btnAi.setAttribute('aria-selected', showAi ? 'true' : 'false');
-        btnAi.classList.toggle('active', showAi);
+        btnAi.setAttribute('aria-selected', tab === 'ai' ? 'true' : 'false');
+        btnAi.classList.toggle('active', tab === 'ai');
       }
       if (btnInsights) {
-        btnInsights.setAttribute('aria-selected', !showAi ? 'true' : 'false');
-        btnInsights.classList.toggle('active', !showAi);
+        btnInsights.setAttribute('aria-selected', tab === 'insights' ? 'true' : 'false');
+        btnInsights.classList.toggle('active', tab === 'insights');
+      }
+      if (btnVitals) {
+        btnVitals.setAttribute('aria-selected', tab === 'vitals' ? 'true' : 'false');
+        btnVitals.classList.toggle('active', tab === 'vitals');
       }
     }
 
@@ -8233,34 +8894,61 @@
     // -------------------------------------------------------------------------
     // DRAWER SLIDE ON HOVER / CLOSE ON MOUSE LEAVE (ACTIVITY BAR & RAILS)
     // -------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
+    // SMOOTH SLIDING DRAWER LOGIC WITH PIN / UNPIN & HOVER AUTO-CLOSE
+    // -------------------------------------------------------------------------
+    let railPinned = false;
+    let hoverCloseTimer = null;
+
+    window.togglePinDrawer = function() {
+      railPinned = !railPinned;
+      const pinBtn = document.getElementById('btn-pin-drawer');
+      const pinIcon = document.getElementById('pin-icon-svg');
+      if (pinBtn) {
+        pinBtn.classList.toggle('text-cyan-400', railPinned);
+        pinBtn.classList.toggle('text-slate-400', !railPinned);
+        pinBtn.title = railPinned ? "Drawer Pinned (Click to unpin)" : "Pin Drawer Open (Disable auto-close)";
+      }
+      if (pinIcon) {
+        pinIcon.setAttribute('fill', railPinned ? 'currentColor' : 'none');
+      }
+    };
+
     (function setupHoverDrawer() {
       const actBar = document.getElementById('vscode-activity-bar');
       const leftRail = document.getElementById('left-rail');
-      let railPinned = false;
-      let hoverCloseTimer = null;
+      const handle = document.getElementById('bhu-drawer-handle');
+      const chevron = document.getElementById('drawer-handle-chevron');
+
+      const openDrawer = () => {
+        clearTimeout(hoverCloseTimer);
+        if (leftRail && leftRail.classList.contains('rail-collapsed')) {
+          _expandRail(leftRail);
+          if (chevron) chevron.textContent = '‹';
+          updateCenterStageLayout();
+        }
+      };
+
+      const closeDrawer = () => {
+        if (railPinned || window.innerWidth < 1024) return;
+        hoverCloseTimer = setTimeout(() => {
+          if (!railPinned && leftRail && !_isRailCollapsed(leftRail)) {
+            _collapseRail(leftRail);
+            if (chevron) chevron.textContent = '›';
+            updateCenterStageLayout();
+          }
+        }, 380);
+      };
 
       if (actBar && leftRail) {
-        // Hovering over activity bar expands / slides open the left drawer
-        actBar.addEventListener('mouseenter', () => {
-          clearTimeout(hoverCloseTimer);
-          if (leftRail.classList.contains('hidden') || leftRail.style.display === 'none') {
-            leftRail.classList.remove('hidden');
-            leftRail.style.display = 'flex';
-          }
-        });
-
-        // Mouse leave from both activity bar and left rail closes the drawer if not pinned
-        const checkClose = () => {
-          hoverCloseTimer = setTimeout(() => {
-            if (!railPinned && window.innerWidth >= 1024) {
-              // Smoothly keep visible or compact based on user focus
-            }
-          }, 400);
-        };
-
-        actBar.addEventListener('mouseleave', checkClose);
-        leftRail.addEventListener('mouseleave', checkClose);
+        actBar.addEventListener('mouseenter', openDrawer);
+        actBar.addEventListener('mouseleave', closeDrawer);
         leftRail.addEventListener('mouseenter', () => clearTimeout(hoverCloseTimer));
+        leftRail.addEventListener('mouseleave', closeDrawer);
+      }
+      if (handle) {
+        handle.addEventListener('mouseenter', openDrawer);
+        handle.addEventListener('mouseleave', closeDrawer);
       }
     })();
 
@@ -8314,9 +9002,13 @@
         if (typeof switchRightDockTab === 'function') {
           switchRightDockTab('health');
         }
-        // Switch left rail to AI Assistant
+        // Switch left rail to Clinical Vitals
         if (typeof switchLeftDockTab === 'function') {
-          switchLeftDockTab('ai');
+          switchLeftDockTab('vitals');
+        }
+        const left = document.getElementById('left-rail');
+        if (left && _isRailCollapsed(left)) {
+          _expandRail(left);
         }
         // Feed grounded public health advisory into AI chat
         const qMsg = "Audit Patna public health risks from Sentinel-1 SAR flood deluge: standing water dengue vectors, waterborne cholera in lowlands (<46m), PM2.5 resuspension, and safe hospital routes to AIIMS Patna.";
