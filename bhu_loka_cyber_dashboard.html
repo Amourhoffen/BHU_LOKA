@@ -462,16 +462,8 @@
       </a>
     </div>
 
-    <!-- CENTER: 5 TOP-LEVEL WORKSTATION HUBS -->
-    <div class="bhu-pill-nav mx-auto">
-      <button type="button" id="nav-pill-home" onclick="setNasaNavTab('home')" class="bhu-pill-btn active">HOME</button>
-      <button type="button" id="nav-pill-universe" onclick="setNasaNavTab('universe')" class="bhu-pill-btn">UNIVERSE
-        &amp; TIME</button>
-      <button type="button" id="nav-pill-agri" onclick="setNasaNavTab('agri')" class="bhu-pill-btn">AGRICULTURE</button>
-      <button type="button" id="nav-pill-worker" onclick="setNasaNavTab('worker')" class="bhu-pill-btn">HUMAN
-        HEALTH</button>
-      <button type="button" id="nav-pill-ai" onclick="setNasaNavTab('ai')" class="bhu-pill-btn">BHU LOKA AI</button>
-    </div>
+    <!-- CENTER SPACER (Pills moved to VS Code Left Activity Rail) -->
+    <div class="flex-1"></div>
 
     <!-- RIGHT: SEARCH, CONTROLS, NOTIFICATIONS & PROFILE -->
     <div class="flex items-center gap-2 shrink-0">
@@ -520,6 +512,63 @@
 
   <!-- MAIN 3-COLUMN WORKSTATION FLEX CONTAINER (VIEWPORT-LOCKED ON DESKTOP, RESIZABLE & THEATER EXPANDABLE) -->
   <main id="workstation-main" class="flex flex-col lg:flex-row gap-2 lg:gap-0 flex-1 min-h-0 lg:overflow-hidden">
+    <!-- VS CODE STYLE ACTIVITY BAR (FAR LEFT) -->
+    <nav id="vscode-activity-bar" class="w-12 bg-[#05080e] border-r border-slate-800/80 flex flex-col items-center py-2.5 justify-between shrink-0 z-30 select-none">
+      <div class="flex flex-col items-center gap-2.5 w-full">
+        <!-- Sovereign Logo -->
+        <a href="index.html" title="BHU LOKA Home" class="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-600 to-emerald-500 flex items-center justify-center text-white font-black text-xs shadow-md mb-2 hover:scale-105 transition">
+          भू
+        </a>
+        
+        <!-- 1. Home / 3D World -->
+        <button type="button" id="act-btn-home" onclick="setNasaNavTab('home')" title="3D Earth & Globe System"
+          class="w-8 h-8 rounded-lg flex items-center justify-center text-cyan-400 bg-slate-800/80 border-l-2 border-cyan-400 transition relative">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        </button>
+
+        <!-- 2. Agriculture / Kisan -->
+        <button type="button" id="act-btn-agri" onclick="setNasaNavTab('agri')" title="Precision Agriculture & Kisan Cadastral"
+          class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-emerald-400 hover:bg-slate-800/60 transition relative">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        </button>
+
+        <!-- 3. SAR Flood Deluge (Dancing with SARs) -->
+        <button type="button" id="act-btn-flood" onclick="window.location.href='index.html?tab=flood'" title="Dancing with the SARs (Sentinel-1 Flood Deluge)"
+          class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-cyan-300 hover:bg-slate-800/60 transition relative">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </button>
+
+        <!-- 4. Health & Thermal Stress -->
+        <button type="button" id="act-btn-worker" onclick="setNasaNavTab('worker')" title="Public Health & Heat Stress (WBGT)"
+          class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-rose-400 hover:bg-slate-800/60 transition relative">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        </button>
+
+        <!-- 5. Universe & Time -->
+        <button type="button" id="act-btn-universe" onclick="setNasaNavTab('universe')" title="Solar System & Orbit Ephemeris"
+          class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-amber-400 hover:bg-slate-800/60 transition relative">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        </button>
+
+        <!-- 6. BHU LOKA AI Terminal -->
+        <button type="button" id="act-btn-ai" onclick="setNasaNavTab('ai')" title="BHU LOKA AI Decision Terminal"
+          class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:bg-slate-800/60 transition relative">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+        </button>
+      </div>
+
+      <!-- Bottom: 2D Map & Settings -->
+      <div class="flex flex-col items-center gap-2.5 w-full">
+        <a href="bhu_loka_leafmap_interactive.html" title="Open 2D Leaflet Map"
+          class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-sky-300 hover:bg-slate-800/60 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+        </a>
+        <button type="button" onclick="openSystemModal('api')" title="System Status"
+          class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </button>
+      </div>
+    </nav>
 
     <!-- LEFT RAIL: DOCKED SCIENTIFIC EXPLORER (SCENE & HYDROMET | INDIA INTEL A-F) -->
     <aside id="left-rail" class="order-2 lg:order-1 flex flex-col gap-1.5 min-h-0 lg:h-full lg:pr-0.5 shrink-0">
@@ -1452,7 +1501,7 @@
 
           <!-- NASA FLOATING AI PROMPT BAR (Tell me what you want to know...) -->
           <div id="bhu-floating-ai-bar"
-            class="absolute bottom-3 inset-x-0 mx-auto max-w-md z-20 px-3 pointer-events-auto">
+            class="hidden absolute bottom-3 inset-x-0 mx-auto max-w-md z-20 px-3 pointer-events-auto">
             <div
               class="bhu-nasa-glass px-3.5 py-1.5 rounded-full flex items-center gap-2 border border-sky-500/40 shadow-[0_8px_32px_rgba(0,0,0,0.8)]">
               <span class="text-sky-400 text-sm animate-pulse">✦</span>
@@ -7286,6 +7335,15 @@
       pills.forEach(p => {
         const btn = document.getElementById(`nav-pill-${p}`);
         if (btn) btn.classList.toggle('active', p === tab);
+        
+        const actBtn = document.getElementById(`act-btn-${p}`);
+        if (actBtn) {
+          if (p === tab) {
+            actBtn.className = "w-8 h-8 rounded-lg flex items-center justify-center text-cyan-400 bg-slate-800/80 border-l-2 border-cyan-400 transition relative shadow-[0_0_10px_rgba(56,189,248,0.3)]";
+          } else {
+            actBtn.className = "w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:bg-slate-800/60 transition relative";
+          }
+        }
       });
 
       // Close panels when navigating away from them
