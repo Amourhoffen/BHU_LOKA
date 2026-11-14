@@ -1296,11 +1296,15 @@
             </div>
           </div>
 
-          <!-- HEALTRIX-STYLE FLOATING ANATOMICAL LAYER SWITCHER DOCK (BOTTOM OF 3D VIEWPORT) -->
-          <div id="human-layer-switcher" class="hidden absolute bottom-3 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1.5 p-1 rounded-full bg-slate-950/85 backdrop-blur-xl border border-cyan-500/30 shadow-[0_8px_32px_rgba(0,0,0,0.85)] select-none">
+          <!-- HUMAN ATLAS & HEALTRIX FLOATING ANATOMICAL LAYER SWITCHER DOCK (BOTTOM OF 3D VIEWPORT) -->
+          <div id="human-layer-switcher" class="hidden absolute bottom-3 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1.5 p-1 rounded-full bg-slate-950/90 backdrop-blur-xl border border-cyan-500/30 shadow-[0_8px_32px_rgba(0,0,0,0.85)] select-none">
             <button type="button" id="layer-btn-all" onclick="setHumanAnatomyLayer('all')"
               class="px-3 py-1 rounded-full text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.4)] transition">
-              ✨ Full Hologram
+              ✨ Full Atlas
+            </button>
+            <button type="button" id="layer-btn-skeleton" onclick="setHumanAnatomyLayer('skeleton')"
+              class="px-2.5 py-1 rounded-full text-[10px] mono text-slate-400 hover:text-slate-200 bg-slate-900/60 border border-slate-800 transition">
+              🦴 Skeletal
             </button>
             <button type="button" id="layer-btn-respiratory" onclick="setHumanAnatomyLayer('respiratory')"
               class="px-2.5 py-1 rounded-full text-[10px] mono text-slate-400 hover:text-slate-200 bg-slate-900/60 border border-slate-800 transition">
@@ -1308,20 +1312,61 @@
             </button>
             <button type="button" id="layer-btn-cardiac" onclick="setHumanAnatomyLayer('cardiac')"
               class="px-2.5 py-1 rounded-full text-[10px] mono text-slate-400 hover:text-slate-200 bg-slate-900/60 border border-slate-800 transition">
-              ❤️ Cardiac
+              ❤️ Circulatory
             </button>
             <button type="button" id="layer-btn-neural" onclick="setHumanAnatomyLayer('neural')"
               class="px-2.5 py-1 rounded-full text-[10px] mono text-slate-400 hover:text-slate-200 bg-slate-900/60 border border-slate-800 transition">
-              🧠 Neural
+              🧠 Nervous
             </button>
             <button type="button" id="layer-btn-organs" onclick="setHumanAnatomyLayer('organs')"
               class="px-2.5 py-1 rounded-full text-[10px] mono text-slate-400 hover:text-slate-200 bg-slate-900/60 border border-slate-800 transition">
-              🧬 Organs / Gut
+              🧬 Digestive / GI
             </button>
-            <button type="button" id="layer-btn-skeleton" onclick="setHumanAnatomyLayer('skeleton')"
-              class="px-2.5 py-1 rounded-full text-[10px] mono text-slate-400 hover:text-slate-200 bg-slate-900/60 border border-slate-800 transition">
-              🦴 Skeleton
+            <button type="button" id="layer-btn-exploded" onclick="toggleHumanExplodedView()"
+              class="px-2.5 py-1 rounded-full text-[10px] mono text-amber-400 hover:text-amber-200 bg-amber-950/60 border border-amber-800/80 transition">
+              💥 Exploded View
             </button>
+          </div>
+
+          <!-- HUMAN ATLAS INTERACTIVE ORGAN INSPECTION HUD (OPENS ON 3D ORGAN CLICK) -->
+          <div id="human-organ-inspect-hud" class="hidden absolute top-3 right-3 z-40 w-80 bhu-nasa-glass p-3 flex flex-col gap-2 rounded-xl border border-cyan-500/40 shadow-[0_12px_36px_rgba(0,0,0,0.85)] select-none">
+            <div class="flex items-start justify-between border-b border-slate-800 pb-1.5">
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                  <span id="organ-inspect-system" class="text-[9px] mono text-cyan-300 font-bold uppercase">System</span>
+                </div>
+                <div id="organ-inspect-name" class="text-xs font-black text-slate-100 mt-0.5">Organ Name</div>
+                <div id="organ-inspect-latin" class="text-[9px] italic text-slate-400">Latin Nomina</div>
+              </div>
+              <button type="button" onclick="document.getElementById('human-organ-inspect-hud').classList.add('hidden')"
+                class="text-slate-400 hover:text-slate-100 p-1 rounded hover:bg-slate-800 transition">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              </button>
+            </div>
+
+            <div class="bg-[#02050b]/80 p-2 rounded border border-slate-800 text-[10px] space-y-1">
+              <div class="text-slate-400 font-semibold flex items-center justify-between">
+                <span>Climate &amp; Environmental Risk:</span>
+                <span class="text-rose-400 font-bold">SAR / MODIS Coupled</span>
+              </div>
+              <div id="organ-inspect-risk" class="text-slate-200 text-[9.5px] leading-relaxed">Risk summary</div>
+            </div>
+
+            <div class="space-y-1 text-[9.5px]">
+              <div class="flex justify-between">
+                <span class="text-slate-400">Clinical Status:</span>
+                <span id="organ-inspect-status" class="text-emerald-400 font-bold">Normal</span>
+              </div>
+              <div class="bg-cyan-950/40 p-1.5 rounded border border-cyan-800/40 text-[9px] text-cyan-200 leading-relaxed">
+                <b>Action Protocol:</b> <span id="organ-inspect-rx">Prescription</span>
+              </div>
+            </div>
+
+            <div class="pt-1 border-t border-slate-800 flex items-center justify-between text-[8px] mono text-slate-400">
+              <span id="organ-inspect-ref">BodyParts3D v4.0 / Human Atlas Standard</span>
+              <span class="text-cyan-400 font-bold">FMA Compliant</span>
+            </div>
           </div>
 
 
@@ -6349,6 +6394,23 @@
         hologram: [],
         solar: solarClickablePins
       };
+      // Human Anatomy 3D Interactive Inspection (BodyParts3D & Human Atlas Standard)
+      if (activeMode === 'human' && typeof human3dGroup !== 'undefined') {
+        const humanHits = raycaster.intersectObjects(human3dGroup.children, true);
+        if (humanHits.length > 0) {
+          for (let hit of humanHits) {
+            let cur = hit.object;
+            while (cur && cur !== human3dGroup) {
+              if (cur.userData && cur.userData.organInfo) {
+                if (typeof inspectHumanOrgan === 'function') inspectHumanOrgan(cur.userData.organInfo);
+                return;
+              }
+              cur = cur.parent;
+            }
+          }
+        }
+      }
+
       const pinHits = raycaster.intersectObjects(pinMap[activeMode] || [], true);
       if (pinHits.length > 0) {
         const obj = pinHits[0].object;
@@ -6585,6 +6647,33 @@
         else if (activeMode === 'hologram' && !holoRotPaused) hologramGroup.rotation.y += 0.0016;
         else if (activeMode === 'india') indiaGroup.rotation.y = Math.sin(Date.now() * 0.0004) * 0.18;
         if (activeMode === 'human' && typeof human3dGroup !== 'undefined') {
+        // Exploded View Smooth Interpolation (Human Atlas Standard)
+        if (humanLungsMeshL && humanLungsMeshR) {
+          const targetLx = isHumanExplodedView ? -1.35 : -0.38;
+          const targetRx = isHumanExplodedView ? 1.35 : 0.38;
+          const targetLz = isHumanExplodedView ? 0.75 : 0.08;
+          humanLungsMeshL.position.x = THREE.MathUtils.lerp(humanLungsMeshL.position.x, targetLx, 0.08);
+          humanLungsMeshR.position.x = THREE.MathUtils.lerp(humanLungsMeshR.position.x, targetRx, 0.08);
+          humanLungsMeshL.position.z = THREE.MathUtils.lerp(humanLungsMeshL.position.z, targetLz, 0.08);
+          humanLungsMeshR.position.z = THREE.MathUtils.lerp(humanLungsMeshR.position.z, targetLz, 0.08);
+        }
+        if (humanHeartMesh) {
+          const targetHz = isHumanExplodedView ? 1.45 : 0.24;
+          humanHeartMesh.position.z = THREE.MathUtils.lerp(humanHeartMesh.position.z, targetHz, 0.08);
+        }
+        if (humanBrainMesh) {
+          const targetBy = isHumanExplodedView ? 4.75 : 3.68;
+          humanBrainMesh.position.y = THREE.MathUtils.lerp(humanBrainMesh.position.y, targetBy, 0.08);
+        }
+        if (humanCoreMesh) {
+          const targetCz = isHumanExplodedView ? 1.25 : 0.14;
+          humanCoreMesh.position.z = THREE.MathUtils.lerp(humanCoreMesh.position.z, targetCz, 0.08);
+        }
+        if (humanKidneysMesh) {
+          const targetKz = isHumanExplodedView ? -1.15 : 0;
+          humanKidneysMesh.position.z = THREE.MathUtils.lerp(humanKidneysMesh.position.z, targetKz, 0.08);
+        }
+
         if (!isDragging) human3dGroup.rotation.y += 0.0022; // smooth cyber rotation
         const nowMs = Date.now();
         // Dual-Phase Heartbeat (lub-dub 72 bpm sinus rhythm)
@@ -6637,6 +6726,33 @@
     let humanShroudMesh = null;
     let humanAnomalyGroup = null;
     let humanActiveLayer = 'all';
+
+    // Human Atlas Exploded View State (ashemag/human-atlas spatial inventory standard)
+    let isHumanExplodedView = false;
+    window.toggleHumanExplodedView = function() {
+      isHumanExplodedView = !isHumanExplodedView;
+      const btn = document.getElementById('layer-btn-exploded');
+      if (btn) {
+        btn.className = isHumanExplodedView
+          ? "px-3 py-1 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.5)] transition"
+          : "px-2.5 py-1 rounded-full text-[10px] mono text-slate-400 hover:text-slate-200 bg-slate-900/60 border border-slate-800 transition";
+        btn.textContent = isHumanExplodedView ? "💥 Exploded (Active)" : "💥 Exploded View";
+      }
+    };
+
+    window.inspectHumanOrgan = function(info) {
+      if (!info) return;
+      const hud = document.getElementById('human-organ-inspect-hud');
+      if (!hud) return;
+      hud.classList.remove('hidden');
+      document.getElementById('organ-inspect-name').textContent = info.name;
+      document.getElementById('organ-inspect-system').textContent = info.system;
+      document.getElementById('organ-inspect-latin').textContent = info.latin;
+      document.getElementById('organ-inspect-risk').textContent = info.climateRisk;
+      document.getElementById('organ-inspect-status').textContent = info.status;
+      document.getElementById('organ-inspect-rx').textContent = info.rx;
+      document.getElementById('organ-inspect-ref').textContent = info.ref;
+    };
 
     function build3DHumanAnatomyCenterStage() {
       if (!human3dGroup) return;
@@ -6779,6 +6895,15 @@
       scapulaGeomR.computeVertexNormals();
       const scapulaMeshR = new THREE.Mesh(scapulaGeomR, solidBoneMat);
       humanRibcageGroup.add(scapulaMeshL, scapulaMeshR);
+      humanRibcageGroup.userData.organInfo = {
+        name: "Thoracic Ribcage (10 Rib Pairs T1-T10 & Sternum)",
+        system: "Skeletal System (FMA:9938)",
+        latin: "Costae verae et spuriae",
+        climateRisk: "Physical Rescue Strain & Relief Material Logistics",
+        status: "Bone Density & Thoracic Volume Intact",
+        rx: "Calcium + Vitamin D3 · Ergonomic Support for Disaster Workers",
+        ref: "BodyParts3D v4.0 / Human Atlas Standard"
+      };
       human3dGroup.add(humanRibcageGroup);
 
       // 4. HEALTRIX SIGNATURE ANOMALY HEATMAP (UPPER SCAPULAR & CLAVICULAR ZONE)
@@ -6869,6 +6994,17 @@
       lungGeomR.scale(0.74, 1.38, 0.86);
       humanLungsMeshR = new THREE.Mesh(lungGeomR, lungsMat);
       humanLungsMeshR.position.set(0.38, 1.88, 0.08);
+      const lungsInfo = {
+        name: "Pulmonary Lungs (Pulmo Dexter & Sinister)",
+        system: "Respiratory System (FMA:7195)",
+        latin: "Organa respiratoria",
+        climateRisk: "Severe PM2.5 (142 μg/m³) Resuspension & Winter Smog Inversion",
+        status: "Moderate-High Alveolar Stress · FEV1 92%",
+        rx: "N95 Respirator Mask · N-Acetylcysteine (NAC) 600mg · Tulsi-Amla Decoction",
+        ref: "BodyParts3D v4.0 / Human Atlas Standard"
+      };
+      humanLungsMeshL.userData.organInfo = lungsInfo;
+      humanLungsMeshR.userData.organInfo = lungsInfo;
       human3dGroup.add(humanLungsMeshL, humanLungsMeshR);
 
       // Trachea Bronchial Tree
@@ -6895,6 +7031,15 @@
       const aortaMesh = new THREE.Mesh(aortaGeom, heartMat);
       aortaMesh.position.set(-0.15, 2.18, 0.22);
       humanHeartMesh.add(aortaMesh);
+      humanHeartMesh.userData.organInfo = {
+        name: "Cardiovascular Heart & Aorta (Cor)",
+        system: "Circulatory System (FMA:7088)",
+        latin: "Myocardium & Arcus aortae",
+        climateRisk: "MODIS LST 41.8°C Heat Stress & WBGT Thermal Dome",
+        status: "Sinus Rhythm 72 bpm (Normal Sinus)",
+        rx: "Electrolyte Minerals (Potassium/Magnesium) · Tender Coconut Water",
+        ref: "BodyParts3D v4.0 / Human Atlas Standard"
+      };
       human3dGroup.add(humanHeartMesh);
 
       // C. Cranial Brain (Neural Cortex + Synaptic Core inside Cranium)
@@ -6909,6 +7054,15 @@
       brainGeom.scale(0.96, 0.84, 1.16);
       humanBrainMesh = new THREE.Mesh(brainGeom, brainMat);
       humanBrainMesh.position.set(0, 3.68, 0.06);
+      humanBrainMesh.userData.organInfo = {
+        name: "Cerebral Cortex & Brain (Encephalon)",
+        system: "Central Nervous System (FMA:50801)",
+        latin: "Cerebrum & Truncus encephalicus",
+        climateRisk: "Thermal Delirium & Dehydration Stroke Warning",
+        status: "Synaptic Tone Stable · Low Edema Risk",
+        rx: "Frequent Shaded Cooling Breaks · B-Complex & Omega-3 Lipids",
+        ref: "BodyParts3D v4.0 / Human Atlas Standard"
+      };
       human3dGroup.add(humanBrainMesh);
 
       // D. Kidneys (Dual Retroperitoneal Organs)
@@ -6926,6 +7080,17 @@
       kR.position.set(0.36, 1.05, -0.16);
       humanKidneysMesh = new THREE.Group();
       humanKidneysMesh.add(kL, kR);
+      humanKidneysMesh.userData.organInfo = {
+        name: "Retroperitoneal Kidneys (Renes)",
+        system: "Urinary / Excretory System (FMA:7203)",
+        latin: "Organa urinaria",
+        climateRisk: "Acute Dehydration & Heatwave Metabolic Filtration Load",
+        status: "Filtration Optimal · eGFR Normal",
+        rx: "2.5L+ Pure Safe Hydration · Electrolyte Balance · Low Sodium in Heat",
+        ref: "BodyParts3D v4.0 / Human Atlas Standard"
+      };
+      kL.userData.organInfo = humanKidneysMesh.userData.organInfo;
+      kR.userData.organInfo = humanKidneysMesh.userData.organInfo;
       human3dGroup.add(humanKidneysMesh);
 
       // E. Visceral Core & GI Tract (Metabolic Runoff Analysis)
@@ -6941,6 +7106,15 @@
       coreGeom.scale(1.15, 0.85, 0.95);
       humanCoreMesh = new THREE.Mesh(coreGeom, coreMat);
       humanCoreMesh.position.set(0, 0.92, 0.14);
+      humanCoreMesh.userData.organInfo = {
+        name: "Gastrointestinal Tract & Visceral Core (Intestinum)",
+        system: "Digestive System (FMA:71132)",
+        latin: "Systema digestorium & Hepar",
+        climateRisk: "Sentinel-1 SAR Flood Deluge S4 Sinks (<46m) Coliform Runoff",
+        status: "Pathogen Barrier Active · High Surveillance",
+        rx: "Boil Drinking Water (10+ min) · Halazone Chlorine Tabs · Zinc + Probiotics",
+        ref: "BodyParts3D v4.0 / Human Atlas Standard"
+      };
       human3dGroup.add(humanCoreMesh);
 
       // 8. OSCILLATING LASER SCANNING RING & POINT-CLOUD PLEXUS
