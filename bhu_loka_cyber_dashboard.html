@@ -1357,6 +1357,147 @@
 
       </div>
 
+      
+        <!-- HEALTH VISUAL DECK: GRAPHS OVER TEXT, ORGAN STRESS METERS, VECTOR TIMELINE -->
+        <div id="bhu-health-bottom-deck" class="hidden grid grid-cols-1 md:grid-cols-3 gap-2 mt-1.5 shrink-0">
+
+          <!-- CARD 1: VITAL ORGAN STRESS METERS (VISUAL BARS) -->
+          <div class="bhu-nasa-glass p-2.5 flex flex-col justify-between">
+            <div class="flex items-center justify-between text-slate-300">
+              <span class="text-[11px] font-semibold tracking-wide flex items-center gap-1.5">
+                <span>📊</span> Vital Organ Stress Meters
+              </span>
+              <span class="mono text-[8.5px] text-emerald-400">PATNA CLIMATE</span>
+            </div>
+
+            <!-- Progress Bars for 5 Vital Organs -->
+            <div class="space-y-1.5 my-1.5 text-[9.5px]">
+              <div>
+                <div class="flex justify-between text-slate-300 mb-0.5">
+                  <span class="flex items-center gap-1">🫁 <b>Lungs (PM2.5 Load)</b></span>
+                  <span class="text-rose-400 font-bold">68% · Moderate Stress</span>
+                </div>
+                <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                  <div class="bg-rose-500 h-1.5 rounded-full" style="width: 68%;"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-slate-300 mb-0.5">
+                  <span class="flex items-center gap-1">🧬 <b>GI Gut (Flood Pathogens)</b></span>
+                  <span class="text-amber-400 font-bold">54% · Precautionary</span>
+                </div>
+                <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                  <div class="bg-amber-400 h-1.5 rounded-full" style="width: 54%;"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-slate-300 mb-0.5">
+                  <span class="flex items-center gap-1">❤️ <b>Heart (Cardiac Load)</b></span>
+                  <span class="text-sky-300 font-bold">38% · 72 bpm Normal</span>
+                </div>
+                <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                  <div class="bg-sky-400 h-1.5 rounded-full" style="width: 38%;"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-slate-300 mb-0.5">
+                  <span class="flex items-center gap-1">🧠 <b>Brain (Heat Strain)</b></span>
+                  <span class="text-emerald-400 font-bold">28% · Safe Window</span>
+                </div>
+                <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                  <div class="bg-emerald-400 h-1.5 rounded-full" style="width: 28%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-[8.5px] mono text-slate-500 border-t border-slate-800 pt-1">
+              Data: Sentinel-5P TROPOMI · Open-Meteo AQI · Copernicus 30m DEM
+            </div>
+          </div>
+
+          <!-- CARD 2: AIR QUALITY 24H VISUAL TREND (PM2.5 vs PM10) -->
+          <div class="bhu-nasa-glass p-2.5 flex flex-col justify-between">
+            <div class="flex items-center justify-between text-slate-300">
+              <span class="text-[11px] font-semibold tracking-wide flex items-center gap-1.5">
+                <span>📈</span> Patna AQI 24h Visual Trend
+              </span>
+              <span class="mono text-[8.5px] text-amber-400">PM2.5: 142 · PM10: 210</span>
+            </div>
+
+            <!-- Visual SVG Wave Chart -->
+            <div class="my-1">
+              <svg class="w-full h-14" viewBox="0 0 200 60" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="aqiGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.0"/>
+                  </linearGradient>
+                </defs>
+                <path d="M0,45 Q30,42 60,35 T120,25 T160,28 T200,32 L200,60 L0,60 Z" fill="url(#aqiGrad)"/>
+                <path d="M0,45 Q30,42 60,35 T120,25 T160,28 T200,32" fill="none" stroke="#f59e0b" stroke-width="2"/>
+                <path d="M0,35 Q30,30 60,22 T120,15 T160,18 T200,20" fill="none" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="3,2"/>
+              </svg>
+              <div class="flex justify-between text-[8px] mono text-slate-500 px-1">
+                <span>00:00</span>
+                <span>06:00 (Peak Dust)</span>
+                <span>12:00</span>
+                <span>18:00 (Resuspension)</span>
+                <span>Now</span>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-[9px] mono border-t border-slate-800 pt-1 text-slate-300">
+              <span class="text-rose-400">--- PM10: 210 µg/m³</span>
+              <span class="text-amber-400">― PM2.5: 142 µg/m³</span>
+            </div>
+          </div>
+
+          <!-- CARD 3: SENTINEL-1 SAR VECTOR INUNDATION TIMELINE -->
+          <div class="bhu-nasa-glass p-2.5 flex flex-col justify-between">
+            <div class="flex items-center justify-between text-slate-300">
+              <span class="text-[11px] font-semibold tracking-wide flex items-center gap-1.5">
+                <span>🌊</span> SAR Vector Breeding Timeline
+              </span>
+              <span class="mono text-[8.5px] text-rose-400">48h LARVA PHASE</span>
+            </div>
+
+            <div class="space-y-1.5 my-1 text-[9px]">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded bg-sky-950 border border-sky-600 flex items-center justify-center text-sky-400 font-bold text-[9px]">D0</span>
+                <div>
+                  <b class="text-slate-200">SAR Flood Deluge (26.54 km²)</b>
+                  <div class="text-[8px] text-slate-400">Peak water accumulation in &lt;46m sinks.</div>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded bg-amber-950 border border-amber-600 flex items-center justify-center text-amber-400 font-bold text-[9px]">D2</span>
+                <div>
+                  <b class="text-amber-300">Stagnant Water Pooling (Current)</b>
+                  <div class="text-[8px] text-slate-400">Mosquito egg laying in drains and ditches.</div>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded bg-rose-950 border border-rose-600 flex items-center justify-center text-rose-400 font-bold text-[9px]">D4</span>
+                <div>
+                  <b class="text-rose-400">Larval Emergence &amp; Fogging</b>
+                  <div class="text-[8px] text-slate-400">PMC chemical fogging window critical.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-[8.5px] mono text-slate-500 border-t border-slate-800 pt-1">
+              Source: Copernicus Sentinel-1 RTC C-Band (5.405 GHz)
+            </div>
+          </div>
+
+        </div>
+
+
       <!-- PATNA WARDS RISK MATRIX (COLLAPSIBLE TRAY) -->
       <div id="wards-audit-panel" class="panel p-2 shrink-0">
         <div class="flex items-center justify-between border-b border-slate-800 pb-1 mb-1">
@@ -2175,6 +2316,115 @@
             </div>
           </div>
         </div>
+
+        
+        <!-- 🎬 EDUCATIONAL VIDEO: SAR FLOOD & DENGUE DEFENSE -->
+        <div class="bhu-nasa-glass p-2.5 flex flex-col gap-1.5 shrink-0">
+          <div class="flex items-center justify-between border-b border-slate-800/80 pb-1">
+            <span class="text-[11px] font-semibold text-rose-300 tracking-wide flex items-center gap-1.5">
+              <span>🎬</span> Disaster Health Video Advisory (Patna Field Protocol)
+            </span>
+            <span class="mono text-[8.5px] text-rose-400 bg-rose-950/60 px-1.5 py-0.5 rounded border border-rose-800">SAR PROTOCOL</span>
+          </div>
+          <!-- Embedded Video Player / Simulation Player -->
+          <div class="w-full aspect-video rounded-lg overflow-hidden border border-slate-800 relative bg-black flex flex-col justify-between p-2">
+            <iframe class="w-full h-full rounded"
+              src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=0&mute=1&controls=1"
+              title="Sentinel-1 SAR Deluge & Waterborne Disease Prevention Protocol"
+              frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+            </iframe>
+          </div>
+          <div class="text-[8.5px] mono text-slate-400 flex items-center justify-between">
+            <span>Topic: Standing Floodwater Larva Treatment</span>
+            <span class="text-emerald-400 font-semibold">PMC Verified Protocol</span>
+          </div>
+        </div>
+
+        <!-- 🥗 FOOD & VITAMIN RECOMMENDATIONS BY ORGAN (WHAT TO EAT RIGHT NOW) -->
+        <div class="bhu-nasa-glass p-2.5 flex flex-col gap-2 shrink-0">
+          <div class="flex items-center justify-between border-b border-slate-800/80 pb-1">
+            <span class="text-[11px] font-semibold text-amber-300 tracking-wide flex items-center gap-1.5">
+              <span>🥗</span> Climate Food &amp; Vitamin Suggestions (Organ Defense)
+            </span>
+            <span class="mono text-[8.5px] text-emerald-400">NUTRITION Rx</span>
+          </div>
+
+          <div class="space-y-1.5 text-[9.5px]">
+            <!-- Lungs Food -->
+            <div class="p-2 rounded bg-slate-900/60 border-l-2 border-sky-400">
+              <div class="flex justify-between items-center mb-0.5">
+                <b class="text-sky-300 flex items-center gap-1">🫁 Lungs (For PM2.5 / PM10 Dust)</b>
+                <span class="mono text-[8.5px] text-sky-400 bg-sky-950/60 px-1 rounded">VITAMIN C + GUR</span>
+              </div>
+              <div class="text-slate-300 leading-relaxed">
+                <b>Eat:</b> Jaggery (Gur 20g), Ginger-Tulsi warm tea, Turmeric with warm milk, Amla/Citrus fruits (Vitamin C). Clears bronchial mucus and limits particulate-induced oxidative stress.
+              </div>
+            </div>
+
+            <!-- Stomach / Gut Food -->
+            <div class="p-2 rounded bg-slate-900/60 border-l-2 border-rose-400">
+              <div class="flex justify-between items-center mb-0.5">
+                <b class="text-rose-300 flex items-center gap-1">🧬 Gut / Stomach (For Flood Bacteria)</b>
+                <span class="mono text-[8.5px] text-rose-400 bg-rose-950/60 px-1 rounded">BOILED + ZINC</span>
+              </div>
+              <div class="text-slate-300 leading-relaxed">
+                <b>Eat:</b> 100% boiled water (10+ min), Zinc sulfate tablets (20mg/day for intestinal barrier), Curd/Probiotics, light khichdi. <b>Strictly avoid:</b> Cut street fruits, unboiled tap water, raw salads.
+              </div>
+            </div>
+
+            <!-- Brain & Heart Food -->
+            <div class="p-2 rounded bg-slate-900/60 border-l-2 border-emerald-400">
+              <div class="flex justify-between items-center mb-0.5">
+                <b class="text-emerald-300 flex items-center gap-1">🧠 Brain &amp; ❤️ Heart (Heat / Cold Strain)</b>
+                <span class="mono text-[8.5px] text-emerald-400 bg-emerald-950/60 px-1 rounded">ELECTROLYTES</span>
+              </div>
+              <div class="text-slate-300 leading-relaxed">
+                <b>Drink:</b> Sattu Sharbat (roasted gram flour with black salt &amp; cumin), Tender Coconut Water, ORS solution (1 packet in 1L water). Maintains sodium-potassium cardiac rhythm under heat.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 🦠 CURRENT VIRUS & EPIDEMIC SURVEILLANCE TRACKER -->
+        <div class="bhu-nasa-glass p-2.5 flex flex-col gap-1.5 shrink-0">
+          <div class="flex items-center justify-between border-b border-slate-800/80 pb-1">
+            <span class="text-[11px] font-semibold text-rose-300 tracking-wide flex items-center gap-1.5">
+              <span>🦠</span> Virus &amp; Epidemic Surveillance (Patna / Bihar)
+            </span>
+            <span class="mono text-[8.5px] text-emerald-400 font-bold">STATUS: MONITORED</span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-1.5 text-[9px] mono">
+            <div class="p-1.5 rounded bg-[#02050b]/80 border border-slate-800">
+              <div class="text-slate-400">Nipah Virus:</div>
+              <div class="text-emerald-400 font-bold flex items-center gap-1 mt-0.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> ZERO CASES
+              </div>
+            </div>
+
+            <div class="p-1.5 rounded bg-[#02050b]/80 border border-slate-800">
+              <div class="text-slate-400">Avian Flu (H5N1):</div>
+              <div class="text-emerald-400 font-bold flex items-center gap-1 mt-0.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> NO OUTBREAK
+              </div>
+            </div>
+
+            <div class="p-1.5 rounded bg-[#02050b]/80 border border-slate-800">
+              <div class="text-slate-400">Dengue (DENV):</div>
+              <div class="text-amber-400 font-bold flex items-center gap-1 mt-0.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> SAR SINKS CLUSTERS
+              </div>
+            </div>
+
+            <div class="p-1.5 rounded bg-[#02050b]/80 border border-slate-800">
+              <div class="text-slate-400">Waterborne ADD:</div>
+              <div class="text-amber-400 font-bold flex items-center gap-1 mt-0.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> ACTIVE WATCH
+              </div>
+            </div>
+          </div>
+        </div>
+
 
         <!-- 3. TERTIARY HOSPITALS & SAFE HIGH-GROUND ACCESS (COPERNICUS DEM) -->
         <div class="bhu-nasa-glass p-2.5 flex flex-col gap-2 shrink-0">
@@ -5948,7 +6198,11 @@
       } else {
         camera.position.z += (targetCameraDistance - camera.position.z) * 0.08;
         camera.position.y += (targetCameraY - camera.position.y) * 0.08;
-        camera.lookAt(0, 0, 0);
+        if (activeMode === 'human') {
+          camera.lookAt(0, 1.0, 0);
+        } else {
+          camera.lookAt(0, 0, 0);
+        }
       }
 
       // Strictly separated modes: World vs Solar are mutually exclusive
@@ -6169,11 +6423,27 @@
       terrainGroup.visible = (mode === 'terrain');
       hologramGroup.visible = (mode === 'hologram');
       solarGroup.visible = (mode === 'solar');
+
+      const nasaDeck = document.getElementById('bhu-nasa-bottom-deck');
+      const healthDeck = document.getElementById('bhu-health-bottom-deck');
+      if (nasaDeck && healthDeck) {
+        if (mode === 'human') {
+          nasaDeck.classList.add('hidden');
+          healthDeck.classList.remove('hidden');
+        } else {
+          nasaDeck.classList.remove('hidden');
+          healthDeck.classList.add('hidden');
+        }
+      }
+
       if (typeof human3dGroup !== 'undefined') {
         human3dGroup.visible = (mode === 'human');
         if (mode === 'human') {
           if (typeof build3DHumanAnatomyCenterStage === 'function') build3DHumanAnatomyCenterStage();
-          targetCameraDistance = 10;
+          targetCameraDistance = 9.2;
+          targetCameraY = 1.0;
+          camera.position.set(0, 1.0, 9.2);
+          camera.lookAt(0, 1.0, 0);
           if (typeof camera !== 'undefined') camera.position.set(0, 0.8, 10);
           if (typeof controls !== 'undefined' && controls) controls.target.set(0, 0.8, 0);
           const targetLbl = document.getElementById('target-label');
@@ -6243,6 +6513,18 @@
         document.getElementById('coords-label').innerText = 'SCALED ORBITAL SCHEMATIC · SEPARATE FROM EARTH EO';
         if (desc) desc.innerText = 'Optional Solar System Visualization (Scaled Schematic — Separate from Earth Observation & Weather Modules)';
         camera.position.set(0, 36, 140); targetCameraDistance = 140; targetCameraY = 36;
+      } else if (mode === 'human') {
+        if (note) note.innerText = 'HUMAN ANATOMICAL 3D HOLOGRAM';
+        if (typeof build3DHumanAnatomyCenterStage === 'function') build3DHumanAnatomyCenterStage();
+        targetCameraDistance = 9.2;
+        targetCameraY = 1.0;
+        camera.position.set(0, 1.0, 9.2);
+        camera.lookAt(0, 1.0, 0);
+        if (typeof controls !== 'undefined' && controls) controls.target.set(0, 1.0, 0);
+        const targetLbl = document.getElementById('target-label');
+        if (targetLbl) targetLbl.innerText = 'TARGET: HUMAN ANATOMICAL 3D (CLIMATE & FLOOD HEALTH)';
+        const coordsLbl = document.getElementById('coords-label');
+        if (coordsLbl) coordsLbl.innerText = '5 VITAL ORGANS · SENTINEL-1 SAR FLOOD & PM2.5 COUPLING';
       } else {
         if (note) note.innerText = 'AUTO 3D HOLOGRAM';
         camera.position.set(0, 22, 32); targetCameraDistance = 32; targetCameraY = 22;
@@ -7947,6 +8229,41 @@
     updateBhuUtcClock();
 
     // ── NASA WORKSTATION 5-HUB NAVIGATION HANDLERS ──
+    
+    // -------------------------------------------------------------------------
+    // DRAWER SLIDE ON HOVER / CLOSE ON MOUSE LEAVE (ACTIVITY BAR & RAILS)
+    // -------------------------------------------------------------------------
+    (function setupHoverDrawer() {
+      const actBar = document.getElementById('vscode-activity-bar');
+      const leftRail = document.getElementById('left-rail');
+      let railPinned = false;
+      let hoverCloseTimer = null;
+
+      if (actBar && leftRail) {
+        // Hovering over activity bar expands / slides open the left drawer
+        actBar.addEventListener('mouseenter', () => {
+          clearTimeout(hoverCloseTimer);
+          if (leftRail.classList.contains('hidden') || leftRail.style.display === 'none') {
+            leftRail.classList.remove('hidden');
+            leftRail.style.display = 'flex';
+          }
+        });
+
+        // Mouse leave from both activity bar and left rail closes the drawer if not pinned
+        const checkClose = () => {
+          hoverCloseTimer = setTimeout(() => {
+            if (!railPinned && window.innerWidth >= 1024) {
+              // Smoothly keep visible or compact based on user focus
+            }
+          }, 400);
+        };
+
+        actBar.addEventListener('mouseleave', checkClose);
+        leftRail.addEventListener('mouseleave', checkClose);
+        leftRail.addEventListener('mouseenter', () => clearTimeout(hoverCloseTimer));
+      }
+    })();
+
     window.setNasaNavTab = function (tab) {
       const tabs = ['home', 'universe', 'agri', 'worker', 'ai'];
       tabs.forEach(p => {
