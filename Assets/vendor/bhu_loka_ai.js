@@ -39,28 +39,28 @@
       name: 'Farmer (किसान)',
       icon: '🌾',
       badgeClass: 'text-emerald-400 border-emerald-500/30 bg-emerald-950/40',
-      description: 'कृषि सलाहकार: फसल चयन, मिट्टी नमी, मानसूनी वर्षा, सिंचाई और बाढ़ सुरक्षा',
-      systemPrompt: 'You are BHU LOKA AI acting as an agricultural remote-sensing advisor for Bihar farmers. Focus on crop suitability, soil types, Sentinel-1 radar soil moisture, and rainfall forecasts. Maintain an honest, encouraging, and scientifically sound tone in Hindi, Hinglish, or English.',
+      description: 'कृषि सलाहकार (AIAg & QGIS FARM Tools): फसल चयन, उपग्रह मॉनिटरिंग, मिट्टी ग्रिड, और सिंचाई',
+      systemPrompt: 'You are BHU LOKA AI acting as an agricultural remote-sensing advisor for Bihar farmers, grounded in gulabpatel/AIAg and QGIS FARM Tools methodologies. Focus on crop suitability, soil types, Sentinel-2 NDVI/NDRE vigor, Sentinel-1 SAR soil moisture, and FAO-56 Penman-Monteith irrigation schedules. Maintain an honest, encouraging, and scientifically sound tone in Hindi, Hinglish, or English.',
       quickPrompts: [
-        '🌾 इस मौसम में कौन सी फसल लगाना सबसे सुरक्षित रहेगा?',
-        '🌾 Kankarbagh vs Boring Road me mitti aur jal-bharao ka kya haal hai?',
-        '🌾 Sentinel-1 SAR soil wetness dekh kar irrigation schedule batao',
-        '🌾 What is the recommended wheat variety for heavy clay loam?'
+        '🌾 QGIS FARM Tools: Is khet ke liye 5-point soil sampling grid generate karo',
+        '🌾 Sentinel-2 NDVI aur Sentinel-1 SAR moisture dekh kar wheat crop vigor batao',
+        '🌾 FAO-56 Penman-Monteith ETc se 7-day irrigation schedule kya banega?',
+        '🌾 What is the recommended wheat variety for heavy clay loam in Bihar Zone III?'
       ],
       suggestedTools: ['run_zonal_stats', 'toggle_layer(flood)', 'fly_to']
     },
     business: {
       id: 'business',
-      name: 'Businessperson',
+      name: 'Agribusiness & Commercial',
       icon: '💼',
       badgeClass: 'text-amber-400 border-amber-500/30 bg-amber-950/40',
-      description: 'Commercial & Real Estate: Elevation margin, flood risk, population density, logistics',
-      systemPrompt: 'You are BHU LOKA AI acting as a spatial business & location analyst. Provide data on elevation AMSL, 2019 flood watermark margins, population exposure from WorldPop, and infrastructure resilience.',
+      description: 'Commercial Agribusiness & Real Estate (AIAg): APMC Mandi price radar, yield forecasting, and PMFBY claim audit',
+      systemPrompt: 'You are BHU LOKA AI acting as a spatial agribusiness and location analyst, powered by gulabpatel/AIAg models. Provide real-time data on APMC Mandi price spreads (Patna, Bihta, Gulabbagh Purnia) vs MSP, machine learning crop yield forecasts (quintals/ha), PMFBY crop insurance satellite loss validation, and land elevation AMSL.',
       quickPrompts: [
-        '💼 Which ward has the highest elevation and lowest flood risk for real estate?',
-        '💼 Boring Road me commercial warehouse kholna safe hai ya waterlogging hogi?',
-        '💼 What is the population exposure and road connectivity of Danapur Cantt?',
-        '💼 Compare flood risk percentage between Bailey Road and Kankarbagh'
+        '💼 Patna vs Gulabbagh APMC Mandi prices compare karo aur gross profit margin batao',
+        '💼 AIAg ML Yield Forecast: Is plot par kitne quintal production ka anuman hai?',
+        '💼 PMFBY Crop Insurance: Sentinel-1 SAR deluge se is holding me kitna damage claim banega?',
+        '💼 Which ward or agricultural corridor has the lowest flood risk and best logistics?'
       ],
       suggestedTools: ['draw_buffer', 'run_zonal_stats', 'fly_to']
     },

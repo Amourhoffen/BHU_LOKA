@@ -820,7 +820,9 @@
           <div class="bhu-nasa-glass p-2">
             <div class="flex items-center justify-between text-[9px] mono text-slate-400">
               <span>HEART RATE</span>
-              <span class="text-rose-400">❤️</span>
+              <span class="text-rose-400">
+                <svg class="w-3 h-3 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+              </span>
             </div>
             <div class="flex items-baseline gap-1 my-0.5">
               <span class="text-lg font-black text-slate-100 font-mono">72</span>
@@ -828,7 +830,7 @@
             </div>
             <!-- ECG Wave Line SVG -->
             <svg class="w-full h-5 mt-1" viewBox="0 0 100 20" preserveAspectRatio="none">
-              <path d="M0,10 L30,10 L35,2 L40,18 L45,6 L50,14 L55,10 L100,10" fill="none" stroke="#f43f5e" stroke-width="1.8"/>
+              <path d="M0,10 L30,10 L35,2 L40,18 L45,6 L50,14 L55,10 L100,10" fill="none" stroke="#fb7185" stroke-width="1.5"/>
             </svg>
           </div>
 
@@ -836,7 +838,9 @@
           <div class="bhu-nasa-glass p-2">
             <div class="flex items-center justify-between text-[9px] mono text-slate-400">
               <span>BLOOD PRESSURE</span>
-              <span class="text-sky-400">🩺</span>
+              <span class="text-sky-400">
+                <svg class="w-3 h-3 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+              </span>
             </div>
             <div class="flex items-baseline gap-1 my-0.5">
               <span class="text-lg font-black text-slate-100 font-mono">120/78</span>
@@ -852,7 +856,9 @@
           <div class="bhu-nasa-glass p-2">
             <div class="flex items-center justify-between text-[9px] mono text-slate-400">
               <span>OXYGEN (SpO2)</span>
-              <span class="text-emerald-400">💧</span>
+              <span class="text-emerald-400">
+                <svg class="w-3 h-3 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+              </span>
             </div>
             <div class="flex items-baseline gap-1 my-0.5">
               <span class="text-lg font-black text-emerald-400 font-mono">98%</span>
@@ -867,14 +873,16 @@
           <div class="bhu-nasa-glass p-2">
             <div class="flex items-center justify-between text-[9px] mono text-slate-400">
               <span>RESPIRATION</span>
-              <span class="text-amber-400">🫁</span>
+              <span class="text-amber-400">
+                <svg class="w-3 h-3 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"/></svg>
+              </span>
             </div>
             <div class="flex items-baseline gap-1 my-0.5">
               <span class="text-lg font-black text-slate-100 font-mono">16</span>
               <span class="text-[8px] mono text-slate-400">rpm</span>
             </div>
             <svg class="w-full h-5 mt-1" viewBox="0 0 100 20" preserveAspectRatio="none">
-              <path d="M0,15 Q25,2 50,15 T100,15" fill="none" stroke="#f59e0b" stroke-width="1.8"/>
+              <path d="M0,15 Q25,2 50,15 T100,15" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
             </svg>
           </div>
         </div>
@@ -1214,83 +1222,87 @@
                 </filter>
               </defs>
               <!-- Leader Line 1: Anomaly Callout -> Right Clavicle / Scapula -->
-              <path d="M 255,75 L 360,75 L 452,145" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="4 3" filter="url(#glow-amber)" opacity="0.9"/>
-              <circle cx="452" cy="145" r="4.5" fill="#ef4444" filter="url(#glow-amber)"/>
-              <circle cx="452" cy="145" r="8" fill="none" stroke="#f59e0b" stroke-width="1.2" opacity="0.75"/>
+              <path d="M 245,65 L 340,65 L 438,135" fill="none" stroke="#f59e0b" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.75"/>
+              <circle cx="438" cy="135" r="2.5" fill="#f59e0b"/>
+              <circle cx="438" cy="135" r="6" fill="none" stroke="#f59e0b" stroke-width="0.8" opacity="0.6"/>
 
               <!-- Leader Line 2: Pulmonary Callout -> Pulmonary Lungs -->
-              <path d="M 745,75 L 640,75 L 555,195" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-dasharray="4 3" filter="url(#glow-cyan)" opacity="0.9"/>
-              <circle cx="555" cy="195" r="4.5" fill="#22d3ee" filter="url(#glow-cyan)"/>
-              <circle cx="555" cy="195" r="8" fill="none" stroke="#06b6d4" stroke-width="1.2" opacity="0.75"/>
+              <path d="M 755,65 L 660,65 L 565,185" fill="none" stroke="#06b6d4" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.75"/>
+              <circle cx="565" cy="185" r="2.5" fill="#22d3ee"/>
+              <circle cx="565" cy="185" r="6" fill="none" stroke="#06b6d4" stroke-width="0.8" opacity="0.6"/>
 
-              <!-- Leader Line 3: Cardiac Callout -> Cardiovascular Heart -->
-              <path d="M 255,425 L 370,425 L 485,225" fill="none" stroke="#f43f5e" stroke-width="1.8" stroke-dasharray="4 3" filter="url(#glow-rose)" opacity="0.9"/>
-              <circle cx="485" cy="225" r="4.5" fill="#f43f5e" filter="url(#glow-rose)"/>
-              <circle cx="485" cy="225" r="8" fill="none" stroke="#f43f5e" stroke-width="1.2" opacity="0.75"/>
+              <!-- Leader Line 3: Cardiac Callout -> Cardiovascular Heart (Clean Horizontal Leader) -->
+              <path d="M 245,210 L 360,210 L 476,210" fill="none" stroke="#fb7185" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.75"/>
+              <circle cx="476" cy="210" r="2.5" fill="#fb7185"/>
+              <circle cx="476" cy="210" r="6" fill="none" stroke="#fb7185" stroke-width="0.8" opacity="0.6"/>
 
               <!-- Leader Line 4: GI Purity Callout -> Abdomen & S4 Sinks -->
-              <path d="M 745,425 L 635,425 L 520,315" fill="none" stroke="#10b981" stroke-width="1.8" stroke-dasharray="4 3" opacity="0.9"/>
-              <circle cx="520" cy="315" r="4.5" fill="#10b981"/>
-              <circle cx="520" cy="315" r="8" fill="none" stroke="#10b981" stroke-width="1.2" opacity="0.75"/>
+              <path d="M 755,270 L 650,270 L 535,310" fill="none" stroke="#10b981" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.75"/>
+              <circle cx="535" cy="310" r="2.5" fill="#10b981"/>
+              <circle cx="535" cy="310" r="6" fill="none" stroke="#10b981" stroke-width="0.8" opacity="0.6"/>
             </svg>
-            <!-- TOP ROW CALLOUTS: ANOMALY AUDIT (LEFT) & PULMONARY ALVEOLAR ZONE (RIGHT) -->
-            <div class="flex items-start justify-between w-full pointer-events-auto gap-4">
-              <!-- HEALTRIX ANOMALY AUDIT (UPPER SCAPULAR & CLAVICULAR ZONE) -->
-              <div id="callout-anomaly" class="max-w-[250px] bhu-nasa-glass p-2.5 rounded-xl border border-amber-500/40 shadow-[0_8px_28px_rgba(245,158,11,0.2)] transition-all duration-300 relative group">
-                <div class="flex items-center justify-between text-[9px] mono text-amber-400 font-bold mb-1">
-                  <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>SCANNING...</span>
-                  <span class="text-[8px] px-1.5 py-0.2 rounded bg-amber-950/80 text-amber-300 border border-amber-700">ANOMALY AUDIT</span>
+
+            <!-- CALLOUTS HUD: LEFT & RIGHT SCIENTIFIC WINGS (VERIDIA & HEALTRIX SYMMETRY) -->
+            <div class="flex justify-between w-full h-full pointer-events-none gap-4">
+              <!-- LEFT WING CALLOUTS: ANOMALY AUDIT (TOP) & CARDIAC (MID) -->
+              <div class="flex flex-col justify-start gap-14 pointer-events-auto max-w-[245px]">
+                <!-- HEALTRIX ANOMALY AUDIT (UPPER SCAPULAR & CLAVICULAR ZONE) -->
+                <div id="callout-anomaly" class="bhu-nasa-glass p-2.5 rounded-xl border border-amber-500/30 shadow-[0_4px_20px_rgba(245,158,11,0.15)] transition-all duration-300 relative group">
+                  <div class="flex items-center justify-between text-[9px] mono text-amber-400 font-bold mb-1">
+                    <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>SCANNING...</span>
+                    <span class="text-[8px] px-1.5 py-0.2 rounded bg-amber-950/80 text-amber-300 border border-amber-700/80">ANOMALY AUDIT</span>
+                  </div>
+                  <div class="text-[11px] font-bold text-slate-100">Supraclavicular Zone</div>
+                  <div class="text-[9px] text-slate-300 mt-0.5 leading-tight">Tissue stress index: +18%. Sentinel-1 SAR flood vector risk in &lt;46m sinks.</div>
+                  <div class="flex items-center justify-between mt-1.5 pt-1.5 border-t border-slate-800 text-[8.5px] mono">
+                    <span class="text-slate-400">Bio-Risk: 1.2%</span>
+                    <span class="text-emerald-400 font-bold">Stable</span>
+                  </div>
                 </div>
-                <div class="text-[11px] font-bold text-slate-100">Supraclavicular Zone</div>
-                <div class="text-[9px] text-slate-300 mt-0.5 leading-tight">Tissue stress index: +18%. Flood vector risk in lowland &lt;46m sinks.</div>
-                <div class="flex items-center justify-between mt-1.5 pt-1.5 border-t border-slate-800 text-[8.5px] mono">
-                  <span class="text-slate-400">Bio-Risk: 1.2%</span>
-                  <span class="text-emerald-400 font-bold">Stable</span>
+
+                <!-- VERIDIA CARDIAC CALLOUT -->
+                <div id="callout-cardiac" class="bhu-nasa-glass p-2.5 rounded-xl border border-rose-500/30 shadow-[0_4px_20px_rgba(251,113,133,0.15)] transition-all duration-300 relative group">
+                  <div class="flex items-center justify-between text-[9px] mono text-rose-300 font-bold mb-1">
+                    <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-rose-400"></span>CARDIAC HEMODYNAMICS</span>
+                    <span class="text-[8px] px-1.5 py-0.2 rounded bg-rose-950/70 text-rose-300 border border-rose-800/80">72 BPM</span>
+                  </div>
+                  <div class="text-[11px] font-bold text-slate-100">Sinus Normal · Thermal Monitored</div>
+                  <div class="text-[9px] text-slate-300 mt-0.5 leading-tight">MODIS LST 41.8°C thermal dome monitored. Hydrate with electrolyte minerals.</div>
+                  <div class="flex items-center justify-between mt-1.5 pt-1.5 border-t border-slate-800 text-[8.5px] mono">
+                    <span class="text-slate-400">ECG: Normal Sinus</span>
+                    <span class="text-rose-300 font-bold">72 bpm</span>
+                  </div>
                 </div>
               </div>
 
-              <!-- VERIDIA PULMONARY RESPIRATORY CALLOUT -->
-              <div id="callout-pulmonary" class="max-w-[250px] bhu-nasa-glass p-2.5 rounded-xl border border-cyan-500/40 shadow-[0_8px_28px_rgba(6,182,212,0.2)] transition-all duration-300 relative group">
-                <div class="flex items-center justify-between text-[9px] mono text-cyan-400 font-bold mb-1">
-                  <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-cyan-400"></span>PULMONARY ALVEOLAR ZONE</span>
-                  <span class="text-[8px] px-1.5 py-0.2 rounded bg-cyan-950/80 text-cyan-300 border border-cyan-700">PM2.5 ALERT</span>
+              <!-- RIGHT WING CALLOUTS: PULMONARY (TOP) & GI PURITY (MID) -->
+              <div class="flex flex-col justify-start gap-14 pointer-events-auto max-w-[245px]">
+                <!-- VERIDIA PULMONARY RESPIRATORY CALLOUT -->
+                <div id="callout-pulmonary" class="bhu-nasa-glass p-2.5 rounded-xl border border-cyan-500/30 shadow-[0_4px_20px_rgba(6,182,212,0.15)] transition-all duration-300 relative group">
+                  <div class="flex items-center justify-between text-[9px] mono text-cyan-400 font-bold mb-1">
+                    <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>PULMONARY ALVEOLAR ZONE</span>
+                    <span class="text-[8px] px-1.5 py-0.2 rounded bg-cyan-950/80 text-cyan-300 border border-cyan-700/80">PM2.5 ALERT</span>
+                  </div>
+                  <div class="text-[11px] font-bold text-slate-100">Bronchial Load: 42.1 μg/m³</div>
+                  <div class="text-[9px] text-slate-300 mt-0.5 leading-tight">Alveolar stress moderate due to winter smog. Rx: N95 Mask + NAC / Vit C.</div>
+                  <div class="flex items-center justify-between mt-1.5 pt-1.5 border-t border-slate-800 text-[8.5px] mono">
+                    <span class="text-slate-400">FEV1: 92%</span>
+                    <span class="text-cyan-300 font-bold">Normal Resp</span>
+                  </div>
                 </div>
-                <div class="text-[11px] font-bold text-slate-100">Bronchial Load: 42.1 μg/m³</div>
-                <div class="text-[9px] text-slate-300 mt-0.5 leading-tight">Alveolar stress moderate due to winter smog. Rx: N95 Mask + NAC / Vit C.</div>
-                <div class="flex items-center justify-between mt-1.5 pt-1.5 border-t border-slate-800 text-[8.5px] mono">
-                  <span class="text-slate-400">FEV1: 92%</span>
-                  <span class="text-cyan-300 font-bold">Normal Resp</span>
-                </div>
-              </div>
-            </div>
 
-            <!-- BOTTOM ROW CALLOUTS: CARDIAC HEMODYNAMICS (LEFT) & GI WATER METABOLISM (RIGHT) -->
-            <div class="flex items-end justify-between w-full pointer-events-auto gap-4 mb-16">
-              <!-- VERIDIA CARDIAC CALLOUT -->
-              <div id="callout-cardiac" class="max-w-[250px] bhu-nasa-glass p-2.5 rounded-xl border border-rose-500/40 shadow-[0_8px_28px_rgba(244,63,94,0.2)] transition-all duration-300 relative group">
-                <div class="flex items-center justify-between text-[9px] mono text-rose-400 font-bold mb-1">
-                  <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-rose-400 animate-pulse"></span>CARDIAC HEMODYNAMICS</span>
-                  <span class="text-[8px] px-1.5 py-0.2 rounded bg-rose-950/80 text-rose-300 border border-rose-700">72 BPM</span>
-                </div>
-                <div class="text-[11px] font-bold text-slate-100">Sinus Normal · Heat Stress: Low</div>
-                <div class="text-[9px] text-slate-300 mt-0.5 leading-tight">MODIS LST thermal load monitored. Hydrate with electrolyte minerals.</div>
-                <div class="flex items-center justify-between mt-1.5 pt-1.5 border-t border-slate-800 text-[8.5px] mono">
-                  <span class="text-slate-400">ECG: Normal</span>
-                  <span class="text-rose-300 font-bold">72 bpm</span>
-                </div>
-              </div>
-
-              <!-- GI METABOLISM & FLOOD RUNOFF CALLOUT -->
-              <div id="callout-gi" class="max-w-[250px] bhu-nasa-glass p-2.5 rounded-xl border border-emerald-500/40 shadow-[0_8px_28px_rgba(16,185,129,0.2)] transition-all duration-300 relative group">
-                <div class="flex items-center justify-between text-[9px] mono text-emerald-400 font-bold mb-1">
-                  <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>GI &amp; WATERBORNE PURITY</span>
-                  <span class="text-[8px] px-1.5 py-0.2 rounded bg-emerald-950/80 text-emerald-300 border border-emerald-700">S4 SINK WATCH</span>
-                </div>
-                <div class="text-[11px] font-bold text-slate-100">Pathogen Barrier Active</div>
-                <div class="text-[9px] text-slate-300 mt-0.5 leading-tight">Lowland runoff protection. Recommendation: Boiled RO water + Zinc/Probiotics.</div>
-                <div class="flex items-center justify-between mt-1.5 pt-1.5 border-t border-slate-800 text-[8.5px] mono">
-                  <span class="text-slate-400">Coliform Barrier</span>
-                  <span class="text-emerald-300 font-bold">Safe</span>
+                <!-- GI METABOLISM & FLOOD RUNOFF CALLOUT -->
+                <div id="callout-gi" class="bhu-nasa-glass p-2.5 rounded-xl border border-emerald-500/30 shadow-[0_4px_20px_rgba(16,185,129,0.15)] transition-all duration-300 relative group">
+                  <div class="flex items-center justify-between text-[9px] mono text-emerald-400 font-bold mb-1">
+                    <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>GI &amp; WATERBORNE PURITY</span>
+                    <span class="text-[8px] px-1.5 py-0.2 rounded bg-emerald-950/80 text-emerald-300 border border-emerald-700/80">S4 SINK WATCH</span>
+                  </div>
+                  <div class="text-[11px] font-bold text-slate-100">Pathogen Barrier Active</div>
+                  <div class="text-[9px] text-slate-300 mt-0.5 leading-tight">Lowland runoff protection. Recommendation: Boiled RO water + Zinc/Probiotics.</div>
+                  <div class="flex items-center justify-between mt-1.5 pt-1.5 border-t border-slate-800 text-[8.5px] mono">
+                    <span class="text-slate-400">Coliform Barrier</span>
+                    <span class="text-emerald-300 font-bold">Safe</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1638,7 +1650,7 @@
         </div>
 
         <!-- VIEWPORT THRESHOLD & PROJECTION FOOTER -->
-        <div class="mt-2 space-y-1 mono text-[10px] shrink-0">
+        <div id="bhu-terrain-elevation-footer" class="mt-2 space-y-1 mono text-[10px] shrink-0">
           <div class="grid grid-cols-4 gap-1 bg-[#090d13] px-2 py-1 rounded border border-slate-800 text-center">
             <div><span class="text-emerald-400 font-semibold">&gt;52.0m</span> <span class="text-slate-400">Safe
                 Ridge</span></div>
@@ -1658,79 +1670,78 @@
 
       </div>
 
-      
-        <!-- HEALTH VISUAL DECK: GRAPHS OVER TEXT, ORGAN STRESS METERS, VECTOR TIMELINE -->
-        <div 
-        <!-- FLOATING BOTTOM TELEMETRY STRIP & DECK TOGGLE -->
-        <div id="bhu-health-deck-toggle" class="hidden shrink-0 flex items-center justify-between px-3 py-1.5 bg-[#050811]/90 backdrop-blur border-t border-slate-800 text-[10px] select-none">
-          <div class="flex items-center gap-3">
-            <span class="flex items-center gap-1.5 text-cyan-300 font-bold">
-              <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-              <span>3D Clinical Twin Active</span>
-            </span>
-            <span class="text-slate-400">PM2.5: <b class="text-rose-400">142 μg/m³</b></span>
-            <span class="text-slate-400">Cardiac: <b class="text-emerald-400">72 bpm</b></span>
-            <span class="text-slate-400">S4 Flooded Sinks: <b class="text-amber-400">26.54 km²</b></span>
-          </div>
-          <button type="button" onclick="const hd = document.getElementById('bhu-health-bottom-deck'); if(hd){ hd.classList.toggle('hidden'); this.textContent = hd.classList.contains('hidden') ? 'Expand Analytical Deck' : 'Collapse Analytical Deck'; }"
-            class="px-2.5 py-0.5 rounded bg-slate-800/90 hover:bg-slate-700 text-sky-300 border border-slate-700 text-[9.5px] transition">
-            Expand Analytical Deck
-          </button>
+      <!-- HEALTH VISUAL DECK: GRAPHS OVER TEXT, ORGAN STRESS METERS, VECTOR TIMELINE -->
+      <!-- FLOATING BOTTOM TELEMETRY STRIP & DECK TOGGLE -->
+      <div id="bhu-health-deck-toggle" class="hidden shrink-0 flex items-center justify-between px-3 py-1.5 bg-[#050811]/90 backdrop-blur border-t border-slate-800 text-[10px] select-none">
+        <div class="flex items-center gap-3">
+          <span class="flex items-center gap-1.5 text-cyan-300 font-bold">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            <span>3D Clinical Twin Active</span>
+          </span>
+          <span class="text-slate-400">PM2.5: <b class="text-rose-400">142 μg/m³</b></span>
+          <span class="text-slate-400">Cardiac: <b class="text-emerald-400">72 bpm</b></span>
+          <span class="text-slate-400">S4 Flooded Sinks: <b class="text-amber-400">26.54 km²</b></span>
         </div>
+        <button type="button" onclick="const hd = document.getElementById('bhu-health-bottom-deck'); if(hd){ hd.classList.toggle('hidden'); this.textContent = hd.classList.contains('hidden') ? 'Expand Analytical Deck' : 'Collapse Analytical Deck'; }"
+          class="px-2.5 py-0.5 rounded bg-slate-800/90 hover:bg-slate-700 text-sky-300 border border-slate-700 text-[9.5px] transition">
+          Expand Analytical Deck
+        </button>
+      </div>
 
-        <div id="bhu-health-bottom-deck" class="hidden grid grid-cols-1 md:grid-cols-3 gap-2 mt-1.5 shrink-0">
+      <div id="bhu-health-bottom-deck" class="hidden grid grid-cols-1 md:grid-cols-3 gap-2 mt-1.5 shrink-0">
 
-          <!-- CARD 1: VITAL ORGAN STRESS METERS (VISUAL BARS) -->
-          <div class="bhu-nasa-glass p-2.5 flex flex-col justify-between">
-            <div class="flex items-center justify-between text-slate-300">
-              <span class="text-[11px] font-semibold tracking-wide flex items-center gap-1.5">
-                <span>📊</span> Vital Organ Stress Meters
-              </span>
-              <span class="mono text-[8.5px] text-emerald-400">PATNA CLIMATE</span>
-            </div>
+        <!-- CARD 1: VITAL ORGAN STRESS METERS (VISUAL BARS) -->
+        <div class="bhu-nasa-glass p-2.5 flex flex-col justify-between">
+          <div class="flex items-center justify-between text-slate-300">
+            <span class="text-[11px] font-semibold tracking-wide flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+              <span>Vital Organ Stress Meters</span>
+            </span>
+            <span class="mono text-[8.5px] text-emerald-400">PATNA CLIMATE</span>
+          </div>
 
-            <!-- Progress Bars for 5 Vital Organs -->
-            <div class="space-y-1.5 my-1.5 text-[9.5px]">
-              <div>
-                <div class="flex justify-between text-slate-300 mb-0.5">
-                  <span class="flex items-center gap-1">🫁 <b>Lungs (PM2.5 Load)</b></span>
-                  <span class="text-rose-400 font-bold">68% · Moderate Stress</span>
-                </div>
-                <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
-                  <div class="bg-rose-500 h-1.5 rounded-full" style="width: 68%;"></div>
-                </div>
+          <!-- Progress Bars for 5 Vital Organs -->
+          <div class="space-y-1.5 my-1.5 text-[9.5px]">
+            <div>
+              <div class="flex justify-between text-slate-300 mb-0.5">
+                <span class="flex items-center gap-1.5 text-slate-300"><span class="w-1.5 h-1.5 rounded-full bg-rose-400"></span><b>Lungs (PM2.5 Load)</b></span>
+                <span class="text-rose-400 font-bold">68% · Moderate Stress</span>
               </div>
-
-              <div>
-                <div class="flex justify-between text-slate-300 mb-0.5">
-                  <span class="flex items-center gap-1">🧬 <b>GI Gut (Flood Pathogens)</b></span>
-                  <span class="text-amber-400 font-bold">54% · Precautionary</span>
-                </div>
-                <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
-                  <div class="bg-amber-400 h-1.5 rounded-full" style="width: 54%;"></div>
-                </div>
-              </div>
-
-              <div>
-                <div class="flex justify-between text-slate-300 mb-0.5">
-                  <span class="flex items-center gap-1">❤️ <b>Heart (Cardiac Load)</b></span>
-                  <span class="text-sky-300 font-bold">38% · 72 bpm Normal</span>
-                </div>
-                <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
-                  <div class="bg-sky-400 h-1.5 rounded-full" style="width: 38%;"></div>
-                </div>
-              </div>
-
-              <div>
-                <div class="flex justify-between text-slate-300 mb-0.5">
-                  <span class="flex items-center gap-1">🧠 <b>Brain (Heat Strain)</b></span>
-                  <span class="text-emerald-400 font-bold">28% · Safe Window</span>
-                </div>
-                <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
-                  <div class="bg-emerald-400 h-1.5 rounded-full" style="width: 28%;"></div>
-                </div>
+              <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                <div class="bg-rose-500 h-1.5 rounded-full" style="width: 68%;"></div>
               </div>
             </div>
+
+            <div>
+              <div class="flex justify-between text-slate-300 mb-0.5">
+                <span class="flex items-center gap-1.5 text-slate-300"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span><b>GI Gut (Flood Pathogens)</b></span>
+                <span class="text-amber-400 font-bold">54% · Precautionary</span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                <div class="bg-amber-400 h-1.5 rounded-full" style="width: 54%;"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-slate-300 mb-0.5">
+                <span class="flex items-center gap-1.5 text-slate-300"><span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span><b>Heart (Cardiac Load)</b></span>
+                <span class="text-sky-300 font-bold">38% · 72 bpm Normal</span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                <div class="bg-sky-400 h-1.5 rounded-full" style="width: 38%;"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-slate-300 mb-0.5">
+                <span class="flex items-center gap-1.5 text-slate-300"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span><b>Brain (Heat Strain)</b></span>
+                <span class="text-emerald-400 font-bold">28% · Safe Window</span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                <div class="bg-emerald-400 h-1.5 rounded-full" style="width: 28%;"></div>
+              </div>
+            </div>
+          </div>
 
             <div class="text-[8.5px] mono text-slate-500 border-t border-slate-800 pt-1">
               Data: Sentinel-5P TROPOMI · Open-Meteo AQI · Copernicus 30m DEM
@@ -2559,89 +2570,179 @@
 
         <!-- HEADER & STATUS -->
         <div class="bhu-nasa-glass p-2.5 flex items-center justify-between shrink-0">
-          <div class="flex items-center gap-1.5">
-            <span class="text-rose-400 font-bold text-sm">🏥</span>
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-pulse"></span>
             <div>
-              <div class="text-xs font-bold tracking-wider text-slate-100 uppercase">Public Health &amp; Citizen Action</div>
-              <div class="text-[9px] mono text-slate-400">Sentinel-1 SAR Deluge + Copernicus DEM Grounding</div>
+              <div class="text-xs font-bold tracking-wider text-slate-100 uppercase">Public Health &amp; Epidemiological Suite</div>
+              <div class="text-[9px] mono text-slate-400">Sentinel-1 / NISAR SAR + WHO Priority Pathogen Surveillance</div>
             </div>
           </div>
           <span class="px-2 py-0.5 rounded-full text-[9px] mono bg-emerald-500/10 text-emerald-300 border border-emerald-500/30">ACTIVE</span>
         </div>
 
-        <!-- 1. SENTINEL-1 SAR FLOODWATER HEALTH HAZARDS -->
-        <div class="bhu-nasa-glass p-2.5 flex flex-col gap-1.5 shrink-0">
+        <!-- 1. DANCING WITH THE SARS: RADAR & RESPIRATORY DUAL SYNTHESIS -->
+        <div class="bhu-nasa-glass p-2.5 flex flex-col gap-2 shrink-0 border-l-2 border-cyan-400">
           <div class="flex items-center justify-between">
-            <span class="text-[11px] font-semibold text-rose-300 tracking-wide flex items-center gap-1.5">
-              <span>🌊</span> Standing Floodwater (SAR Deluge Mapped)
+            <span class="text-[11px] font-semibold text-cyan-300 tracking-wide flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              <span>Dancing with the SARs (NASA 2026)</span>
             </span>
-            <span class="mono text-[9px] text-amber-400 font-bold">26.54 km² AT RISK</span>
+            <span class="mono text-[8.5px] text-cyan-300 bg-cyan-950/70 px-1.5 py-0.5 rounded border border-cyan-800">DUAL CONVERGENCE</span>
           </div>
-          <div class="bg-[#02050b]/80 p-2 rounded border border-slate-800 text-[10px] space-y-1 text-slate-300">
-            <div class="flex justify-between">
-              <span class="text-slate-400">Vector Hazard (Dengue/Malaria):</span>
-              <span class="text-rose-400 font-bold">CRITICAL in &lt;46m Sinks</span>
+          <div class="text-[9px] text-slate-300 leading-relaxed">
+            Synthesizing <b>Active Microwave Radar (SAR)</b> surface water/roughness detection with <b>Respiratory Pathogen (SARS)</b> public health vulnerability.
+          </div>
+          <div class="grid grid-cols-2 gap-1.5 text-[9px] mono">
+            <div class="p-1.5 rounded bg-[#02050b]/80 border border-slate-800">
+              <div class="text-slate-400">SAR Flooded Sinks:</div>
+              <div class="text-rose-400 font-bold mt-0.5">26.54 km² (&lt;46m AMSL)</div>
+              <div class="text-[8px] text-slate-500">Stagnant water vector risk</div>
             </div>
-            <div class="text-[9px] text-slate-400 leading-relaxed">
-              Sentinel-1 C-band radar identified stagnant water pooling across Rajendra Nagar, Kankarbagh, and Bailey Rd underpasses. 48–72h mosquito larva development window active.
+            <div class="p-1.5 rounded bg-[#02050b]/80 border border-slate-800">
+              <div class="text-slate-400">PM2.5 Silt Inversion:</div>
+              <div class="text-amber-400 font-bold mt-0.5">142 μg/m³ (Severe)</div>
+              <div class="text-[8px] text-slate-500">Alveolar mucosal stress</div>
             </div>
           </div>
         </div>
 
-        <!-- 2. ACTIONABLE CITIZEN STEPS (WHAT TO DO RIGHT NOW) -->
-        <div class="bhu-nasa-glass p-2.5 flex flex-col gap-2 shrink-0">
-          <div class="flex items-center justify-between border-b border-slate-800/80 pb-1">
+        <!-- 2. WHO PRIORITY PATHOGEN: SARS EPIDEMIOLOGICAL PARAMETERS (PERG / MRC-IDE REVIEW) -->
+        <div class="bhu-nasa-glass p-2.5 flex flex-col gap-2 shrink-0 border-l-2 border-rose-500">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-1">
+            <div>
+              <div class="text-[11px] font-semibold text-rose-300 tracking-wide flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                <span>SARS Epidemiological Benchmark</span>
+              </div>
+              <div class="text-[8px] text-slate-400 mono">WHO R&amp;D Blueprint · PERG / MRC-IDE Meta-Analysis</div>
+            </div>
+            <span class="mono text-[8px] text-rose-400 bg-rose-950/70 px-1.5 py-0.5 rounded border border-rose-800">R0: 2.70</span>
+          </div>
+
+          <!-- Parameter Grid based on Dean2k/SARS systematic review -->
+          <div class="grid grid-cols-2 gap-1.5 text-[9px] mono">
+            <div class="p-1.5 rounded bg-[#02050b]/80 border border-slate-800">
+              <span class="text-slate-400">Basic Repro (R₀):</span>
+              <div class="text-slate-100 font-bold">2.70 <span class="text-[8px] text-slate-400">(2.2–3.6 range)</span></div>
+            </div>
+            <div class="p-1.5 rounded bg-[#02050b]/80 border border-slate-800">
+              <span class="text-slate-400">Effective (Rt):</span>
+              <div class="text-emerald-400 font-bold">0.78 <span class="text-[8px] text-slate-400">(&lt;1.0 Interventions)</span></div>
+            </div>
+            <div class="p-1.5 rounded bg-[#02050b]/80 border border-slate-800">
+              <span class="text-slate-400">Mean Incubation:</span>
+              <div class="text-sky-300 font-bold">4.6 days <span class="text-[8px] text-slate-400">(3.8–5.5d CI)</span></div>
+            </div>
+            <div class="p-1.5 rounded bg-[#02050b]/80 border border-slate-800">
+              <span class="text-slate-400">Serial Interval:</span>
+              <div class="text-amber-300 font-bold">8.4 days <span class="text-[8px] text-slate-400">(6.5–10.2d)</span></div>
+            </div>
+            <div class="p-1.5 rounded bg-[#02050b]/80 border border-slate-800">
+              <span class="text-slate-400">Onset-to-Hospital:</span>
+              <div class="text-slate-200 font-bold">3.8 days <span class="text-[8px] text-slate-400">quarantine win</span></div>
+            </div>
+            <div class="p-1.5 rounded bg-[#02050b]/80 border border-slate-800">
+              <span class="text-slate-400">GLMM Adjusted CFR:</span>
+              <div class="text-rose-400 font-bold">9.6% <span class="text-[8px] text-slate-400">(mixed-effects)</span></div>
+            </div>
+          </div>
+          <div class="text-[8px] text-slate-500 mono">
+            Ref: Pathogen Epidemiology Review Group (PERG) / MRC-IDE: pathogen_sars.Rmd · Overdispersion k=0.16.
+          </div>
+        </div>
+
+        <!-- 3. CDC RESPIRATORY VIRUS & SARS-COV-2 SURVEILLANCE -->
+        <div class="bhu-nasa-glass p-2.5 flex flex-col gap-1.5 shrink-0 border-l-2 border-emerald-500">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-1">
             <span class="text-[11px] font-semibold text-emerald-300 tracking-wide flex items-center gap-1.5">
-              <span>⚡</span> Citizen Immediate Action Plan (GIS/SARs)
+              <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+              <span>CDC &amp; ICMR Pathogen Surveillance</span>
+            </span>
+            <span class="mono text-[8.5px] text-emerald-400 font-bold">LOW INCIDENCE</span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-1.5 text-[9px] mono">
+            <div class="p-1.5 rounded bg-[#02050b]/80 border border-slate-800">
+              <div class="text-slate-400">SARS-CoV-2 (JN.1/KP.3):</div>
+              <div class="text-emerald-400 font-bold flex items-center gap-1 mt-0.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> STABLE BASELINE
+              </div>
+            </div>
+            <div class="p-1.5 rounded bg-[#02050b]/80 border border-slate-800">
+              <div class="text-slate-400">Influenza (H1N1/H3N2):</div>
+              <div class="text-emerald-400 font-bold flex items-center gap-1 mt-0.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> SEASONAL NORMAL
+              </div>
+            </div>
+            <div class="p-1.5 rounded bg-[#02050b]/80 border border-slate-800">
+              <div class="text-slate-400">Dengue (DENV-2):</div>
+              <div class="text-amber-400 font-bold flex items-center gap-1 mt-0.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> &lt;46m SINKS CLUSTERS
+              </div>
+            </div>
+            <div class="p-1.5 rounded bg-[#02050b]/80 border border-slate-800">
+              <div class="text-slate-400">Waterborne Coliform:</div>
+              <div class="text-amber-400 font-bold flex items-center gap-1 mt-0.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> FLOOD RUNOFF WATCH
+              </div>
+            </div>
+          </div>
+          <div class="text-[8px] text-slate-500 mono">
+            Source: CDC NREVSS &amp; ICMR Respiratory Pathogen Network Standard.
+          </div>
+        </div>
+
+        <!-- 4. ACTIONABLE CITIZEN STEPS (WHAT TO DO RIGHT NOW) -->
+        <div class="bhu-nasa-glass p-2.5 flex flex-col gap-2 shrink-0">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-1">
+            <span class="text-[11px] font-semibold text-emerald-300 tracking-wide flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              <span>Citizen Immediate Action Protocol</span>
             </span>
             <span class="mono text-[9px] text-sky-400">STEP-BY-STEP</span>
           </div>
 
           <div class="space-y-1.5 text-[10px]">
-            <!-- Action 1: Waterborne Protection -->
-            <div class="p-1.5 rounded bg-slate-900/60 border border-slate-800 flex gap-2">
-              <span class="text-sm">💧</span>
+            <div class="p-2 rounded bg-slate-900/60 border border-slate-800 flex gap-2">
+              <span class="w-2 h-2 rounded-full bg-cyan-400 mt-1 shrink-0"></span>
               <div>
-                <b class="text-slate-200">Boil All Drinking Water (10+ min)</b>
-                <div class="text-[9px] text-slate-400">Floodwater backflow penetrates shallow tubewells in low-elevation wards. Use Halazone/Chlorine tablets (4mg/L).</div>
+                <b class="text-slate-200">Boil Drinking Water (10+ min)</b>
+                <div class="text-[9px] text-slate-400 leading-tight">Flood backflow penetrates shallow tubewells in depression wards. Disinfect with Halazone/Chlorine tablets (4mg/L).</div>
               </div>
             </div>
 
-            <!-- Action 2: Vector Defense -->
-            <div class="p-1.5 rounded bg-slate-900/60 border border-slate-800 flex gap-2">
-              <span class="text-sm">🦟</span>
+            <div class="p-2 rounded bg-slate-900/60 border border-slate-800 flex gap-2">
+              <span class="w-2 h-2 rounded-full bg-amber-400 mt-1 shrink-0"></span>
               <div>
                 <b class="text-slate-200">Mosquito &amp; Vector Protection</b>
-                <div class="text-[9px] text-slate-400">Sleep under LLIN bed nets; apply DEET 20%+ repellent. Drain standing water from tires, plant pots, and coolers within 24h.</div>
+                <div class="text-[9px] text-slate-400 leading-tight">Sleep under LLIN bed nets; apply DEET 20%+ repellent. Drain standing water from tires, plant pots, and coolers within 24h.</div>
               </div>
             </div>
 
-            <!-- Action 3: Air & Mask -->
-            <div class="p-1.5 rounded bg-slate-900/60 border border-slate-800 flex gap-2">
-              <span class="text-sm">🫁</span>
+            <div class="p-2 rounded bg-slate-900/60 border border-slate-800 flex gap-2">
+              <span class="w-2 h-2 rounded-full bg-rose-400 mt-1 shrink-0"></span>
               <div>
-                <b class="text-slate-200">N95 Mask for Resuspended Silt (PM2.5: 142)</b>
-                <div class="text-[9px] text-slate-400">As flood mud dries, fine particulates aerosolize. Wear N95 outdoors, especially children and elderly.</div>
+                <b class="text-slate-200">N95 Respirator for Resuspended Silt (PM2.5: 142)</b>
+                <div class="text-[9px] text-slate-400 leading-tight">As flood mud dries, fine particulates aerosolize. Wear N95 outdoors to protect alveolar lung surfactant.</div>
               </div>
             </div>
 
-            <!-- Action 4: Heat & Hydration -->
-            <div class="p-1.5 rounded bg-slate-900/60 border border-slate-800 flex gap-2">
-              <span class="text-sm">🧠</span>
+            <div class="p-2 rounded bg-slate-900/60 border border-slate-800 flex gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 mt-1 shrink-0"></span>
               <div>
                 <b class="text-slate-200">Electrolyte &amp; Heat Hydration (WBGT 26.2°C)</b>
-                <div class="text-[9px] text-slate-400">Outdoor workers: 500ml water with ORS or salt-lemon per hour. 15-minute shaded rest every 2 hours.</div>
+                <div class="text-[9px] text-slate-400 leading-tight">Outdoor workers: 500ml water with ORS or salt-lemon per hour. 15-minute shaded rest every 2 hours.</div>
               </div>
             </div>
           </div>
         </div>
 
-        
-        <!-- 🎬 EDUCATIONAL VIDEO: SAR FLOOD & DENGUE DEFENSE (TACTICAL SIMULATOR) -->
+        <!-- 5. EDUCATIONAL VIDEO: SAR FLOOD & DENGUE DEFENSE (TACTICAL SIMULATOR) -->
         <div class="bhu-nasa-glass p-2.5 flex flex-col gap-1.5 shrink-0">
-          <div class="flex items-center justify-between border-b border-slate-800/80 pb-1">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-1">
             <span class="text-[11px] font-semibold text-rose-300 tracking-wide flex items-center gap-1.5">
-              <span>🎬</span> Disaster Health Video Advisory (Patna Field Protocol)
+              <svg class="w-3.5 h-3.5 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span>Disaster Health Video Advisory (Patna Field Protocol)</span>
             </span>
             <span class="mono text-[8.5px] text-rose-400 bg-rose-950/60 px-1.5 py-0.5 rounded border border-rose-800">SAR PROTOCOL</span>
           </div>
@@ -2693,11 +2794,12 @@
           </div>
         </div>
 
-        <!-- CLIMATE NUTRITION & VITAMIN RX RECOMMENDATIONS BY ORGAN (WHAT TO EAT RIGHT NOW) -->
+        <!-- 6. CLIMATE NUTRITION & VITAMIN RX RECOMMENDATIONS BY ORGAN (WHAT TO EAT RIGHT NOW) -->
         <div class="bhu-nasa-glass p-2.5 flex flex-col gap-2 shrink-0">
-          <div class="flex items-center justify-between border-b border-slate-800/80 pb-1">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-1">
             <span class="text-[11px] font-semibold text-amber-300 tracking-wide flex items-center gap-1.5">
-              <span>🥗</span> Climate Food &amp; Vitamin Suggestions (Organ Defense)
+              <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+              <span>Climate Food &amp; Vitamin Suggestions (Organ Defense)</span>
             </span>
             <span class="mono text-[8.5px] text-emerald-400">NUTRITION Rx</span>
           </div>
@@ -2706,84 +2808,44 @@
             <!-- Lungs Food -->
             <div class="p-2 rounded bg-slate-900/60 border-l-2 border-sky-400">
               <div class="flex justify-between items-center mb-0.5">
-                <b class="text-sky-300 flex items-center gap-1">Pulmonary Alveolar Rx (PM2.5/PM10)</b>
+                <b class="text-sky-300">Pulmonary Alveolar Rx (PM2.5 / Respiratory Viral Defense)</b>
                 <span class="mono text-[8.5px] text-sky-400 bg-sky-950/60 px-1 rounded">VITAMIN C + GUR</span>
               </div>
               <div class="text-slate-300 leading-relaxed">
-                <b>Eat:</b> Jaggery (Gur 20g), Ginger-Tulsi warm tea, Turmeric with warm milk, Amla/Citrus fruits (Vitamin C). Clears bronchial mucus and limits particulate-induced oxidative stress.
+                <b>Eat:</b> Jaggery (Gur 20g), Ginger-Tulsi warm tea, Turmeric with warm milk, Amla/Citrus fruits (Vitamin C 500mg), N-Acetylcysteine (NAC 600mg). Clears bronchial mucus and limits particulate-induced oxidative stress.
               </div>
             </div>
 
             <!-- Stomach / Gut Food -->
             <div class="p-2 rounded bg-slate-900/60 border-l-2 border-rose-400">
               <div class="flex justify-between items-center mb-0.5">
-                <b class="text-rose-300 flex items-center gap-1">🧬 Gut / Stomach (For Flood Bacteria)</b>
+                <b class="text-rose-300">Gut / Digestive System (For Flood Waterborne Coliforms)</b>
                 <span class="mono text-[8.5px] text-rose-400 bg-rose-950/60 px-1 rounded">BOILED + ZINC</span>
               </div>
               <div class="text-slate-300 leading-relaxed">
-                <b>Eat:</b> 100% boiled water (10+ min), Zinc sulfate tablets (20mg/day for intestinal barrier), Curd/Probiotics, light khichdi. <b>Strictly avoid:</b> Cut street fruits, unboiled tap water, raw salads.
+                <b>Eat:</b> 100% boiled water (10+ min), Zinc sulfate tablets (20mg/day for intestinal epithelial barrier), Curd/Probiotics, light khichdi. <b>Strictly avoid:</b> Cut street fruits, unboiled tap water, raw salads.
               </div>
             </div>
 
             <!-- Brain & Heart Food -->
             <div class="p-2 rounded bg-slate-900/60 border-l-2 border-emerald-400">
               <div class="flex justify-between items-center mb-0.5">
-                <b class="text-emerald-300 flex items-center gap-1">🧠 Brain &amp; ❤️ Heart (Heat / Cold Strain)</b>
+                <b class="text-emerald-300">Brain &amp; Heart (Thermal Strain &amp; Dehydration Defense)</b>
                 <span class="mono text-[8.5px] text-emerald-400 bg-emerald-950/60 px-1 rounded">ELECTROLYTES</span>
               </div>
               <div class="text-slate-300 leading-relaxed">
-                <b>Drink:</b> Sattu Sharbat (roasted gram flour with black salt &amp; cumin), Tender Coconut Water, ORS solution (1 packet in 1L water). Maintains sodium-potassium cardiac rhythm under heat.
+                <b>Drink:</b> Sattu Sharbat (roasted gram flour with black salt &amp; roasted cumin), Tender Coconut Water, ORS solution (1 packet in 1L water). Maintains sodium-potassium cardiac rhythm under heat.
               </div>
             </div>
           </div>
         </div>
 
-        <!-- 🦠 CURRENT VIRUS & EPIDEMIC SURVEILLANCE TRACKER -->
-        <div class="bhu-nasa-glass p-2.5 flex flex-col gap-1.5 shrink-0">
-          <div class="flex items-center justify-between border-b border-slate-800/80 pb-1">
-            <span class="text-[11px] font-semibold text-rose-300 tracking-wide flex items-center gap-1.5">
-              <span>🦠</span> Virus &amp; Epidemic Surveillance (Patna / Bihar)
-            </span>
-            <span class="mono text-[8.5px] text-emerald-400 font-bold">STATUS: MONITORED</span>
-          </div>
-
-          <div class="grid grid-cols-2 gap-1.5 text-[9px] mono">
-            <div class="p-1.5 rounded bg-[#02050b]/80 border border-slate-800">
-              <div class="text-slate-400">Nipah Virus:</div>
-              <div class="text-emerald-400 font-bold flex items-center gap-1 mt-0.5">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> ZERO CASES
-              </div>
-            </div>
-
-            <div class="p-1.5 rounded bg-[#02050b]/80 border border-slate-800">
-              <div class="text-slate-400">Avian Flu (H5N1):</div>
-              <div class="text-emerald-400 font-bold flex items-center gap-1 mt-0.5">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> NO OUTBREAK
-              </div>
-            </div>
-
-            <div class="p-1.5 rounded bg-[#02050b]/80 border border-slate-800">
-              <div class="text-slate-400">Dengue (DENV):</div>
-              <div class="text-amber-400 font-bold flex items-center gap-1 mt-0.5">
-                <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> SAR SINKS CLUSTERS
-              </div>
-            </div>
-
-            <div class="p-1.5 rounded bg-[#02050b]/80 border border-slate-800">
-              <div class="text-slate-400">Waterborne ADD:</div>
-              <div class="text-amber-400 font-bold flex items-center gap-1 mt-0.5">
-                <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> ACTIVE WATCH
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <!-- 3. TERTIARY HOSPITALS & SAFE HIGH-GROUND ACCESS (COPERNICUS DEM) -->
+        <!-- 7. TERTIARY HOSPITALS & SAFE HIGH-GROUND ACCESS (COPERNICUS DEM) -->
         <div class="bhu-nasa-glass p-2.5 flex flex-col gap-2 shrink-0">
-          <div class="flex items-center justify-between border-b border-slate-800/80 pb-1">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-1">
             <span class="text-[11px] font-semibold text-sky-300 tracking-wide flex items-center gap-1.5">
-              <span>🏥</span> Emergency Hospitals &amp; Safe High-Ground Routes
+              <svg class="w-3.5 h-3.5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+              <span>Emergency Hospitals &amp; Safe High-Ground Routes</span>
             </span>
             <span class="mono text-[8.5px] text-slate-400">COPERNICUS 30m DEM</span>
           </div>
@@ -2818,14 +2880,38 @@
           </div>
         </div>
 
-        <!-- 4. REAL-TIME LOCAL HEALTH NEWS (PATNA & BIHAR) -->
+        <!-- 8. REAL-TIME LOCAL HEALTH NEWS (PATNA & BIHAR) -->
         <div class="bhu-nasa-glass p-2.5 flex flex-col gap-1.5 shrink-0">
-          <div class="flex items-center justify-between border-b border-slate-800/80 pb-1">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-1">
             <span class="text-[11px] font-semibold text-amber-300 tracking-wide flex items-center gap-1.5">
-              <span>📰</span> Real-Time Health &amp; Flood News Ticker
+              <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+              <span>Real-Time Health &amp; Flood News Ticker</span>
             </span>
             <span class="mono text-[8.5px] text-emerald-400">LIVE FEED</span>
           </div>
+
+          <div class="space-y-1.5 text-[9.5px]">
+            <div class="p-1.5 rounded bg-[#02050b]/80 border border-slate-800">
+              <div class="flex justify-between items-center text-[8.5px] mono text-slate-400 mb-0.5">
+                <span class="text-rose-400 font-bold">PMC ADVISORY</span>
+                <span>10 mins ago</span>
+              </div>
+              <div class="text-slate-200">
+                Patna Municipal Corporation deploys 18 mobile water testing vans in Kankarbagh &amp; Rajendra Nagar wards following Sentinel-1 deluge mapping.
+              </div>
+            </div>
+
+            <div class="p-1.5 rounded bg-[#02050b]/80 border border-slate-800">
+              <div class="flex justify-between items-center text-[8.5px] mono text-slate-400 mb-0.5">
+                <span class="text-sky-300 font-bold">CPCB NAQI BULLETIN</span>
+                <span>25 mins ago</span>
+              </div>
+              <div class="text-slate-200">
+                Winter atmospheric inversion over South Gangetic Plains traps vehicular and dried silt particulates at 142 μg/m³ PM2.5. Vulnerable groups advised N95 respirators.
+              </div>
+            </div>
+          </div>
+        </div>
 
           <div class="space-y-1.5 text-[9.5px]">
             <div class="p-1.5 rounded bg-slate-900/60 border-l-2 border-rose-500">
@@ -6730,7 +6816,7 @@
           const cardiacPulse = 1.0 + (t < 0.15 ? Math.sin(t * Math.PI / 0.15) * 0.14 : (t > 0.22 && t < 0.35 ? Math.sin((t - 0.22) * Math.PI / 0.13) * 0.08 : 0));
           humanHeartMesh.scale.set(0.85 * cardiacPulse, 1.15 * cardiacPulse, 0.95 * cardiacPulse);
           if (humanHeartMesh.material) {
-            humanHeartMesh.material.emissiveIntensity = 0.5 + (cardiacPulse - 1.0) * 3.5;
+            humanHeartMesh.material.emissiveIntensity = 0.28 + (cardiacPulse - 1.0) * 0.75;
           }
         }
         // Pulmonary Respiratory Expansion (16 breaths per min)
@@ -6859,15 +6945,16 @@
       }
 
       // 1. REFINED MEDICAL LIGHTING (QUIET OBSIDIAN SCENE WITH TARGETED ILLUMINATION)
-      const humanChestLight = new THREE.PointLight(0x38bdf8, 4.2, 22);
+      const humanChestLight = new THREE.PointLight(0x38bdf8, 3.2, 18);
       humanChestLight.position.set(0, 2.2, 3.8);
       human3dGroup.add(humanChestLight);
 
-      const humanBackLight = new THREE.DirectionalLight(0x0ea5e9, 2.4);
+      const humanBackLight = new THREE.DirectionalLight(0x0ea5e9, 2.0);
       humanBackLight.position.set(-2.5, 3.2, -3.5);
       human3dGroup.add(humanBackLight);
 
-      const humanHeartLight = new THREE.PointLight(0xf43f5e, 3.5, 5.0);
+      // Warm biological cardiac core illumination (gentle, dignified warm glow, NOT harsh red)
+      const humanHeartLight = new THREE.PointLight(0xfb7185, 0.75, 2.8);
       humanHeartLight.position.set(-0.15, 1.95, 0.45);
       human3dGroup.add(humanHeartLight);
 
@@ -6969,17 +7056,20 @@
       };
       human3dGroup.add(humanRibcageGroup);
 
-      // 4. HEALTRIX SIGNATURE ANOMALY HEATMAP (UPPER SCAPULA / CLAVICLE)
+      // 4. HEALTRIX SIGNATURE ANOMALY AUDIT (UPPER SCAPULA / CLAVICLE - DISCRETE MEDICAL RETICLE)
       humanAnomalyGroup = new THREE.Group();
       const anomMat = new THREE.MeshStandardMaterial({
         color: 0xf59e0b,
-        emissive: 0xef4444,
-        emissiveIntensity: 0.95,
-        roughness: 0.15
+        emissive: 0xd97706,
+        emissiveIntensity: 0.6,
+        roughness: 0.25
       });
-      const anomCore = new THREE.Mesh(new THREE.SphereGeometry(0.14, 12, 12), anomMat);
+      const anomCore = new THREE.Mesh(new THREE.SphereGeometry(0.06, 12, 12), anomMat);
       anomCore.position.set(-0.85, 2.62, 0.22);
-      const anomRing = new THREE.Mesh(new THREE.TorusGeometry(0.24, 0.012, 8, 24), new THREE.MeshBasicMaterial({ color: 0xf59e0b, transparent: true, opacity: 0.9 }));
+      const anomRing = new THREE.Mesh(
+        new THREE.TorusGeometry(0.14, 0.008, 8, 32),
+        new THREE.MeshBasicMaterial({ color: 0xf59e0b, transparent: true, opacity: 0.65 })
+      );
       anomRing.position.set(-0.85, 2.62, 0.22);
       humanAnomalyGroup.add(anomCore, anomRing);
       human3dGroup.add(humanAnomalyGroup);
@@ -7023,13 +7113,15 @@
       tracheaMesh.position.set(0, 2.52, 0.08);
       human3dGroup.add(tracheaMesh, humanLungsMeshL, humanLungsMeshR);
 
-      // B. Cardiovascular Heart (Pulsing Cardiac Mass with Aorta Arch)
+      // B. Cardiovascular Heart (Veridia Biological Warm Luminescence)
       const heartMat = new THREE.MeshStandardMaterial({
-        color: 0xf43f5e,
-        emissive: 0xe11d48,
-        emissiveIntensity: 0.85,
-        roughness: 0.15,
-        metalness: 0.35
+        color: 0x0284c7, // Translucent cool cyan base tone
+        emissive: 0xf43f5e, // Warm biological coral ruby
+        emissiveIntensity: 0.32,
+        roughness: 0.35,
+        metalness: 0.15,
+        transparent: true,
+        opacity: 0.95
       });
       const heartGeom = new THREE.SphereGeometry(0.26, 18, 16);
       heartGeom.scale(0.86, 1.18, 0.96);
@@ -7285,6 +7377,10 @@
 
       const nasaDeck = document.getElementById('bhu-nasa-bottom-deck');
       const healthDeck = document.getElementById('bhu-health-bottom-deck');
+      const elevFooter = document.getElementById('bhu-terrain-elevation-footer');
+      if (elevFooter) {
+        elevFooter.classList.toggle('hidden', mode === 'human');
+      }
       if (nasaDeck && healthDeck) {
         if (mode === 'human') {
           nasaDeck.classList.add('hidden');
@@ -7315,7 +7411,23 @@
           const geoBadge = document.getElementById('geo-level-badge');
           if (geoBadge) geoBadge.innerText = 'LEVEL: PHYSIOLOGICAL TWIN';
           const featureInfo = document.getElementById('feature-info');
-          if (featureInfo) featureInfo.innerText = 'Human Physiological Digital Twin';
+          if (featureInfo) featureInfo.innerText = 'Human Physiological Digital Twin (BodyParts3D & Human Atlas Standard)';
+
+          // Synchronize workspace panels to Public Health & Vitals
+          if (typeof switchRightDockTab === 'function') switchRightDockTab('health');
+          if (typeof switchLeftDockTab === 'function') switchLeftDockTab('vitals');
+          const left = document.getElementById('left-rail');
+          if (left && _isRailCollapsed(left)) _expandRail(left);
+
+          // Update activity bar highlight
+          ['home', 'universe', 'agri', 'worker', 'ai'].forEach(p => {
+            const b = document.getElementById(`act-btn-${p}`);
+            if (b) {
+              b.className = (p === 'worker')
+                ? "w-8 h-8 rounded-lg flex items-center justify-center text-cyan-400 bg-slate-800/80 border-l-2 border-cyan-400 transition relative shadow-[0_0_10px_rgba(56,189,248,0.3)]"
+                : "w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:bg-slate-800/60 transition relative";
+            }
+          });
         }
       }
 
@@ -9282,6 +9394,20 @@
         const rMeta = window.BhuLokaAI.getRoles()[role];
         if (rMeta) {
           banner.innerHTML = `<span class="text-sky-300 font-bold">${rMeta.name}</span> active &middot; <span class="text-slate-400">${rMeta.description}</span>`;
+        }
+      }
+
+      // Automatically launch specialized workflows based on role
+      if (role === 'farmer') {
+        if (typeof activeMode !== 'undefined' && (activeMode === 'solar' || activeMode === 'world')) {
+          if (typeof switchView === 'function') switchView('bihar');
+        }
+        if (window.BhuLokaAgri && typeof window.BhuLokaAgri.openWorkspace === 'function') {
+          window.BhuLokaAgri.openWorkspace('MAP');
+        }
+      } else if (role === 'business') {
+        if (window.BhuLokaAgri && typeof window.BhuLokaAgri.openWorkspace === 'function') {
+          window.BhuLokaAgri.openWorkspace('BIZ');
         }
       }
     };

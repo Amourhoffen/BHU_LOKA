@@ -185,6 +185,9 @@
       this.satState = { status: 'IDLE', data: null, nasaEo: null, sarWetness: null, error: null, maxCloud: 40 };
       this.waterState = { status: 'IDLE', data: null, error: null };
       this.governanceState = { status: 'IDLE', cadastral: null, portfolio: null, error: null };
+      this.bizState = { status: 'IDLE', data: null, error: null };
+      this.samplingGrid = [];
+      this.bareSoilIndex = 0.18;
       this.soilReports = [];
       this.soilForm = {
         ph: '',
@@ -206,7 +209,9 @@
       injectAgriStyles();
       this.ensureWorkspaceDOM();
       if (typeof window !== 'undefined' && window.location && window.location.search.includes('openAgri=1')) {
-        this.openWorkspace('MAP');
+        const qp = new URLSearchParams(window.location.search);
+        const initAgriTab = qp.get('agriTab') || 'MAP';
+        this.openWorkspace(initAgriTab);
       }
     }
 
@@ -522,6 +527,7 @@
       this.renderMapShapes();
       if (this.isOpen) this.renderWorkspace();
       this.fetchGovernanceAndPortfolio(target.farm_id);
+      this.fetchAgribusinessAiag(target.farm_id);
     }
 
     async fetchGovernanceAndPortfolio(farmId) {
@@ -891,10 +897,12 @@
       const selEnd = inside && typeof activeEl.selectionEnd === 'number' ? activeEl.selectionEnd : null;
 
       const tabs = [
-        { k: 'MAP', lbl: '1. Boundary' },
-        { k: 'SAT', lbl: '2. Sentinel-2 EO' },
-        { k: 'SOIL', lbl: '3. Soil & ET0' },
-        { k: 'AI', lbl: '4. Scout & AI' }
+        { k: 'MAP', lbl: '1. Field Guide' },
+        { k: 'SAT', lbl: '2. Optical & Multi-Sat' },
+        { k: 'SAR', lbl: '3. SAR & DEM' },
+        { k: 'SOIL', lbl: '4. ClimaPlots & Soil' },
+        { k: 'BIZ', lbl: '5. Agribusiness (AIAg)' },
+        { k: 'AI', lbl: '6. Farm AI' }
       ];
 
       panel.innerHTML = `
@@ -937,7 +945,9 @@
     renderTabHtml() {
       if (this.activeTab === 'MAP') return this.renderTabMap();
       if (this.activeTab === 'SAT') return this.renderTabSat();
+      if (this.activeTab === 'SAR') return this.renderTabSar();
       if (this.activeTab === 'SOIL') return this.renderTabSoil();
+      if (this.activeTab === 'BIZ') return this.renderTabBiz();
       return this.renderTabAi();
     }
 
@@ -982,6 +992,50 @@
             <div style="grid-column:span 2;color:#94a3b8;font-size:10px;">Centroid: ${this.activeFarm.centroid_lat} N, ${this.activeFarm.centroid_lon} E</div>
           </div>
           ${this.renderGovernanceCardsHtml()}
+
+          <!-- QGIS FARM TOOLS OPTIMAL FIELD SAMPLING GRID GENERATOR -->
+          <div class="bhu-ag-card" style="display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <b style="color:#f59e0b;">QGIS FARM Tools Field Guide Sampling</b>
+              <span style="font-size:9px;color:#94a3b8;">${this.samplingGrid.length} Active Waypoints</span>
+            </div>
+            <div style="font-size:9.5px;color:#94a3b8;">
+              Generate optimal stratified soil sampling GPS locations within plot bounds (Latin Hypercube algorithm).
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;">
+              <button type="button" id="bhu-ag-sample-grid-5" class="bhu-ag-btn secondary" style="font-size:9.5px;padding:3px 7px;">Generate 5-Point Grid</button>
+              <button type="button" id="bhu-ag-sample-grid-9" class="bhu-ag-btn secondary" style="font-size:9.5px;padding:3px 7px;">Generate 9-Point Grid</button>
+              <button type="button" id="bhu-ag-export-gpx" class="bhu-ag-btn secondary" style="font-size:9.5px;padding:3px 7px;">Export GPX</button>
+              <button type="button" id="bhu-ag-export-geojson" class="bhu-ag-btn secondary" style="font-size:9.5px;padding:3px 7px;">Export GeoJSON</button>
+              <button type="button" id="bhu-ag-export-csv" class="bhu-ag-btn secondary" style="font-size:9.5px;padding:3px 7px;">Export CSV</button>
+            </div>
+            ${this.samplingGrid.length ? `
+              <div style="max-height:110px;overflow-y:auto;background:#090d15;border:1px solid #1e293b;border-radius:3px;padding:4px;">
+                <table style="width:100%;font-size:9px;border-collapse:collapse;color:#cbd5e1;">
+                  <thead>
+                    <tr style="border-bottom:1px solid #334155;color:#94a3b8;text-align:left;">
+                      <th style="padding:2px;">ID</th>
+                      <th style="padding:2px;">Lat, Lon</th>
+                      <th style="padding:2px;">Zone</th>
+                      <th style="padding:2px;">Depth</th>
+                      <th style="padding:2px;">Tests</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${this.samplingGrid.map(sp => `
+                      <tr style="border-bottom:1px solid rgba(255,255,255,0.03);">
+                        <td style="padding:2px;color:#f59e0b;font-weight:700;">${sp.point_id}</td>
+                        <td style="padding:2px;">${sp.latitude}, ${sp.longitude}</td>
+                        <td style="padding:2px;color:#94a3b8;">${sp.zone_label}</td>
+                        <td style="padding:2px;">${sp.sampling_depth}</td>
+                        <td style="padding:2px;color:#38bdf8;">${sp.target_tests}</td>
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+              </div>
+            ` : '<div style="font-size:9px;color:#64748b;text-align:center;padding:4px;">Click 5-Point or 9-Point Grid to compute optimal GPS sampling coordinates.</div>'}
+          </div>
         ` : ''}
 
         <div class="bhu-ag-card">
@@ -1563,6 +1617,20 @@
       if (satBtn) satBtn.onclick = () => this.fetchSatelliteIndices(false);
       const watBtn = panel.querySelector('#bhu-ag-water-fetch');
       if (watBtn) watBtn.onclick = () => this.fetchWaterSoilProfile();
+
+      const bizBtn = panel.querySelector('#bhu-ag-biz-fetch');
+      if (bizBtn && this.activeFarm) bizBtn.onclick = () => this.fetchAgribusinessAiag(this.activeFarm.farm_id);
+
+      const grid5Btn = panel.querySelector('#bhu-ag-sample-grid-5');
+      if (grid5Btn) grid5Btn.onclick = () => this.generateSamplingGrid(5);
+      const grid9Btn = panel.querySelector('#bhu-ag-sample-grid-9');
+      if (grid9Btn) grid9Btn.onclick = () => this.generateSamplingGrid(9);
+      const gpxBtn = panel.querySelector('#bhu-ag-export-gpx');
+      if (gpxBtn) gpxBtn.onclick = () => this.exportSamplingWaypoints('gpx');
+      const geojsonBtn = panel.querySelector('#bhu-ag-export-geojson');
+      if (geojsonBtn) geojsonBtn.onclick = () => this.exportSamplingWaypoints('geojson');
+      const csvBtn = panel.querySelector('#bhu-ag-export-csv');
+      if (csvBtn) csvBtn.onclick = () => this.exportSamplingWaypoints('csv');
 
       const bindSoilVal = (sel, key) => {
         const el = panel.querySelector(sel);
