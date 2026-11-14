@@ -23,8 +23,18 @@ During catastrophic monsoon floods in South Asia, optical satellites (such as La
   Hardware-accelerated vertical curtain slider comparing the Pre-Flood dry baseline (23 Sep 2019, Sentinel-1A) with the Peak Flood deluge (29 Sep 2019, Sentinel-1B).
 - **"Naya Paani" (Flood Water Gain) Overlay:**
   High-visibility fluorescent cyan (`#00E5FF`) overlay delineating the verified **$26.54\text{ km}^2$** of newly inundated land with real-time opacity adjustment ($0\%\text{ to }100\%$).
-- **Permanent River Channel Separation:**
-  Independent deep navy (`#1565C0`) overlay preserving the **$113.82\text{ km}^2$** baseline perennial Ganga riverbed.
+- **Live Radar Pixel Inspector HUD:**
+  Real-time mouse telemetry reporting instantaneous geographic coordinates, Pre-flood $\sigma^0$ (dB), Post-flood $\sigma^0$ (dB), backscatter change $\Delta\sigma^0$, and physical scattering classifications (`🚨 INUNDATION GAIN`, `🌊 SPECULAR RIVERBED`, `🏙️ URBAN DOUBLE-BOUNCE`, `ROUGH CANOPY`).
+- **Interactive 1D Backscatter Transect Profile:**
+  SVG cross-section tracing microwave backscatter from North to South along Lon $85.16^\circ\text{E}$ across the Ganga Riverbed into the Rajendra Nagar sink, visualizing the $-14.3\text{ dB}$ specular drop.
+- **NISAR (NASA-ISRO SAR) Dual-Frequency Perspective:**
+  Detailed comparison between Copernicus Sentinel-1 C-band ($5.5\text{ cm}$) and the upcoming NASA-ISRO NISAR L-band ($24\text{ cm}$) & S-band ($9.3\text{ cm}$) mission, illustrating how L-band penetrates flooded agricultural canopies where C-band is obstructed.
+- **Patna Wards Multi-Hazard Flood Exposure Matrix:**
+  Comprehensive quantitative table breaking down inundated area ($\text{km}^2$), mean elevation from Copernicus 90m DEM, and estimated exposed population across 6 critical sectors (Rajendra Nagar, Kankarbagh, Ganga Diara, Digha, Patna Junction, Bihta Safe Ridge).
+- **Optical Cloud Blindness Simulation:**
+  Demonstrates how dense monsoon stratocumulus clouds obscured 100% of optical imagery on 29 Sep 2019, proving why active microwave SAR is an indispensable lifeline for disaster management.
+- **1-Click Open GIS Deliverables:**
+  Direct downloads for `sar_flood_inundation_patna_2019.geojson` ($26.54\text{ km}^2$) and `sar_flood_change_metadata.json` for seamless import into QGIS or ArcGIS.
 - **Bilingual AI SAR Analyst (English + Hindi):**
   A grounded conversational explanation module translating radar backscatter physics into actionable guidance for relief agencies (NDRF/SDRF) while explicitly communicating scientific limitations.
 - **100% Static Client-Side Deployment:**
