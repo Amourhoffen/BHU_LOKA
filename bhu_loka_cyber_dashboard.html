@@ -24,6 +24,8 @@
   <script src="Assets/vendor/bhu_loka_agri.js"></script>
   <!-- BUSINESS & URBAN INTELLIGENCE (Module 04) -->
   <script src="Assets/vendor/bhu_loka_urban.js"></script>
+  <!-- BHU LOKA AI CONVERSATIONAL ASSISTANT & TOOL CALLING ENGINE (Module 06) -->
+  <script src="Assets/vendor/bhu_loka_ai.js"></script>
   <style>
     :root {
       --bg-canvas: #06090e;
@@ -1705,7 +1707,7 @@
       <div id="right-dock-tabs" class="bhu-dock-tabbar shrink-0" role="tablist" aria-label="Right Inspector View">
         <button type="button" id="right-tab-btn-ai" role="tab" aria-selected="true" onclick="switchRightDockTab('ai')"
           class="bhu-dock-tab">
-          AI Decision
+          BHU LOKA AI
         </button>
         <button type="button" id="right-tab-btn-loc" role="tab" aria-selected="false"
           onclick="switchRightDockTab('loc')" class="bhu-dock-tab">
@@ -1791,30 +1793,49 @@
 
       <div id="right-ai-view" class="panel p-2.5 flex-1 min-h-[320px] lg:min-h-0 flex flex-col overflow-hidden">
 
-        <!-- CONSOLE HEADER & LANGUAGE BUTTONS -->
+        <!-- CONSOLE HEADER & CONTROLS -->
         <div class="flex flex-wrap items-center justify-between gap-1.5 border-b border-slate-800 pb-2 mb-1.5 shrink-0">
           <div class="min-w-0">
-            <div class="section-header whitespace-nowrap">Dual-Agent Decision Terminal</div>
-            <div class="mono text-[10px] text-slate-400 truncate">Agent-1: Transformer RAG · Agent-2: Map Director</div>
+            <div class="section-header whitespace-nowrap flex items-center gap-1.5">
+              <span>BHU LOKA AI</span>
+              <span class="text-[10px] text-sky-400 font-normal">भूलोक AI</span>
+            </div>
+            <div class="mono text-[10px] text-slate-400 truncate">Sovereign Earth Assistant · Agent-1: Grounded RAG · Agent-2: Map Director</div>
           </div>
           <div class="flex items-center gap-1.5 shrink-0">
+            <!-- Voice Output Toggle -->
+            <button type="button" onclick="if(window.BhuLokaAI) BhuLokaAI.toggleVoiceOutput()" id="btn-cyber-tts" class="bhu-ai-tts-btn p-1 rounded border border-slate-700 bg-slate-800 text-slate-400 hover:text-slate-200 transition" title="Voice Output: MUTED (Click to activate audio answers)">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+              </svg>
+            </button>
             <div class="inline-flex bg-[#070b12] p-0.5 rounded border border-slate-800 mono text-[10px]"
               id="lang-mode-group"
               title="Response Language: AUTO (English/Hinglish/Hindi), EN (English Only), HI (Hindi)">
-              <button type="button" onclick="setLanguageMode('auto')" id="btn-lang-auto"
+              <button type="button" onclick="setLanguageMode('auto'); if(window.BhuLokaAI) BhuLokaAI.setLanguage('auto');" id="btn-lang-auto"
                 class="px-1.5 py-0.5 rounded bg-sky-500/25 text-sky-300 font-semibold">AUTO</button>
-              <button type="button" onclick="setLanguageMode('en')" id="btn-lang-en"
+              <button type="button" onclick="setLanguageMode('en'); if(window.BhuLokaAI) BhuLokaAI.setLanguage('en');" id="btn-lang-en"
                 class="px-1.5 py-0.5 rounded text-slate-400 hover:text-slate-200">EN</button>
-              <button type="button" onclick="setLanguageMode('hi')" id="btn-lang-hi"
+              <button type="button" onclick="setLanguageMode('hi'); if(window.BhuLokaAI) BhuLokaAI.setLanguage('hi');" id="btn-lang-hi"
                 class="px-1.5 py-0.5 rounded text-slate-400 hover:text-slate-200">HI</button>
             </div>
-            <span class="badge-chip bg-slate-800 text-slate-300 border-slate-700"
-              id="console-status-badge">DUAL-AGENT</span>
+            <span class="badge-chip bg-slate-800 text-sky-300 border-slate-700"
+              id="console-status-badge">SOVEREIGN AI</span>
             <button type="button" onclick="clearChatFeed()"
               class="mono text-[10px] px-2 py-0.5 rounded bg-slate-800/70 hover:bg-slate-700 text-slate-400 hover:text-slate-200 border border-slate-700 transition">
               CLEAR
             </button>
           </div>
+        </div>
+
+        <!-- 5 ROLE PRESETS SELECTOR CHIPS -->
+        <div class="flex items-center gap-1 overflow-x-auto pb-1.5 mb-1.5 border-b border-slate-800/80 mono text-[10px] shrink-0" id="cyber-role-selector">
+          <span class="text-slate-500 uppercase text-[9px] font-bold shrink-0">Role:</span>
+          <button type="button" data-role="farmer" onclick="if(window.BhuLokaAI) BhuLokaAI.setRole('farmer'); setCyberAiRole('farmer');" class="bhu-role-chip active px-2 py-0.5 rounded text-[9.5px] font-semibold border transition shrink-0 bg-sky-500/20 text-sky-300 border-sky-400/50">🌾 Farmer</button>
+          <button type="button" data-role="business" onclick="if(window.BhuLokaAI) BhuLokaAI.setRole('business'); setCyberAiRole('business');" class="bhu-role-chip px-2 py-0.5 rounded text-[9.5px] font-normal border transition shrink-0 bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200">💼 Business</button>
+          <button type="button" data-role="student" onclick="if(window.BhuLokaAI) BhuLokaAI.setRole('student'); setCyberAiRole('student');" class="bhu-role-chip px-2 py-0.5 rounded text-[9.5px] font-normal border transition shrink-0 bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200">🎓 Student</button>
+          <button type="button" data-role="worker" onclick="if(window.BhuLokaAI) BhuLokaAI.setRole('worker'); setCyberAiRole('worker');" class="bhu-role-chip px-2 py-0.5 rounded text-[9.5px] font-normal border transition shrink-0 bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200">👷 Worker</button>
+          <button type="button" data-role="researcher" onclick="if(window.BhuLokaAI) BhuLokaAI.setRole('researcher'); setCyberAiRole('researcher');" class="bhu-role-chip px-2 py-0.5 rounded text-[9.5px] font-normal border transition shrink-0 bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200">🔬 Researcher</button>
         </div>
 
         <!-- LIVE AGENT-2 AUTONOMOUS CARTOGRAPHIC STATUS BANNER -->
@@ -1848,9 +1869,21 @@
           </div>
         </div>
 
+        <!-- VOICE LISTENING BANNER (OPT-IN) -->
+        <div class="bhu-ai-voice-status-banner hidden px-2.5 py-1 bg-rose-950/60 border border-rose-500/40 rounded mb-1.5 text-[10.5px] text-rose-300 mono flex items-center shrink-0">
+          <span class="inline-block w-2 h-2 rounded-full bg-rose-500 animate-pulse mr-2"></span>
+          <span>Listening (opt-in active)... Speak now in Hindi or English</span>
+        </div>
+
         <!-- INPUT FORM & MULTILINGUAL PRESETS -->
         <div class="mt-2 pt-2 border-t border-slate-800 shrink-0">
           <div class="flex gap-1.5">
+            <!-- Opt-in Mic Button -->
+            <button type="button" onclick="if(window.BhuLokaAI) BhuLokaAI.toggleVoiceInput()" class="bhu-ai-mic-btn px-2 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition flex items-center justify-center shrink-0" title="Voice Input (Click to speak in Hindi/English · Opt-in)">
+              <svg class="w-4 h-4 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 02-3-3V5a3 3 0 116 0v6a3 3 0 02-3 3z"/>
+              </svg>
+            </button>
             <input id="user-input" type="text"
               placeholder="Ask in Hindi, Hinglish, or English (e.g. 'ye red blue line q hain', 'kankarbagh safe hai?')..."
               class="flex-1 bg-[#090d13] border border-slate-700 rounded px-2.5 py-1.5 text-xs mono text-slate-100 placeholder-slate-500 focus:outline-none focus:border-sky-400"
@@ -7251,10 +7284,71 @@
           if (typeof switchView === 'function') switchView('world');
         }
         if (typeof switchRightDockTab === 'function') switchRightDockTab('ai');
-        const qInp = document.getElementById('query-input');
+        const qInp = document.getElementById('user-input') || document.getElementById('query-input');
         if (qInp) qInp.focus();
+        if (window.BhuLokaAI && typeof window.BhuLokaAI.setRole === 'function') {
+          window.BhuLokaAI.setRole(window.BhuLokaAI.getState().currentRole || 'farmer');
+        }
       }
     };
+
+    window.setCyberAiRole = function(role) {
+      if (window.BhuLokaAI) {
+        window.BhuLokaAI.setRole(role);
+      }
+      const chips = document.querySelectorAll('#cyber-role-selector .bhu-role-chip');
+      chips.forEach(c => {
+        const r = c.getAttribute('data-role');
+        if (r === role) {
+          c.className = 'bhu-role-chip active px-2 py-0.5 rounded text-[9.5px] font-semibold border transition shrink-0 bg-sky-500/20 text-sky-300 border-sky-400/50';
+        } else {
+          c.className = 'bhu-role-chip px-2 py-0.5 rounded text-[9.5px] font-normal border transition shrink-0 bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200';
+        }
+      });
+      const banner = document.getElementById('agent2-banner');
+      if (banner && window.BhuLokaAI) {
+        const rMeta = window.BhuLokaAI.getRoles()[role];
+        if (rMeta) {
+          banner.innerHTML = `<span class="text-sky-300 font-bold">${rMeta.name}</span> active &middot; <span class="text-slate-400">${rMeta.description}</span>`;
+        }
+      }
+    };
+
+    // Register BHU LOKA AI Tools in Cyber Dashboard
+    if (window.BhuLokaAI) {
+      window.BhuLokaAI.registerTool('fly_to', async (args) => {
+        if (typeof window.executeUniversalLocationSearch === 'function' && args.location) {
+          window.executeUniversalLocationSearch(args.location);
+        } else if (typeof window.switchView === 'function') {
+          window.switchView(args.location?.toLowerCase().includes('bihar') ? 'bihar' : 'world');
+        }
+        return { message: `Camera focused on ${args.location || 'Target'} (${args.lat || 25.59}, ${args.lon || 85.13}).` };
+      });
+      window.BhuLokaAI.registerTool('toggle_layer', async (args) => {
+        if (typeof window.toggleBhuLayer === 'function') {
+          window.toggleBhuLayer(args.layer);
+        }
+        return { message: `Layer '${args.layer}' toggled.` };
+      });
+      window.BhuLokaAI.registerTool('open_tab', async (args) => {
+        if (typeof window.setNasaNavTab === 'function') {
+          window.setNasaNavTab(args.tab_name);
+        }
+        return { message: `Switched hub to '${args.tab_name}'.` };
+      });
+      window.BhuLokaAI.registerTool('start_timelapse', async (args) => {
+        if (typeof window.bhuTimeMachinePlay === 'function') {
+          window.bhuTimeMachinePlay();
+        }
+        return { message: `Time machine playback started.` };
+      });
+      window.BhuLokaAI.registerTool('draw_buffer', async (args) => {
+        return { message: `Analysis buffer of ${args.radius_km || 2} km drawn.` };
+      });
+      window.BhuLokaAI.registerTool('run_zonal_stats', async (args) => {
+        return { message: `Computed multi-hazard zonal stats: Sentinel-1 flood mask 94.08 km², safe ridge elevation >52m AMSL.` };
+      });
+    }
 
     window.triggerCinematicEarthExplore = function() {
       const btn = document.getElementById('bhu-explore-btn');

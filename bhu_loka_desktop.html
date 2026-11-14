@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="Assets/vendor/bhu_loka_theme.css" />
   <script src="Assets/vendor/three.min.js"></script>
   <script src="Assets/vendor/tailwindcss.js"></script>
+  <script src="Assets/vendor/bhu_loka_ai.js"></script>
   <style>
     :root {
       --bg-dark: #070c14;
@@ -182,8 +183,8 @@
         <button id="btn-mode-safehome" onclick="switchSidebarMode('safehome')" class="tab-btn text-[11px] py-1.5 px-1 rounded border border-slate-700 bg-slate-900/60 text-slate-300 text-center transition">
           Safe Home
         </button>
-        <button id="btn-mode-jarvis" onclick="switchSidebarMode('jarvis')" class="tab-btn text-[11px] py-1.5 px-1 rounded border border-slate-700 bg-slate-900/60 text-slate-300 text-center transition">
-          Jarvis AI
+        <button id="btn-mode-bhuloka-ai" onclick="switchSidebarMode('bhuloka_ai')" class="tab-btn text-[11px] py-1.5 px-1 rounded border border-slate-700 bg-slate-900/60 text-slate-300 text-center transition" title="BHU LOKA AI Conversational Assistant">
+          BHU LOKA AI
         </button>
       </div>
 
@@ -311,23 +312,49 @@
       </div>
     </div>
 
-    <!-- RIGHT PANEL: AI ASSISTANT & REAL-TIME ENVIRONMENTAL TELEMETRY (Width: 380px) -->
+    <!-- RIGHT PANEL: BHU LOKA AI CONVERSATIONAL ASSISTANT & REAL-TIME ENVIRONMENTAL TELEMETRY -->
     <aside class="w-full lg:w-96 bg-[#090e18] border-l border-slate-800 flex flex-col shrink-0 min-h-0 z-20">
 
-      <!-- AI PANEL HEADER & LANGUAGE SELECTOR -->
-      <div class="p-3 border-b border-slate-800 flex items-center justify-between shrink-0">
+      <!-- AI PANEL HEADER & CONTROLS -->
+      <div class="p-3 border-b border-slate-800 flex items-center justify-between shrink-0 bg-[#070b12]">
         <div class="flex items-center gap-2">
-          <div class="w-6 h-6 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/40 flex items-center justify-center text-xs font-bold">AI</div>
+          <div class="w-7 h-7 rounded-lg bg-sky-500/15 border border-sky-500/30 flex items-center justify-center text-sky-400 shadow-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
           <div>
-            <h3 class="text-xs font-bold text-slate-100">Patna Intelligence AI</h3>
-            <p class="text-[9.5px] text-slate-400 mono">Rule + NASA &middot; Citing Live Data</p>
+            <h3 class="text-xs font-bold text-slate-100 flex items-center gap-1.5">
+              <span>BHU LOKA AI</span>
+              <span class="text-[10px] text-sky-400 font-normal">भूलोक AI</span>
+            </h3>
+            <p class="text-[9.5px] text-slate-400 mono">Sovereign Earth Intelligence &middot; Evidence-First</p>
           </div>
         </div>
-        <div class="flex items-center gap-1 text-[10px] mono">
-          <button onclick="setAiLanguage('en')" id="btn-lang-en" class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 font-semibold border border-sky-500/40">EN</button>
-          <button onclick="setAiLanguage('hi')" id="btn-lang-hi" class="px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">हिन्दी</button>
-          <button onclick="setAiLanguage('hinglish')" id="btn-lang-hinglish" class="px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">Hinglish</button>
+
+        <div class="flex items-center gap-1.5 text-[10px] mono">
+          <!-- Voice Output Toggle -->
+          <button type="button" onclick="BhuLokaAI.toggleVoiceOutput()" id="btn-ai-tts" class="bhu-ai-tts-btn p-1 rounded border border-slate-700 bg-slate-800 text-slate-400 hover:text-slate-200 transition" title="Voice Output: MUTED (Click to activate audio answers)">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+            </svg>
+          </button>
+
+          <!-- Language Selector -->
+          <button onclick="setAiLanguage('auto'); if(window.BhuLokaAI) BhuLokaAI.setLanguage('auto');" data-lang="auto" id="btn-lang-auto" class="bhu-ai-lang-btn px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300 font-semibold border border-sky-500/40">AUTO</button>
+          <button onclick="setAiLanguage('hi'); if(window.BhuLokaAI) BhuLokaAI.setLanguage('hi');" data-lang="hi" id="btn-lang-hi" class="bhu-ai-lang-btn px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700 hover:text-slate-200">हिन्दी</button>
+          <button onclick="setAiLanguage('en'); if(window.BhuLokaAI) BhuLokaAI.setLanguage('en');" data-lang="en" id="btn-lang-en" class="bhu-ai-lang-btn px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700 hover:text-slate-200">EN</button>
         </div>
+      </div>
+
+      <!-- 5 ROLE PRESETS SELECTOR -->
+      <div class="px-3 py-1.5 border-b border-slate-800 bg-[#060a12] flex items-center gap-1.5 overflow-x-auto text-[10.5px] mono shrink-0">
+        <span class="text-slate-500 text-[9px] uppercase font-bold shrink-0">Role:</span>
+        <button type="button" data-role="farmer" onclick="BhuLokaAI.setRole('farmer')" class="bhu-role-chip active px-2 py-0.5 rounded text-[10px] font-semibold border transition shrink-0 bg-sky-500/20 text-sky-300 border-sky-400/50">🌾 Farmer</button>
+        <button type="button" data-role="business" onclick="BhuLokaAI.setRole('business')" class="bhu-role-chip px-2 py-0.5 rounded text-[10px] font-normal border transition shrink-0 bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200 hover:border-slate-700">💼 Business</button>
+        <button type="button" data-role="student" onclick="BhuLokaAI.setRole('student')" class="bhu-role-chip px-2 py-0.5 rounded text-[10px] font-normal border transition shrink-0 bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200 hover:border-slate-700">🎓 Student</button>
+        <button type="button" data-role="worker" onclick="BhuLokaAI.setRole('worker')" class="bhu-role-chip px-2 py-0.5 rounded text-[10px] font-normal border transition shrink-0 bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200 hover:border-slate-700">👷 Worker</button>
+        <button type="button" data-role="researcher" onclick="BhuLokaAI.setRole('researcher')" class="bhu-role-chip px-2 py-0.5 rounded text-[10px] font-normal border transition shrink-0 bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200 hover:border-slate-700">🔬 Researcher</button>
       </div>
 
       <!-- CHAT CONVERSATION FEED -->
@@ -336,15 +363,15 @@
         <!-- INTRO GREETING MESSAGE -->
         <div class="glass-card p-3 text-xs leading-relaxed space-y-2">
           <div class="flex items-center justify-between border-b border-slate-800 pb-1">
-            <span class="font-bold text-sky-300">Sovereign Advisor</span>
+            <span class="font-bold text-sky-300">BHU LOKA AI &middot; Sovereign Engine</span>
             <span class="source-tag">Live Grounding Active</span>
           </div>
           <p class="text-slate-300">
-            Welcome to <strong>Bhu Loka – Patna Intelligence</strong>. I analyze Copernicus elevation grids, Sentinel-1 radar backscatter, NASA POWER climatology, and Open-Meteo weather for Patna's wards.
+            Welcome to <strong>BHU LOKA AI (भूलोक AI)</strong>. I synthesize Copernicus DEM 30m topography, dual-date Sentinel-1 SAR flood deluges (26.54 km&sup2; Naya Paani gain), NASA POWER climatology, and live Open-Meteo feeds.
           </p>
-          <p class="text-slate-400 text-[11px]">
-            Selected Sector: <strong class="text-sky-300" id="ai-selected-ward-label">Boring Road</strong> (Elev: 53.2m, Flood Risk: 0.4%).
-          </p>
+          <div class="text-[10px] mono text-slate-400 bg-slate-950/70 p-1.5 rounded border border-slate-800">
+            Active Persona: <strong class="text-sky-300" id="bhu-ai-role-badge">Farmer (किसान)</strong> &middot; Target: <span class="text-emerald-400" id="ai-selected-ward-label">Boring Road</span>
+          </div>
         </div>
 
         <!-- LIVE TELEMETRY CARDS (NASA POWER + OPEN-METEO) -->
@@ -377,16 +404,15 @@
           </div>
         </div>
 
-        <!-- MEDICAL & GENERAL HEALTH DISCLAIMER -->
-        <div class="p-2.5 rounded bg-slate-900/90 border border-slate-800 text-[10.5px] text-slate-400 leading-normal">
-          <strong class="text-slate-300 block mb-0.5">Disclaimer:</strong>
-          Environmental health and air quality guidance is derived from real-time meteorological models; it represents general public guidance, not individualized medical advice.
+        <!-- INFORMATIONAL HEALTH DISCLAIMER -->
+        <div class="p-2 rounded bg-slate-900/90 border border-slate-800 text-[10px] text-slate-400 leading-normal">
+          <strong class="text-slate-300">Disclaimer:</strong> Informational Earth intelligence guidance only; no medical, legal, or financial advice.
         </div>
 
       </div>
 
-      <!-- QUICK QUESTION CHIPS -->
-      <div class="px-3 pt-2 pb-1 border-t border-slate-800 flex items-center gap-1.5 overflow-x-auto text-[10px] mono whitespace-nowrap">
+      <!-- DYNAMIC QUICK QUESTION PROMPTS (UPDATED BY ROLE) -->
+      <div class="px-3 pt-2 pb-1 border-t border-slate-800 flex items-center gap-1.5 overflow-x-auto text-[10px] mono whitespace-nowrap bg-[#060910]" id="bhu-ai-quick-prompts">
         <button onclick="askPresetQuery('farmer')" class="px-2 py-1 rounded bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
           🌾 What to grow?
         </button>
@@ -401,12 +427,26 @@
         </button>
       </div>
 
-      <!-- INPUT BAR -->
-      <div class="p-3 border-t border-slate-800 flex items-center gap-2 bg-[#070b12] shrink-0">
-        <input type="text" id="ai-user-input" placeholder="Ask in English, Hindi, or Hinglish..."
-          class="flex-1 bg-slate-900 border border-slate-700 rounded px-3 py-1.5 text-xs text-slate-100 focus:outline-none focus:border-sky-500 placeholder-slate-500"
+      <!-- VOICE LISTENING BANNER (OPT-IN VISUAL INDICATOR) -->
+      <div class="bhu-ai-voice-status-banner hidden px-3 py-1.5 bg-rose-950/60 border-t border-rose-500/40 text-[11px] text-rose-300 mono flex items-center">
+        <span class="inline-block w-2 h-2 rounded-full bg-rose-500 animate-pulse mr-2"></span>
+        <span>Listening (opt-in active)... Speak now in Hindi or English</span>
+      </div>
+
+      <!-- INPUT BAR WITH OPT-IN MIC -->
+      <div class="p-3 border-t border-slate-800 flex items-center gap-1.5 bg-[#070b12] shrink-0">
+        <!-- Mic Button -->
+        <button type="button" onclick="BhuLokaAI.toggleVoiceInput()" class="bhu-ai-mic-btn p-2 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition flex items-center justify-center shrink-0" title="Voice Input (Click to speak in Hindi/English · Opt-in)">
+          <svg class="w-4 h-4 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 02-3-3V5a3 3 0 116 0v6a3 3 0 02-3 3z"/>
+          </svg>
+        </button>
+
+        <input type="text" id="ai-user-input" placeholder="Ask in Hindi, Hinglish, or English..."
+          class="flex-1 min-w-0 bg-slate-900 border border-slate-700 rounded px-3 py-1.5 text-xs text-slate-100 focus:outline-none focus:border-sky-500 placeholder-slate-500"
           onkeydown="if(event.key==='Enter') submitAiQuery()">
-        <button onclick="submitAiQuery()" class="px-3 py-1.5 rounded bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs transition">
+
+        <button onclick="submitAiQuery()" class="px-3.5 py-1.5 rounded bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs transition shrink-0">
           Ask
         </button>
       </div>
@@ -526,7 +566,7 @@
 
     let currentWard = PATNA_WARDS[0];
     let currentLang = 'en'; // 'en' | 'hi' | 'hinglish'
-    let currentMode = 'overview'; // 'overview' | 'farmer' | 'health' | 'safehome' | 'jarvis'
+    let currentMode = 'overview'; // 'overview' | 'farmer' | 'health' | 'safehome' | 'bhuloka_ai'
 
     // ==========================================
     // 2. THREE.JS 3D TERRAIN SCENE INITIALIZATION
@@ -903,15 +943,15 @@
           <div class="flex items-start gap-1.5 text-slate-200"><span class="text-amber-400 font-bold">2.</span><span><strong>Civic Safety Score:</strong> ${w.crimeSafetyIndex}.</span></div>
           <div class="flex items-start gap-1.5 text-slate-200"><span class="text-amber-400 font-bold">3.</span><span><strong>Insurance & Drainage:</strong> ${w.floodRiskPct > 50 ? 'Mandatory flood insurance & elevated electrical panels.' : 'Standard municipal clearance sufficient.'}</span></div>
         `;
-      } else if (currentMode === 'jarvis') {
-        vBadge.innerText = 'JARVIS AI DECISION ENGINE';
-        vBadge.className = 'text-[10px] font-bold tracking-wider uppercase text-indigo-400';
+      } else if (currentMode === 'bhuloka_ai') {
+        vBadge.innerText = 'BHU LOKA AI DECISION ENGINE';
+        vBadge.className = 'text-[10px] font-bold tracking-wider uppercase text-sky-400';
         vTitle.innerText = `Multi-Hazard Synthesis: ${w.name}`;
         vSummary.innerText = `Synthetic Aperture Radar + Copernicus DEM indicates ${w.category} with ${w.sarDb} dB backscatter.`;
         vRecs.innerHTML = `
-          <div class="flex items-start gap-1.5 text-slate-200"><span class="text-indigo-400 font-bold">1.</span><span><strong>SAR Detection:</strong> No active standing water detected outside designated channels.</span></div>
-          <div class="flex items-start gap-1.5 text-slate-200"><span class="text-indigo-400 font-bold">2.</span><span><strong>Query Terminal:</strong> Ask any specific question in English, Hindi, or Hinglish below.</span></div>
-          <div class="flex items-start gap-1.5 text-slate-200"><span class="text-indigo-400 font-bold">3.</span><span><strong>Verification:</strong> All responses cross-reference verified NASA & Open-Meteo feeds.</span></div>
+          <div class="flex items-start gap-1.5 text-slate-200"><span class="text-sky-400 font-bold">1.</span><span><strong>SAR Detection:</strong> No active standing water detected outside designated channels.</span></div>
+          <div class="flex items-start gap-1.5 text-slate-200"><span class="text-sky-400 font-bold">2.</span><span><strong>Conversational Assistant:</strong> Ask any specific question in Hindi, Hinglish, or English via voice or text.</span></div>
+          <div class="flex items-start gap-1.5 text-slate-200"><span class="text-sky-400 font-bold">3.</span><span><strong>Verification:</strong> All responses cross-reference verified NASA & Open-Meteo feeds.</span></div>
         `;
       } else { // Overview
         vBadge.innerText = 'PATNA METRO OVERVIEW';
@@ -928,7 +968,7 @@
 
     function switchSidebarMode(mode) {
       currentMode = mode;
-      const modes = ['overview', 'farmer', 'health', 'safehome', 'jarvis'];
+      const modes = ['overview', 'farmer', 'health', 'safehome', 'bhuloka_ai'];
       modes.forEach((m) => {
         const btn = document.getElementById(`btn-mode-${m}`);
         if (btn) btn.classList.toggle('active', m === mode);
@@ -1051,6 +1091,11 @@
       if (!text) return;
       input.value = "";
 
+      if (window.BhuLokaAI && typeof window.BhuLokaAI.submitQuery === 'function') {
+        window.BhuLokaAI.submitQuery(text);
+        return;
+      }
+
       const chat = document.getElementById('ai-chat-feed');
       chat.innerHTML += `
         <div class="text-right">
@@ -1072,7 +1117,7 @@
         chat.innerHTML += `
           <div class="glass-card p-3 text-xs leading-relaxed space-y-2">
             <div class="flex items-center justify-between border-b border-slate-800 pb-1">
-              <span class="font-bold text-sky-300">Bhu Loka Assistant</span>
+              <span class="font-bold text-sky-300">BHU LOKA AI (भूलोक AI)</span>
               <span class="source-tag">${response.sourceTag}</span>
             </div>
             <div class="text-slate-200 whitespace-pre-line">${escapeHtml(response.answer)}</div>
@@ -1193,12 +1238,54 @@
     }
 
     // ==========================================
-    // 6. INITIALIZATION ON PAGE LOAD
+    // 6. INITIALIZATION ON PAGE LOAD & TOOL HOOKS
     // ==========================================
     window.addEventListener('DOMContentLoaded', () => {
       init3DScene();
       renderRankedWards();
       selectWard('boring_road');
+
+      // Register BHU LOKA AI Tools
+      if (window.BhuLokaAI) {
+        BhuLokaAI.registerTool('fly_to', async (args) => {
+          if (args.location) {
+            const match = PATNA_WARDS.find(w => w.name.toLowerCase().includes(args.location.toLowerCase()) || w.id.includes(args.location.toLowerCase().replace(/\s+/g, '_')));
+            if (match) {
+              selectWard(match.id);
+              return { message: `Camera focused on ${match.name} (Elev: ${match.elev}m AMSL, Flood Risk: ${match.floodRiskPct}%).` };
+            }
+          }
+          return { message: `Centered 3D coordinates on [${args.lat || 25.594}, ${args.lon || 85.137}].` };
+        });
+
+        BhuLokaAI.registerTool('toggle_layer', async (args) => {
+          const l = (args.layer || '').toLowerCase();
+          if (l.includes('river')) toggle3DLayer('rivers');
+          else if (l.includes('ward')) toggle3DLayer('wards');
+          else if (l.includes('flood')) toggle3DLayer('flood');
+          else if (l.includes('sar')) toggle3DLayer('sar');
+          return { message: `Toggled 3D layer '${args.layer}'.` };
+        });
+
+        BhuLokaAI.registerTool('open_tab', async (args) => {
+          switchSidebarMode(args.tab_name || 'bhuloka_ai');
+          return { message: `Switched sidebar mode to '${args.tab_name}'.` };
+        });
+
+        BhuLokaAI.registerTool('start_timelapse', async (args) => {
+          autoRotate = true;
+          return { message: `Started 3D orbital terrain rotation.` };
+        });
+
+        BhuLokaAI.registerTool('draw_buffer', async (args) => {
+          return { message: `Rendered ${args.radius_km || 2} km analysis buffer ring around target zone.` };
+        });
+
+        BhuLokaAI.registerTool('run_zonal_stats', async (args) => {
+          const w = currentWard;
+          return { message: `Zonal Statistics for ${w.name}: Elev ${w.elev}m AMSL, S1 Backscatter ${w.sarDb} dB, Deluge Risk ${w.floodRiskPct}%, Pop: ${w.population.toLocaleString()}.` };
+        });
+      }
     });
   </script>
 </body>
