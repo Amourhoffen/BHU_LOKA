@@ -279,12 +279,18 @@ class TestTier1FeatureCoverage:
     def test_tier1_f7_f8_cinematic_startup_animation_configuration(
         self, dashboard_soup: BeautifulSoup, dashboard_html_content: str
     ):
-        """F7/F8: Cinematic startup animation overlay with skip trigger and <=3.0s duration."""
+        """F7/F8: Cinematic startup animation overlay with skip trigger, camera trajectory, and code polish."""
         intro_overlay = dashboard_soup.find(id="bhu-intro-overlay")
         assert intro_overlay is not None, "Missing startup animation overlay (#bhu-intro-overlay)"
 
-        # Must have skip button
-        skip_btn = intro_overlay.find("button")
+        # Wordmark validation: BHU LOKA · भूलोक
+        overlay_text = intro_overlay.get_text()
+        assert "BHU LOKA · भूलोक" in overlay_text or "BHU LOKA" in overlay_text, (
+            "Startup overlay must display BHU LOKA · भूलोक wordmark"
+        )
+
+        # Must have skip button with #intro-skip-btn
+        skip_btn = intro_overlay.find(id="intro-skip-btn") or intro_overlay.find("button")
         assert skip_btn is not None, "Startup overlay must contain a Skip button"
         skip_onclick = skip_btn.get("onclick", "")
         assert "dismissBhuIntro" in skip_onclick or "skipBhuIntro" in skip_onclick, (
@@ -296,6 +302,34 @@ class TestTier1FeatureCoverage:
         assert len(timeout_matches) > 0, "No auto-dismiss setTimeout found for startup intro"
         for ms in timeout_matches:
             assert int(ms) <= 3000, f"Startup animation timeout {ms}ms exceeds 3000ms requirement (R2)"
+
+        # Camera trajectory: deep space (0, 55, 95) down to workstation (0, 27, 34)
+        assert "55, 95" in dashboard_html_content or "DEEP_SPACE_CAM_POS" in dashboard_html_content, (
+            "Camera must initialize in deep space vector (0, 55, 95)"
+        )
+        assert "27, 34" in dashboard_html_content or "WORKSTATION_CAM_POS" in dashboard_html_content, (
+            "Camera must target active workstation vector (0, 27, 34)"
+        )
+        assert "prefers-reduced-motion" in dashboard_html_content, (
+            "Opening sequence must respect prefers-reduced-motion"
+        )
+
+        # Code Polish: unique console badge ID & clean language buttons
+        badges = dashboard_soup.find_all(id="console-status-badge")
+        assert len(badges) == 1, f"Expected 1 unique #console-status-badge, found {len(badges)}"
+        assert dashboard_soup.find(id="sovereign-ai-status-badge") is not None, (
+            "Missing #sovereign-ai-status-badge after renaming duplicate ID"
+        )
+        assert '<button type="button" onclick="setLanguageMode(\'auto\')" id="btn-lang-auto" <button' not in dashboard_html_content, (
+            "Language buttons must not contain duplicate unclosed <button prefix"
+        )
+
+        # Left rail India Intel button must route to right rail
+        left_rail = dashboard_soup.find("aside", id="left-rail")
+        assert left_rail is not None
+        assert "switchRightDockTab('intel')" in str(left_rail), (
+            "India Intel button in #left-rail must target #right-rail via switchRightDockTab('intel')"
+        )
 
     def test_tier1_f9_unified_3d_universe_scene_groups(self, dashboard_html_content: str):
         """F9: Persistent Three.js scene declares required solar and terrestrial hierarchical groups."""

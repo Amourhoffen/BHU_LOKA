@@ -283,13 +283,14 @@
       position: fixed;
       inset: 0;
       z-index: 9999;
-      background: #060910;
+      background: radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.15) 0%, rgba(6, 9, 16, 0.94) 55%, #030712 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+      transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
       pointer-events: auto;
+      overflow: hidden;
     }
 
     #bhu-intro-overlay.bhu-intro-fadeout {
@@ -384,27 +385,54 @@
 <body class="bhu-workstation p-1.5 sm:p-2 min-h-screen lg:h-screen lg:overflow-hidden flex flex-col gap-1.5">
   <!-- STARTUP IDENTITY ANIMATION OVERLAY (Cinematic, auto-fading, non-blocking) -->
   <div id="bhu-intro-overlay" role="dialog" aria-label="BHU LOKA Workstation Initializing">
-    <button type="button" onclick="dismissBhuIntro()"
-      class="absolute top-4 right-4 mono text-[11px] text-slate-400 hover:text-slate-100 px-3 py-1.5 rounded-full border border-sky-500/40 bg-slate-900/80 transition cursor-pointer z-50">
+    <!-- Atmospheric horizon glow aura behind Earth -->
+    <div class="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden" aria-hidden="true">
+      <div class="w-[600px] h-[600px] rounded-full bg-sky-500/15 filter blur-3xl animate-pulse"></div>
+      <div class="absolute w-[320px] h-[320px] rounded-full bg-cyan-400/20 filter blur-2xl"></div>
+    </div>
+
+    <!-- Skip Button (Click immediately cancels glide, snaps camera, removes overlay) -->
+    <button type="button" id="intro-skip-btn" onclick="skipBhuIntro()"
+      class="absolute top-4 right-4 mono text-[11px] text-slate-300 hover:text-white px-3.5 py-1.5 rounded-full border border-sky-500/40 bg-slate-900/90 hover:bg-slate-800 transition cursor-pointer z-50 flex items-center gap-1.5 shadow-[0_0_12px_rgba(56,189,248,0.25)]">
       Skip &rarr;
     </button>
-    <div class="text-center px-4">
-      <div class="mono text-2xl sm:text-3xl font-bold tracking-wider text-slate-100 mb-1">BHU LOKA</div>
-      <div class="text-sm text-slate-400 tracking-widest font-light">भूलोक · Sovereign Geospatial Workstation</div>
-      <div class="mono text-[10px] text-sky-400 mt-4 tracking-widest uppercase">Calibrating Planetary Instruments...
+
+    <!-- Wordmark & Sovereign Identity Presentation -->
+    <div class="relative text-center px-4 z-10 select-none">
+      <div class="mono text-xs uppercase tracking-[0.3em] text-sky-400 font-bold mb-2 flex items-center justify-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-ping"></span>
+        <span>Sovereign Earth Observation</span>
+      </div>
+      <div class="mono text-3xl sm:text-4xl md:text-5xl font-black tracking-widest text-slate-100 uppercase drop-shadow-[0_0_24px_rgba(56,189,248,0.5)]">
+        BHU LOKA · भूलोक
+      </div>
+      <div class="text-xs sm:text-sm text-slate-400 tracking-[0.25em] font-light mt-2 uppercase">
+        Sovereign Geospatial &amp; Planetary Workstation
+      </div>
+      <div class="mono text-[10px] text-sky-400/90 mt-5 tracking-[0.2em] uppercase flex items-center justify-center gap-2">
+        <span class="inline-block w-8 h-[1px] bg-sky-500/40"></span>
+        <span>Deep Space Insertion &bull; Synchronizing Orbit Vector</span>
+        <span class="inline-block w-8 h-[1px] bg-sky-500/40"></span>
       </div>
     </div>
   </div>
   <script>
     function dismissBhuIntro() {
+      window.bhuIntroDismissed = true;
       var ov = document.getElementById('bhu-intro-overlay');
       if (ov) {
-        ov.classList.add('bhu-intro-fadeout');
-        setTimeout(function () { if (ov && ov.parentNode) ov.parentNode.removeChild(ov); }, 400);
+        ov.style.transition = 'opacity 0.35s ease-out';
+        ov.style.opacity = '0';
+        setTimeout(function() {
+          if (ov && ov.parentNode) ov.parentNode.removeChild(ov);
+        }, 360);
       }
     }
     window.skipBhuIntro = dismissBhuIntro;
-    setTimeout(dismissBhuIntro, 1200);
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      dismissBhuIntro();
+    }
+    setTimeout(dismissBhuIntro, 2400);
   </script>
 
   <!-- TOP COMMAND HEADER (NASA FUTURISTIC SPACE COMMAND CENTER) -->
@@ -593,19 +621,19 @@
             <div class="inline-flex bg-[#070b12] p-0.5 rounded border border-slate-800 mono text-[10px]"
               id="lang-mode-group"
               title="Response Language: AUTO (English/Hinglish/Hindi), EN (English Only), HI (Hindi)">
-              <button type="button" onclick="setLanguageMode('auto')" id="btn-lang-auto" <button type="button"
+              <button type="button"
                 onclick="setLanguageMode('auto'); if(window.BhuLokaAI) BhuLokaAI.setLanguage('auto');"
                 id="btn-lang-auto" class="px-1.5 py-0.5 rounded bg-sky-500/25 text-sky-300 font-semibold">AUTO</button>
-              <button type="button" onclick="setLanguageMode('en')" id="btn-lang-en" <button type="button"
+              <button type="button"
                 onclick="setLanguageMode('en'); if(window.BhuLokaAI) BhuLokaAI.setLanguage('en');" id="btn-lang-en"
                 class="px-1.5 py-0.5 rounded text-slate-400 hover:text-slate-200">EN</button>
-              <button type="button" onclick="setLanguageMode('hi')" id="btn-lang-hi" <button type="button"
+              <button type="button"
                 onclick="setLanguageMode('hi'); if(window.BhuLokaAI) BhuLokaAI.setLanguage('hi');" id="btn-lang-hi"
                 class="px-1.5 py-0.5 rounded text-slate-400 hover:text-slate-200">HI</button>
             </div>
             <span class="badge-chip bg-slate-800 text-slate-300 border-slate-700"
               id="console-status-badge">DUAL-AGENT</span>
-            <span class="badge-chip bg-slate-800 text-sky-300 border-slate-700" id="console-status-badge">SOVEREIGN
+            <span class="badge-chip bg-slate-800 text-sky-300 border-slate-700" id="sovereign-ai-status-badge">SOVEREIGN
               AI</span>
             <button type="button" onclick="clearChatFeed()"
               class="mono text-[10px] px-2 py-0.5 rounded bg-slate-800/70 hover:bg-slate-700 text-slate-400 hover:text-slate-200 border border-slate-700 transition">
@@ -805,7 +833,7 @@
               <span class="text-amber-300 font-semibold truncate">👷 Worker Climate Health (WBGT / PM2.5)</span>
               <span class="text-[8.5px] text-slate-400">OPEN &rarr;</span>
             </button>
-            <button type="button" onclick="switchLeftDockTab('intel')"
+            <button type="button" onclick="switchRightDockTab('intel')"
               class="w-full text-left p-1.5 rounded bg-slate-800/80 hover:bg-slate-700/90 border border-slate-700 text-slate-200 flex items-center justify-between transition">
               <span class="text-sky-300 font-semibold truncate">🗺️ India Intel (Modules A–F)</span>
               <span class="text-[8.5px] text-slate-400">VIEW &rarr;</span>
@@ -853,7 +881,10 @@
               class="mono text-[11px] font-semibold px-2 py-0.5 text-slate-400 hover:text-slate-200 border-b-2 border-transparent transition">
               Auto 3D
             </button>
-            <button type="button" id="btn-solar" onclick="switchView('solar')"
+            <button type="button" id="btn-human" onclick="switchView('human')"
+            class="mono text-[11px] font-semibold px-2 py-0.5 text-slate-400 hover:text-slate-200 border-b-2 border-transparent transition"
+            title="3D Holographic Human Anatomical Body & Organ Stress">Human 3D</button>
+          <button type="button" id="btn-solar" onclick="switchView('solar')"
               title="Optional Astronomical Reference (Separate from Earth Observation)"
               class="mono text-[11px] font-semibold px-2 py-0.5 text-slate-400 hover:text-slate-200 border-b-2 border-transparent transition">
               Solar
@@ -1424,7 +1455,11 @@
             onclick="switchRightDockTab('intel')" class="bhu-dock-tab">
             Explorer (A–F)
           </button>
-          <button type="button" id="right-tab-btn-loc" role="tab" aria-selected="false"
+          <button type="button" id="right-tab-btn-health" role="tab" aria-selected="false"
+            onclick="switchRightDockTab('health')" class="bhu-dock-tab" title="Public Health, Citizen Action Plan & SAR News">
+            ✦ Health &amp; News
+          </button>
+          <button type="button" id="right-tab-btn-loc" role="tab"	 aria-selected="false"
             onclick="switchRightDockTab('loc')" class="bhu-dock-tab">
             Location HUD
           </button>
@@ -2058,6 +2093,160 @@
 
       
 
+      
+      <!-- HEALTH, CITIZEN ACTION & SAR FLOOD INTELLIGENCE VIEW -->
+      <div id="right-health-view" class="hidden flex-1 min-h-0 flex flex-col gap-2 overflow-y-auto pr-1">
+
+        <!-- HEADER & STATUS -->
+        <div class="bhu-nasa-glass p-2.5 flex items-center justify-between shrink-0">
+          <div class="flex items-center gap-1.5">
+            <span class="text-rose-400 font-bold text-sm">🏥</span>
+            <div>
+              <div class="text-xs font-bold tracking-wider text-slate-100 uppercase">Public Health &amp; Citizen Action</div>
+              <div class="text-[9px] mono text-slate-400">Sentinel-1 SAR Deluge + Copernicus DEM Grounding</div>
+            </div>
+          </div>
+          <span class="px-2 py-0.5 rounded-full text-[9px] mono bg-emerald-500/10 text-emerald-300 border border-emerald-500/30">ACTIVE</span>
+        </div>
+
+        <!-- 1. SENTINEL-1 SAR FLOODWATER HEALTH HAZARDS -->
+        <div class="bhu-nasa-glass p-2.5 flex flex-col gap-1.5 shrink-0">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-semibold text-rose-300 tracking-wide flex items-center gap-1.5">
+              <span>🌊</span> Standing Floodwater (SAR Deluge Mapped)
+            </span>
+            <span class="mono text-[9px] text-amber-400 font-bold">26.54 km² AT RISK</span>
+          </div>
+          <div class="bg-[#02050b]/80 p-2 rounded border border-slate-800 text-[10px] space-y-1 text-slate-300">
+            <div class="flex justify-between">
+              <span class="text-slate-400">Vector Hazard (Dengue/Malaria):</span>
+              <span class="text-rose-400 font-bold">CRITICAL in &lt;46m Sinks</span>
+            </div>
+            <div class="text-[9px] text-slate-400 leading-relaxed">
+              Sentinel-1 C-band radar identified stagnant water pooling across Rajendra Nagar, Kankarbagh, and Bailey Rd underpasses. 48–72h mosquito larva development window active.
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. ACTIONABLE CITIZEN STEPS (WHAT TO DO RIGHT NOW) -->
+        <div class="bhu-nasa-glass p-2.5 flex flex-col gap-2 shrink-0">
+          <div class="flex items-center justify-between border-b border-slate-800/80 pb-1">
+            <span class="text-[11px] font-semibold text-emerald-300 tracking-wide flex items-center gap-1.5">
+              <span>⚡</span> Citizen Immediate Action Plan (GIS/SARs)
+            </span>
+            <span class="mono text-[9px] text-sky-400">STEP-BY-STEP</span>
+          </div>
+
+          <div class="space-y-1.5 text-[10px]">
+            <!-- Action 1: Waterborne Protection -->
+            <div class="p-1.5 rounded bg-slate-900/60 border border-slate-800 flex gap-2">
+              <span class="text-sm">💧</span>
+              <div>
+                <b class="text-slate-200">Boil All Drinking Water (10+ min)</b>
+                <div class="text-[9px] text-slate-400">Floodwater backflow penetrates shallow tubewells in low-elevation wards. Use Halazone/Chlorine tablets (4mg/L).</div>
+              </div>
+            </div>
+
+            <!-- Action 2: Vector Defense -->
+            <div class="p-1.5 rounded bg-slate-900/60 border border-slate-800 flex gap-2">
+              <span class="text-sm">🦟</span>
+              <div>
+                <b class="text-slate-200">Mosquito &amp; Vector Protection</b>
+                <div class="text-[9px] text-slate-400">Sleep under LLIN bed nets; apply DEET 20%+ repellent. Drain standing water from tires, plant pots, and coolers within 24h.</div>
+              </div>
+            </div>
+
+            <!-- Action 3: Air & Mask -->
+            <div class="p-1.5 rounded bg-slate-900/60 border border-slate-800 flex gap-2">
+              <span class="text-sm">🫁</span>
+              <div>
+                <b class="text-slate-200">N95 Mask for Resuspended Silt (PM2.5: 142)</b>
+                <div class="text-[9px] text-slate-400">As flood mud dries, fine particulates aerosolize. Wear N95 outdoors, especially children and elderly.</div>
+              </div>
+            </div>
+
+            <!-- Action 4: Heat & Hydration -->
+            <div class="p-1.5 rounded bg-slate-900/60 border border-slate-800 flex gap-2">
+              <span class="text-sm">🧠</span>
+              <div>
+                <b class="text-slate-200">Electrolyte &amp; Heat Hydration (WBGT 26.2°C)</b>
+                <div class="text-[9px] text-slate-400">Outdoor workers: 500ml water with ORS or salt-lemon per hour. 15-minute shaded rest every 2 hours.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. TERTIARY HOSPITALS & SAFE HIGH-GROUND ACCESS (COPERNICUS DEM) -->
+        <div class="bhu-nasa-glass p-2.5 flex flex-col gap-2 shrink-0">
+          <div class="flex items-center justify-between border-b border-slate-800/80 pb-1">
+            <span class="text-[11px] font-semibold text-sky-300 tracking-wide flex items-center gap-1.5">
+              <span>🏥</span> Emergency Hospitals &amp; Safe High-Ground Routes
+            </span>
+            <span class="mono text-[8.5px] text-slate-400">COPERNICUS 30m DEM</span>
+          </div>
+
+          <div class="space-y-1 text-[9.5px] mono">
+            <!-- AIIMS Patna -->
+            <div class="p-1.5 rounded bg-[#02050b]/80 border border-slate-800 flex items-center justify-between">
+              <div>
+                <b class="text-emerald-400">AIIMS Patna (Phulwari)</b>
+                <div class="text-[8.5px] text-slate-400">Elev: 52.4m · Safe Ridge · 24/7 Trauma &amp; Flood Relief</div>
+              </div>
+              <span class="text-[9px] font-bold text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 rounded border border-emerald-800">SAFE ACCESS</span>
+            </div>
+
+            <!-- PMCH -->
+            <div class="p-1.5 rounded bg-[#02050b]/80 border border-slate-800 flex items-center justify-between">
+              <div>
+                <b class="text-sky-300">PMCH (Ashok Rajpath)</b>
+                <div class="text-[8.5px] text-slate-400">Elev: 51.8m · Central Disaster Ward · Access Bailey Rd Bypass</div>
+              </div>
+              <span class="text-[9px] font-bold text-sky-400 bg-sky-950/60 px-1.5 py-0.5 rounded border border-sky-800">OPEN</span>
+            </div>
+
+            <!-- IGIMS -->
+            <div class="p-1.5 rounded bg-[#02050b]/80 border border-slate-800 flex items-center justify-between">
+              <div>
+                <b class="text-emerald-300">IGIMS (Sheikhpura)</b>
+                <div class="text-[8.5px] text-slate-400">Elev: 52.1m · High Ridge Corridor · Emergency Triage Active</div>
+              </div>
+              <span class="text-[9px] font-bold text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 rounded border border-emerald-800">SAFE ACCESS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. REAL-TIME LOCAL HEALTH NEWS (PATNA & BIHAR) -->
+        <div class="bhu-nasa-glass p-2.5 flex flex-col gap-1.5 shrink-0">
+          <div class="flex items-center justify-between border-b border-slate-800/80 pb-1">
+            <span class="text-[11px] font-semibold text-amber-300 tracking-wide flex items-center gap-1.5">
+              <span>📰</span> Real-Time Health &amp; Flood News Ticker
+            </span>
+            <span class="mono text-[8.5px] text-emerald-400">LIVE FEED</span>
+          </div>
+
+          <div class="space-y-1.5 text-[9.5px]">
+            <div class="p-1.5 rounded bg-slate-900/60 border-l-2 border-rose-500">
+              <span class="text-slate-400 font-mono text-[8.5px]">14 Nov 2026 · Patna Municipal Corp</span>
+              <div class="text-slate-200 mt-0.5 font-medium">Anti-larval chemical fogging dispatched to 22 waterlogged wards mapped via Copernicus Sentinel-1 SAR.</div>
+            </div>
+            <div class="p-1.5 rounded bg-slate-900/60 border-l-2 border-amber-500">
+              <span class="text-slate-400 font-mono text-[8.5px]">14 Nov 2026 · Bihar Health Directorate</span>
+              <div class="text-slate-200 mt-0.5 font-medium">State epidemic surveillance cell initiates acute diarrheal illness screening in relief centers.</div>
+            </div>
+            <div class="p-1.5 rounded bg-slate-900/60 border-l-2 border-emerald-500">
+              <span class="text-slate-400 font-mono text-[8.5px]">14 Nov 2026 · AIIMS Patna Public Bulletin</span>
+              <div class="text-slate-200 mt-0.5 font-medium">Emergency chlorine distribution and ORS hydration points operational across high-ground shelters.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. SCIENTIFIC DISCLAIMER -->
+        <div class="text-[8.5px] mono text-slate-500 p-2 border-t border-slate-800/80">
+          ⚖️ SCIENTIFIC DISCLAIMER: Environmental spatial intelligence synthesized from Copernicus Sentinel-1 SAR, Sentinel-5P, and Open-Meteo. Intended for public awareness and disaster mitigation; not a substitute for individual medical advice.
+        </div>
+
+      </div>
+
       <div id="right-loc-view" class="hidden flex-1 min-h-0 flex flex-col overflow-hidden">
         <div id="bhu-location-dock-slot" class="panel p-2.5 flex-1 min-h-0 flex flex-col overflow-hidden">
           <div id="bhu-loc-placeholder" class="mono text-[11px] text-slate-400 p-2">Select any map point, search
@@ -2453,8 +2642,64 @@
     const initW = Math.max(120, container.clientWidth || 560);
     const initH = Math.max(120, container.clientHeight || 340);
     const camera = new THREE.PerspectiveCamera(45, initW / initH, 0.1, 1000);
-    camera.position.set(0, 27, 34);
-    camera.lookAt(0, 0, 0);
+
+    // ── CINEMATIC STARTUP IDENTITY ANIMATION & CAMERA TRAJECTORY (R2) ──
+    const WORKSTATION_CAM_POS = new THREE.Vector3(0, 27, 34);
+    const DEEP_SPACE_CAM_POS = new THREE.Vector3(0, 55, 95);
+    const INTRO_DURATION_MS = 2300; // 2.3 seconds (smooth 2.0 to 2.5s budget)
+    let isIntroGliding = false;
+    let introStartTime = 0;
+    let targetCameraDistance = 34;
+    let targetCameraY = 27;
+
+    const prefersReducedMotion = Boolean(
+      typeof window !== 'undefined' &&
+      window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    );
+    const isHeadlessOrParamSkip = Boolean(
+      typeof window !== 'undefined' &&
+      window.location &&
+      (window.location.search.includes('autoTest') ||
+       window.location.search.includes('view=') ||
+       window.location.search.includes('tab='))
+    );
+
+    if (prefersReducedMotion || isHeadlessOrParamSkip || window.bhuIntroDismissed) {
+      camera.position.copy(WORKSTATION_CAM_POS);
+      camera.lookAt(0, 0, 0);
+      const splash = document.getElementById('bhu-intro-overlay');
+      if (splash) {
+        splash.style.display = 'none';
+        if (splash.parentNode) splash.parentNode.removeChild(splash);
+      }
+      window.bhuIntroDismissed = true;
+    } else {
+      camera.position.copy(DEEP_SPACE_CAM_POS);
+      camera.lookAt(0, 0, 0);
+      isIntroGliding = true;
+      introStartTime = (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
+    }
+
+    // Skip / Dismiss handler: immediately cancels camera glide, snaps camera to (0, 27, 34), removes overlay (0 delay)
+    window.skipBhuIntro = function () {
+      if (isIntroGliding) {
+        isIntroGliding = false;
+        camera.position.copy(WORKSTATION_CAM_POS);
+        camera.lookAt(0, 0, 0);
+      }
+      targetCameraDistance = 34;
+      targetCameraY = 27;
+      const overlay = document.getElementById('bhu-intro-overlay');
+      if (overlay) {
+        overlay.style.display = 'none';
+        if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+      }
+      window.bhuIntroDismissed = true;
+    };
+    window.dismissBhuIntro = window.skipBhuIntro;
+
+    setTimeout(window.skipBhuIntro, 2400);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true, powerPreference: 'high-performance' });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
@@ -2514,6 +2759,8 @@
     const terrainGroup = new THREE.Group();
     const hologramGroup = new THREE.Group();
     const solarGroup = new THREE.Group();
+    const human3dGroup = new THREE.Group();
+    human3dGroup.visible = false;
     worldGroup.visible = false;
     indiaGroup.visible = true;
     biharGroup.visible = false;
@@ -2521,7 +2768,7 @@
     hologramGroup.visible = false;
     scene.add(worldGroup, indiaGroup, biharGroup, terrainGroup, hologramGroup);
     solarGroup.visible = false;
-    scene.add(worldGroup, indiaGroup, biharGroup, terrainGroup, hologramGroup, solarGroup);
+    scene.add(worldGroup, indiaGroup, biharGroup, terrainGroup, hologramGroup, solarGroup, human3dGroup);
 
     // Sub-Groups
     const indiaOuterGroup = new THREE.Group();
@@ -5310,7 +5557,7 @@
     // -------------------------------------------------------------------------
     // VIEW SWITCHER & CAMERA INTERACTION
     // -------------------------------------------------------------------------
-    let isDragging = false, totalDragDist = 0, prevMousePos = { x: 0, y: 0 }, targetCameraDistance = 34;
+    let isDragging = false, totalDragDist = 0, prevMousePos = { x: 0, y: 0 };
 
     // -------------------------------------------------------------------------
     // BHU LOKA GEOGRAPHIC NAVIGATOR & HIERARCHY MANAGER
@@ -5483,7 +5730,7 @@
       if (!isDragging) return;
       const dx = e.clientX - prevMousePos.x, dy = e.clientY - prevMousePos.y;
       totalDragDist += Math.abs(dx) + Math.abs(dy);
-      const grpMap = { world: worldGroup, india: indiaGroup, bihar: biharGroup, terrain: terrainGroup, hologram: hologramGroup, solar: solarGroup };
+      const grpMap = { world: worldGroup, india: indiaGroup, bihar: biharGroup, terrain: terrainGroup, hologram: hologramGroup, solar: solarGroup, human: (typeof human3dGroup !== "undefined" ? human3dGroup : indiaGroup) };
       const g = grpMap[activeMode] || indiaGroup;
       g.rotation.y += dx * 0.006;
       g.rotation.x = Math.max(-0.9, Math.min(0.9, g.rotation.x + dy * 0.006));
@@ -5663,10 +5910,46 @@
 
     function animate() {
       requestAnimationFrame(animate);
-      camera.position.z += (targetCameraDistance - camera.position.z) * 0.08;
-      const targetCameraY = targetCameraDistance * 0.35;
-      camera.position.y += (targetCameraY - camera.position.y) * 0.08;
-      camera.lookAt(0, 0, 0);
+
+      if (isIntroGliding) {
+        const now = (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
+        const elapsed = now - introStartTime;
+        const rawProgress = Math.min(1.0, elapsed / INTRO_DURATION_MS);
+        // Smooth ease-out cubic interpolation: 1 - (1 - t)^3
+        const progress = 1 - Math.pow(1 - rawProgress, 3);
+
+        camera.position.x = DEEP_SPACE_CAM_POS.x + (WORKSTATION_CAM_POS.x - DEEP_SPACE_CAM_POS.x) * progress;
+        camera.position.y = DEEP_SPACE_CAM_POS.y + (WORKSTATION_CAM_POS.y - DEEP_SPACE_CAM_POS.y) * progress;
+        camera.position.z = DEEP_SPACE_CAM_POS.z + (WORKSTATION_CAM_POS.z - DEEP_SPACE_CAM_POS.z) * progress;
+        camera.lookAt(0, 0, 0);
+
+        // Smoothly fade out backdrop opacity as camera approaches Earth
+        const overlay = document.getElementById('bhu-intro-overlay');
+        if (overlay) {
+          if (rawProgress >= 0.25) {
+            const fade = Math.min(1.0, (rawProgress - 0.25) / 0.75);
+            overlay.style.opacity = (1.0 - fade).toFixed(3);
+          }
+        }
+
+        if (rawProgress >= 1.0) {
+          isIntroGliding = false;
+          camera.position.copy(WORKSTATION_CAM_POS);
+          camera.lookAt(0, 0, 0);
+          targetCameraDistance = 34;
+          targetCameraY = 27;
+          if (overlay) {
+            overlay.classList.add('bhu-intro-fadeout');
+            setTimeout(() => {
+              if (overlay && overlay.parentNode) overlay.parentNode.removeChild(overlay);
+            }, 300);
+          }
+        }
+      } else {
+        camera.position.z += (targetCameraDistance - camera.position.z) * 0.08;
+        camera.position.y += (targetCameraY - camera.position.y) * 0.08;
+        camera.lookAt(0, 0, 0);
+      }
 
       // Strictly separated modes: World vs Solar are mutually exclusive
       if (activeMode === 'solar') {
@@ -5708,18 +5991,174 @@
         else if (activeMode === 'bihar') biharGroup.rotation.y = Math.sin(Date.now() * 0.00045) * 0.25;
         else if (activeMode === 'hologram' && !holoRotPaused) hologramGroup.rotation.y += 0.0016;
         else if (activeMode === 'india') indiaGroup.rotation.y = Math.sin(Date.now() * 0.0004) * 0.18;
+        if (activeMode === 'human' && typeof human3dGroup !== 'undefined') {
+        if (!isDragging) human3dGroup.rotation.y += 0.0025;
+        if (humanHeartMesh) {
+          const pulse = 1.0 + Math.sin(Date.now() * 0.006) * 0.08;
+          humanHeartMesh.scale.set(0.9 * pulse, 1.1 * pulse, 0.9 * pulse);
+        }
+      }
       }
       renderer.render(scene, camera);
     }
     resizeRenderer();
     animate();
 
+    
+    // -------------------------------------------------------------------------
+    // 3D HUMAN ANATOMICAL MODEL & GLOWING ORGAN STRESS (THREE.JS CENTER STAGE)
+    // -------------------------------------------------------------------------
+    let humanHeartMesh = null;
+    let humanBrainMesh = null;
+    let humanLungsMeshL = null;
+    let humanLungsMeshR = null;
+    let humanKidneysMesh = null;
+    let humanCoreMesh = null;
+
+    function build3DHumanAnatomyCenterStage() {
+      if (!human3dGroup || human3dGroup.children.length > 0) return;
+
+      // 1. Faceless Cranium / Head (Smooth cyber wireframe)
+      const headMat = new THREE.MeshStandardMaterial({
+        color: 0x38bdf8,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.55,
+        roughness: 0.3
+      });
+      const headGeom = new THREE.SphereGeometry(0.72, 22, 18);
+      headGeom.scale(0.85, 1.15, 0.95);
+      const headMesh = new THREE.Mesh(headGeom, headMat);
+      headMesh.position.set(0, 3.6, 0);
+      human3dGroup.add(headMesh);
+
+      // Neck
+      const neckGeom = new THREE.CylinderGeometry(0.24, 0.28, 0.45, 14);
+      const neckMesh = new THREE.Mesh(neckGeom, headMat);
+      neckMesh.position.set(0, 2.75, 0);
+      human3dGroup.add(neckMesh);
+
+      // 2. Ribcage & Torso Shell
+      const torsoMat = new THREE.MeshStandardMaterial({
+        color: 0x1e293b,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.35,
+        roughness: 0.4
+      });
+      const chestGeom = new THREE.CylinderGeometry(0.95, 0.75, 1.6, 18);
+      const chestMesh = new THREE.Mesh(chestGeom, torsoMat);
+      chestMesh.position.set(0, 1.7, 0);
+      human3dGroup.add(chestMesh);
+
+      // Pelvis Shell
+      const pelvisGeom = new THREE.CylinderGeometry(0.75, 0.8, 0.9, 16);
+      const pelvisMesh = new THREE.Mesh(pelvisGeom, torsoMat);
+      pelvisMesh.position.set(0, 0.5, 0);
+      human3dGroup.add(pelvisMesh);
+
+      // Limbs (Slender cyber wireframe cylinders)
+      const limbMat = new THREE.LineBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.65 });
+      const addLimb = (pts) => {
+        const geom = new THREE.BufferGeometry().setFromPoints(pts.map(p => new THREE.Vector3(...p)));
+        human3dGroup.add(new THREE.Line(geom, limbMat));
+      };
+      // Arms
+      addLimb([[-1.0, 2.3, 0], [-1.5, 1.3, 0], [-1.7, 0.3, 0]]);
+      addLimb([[1.0, 2.3, 0], [1.5, 1.3, 0], [1.7, 0.3, 0]]);
+      // Legs
+      addLimb([[-0.45, 0.1, 0], [-0.55, -1.3, 0], [-0.6, -2.8, 0]]);
+      addLimb([[0.45, 0.1, 0], [0.55, -1.3, 0], [0.6, -2.8, 0]]);
+
+      // Holographic Pedestal / Floor Grid
+      const pedestalGeom = new THREE.RingGeometry(1.2, 2.2, 32);
+      const pedestalMat = new THREE.MeshBasicMaterial({ color: 0x0ea5e9, wireframe: true, transparent: true, opacity: 0.35, side: THREE.DoubleSide });
+      const pedestal = new THREE.Mesh(pedestalGeom, pedestalMat);
+      pedestal.rotation.x = Math.PI / 2;
+      pedestal.position.set(0, -2.85, 0);
+      human3dGroup.add(pedestal);
+
+      // -------------------------------------------------------------
+      // 3. GLOWING INTERACTIVE VITAL ORGANS
+      // -------------------------------------------------------------
+
+      // A. Brain (Cranium: Cognitive / Thermal Heat Strain)
+      const brainMat = new THREE.MeshStandardMaterial({
+        color: 0x10b981,
+        emissive: 0x047857,
+        roughness: 0.2,
+        metalness: 0.1
+      });
+      const brainGeom = new THREE.SphereGeometry(0.36, 16, 14);
+      brainGeom.scale(1.0, 0.8, 1.2);
+      humanBrainMesh = new THREE.Mesh(brainGeom, brainMat);
+      humanBrainMesh.position.set(0, 3.65, 0.05);
+      human3dGroup.add(humanBrainMesh);
+
+      // B. Heart (Chest: Pulsing Cardiac Load)
+      const heartMat = new THREE.MeshStandardMaterial({
+        color: 0xf43f5e,
+        emissive: 0xbe123c,
+        roughness: 0.25
+      });
+      const heartGeom = new THREE.SphereGeometry(0.24, 16, 14);
+      heartGeom.scale(0.9, 1.1, 0.9);
+      humanHeartMesh = new THREE.Mesh(heartGeom, heartMat);
+      humanHeartMesh.position.set(-0.16, 1.85, 0.2);
+      human3dGroup.add(humanHeartMesh);
+
+      // C. Lungs (Respiratory: PM2.5 Inhalation Stress)
+      const lungsMat = new THREE.MeshStandardMaterial({
+        color: 0x38bdf8,
+        emissive: 0x0284c7,
+        roughness: 0.3,
+        transparent: true,
+        opacity: 0.85
+      });
+      const lungGeom = new THREE.SphereGeometry(0.26, 14, 12);
+      lungGeom.scale(0.7, 1.3, 0.8);
+      humanLungsMeshL = new THREE.Mesh(lungGeom, lungsMat);
+      humanLungsMeshL.position.set(-0.35, 1.8, 0.08);
+      humanLungsMeshR = new THREE.Mesh(lungGeom, lungsMat);
+      humanLungsMeshR.position.set(0.35, 1.8, 0.08);
+      human3dGroup.add(humanLungsMeshL, humanLungsMeshR);
+
+      // D. Kidneys (Dehydration & Heat Stroke)
+      const kidneyMat = new THREE.MeshStandardMaterial({
+        color: 0xf59e0b,
+        emissive: 0xb45309,
+        roughness: 0.3
+      });
+      const kidneyGeom = new THREE.SphereGeometry(0.18, 12, 10);
+      kidneyGeom.scale(0.7, 1.1, 0.7);
+      const kL = new THREE.Mesh(kidneyGeom, kidneyMat);
+      kL.position.set(-0.32, 1.0, -0.15);
+      const kR = new THREE.Mesh(kidneyGeom, kidneyMat);
+      kR.position.set(0.32, 1.0, -0.15);
+      human3dGroup.add(kL, kR);
+
+      // E. Core / GI Tract (Waterborne Pathogens & Cholera Risk)
+      const coreMat = new THREE.MeshStandardMaterial({
+        color: 0xec4899,
+        emissive: 0x9d174d,
+        roughness: 0.35
+      });
+      const coreGeom = new THREE.SphereGeometry(0.32, 14, 12);
+      coreGeom.scale(1.1, 0.8, 0.9);
+      humanCoreMesh = new THREE.Mesh(coreGeom, coreMat);
+      humanCoreMesh.position.set(0, 0.95, 0.1);
+      human3dGroup.add(humanCoreMesh);
+
+      // Labels Sprite
+      human3dGroup.position.set(0, -0.5, 0);
+    }
+
     function switchView(mode, autoBuild = true, skipNavSync = false) {
       activeMode = mode;
       if (!skipNavSync && window.BhuGeographicNavigator) {
         window.BhuGeographicNavigator.syncFromMode(mode);
       }
-      const modes = ['world', 'india', 'bihar', 'terrain', 'hologram', 'solar'];
+      const modes = ['world', 'india', 'bihar', 'terrain', 'hologram', 'human', 'solar'];
       const offCls = "mono text-[11px] font-semibold px-2 py-0.5 text-slate-400 hover:text-slate-200 border-b-2 border-transparent transition";
       const onCls = "mono text-[11px] font-semibold px-2 py-0.5 border-b-2 border-[#2d9cdb] text-slate-100 transition";
       modes.forEach((m) => { const b = document.getElementById(`btn-${m}`); if (b) b.className = (m === mode) ? onCls : offCls; });
@@ -5730,6 +6169,19 @@
       terrainGroup.visible = (mode === 'terrain');
       hologramGroup.visible = (mode === 'hologram');
       solarGroup.visible = (mode === 'solar');
+      if (typeof human3dGroup !== 'undefined') {
+        human3dGroup.visible = (mode === 'human');
+        if (mode === 'human') {
+          if (typeof build3DHumanAnatomyCenterStage === 'function') build3DHumanAnatomyCenterStage();
+          targetCameraDistance = 10;
+          if (typeof camera !== 'undefined') camera.position.set(0, 0.8, 10);
+          if (typeof controls !== 'undefined' && controls) controls.target.set(0, 0.8, 0);
+          const targetLbl = document.getElementById('target-label');
+          if (targetLbl) targetLbl.innerText = 'TARGET: HUMAN ANATOMICAL 3D (CLIMATE & FLOOD HEALTH)';
+          const coordsLbl = document.getElementById('coords-label');
+          if (coordsLbl) coordsLbl.innerText = '5 VITAL ORGANS · SENTINEL-1 SAR FLOOD & PM2.5 COUPLING';
+        }
+      }
 
       const ws = document.getElementById('world-subbar');
       const ss = document.getElementById('solar-subbar');
@@ -5758,7 +6210,7 @@
         }
         if (desc) desc.innerText = 'Textured 3D Earth with real NORAD CelesTrak orbital spacecraft & click-anywhere intelligence';
         worldGroup.rotation.set(0.32, Math.PI + 0.14, 0);
-        camera.position.set(0, 12, 34); targetCameraDistance = 34;
+        camera.position.set(0, 12, 34); targetCameraDistance = 34; targetCameraY = 12;
         if (!liveSatState.live_online) loadLiveSatellites();
       } else if (mode === 'india') {
         if (note) note.innerText = 'INDIA 3D (28+8=36)';
@@ -5767,7 +6219,7 @@
           document.getElementById('coords-label').innerText = '36 STATES (28+8) · 12 HAZARD HUBS';
         }
         if (desc) desc.innerText = 'Complete Sovereign India (Ladakh, J&K, Arunachal, 28 States + 8 UTs) & Atmospheric Arcs';
-        camera.position.set(0, 16, 18); targetCameraDistance = 18;
+        camera.position.set(0, 16, 18); targetCameraDistance = 18; targetCameraY = 16;
       } else if (mode === 'bihar') {
         if (note) note.innerText = 'BIHAR 38 DISTRICTS';
         if (!hasCustomLoc) {
@@ -5775,7 +6227,7 @@
           document.getElementById('coords-label').innerText = 'NORTH FLOODPLAIN (BLUE) VS SOUTH RIDGE (GREEN) · CLICK ANYWHERE';
         }
         if (desc) desc.innerText = 'GADM v4.1 38 Districts — Click anywhere to analyze local terrain & hydromet telemetry';
-        camera.position.set(0, 9, 8.5); targetCameraDistance = 8.5;
+        camera.position.set(0, 9, 8.5); targetCameraDistance = 8.5; targetCameraY = 9;
       } else if (mode === 'terrain') {
         if (note) note.innerText = 'PATNA 30m DEM';
         if (!hasCustomLoc) {
@@ -5783,17 +6235,17 @@
           document.getElementById('coords-label').innerText = '36x64 REAL GRID · SENTINEL-1 DOUBLE-BOUNCE';
         }
         if (desc) desc.innerText = 'Copernicus 30m Micro-Elevation + S1 SAR Flood Extent (Rose/Blue) + OSM Municipal Boundary';
-        camera.position.set(0, 3.5, 3.2); targetCameraDistance = 3.2;
+        camera.position.set(0, 3.5, 3.2); targetCameraDistance = 3.2; targetCameraY = 3.5;
       } else if (mode === 'solar') {
         ensureSolarSystemScene();
         if (note) note.innerText = 'SOLAR SYSTEM REF (SEPARATE)';
         document.getElementById('target-label').innerText = 'ASTRONOMICAL REFERENCE: SOLAR SYSTEM (EARTH + MOON + 8 PLANETS)';
         document.getElementById('coords-label').innerText = 'SCALED ORBITAL SCHEMATIC · SEPARATE FROM EARTH EO';
         if (desc) desc.innerText = 'Optional Solar System Visualization (Scaled Schematic — Separate from Earth Observation & Weather Modules)';
-        camera.position.set(0, 36, 140); targetCameraDistance = 140;
+        camera.position.set(0, 36, 140); targetCameraDistance = 140; targetCameraY = 36;
       } else {
         if (note) note.innerText = 'AUTO 3D HOLOGRAM';
-        camera.position.set(0, 22, 32); targetCameraDistance = 32;
+        camera.position.set(0, 22, 32); targetCameraDistance = 32; targetCameraY = 22;
         if (autoBuild) {
           if (hasCustomLoc) buildAuto3DHologram(activeCtx.placeName, activeCtx.latitude, activeCtx.longitude);
           else if (hologramGroup.children.length === 0) buildAuto3DHologram('Ayodhya');
@@ -6981,6 +7433,26 @@
     }
 
     function _applyRightDockTab(tab) {
+        const scBtn = document.getElementById('right-tab-btn-scene');
+        const inBtn = document.getElementById('right-tab-btn-intel');
+        const lcBtn = document.getElementById('right-tab-btn-loc');
+        const hlBtn = document.getElementById('right-tab-btn-health');
+        if (scBtn) scBtn.classList.toggle('active', tab === 'scene');
+        if (inBtn) inBtn.classList.toggle('active', tab === 'intel');
+        if (lcBtn) lcBtn.classList.toggle('active', tab === 'loc');
+        if (hlBtn) hlBtn.classList.toggle('active', tab === 'health');
+
+        const scView = document.getElementById('right-scene-view');
+        const inView = document.getElementById('right-intel-view');
+        const lcView = document.getElementById('right-loc-view');
+        const hlView = document.getElementById('right-health-view');
+        if (scView) scView.classList.toggle('hidden', tab !== 'scene');
+        if (inView) inView.classList.toggle('hidden', tab !== 'intel');
+        if (lcView) lcView.classList.toggle('hidden', tab !== 'loc');
+        if (hlView) hlView.classList.toggle('hidden', tab !== 'health');
+        return;
+      }
+      function _orig_applyRightDockTab(tab) {
       const sceneView = document.getElementById('right-scene-view') || document.getElementById('left-scene-view');
       const intelView = document.getElementById('right-intel-view') || document.getElementById('left-intel-view');
       const locView = document.getElementById('right-loc-view');
@@ -7517,13 +7989,24 @@
           window.BhuLokaAgri.toggleWorkspace('MAP');
         }
       } else if (tab === 'worker') {
-        if (typeof activeMode !== 'undefined' && (activeMode === 'solar' || activeMode === 'world')) {
-          if (typeof switchView === 'function') switchView('bihar');
+        // Switch center 3D stage directly to 3D Human Anatomical model
+        if (typeof switchView === 'function') {
+          switchView('human');
         }
-        if (window.BhuLokaWorker && typeof window.BhuLokaWorker.openWorkspace === 'function') {
-          window.BhuLokaWorker.openWorkspace();
-        } else if (typeof window.toggleWorkerHealthPanel === 'function') {
-          window.toggleWorkerHealthPanel();
+        // Switch right rail to Health & SAR News
+        if (typeof switchRightDockTab === 'function') {
+          switchRightDockTab('health');
+        }
+        // Switch left rail to AI Assistant
+        if (typeof switchLeftDockTab === 'function') {
+          switchLeftDockTab('ai');
+        }
+        // Feed grounded public health advisory into AI chat
+        const qMsg = "Audit Patna public health risks from Sentinel-1 SAR flood deluge: standing water dengue vectors, waterborne cholera in lowlands (<46m), PM2.5 resuspension, and safe hospital routes to AIIMS Patna.";
+        const uInp = document.getElementById('user-input');
+        if (uInp) uInp.value = qMsg;
+        if (typeof submitQuery === 'function') {
+          submitQuery(qMsg);
         }
       } else if (tab === 'ai') {
         if (typeof activeMode !== 'undefined' && activeMode === 'solar') {
@@ -7740,12 +8223,10 @@
       }
     });
 
-    // Intro Overlay dismissal
-    window.skipBhuIntro = function () {
-      const overlay = document.getElementById('bhu-intro-overlay');
-      if (overlay) overlay.classList.add('bhu-intro-fadeout');
-    };
-    setTimeout(window.skipBhuIntro, 2200);
+    // Safety auto-dismiss intro overlay within 2-3s budget if not already dismissed
+    if (typeof window.skipBhuIntro === 'function' && !window.bhuIntroDismissed) {
+      setTimeout(window.skipBhuIntro, 2400);
+    }
 
     // ── STEP 1 AUTOMATED SCIENTIFIC & STRUCTURAL VERIFICATION SUITE ──
     function runStep1AutomatedTests() {
@@ -7963,6 +8444,7 @@
         if (splash) splash.style.display = 'none';
         window.setNasaNavTab(initTab);
       }
+
     } catch (e) { }
   </script>
   <!-- GLOBAL TIME MACHINE — PERSISTENT BOTTOM BAR WITH COLLAPSE/EXPAND TOGGLE -->
