@@ -120,7 +120,8 @@
       <div class="min-w-0 flex-1 overflow-hidden">
         <div class="flex items-center gap-1.5 min-w-0 overflow-hidden">
           <h1 class="text-xs md:text-sm font-semibold tracking-tight text-slate-100 whitespace-nowrap shrink-0">
-            BHU LOKA <span class="hidden 2xl:inline text-slate-400 font-normal">/ Sovereign 2D Earth System &amp; GIS</span>
+            BHU LOKA <span class="hidden 2xl:inline text-slate-400 font-normal">/ Sovereign 2D Earth System &amp;
+              GIS</span>
           </h1>
           <span
             class="hidden 2xl:inline-block mono text-[10px] bg-slate-800/80 text-emerald-300 px-1.5 py-0.5 rounded border border-slate-700 font-medium shrink-0 whitespace-nowrap">36
@@ -135,7 +136,8 @@
             class="mono text-[10px] bg-slate-800/80 text-amber-300 px-1.5 py-0.5 rounded border border-slate-700 font-medium shrink-0 whitespace-nowrap"
             id="gis-api-badge">API: CHECKING</span>
         </div>
-        <p class="mono text-[10px] text-slate-400 truncate">Esri World Imagery · OpenStreetMap (ODbL) · NASA GIBS WMTS · Sentinel-1 SAR + Copernicus DEM · CelesTrak GP</p>
+        <p class="mono text-[10px] text-slate-400 truncate">Esri World Imagery · OpenStreetMap (ODbL) · NASA GIBS WMTS ·
+          Sentinel-1 SAR + Copernicus DEM · CelesTrak GP</p>
       </div>
     </div>
 
@@ -214,27 +216,33 @@
         class="px-2 py-0.5 rounded bg-sky-500/15 hover:bg-sky-500/25 text-sky-300 border border-sky-500/35 font-semibold transition-colors cursor-pointer shrink-0 whitespace-nowrap">
         INDIA LOCATION &amp; STREET INTELLIGENCE
       </button>
-      <button type="button" title="A. Administrative Location Explorer" onclick="window.BhuLokaIndiaIntel && window.BhuLokaIndiaIntel.openTab('A')"
+      <button type="button" title="A. Administrative Location Explorer"
+        onclick="window.BhuLokaIndiaIntel && window.BhuLokaIndiaIntel.openTab('A')"
         class="px-1.5 py-0.5 rounded bg-[#0b1019] hover:bg-slate-800 text-slate-200 border border-slate-700/80 transition-colors cursor-pointer shrink-0 whitespace-nowrap">
         A. Admin Explorer
       </button>
-      <button type="button" title="B. Land Parcel &amp; Plot Search" onclick="window.BhuLokaIndiaIntel && window.BhuLokaIndiaIntel.openTab('B')"
+      <button type="button" title="B. Land Parcel &amp; Plot Search"
+        onclick="window.BhuLokaIndiaIntel && window.BhuLokaIndiaIntel.openTab('B')"
         class="px-1.5 py-0.5 rounded bg-[#0b1019] hover:bg-slate-800 text-slate-200 border border-slate-700/80 transition-colors cursor-pointer shrink-0 whitespace-nowrap">
         B. Land Parcel
       </button>
-      <button type="button" title="C. Police Station Jurisdiction" onclick="window.BhuLokaIndiaIntel && window.BhuLokaIndiaIntel.openTab('C')"
+      <button type="button" title="C. Police Station Jurisdiction"
+        onclick="window.BhuLokaIndiaIntel && window.BhuLokaIndiaIntel.openTab('C')"
         class="px-1.5 py-0.5 rounded bg-[#0b1019] hover:bg-slate-800 text-slate-200 border border-slate-700/80 transition-colors cursor-pointer shrink-0 whitespace-nowrap">
         C. Police PS
       </button>
-      <button type="button" title="D. Street CCTV Intelligence" onclick="window.BhuLokaIndiaIntel && window.BhuLokaIndiaIntel.openTab('D')"
+      <button type="button" title="D. Street CCTV Intelligence"
+        onclick="window.BhuLokaIndiaIntel && window.BhuLokaIndiaIntel.openTab('D')"
         class="px-1.5 py-0.5 rounded bg-[#0b1019] hover:bg-slate-800 text-slate-200 border border-slate-700/80 transition-colors cursor-pointer shrink-0 whitespace-nowrap">
         D. Street CCTV
       </button>
-      <button type="button" title="E. Local News Intelligence" onclick="window.BhuLokaIndiaIntel && window.BhuLokaIndiaIntel.openTab('E')"
+      <button type="button" title="E. Local News Intelligence"
+        onclick="window.BhuLokaIndiaIntel && window.BhuLokaIndiaIntel.openTab('E')"
         class="px-1.5 py-0.5 rounded bg-[#0b1019] hover:bg-slate-800 text-slate-200 border border-slate-700/80 transition-colors cursor-pointer shrink-0 whitespace-nowrap">
         E. Local News
       </button>
-      <button type="button" title="F. Traffic &amp; Emergency Intelligence" onclick="window.BhuLokaIndiaIntel && window.BhuLokaIndiaIntel.openTab('F')"
+      <button type="button" title="F. Traffic &amp; Emergency Intelligence"
+        onclick="window.BhuLokaIndiaIntel && window.BhuLokaIndiaIntel.openTab('F')"
         class="px-1.5 py-0.5 rounded bg-[#0b1019] hover:bg-slate-800 text-slate-200 border border-slate-700/80 transition-colors cursor-pointer shrink-0 whitespace-nowrap">
         F. Traffic &amp; Emergency
       </button>
@@ -246,8 +254,7 @@
     </div>
 
     <div class="flex items-center gap-1 shrink-0 ml-auto">
-      <button type="button" id="btn-2d-legend-toggle" onclick="toggleGisLegend()"
-        title="Show/Hide Map Legend"
+      <button type="button" id="btn-2d-legend-toggle" onclick="toggleGisLegend()" title="Show/Hide Map Legend"
         class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700 font-medium transition cursor-pointer shrink-0">
         Legend
       </button>
@@ -275,22 +282,30 @@
     <!-- CENTER STAGE: LEAFLET INTERACTIVE MAP + COMPACT LEGEND -->
     <div id="gis-center-stage" class="flex-1 min-w-0 relative flex flex-col h-full overflow-hidden">
       <!-- DANCING WITH THE SARS DEDICATED RADAR BAR (FLOATING TOP DOCK) -->
-      <div id="sar-floating-dock" class="hidden absolute top-3 left-1/2 -translate-x-1/2 bg-[#090e18]/95 border border-sky-500/40 rounded-lg p-2 shadow-2xl backdrop-blur-md flex flex-wrap items-center gap-2 z-[990] max-w-[96vw]">
+      <div id="sar-floating-dock"
+        class="hidden absolute top-3 left-1/2 -translate-x-1/2 bg-[#090e18]/95 border border-sky-500/40 rounded-lg p-2 shadow-2xl backdrop-blur-md flex flex-wrap items-center gap-2 z-[990] max-w-[96vw]">
         <div class="flex items-center gap-1.5 pr-2 border-r border-slate-700/80">
           <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
           <span class="font-bold text-slate-100 text-xs tracking-wide">DANCING WITH THE SARS</span>
-          <span class="px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 font-mono text-[9px] border border-amber-500/40">NASA 2026</span>
+          <span
+            class="px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 font-mono text-[9px] border border-amber-500/40">NASA
+            2026</span>
         </div>
 
         <!-- Layer switcher -->
         <div class="flex items-center gap-1 text-xs">
-          <button type="button" id="btn-sar-post" onclick="setSarDisplayMode('post')" class="px-2 py-0.5 rounded font-semibold bg-sky-500 text-slate-950 transition">Peak Deluge (29 Sep)</button>
-          <button type="button" id="btn-sar-pre" onclick="setSarDisplayMode('pre')" class="px-2 py-0.5 rounded text-slate-400 hover:text-slate-200 bg-slate-900 border border-slate-700 transition">Dry Baseline (23 Sep)</button>
+          <button type="button" id="btn-sar-post" onclick="setSarDisplayMode('post')"
+            class="px-2 py-0.5 rounded font-semibold bg-sky-500 text-slate-950 transition">Peak Deluge (29 Sep)</button>
+          <button type="button" id="btn-sar-pre" onclick="setSarDisplayMode('pre')"
+            class="px-2 py-0.5 rounded text-slate-400 hover:text-slate-200 bg-slate-900 border border-slate-700 transition">Dry
+            Baseline (23 Sep)</button>
         </div>
 
         <!-- Naya Paani toggle -->
-        <label class="flex items-center gap-1.5 text-xs cursor-pointer px-1.5 py-0.5 rounded bg-slate-900 border border-slate-800">
-          <input type="checkbox" id="chk-sar-gain" checked onchange="toggleSarGainLayer(this.checked)" class="accent-cyan-400">
+        <label
+          class="flex items-center gap-1.5 text-xs cursor-pointer px-1.5 py-0.5 rounded bg-slate-900 border border-slate-800">
+          <input type="checkbox" id="chk-sar-gain" checked onchange="toggleSarGainLayer(this.checked)"
+            class="accent-cyan-400">
           <span class="text-cyan-300 font-semibold flex items-center gap-1">
             <span class="w-2 h-2 rounded-sm bg-[#00e5ff] inline-block"></span>
             <span>Naya Paani (26.54 km²)</span>
@@ -298,34 +313,48 @@
         </label>
 
         <!-- Opacity slider -->
-        <div class="hidden sm:flex items-center gap-1.5 bg-slate-900 px-2 py-0.5 rounded border border-slate-800 text-[10px]">
+        <div
+          class="hidden sm:flex items-center gap-1.5 bg-slate-900 px-2 py-0.5 rounded border border-slate-800 text-[10px]">
           <span class="text-slate-400 uppercase">Opacity</span>
-          <input type="range" id="sar-opacity-slider" min="0" max="100" value="85" class="w-14 h-1 accent-sky-400 cursor-pointer" oninput="setSarOverlayOpacity(this.value)">
+          <input type="range" id="sar-opacity-slider" min="0" max="100" value="85"
+            class="w-14 h-1 accent-sky-400 cursor-pointer" oninput="setSarOverlayOpacity(this.value)">
           <span id="sar-opacity-text" class="mono text-slate-300">85%</span>
         </div>
 
         <!-- Pixel Inspector Toggle -->
-        <button type="button" id="btn-sar-inspector" onclick="toggleSarInspector()" class="px-2 py-0.5 rounded border border-slate-700 bg-slate-900 text-slate-300 text-xs flex items-center gap-1 transition">
+        <button type="button" id="btn-sar-inspector" onclick="toggleSarInspector()"
+          class="px-2 py-0.5 rounded border border-slate-700 bg-slate-900 text-slate-300 text-xs flex items-center gap-1 transition">
           <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
           <span>Inspector: <strong id="sar-inspector-status" class="text-sky-300">ON</strong></span>
         </button>
 
         <!-- Analysis Modals -->
-        <button type="button" onclick="openSarTransectModal()" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs border border-slate-700 transition">Transect Profile</button>
-        <button type="button" onclick="openSarNisarModal()" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-indigo-300 text-xs border border-slate-700 transition">NISAR Guide</button>
-        <a href="Data/08_Processed_Outputs/sar_flood_inundation_patna_2019.geojson" download="sar_flood_inundation_patna_2019.geojson" class="px-2 py-0.5 rounded bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 text-xs font-semibold border border-emerald-500/40 transition">GeoJSON ⤓</a>
-        <button type="button" onclick="closeDancingWithSARs()" class="text-slate-400 hover:text-white px-1.5 text-sm leading-none ml-1 cursor-pointer" title="Close SAR Mode">&times;</button>
+        <button type="button" onclick="openSarTransectModal()"
+          class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs border border-slate-700 transition">Transect
+          Profile</button>
+        <button type="button" onclick="openSarNisarModal()"
+          class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-indigo-300 text-xs border border-slate-700 transition">NISAR
+          Guide</button>
+        <a href="Data/08_Processed_Outputs/sar_flood_inundation_patna_2019.geojson"
+          download="sar_flood_inundation_patna_2019.geojson"
+          class="px-2 py-0.5 rounded bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 text-xs font-semibold border border-emerald-500/40 transition">GeoJSON
+          ⤓</a>
+        <button type="button" onclick="closeDancingWithSARs()"
+          class="text-slate-400 hover:text-white px-1.5 text-sm leading-none ml-1 cursor-pointer"
+          title="Close SAR Mode">&times;</button>
       </div>
 
       <!-- FLOATING RADAR PIXEL INSPECTOR HUD (TOP-RIGHT) -->
-      <div id="sar-pixel-hud" class="hidden absolute top-14 right-3 bg-[#090e18]/95 border border-sky-500/40 rounded p-2 text-xs font-mono z-[980] shadow-xl backdrop-blur-md max-w-xs pointer-events-none">
+      <div id="sar-pixel-hud"
+        class="hidden absolute top-14 right-3 bg-[#090e18]/95 border border-sky-500/40 rounded p-2 text-xs font-mono z-[980] shadow-xl backdrop-blur-md max-w-xs pointer-events-none">
         <div class="text-[10px] text-sky-400 font-bold border-b border-slate-800 pb-0.5 mb-1 flex justify-between">
           <span>RADAR PIXEL INSPECTOR</span>
           <span class="text-slate-500">Sentinel-1 C-SAR</span>
         </div>
         <div class="space-y-0.5 text-[10.5px] text-slate-300">
           <div>Coords: <span id="hud-sar-coords" class="text-slate-100 font-semibold">25.602°N, 85.160°E</span></div>
-          <div>Post-Flood σ°: <span id="hud-sar-post" class="text-cyan-300 font-bold">-16.8 dB</span> (Δσ°: <span id="hud-sar-delta" class="text-rose-400">-7.2 dB</span>)</div>
+          <div>Post-Flood σ°: <span id="hud-sar-post" class="text-cyan-300 font-bold">-16.8 dB</span> (Δσ°: <span
+              id="hud-sar-delta" class="text-rose-400">-7.2 dB</span>)</div>
           <div>Scatter: <span id="hud-sar-class" class="text-amber-300 font-semibold">🚨 INUNDATION GAIN</span></div>
         </div>
       </div>
@@ -333,7 +362,8 @@
       <div id="map"></div>
 
       <!-- FLOATING TELEMETRY & LINE COLOR LEGEND CARD -->
-      <div id="gis-legend-card" class="hidden md:block absolute bottom-3 left-3 bg-[#0b1019]/95 border border-slate-700/80 rounded p-2 w-72 max-w-[calc(100%-24px)] text-xs"
+      <div id="gis-legend-card"
+        class="hidden md:block absolute bottom-3 left-3 bg-[#0b1019]/95 border border-slate-700/80 rounded p-2 w-72 max-w-[calc(100%-24px)] text-xs"
         style="z-index: 450;">
         <div
           class="mono text-[10px] font-semibold text-slate-200 border-b border-slate-800 pb-1.5 mb-2 flex justify-between items-center gap-2">
@@ -343,32 +373,38 @@
         <div class="space-y-1 text-[10px] mono text-slate-300">
           <div class="flex items-start gap-2">
             <span class="w-3 h-3 mt-0.5 rounded-sm border-2 border-sky-400 shrink-0"></span>
-            <span><b class="text-sky-300">BLUE/CYAN:</b> Sovereign Border (6.75°N–37.10°N), Bay of Bengal LPS, &amp; S1 Open
+            <span><b class="text-sky-300">BLUE/CYAN:</b> Sovereign Border (6.75°N–37.10°N), Bay of Bengal LPS, &amp; S1
+              Open
               Water (-3.8 dB)</span>
           </div>
           <div class="flex items-start gap-2">
             <span class="w-3 h-3 mt-0.5 rounded-sm bg-rose-500 shrink-0"></span>
-            <span><b class="text-rose-400">RED/ROSE:</b> Bihar Benchmark, S1 Flood Extent (99.60 km² total / 94.08 km² mask) &amp;
+            <span><b class="text-rose-400">RED/ROSE:</b> Bihar Benchmark, S1 Flood Extent (99.60 km² total / 94.08 km²
+              mask) &amp;
               Zone S4 Hubs</span>
           </div>
           <div class="flex items-start gap-2">
             <span class="w-3 h-3 mt-0.5 rounded-sm bg-emerald-500 shrink-0"></span>
-            <span><b class="text-emerald-400">GREEN:</b> Ladakh/J&amp;K Crown, Safe S1 Corridors (&gt;52m, Low-Flood Land)
+            <span><b class="text-emerald-400">GREEN:</b> Ladakh/J&amp;K Crown, Safe S1 Corridors (&gt;52m, Low-Flood
+              Land)
               &amp; IOD Jet</span>
           </div>
           <div class="flex items-start gap-2">
             <span class="w-3 h-3 mt-0.5 rounded-sm bg-fuchsia-500 shrink-0"></span>
-            <span><b class="text-fuchsia-400">PURPLE:</b> Himalayan Cryosphere Melt Feeder &amp; Copernicus &lt;47m Sinks
+            <span><b class="text-fuchsia-400">PURPLE:</b> Himalayan Cryosphere Melt Feeder &amp; Copernicus &lt;47m
+              Sinks
               (47.24 km²)</span>
           </div>
           <div class="flex items-start gap-2">
             <span class="w-3 h-3 mt-0.5 rounded-sm bg-amber-500 shrink-0"></span>
-            <span><b class="text-amber-400">AMBER/GOLD:</b> MODIS Heatwave (46.25°C), Ramayana Circuit &amp; Harappan IVC
+            <span><b class="text-amber-400">AMBER/GOLD:</b> MODIS Heatwave (46.25°C), Ramayana Circuit &amp; Harappan
+              IVC
               Sites</span>
           </div>
         </div>
 
-        <div class="mt-2 pt-1.5 border-t border-slate-800 mono text-[10px] text-sky-300 flex justify-between items-center gap-2">
+        <div
+          class="mt-2 pt-1.5 border-t border-slate-800 mono text-[10px] text-sky-300 flex justify-between items-center gap-2">
           <span id="gis-live-label" class="truncate max-w-[125px]">Active Live:</span>
           <span id="gis-live-readout" class="text-right">Synchronizing...</span>
         </div>
@@ -388,12 +424,12 @@
     <aside id="gis-right-dock" aria-label="2D Inspector Dock"
       class="hidden shrink-0 w-[390px] max-w-[92vw] h-full flex flex-col bg-[#0b1019] border-l border-slate-800/80 p-1.5 overflow-hidden gap-1.5 max-lg:absolute max-lg:inset-y-0 max-lg:right-0 max-lg:z-[1150]">
       <div id="gis-right-dock-tabs" class="bhu-dock-tabbar shrink-0" role="tablist" aria-label="2D Right Dock View">
-        <button type="button" id="gis-rtab-loc" role="tab" aria-selected="true"
-          onclick="switch2DRightTab('loc')" class="bhu-dock-tab">
+        <button type="button" id="gis-rtab-loc" role="tab" aria-selected="true" onclick="switch2DRightTab('loc')"
+          class="bhu-dock-tab">
           Location HUD
         </button>
-        <button type="button" id="gis-rtab-agri" role="tab" aria-selected="false"
-          onclick="switch2DRightTab('agri')" class="bhu-dock-tab">
+        <button type="button" id="gis-rtab-agri" role="tab" aria-selected="false" onclick="switch2DRightTab('agri')"
+          class="bhu-dock-tab">
           Agriculture
         </button>
       </div>
@@ -433,1087 +469,1096 @@
       try {
         const ctrl = new AbortController();
         const tid = setTimeout(() => ctrl.abort(), 4000);
-              const res = await fetch(`${FASTAPI_BASE}/health`, { signal: ctrl.signal });
-              clearTimeout(tid);
-              if (res.ok) {
-                window.fastApiOnline = true;
-                if (apiBadge) {
-                  apiBadge.innerText = 'FASTAPI :8000';
-                  apiBadge.className = 'mono text-[10px] bg-emerald-500/15 text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-500/35 font-medium shrink-0';
-                }
-                return true;
-              }
-            } catch (e) { }
-            window.fastApiOnline = false;
-            if (apiBadge) {
-              apiBadge.innerText = 'API OFFLINE · LOCAL';
-              apiBadge.className = 'mono text-[10px] bg-amber-500/15 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/35 font-medium shrink-0';
-            }
-            return false;
+        const res = await fetch(`${FASTAPI_BASE}/health`, { signal: ctrl.signal });
+        clearTimeout(tid);
+        if (res.ok) {
+          window.fastApiOnline = true;
+          if (apiBadge) {
+            apiBadge.innerText = 'FASTAPI :8000';
+            apiBadge.className = 'mono text-[10px] bg-emerald-500/15 text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-500/35 font-medium shrink-0';
           }
-          probe2DFastApi();
-          setInterval(probe2DFastApi, 30000);
+          return true;
+        }
+      } catch (e) { }
+      window.fastApiOnline = false;
+      if (apiBadge) {
+        apiBadge.innerText = 'API OFFLINE · LOCAL';
+        apiBadge.className = 'mono text-[10px] bg-amber-500/15 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/35 font-medium shrink-0';
+      }
+      return false;
+    }
+    probe2DFastApi();
+    setInterval(probe2DFastApi, 30000);
 
-          const map = L.map('map', {
-            center: [25.5941, 85.1376], // Sovereign India / Patna Core
-            zoom: 5.75,
-            zoomSnap: 0.25,
-            zoomDelta: 0.5,
-            zoomControl: true,
-            preferCanvas: true
-          });
+    const map = L.map('map', {
+      center: [25.5941, 85.1376], // Sovereign India / Patna Core
+      zoom: 5.75,
+      zoomSnap: 0.25,
+      zoomDelta: 0.5,
+      zoomControl: true,
+      preferCanvas: true
+    });
 
-          // Sovereign India Complete Bounding Box (Ladakh, J&K, Arunachal to Kanyakumari)
-          map.fitBounds([[6.75, 68.1], [37.10, 97.4]], { padding: [16, 16] });
+    // Sovereign India Complete Bounding Box (Ladakh, J&K, Arunachal to Kanyakumari)
+    map.fitBounds([[6.75, 68.1], [37.10, 97.4]], { padding: [16, 16] });
 
-          // ATTACH UNIVERSAL LOCATION-AWARE INTELLIGENCE ENGINE (AUTO-REFRESH ON ANY MAP CLICK)
-          if (window.BhuLokaLocationEngine) {
-            window.BhuLokaLocationEngine.attachMap('2d', map);
+    // ATTACH UNIVERSAL LOCATION-AWARE INTELLIGENCE ENGINE (AUTO-REFRESH ON ANY MAP CLICK)
+    if (window.BhuLokaLocationEngine) {
+      window.BhuLokaLocationEngine.attachMap('2d', map);
+    }
+
+    // COMPLIANT, ZERO-KEY BASEMAPS (ESRI WORLD IMAGERY + OPENSTREETMAP + NASA GIBS + ESRI DARK)
+    const esriSat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      attribution: '&copy; <a href="https://www.esri.com/" target="_blank">Esri</a>, Maxar, Earthstar Geographics',
+      maxZoom: 19
+    }).addTo(map);
+
+    const osmStandard = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      subdomains: 'abcd',
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank">CARTO</a>',
+      maxZoom: 19
+    });
+
+    const esriDarkCanvas = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      subdomains: 'abcd',
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank">CARTO</a>',
+      maxZoom: 19
+    });
+
+    // NASA GIBS WMTS with 7-day archival delay for guaranteed ingested cloud observation
+    let currentGibsDate = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
+    const nasaGibsBase = L.tileLayer(
+      `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/MODIS_Terra_CorrectedReflectance_TrueColor/default/${currentGibsDate}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg`,
+      {
+        maxNativeZoom: 9,
+        maxZoom: 18,
+        opacity: 0.90,
+        attribution: `NASA EOSDIS GIBS / Worldview (MODIS Terra TrueColor ${currentGibsDate})`
+      }
+    );
+
+    const offlineVectorCanvas = L.layerGroup();
+
+    const baseMaps = {
+      "Esri Maxar World Imagery (Satellite)": esriSat,
+      "OpenStreetMap Standard (Vector/Road)": osmStandard,
+      "Esri Dark Slate Canvas": esriDarkCanvas,
+      "NASA GIBS MODIS Terra TrueColor": nasaGibsBase,
+      "Offline Sovereign Vector Canvas": offlineVectorCanvas
+    };
+
+    const allBaseLayers = [esriSat, osmStandard, esriDarkCanvas, nasaGibsBase, offlineVectorCanvas];
+
+    function setBaseMode(mode) {
+      allBaseLayers.forEach((l) => { if (map.hasLayer(l)) map.removeLayer(l); });
+      const bSat = document.getElementById('btn-base-sat');
+      const bOsm = document.getElementById('btn-base-osm');
+      const bDrk = document.getElementById('btn-base-dark');
+      const bGib = document.getElementById('btn-base-gibs');
+      const srcBadge = document.getElementById('gis-source-badge');
+
+      const offCls = "bg-[#090d13] hover:bg-slate-800 text-slate-300 border border-slate-700 px-2 py-1 rounded font-semibold transition";
+      const onCls = "bg-sky-500/20 text-sky-300 border border-sky-500/45 px-2 py-1 rounded font-semibold transition";
+      if (bSat) bSat.className = offCls;
+      if (bOsm) bOsm.className = offCls;
+      if (bDrk) bDrk.className = offCls;
+      if (bGib) bGib.className = offCls;
+
+      if (mode === 'osm') {
+        map.addLayer(osmStandard);
+        osmStandard.bringToBack();
+        if (bOsm) bOsm.className = onCls;
+        if (srcBadge) { srcBadge.innerText = 'OSM (ODbL)'; srcBadge.className = 'mono text-[10px] bg-slate-800/80 text-sky-300 px-1.5 py-0.5 rounded border border-slate-700 font-medium shrink-0'; }
+      } else if (mode === 'dark') {
+        map.addLayer(esriDarkCanvas);
+        esriDarkCanvas.bringToBack();
+        if (bDrk) bDrk.className = onCls;
+        if (srcBadge) { srcBadge.innerText = 'ESRI DARK (LIVE)'; srcBadge.className = 'mono text-[10px] bg-slate-800/80 text-slate-300 px-1.5 py-0.5 rounded border border-slate-700 font-medium shrink-0'; }
+      } else if (mode === 'gibs') {
+        map.addLayer(nasaGibsBase);
+        nasaGibsBase.bringToBack();
+        if (bGib) bGib.className = onCls;
+        if (srcBadge) { srcBadge.innerText = `NASA GIBS (${currentGibsDate})`; srcBadge.className = 'mono text-[10px] bg-slate-800/80 text-amber-300 px-1.5 py-0.5 rounded border border-slate-700 font-medium shrink-0'; }
+      } else {
+        map.addLayer(esriSat);
+        esriSat.bringToBack();
+        if (bSat) bSat.className = onCls;
+        if (srcBadge) { srcBadge.innerText = 'ESRI SAT (LIVE)'; srcBadge.className = 'mono text-[10px] bg-slate-800/80 text-emerald-300 px-1.5 py-0.5 rounded border border-slate-700 font-medium shrink-0'; }
+      }
+      if (typeof debouncedMapInvalidateSize === 'function') debouncedMapInvalidateSize(60);
+    }
+
+    const indiaCountryLayer = D.india_country ? L.geoJSON(D.india_country, {
+      style: { color: '#38bdf8', weight: 2.4, fillColor: '#0284c7', fillOpacity: 0.04 }
+    }).addTo(map) : L.layerGroup();
+
+    const indiaStatesLayer = D.india_states ? L.geoJSON(D.india_states, {
+      style: (feat) => {
+        const nm = feat.properties.name;
+        const isBihar = nm === 'Bihar';
+        const isNorthCrown = (nm === 'Ladakh' || nm === 'Jammu and Kashmir');
+        return {
+          color: isBihar ? '#f43f5e' : (isNorthCrown ? '#10b981' : '#38bdf8'),
+          weight: isBihar ? 2.2 : (isNorthCrown ? 1.8 : 0.9),
+          fillColor: isBihar ? '#f43f5e' : (isNorthCrown ? '#10b981' : '#0284c7'),
+          fillOpacity: isBihar ? 0.16 : (isNorthCrown ? 0.12 : 0.02)
+        };
+      },
+      onEachFeature: (feat, layer) => {
+        layer.bindTooltip(`${feat.properties.name} (${feat.properties.type || 'State/UT'})`, { sticky: true });
+      }
+    }).addTo(map) : L.layerGroup();
+
+    const northFloodDists = new Set(['Araria', 'Darbhanga', 'Kishanganj', 'Madhepura', 'Madhubani', 'Muzaffarpur', 'Purba Champaran', 'Pashchim Champaran', 'Saharsa', 'Samastipur', 'Sitamarhi', 'Supaul', 'Khagaria', 'Katihar', 'Purnia']);
+    const southUplandDists = new Set(['Gaya', 'Rohtas', 'Kaimur', 'Nawada', 'Jamui', 'Banka', 'Aurangabad', 'Nalanda']);
+
+    const biharDistrictsLayer = D.bihar_districts ? L.geoJSON(D.bihar_districts, {
+      style: (feat) => {
+        const nm = feat.properties.name;
+        const isPatna = nm === 'Patna';
+        const isUpland = southUplandDists.has(nm);
+        const col = isPatna ? '#10b981' : (isUpland ? '#34d399' : '#f472b6');
+        return {
+          color: col,
+          weight: isPatna ? 2.4 : 1.0,
+          fillColor: col,
+          fillOpacity: isPatna ? 0.14 : 0.04,
+          dashArray: isPatna ? null : '3,3'
+        };
+      },
+      onEachFeature: (feat, layer) => {
+        const nm = feat.properties.name;
+        const zone = southUplandDists.has(nm)
+          ? 'South Bihar Stable Upland Fringe'
+          : (northFloodDists.has(nm) ? 'North Bihar Active Alluvial Floodplain' : 'Central Ganga/Son Alluvial Terrace');
+        layer.bindTooltip(`District: ${nm}, Bihar (${zone})`, { sticky: true });
+      }
+    }).addTo(map) : L.layerGroup();
+
+    const patnaDistrictLayer = D.patna_district ? L.geoJSON(D.patna_district, {
+      style: { color: '#f59e0b', weight: 2.0, fillOpacity: 0.04, dashArray: '5,4' },
+      interactive: false
+    }) : L.layerGroup();
+
+    const patnaUrbanLayer = D.patna_urban ? L.geoJSON(D.patna_urban, {
+      style: { color: '#38bdf8', weight: 2.4, fillColor: '#38bdf8', fillOpacity: 0.04 },
+      interactive: false
+    }) : L.layerGroup();
+
+    const floodRasterLayer = D.overlays ? L.imageOverlay(D.overlays.flood_b64, D.dem_bounds, { opacity: 0.86, interactive: false }) : L.layerGroup();
+    const demRasterLayer = D.overlays ? L.imageOverlay(D.overlays.dem_b64, D.dem_bounds, { opacity: 0.80, interactive: false }) : L.layerGroup();
+    const ulsiRasterLayer = D.overlays ? L.imageOverlay(D.overlays.ulsi_b64, D.dem_bounds, { opacity: 0.82, interactive: false }) : L.layerGroup();
+    const lstRasterLayer = D.overlays ? L.imageOverlay(D.overlays.lst_b64, D.lst_bounds, { opacity: 0.65, interactive: false }) : L.layerGroup();
+
+    const teleconnectionsLayer = L.layerGroup([
+      L.polyline([[14.5, 89.0], [18.5, 87.5], [22.2, 86.2], [25.59, 85.14]], { color: '#38bdf8', weight: 2.4, dashArray: '8,6' })
+        .bindPopup("<b>Bay of Bengal LPS Track</b><br>Convective cloudbursts (&gt;200mm/48h) into Patna."),
+      L.polyline([[4.0, 70.0], [10.0, 75.0], [16.0, 83.0], [22.5, 90.0], [26.14, 91.74]], { color: '#10b981', weight: 2.1, dashArray: '6,6' })
+        .bindPopup("<b>Indian Ocean Dipole &amp; ENSO Jet</b><br>Moisture convergence into Assam and Bihar."),
+      L.polyline([[11.0, 64.0], [15.5, 69.0], [19.08, 72.88]], { color: '#f59e0b', weight: 2.1, dashArray: '6,6' })
+        .bindPopup("<b>Arabian Sea Surge Feed</b><br>Extreme coastal rain over Konkan &amp; Mumbai."),
+      L.polyline([[34.15, 77.58], [30.55, 79.56], [28.4, 83.2], [26.8, 84.5], [25.62, 85.15]], { color: '#a78bfa', weight: 2.2 })
+        .bindPopup("<b>Trans-Himalayan Cryosphere Melt</b><br>Elevates Ganga river stage past 49.5m danger threshold.")
+    ]);
+
+    function wireMarkerLocationClick(marker, coords, label) {
+      marker.on('click', (ev) => {
+        if (ev && ev.originalEvent) L.DomEvent.stopPropagation(ev);
+        if (window.BhuLokaLocationEngine && Array.isArray(coords)) {
+          window.BhuLokaLocationEngine.setLocation(coords[0], coords[1], label, { source: 'map_click' });
+        }
+      });
+      return marker;
+    }
+
+    // RAMAYANA HERITAGE CIRCUIT LAYER (ASI & VALMIKI GEOGRAPHY)
+    const ramayanaSites = [
+      { name: "Ayodhya (Sarayu / Kosala)", coords: [26.795, 82.194], note: "Birthplace of Shri Rama & Kosala capital on Sarayu terrace" },
+      { name: "Buxar / Siddhashram (Bihar)", coords: [25.565, 83.978], note: "Vedic Ashram of Sage Vishvamitra along Ganga levee" },
+      { name: "Sitamarhi / Mithila-Janakpur", coords: [26.591, 85.490], note: "Videha / Mithila region sacred to Mata Sita" },
+      { name: "Chitrakoot (UP / MP)", coords: [25.199, 80.854], note: "Vindhyan forest sanctuary along Mandakini River" },
+      { name: "Panchavati / Nashik (MH)", coords: [20.006, 73.790], note: "Dandakaranya & Godavari valley transit" },
+      { name: "Kishkindha / Hampi (KA)", coords: [15.335, 76.460], note: "Tungabhadra granite boulder hill kingdom" },
+      { name: "Rameswaram / Dhanushkodi (TN)", coords: [9.288, 79.313], note: "Palk Strait coastal point (Adam's Bridge / Rama Setu)" }
+    ];
+    const ramayanaLayer = L.layerGroup();
+    L.polyline(ramayanaSites.map((s) => s.coords), { color: '#f59e0b', weight: 2.2, dashArray: '5,5', interactive: false }).addTo(ramayanaLayer);
+    ramayanaSites.forEach((s) => {
+      const m = L.circleMarker(s.coords, { radius: 6, color: '#fef3c7', weight: 1.5, fillColor: '#f59e0b', fillOpacity: 0.95 })
+        .bindTooltip(`<span class="mono">${s.name}</span>`, { sticky: true });
+      wireMarkerLocationClick(m, s.coords, s.name).addTo(ramayanaLayer);
+    });
+
+    // HARAPPAN / INDUS-SARASVATI ASI HERITAGE SITES
+    const harappanSites = [
+      { name: "Rakhigarhi (Haryana)", coords: [29.291, 76.112], note: "Largest Harappan metropolis in India (~350+ ha) along Ghaggar-Drishadvati plain" },
+      { name: "Banawali (Haryana)", coords: [29.598, 75.390], note: "Planned radial Bronze Age citadel in Sarasvati basin" },
+      { name: "Kalibangan (Rajasthan)", coords: [29.474, 74.130], note: "Earliest excavated ploughed field & fire altars along dry Ghaggar bed" },
+      { name: "Ropar / Rupnagar (Punjab)", coords: [30.966, 76.523], note: "Sutlej riverbank post-Partition excavated IVC settlement" },
+      { name: "Dholavira UNESCO (Gujarat)", coords: [23.886, 70.213], note: "Stone water-conservation metropolis in Rann of Kutch" },
+      { name: "Lothal Dockyard (Gujarat)", coords: [22.521, 72.249], note: "Harappan tidal brick dockyard & Gulf of Khambhat trade port" },
+      { name: "Harappa Type-Site (Ravi)", coords: [30.631, 72.865], note: "Indus Valley Civilization original type-site (present Pakistan Punjab)" },
+      { name: "Mohenjo-daro (Indus)", coords: [27.324, 68.136], note: "Lower Indus citadel & Great Bath (present Pakistan Sindh)" }
+    ];
+    const harappanLayer = L.layerGroup();
+    harappanSites.forEach((s) => {
+      const m = L.circleMarker(s.coords, { radius: 6, color: '#fed7aa', weight: 1.5, fillColor: '#ea580c', fillOpacity: 0.95 })
+        .bindTooltip(`<span class="mono">${s.name}</span>`, { sticky: true });
+      wireMarkerLocationClick(m, s.coords, s.name).addTo(harappanLayer);
+    });
+
+    // PAN-INDIA BEST LOW-HAZARD LAND CORRIDORS
+    const landCorridors = [
+      { name: "Bihta / IIT Patna High Levee", coords: [25.536, 84.851], info: "55.2m | Flood 0.8% | ULSI 91.5 (Calibrated Zone S1)" },
+      { name: "Bengaluru Deccan Plateau Ridge", coords: [12.971, 77.594], info: "~910m Plateau | Seismic Zone II | Low Riverine Flood" },
+      { name: "Hyderabad Granite Shield", coords: [17.385, 78.486], info: "~542m Crystalline Shield | Seismic Zone II" },
+      { name: "Pune Western Deccan Foothills", coords: [18.520, 73.856], info: "~560m Basalt Upland | Avoid Riverbank Floodlines" },
+      { name: "Chandigarh Shivalik Apron", coords: [30.733, 76.779], info: "~330m Planned Stormwater Sector Grid" },
+      { name: "Gaya-Rajgir Vindhyan Ridge (Bihar)", coords: [24.910, 85.210], info: "~110m+ Precambrian Highland outside Ganga backwaters" }
+    ];
+    const landCorridorsLayer = L.layerGroup();
+    landCorridors.forEach((l) => {
+      const m = L.circleMarker(l.coords, { radius: 7, color: '#dcfce7', weight: 1.8, fillColor: '#10b981', fillOpacity: 0.95 })
+        .bindTooltip(`<span class="mono">${l.name} · ${l.info}</span>`, { sticky: true });
+      wireMarkerLocationClick(m, l.coords, l.name).addTo(landCorridorsLayer);
+    });
+
+    const indiaHubsLayer = L.layerGroup();
+    (D.india_hazard_hubs || []).forEach(hub => {
+      const col = hub.severity === 'SAFE' ? '#10b981' : (hub.severity === 'CRITICAL' ? '#f43f5e' : '#f59e0b');
+      const m = L.circleMarker(hub.coords, {
+        radius: hub.severity === 'CRITICAL' ? 8 : 6.5,
+        color: '#f8fafc',
+        weight: 1.5,
+        fillColor: col,
+        fillOpacity: 0.94
+      }).bindTooltip(`<span class="mono">${hub.name} (${hub.metric})</span>`, { sticky: true });
+      wireMarkerLocationClick(m, hub.coords, hub.name).addTo(indiaHubsLayer);
+    });
+
+    const wards = [
+      { name: "Bihta / IIT Patna High Levee", coords: [25.536, 84.851], elev: "55.2m", flood: "0.80% (Safe)", crime: "88/100", ulsi: "91.5 (Zone S1)", col: "#10b981" },
+      { name: "Danapur Cantonment", coords: [25.630, 85.040], elev: "52.8m", flood: "1.10% (Safe)", crime: "92/100 (Army)", ulsi: "89.4 (Zone S1)", col: "#10b981" },
+      { name: "Bailey Road / Saguna More", coords: [25.612, 85.055], elev: "52.4m", flood: "2.40% (Safe)", crime: "88/100 (PCR)", ulsi: "86.2 (Zone S1)", col: "#10b981" },
+      { name: "Boring Road / SK Puri", coords: [25.615, 85.120], elev: "49.5m", flood: "42.1% (Ponding)", crime: "86/100", ulsi: "64.0 (Zone S2)", col: "#f59e0b" },
+      { name: "Patliputra Colony", coords: [25.625, 85.108], elev: "50.8m", flood: "18.5% (Low)", crime: "85/100", ulsi: "81.0 (Zone S1)", col: "#10b981" },
+      { name: "Gandhi Maidan", coords: [25.618, 85.144], elev: "50.2m", flood: "34.0% (Ponding)", crime: "82/100", ulsi: "68.5 (Zone S2)", col: "#f59e0b" },
+      { name: "Kankarbagh Colony", coords: [25.588, 85.148], elev: "45.1m", flood: "98.88% (Severe)", crime: "74/100", ulsi: "28.2 (Zone S4)", col: "#f43f5e" },
+      { name: "Rajendra Nagar Deep Bowl", coords: [25.595, 85.158], elev: "44.5m", flood: "99.40% (Critical)", crime: "73/100", ulsi: "21.6 (Zone S4)", col: "#f43f5e" },
+      { name: "Patna Bypass / Transport Nagar", coords: [25.580, 85.185], elev: "46.8m", flood: "72.5% (High)", crime: "41/100", ulsi: "24.5 (Zone S4)", col: "#ef4444" }
+    ];
+    const wardMarkersLayer = L.layerGroup();
+    wards.forEach(w => {
+      const m = L.circleMarker(w.coords, {
+        radius: 6.5, color: '#ffffff', weight: 1.5, fillColor: w.col, fillOpacity: 0.92
+      }).bindTooltip(`<span class="mono">${w.name} · Elev ${w.elev} · ${w.ulsi}</span>`, { sticky: true });
+      wireMarkerLocationClick(m, w.coords, w.name).addTo(wardMarkersLayer);
+    });
+
+    // LIVE ORBITAL SATELLITES LAYER (REAL NORAD / CELESTRAK + WHERETHEISS) - OPT-IN
+    const liveSatellitesLayer = L.layerGroup();
+    const siteStudioOverlayLayer = L.layerGroup().addTo(map);
+
+    // AUTHENTIC NASA EOSDIS GIBS / WORLDVIEW WMTS LAYERS (Verified Public NASA Tile Service)
+    const gibsDailyDate = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
+    const gibs8DayDate = new Date(Date.now() - 14 * 86400000).toISOString().slice(0, 10);
+    const nasaGibsTrueColor = L.tileLayer(
+      `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/MODIS_Terra_CorrectedReflectance_TrueColor/default/${gibsDailyDate}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg`,
+      { maxNativeZoom: 9, maxZoom: 18, opacity: 0.78, attribution: `NASA EOSDIS GIBS / Worldview MODIS Terra TrueColor (${gibsDailyDate})` }
+    );
+    const nasaGibsLstDay = L.tileLayer(
+      `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/MODIS_Terra_Land_Surface_Temp_Day/default/${gibsDailyDate}/GoogleMapsCompatible_Level7/{z}/{y}/{x}.png`,
+      { maxNativeZoom: 7, maxZoom: 18, opacity: 0.72, attribution: `NASA EOSDIS GIBS / Worldview MOD11A1 LST Day 1km (${gibsDailyDate})` }
+    );
+    const nasaGibsNdvi = L.tileLayer(
+      `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/MODIS_Terra_NDVI_8Day/default/${gibs8DayDate}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.png`,
+      { maxNativeZoom: 9, maxZoom: 18, opacity: 0.74, attribution: `NASA EOSDIS GIBS / Worldview MODIS Terra NDVI 8-Day (${gibs8DayDate})` }
+    );
+
+    const overlays = {
+      "Site Studio 350m Ring & Solar Rays": siteStudioOverlayLayer,
+      "NASA GIBS MODIS Terra True Color (Daily)": nasaGibsTrueColor,
+      "NASA GIBS MODIS Terra Daytime LST (1km)": nasaGibsLstDay,
+      "NASA GIBS MODIS Terra NDVI (8-Day)": nasaGibsNdvi,
+      "Full India Composite Border (37.1°N)": indiaCountryLayer,
+      "All 36 Sovereign States/UTs (LA, JK, AR)": indiaStatesLayer,
+      "All 38 Bihar Districts": biharDistrictsLayer,
+      "Live Satellites (Starlink / ISS / EO / ISRO)": liveSatellitesLayer,
+      "Ramayana Historical Circuit (ASI)": ramayanaLayer,
+      "Harappan / IVC Sites (ASI)": harappanLayer,
+      "Pan-India Best Land Corridors": landCorridorsLayer,
+      "Macro Oceanic &amp; Monsoon Arcs": teleconnectionsLayer,
+      "Pan-India Multi-Hazard Hubs": indiaHubsLayer,
+      "Patna District Boundary (OSM)": patnaDistrictLayer,
+      "Patna PMC Core Boundary (OSM)": patnaUrbanLayer,
+      "Real S1 SAR Flood Raster (PNG)": floodRasterLayer,
+      "Real Copernicus 30m DEM + Sinks (PNG)": demRasterLayer,
+      "Real ULSI Suitability Raster (PNG)": ulsiRasterLayer,
+      "Real NASA MODIS Peak LST (PNG)": lstRasterLayer,
+      "Patna &amp; Bihta Ward Markers": wardMarkersLayer
+    };
+
+    L.control.layers(baseMaps, overlays, { collapsed: true, position: 'topright' }).addTo(map);
+    L.control.scale({ imperial: false, position: 'bottomright' }).addTo(map);
+
+    if (window.BhuLokaIndiaIntel) {
+      window.BhuLokaIndiaIntel.attachLeaflet(map, overlays);
+    }
+    if (window.BhuLokaAgri) {
+      window.BhuLokaAgri.attachLeaflet(map);
+    }
+
+    const gisSearchPinLayer = L.layerGroup().addTo(map);
+
+    function dropAddressPin(lat, lon, label, zoomLvl = 15) {
+      gisSearchPinLayer.clearLayers();
+      map.flyTo([lat, lon], zoomLvl, { duration: 1.0 });
+      L.marker([lat, lon])
+        .bindPopup(`<div class="mono text-xs"><div class="font-bold text-emerald-300">${label}</div><div class="text-slate-300 mt-1">Coords: ${Number(lat).toFixed(5)}°, ${Number(lon).toFixed(5)}°</div><div class="text-slate-400 text-[10px] mt-1">Google Earth Hybrid (gl=IN) Real View</div></div>`)
+        .addTo(gisSearchPinLayer)
+        .openPopup();
+      const lt = document.getElementById('legend-title');
+      if (lt) lt.innerText = `REAL EARTH: ${String(label).toUpperCase().slice(0, 28)}`;
+    }
+
+    async function searchAndFlyAddress(rawQuery) {
+      const inp = document.getElementById('gis-addr-input');
+      const q = (rawQuery || (inp ? inp.value : '') || '').trim();
+      if (!q) {
+        if (window.BhuLokaLocationEngine) window.BhuLokaLocationEngine.notifyError('Enter a place name or lat, lon coordinates.');
+        return;
+      }
+      if (window.BhuLokaLocationEngine) {
+        await window.BhuLokaLocationEngine.searchPlace(q, { openDrawer: true });
+      }
+    }
+
+    function updateGisLocationHUD(ctx, intel, meta = {}) {
+      if (!ctx) return;
+      const inp = document.getElementById('gis-addr-input');
+      if (inp && ctx.source !== 'default' && document.activeElement !== inp) {
+        inp.value = ctx.placeName || '';
+      }
+      const lt = document.getElementById('legend-title');
+      const lbl = document.getElementById('gis-live-label');
+      const out = document.getElementById('gis-live-readout');
+      if (lt && (ctx.source !== 'default' || (meta && meta.stage === 'complete'))) {
+        lt.innerText = ctx.source === 'default'
+          ? 'SOVEREIGN INDIA · GOOGLE EARTH'
+          : `REAL EARTH: ${String(ctx.placeName || '').toUpperCase().slice(0, 28)}`;
+      }
+      if (lbl) lbl.innerText = `${String(ctx.placeName || 'Active').split(',')[0].slice(0, 16)} Live:`;
+      const fCoords = document.getElementById('gis-footer-coords');
+      const fCrs = document.getElementById('gis-footer-crs');
+      if (fCoords && Number.isFinite(Number(ctx.latitude)) && Number.isFinite(Number(ctx.longitude))) {
+        const la = Number(ctx.latitude), lo = Number(ctx.longitude);
+        fCoords.innerText = `${ctx.placeName || 'Location'} · ${Math.abs(la).toFixed(4)}°${la >= 0 ? 'N' : 'S'}, ${Math.abs(lo).toFixed(4)}°${lo >= 0 ? 'E' : 'W'}`;
+      }
+      if (fCrs && Number.isFinite(Number(ctx.latitude)) && Number.isFinite(Number(ctx.longitude))) {
+        const la = Number(ctx.latitude), lo = Number(ctx.longitude);
+        const zone = Math.max(1, Math.min(60, Math.floor((lo + 180) / 6) + 1));
+        const epsg = la >= 0 ? `326${zone}` : `327${zone}`;
+        fCrs.innerText = `EPSG:4326 · UTM ${epsg}`;
+      }
+      if (out) {
+        if (!intel || (meta && meta.isLoading)) {
+          out.innerText = 'Syncing telemetry...';
+        } else {
+          const mods = intel.modules || {};
+          const wx = mods['1_weather_temperature'] || {};
+          const rv = mods['3_rivers_waterbodies'] || {};
+          const te = mods['9_terrain_elevation'] || {};
+          const tStr = wx.air_temp_c != null ? `${wx.air_temp_c}°C` : 'UNAVAIL';
+          const qStr = rv.current_discharge_m3_s != null ? `${Number(rv.current_discharge_m3_s).toFixed(0)} m³/s` : 'Flow N/A';
+          const eStr = te.elevation_masl_m != null ? ` · ${te.elevation_masl_m}m` : '';
+          out.innerText = `${tStr} · ${qStr}${eStr}`;
+        }
+      }
+    }
+
+    function renderSiteStudio2DOverlay(ctx, osm = null) {
+      if (!ctx || !siteStudioOverlayLayer) return;
+      siteStudioOverlayLayer.clearLayers();
+      const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const lat = Number(ctx.latitude), lon = Number(ctx.longitude), rM = 350;
+      const studio = window.BhuLokaSiteStudio;
+      const activeOsm = osm || (studio ? studio.getCachedOsmContext(lat, lon, rM) : null);
+
+      const osmPopup = activeOsm && activeOsm.status === 'LIVE'
+        ? `${activeOsm.building_count} buildings (${activeOsm.site_coverage_pct}% cov) · ${activeOsm.road_length_km} km roads<br/><span style="color:#64748b">© OpenStreetMap contributors (ODbL)</span>`
+        : (activeOsm && activeOsm.status === 'UNAVAILABLE'
+          ? 'OSM Overpass UNAVAILABLE (zero fake footprints)'
+          : 'Click "Site 350m" or "Load OSM 350m" to fetch Overpass footprints');
+
+      L.circle([lat, lon], {
+        radius: rM,
+        color: '#38bdf8',
+        weight: 1.8,
+        dashArray: '6,4',
+        fillColor: '#38bdf8',
+        fillOpacity: 0.04
+      }).bindPopup(`<div class="mono text-xs"><div class="font-bold text-sky-300">Site Studio 350m Analysis Ring</div><div>${osmPopup}</div></div>`, { autoPan: false })
+        .addTo(siteStudioOverlayLayer);
+
+      if (studio) {
+        const solar = studio.computeSolarAndShadowProfile(lat, lon);
+        const cur = solar.current || {};
+        const mLat = 111132.92;
+        const mLon = 111412.84 * Math.max(0.1, Math.cos(lat * Math.PI / 180.0));
+        const endPt = (azDeg, lenM) => {
+          const rad = azDeg * Math.PI / 180.0;
+          return [lat + (lenM * Math.cos(rad)) / mLat, lon + (lenM * Math.sin(rad)) / mLon];
+        };
+        if (cur.azimuth_deg != null) {
+          const sunPt = endPt(cur.azimuth_deg, rM);
+          L.polyline([[lat, lon], sunPt], {
+            color: '#f59e0b',
+            weight: cur.daytime ? 2.6 : 1.5,
+            dashArray: cur.daytime ? null : '3,5',
+            opacity: 0.9
+          }).bindTooltip(`Sun Az ${cur.azimuth_deg}° · El ${cur.elevation_deg}°`, { sticky: true }).addTo(siteStudioOverlayLayer);
+
+          if (cur.daytime && cur.shadow_azimuth_deg != null) {
+            const shLen = Math.min(rM, Math.max(85, 100 * (cur.shadow_multiplier || 1.2)));
+            const shPt = endPt(cur.shadow_azimuth_deg, shLen);
+            L.polyline([[lat, lon], shPt], {
+              color: '#cbd5e1',
+              weight: 2.0,
+              dashArray: '4,4',
+              opacity: 0.85
+            }).bindTooltip(`Cast Shadow ${cur.shadow_azimuth_deg}° (${cur.shadow_multiplier}x)`, { sticky: true }).addTo(siteStudioOverlayLayer);
           }
+        }
+        const jun = solar.solstices?.summer_jun21;
+        const dec = solar.solstices?.winter_dec21;
+        if (jun && jun.noon_azimuth_deg != null) {
+          L.polyline([[lat, lon], endPt(jun.noon_azimuth_deg, rM * 0.78)], {
+            color: '#f43f5e', weight: 1.2, dashArray: '2,4', opacity: 0.65
+          }).bindTooltip(`Jun 21 Noon ${jun.noon_elevation_deg}°`).addTo(siteStudioOverlayLayer);
+        }
+        if (dec && dec.noon_azimuth_deg != null) {
+          L.polyline([[lat, lon], endPt(dec.noon_azimuth_deg, rM * 0.78)], {
+            color: '#38bdf8', weight: 1.2, dashArray: '2,4', opacity: 0.65
+          }).bindTooltip(`Dec 21 Noon ${dec.noon_elevation_deg}°`).addTo(siteStudioOverlayLayer);
+        }
+      }
 
-          // COMPLIANT, ZERO-KEY BASEMAPS (ESRI WORLD IMAGERY + OPENSTREETMAP + NASA GIBS + ESRI DARK)
-          const esriSat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-            attribution: '&copy; <a href="https://www.esri.com/" target="_blank">Esri</a>, Maxar, Earthstar Geographics',
-            maxZoom: 19
-          }).addTo(map);
-
-          const osmStandard = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-            subdomains: 'abcd',
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank">CARTO</a>',
-            maxZoom: 19
-          });
-
-          const esriDarkCanvas = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            subdomains: 'abcd',
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank">CARTO</a>',
-            maxZoom: 19
-          });
-
-          // NASA GIBS WMTS with 7-day archival delay for guaranteed ingested cloud observation
-          let currentGibsDate = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
-          const nasaGibsBase = L.tileLayer(
-            `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/MODIS_Terra_CorrectedReflectance_TrueColor/default/${currentGibsDate}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg`,
-            {
-              maxNativeZoom: 9,
-              maxZoom: 18,
-              opacity: 0.90,
-              attribution: `NASA EOSDIS GIBS / Worldview (MODIS Terra TrueColor ${currentGibsDate})`
-            }
-          );
-
-          const offlineVectorCanvas = L.layerGroup();
-
-          const baseMaps = {
-            "Esri Maxar World Imagery (Satellite)": esriSat,
-            "OpenStreetMap Standard (Vector/Road)": osmStandard,
-            "Esri Dark Slate Canvas": esriDarkCanvas,
-            "NASA GIBS MODIS Terra TrueColor": nasaGibsBase,
-            "Offline Sovereign Vector Canvas": offlineVectorCanvas
-          };
-
-          const allBaseLayers = [esriSat, osmStandard, esriDarkCanvas, nasaGibsBase, offlineVectorCanvas];
-
-          function setBaseMode(mode) {
-            allBaseLayers.forEach((l) => { if (map.hasLayer(l)) map.removeLayer(l); });
-            const bSat = document.getElementById('btn-base-sat');
-            const bOsm = document.getElementById('btn-base-osm');
-            const bDrk = document.getElementById('btn-base-dark');
-            const bGib = document.getElementById('btn-base-gibs');
-            const srcBadge = document.getElementById('gis-source-badge');
-
-            const offCls = "bg-[#090d13] hover:bg-slate-800 text-slate-300 border border-slate-700 px-2 py-1 rounded font-semibold transition";
-            const onCls = "bg-sky-500/20 text-sky-300 border border-sky-500/45 px-2 py-1 rounded font-semibold transition";
-            if (bSat) bSat.className = offCls;
-            if (bOsm) bOsm.className = offCls;
-            if (bDrk) bDrk.className = offCls;
-            if (bGib) bGib.className = offCls;
-
-            if (mode === 'osm') {
-              map.addLayer(osmStandard);
-              osmStandard.bringToBack();
-              if (bOsm) bOsm.className = onCls;
-              if (srcBadge) { srcBadge.innerText = 'OSM (ODbL)'; srcBadge.className = 'mono text-[10px] bg-slate-800/80 text-sky-300 px-1.5 py-0.5 rounded border border-slate-700 font-medium shrink-0'; }
-            } else if (mode === 'dark') {
-              map.addLayer(esriDarkCanvas);
-              esriDarkCanvas.bringToBack();
-              if (bDrk) bDrk.className = onCls;
-              if (srcBadge) { srcBadge.innerText = 'ESRI DARK (LIVE)'; srcBadge.className = 'mono text-[10px] bg-slate-800/80 text-slate-300 px-1.5 py-0.5 rounded border border-slate-700 font-medium shrink-0'; }
-            } else if (mode === 'gibs') {
-              map.addLayer(nasaGibsBase);
-              nasaGibsBase.bringToBack();
-              if (bGib) bGib.className = onCls;
-              if (srcBadge) { srcBadge.innerText = `NASA GIBS (${currentGibsDate})`; srcBadge.className = 'mono text-[10px] bg-slate-800/80 text-amber-300 px-1.5 py-0.5 rounded border border-slate-700 font-medium shrink-0'; }
-            } else {
-              map.addLayer(esriSat);
-              esriSat.bringToBack();
-              if (bSat) bSat.className = onCls;
-              if (srcBadge) { srcBadge.innerText = 'ESRI SAT (LIVE)'; srcBadge.className = 'mono text-[10px] bg-slate-800/80 text-emerald-300 px-1.5 py-0.5 rounded border border-slate-700 font-medium shrink-0'; }
-            }
-            if (typeof debouncedMapInvalidateSize === 'function') debouncedMapInvalidateSize(60);
+      if (activeOsm && activeOsm.status === 'LIVE') {
+        (activeOsm.greens_water || []).forEach((gw) => {
+          const latlngs = (gw.coords || []).map((p) => [p[1], p[0]]);
+          if (latlngs.length < 2) return;
+          const col = gw.kind === 'water' ? '#0ea5e9' : '#10b981';
+          if (gw.is_polygon && latlngs.length >= 3) {
+            L.polygon(latlngs, { color: col, weight: 1, fillColor: col, fillOpacity: 0.22 }).addTo(siteStudioOverlayLayer);
+          } else {
+            L.polyline(latlngs, { color: col, weight: 1.6, opacity: 0.7 }).addTo(siteStudioOverlayLayer);
           }
-
-          const indiaCountryLayer = D.india_country ? L.geoJSON(D.india_country, {
-            style: { color: '#38bdf8', weight: 2.4, fillColor: '#0284c7', fillOpacity: 0.04 }
-          }).addTo(map) : L.layerGroup();
-
-          const indiaStatesLayer = D.india_states ? L.geoJSON(D.india_states, {
-            style: (feat) => {
-              const nm = feat.properties.name;
-              const isBihar = nm === 'Bihar';
-              const isNorthCrown = (nm === 'Ladakh' || nm === 'Jammu and Kashmir');
-              return {
-                color: isBihar ? '#f43f5e' : (isNorthCrown ? '#10b981' : '#38bdf8'),
-                weight: isBihar ? 2.2 : (isNorthCrown ? 1.8 : 0.9),
-                fillColor: isBihar ? '#f43f5e' : (isNorthCrown ? '#10b981' : '#0284c7'),
-                fillOpacity: isBihar ? 0.16 : (isNorthCrown ? 0.12 : 0.02)
-              };
-            },
-            onEachFeature: (feat, layer) => {
-              layer.bindTooltip(`${feat.properties.name} (${feat.properties.type || 'State/UT'})`, { sticky: true });
-            }
-          }).addTo(map) : L.layerGroup();
-
-          const northFloodDists = new Set(['Araria', 'Darbhanga', 'Kishanganj', 'Madhepura', 'Madhubani', 'Muzaffarpur', 'Purba Champaran', 'Pashchim Champaran', 'Saharsa', 'Samastipur', 'Sitamarhi', 'Supaul', 'Khagaria', 'Katihar', 'Purnia']);
-          const southUplandDists = new Set(['Gaya', 'Rohtas', 'Kaimur', 'Nawada', 'Jamui', 'Banka', 'Aurangabad', 'Nalanda']);
-
-          const biharDistrictsLayer = D.bihar_districts ? L.geoJSON(D.bihar_districts, {
-            style: (feat) => {
-              const nm = feat.properties.name;
-              const isPatna = nm === 'Patna';
-              const isUpland = southUplandDists.has(nm);
-              const col = isPatna ? '#10b981' : (isUpland ? '#34d399' : '#f472b6');
-              return {
-                color: col,
-                weight: isPatna ? 2.4 : 1.0,
-                fillColor: col,
-                fillOpacity: isPatna ? 0.14 : 0.04,
-                dashArray: isPatna ? null : '3,3'
-              };
-            },
-            onEachFeature: (feat, layer) => {
-              const nm = feat.properties.name;
-              const zone = southUplandDists.has(nm)
-                ? 'South Bihar Stable Upland Fringe'
-                : (northFloodDists.has(nm) ? 'North Bihar Active Alluvial Floodplain' : 'Central Ganga/Son Alluvial Terrace');
-              layer.bindTooltip(`District: ${nm}, Bihar (${zone})`, { sticky: true });
-            }
-          }).addTo(map) : L.layerGroup();
-
-          const patnaDistrictLayer = D.patna_district ? L.geoJSON(D.patna_district, {
-            style: { color: '#f59e0b', weight: 2.0, fillOpacity: 0.04, dashArray: '5,4' },
-            interactive: false
-          }) : L.layerGroup();
-
-          const patnaUrbanLayer = D.patna_urban ? L.geoJSON(D.patna_urban, {
-            style: { color: '#38bdf8', weight: 2.4, fillColor: '#38bdf8', fillOpacity: 0.04 },
-            interactive: false
-          }) : L.layerGroup();
-
-          const floodRasterLayer = D.overlays ? L.imageOverlay(D.overlays.flood_b64, D.dem_bounds, { opacity: 0.86, interactive: false }) : L.layerGroup();
-          const demRasterLayer = D.overlays ? L.imageOverlay(D.overlays.dem_b64, D.dem_bounds, { opacity: 0.80, interactive: false }) : L.layerGroup();
-          const ulsiRasterLayer = D.overlays ? L.imageOverlay(D.overlays.ulsi_b64, D.dem_bounds, { opacity: 0.82, interactive: false }) : L.layerGroup();
-          const lstRasterLayer = D.overlays ? L.imageOverlay(D.overlays.lst_b64, D.lst_bounds, { opacity: 0.65, interactive: false }) : L.layerGroup();
-
-          const teleconnectionsLayer = L.layerGroup([
-            L.polyline([[14.5, 89.0], [18.5, 87.5], [22.2, 86.2], [25.59, 85.14]], { color: '#38bdf8', weight: 2.4, dashArray: '8,6' })
-              .bindPopup("<b>Bay of Bengal LPS Track</b><br>Convective cloudbursts (&gt;200mm/48h) into Patna."),
-            L.polyline([[4.0, 70.0], [10.0, 75.0], [16.0, 83.0], [22.5, 90.0], [26.14, 91.74]], { color: '#10b981', weight: 2.1, dashArray: '6,6' })
-              .bindPopup("<b>Indian Ocean Dipole &amp; ENSO Jet</b><br>Moisture convergence into Assam and Bihar."),
-            L.polyline([[11.0, 64.0], [15.5, 69.0], [19.08, 72.88]], { color: '#f59e0b', weight: 2.1, dashArray: '6,6' })
-              .bindPopup("<b>Arabian Sea Surge Feed</b><br>Extreme coastal rain over Konkan &amp; Mumbai."),
-            L.polyline([[34.15, 77.58], [30.55, 79.56], [28.4, 83.2], [26.8, 84.5], [25.62, 85.15]], { color: '#a78bfa', weight: 2.2 })
-              .bindPopup("<b>Trans-Himalayan Cryosphere Melt</b><br>Elevates Ganga river stage past 49.5m danger threshold.")
-          ]);
-
-          function wireMarkerLocationClick(marker, coords, label) {
-            marker.on('click', (ev) => {
-              if (ev && ev.originalEvent) L.DomEvent.stopPropagation(ev);
-              if (window.BhuLokaLocationEngine && Array.isArray(coords)) {
-                window.BhuLokaLocationEngine.setLocation(coords[0], coords[1], label, { source: 'map_click' });
-              }
-            });
-            return marker;
+        });
+        (activeOsm.roads || []).forEach((rd) => {
+          const latlngs = (rd.coords || []).map((p) => [p[1], p[0]]);
+          if (latlngs.length >= 2) {
+            L.polyline(latlngs, { color: '#94a3b8', weight: 1.6, opacity: 0.72 }).addTo(siteStudioOverlayLayer);
           }
-
-          // RAMAYANA HERITAGE CIRCUIT LAYER (ASI & VALMIKI GEOGRAPHY)
-          const ramayanaSites = [
-            { name: "Ayodhya (Sarayu / Kosala)", coords: [26.795, 82.194], note: "Birthplace of Shri Rama & Kosala capital on Sarayu terrace" },
-            { name: "Buxar / Siddhashram (Bihar)", coords: [25.565, 83.978], note: "Vedic Ashram of Sage Vishvamitra along Ganga levee" },
-            { name: "Sitamarhi / Mithila-Janakpur", coords: [26.591, 85.490], note: "Videha / Mithila region sacred to Mata Sita" },
-            { name: "Chitrakoot (UP / MP)", coords: [25.199, 80.854], note: "Vindhyan forest sanctuary along Mandakini River" },
-            { name: "Panchavati / Nashik (MH)", coords: [20.006, 73.790], note: "Dandakaranya & Godavari valley transit" },
-            { name: "Kishkindha / Hampi (KA)", coords: [15.335, 76.460], note: "Tungabhadra granite boulder hill kingdom" },
-            { name: "Rameswaram / Dhanushkodi (TN)", coords: [9.288, 79.313], note: "Palk Strait coastal point (Adam's Bridge / Rama Setu)" }
-          ];
-          const ramayanaLayer = L.layerGroup();
-          L.polyline(ramayanaSites.map((s) => s.coords), { color: '#f59e0b', weight: 2.2, dashArray: '5,5', interactive: false }).addTo(ramayanaLayer);
-          ramayanaSites.forEach((s) => {
-            const m = L.circleMarker(s.coords, { radius: 6, color: '#fef3c7', weight: 1.5, fillColor: '#f59e0b', fillOpacity: 0.95 })
-              .bindTooltip(`<span class="mono">${s.name}</span>`, { sticky: true });
-            wireMarkerLocationClick(m, s.coords, s.name).addTo(ramayanaLayer);
-          });
-
-          // HARAPPAN / INDUS-SARASVATI ASI HERITAGE SITES
-          const harappanSites = [
-            { name: "Rakhigarhi (Haryana)", coords: [29.291, 76.112], note: "Largest Harappan metropolis in India (~350+ ha) along Ghaggar-Drishadvati plain" },
-            { name: "Banawali (Haryana)", coords: [29.598, 75.390], note: "Planned radial Bronze Age citadel in Sarasvati basin" },
-            { name: "Kalibangan (Rajasthan)", coords: [29.474, 74.130], note: "Earliest excavated ploughed field & fire altars along dry Ghaggar bed" },
-            { name: "Ropar / Rupnagar (Punjab)", coords: [30.966, 76.523], note: "Sutlej riverbank post-Partition excavated IVC settlement" },
-            { name: "Dholavira UNESCO (Gujarat)", coords: [23.886, 70.213], note: "Stone water-conservation metropolis in Rann of Kutch" },
-            { name: "Lothal Dockyard (Gujarat)", coords: [22.521, 72.249], note: "Harappan tidal brick dockyard & Gulf of Khambhat trade port" },
-            { name: "Harappa Type-Site (Ravi)", coords: [30.631, 72.865], note: "Indus Valley Civilization original type-site (present Pakistan Punjab)" },
-            { name: "Mohenjo-daro (Indus)", coords: [27.324, 68.136], note: "Lower Indus citadel & Great Bath (present Pakistan Sindh)" }
-          ];
-          const harappanLayer = L.layerGroup();
-          harappanSites.forEach((s) => {
-            const m = L.circleMarker(s.coords, { radius: 6, color: '#fed7aa', weight: 1.5, fillColor: '#ea580c', fillOpacity: 0.95 })
-              .bindTooltip(`<span class="mono">${s.name}</span>`, { sticky: true });
-            wireMarkerLocationClick(m, s.coords, s.name).addTo(harappanLayer);
-          });
-
-          // PAN-INDIA BEST LOW-HAZARD LAND CORRIDORS
-          const landCorridors = [
-            { name: "Bihta / IIT Patna High Levee", coords: [25.536, 84.851], info: "55.2m | Flood 0.8% | ULSI 91.5 (Calibrated Zone S1)" },
-            { name: "Bengaluru Deccan Plateau Ridge", coords: [12.971, 77.594], info: "~910m Plateau | Seismic Zone II | Low Riverine Flood" },
-            { name: "Hyderabad Granite Shield", coords: [17.385, 78.486], info: "~542m Crystalline Shield | Seismic Zone II" },
-            { name: "Pune Western Deccan Foothills", coords: [18.520, 73.856], info: "~560m Basalt Upland | Avoid Riverbank Floodlines" },
-            { name: "Chandigarh Shivalik Apron", coords: [30.733, 76.779], info: "~330m Planned Stormwater Sector Grid" },
-            { name: "Gaya-Rajgir Vindhyan Ridge (Bihar)", coords: [24.910, 85.210], info: "~110m+ Precambrian Highland outside Ganga backwaters" }
-          ];
-          const landCorridorsLayer = L.layerGroup();
-          landCorridors.forEach((l) => {
-            const m = L.circleMarker(l.coords, { radius: 7, color: '#dcfce7', weight: 1.8, fillColor: '#10b981', fillOpacity: 0.95 })
-              .bindTooltip(`<span class="mono">${l.name} · ${l.info}</span>`, { sticky: true });
-            wireMarkerLocationClick(m, l.coords, l.name).addTo(landCorridorsLayer);
-          });
-
-          const indiaHubsLayer = L.layerGroup();
-          (D.india_hazard_hubs || []).forEach(hub => {
-            const col = hub.severity === 'SAFE' ? '#10b981' : (hub.severity === 'CRITICAL' ? '#f43f5e' : '#f59e0b');
-            const m = L.circleMarker(hub.coords, {
-              radius: hub.severity === 'CRITICAL' ? 8 : 6.5,
-              color: '#f8fafc',
-              weight: 1.5,
-              fillColor: col,
-              fillOpacity: 0.94
-            }).bindTooltip(`<span class="mono">${hub.name} (${hub.metric})</span>`, { sticky: true });
-            wireMarkerLocationClick(m, hub.coords, hub.name).addTo(indiaHubsLayer);
-          });
-
-          const wards = [
-            { name: "Bihta / IIT Patna High Levee", coords: [25.536, 84.851], elev: "55.2m", flood: "0.80% (Safe)", crime: "88/100", ulsi: "91.5 (Zone S1)", col: "#10b981" },
-            { name: "Danapur Cantonment", coords: [25.630, 85.040], elev: "52.8m", flood: "1.10% (Safe)", crime: "92/100 (Army)", ulsi: "89.4 (Zone S1)", col: "#10b981" },
-            { name: "Bailey Road / Saguna More", coords: [25.612, 85.055], elev: "52.4m", flood: "2.40% (Safe)", crime: "88/100 (PCR)", ulsi: "86.2 (Zone S1)", col: "#10b981" },
-            { name: "Boring Road / SK Puri", coords: [25.615, 85.120], elev: "49.5m", flood: "42.1% (Ponding)", crime: "86/100", ulsi: "64.0 (Zone S2)", col: "#f59e0b" },
-            { name: "Patliputra Colony", coords: [25.625, 85.108], elev: "50.8m", flood: "18.5% (Low)", crime: "85/100", ulsi: "81.0 (Zone S1)", col: "#10b981" },
-            { name: "Gandhi Maidan", coords: [25.618, 85.144], elev: "50.2m", flood: "34.0% (Ponding)", crime: "82/100", ulsi: "68.5 (Zone S2)", col: "#f59e0b" },
-            { name: "Kankarbagh Colony", coords: [25.588, 85.148], elev: "45.1m", flood: "98.88% (Severe)", crime: "74/100", ulsi: "28.2 (Zone S4)", col: "#f43f5e" },
-            { name: "Rajendra Nagar Deep Bowl", coords: [25.595, 85.158], elev: "44.5m", flood: "99.40% (Critical)", crime: "73/100", ulsi: "21.6 (Zone S4)", col: "#f43f5e" },
-            { name: "Patna Bypass / Transport Nagar", coords: [25.580, 85.185], elev: "46.8m", flood: "72.5% (High)", crime: "41/100", ulsi: "24.5 (Zone S4)", col: "#ef4444" }
-          ];
-          const wardMarkersLayer = L.layerGroup();
-          wards.forEach(w => {
-            const m = L.circleMarker(w.coords, {
-              radius: 6.5, color: '#ffffff', weight: 1.5, fillColor: w.col, fillOpacity: 0.92
-            }).bindTooltip(`<span class="mono">${w.name} · Elev ${w.elev} · ${w.ulsi}</span>`, { sticky: true });
-            wireMarkerLocationClick(m, w.coords, w.name).addTo(wardMarkersLayer);
-          });
-
-          // LIVE ORBITAL SATELLITES LAYER (REAL NORAD / CELESTRAK + WHERETHEISS) - OPT-IN
-          const liveSatellitesLayer = L.layerGroup();
-          const siteStudioOverlayLayer = L.layerGroup().addTo(map);
-
-          // AUTHENTIC NASA EOSDIS GIBS / WORLDVIEW WMTS LAYERS (Verified Public NASA Tile Service)
-          const gibsDailyDate = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
-          const gibs8DayDate = new Date(Date.now() - 14 * 86400000).toISOString().slice(0, 10);
-          const nasaGibsTrueColor = L.tileLayer(
-            `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/MODIS_Terra_CorrectedReflectance_TrueColor/default/${gibsDailyDate}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg`,
-            { maxNativeZoom: 9, maxZoom: 18, opacity: 0.78, attribution: `NASA EOSDIS GIBS / Worldview MODIS Terra TrueColor (${gibsDailyDate})` }
-          );
-          const nasaGibsLstDay = L.tileLayer(
-            `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/MODIS_Terra_Land_Surface_Temp_Day/default/${gibsDailyDate}/GoogleMapsCompatible_Level7/{z}/{y}/{x}.png`,
-            { maxNativeZoom: 7, maxZoom: 18, opacity: 0.72, attribution: `NASA EOSDIS GIBS / Worldview MOD11A1 LST Day 1km (${gibsDailyDate})` }
-          );
-          const nasaGibsNdvi = L.tileLayer(
-            `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/MODIS_Terra_NDVI_8Day/default/${gibs8DayDate}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.png`,
-            { maxNativeZoom: 9, maxZoom: 18, opacity: 0.74, attribution: `NASA EOSDIS GIBS / Worldview MODIS Terra NDVI 8-Day (${gibs8DayDate})` }
-          );
-
-          const overlays = {
-            "Site Studio 350m Ring & Solar Rays": siteStudioOverlayLayer,
-            "NASA GIBS MODIS Terra True Color (Daily)": nasaGibsTrueColor,
-            "NASA GIBS MODIS Terra Daytime LST (1km)": nasaGibsLstDay,
-            "NASA GIBS MODIS Terra NDVI (8-Day)": nasaGibsNdvi,
-            "Full India Composite Border (37.1°N)": indiaCountryLayer,
-            "All 36 Sovereign States/UTs (LA, JK, AR)": indiaStatesLayer,
-            "All 38 Bihar Districts": biharDistrictsLayer,
-            "Live Satellites (Starlink / ISS / EO / ISRO)": liveSatellitesLayer,
-            "Ramayana Historical Circuit (ASI)": ramayanaLayer,
-            "Harappan / IVC Sites (ASI)": harappanLayer,
-            "Pan-India Best Land Corridors": landCorridorsLayer,
-            "Macro Oceanic &amp; Monsoon Arcs": teleconnectionsLayer,
-            "Pan-India Multi-Hazard Hubs": indiaHubsLayer,
-            "Patna District Boundary (OSM)": patnaDistrictLayer,
-            "Patna PMC Core Boundary (OSM)": patnaUrbanLayer,
-            "Real S1 SAR Flood Raster (PNG)": floodRasterLayer,
-            "Real Copernicus 30m DEM + Sinks (PNG)": demRasterLayer,
-            "Real ULSI Suitability Raster (PNG)": ulsiRasterLayer,
-            "Real NASA MODIS Peak LST (PNG)": lstRasterLayer,
-            "Patna &amp; Bihta Ward Markers": wardMarkersLayer
-          };
-
-          L.control.layers(baseMaps, overlays, { collapsed: true, position: 'topright' }).addTo(map);
-          L.control.scale({ imperial: false, position: 'bottomright' }).addTo(map);
-
-          if (window.BhuLokaIndiaIntel) {
-            window.BhuLokaIndiaIntel.attachLeaflet(map, overlays);
-          }
-          if (window.BhuLokaAgri) {
-            window.BhuLokaAgri.attachLeaflet(map);
-          }
-
-          const gisSearchPinLayer = L.layerGroup().addTo(map);
-
-          function dropAddressPin(lat, lon, label, zoomLvl = 15) {
-            gisSearchPinLayer.clearLayers();
-            map.flyTo([lat, lon], zoomLvl, { duration: 1.0 });
-            L.marker([lat, lon])
-              .bindPopup(`<div class="mono text-xs"><div class="font-bold text-emerald-300">${label}</div><div class="text-slate-300 mt-1">Coords: ${Number(lat).toFixed(5)}°, ${Number(lon).toFixed(5)}°</div><div class="text-slate-400 text-[10px] mt-1">Google Earth Hybrid (gl=IN) Real View</div></div>`)
-              .addTo(gisSearchPinLayer)
-              .openPopup();
-            const lt = document.getElementById('legend-title');
-            if (lt) lt.innerText = `REAL EARTH: ${String(label).toUpperCase().slice(0, 28)}`;
-          }
-
-          async function searchAndFlyAddress(rawQuery) {
-            const inp = document.getElementById('gis-addr-input');
-            const q = (rawQuery || (inp ? inp.value : '') || '').trim();
-            if (!q) {
-              if (window.BhuLokaLocationEngine) window.BhuLokaLocationEngine.notifyError('Enter a place name or lat, lon coordinates.');
-              return;
-            }
-            if (window.BhuLokaLocationEngine) {
-              await window.BhuLokaLocationEngine.searchPlace(q, { openDrawer: true });
-            }
-          }
-
-          function updateGisLocationHUD(ctx, intel, meta = {}) {
-            if (!ctx) return;
-            const inp = document.getElementById('gis-addr-input');
-            if (inp && ctx.source !== 'default' && document.activeElement !== inp) {
-              inp.value = ctx.placeName || '';
-            }
-            const lt = document.getElementById('legend-title');
-            const lbl = document.getElementById('gis-live-label');
-            const out = document.getElementById('gis-live-readout');
-            if (lt && (ctx.source !== 'default' || (meta && meta.stage === 'complete'))) {
-              lt.innerText = ctx.source === 'default'
-                ? 'SOVEREIGN INDIA · GOOGLE EARTH'
-                : `REAL EARTH: ${String(ctx.placeName || '').toUpperCase().slice(0, 28)}`;
-            }
-            if (lbl) lbl.innerText = `${String(ctx.placeName || 'Active').split(',')[0].slice(0, 16)} Live:`;
-            const fCoords = document.getElementById('gis-footer-coords');
-            const fCrs = document.getElementById('gis-footer-crs');
-            if (fCoords && Number.isFinite(Number(ctx.latitude)) && Number.isFinite(Number(ctx.longitude))) {
-              const la = Number(ctx.latitude), lo = Number(ctx.longitude);
-              fCoords.innerText = `${ctx.placeName || 'Location'} · ${Math.abs(la).toFixed(4)}°${la >= 0 ? 'N' : 'S'}, ${Math.abs(lo).toFixed(4)}°${lo >= 0 ? 'E' : 'W'}`;
-            }
-            if (fCrs && Number.isFinite(Number(ctx.latitude)) && Number.isFinite(Number(ctx.longitude))) {
-              const la = Number(ctx.latitude), lo = Number(ctx.longitude);
-              const zone = Math.max(1, Math.min(60, Math.floor((lo + 180) / 6) + 1));
-              const epsg = la >= 0 ? `326${zone}` : `327${zone}`;
-              fCrs.innerText = `EPSG:4326 · UTM ${epsg}`;
-            }
-            if (out) {
-              if (!intel || (meta && meta.isLoading)) {
-                out.innerText = 'Syncing telemetry...';
-              } else {
-                const mods = intel.modules || {};
-                const wx = mods['1_weather_temperature'] || {};
-                const rv = mods['3_rivers_waterbodies'] || {};
-                const te = mods['9_terrain_elevation'] || {};
-                const tStr = wx.air_temp_c != null ? `${wx.air_temp_c}°C` : 'UNAVAIL';
-                const qStr = rv.current_discharge_m3_s != null ? `${Number(rv.current_discharge_m3_s).toFixed(0)} m³/s` : 'Flow N/A';
-                const eStr = te.elevation_masl_m != null ? ` · ${te.elevation_masl_m}m` : '';
-                out.innerText = `${tStr} · ${qStr}${eStr}`;
-              }
-            }
-          }
-
-          function renderSiteStudio2DOverlay(ctx, osm = null) {
-            if (!ctx || !siteStudioOverlayLayer) return;
-            siteStudioOverlayLayer.clearLayers();
-            const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-            const lat = Number(ctx.latitude), lon = Number(ctx.longitude), rM = 350;
-            const studio = window.BhuLokaSiteStudio;
-            const activeOsm = osm || (studio ? studio.getCachedOsmContext(lat, lon, rM) : null);
-
-            const osmPopup = activeOsm && activeOsm.status === 'LIVE'
-              ? `${activeOsm.building_count} buildings (${activeOsm.site_coverage_pct}% cov) · ${activeOsm.road_length_km} km roads<br/><span style="color:#64748b">© OpenStreetMap contributors (ODbL)</span>`
-              : (activeOsm && activeOsm.status === 'UNAVAILABLE'
-                ? 'OSM Overpass UNAVAILABLE (zero fake footprints)'
-                : 'Click "Site 350m" or "Load OSM 350m" to fetch Overpass footprints');
-
-            L.circle([lat, lon], {
-              radius: rM,
-              color: '#38bdf8',
-              weight: 1.8,
-              dashArray: '6,4',
-              fillColor: '#38bdf8',
-              fillOpacity: 0.04
-            }).bindPopup(`<div class="mono text-xs"><div class="font-bold text-sky-300">Site Studio 350m Analysis Ring</div><div>${osmPopup}</div></div>`, { autoPan: false })
+        });
+        (activeOsm.buildings || []).forEach((b) => {
+          const latlngs = (b.coords || []).map((p) => [p[1], p[0]]);
+          if (latlngs.length >= 3) {
+            L.polygon(latlngs, {
+              color: '#7dd3fc',
+              weight: 1.0,
+              fillColor: b.height_source === 'osm_height_tag' ? '#38bdf8' : '#64748b',
+              fillOpacity: 0.42
+            }).bindPopup(`<div class="mono text-xs"><div class="font-bold text-sky-300">${esc(b.name || 'OSM Building')}</div><div>Height: ${b.height_m}m (${esc(b.height_source)}) · Area: ${b.area_m2} m²</div><div class="text-slate-400 text-[10px] mt-1">© OpenStreetMap contributors (ODbL)</div></div>`)
               .addTo(siteStudioOverlayLayer);
-
-            if (studio) {
-              const solar = studio.computeSolarAndShadowProfile(lat, lon);
-              const cur = solar.current || {};
-              const mLat = 111132.92;
-              const mLon = 111412.84 * Math.max(0.1, Math.cos(lat * Math.PI / 180.0));
-              const endPt = (azDeg, lenM) => {
-                const rad = azDeg * Math.PI / 180.0;
-                return [lat + (lenM * Math.cos(rad)) / mLat, lon + (lenM * Math.sin(rad)) / mLon];
-              };
-              if (cur.azimuth_deg != null) {
-                const sunPt = endPt(cur.azimuth_deg, rM);
-                L.polyline([[lat, lon], sunPt], {
-                  color: '#f59e0b',
-                  weight: cur.daytime ? 2.6 : 1.5,
-                  dashArray: cur.daytime ? null : '3,5',
-                  opacity: 0.9
-                }).bindTooltip(`Sun Az ${cur.azimuth_deg}° · El ${cur.elevation_deg}°`, { sticky: true }).addTo(siteStudioOverlayLayer);
-
-                if (cur.daytime && cur.shadow_azimuth_deg != null) {
-                  const shLen = Math.min(rM, Math.max(85, 100 * (cur.shadow_multiplier || 1.2)));
-                  const shPt = endPt(cur.shadow_azimuth_deg, shLen);
-                  L.polyline([[lat, lon], shPt], {
-                    color: '#cbd5e1',
-                    weight: 2.0,
-                    dashArray: '4,4',
-                    opacity: 0.85
-                  }).bindTooltip(`Cast Shadow ${cur.shadow_azimuth_deg}° (${cur.shadow_multiplier}x)`, { sticky: true }).addTo(siteStudioOverlayLayer);
-                }
-              }
-              const jun = solar.solstices?.summer_jun21;
-              const dec = solar.solstices?.winter_dec21;
-              if (jun && jun.noon_azimuth_deg != null) {
-                L.polyline([[lat, lon], endPt(jun.noon_azimuth_deg, rM * 0.78)], {
-                  color: '#f43f5e', weight: 1.2, dashArray: '2,4', opacity: 0.65
-                }).bindTooltip(`Jun 21 Noon ${jun.noon_elevation_deg}°`).addTo(siteStudioOverlayLayer);
-              }
-              if (dec && dec.noon_azimuth_deg != null) {
-                L.polyline([[lat, lon], endPt(dec.noon_azimuth_deg, rM * 0.78)], {
-                  color: '#38bdf8', weight: 1.2, dashArray: '2,4', opacity: 0.65
-                }).bindTooltip(`Dec 21 Noon ${dec.noon_elevation_deg}°`).addTo(siteStudioOverlayLayer);
-              }
-            }
-
-            if (activeOsm && activeOsm.status === 'LIVE') {
-              (activeOsm.greens_water || []).forEach((gw) => {
-                const latlngs = (gw.coords || []).map((p) => [p[1], p[0]]);
-                if (latlngs.length < 2) return;
-                const col = gw.kind === 'water' ? '#0ea5e9' : '#10b981';
-                if (gw.is_polygon && latlngs.length >= 3) {
-                  L.polygon(latlngs, { color: col, weight: 1, fillColor: col, fillOpacity: 0.22 }).addTo(siteStudioOverlayLayer);
-                } else {
-                  L.polyline(latlngs, { color: col, weight: 1.6, opacity: 0.7 }).addTo(siteStudioOverlayLayer);
-                }
-              });
-              (activeOsm.roads || []).forEach((rd) => {
-                const latlngs = (rd.coords || []).map((p) => [p[1], p[0]]);
-                if (latlngs.length >= 2) {
-                  L.polyline(latlngs, { color: '#94a3b8', weight: 1.6, opacity: 0.72 }).addTo(siteStudioOverlayLayer);
-                }
-              });
-              (activeOsm.buildings || []).forEach((b) => {
-                const latlngs = (b.coords || []).map((p) => [p[1], p[0]]);
-                if (latlngs.length >= 3) {
-                  L.polygon(latlngs, {
-                    color: '#7dd3fc',
-                    weight: 1.0,
-                    fillColor: b.height_source === 'osm_height_tag' ? '#38bdf8' : '#64748b',
-                    fillOpacity: 0.42
-                  }).bindPopup(`<div class="mono text-xs"><div class="font-bold text-sky-300">${esc(b.name || 'OSM Building')}</div><div>Height: ${b.height_m}m (${esc(b.height_source)}) · Area: ${b.area_m2} m²</div><div class="text-slate-400 text-[10px] mt-1">© OpenStreetMap contributors (ODbL)</div></div>`)
-                    .addTo(siteStudioOverlayLayer);
-                }
-              });
-            }
           }
+        });
+      }
+    }
 
-          async function focusSiteStudio350m() {
-            const eng = window.BhuLokaLocationEngine;
-            const studio = window.BhuLokaSiteStudio;
-            if (!eng || !eng.currentContext) return;
-            const ctx = eng.currentContext;
-            setBaseMode('hybrid');
-            map.flyTo([ctx.latitude, ctx.longitude], 16, { duration: 0.9 });
-            renderSiteStudio2DOverlay(ctx);
-            if (studio) {
-              const osm = await studio.loadOsmIntoActiveContext(350);
-              renderSiteStudio2DOverlay(eng.currentContext, osm);
-            }
+    async function focusSiteStudio350m() {
+      const eng = window.BhuLokaLocationEngine;
+      const studio = window.BhuLokaSiteStudio;
+      if (!eng || !eng.currentContext) return;
+      const ctx = eng.currentContext;
+      setBaseMode('hybrid');
+      map.flyTo([ctx.latitude, ctx.longitude], 16, { duration: 0.9 });
+      renderSiteStudio2DOverlay(ctx);
+      if (studio) {
+        const osm = await studio.loadOsmIntoActiveContext(350);
+        renderSiteStudio2DOverlay(eng.currentContext, osm);
+      }
+    }
+
+    if (window.BhuLokaLocationEngine) {
+      window.BhuLokaLocationEngine.subscribe((ctx, intel, meta) => {
+        updateGisLocationHUD(ctx, intel, meta);
+        renderSiteStudio2DOverlay(ctx, intel?.site_studio?.osm_context || null);
+      });
+      window.addEventListener('bhu-loka:site-studio-osm', (ev) => {
+        if (ev && ev.detail && ev.detail.context) {
+          renderSiteStudio2DOverlay(ev.detail.context, ev.detail.osm);
+        }
+      });
+    }
+
+    // Restore synchronized location from URL params or localStorage on page load
+    (function bootSyncedLocation() {
+      if (!window.BhuLokaLocationEngine) return;
+      const initState = window.BhuLokaLocationEngine.readInitialState();
+      if (initState.found) {
+        setBaseMode('hybrid');
+        const inp = document.getElementById('gis-addr-input');
+        if (inp && initState.placeName) inp.value = initState.placeName;
+        window.BhuLokaLocationEngine.setLocation(initState.latitude, initState.longitude, initState.placeName, {
+          radiusKm: initState.analysisRadius,
+          source: initState.source,
+          zoom: initState.zoom || 12,
+          openDrawer: true
+        });
+      } else {
+        window.BhuLokaLocationEngine.setLocation(25.594, 85.137, 'Patna', {
+          source: 'default',
+          openDrawer: false,
+          skipFly: true
+        });
+      }
+    })();
+
+    function focusIndiaMacro() {
+      map.flyToBounds([[6.5, 67.8], [37.4, 97.6]], { padding: [16, 16], duration: 1.0 });
+      map.addLayer(indiaCountryLayer);
+      map.addLayer(indiaStatesLayer);
+      map.addLayer(teleconnectionsLayer);
+      map.addLayer(indiaHubsLayer);
+      document.getElementById('legend-title').innerText = "SOVEREIGN INDIA · GOOGLE EARTH";
+    }
+
+    function focusBiharDistricts() {
+      map.flyTo([25.75, 85.6], 7.5, { duration: 1.0 });
+      map.addLayer(biharDistrictsLayer);
+      map.addLayer(wardMarkersLayer);
+      document.getElementById('legend-title').innerText = "BIHAR 38 DISTRICTS · GADM v4.1";
+    }
+
+    function focusHeritageAndLand() {
+      map.flyTo([24.2, 80.5], 5.0, { duration: 1.0 });
+      map.addLayer(ramayanaLayer);
+      map.addLayer(harappanLayer);
+      map.addLayer(landCorridorsLayer);
+      document.getElementById('legend-title').innerText = "ASI HERITAGE & SAFE LAND CORRIDORS";
+    }
+
+    // ==========================================
+    // DANCING WITH THE SARS (NASA SPACE APPS 2026) 2D RADAR ENGINE
+    // ==========================================
+    const SAR_PATNA_BBOX = [[25.45, 84.85], [25.75, 85.35]];
+    const sarPreLayer = L.imageOverlay('Data/08_Processed_Outputs/sar_pre_flood_20190923.png', SAR_PATNA_BBOX, { opacity: 1.0 });
+    const sarPostLayer = L.imageOverlay('Data/08_Processed_Outputs/sar_post_flood_20190929.png', SAR_PATNA_BBOX, { opacity: 1.0 });
+    const sarGainLayer = L.imageOverlay('Data/08_Processed_Outputs/sar_flood_gain_overlay.png', SAR_PATNA_BBOX, { opacity: 0.85 });
+    const sarPermWaterLayer = L.imageOverlay('Data/08_Processed_Outputs/sar_permanent_water_overlay.png', SAR_PATNA_BBOX, { opacity: 0.85 });
+
+    let sarModeActive = false;
+    let sarInspectorActive = true;
+    let sarCurrentBase = 'post';
+
+    function activateDancingWithSARs() {
+      sarModeActive = true;
+      map.flyTo([25.61, 85.14], 12.5, { duration: 1.0 });
+
+      // Show floating SAR dock and pixel HUD
+      const dock = document.getElementById('sar-floating-dock');
+      if (dock) dock.classList.remove('hidden');
+      const hud = document.getElementById('sar-pixel-hud');
+      if (hud) hud.classList.remove('hidden');
+
+      // Add layers
+      setSarDisplayMode('post');
+      if (!map.hasLayer(sarGainLayer)) map.addLayer(sarGainLayer);
+      if (!map.hasLayer(sarPermWaterLayer)) map.addLayer(sarPermWaterLayer);
+
+      // Update legend title
+      const legTitle = document.getElementById('legend-title');
+      if (legTitle) legTitle.innerText = "DANCING WITH THE SARS · PATNA DELUGE";
+    }
+
+    function closeDancingWithSARs() {
+      sarModeActive = false;
+      const dock = document.getElementById('sar-floating-dock');
+      if (dock) dock.classList.add('hidden');
+      const hud = document.getElementById('sar-pixel-hud');
+      if (hud) hud.classList.add('hidden');
+
+      if (map.hasLayer(sarPostLayer)) map.removeLayer(sarPostLayer);
+      if (map.hasLayer(sarPreLayer)) map.removeLayer(sarPreLayer);
+      if (map.hasLayer(sarGainLayer)) map.removeLayer(sarGainLayer);
+      if (map.hasLayer(sarPermWaterLayer)) map.removeLayer(sarPermWaterLayer);
+    }
+
+    function setSarDisplayMode(mode) {
+      sarCurrentBase = mode;
+      const bPost = document.getElementById('btn-sar-post');
+      const bPre = document.getElementById('btn-sar-pre');
+
+      if (mode === 'post') {
+        if (map.hasLayer(sarPreLayer)) map.removeLayer(sarPreLayer);
+        if (!map.hasLayer(sarPostLayer)) map.addLayer(sarPostLayer);
+        sarPostLayer.bringToBack();
+        if (bPost) bPost.className = 'px-2 py-0.5 rounded font-semibold bg-sky-500 text-slate-950 transition';
+        if (bPre) bPre.className = 'px-2 py-0.5 rounded text-slate-400 hover:text-slate-200 bg-slate-900 border border-slate-700 transition';
+      } else {
+        if (map.hasLayer(sarPostLayer)) map.removeLayer(sarPostLayer);
+        if (!map.hasLayer(sarPreLayer)) map.addLayer(sarPreLayer);
+        sarPreLayer.bringToBack();
+        if (bPre) bPre.className = 'px-2 py-0.5 rounded font-semibold bg-sky-500 text-slate-950 transition';
+        if (bPost) bPost.className = 'px-2 py-0.5 rounded text-slate-400 hover:text-slate-200 bg-slate-900 border border-slate-700 transition';
+      }
+    }
+
+    function toggleSarGainLayer(checked) {
+      if (checked) {
+        if (!map.hasLayer(sarGainLayer)) map.addLayer(sarGainLayer);
+      } else {
+        if (map.hasLayer(sarGainLayer)) map.removeLayer(sarGainLayer);
+      }
+    }
+
+    function setSarOverlayOpacity(val) {
+      const op = parseInt(val, 10) / 100;
+      if (sarGainLayer) sarGainLayer.setOpacity(op);
+      if (sarPermWaterLayer) sarPermWaterLayer.setOpacity(op);
+      const textEl = document.getElementById('sar-opacity-text');
+      if (textEl) textEl.innerText = `${val}%`;
+    }
+
+    function toggleSarInspector() {
+      sarInspectorActive = !sarInspectorActive;
+      const statusEl = document.getElementById('sar-inspector-status');
+      const hud = document.getElementById('sar-pixel-hud');
+      if (statusEl) statusEl.innerText = sarInspectorActive ? 'ON' : 'OFF';
+      if (hud) hud.style.display = sarInspectorActive ? 'block' : 'none';
+    }
+
+    // Pixel inspector mouse telemetry
+    map.on('mousemove', (ev) => {
+      if (!sarModeActive || !sarInspectorActive || !ev || !ev.latlng) return;
+      const lat = ev.latlng.lat;
+      const lon = ev.latlng.lng;
+
+      const cEl = document.getElementById('hud-sar-coords');
+      const pEl = document.getElementById('hud-sar-post');
+      const dEl = document.getElementById('hud-sar-delta');
+      const kEl = document.getElementById('hud-sar-class');
+
+      if (cEl) cEl.innerText = `${lat.toFixed(3)}°N, ${lon.toFixed(3)}°E`;
+
+      let postDb = -12.4;
+      let deltaDb = -0.5;
+      let cat = "ROUGH CANOPY";
+
+      if (lat >= 25.625 && lat <= 25.655 && lon >= 85.10 && lon <= 85.25) {
+        postDb = -21.4;
+        deltaDb = -1.2;
+        cat = "🌊 SPECULAR RIVERBED";
+      } else if (lat >= 25.585 && lat <= 25.605 && lon >= 85.145 && lon <= 85.175) {
+        postDb = -16.8;
+        deltaDb = -7.2;
+        cat = "🚨 INUNDATION GAIN (Naya Paani)";
+      } else if (lat >= 25.600 && lat <= 25.625 && lon >= 85.080 && lon <= 85.140) {
+        postDb = -9.5;
+        deltaDb = -0.3;
+        cat = "🏙️ URBAN DOUBLE-BOUNCE";
+      }
+
+      if (pEl) pEl.innerText = `${postDb.toFixed(1)} dB`;
+      if (dEl) dEl.innerText = `${deltaDb > 0 ? '+' : ''}${deltaDb.toFixed(1)} dB`;
+      if (kEl) kEl.innerText = cat;
+    });
+
+    window.openSarTransectModal = function () {
+      const m = document.getElementById('modal-sar-transect');
+      if (m) m.classList.remove('hidden');
+    };
+    window.closeSarTransectModal = function () {
+      const m = document.getElementById('modal-sar-transect');
+      if (m) m.classList.add('hidden');
+    };
+    window.openSarNisarModal = function () {
+      const m = document.getElementById('modal-sar-nisar');
+      if (m) m.classList.remove('hidden');
+    };
+    window.closeSarNisarModal = function () {
+      const m = document.getElementById('modal-sar-nisar');
+      if (m) m.classList.add('hidden');
+    };
+
+    function focusPatnaFlood() {
+      activateDancingWithSARs();
+    }
+
+    function focusPatnaDEM() {
+      closeDancingWithSARs();
+      map.flyTo([25.595, 85.13], 12, { duration: 1.0 });
+      map.addLayer(patnaUrbanLayer);
+      map.addLayer(demRasterLayer);
+      map.addLayer(ulsiRasterLayer);
+      map.addLayer(wardMarkersLayer);
+      map.removeLayer(floodRasterLayer);
+      document.getElementById('legend-title').innerText = "COPERNICUS 30m DEM & ULSI";
+    }
+
+    window.activateDancingWithSARs = activateDancingWithSARs;
+    window.closeDancingWithSARs = closeDancingWithSARs;
+    window.setSarDisplayMode = setSarDisplayMode;
+    window.toggleSarGainLayer = toggleSarGainLayer;
+    window.setSarOverlayOpacity = setSarOverlayOpacity;
+    window.toggleSarInspector = toggleSarInspector;
+
+    try {
+      const qp = new URLSearchParams(window.location.search);
+      if (qp.get('sar') === '1' || qp.get('mode') === 'sar') {
+        setTimeout(activateDancingWithSARs, 500);
+      }
+    } catch (e) { }
+
+    // Fetch Real Live Satellites (FastAPI :8000 OR Direct CelesTrak + WhereTheISS)
+    (async function syncGisSatellites() {
+      const badge = document.getElementById('gis-sat-badge');
+      const readout = document.getElementById('gis-sat-readout');
+      let satPayload = null;
+
+      try {
+        const ctrl = new AbortController();
+        const tid = setTimeout(() => ctrl.abort(), 2500);
+        const r = await fetch(`${FASTAPI_BASE}/api/v1/satellites`, { signal: ctrl.signal });
+        clearTimeout(tid);
+        if (r.ok) satPayload = await r.json();
+      } catch (e) { }
+
+      if (!satPayload || !satPayload.live_online) {
+        try {
+          const [issRes, resRes] = await Promise.all([
+            fetch('https://api.wheretheiss.at/v1/satellites/25544'),
+            fetch('https://celestrak.org/NORAD/elements/gp.php?GROUP=resource&FORMAT=tle')
+          ]);
+          const sats = [];
+          let issLive = null;
+          if (issRes.ok) {
+            const ij = await issRes.json();
+            issLive = { norad_id: 25544, name: 'ISS (ZARYA)', category: 'station', lat: ij.latitude, lon: ij.longitude, alt_km: ij.altitude };
+            sats.push(issLive);
           }
-
-          if (window.BhuLokaLocationEngine) {
-            window.BhuLokaLocationEngine.subscribe((ctx, intel, meta) => {
-              updateGisLocationHUD(ctx, intel, meta);
-              renderSiteStudio2DOverlay(ctx, intel?.site_studio?.osm_context || null);
-            });
-            window.addEventListener('bhu-loka:site-studio-osm', (ev) => {
-              if (ev && ev.detail && ev.detail.context) {
-                renderSiteStudio2DOverlay(ev.detail.context, ev.detail.osm);
-              }
-            });
-          }
-
-          // Restore synchronized location from URL params or localStorage on page load
-          (function bootSyncedLocation() {
-            if (!window.BhuLokaLocationEngine) return;
-            const initState = window.BhuLokaLocationEngine.readInitialState();
-            if (initState.found) {
-              setBaseMode('hybrid');
-              const inp = document.getElementById('gis-addr-input');
-              if (inp && initState.placeName) inp.value = initState.placeName;
-              window.BhuLokaLocationEngine.setLocation(initState.latitude, initState.longitude, initState.placeName, {
-                radiusKm: initState.analysisRadius,
-                source: initState.source,
-                zoom: initState.zoom || 12,
-                openDrawer: true
-              });
-            } else {
-              window.BhuLokaLocationEngine.setLocation(25.594, 85.137, 'Patna', {
-                source: 'default',
-                openDrawer: false,
-                skipFly: true
-              });
-            }
-          })();
-
-          function focusIndiaMacro() {
-            map.flyToBounds([[6.5, 67.8], [37.4, 97.6]], { padding: [16, 16], duration: 1.0 });
-            map.addLayer(indiaCountryLayer);
-            map.addLayer(indiaStatesLayer);
-            map.addLayer(teleconnectionsLayer);
-            map.addLayer(indiaHubsLayer);
-            document.getElementById('legend-title').innerText = "SOVEREIGN INDIA · GOOGLE EARTH";
-          }
-
-          function focusBiharDistricts() {
-            map.flyTo([25.75, 85.6], 7.5, { duration: 1.0 });
-            map.addLayer(biharDistrictsLayer);
-            map.addLayer(wardMarkersLayer);
-            document.getElementById('legend-title').innerText = "BIHAR 38 DISTRICTS · GADM v4.1";
-          }
-
-          function focusHeritageAndLand() {
-            map.flyTo([24.2, 80.5], 5.0, { duration: 1.0 });
-            map.addLayer(ramayanaLayer);
-            map.addLayer(harappanLayer);
-            map.addLayer(landCorridorsLayer);
-            document.getElementById('legend-title').innerText = "ASI HERITAGE & SAFE LAND CORRIDORS";
-          }
-
-          // ==========================================
-          // DANCING WITH THE SARS (NASA SPACE APPS 2026) 2D RADAR ENGINE
-          // ==========================================
-          const SAR_PATNA_BBOX = [[25.45, 84.85], [25.75, 85.35]];
-          const sarPreLayer = L.imageOverlay('Data/08_Processed_Outputs/sar_pre_flood_20190923.png', SAR_PATNA_BBOX, { opacity: 1.0 });
-          const sarPostLayer = L.imageOverlay('Data/08_Processed_Outputs/sar_post_flood_20190929.png', SAR_PATNA_BBOX, { opacity: 1.0 });
-          const sarGainLayer = L.imageOverlay('Data/08_Processed_Outputs/sar_flood_gain_overlay.png', SAR_PATNA_BBOX, { opacity: 0.85 });
-          const sarPermWaterLayer = L.imageOverlay('Data/08_Processed_Outputs/sar_permanent_water_overlay.png', SAR_PATNA_BBOX, { opacity: 0.85 });
-
-          let sarModeActive = false;
-          let sarInspectorActive = true;
-          let sarCurrentBase = 'post';
-
-          function activateDancingWithSARs() {
-            sarModeActive = true;
-            map.flyTo([25.61, 85.14], 12.5, { duration: 1.0 });
-
-            // Show floating SAR dock and pixel HUD
-            const dock = document.getElementById('sar-floating-dock');
-            if (dock) dock.classList.remove('hidden');
-            const hud = document.getElementById('sar-pixel-hud');
-            if (hud) hud.classList.remove('hidden');
-
-            // Add layers
-            setSarDisplayMode('post');
-            if (!map.hasLayer(sarGainLayer)) map.addLayer(sarGainLayer);
-            if (!map.hasLayer(sarPermWaterLayer)) map.addLayer(sarPermWaterLayer);
-
-            // Update legend title
-            const legTitle = document.getElementById('legend-title');
-            if (legTitle) legTitle.innerText = "DANCING WITH THE SARS · PATNA DELUGE";
-          }
-
-          function closeDancingWithSARs() {
-            sarModeActive = false;
-            const dock = document.getElementById('sar-floating-dock');
-            if (dock) dock.classList.add('hidden');
-            const hud = document.getElementById('sar-pixel-hud');
-            if (hud) hud.classList.add('hidden');
-
-            if (map.hasLayer(sarPostLayer)) map.removeLayer(sarPostLayer);
-            if (map.hasLayer(sarPreLayer)) map.removeLayer(sarPreLayer);
-            if (map.hasLayer(sarGainLayer)) map.removeLayer(sarGainLayer);
-            if (map.hasLayer(sarPermWaterLayer)) map.removeLayer(sarPermWaterLayer);
-          }
-
-          function setSarDisplayMode(mode) {
-            sarCurrentBase = mode;
-            const bPost = document.getElementById('btn-sar-post');
-            const bPre = document.getElementById('btn-sar-pre');
-
-            if (mode === 'post') {
-              if (map.hasLayer(sarPreLayer)) map.removeLayer(sarPreLayer);
-              if (!map.hasLayer(sarPostLayer)) map.addLayer(sarPostLayer);
-              sarPostLayer.bringToBack();
-              if (bPost) bPost.className = 'px-2 py-0.5 rounded font-semibold bg-sky-500 text-slate-950 transition';
-              if (bPre) bPre.className = 'px-2 py-0.5 rounded text-slate-400 hover:text-slate-200 bg-slate-900 border border-slate-700 transition';
-            } else {
-              if (map.hasLayer(sarPostLayer)) map.removeLayer(sarPostLayer);
-              if (!map.hasLayer(sarPreLayer)) map.addLayer(sarPreLayer);
-              sarPreLayer.bringToBack();
-              if (bPre) bPre.className = 'px-2 py-0.5 rounded font-semibold bg-sky-500 text-slate-950 transition';
-              if (bPost) bPost.className = 'px-2 py-0.5 rounded text-slate-400 hover:text-slate-200 bg-slate-900 border border-slate-700 transition';
-            }
-          }
-
-          function toggleSarGainLayer(checked) {
-            if (checked) {
-              if (!map.hasLayer(sarGainLayer)) map.addLayer(sarGainLayer);
-            } else {
-              if (map.hasLayer(sarGainLayer)) map.removeLayer(sarGainLayer);
-            }
-          }
-
-          function setSarOverlayOpacity(val) {
-            const op = parseInt(val, 10) / 100;
-            if (sarGainLayer) sarGainLayer.setOpacity(op);
-            if (sarPermWaterLayer) sarPermWaterLayer.setOpacity(op);
-            const textEl = document.getElementById('sar-opacity-text');
-            if (textEl) textEl.innerText = `${val}%`;
-          }
-
-          function toggleSarInspector() {
-            sarInspectorActive = !sarInspectorActive;
-            const statusEl = document.getElementById('sar-inspector-status');
-            const hud = document.getElementById('sar-pixel-hud');
-            if (statusEl) statusEl.innerText = sarInspectorActive ? 'ON' : 'OFF';
-            if (hud) hud.style.display = sarInspectorActive ? 'block' : 'none';
-          }
-
-          // Pixel inspector mouse telemetry
-          map.on('mousemove', (ev) => {
-            if (!sarModeActive || !sarInspectorActive || !ev || !ev.latlng) return;
-            const lat = ev.latlng.lat;
-            const lon = ev.latlng.lng;
-
-            const cEl = document.getElementById('hud-sar-coords');
-            const pEl = document.getElementById('hud-sar-post');
-            const dEl = document.getElementById('hud-sar-delta');
-            const kEl = document.getElementById('hud-sar-class');
-
-            if (cEl) cEl.innerText = `${lat.toFixed(3)}°N, ${lon.toFixed(3)}°E`;
-
-            let postDb = -12.4;
-            let deltaDb = -0.5;
-            let cat = "ROUGH CANOPY";
-
-            if (lat >= 25.625 && lat <= 25.655 && lon >= 85.10 && lon <= 85.25) {
-              postDb = -21.4;
-              deltaDb = -1.2;
-              cat = "🌊 SPECULAR RIVERBED";
-            } else if (lat >= 25.585 && lat <= 25.605 && lon >= 85.145 && lon <= 85.175) {
-              postDb = -16.8;
-              deltaDb = -7.2;
-              cat = "🚨 INUNDATION GAIN (Naya Paani)";
-            } else if (lat >= 25.600 && lat <= 25.625 && lon >= 85.080 && lon <= 85.140) {
-              postDb = -9.5;
-              deltaDb = -0.3;
-              cat = "🏙️ URBAN DOUBLE-BOUNCE";
-            }
-
-            if (pEl) pEl.innerText = `${postDb.toFixed(1)} dB`;
-            if (dEl) dEl.innerText = `${deltaDb > 0 ? '+' : ''}${deltaDb.toFixed(1)} dB`;
-            if (kEl) kEl.innerText = cat;
-          });
-
-          window.openSarTransectModal = function() {
-            const m = document.getElementById('modal-sar-transect');
-            if (m) m.classList.remove('hidden');
-          };
-          window.closeSarTransectModal = function() {
-            const m = document.getElementById('modal-sar-transect');
-            if (m) m.classList.add('hidden');
-          };
-          window.openSarNisarModal = function() {
-            const m = document.getElementById('modal-sar-nisar');
-            if (m) m.classList.remove('hidden');
-          };
-          window.closeSarNisarModal = function() {
-            const m = document.getElementById('modal-sar-nisar');
-            if (m) m.classList.add('hidden');
-          };
-
-          function focusPatnaFlood() {
-            activateDancingWithSARs();
-          }
-
-          function focusPatnaDEM() {
-            closeDancingWithSARs();
-            map.flyTo([25.595, 85.13], 12, { duration: 1.0 });
-            map.addLayer(patnaUrbanLayer);
-            map.addLayer(demRasterLayer);
-            map.addLayer(ulsiRasterLayer);
-            map.addLayer(wardMarkersLayer);
-            map.removeLayer(floodRasterLayer);
-            document.getElementById('legend-title').innerText = "COPERNICUS 30m DEM & ULSI";
-          }
-
-          window.activateDancingWithSARs = activateDancingWithSARs;
-          window.closeDancingWithSARs = closeDancingWithSARs;
-          window.setSarDisplayMode = setSarDisplayMode;
-          window.toggleSarGainLayer = toggleSarGainLayer;
-          window.setSarOverlayOpacity = setSarOverlayOpacity;
-          window.toggleSarInspector = toggleSarInspector;
-
-          try {
-            const qp = new URLSearchParams(window.location.search);
-            if (qp.get('sar') === '1' || qp.get('mode') === 'sar') {
-              setTimeout(activateDancingWithSARs, 500);
-            }
-          } catch(e) {}
-
-          // Fetch Real Live Satellites (FastAPI :8000 OR Direct CelesTrak + WhereTheISS)
-          (async function syncGisSatellites() {
-            const badge = document.getElementById('gis-sat-badge');
-            const readout = document.getElementById('gis-sat-readout');
-            let satPayload = null;
-
-            try {
-              const ctrl = new AbortController();
-              const tid = setTimeout(() => ctrl.abort(), 2500);
-              const r = await fetch(`${FASTAPI_BASE}/api/v1/satellites`, { signal: ctrl.signal });
-              clearTimeout(tid);
-              if (r.ok) satPayload = await r.json();
-            } catch (e) { }
-
-            if (!satPayload || !satPayload.live_online) {
-              try {
-                const [issRes, resRes] = await Promise.all([
-                  fetch('https://api.wheretheiss.at/v1/satellites/25544'),
-                  fetch('https://celestrak.org/NORAD/elements/gp.php?GROUP=resource&FORMAT=tle')
-                ]);
-                const sats = [];
-                let issLive = null;
-                if (issRes.ok) {
-                  const ij = await issRes.json();
-                  issLive = { norad_id: 25544, name: 'ISS (ZARYA)', category: 'station', lat: ij.latitude, lon: ij.longitude, alt_km: ij.altitude };
-                  sats.push(issLive);
-                }
-                if (resRes.ok && typeof satellite !== 'undefined') {
-                  const tleTxt = await resRes.text();
-                  const lines = tleTxt.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
-                  const nowDate = new Date();
-                  const gmst = satellite.gstime(nowDate);
-                  for (let i = 0; i + 2 < lines.length && sats.length < 75; i += 3) {
-                    const name = lines[i], l1 = lines[i + 1], l2 = lines[i + 2];
-                    if (!l1.startsWith('1 ') || !l2.startsWith('2 ')) continue;
-                    const satrec = satellite.twoline2satrec(l1, l2);
-                    const pv = satellite.propagate(satrec, nowDate);
-                    if (pv && pv.position) {
-                      const geo = satellite.eciToGeodetic(pv.position, gmst);
-                      sats.push({
-                        name,
-                        norad_id: satrec.satnum,
-                        category: name.toUpperCase().includes('CARTOSAT') || name.toUpperCase().includes('RESOURCESAT') ? 'isro' : 'eo',
-                        lat: satellite.degreesLat(geo.latitude),
-                        lon: satellite.degreesLong(geo.longitude),
-                        alt_km: geo.height
-                      });
-                    }
-                  }
-                }
-                if (sats.length > 0) {
-                  satPayload = { live_online: true, iss_live: issLive, counts: { eo_plus_isro: sats.length }, satellites: sats };
-                }
-              } catch (e) { }
-            }
-
-            if (satPayload && satPayload.live_online && satPayload.satellites) {
-              liveSatellitesLayer.clearLayers();
-              satPayload.satellites.forEach((s) => {
-                if (typeof s.lat !== 'number' || typeof s.lon !== 'number') return;
-                const cat = s.category || 'eo';
-                const col = cat === 'station' ? '#38bdf8' : (cat === 'isro' ? '#f59e0b' : (cat === 'starlink' ? '#e2e8f0' : '#10b981'));
-                const rad = cat === 'starlink' ? 2.5 : (cat === 'station' ? 6.5 : 4.2);
-                L.circleMarker([s.lat, s.lon], {
-                  radius: rad,
-                  color: '#0f172a',
-                  weight: 1,
-                  fillColor: col,
-                  fillOpacity: 0.92
-                }).bindPopup(`<div class="mono text-xs"><div class="font-bold text-sky-300">${s.name}</div><div>NORAD ID: ${s.norad_id || 'LIVE'} · Type: ${cat.toUpperCase()}</div><div>Coords: ${Number(s.lat).toFixed(2)}°, ${Number(s.lon).toFixed(2)}° | Alt: ${s.alt_km ? Number(s.alt_km).toFixed(0) : '--'} km</div><div class="text-slate-500 text-[10px] mt-1">Source: Live CelesTrak GP / WhereTheISS</div></div>`).addTo(liveSatellitesLayer);
-              });
-              const cnt = satPayload.counts || {};
-              const totLabel = cnt.total_active_catalog ? `${cnt.total_active_catalog.toLocaleString()} ACTIVE (${(cnt.starlink_active || 0).toLocaleString()} STARLINK)` : `${satPayload.satellites.length} TRACKED`;
-              if (badge) badge.innerText = `SATS: ${totLabel}`;
-              if (readout) {
-                const iss = satPayload.iss_live;
-                readout.innerText = iss ? `ISS ${Number(iss.lat).toFixed(1)}°, ${Number(iss.lon).toFixed(1)}° (${Number(iss.alt_km).toFixed(0)}km)` : `${satPayload.satellites.length} Live Tracks`;
-              }
-            } else {
-              if (badge) badge.innerText = 'SATS: OFFLINE';
-              if (readout) readout.innerText = 'CelesTrak Unreachable (Offline)';
-            }
-          })();
-
-          // 2D MAP THEATER EXPANSION & FULLSCREEN PARITY
-          // 2D WORKSPACE DOCKS, BOTTOM INSTRUMENT TELEMETRY, THEATER EXPANSION & FULLSCREEN PARITY
-          let is2DTheaterMode = false;
-          let is2DFullscreen = false;
-          let _locDockActive = false;
-          let _agriDockActive = false;
-          let _activeRightDockTab = 'loc';
-          let _legendUserHidden = false;
-
-          // DEBOUNCED LEAFLET RESIZE (ELIMINATES JITTER, TILE RE-REQUEST STORMS & FLICKER)
-          let _resizeDebounceTimer = null;
-          function debouncedMapInvalidateSize(delayMs = 80) {
-            if (typeof map === 'undefined' || !map) return;
-            if (_resizeDebounceTimer) clearTimeout(_resizeDebounceTimer);
-            _resizeDebounceTimer = setTimeout(() => {
-              if (map && map._container && map._container.offsetParent !== null) {
-                map.invalidateSize({ pan: false, debounceMoveend: true });
-              }
-            }, delayMs);
-          }
-
-          function refresh2DMapSize() {
-            debouncedMapInvalidateSize(60);
-          }
-
-          // ANTI-LOOP REMOTE SYNC GUARD
-          let isApplyingRemoteSync = false;
-
-          window.addEventListener('bhu-loka:global-state-sync', (ev) => {
-            if (!ev || !ev.detail) return;
-            const d = ev.detail;
-            if (Number.isFinite(Number(d.latitude)) && Number.isFinite(Number(d.longitude))) {
-              isApplyingRemoteSync = true;
-              const targetZoom = Number.isFinite(Number(d.zoom)) ? Number(d.zoom) : map.getZoom();
-              map.setView([Number(d.latitude), Number(d.longitude)], targetZoom, { animate: false });
-              setTimeout(() => { isApplyingRemoteSync = false; }, 350);
-            }
-          });
-
-          function update2DClock() {
-            const el = document.getElementById('gis-utc-clock');
-            if (el) el.innerText = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
-          }
-          update2DClock();
-          setInterval(update2DClock, 1000);
-
-          function update2DFooterZoom() {
-            const zEl = document.getElementById('gis-footer-zoom');
-            if (zEl && typeof map !== 'undefined' && map) {
-              zEl.innerText = `Zoom: ${Number(map.getZoom()).toFixed(1)}`;
-            }
-          }
-          if (typeof map !== 'undefined' && map) {
-            update2DFooterZoom();
-            map.on('zoomend moveend', update2DFooterZoom);
-            map.on('mousemove', (ev) => {
-              const cEl = document.getElementById('gis-footer-cursor');
-              if (cEl && ev && ev.latlng) {
-                cEl.innerText = `Cursor: ${ev.latlng.lat.toFixed(4)}°, ${ev.latlng.lng.toFixed(4)}°`;
-              }
-            });
-          }
-
-          function _sync2DRightDockVisibility() {
-            const rightDock = document.getElementById('gis-right-dock');
-            const locSlot = document.getElementById('bhu-location-dock-slot');
-            const agriSlot = document.getElementById('bhu-agri-dock-slot');
-            const btnLoc = document.getElementById('gis-rtab-loc');
-            const btnAgri = document.getElementById('gis-rtab-agri');
-            const shouldShowDock = _locDockActive || _agriDockActive;
-            if (rightDock) rightDock.classList.toggle('hidden', !shouldShowDock);
-            const showAgri = _activeRightDockTab === 'agri';
-            if (locSlot) locSlot.classList.toggle('hidden', showAgri);
-            if (agriSlot) agriSlot.classList.toggle('hidden', !showAgri);
-            if (btnLoc) btnLoc.setAttribute('aria-selected', showAgri ? 'false' : 'true');
-            if (btnAgri) btnAgri.setAttribute('aria-selected', showAgri ? 'true' : 'false');
-            refresh2DMapSize();
-          }
-
-          function switch2DRightTab(tab) {
-            _activeRightDockTab = tab === 'agri' ? 'agri' : 'loc';
-            if (_activeRightDockTab === 'agri' && window.BhuLokaAgri && !window.BhuLokaAgri.isOpen) {
-              window.BhuLokaAgri.openWorkspace(window.BhuLokaAgri.activeTab || 'MAP');
-              return;
-            }
-            if (_activeRightDockTab === 'loc' && window.BhuLokaLocationEngine && !document.getElementById('bhu-loka-intel-drawer')) {
-              window.BhuLokaLocationEngine.openDrawer();
-              return;
-            }
-            _sync2DRightDockVisibility();
-          }
-
-          window.onBhuIntelDockStateChange = function (isOpen) {
-            const leftDock = document.getElementById('gis-left-dock');
-            if (leftDock) leftDock.classList.toggle('hidden', !isOpen);
-            refresh2DMapSize();
-          };
-
-          window.onBhuLocationDockChange = function (isOpen) {
-            _locDockActive = Boolean(isOpen);
-            if (isOpen) {
-              _activeRightDockTab = 'loc';
-            } else if (_agriDockActive) {
-              _activeRightDockTab = 'agri';
-            }
-            _sync2DRightDockVisibility();
-          };
-
-          window.onBhuAgriDockChange = function (isOpen) {
-            _agriDockActive = Boolean(isOpen);
-            if (isOpen) {
-              _activeRightDockTab = 'agri';
-            } else if (_locDockActive) {
-              _activeRightDockTab = 'loc';
-            }
-            _sync2DRightDockVisibility();
-          };
-
-          if (document.getElementById('bhu-loka-intel-drawer')) {
-            window.onBhuLocationDockChange(true);
-          }
-
-          function toggleGisLegend(forceVisible = null) {
-            const leg = document.getElementById('gis-legend-card');
-            if (!leg) return;
-            if (forceVisible === null) {
-              const currentlyVisible = window.getComputedStyle(leg).display !== 'none';
-              _legendUserHidden = currentlyVisible;
-            } else {
-              _legendUserHidden = !forceVisible;
-            }
-            leg.classList.remove('hidden', 'md:block');
-            if (_legendUserHidden || is2DTheaterMode) {
-              leg.classList.add('hidden');
-            }
-          }
-
-          function get2DFullscreenElement() {
-            return document.fullscreenElement || document.webkitFullscreenElement || null;
-          }
-
-          function sync2DExpandUI() {
-            const thBtn = document.getElementById('btn-2d-theater');
-            const thLbl = document.getElementById('btn-2d-theater-label');
-            const fsBtn = document.getElementById('btn-2d-fullscreen');
-            const fsLbl = document.getElementById('btn-2d-fullscreen-label');
-            const activeTh = is2DTheaterMode || is2DFullscreen;
-            if (thBtn) thBtn.setAttribute('aria-pressed', activeTh ? 'true' : 'false');
-            if (thLbl) thLbl.innerText = activeTh ? 'RESTORE' : 'EXPAND';
-            if (thLbl) thLbl.innerText = activeTh ? 'Restore' : 'Expand';
-            if (fsBtn) fsBtn.setAttribute('aria-pressed', is2DFullscreen ? 'true' : 'false');
-            if (fsLbl) fsLbl.innerText = is2DFullscreen ? 'EXIT FS' : 'FULLSCREEN';
-            if (fsLbl) fsLbl.innerText = is2DFullscreen ? 'Exit FS' : 'Fullscreen';
-          }
-
-          function toggle2DTheaterMode(forceState = null) {
-            if (forceState === null && is2DFullscreen) {
-              if (document.exitFullscreen) document.exitFullscreen().catch(() => { });
-              else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-              if (!is2DTheaterMode) {
-                debouncedMapInvalidateSize(60);
-                return;
+          if (resRes.ok && typeof satellite !== 'undefined') {
+            const tleTxt = await resRes.text();
+            const lines = tleTxt.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+            const nowDate = new Date();
+            const gmst = satellite.gstime(nowDate);
+            for (let i = 0; i + 2 < lines.length && sats.length < 75; i += 3) {
+              const name = lines[i], l1 = lines[i + 1], l2 = lines[i + 2];
+              if (!l1.startsWith('1 ') || !l2.startsWith('2 ')) continue;
+              const satrec = satellite.twoline2satrec(l1, l2);
+              const pv = satellite.propagate(satrec, nowDate);
+              if (pv && pv.position) {
+                const geo = satellite.eciToGeodetic(pv.position, gmst);
+                sats.push({
+                  name,
+                  norad_id: satrec.satnum,
+                  category: name.toUpperCase().includes('CARTOSAT') || name.toUpperCase().includes('RESOURCESAT') ? 'isro' : 'eo',
+                  lat: satellite.degreesLat(geo.latitude),
+                  lon: satellite.degreesLong(geo.longitude),
+                  alt_km: geo.height
+                });
               }
             }
-            is2DTheaterMode = forceState !== null ? Boolean(forceState) : !is2DTheaterMode;
-            const hdr = document.getElementById('gis-top-header');
-            const leg = document.getElementById('gis-legend-card');
-            const ftr = document.getElementById('gis-bottom-footer');
-            if (hdr) hdr.classList.toggle('hidden', is2DTheaterMode);
-            if (leg) leg.classList.toggle('hidden', is2DTheaterMode);
-            if (ftr) ftr.classList.toggle('hidden', is2DTheaterMode);
-            if (leg) {
-              if (is2DTheaterMode) {
-                leg.classList.remove('md:block');
-                leg.classList.add('hidden');
-              } else if (!_legendUserHidden) {
-                leg.classList.remove('hidden');
-                leg.classList.add('md:block');
-              }
-            }
-            sync2DExpandUI();
-            debouncedMapInvalidateSize(60);
           }
+          if (sats.length > 0) {
+            satPayload = { live_online: true, iss_live: issLive, counts: { eo_plus_isro: sats.length }, satellites: sats };
+          }
+        } catch (e) { }
+      }
 
-          async function toggle2DFullscreen() {
-            const target = document.documentElement;
-            try {
-              if (get2DFullscreenElement()) {
-                if (document.exitFullscreen) await document.exitFullscreen();
-                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-              } else if (target.requestFullscreen) {
-                await target.requestFullscreen();
-              } else if (target.webkitRequestFullscreen) {
-                target.webkitRequestFullscreen();
-              } else {
-                toggle2DTheaterMode(true);
-              }
-            } catch (e) {
-              toggle2DTheaterMode(true);
-            }
-          }
+      if (satPayload && satPayload.live_online && satPayload.satellites) {
+        liveSatellitesLayer.clearLayers();
+        satPayload.satellites.forEach((s) => {
+          if (typeof s.lat !== 'number' || typeof s.lon !== 'number') return;
+          const cat = s.category || 'eo';
+          const col = cat === 'station' ? '#38bdf8' : (cat === 'isro' ? '#f59e0b' : (cat === 'starlink' ? '#e2e8f0' : '#10b981'));
+          const rad = cat === 'starlink' ? 2.5 : (cat === 'station' ? 6.5 : 4.2);
+          L.circleMarker([s.lat, s.lon], {
+            radius: rad,
+            color: '#0f172a',
+            weight: 1,
+            fillColor: col,
+            fillOpacity: 0.92
+          }).bindPopup(`<div class="mono text-xs"><div class="font-bold text-sky-300">${s.name}</div><div>NORAD ID: ${s.norad_id || 'LIVE'} · Type: ${cat.toUpperCase()}</div><div>Coords: ${Number(s.lat).toFixed(2)}°, ${Number(s.lon).toFixed(2)}° | Alt: ${s.alt_km ? Number(s.alt_km).toFixed(0) : '--'} km</div><div class="text-slate-500 text-[10px] mt-1">Source: Live CelesTrak GP / WhereTheISS</div></div>`).addTo(liveSatellitesLayer);
+        });
+        const cnt = satPayload.counts || {};
+        const totLabel = cnt.total_active_catalog ? `${cnt.total_active_catalog.toLocaleString()} ACTIVE (${(cnt.starlink_active || 0).toLocaleString()} STARLINK)` : `${satPayload.satellites.length} TRACKED`;
+        if (badge) badge.innerText = `SATS: ${totLabel}`;
+        if (readout) {
+          const iss = satPayload.iss_live;
+          readout.innerText = iss ? `ISS ${Number(iss.lat).toFixed(1)}°, ${Number(iss.lon).toFixed(1)}° (${Number(iss.alt_km).toFixed(0)}km)` : `${satPayload.satellites.length} Live Tracks`;
+        }
+      } else {
+        if (badge) badge.innerText = 'SATS: OFFLINE';
+        if (readout) readout.innerText = 'CelesTrak Unreachable (Offline)';
+      }
+    })();
 
-          function handle2DFullscreenChange() {
-            is2DFullscreen = Boolean(get2DFullscreenElement());
-            sync2DExpandUI();
-            debouncedMapInvalidateSize(60);
-          }
-          document.addEventListener('fullscreenchange', handle2DFullscreenChange);
-          document.addEventListener('webkitfullscreenchange', handle2DFullscreenChange);
-          document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && get2DFullscreenElement()) {
-              if (document.exitFullscreen) document.exitFullscreen().catch(() => { });
-              else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-            }
-          });
-          window.addEventListener('resize', () => {
-            debouncedMapInvalidateSize(100);
-          }, { passive: true });
-        </script>
+    // 2D MAP THEATER EXPANSION & FULLSCREEN PARITY
+    // 2D WORKSPACE DOCKS, BOTTOM INSTRUMENT TELEMETRY, THEATER EXPANSION & FULLSCREEN PARITY
+    let is2DTheaterMode = false;
+    let is2DFullscreen = false;
+    let _locDockActive = false;
+    let _agriDockActive = false;
+    let _activeRightDockTab = 'loc';
+    let _legendUserHidden = false;
+
+    // DEBOUNCED LEAFLET RESIZE (ELIMINATES JITTER, TILE RE-REQUEST STORMS & FLICKER)
+    let _resizeDebounceTimer = null;
+    function debouncedMapInvalidateSize(delayMs = 80) {
+      if (typeof map === 'undefined' || !map) return;
+      if (_resizeDebounceTimer) clearTimeout(_resizeDebounceTimer);
+      _resizeDebounceTimer = setTimeout(() => {
+        if (map && map._container && map._container.offsetParent !== null) {
+          map.invalidateSize({ pan: false, debounceMoveend: true });
+        }
+      }, delayMs);
+    }
+
+    function refresh2DMapSize() {
+      debouncedMapInvalidateSize(60);
+    }
+
+    // ANTI-LOOP REMOTE SYNC GUARD
+    let isApplyingRemoteSync = false;
+
+    window.addEventListener('bhu-loka:global-state-sync', (ev) => {
+      if (!ev || !ev.detail) return;
+      const d = ev.detail;
+      if (Number.isFinite(Number(d.latitude)) && Number.isFinite(Number(d.longitude))) {
+        isApplyingRemoteSync = true;
+        const targetZoom = Number.isFinite(Number(d.zoom)) ? Number(d.zoom) : map.getZoom();
+        map.setView([Number(d.latitude), Number(d.longitude)], targetZoom, { animate: false });
+        setTimeout(() => { isApplyingRemoteSync = false; }, 350);
+      }
+    });
+
+    function update2DClock() {
+      const el = document.getElementById('gis-utc-clock');
+      if (el) el.innerText = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
+    }
+    update2DClock();
+    setInterval(update2DClock, 1000);
+
+    function update2DFooterZoom() {
+      const zEl = document.getElementById('gis-footer-zoom');
+      if (zEl && typeof map !== 'undefined' && map) {
+        zEl.innerText = `Zoom: ${Number(map.getZoom()).toFixed(1)}`;
+      }
+    }
+    if (typeof map !== 'undefined' && map) {
+      update2DFooterZoom();
+      map.on('zoomend moveend', update2DFooterZoom);
+      map.on('mousemove', (ev) => {
+        const cEl = document.getElementById('gis-footer-cursor');
+        if (cEl && ev && ev.latlng) {
+          cEl.innerText = `Cursor: ${ev.latlng.lat.toFixed(4)}°, ${ev.latlng.lng.toFixed(4)}°`;
+        }
+      });
+    }
+
+    function _sync2DRightDockVisibility() {
+      const rightDock = document.getElementById('gis-right-dock');
+      const locSlot = document.getElementById('bhu-location-dock-slot');
+      const agriSlot = document.getElementById('bhu-agri-dock-slot');
+      const btnLoc = document.getElementById('gis-rtab-loc');
+      const btnAgri = document.getElementById('gis-rtab-agri');
+      const shouldShowDock = _locDockActive || _agriDockActive;
+      if (rightDock) rightDock.classList.toggle('hidden', !shouldShowDock);
+      const showAgri = _activeRightDockTab === 'agri';
+      if (locSlot) locSlot.classList.toggle('hidden', showAgri);
+      if (agriSlot) agriSlot.classList.toggle('hidden', !showAgri);
+      if (btnLoc) btnLoc.setAttribute('aria-selected', showAgri ? 'false' : 'true');
+      if (btnAgri) btnAgri.setAttribute('aria-selected', showAgri ? 'true' : 'false');
+      refresh2DMapSize();
+    }
+
+    function switch2DRightTab(tab) {
+      _activeRightDockTab = tab === 'agri' ? 'agri' : 'loc';
+      if (_activeRightDockTab === 'agri' && window.BhuLokaAgri && !window.BhuLokaAgri.isOpen) {
+        window.BhuLokaAgri.openWorkspace(window.BhuLokaAgri.activeTab || 'MAP');
+        return;
+      }
+      if (_activeRightDockTab === 'loc' && window.BhuLokaLocationEngine && !document.getElementById('bhu-loka-intel-drawer')) {
+        window.BhuLokaLocationEngine.openDrawer();
+        return;
+      }
+      _sync2DRightDockVisibility();
+    }
+
+    window.onBhuIntelDockStateChange = function (isOpen) {
+      const leftDock = document.getElementById('gis-left-dock');
+      if (leftDock) leftDock.classList.toggle('hidden', !isOpen);
+      refresh2DMapSize();
+    };
+
+    window.onBhuLocationDockChange = function (isOpen) {
+      _locDockActive = Boolean(isOpen);
+      if (isOpen) {
+        _activeRightDockTab = 'loc';
+      } else if (_agriDockActive) {
+        _activeRightDockTab = 'agri';
+      }
+      _sync2DRightDockVisibility();
+    };
+
+    window.onBhuAgriDockChange = function (isOpen) {
+      _agriDockActive = Boolean(isOpen);
+      if (isOpen) {
+        _activeRightDockTab = 'agri';
+      } else if (_locDockActive) {
+        _activeRightDockTab = 'loc';
+      }
+      _sync2DRightDockVisibility();
+    };
+
+    if (document.getElementById('bhu-loka-intel-drawer')) {
+      window.onBhuLocationDockChange(true);
+    }
+
+    function toggleGisLegend(forceVisible = null) {
+      const leg = document.getElementById('gis-legend-card');
+      if (!leg) return;
+      if (forceVisible === null) {
+        const currentlyVisible = window.getComputedStyle(leg).display !== 'none';
+        _legendUserHidden = currentlyVisible;
+      } else {
+        _legendUserHidden = !forceVisible;
+      }
+      leg.classList.remove('hidden', 'md:block');
+      if (_legendUserHidden || is2DTheaterMode) {
+        leg.classList.add('hidden');
+      }
+    }
+
+    function get2DFullscreenElement() {
+      return document.fullscreenElement || document.webkitFullscreenElement || null;
+    }
+
+    function sync2DExpandUI() {
+      const thBtn = document.getElementById('btn-2d-theater');
+      const thLbl = document.getElementById('btn-2d-theater-label');
+      const fsBtn = document.getElementById('btn-2d-fullscreen');
+      const fsLbl = document.getElementById('btn-2d-fullscreen-label');
+      const activeTh = is2DTheaterMode || is2DFullscreen;
+      if (thBtn) thBtn.setAttribute('aria-pressed', activeTh ? 'true' : 'false');
+      if (thLbl) thLbl.innerText = activeTh ? 'RESTORE' : 'EXPAND';
+      if (thLbl) thLbl.innerText = activeTh ? 'Restore' : 'Expand';
+      if (fsBtn) fsBtn.setAttribute('aria-pressed', is2DFullscreen ? 'true' : 'false');
+      if (fsLbl) fsLbl.innerText = is2DFullscreen ? 'EXIT FS' : 'FULLSCREEN';
+      if (fsLbl) fsLbl.innerText = is2DFullscreen ? 'Exit FS' : 'Fullscreen';
+    }
+
+    function toggle2DTheaterMode(forceState = null) {
+      if (forceState === null && is2DFullscreen) {
+        if (document.exitFullscreen) document.exitFullscreen().catch(() => { });
+        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+        if (!is2DTheaterMode) {
+          debouncedMapInvalidateSize(60);
+          return;
+        }
+      }
+      is2DTheaterMode = forceState !== null ? Boolean(forceState) : !is2DTheaterMode;
+      const hdr = document.getElementById('gis-top-header');
+      const leg = document.getElementById('gis-legend-card');
+      const ftr = document.getElementById('gis-bottom-footer');
+      if (hdr) hdr.classList.toggle('hidden', is2DTheaterMode);
+      if (leg) leg.classList.toggle('hidden', is2DTheaterMode);
+      if (ftr) ftr.classList.toggle('hidden', is2DTheaterMode);
+      if (leg) {
+        if (is2DTheaterMode) {
+          leg.classList.remove('md:block');
+          leg.classList.add('hidden');
+        } else if (!_legendUserHidden) {
+          leg.classList.remove('hidden');
+          leg.classList.add('md:block');
+        }
+      }
+      sync2DExpandUI();
+      debouncedMapInvalidateSize(60);
+    }
+
+    async function toggle2DFullscreen() {
+      const target = document.documentElement;
+      try {
+        if (get2DFullscreenElement()) {
+          if (document.exitFullscreen) await document.exitFullscreen();
+          else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+        } else if (target.requestFullscreen) {
+          await target.requestFullscreen();
+        } else if (target.webkitRequestFullscreen) {
+          target.webkitRequestFullscreen();
+        } else {
+          toggle2DTheaterMode(true);
+        }
+      } catch (e) {
+        toggle2DTheaterMode(true);
+      }
+    }
+
+    function handle2DFullscreenChange() {
+      is2DFullscreen = Boolean(get2DFullscreenElement());
+      sync2DExpandUI();
+      debouncedMapInvalidateSize(60);
+    }
+    document.addEventListener('fullscreenchange', handle2DFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handle2DFullscreenChange);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && get2DFullscreenElement()) {
+        if (document.exitFullscreen) document.exitFullscreen().catch(() => { });
+        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+      }
+    });
+    window.addEventListener('resize', () => {
+      debouncedMapInvalidateSize(100);
+    }, { passive: true });
+  </script>
 
   <!-- MODAL: 1D RADAR TRANSECT PROFILE -->
-  <div id="modal-sar-transect" class="fixed inset-0 z-[1200] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
-    <div class="bg-[#0b101c] border border-cyan-800/60 rounded-xl max-w-3xl w-full p-5 shadow-2xl overflow-y-auto max-h-[90vh]">
+  <div id="modal-sar-transect"
+    class="fixed inset-0 z-[1200] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+    <div
+      class="bg-[#0b101c] border border-cyan-800/60 rounded-xl max-w-3xl w-full p-5 shadow-2xl overflow-y-auto max-h-[90vh]">
       <div class="flex items-center justify-between pb-3 border-b border-slate-800">
         <div class="flex items-center gap-2">
-          <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
+          <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+          </svg>
           <h3 class="font-bold text-base text-slate-100">Radar Backscatter Transect · North-South Cross Section</h3>
         </div>
-        <button type="button" onclick="closeSarTransectModal()" class="text-slate-400 hover:text-slate-200 cursor-pointer">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        <button type="button" onclick="closeSarTransectModal()"
+          class="text-slate-400 hover:text-slate-200 cursor-pointer">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
         </button>
       </div>
 
       <div class="mt-4 space-y-3 text-xs">
         <div class="text-slate-300 leading-relaxed text-[11.5px]">
-          1D transect tracing Sentinel-1 active microwave backscatter &sigma;&deg; (dB) along Longitude 85.16&deg;E across the Ganga Riverbed into the Rajendra Nagar depression sink:
+          1D transect tracing Sentinel-1 active microwave backscatter &sigma;&deg; (dB) along Longitude 85.16&deg;E
+          across the Ganga Riverbed into the Rajendra Nagar depression sink:
         </div>
 
         <!-- SVG TRANSECT GRAPH -->
         <div class="p-3 bg-[#070b13] border border-slate-800 rounded-lg">
           <svg viewBox="0 0 680 260" class="w-full h-auto select-none">
-            <line x1="60" y1="30" x2="650" y2="30" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="60" y1="80" x2="650" y2="80" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="60" y1="130" x2="650" y2="130" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="60" y1="180" x2="650" y2="180" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="60" y1="220" x2="650" y2="220" stroke="#334155" stroke-width="1.5"/>
+            <line x1="60" y1="30" x2="650" y2="30" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3" />
+            <line x1="60" y1="80" x2="650" y2="80" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3" />
+            <line x1="60" y1="130" x2="650" y2="130" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3" />
+            <line x1="60" y1="180" x2="650" y2="180" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3" />
+            <line x1="60" y1="220" x2="650" y2="220" stroke="#334155" stroke-width="1.5" />
 
             <text x="50" y="34" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="end">0 dB</text>
             <text x="50" y="84" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="end">-10 dB</text>
@@ -1521,20 +1566,26 @@
             <text x="50" y="184" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="end">-30 dB</text>
             <text x="50" y="224" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="end">-40 dB</text>
 
-            <path d="M 400 90 Q 450 92 480 94 L 480 188 Q 450 185 400 178 Z" fill="rgba(0, 229, 255, 0.18)" stroke="none"/>
-            <path d="M 60 95 C 130 90, 180 165, 230 168 C 280 170, 310 85, 360 82 C 400 90, 450 92, 500 88 C 550 92, 600 100, 650 98"
-              fill="none" stroke="#64748b" stroke-width="2.5" stroke-dasharray="4,4"/>
-            <path d="M 60 145 C 130 152, 180 172, 230 175 C 280 172, 310 88, 360 85 C 400 178, 450 185, 500 182 C 550 140, 600 110, 650 102"
-              fill="none" stroke="#00e5ff" stroke-width="3"/>
+            <path d="M 400 90 Q 450 92 480 94 L 480 188 Q 450 185 400 178 Z" fill="rgba(0, 229, 255, 0.18)"
+              stroke="none" />
+            <path
+              d="M 60 95 C 130 90, 180 165, 230 168 C 280 170, 310 85, 360 82 C 400 90, 450 92, 500 88 C 550 92, 600 100, 650 98"
+              fill="none" stroke="#64748b" stroke-width="2.5" stroke-dasharray="4,4" />
+            <path
+              d="M 60 145 C 130 152, 180 172, 230 175 C 280 172, 310 88, 360 85 C 400 178, 450 185, 500 182 C 550 140, 600 110, 650 102"
+              fill="none" stroke="#00e5ff" stroke-width="3" />
 
-            <line x1="180" y1="220" x2="180" y2="25" stroke="#334155" stroke-width="1" stroke-dasharray="2,2"/>
-            <text x="180" y="20" fill="#38bdf8" font-size="9.5" font-family="sans-serif" text-anchor="middle" font-weight="bold">Main Ganga Stream</text>
+            <line x1="180" y1="220" x2="180" y2="25" stroke="#334155" stroke-width="1" stroke-dasharray="2,2" />
+            <text x="180" y="20" fill="#38bdf8" font-size="9.5" font-family="sans-serif" text-anchor="middle"
+              font-weight="bold">Main Ganga Stream</text>
 
-            <line x1="360" y1="220" x2="360" y2="50" stroke="#334155" stroke-width="1" stroke-dasharray="2,2"/>
-            <text x="360" y="45" fill="#f59e0b" font-size="9.5" font-family="sans-serif" text-anchor="middle" font-weight="bold">Embankment / High Levee</text>
+            <line x1="360" y1="220" x2="360" y2="50" stroke="#334155" stroke-width="1" stroke-dasharray="2,2" />
+            <text x="360" y="45" fill="#f59e0b" font-size="9.5" font-family="sans-serif" text-anchor="middle"
+              font-weight="bold">Embankment / High Levee</text>
 
-            <line x1="450" y1="220" x2="450" y2="25" stroke="#00e5ff" stroke-width="1" stroke-dasharray="2,2"/>
-            <text x="450" y="20" fill="#00e5ff" font-size="9.5" font-family="sans-serif" text-anchor="middle" font-weight="bold">Rajendra Nagar Sump (-14.3 dB)</text>
+            <line x1="450" y1="220" x2="450" y2="25" stroke="#00e5ff" stroke-width="1" stroke-dasharray="2,2" />
+            <text x="450" y="20" fill="#00e5ff" font-size="9.5" font-family="sans-serif" text-anchor="middle"
+              font-weight="bold">Rajendra Nagar Sump (-14.3 dB)</text>
 
             <text x="80" y="240" fill="#94a3b8" font-size="10" font-family="monospace">25.64°N (Diara)</text>
             <text x="230" y="240" fill="#94a3b8" font-size="10" font-family="monospace">25.62°N (Ganga)</text>
@@ -1545,8 +1596,11 @@
 
         <div class="flex items-center justify-between p-2 rounded bg-slate-900 border border-slate-800 text-[11px]">
           <div class="flex items-center gap-3">
-            <span class="flex items-center gap-1.5"><span class="w-3 h-0.5 bg-slate-400 inline-block border-b border-dashed"></span><span class="text-slate-400">Pre-Flood Baseline (23 Sep)</span></span>
-            <span class="flex items-center gap-1.5"><span class="w-3 h-1 bg-[#00e5ff] inline-block"></span><span class="text-cyan-300 font-bold">Peak Deluge (29 Sep)</span></span>
+            <span class="flex items-center gap-1.5"><span
+                class="w-3 h-0.5 bg-slate-400 inline-block border-b border-dashed"></span><span
+                class="text-slate-400">Pre-Flood Baseline (23 Sep)</span></span>
+            <span class="flex items-center gap-1.5"><span class="w-3 h-1 bg-[#00e5ff] inline-block"></span><span
+                class="text-cyan-300 font-bold">Peak Deluge (29 Sep)</span></span>
           </div>
           <span class="text-cyan-400 mono">Otsu Threshold T* = -3.80 dB</span>
         </div>
@@ -1555,28 +1609,38 @@
   </div>
 
   <!-- MODAL: NISAR DUAL-FREQUENCY SCIENCE GUIDE -->
-  <div id="modal-sar-nisar" class="fixed inset-0 z-[1200] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
-    <div class="bg-[#0d0e1c] border border-purple-700/60 rounded-xl max-w-2xl w-full p-5 shadow-2xl overflow-y-auto max-h-[90vh]">
+  <div id="modal-sar-nisar"
+    class="fixed inset-0 z-[1200] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+    <div
+      class="bg-[#0d0e1c] border border-purple-700/60 rounded-xl max-w-2xl w-full p-5 shadow-2xl overflow-y-auto max-h-[90vh]">
       <div class="flex items-center justify-between pb-3 border-b border-purple-900/60">
         <div class="flex items-center gap-2">
           <span class="w-3 h-3 rounded-full bg-purple-400"></span>
           <h3 class="font-bold text-base text-slate-100">NISAR (NASA-ISRO) · Dual-Frequency SAR Perspective</h3>
         </div>
         <button type="button" onclick="closeSarNisarModal()" class="text-slate-400 hover:text-slate-200 cursor-pointer">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
         </button>
       </div>
 
       <div class="mt-4 space-y-3 text-xs leading-relaxed text-slate-300">
         <p>
-          While <strong>Sentinel-1 C-band (5.5 cm)</strong> successfully penetrates atmospheric clouds, its shorter wavelength scatters primarily off dense crop canopies and tree leaves, causing attenuation over flooded agriculture.
+          While <strong>Sentinel-1 C-band (5.5 cm)</strong> successfully penetrates atmospheric clouds, its shorter
+          wavelength scatters primarily off dense crop canopies and tree leaves, causing attenuation over flooded
+          agriculture.
         </p>
         <div class="p-3 rounded bg-purple-950/40 border border-purple-800/50 space-y-2">
           <div class="font-bold text-purple-300">The NISAR Breakthrough (NASA-ISRO SAR):</div>
           <ul class="list-disc pl-4 space-y-1 text-slate-200">
-            <li><strong>L-band (24 cm, NASA):</strong> Longer active microwave wavelength passes directly through tree crowns and dense flooded crop canopies, bouncing off standing floodwater below (double-bounce detection).</li>
-            <li><strong>S-band (9.3 cm, ISRO):</strong> Optimized for soil moisture, light vegetation, and active river levee deformation.</li>
-            <li><strong>SweepSAR Architecture:</strong> Provides wide 240 km swath with fine 3-10 m spatial resolution and exact 12-day repeat orbit over India.</li>
+            <li><strong>L-band (24 cm, NASA):</strong> Longer active microwave wavelength passes directly through tree
+              crowns and dense flooded crop canopies, bouncing off standing floodwater below (double-bounce detection).
+            </li>
+            <li><strong>S-band (9.3 cm, ISRO):</strong> Optimized for soil moisture, light vegetation, and active river
+              levee deformation.</li>
+            <li><strong>SweepSAR Architecture:</strong> Provides wide 240 km swath with fine 3-10 m spatial resolution
+              and exact 12-day repeat orbit over India.</li>
           </ul>
         </div>
         <div class="text-[11px] text-slate-400">
@@ -1585,6 +1649,6 @@
       </div>
     </div>
   </div>
-  </body>
+</body>
 
 </html>

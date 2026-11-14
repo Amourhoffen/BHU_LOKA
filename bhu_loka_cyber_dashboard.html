@@ -305,6 +305,7 @@
       border-radius: 18px !important;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
     }
+
     .bhu-pill-nav {
       display: inline-flex;
       align-items: center;
@@ -314,6 +315,7 @@
       border-radius: 9999px;
       padding: 3px 6px;
     }
+
     .bhu-pill-btn {
       padding: 6px 16px;
       border-radius: 9999px;
@@ -327,16 +329,19 @@
       cursor: pointer;
       text-transform: uppercase;
     }
+
     .bhu-pill-btn:hover {
       color: #f1f5f9;
       background: rgba(56, 189, 248, 0.08);
     }
+
     .bhu-pill-btn.active {
       color: #ffffff;
       background: rgba(56, 189, 248, 0.18);
       border: 1.5px solid #38bdf8;
       box-shadow: 0 0 16px rgba(56, 189, 248, 0.5), inset 0 0 10px rgba(56, 189, 248, 0.25);
     }
+
     .bhu-explore-btn {
       background: rgba(10, 16, 28, 0.88);
       border: 1.5px solid #38bdf8;
@@ -350,11 +355,13 @@
       cursor: pointer;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
+
     .bhu-explore-btn:hover {
       transform: scale(1.08);
       box-shadow: 0 0 35px rgba(56, 189, 248, 0.85), inset 0 0 20px rgba(56, 189, 248, 0.5);
       color: #38bdf8;
     }
+
     .bhu-radar-container {
       width: 78px;
       height: 78px;
@@ -367,11 +374,13 @@
       align-items: center;
       justify-content: center;
     }
+
     .bhu-radar-ring {
       position: absolute;
       border-radius: 50%;
       border: 1px dashed rgba(56, 189, 248, 0.25);
     }
+
     .bhu-radar-sweep {
       position: absolute;
       inset: 0;
@@ -379,10 +388,17 @@
       background: conic-gradient(from 0deg, transparent 0deg, transparent 270deg, rgba(56, 189, 248, 0.55) 360deg);
       animation: bhuRadarSpin 3.5s linear infinite;
     }
+
     @keyframes bhuRadarSpin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
     }
+
     .bhu-glowing-pillar {
       width: 14px;
       border-radius: 3px;
@@ -402,7 +418,8 @@
     <div class="text-center px-4">
       <div class="mono text-2xl sm:text-3xl font-bold tracking-wider text-slate-100 mb-1">BHU LOKA</div>
       <div class="text-sm text-slate-400 tracking-widest font-light">भूलोक · Sovereign Geospatial Workstation</div>
-      <div class="mono text-[10px] text-sky-400 mt-4 tracking-widest uppercase">Calibrating Planetary Instruments...</div>
+      <div class="mono text-[10px] text-sky-400 mt-4 tracking-widest uppercase">Calibrating Planetary Instruments...
+      </div>
     </div>
   </div>
   <script>
@@ -410,7 +427,7 @@
       var ov = document.getElementById('bhu-intro-overlay');
       if (ov) {
         ov.classList.add('bhu-intro-fadeout');
-        setTimeout(function() { if (ov && ov.parentNode) ov.parentNode.removeChild(ov); }, 400);
+        setTimeout(function () { if (ov && ov.parentNode) ov.parentNode.removeChild(ov); }, 400);
       }
     }
     window.skipBhuIntro = dismissBhuIntro;
@@ -418,17 +435,21 @@
   </script>
 
   <!-- TOP COMMAND HEADER (NASA FUTURISTIC SPACE COMMAND CENTER) -->
-  <header class="bhu-nasa-glass px-4 py-2 flex flex-wrap xl:flex-nowrap items-center justify-between gap-3 shrink-0" style="margin-bottom: 2px;">
+  <header class="bhu-nasa-glass px-4 py-2 flex flex-wrap xl:flex-nowrap items-center justify-between gap-3 shrink-0"
+    style="margin-bottom: 2px;">
     <!-- LEFT: BRAND & SOVEREIGN ANCHOR -->
     <div class="flex items-center gap-3 shrink-0">
       <div class="flex items-center gap-2">
-        <span class="text-xl font-black tracking-widest text-slate-100 uppercase" style="font-family: system-ui, -apple-system, sans-serif; letter-spacing: 3px;">BHU LOKA</span>
-        <span class="text-[9px] px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/40 font-bold mono">SOVEREIGN</span>
+        <span class="text-xl font-black tracking-widest text-slate-100 uppercase"
+          style="font-family: system-ui, -apple-system, sans-serif; letter-spacing: 3px;">BHU LOKA</span>
+        <span
+          class="text-[9px] px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/40 font-bold mono">SOVEREIGN</span>
       </div>
       <div class="text-[9.5px] mono text-slate-400 hidden xl:block border-l border-slate-700/80 pl-2.5">
         IIT PATNA · M.S. CSDA
       </div>
-      <span class="badge-chip bg-slate-800/80 text-slate-300 border-slate-700 hidden sm:inline-flex" id="runtime-badge">WebGL2</span>
+      <span class="badge-chip bg-slate-800/80 text-slate-300 border-slate-700 hidden sm:inline-flex"
+        id="runtime-badge">WebGL2</span>
       <a id="link-open-2d-earth" href="bhu_loka_leafmap_interactive.html" target="_blank"
         class="badge-chip bg-sky-500/10 hover:bg-sky-500/20 text-sky-300 border-sky-500/35 transition cursor-pointer hidden md:inline-flex">
         2D Earth &rarr;
@@ -444,31 +465,50 @@
     <!-- CENTER: 5 TOP-LEVEL WORKSTATION HUBS -->
     <div class="bhu-pill-nav mx-auto">
       <button type="button" id="nav-pill-home" onclick="setNasaNavTab('home')" class="bhu-pill-btn active">HOME</button>
-      <button type="button" id="nav-pill-universe" onclick="setNasaNavTab('universe')" class="bhu-pill-btn">UNIVERSE &amp; TIME</button>
+      <button type="button" id="nav-pill-universe" onclick="setNasaNavTab('universe')" class="bhu-pill-btn">UNIVERSE
+        &amp; TIME</button>
       <button type="button" id="nav-pill-agri" onclick="setNasaNavTab('agri')" class="bhu-pill-btn">AGRICULTURE</button>
-      <button type="button" id="nav-pill-worker" onclick="setNasaNavTab('worker')" class="bhu-pill-btn">HUMAN HEALTH</button>
+      <button type="button" id="nav-pill-worker" onclick="setNasaNavTab('worker')" class="bhu-pill-btn">HUMAN
+        HEALTH</button>
       <button type="button" id="nav-pill-ai" onclick="setNasaNavTab('ai')" class="bhu-pill-btn">BHU LOKA AI</button>
     </div>
 
     <!-- RIGHT: SEARCH, CONTROLS, NOTIFICATIONS & PROFILE -->
     <div class="flex items-center gap-2 shrink-0">
-      <div class="hidden sm:flex items-center gap-1.5 bg-[#070b12]/90 border border-slate-700/80 rounded-full px-2.5 py-1">
-        <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      <div
+        class="hidden sm:flex items-center gap-1.5 bg-[#070b12]/90 border border-slate-700/80 rounded-full px-2.5 py-1">
+        <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
         <input id="global-location-search" type="text" placeholder="Place or lat, lon..."
           class="bg-transparent text-[11px] mono text-slate-100 w-32 md:w-40 min-w-0 focus:outline-none placeholder-slate-500"
           onkeydown="if(event.key==='Enter') executeUniversalLocationSearch(this.value)">
       </div>
-      <button type="button" onclick="openSystemModal('api')" id="btn-api-chip" class="relative w-8 h-8 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 flex items-center justify-center border border-slate-700 transition" title="API Status & Alerts">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+      <button type="button" onclick="openSystemModal('api')" id="btn-api-chip"
+        class="relative w-8 h-8 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 flex items-center justify-center border border-slate-700 transition"
+        title="API Status & Alerts">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+        </svg>
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 absolute -top-0.5 -right-0.5" id="api-dot"></span>
         <span class="hidden" id="api-chip-text">API: ONLINE</span>
       </button>
-      <button type="button" onclick="toggleHeroMap()" class="w-8 h-8 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 flex items-center justify-center border border-slate-700 transition" title="Theater Mode (Maximize Viewport)">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      <button type="button" onclick="toggleHeroMap()"
+        class="w-8 h-8 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 flex items-center justify-center border border-slate-700 transition"
+        title="Theater Mode (Maximize Viewport)">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
       </button>
       <div class="flex items-center gap-1.5 pl-2 border-l border-slate-700/80">
         <div class="w-7 h-7 rounded-full bg-gradient-to-tr from-sky-400 to-emerald-400 p-0.5">
-          <div class="w-full h-full rounded-full bg-[#0a0f1d] flex items-center justify-center text-[10px] font-bold text-sky-300">PK</div>
+          <div
+            class="w-full h-full rounded-full bg-[#0a0f1d] flex items-center justify-center text-[10px] font-bold text-sky-300">
+            PK</div>
         </div>
         <div class="hidden 2xl:block text-left text-[10px] leading-tight">
           <div class="font-bold text-slate-200">Prince Kumar</div>
@@ -944,7 +984,8 @@
                 <div class="rounded bg-slate-900/50 p-1 border border-slate-800/50">
                   <label class="flex items-center justify-between cursor-pointer">
                     <span class="flex items-center gap-1.5 text-[11px] text-slate-200">
-                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" title="LIVE CADASTRAL PARCELS"></span>
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0"
+                        title="LIVE CADASTRAL PARCELS"></span>
                       Kisan Cadastral Farm Parcels (DILRMP)
                     </span>
                     <input type="checkbox" class="accent-emerald-400 cursor-pointer" id="layer-farms"
@@ -989,7 +1030,8 @@
                 <div class="rounded bg-slate-900/50 p-1 border border-slate-800/50">
                   <label class="flex items-center justify-between cursor-pointer">
                     <span class="flex items-center gap-1.5 text-[11px] text-slate-200">
-                      <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" title="LIVE OSM SURVEILLANCE & EMERGENCY"></span>
+                      <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0"
+                        title="LIVE OSM SURVEILLANCE & EMERGENCY"></span>
                       Municipal CCTV &amp; Emergency Hubs
                     </span>
                     <input type="checkbox" class="accent-cyan-400 cursor-pointer" id="layer-cctv-nodes"
@@ -1341,10 +1383,12 @@
             <div class="flex items-start justify-between">
               <div>
                 <div class="text-[9px] tracking-wider text-slate-400 uppercase mono">Code</div>
-                <div class="text-sm font-bold tracking-wide text-slate-100 mono" id="nasa-hud-target-name">NOARD · ISS-25544</div>
+                <div class="text-sm font-bold tracking-wide text-slate-100 mono" id="nasa-hud-target-name">NOARD ·
+                  ISS-25544</div>
               </div>
               <button type="button" onclick="document.getElementById('bhu-nasa-telemetry-hud').classList.add('hidden')"
-                class="w-6 h-6 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center text-xs transition" title="Close HUD">
+                class="w-6 h-6 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center text-xs transition"
+                title="Close HUD">
                 ✕
               </button>
             </div>
@@ -1373,16 +1417,19 @@
             <div class="flex items-center justify-between border-t border-slate-700/60 pt-1.5 mono text-[11px]">
               <div class="min-w-0 pr-1">
                 <div class="text-[9px] text-slate-400">Purpose</div>
-                <div class="text-xs font-semibold text-slate-200 truncate italic" id="nasa-hud-purpose">Earth Observation &amp; Science</div>
+                <div class="text-xs font-semibold text-slate-200 truncate italic" id="nasa-hud-purpose">Earth
+                  Observation &amp; Science</div>
               </div>
               <button type="button" onclick="focusNasaTargetInView()"
-                class="w-6 h-6 rounded-full bg-slate-800/90 hover:bg-sky-500/20 text-slate-300 hover:text-sky-300 border border-slate-700 flex items-center justify-center text-xs shrink-0 transition" title="Focus Orbit View">
+                class="w-6 h-6 rounded-full bg-slate-800/90 hover:bg-sky-500/20 text-slate-300 hover:text-sky-300 border border-slate-700 flex items-center justify-center text-xs shrink-0 transition"
+                title="Focus Orbit View">
                 +
               </button>
             </div>
 
             <!-- Circular Radar Sweep Scanner Widget -->
-            <div class="relative w-full h-24 rounded-xl bg-[#040812] border border-sky-500/30 overflow-hidden flex items-center justify-center mt-1">
+            <div
+              class="relative w-full h-24 rounded-xl bg-[#040812] border border-sky-500/30 overflow-hidden flex items-center justify-center mt-1">
               <div class="bhu-radar-container">
                 <div class="bhu-radar-ring" style="width: 24px; height: 24px;"></div>
                 <div class="bhu-radar-ring" style="width: 48px; height: 48px;"></div>
@@ -1391,25 +1438,32 @@
                 <div class="absolute h-full w-px bg-sky-500/20"></div>
                 <div class="bhu-radar-sweep"></div>
                 <!-- Dynamic Target Blips -->
-                <div class="absolute w-2 h-2 rounded-full bg-sky-400 shadow-[0_0_8px_#38bdf8] top-4 left-10 animate-ping"></div>
+                <div
+                  class="absolute w-2 h-2 rounded-full bg-sky-400 shadow-[0_0_8px_#38bdf8] top-4 left-10 animate-ping">
+                </div>
                 <div class="absolute w-1.5 h-1.5 rounded-full bg-sky-300 shadow-[0_0_6px_#38bdf8] top-4 left-10"></div>
                 <div class="absolute w-1.5 h-1.5 rounded-full bg-emerald-400 bottom-4 right-5"></div>
                 <div class="absolute w-1 h-1 rounded-full bg-amber-400 top-8 right-6"></div>
               </div>
-              <span class="absolute bottom-1 right-2 mono text-[8.5px] text-sky-400/80 tracking-wider">RADAR 360&deg;</span>
+              <span class="absolute bottom-1 right-2 mono text-[8.5px] text-sky-400/80 tracking-wider">RADAR
+                360&deg;</span>
             </div>
           </div>
 
           <!-- NASA FLOATING AI PROMPT BAR (Tell me what you want to know...) -->
-          <div id="bhu-floating-ai-bar" class="absolute bottom-3 inset-x-0 mx-auto max-w-md z-20 px-3 pointer-events-auto">
-            <div class="bhu-nasa-glass px-3.5 py-1.5 rounded-full flex items-center gap-2 border border-sky-500/40 shadow-[0_8px_32px_rgba(0,0,0,0.8)]">
+          <div id="bhu-floating-ai-bar"
+            class="absolute bottom-3 inset-x-0 mx-auto max-w-md z-20 px-3 pointer-events-auto">
+            <div
+              class="bhu-nasa-glass px-3.5 py-1.5 rounded-full flex items-center gap-2 border border-sky-500/40 shadow-[0_8px_32px_rgba(0,0,0,0.8)]">
               <span class="text-sky-400 text-sm animate-pulse">✦</span>
-              <input id="floating-ai-input" type="text"
-                placeholder="Tell me what you want to know..."
+              <input id="floating-ai-input" type="text" placeholder="Tell me what you want to know..."
                 class="bg-transparent text-[11px] text-slate-100 placeholder-slate-400 flex-1 min-w-0 focus:outline-none"
                 onkeydown="if(event.key==='Enter') executeNasaFloatingAi(this.value)">
-              <button type="button" onclick="showNasaAiPromptMenu()" class="w-6 h-6 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-slate-200 flex items-center justify-center text-xs transition" title="Suggested Prompts">?</button>
-              <button type="button" onclick="executeNasaFloatingAi(document.getElementById('floating-ai-input').value)" class="px-2.5 py-1 rounded-full bg-sky-500/20 hover:bg-sky-500/35 text-sky-300 border border-sky-500/40 text-[10px] mono font-bold transition">
+              <button type="button" onclick="showNasaAiPromptMenu()"
+                class="w-6 h-6 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-slate-200 flex items-center justify-center text-xs transition"
+                title="Suggested Prompts">?</button>
+              <button type="button" onclick="executeNasaFloatingAi(document.getElementById('floating-ai-input').value)"
+                class="px-2.5 py-1 rounded-full bg-sky-500/20 hover:bg-sky-500/35 text-sky-300 border border-sky-500/40 text-[10px] mono font-bold transition">
                 ANALYZE
               </button>
             </div>
@@ -1502,15 +1556,17 @@
 
         <!-- NASA BOTTOM 3 COMMAND CARDS (LIVE CELESTRAK COUNTS | REAL RELEASES/PASSES | LIVE CATEGORIES) -->
         <div id="bhu-nasa-bottom-deck" class="grid grid-cols-1 md:grid-cols-3 gap-2 mt-1.5 shrink-0">
-          
+
           <!-- CARD 1: SATELLITES BY COUNTRY / CATALOG -->
           <div class="bhu-nasa-glass p-2.5 flex flex-col justify-between">
             <div class="flex items-center justify-between text-slate-300">
               <span class="text-[11px] font-semibold tracking-wide">Live Orbit Catalog</span>
-              <button type="button" onclick="filterSatCategory('all')" class="text-slate-400 hover:text-sky-300 text-xs transition" title="View all">&nearr;</button>
+              <button type="button" onclick="filterSatCategory('all')"
+                class="text-slate-400 hover:text-sky-300 text-xs transition" title="View all">&nearr;</button>
             </div>
             <div class="flex items-baseline gap-1.5 my-1">
-              <span class="text-xl font-black text-slate-100 font-mono tracking-tight" id="nasa-deck-total-sats">UNAVAILABLE</span>
+              <span class="text-xl font-black text-slate-100 font-mono tracking-tight"
+                id="nasa-deck-total-sats">UNAVAILABLE</span>
               <span class="text-[10px] text-slate-400 mono uppercase">Active Satellites</span>
             </div>
             <div class="space-y-1 text-[9px] mono border-t border-slate-700/50 pt-1">
@@ -1529,7 +1585,8 @@
           <div class="bhu-nasa-glass p-2.5 flex flex-col justify-between">
             <div class="flex items-center justify-between text-slate-300">
               <span class="text-[11px] font-semibold tracking-wide">Launches &amp; Upcoming Passes</span>
-              <button type="button" onclick="focusUpcomingPasses()" class="text-slate-400 hover:text-sky-300 text-xs transition" title="Upcoming passes">&nearr;</button>
+              <button type="button" onclick="focusUpcomingPasses()"
+                class="text-slate-400 hover:text-sky-300 text-xs transition" title="Upcoming passes">&nearr;</button>
             </div>
             <!-- Real Status -->
             <div id="nasa-deck-releases-body" class="space-y-1 text-[9.5px] mono border-t border-slate-700/50 pt-1">
@@ -1551,7 +1608,8 @@
           <div class="bhu-nasa-glass p-2.5 flex flex-col justify-between">
             <div class="flex items-center justify-between text-slate-300">
               <span class="text-[11px] font-semibold tracking-wide">Satellites by purpose</span>
-              <button type="button" onclick="openSatelliteRegistryModal()" class="text-slate-400 hover:text-sky-300 text-xs transition" title="Registry details">&nearr;</button>
+              <button type="button" onclick="openSatelliteRegistryModal()"
+                class="text-slate-400 hover:text-sky-300 text-xs transition" title="Registry details">&nearr;</button>
             </div>
             <!-- Live Counts by Purpose -->
             <div class="space-y-1 text-[9px] mono pt-1" id="sat-purpose-bars">
@@ -1707,6 +1765,7 @@
       <div id="right-dock-tabs" class="bhu-dock-tabbar shrink-0" role="tablist" aria-label="Right Inspector View">
         <button type="button" id="right-tab-btn-ai" role="tab" aria-selected="true" onclick="switchRightDockTab('ai')"
           class="bhu-dock-tab">
+          AI Decision
           BHU LOKA AI
         </button>
         <button type="button" id="right-tab-btn-loc" role="tab" aria-selected="false"
@@ -1721,14 +1780,15 @@
 
       <!-- RIGHT AI INSIGHTS VIEW (NASA THEME) -->
       <div id="right-insights-view" class="hidden flex-1 min-h-0 flex flex-col gap-2 overflow-y-auto pr-1">
-        
+
         <!-- TITLE HEADER -->
         <div class="bhu-nasa-glass p-2 flex items-center justify-between shrink-0">
           <div class="flex items-center gap-1.5">
             <span class="text-sky-400 font-bold text-sm">✦</span>
             <span class="text-xs font-bold tracking-wider text-slate-100 uppercase">Orbital Intelligence</span>
           </div>
-          <span class="px-2 py-0.5 rounded-full text-[9px] mono bg-slate-800 text-slate-300 border border-slate-700">FAIL-CLOSED</span>
+          <span
+            class="px-2 py-0.5 rounded-full text-[9px] mono bg-slate-800 text-slate-300 border border-slate-700">FAIL-CLOSED</span>
         </div>
 
         <!-- 1. CONJUNCTION ASSESSMENT STATUS -->
@@ -1740,7 +1800,8 @@
           <div class="bg-[#02050b]/80 p-2 rounded border border-slate-800 text-[10px] mono text-slate-300 space-y-1">
             <div class="text-slate-400">SOCRATES / Space-Track API: Offline</div>
             <div class="text-[9px] text-slate-500 leading-relaxed">
-              Automated conjunction screening requires two-line element (TLE) covariance matrices. BHU LOKA adheres to strict scientific integrity and never fabricates synthetic collision warnings.
+              Automated conjunction screening requires two-line element (TLE) covariance matrices. BHU LOKA adheres to
+              strict scientific integrity and never fabricates synthetic collision warnings.
             </div>
           </div>
         </div>
@@ -1752,10 +1813,14 @@
             <span class="text-[9px] mono text-emerald-400 font-bold">DETERMINISTIC</span>
           </div>
           <div class="bg-[#02050b]/80 p-2 rounded border border-slate-800 text-[10px] mono text-slate-300 space-y-1">
-            <div class="flex justify-between"><span class="text-slate-400">Method:</span><span class="text-slate-200">SGP4 Keplerian Ephemeris</span></div>
-            <div class="flex justify-between"><span class="text-slate-400">Live Source:</span><span class="text-sky-300">CelesTrak GP API</span></div>
-            <div class="flex justify-between"><span class="text-slate-400">Stations Tracked:</span><span class="text-rose-300">ISS (ZARYA) 25544</span></div>
-            <div class="flex justify-between"><span class="text-slate-400">Zero-Fake Policy:</span><span class="text-emerald-400">ENFORCED</span></div>
+            <div class="flex justify-between"><span class="text-slate-400">Method:</span><span
+                class="text-slate-200">SGP4 Keplerian Ephemeris</span></div>
+            <div class="flex justify-between"><span class="text-slate-400">Live Source:</span><span
+                class="text-sky-300">CelesTrak GP API</span></div>
+            <div class="flex justify-between"><span class="text-slate-400">Stations Tracked:</span><span
+                class="text-rose-300">ISS (ZARYA) 25544</span></div>
+            <div class="flex justify-between"><span class="text-slate-400">Zero-Fake Policy:</span><span
+                class="text-emerald-400">ENFORCED</span></div>
           </div>
         </div>
 
@@ -1766,15 +1831,18 @@
             <span class="text-[9px] mono text-sky-400">SOVEREIGN</span>
           </div>
           <div class="space-y-1 mono text-[9.5px]">
-            <button type="button" onclick="setNasaNavTab('agri')" class="w-full text-left p-1.5 rounded bg-slate-800/80 hover:bg-slate-700/90 border border-slate-700 text-slate-200 flex items-center justify-between transition">
+            <button type="button" onclick="setNasaNavTab('agri')"
+              class="w-full text-left p-1.5 rounded bg-slate-800/80 hover:bg-slate-700/90 border border-slate-700 text-slate-200 flex items-center justify-between transition">
               <span class="text-emerald-300 font-semibold truncate">🌾 Precision Agriculture (FAO-56 / NDVI)</span>
               <span class="text-[8.5px] text-slate-400">OPEN &rarr;</span>
             </button>
-            <button type="button" onclick="setNasaNavTab('worker')" class="w-full text-left p-1.5 rounded bg-slate-800/80 hover:bg-slate-700/90 border border-slate-700 text-slate-200 flex items-center justify-between transition">
+            <button type="button" onclick="setNasaNavTab('worker')"
+              class="w-full text-left p-1.5 rounded bg-slate-800/80 hover:bg-slate-700/90 border border-slate-700 text-slate-200 flex items-center justify-between transition">
               <span class="text-amber-300 font-semibold truncate">👷 Worker Climate Health (WBGT / PM2.5)</span>
               <span class="text-[8.5px] text-slate-400">OPEN &rarr;</span>
             </button>
-            <button type="button" onclick="switchLeftDockTab('intel')" class="w-full text-left p-1.5 rounded bg-slate-800/80 hover:bg-slate-700/90 border border-slate-700 text-slate-200 flex items-center justify-between transition">
+            <button type="button" onclick="switchLeftDockTab('intel')"
+              class="w-full text-left p-1.5 rounded bg-slate-800/80 hover:bg-slate-700/90 border border-slate-700 text-slate-200 flex items-center justify-between transition">
               <span class="text-sky-300 font-semibold truncate">🗺️ India Intel (Modules A–F)</span>
               <span class="text-[8.5px] text-slate-400">VIEW &rarr;</span>
             </button>
@@ -1793,34 +1861,46 @@
 
       <div id="right-ai-view" class="panel p-2.5 flex-1 min-h-[320px] lg:min-h-0 flex flex-col overflow-hidden">
 
+        <!-- CONSOLE HEADER & LANGUAGE BUTTONS -->
         <!-- CONSOLE HEADER & CONTROLS -->
         <div class="flex flex-wrap items-center justify-between gap-1.5 border-b border-slate-800 pb-2 mb-1.5 shrink-0">
           <div class="min-w-0">
+            <div class="section-header whitespace-nowrap">Dual-Agent Decision Terminal</div>
+            <div class="mono text-[10px] text-slate-400 truncate">Agent-1: Transformer RAG · Agent-2: Map Director</div>
             <div class="section-header whitespace-nowrap flex items-center gap-1.5">
               <span>BHU LOKA AI</span>
               <span class="text-[10px] text-sky-400 font-normal">भूलोक AI</span>
             </div>
-            <div class="mono text-[10px] text-slate-400 truncate">Sovereign Earth Assistant · Agent-1: Grounded RAG · Agent-2: Map Director</div>
+            <div class="mono text-[10px] text-slate-400 truncate">Sovereign Earth Assistant · Agent-1: Grounded RAG ·
+              Agent-2: Map Director</div>
           </div>
           <div class="flex items-center gap-1.5 shrink-0">
             <!-- Voice Output Toggle -->
-            <button type="button" onclick="if(window.BhuLokaAI) BhuLokaAI.toggleVoiceOutput()" id="btn-cyber-tts" class="bhu-ai-tts-btn p-1 rounded border border-slate-700 bg-slate-800 text-slate-400 hover:text-slate-200 transition" title="Voice Output: MUTED (Click to activate audio answers)">
+            <button type="button" onclick="if(window.BhuLokaAI) BhuLokaAI.toggleVoiceOutput()" id="btn-cyber-tts"
+              class="bhu-ai-tts-btn p-1 rounded border border-slate-700 bg-slate-800 text-slate-400 hover:text-slate-200 transition"
+              title="Voice Output: MUTED (Click to activate audio answers)">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
               </svg>
             </button>
             <div class="inline-flex bg-[#070b12] p-0.5 rounded border border-slate-800 mono text-[10px]"
               id="lang-mode-group"
               title="Response Language: AUTO (English/Hinglish/Hindi), EN (English Only), HI (Hindi)">
-              <button type="button" onclick="setLanguageMode('auto'); if(window.BhuLokaAI) BhuLokaAI.setLanguage('auto');" id="btn-lang-auto"
-                class="px-1.5 py-0.5 rounded bg-sky-500/25 text-sky-300 font-semibold">AUTO</button>
-              <button type="button" onclick="setLanguageMode('en'); if(window.BhuLokaAI) BhuLokaAI.setLanguage('en');" id="btn-lang-en"
+              <button type="button" onclick="setLanguageMode('auto')" id="btn-lang-auto" <button type="button"
+                onclick="setLanguageMode('auto'); if(window.BhuLokaAI) BhuLokaAI.setLanguage('auto');"
+                id="btn-lang-auto" class="px-1.5 py-0.5 rounded bg-sky-500/25 text-sky-300 font-semibold">AUTO</button>
+              <button type="button" onclick="setLanguageMode('en')" id="btn-lang-en" <button type="button"
+                onclick="setLanguageMode('en'); if(window.BhuLokaAI) BhuLokaAI.setLanguage('en');" id="btn-lang-en"
                 class="px-1.5 py-0.5 rounded text-slate-400 hover:text-slate-200">EN</button>
-              <button type="button" onclick="setLanguageMode('hi'); if(window.BhuLokaAI) BhuLokaAI.setLanguage('hi');" id="btn-lang-hi"
+              <button type="button" onclick="setLanguageMode('hi')" id="btn-lang-hi" <button type="button"
+                onclick="setLanguageMode('hi'); if(window.BhuLokaAI) BhuLokaAI.setLanguage('hi');" id="btn-lang-hi"
                 class="px-1.5 py-0.5 rounded text-slate-400 hover:text-slate-200">HI</button>
             </div>
-            <span class="badge-chip bg-slate-800 text-sky-300 border-slate-700"
-              id="console-status-badge">SOVEREIGN AI</span>
+            <span class="badge-chip bg-slate-800 text-slate-300 border-slate-700"
+              id="console-status-badge">DUAL-AGENT</span>
+            <span class="badge-chip bg-slate-800 text-sky-300 border-slate-700" id="console-status-badge">SOVEREIGN
+              AI</span>
             <button type="button" onclick="clearChatFeed()"
               class="mono text-[10px] px-2 py-0.5 rounded bg-slate-800/70 hover:bg-slate-700 text-slate-400 hover:text-slate-200 border border-slate-700 transition">
               CLEAR
@@ -1829,13 +1909,30 @@
         </div>
 
         <!-- 5 ROLE PRESETS SELECTOR CHIPS -->
-        <div class="flex items-center gap-1 overflow-x-auto pb-1.5 mb-1.5 border-b border-slate-800/80 mono text-[10px] shrink-0" id="cyber-role-selector">
+        <div
+          class="flex items-center gap-1 overflow-x-auto pb-1.5 mb-1.5 border-b border-slate-800/80 mono text-[10px] shrink-0"
+          id="cyber-role-selector">
           <span class="text-slate-500 uppercase text-[9px] font-bold shrink-0">Role:</span>
-          <button type="button" data-role="farmer" onclick="if(window.BhuLokaAI) BhuLokaAI.setRole('farmer'); setCyberAiRole('farmer');" class="bhu-role-chip active px-2 py-0.5 rounded text-[9.5px] font-semibold border transition shrink-0 bg-sky-500/20 text-sky-300 border-sky-400/50">🌾 Farmer</button>
-          <button type="button" data-role="business" onclick="if(window.BhuLokaAI) BhuLokaAI.setRole('business'); setCyberAiRole('business');" class="bhu-role-chip px-2 py-0.5 rounded text-[9.5px] font-normal border transition shrink-0 bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200">💼 Business</button>
-          <button type="button" data-role="student" onclick="if(window.BhuLokaAI) BhuLokaAI.setRole('student'); setCyberAiRole('student');" class="bhu-role-chip px-2 py-0.5 rounded text-[9.5px] font-normal border transition shrink-0 bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200">🎓 Student</button>
-          <button type="button" data-role="worker" onclick="if(window.BhuLokaAI) BhuLokaAI.setRole('worker'); setCyberAiRole('worker');" class="bhu-role-chip px-2 py-0.5 rounded text-[9.5px] font-normal border transition shrink-0 bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200">👷 Worker</button>
-          <button type="button" data-role="researcher" onclick="if(window.BhuLokaAI) BhuLokaAI.setRole('researcher'); setCyberAiRole('researcher');" class="bhu-role-chip px-2 py-0.5 rounded text-[9.5px] font-normal border transition shrink-0 bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200">🔬 Researcher</button>
+          <button type="button" data-role="farmer"
+            onclick="if(window.BhuLokaAI) BhuLokaAI.setRole('farmer'); setCyberAiRole('farmer');"
+            class="bhu-role-chip active px-2 py-0.5 rounded text-[9.5px] font-semibold border transition shrink-0 bg-sky-500/20 text-sky-300 border-sky-400/50">🌾
+            Farmer</button>
+          <button type="button" data-role="business"
+            onclick="if(window.BhuLokaAI) BhuLokaAI.setRole('business'); setCyberAiRole('business');"
+            class="bhu-role-chip px-2 py-0.5 rounded text-[9.5px] font-normal border transition shrink-0 bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200">💼
+            Business</button>
+          <button type="button" data-role="student"
+            onclick="if(window.BhuLokaAI) BhuLokaAI.setRole('student'); setCyberAiRole('student');"
+            class="bhu-role-chip px-2 py-0.5 rounded text-[9.5px] font-normal border transition shrink-0 bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200">🎓
+            Student</button>
+          <button type="button" data-role="worker"
+            onclick="if(window.BhuLokaAI) BhuLokaAI.setRole('worker'); setCyberAiRole('worker');"
+            class="bhu-role-chip px-2 py-0.5 rounded text-[9.5px] font-normal border transition shrink-0 bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200">👷
+            Worker</button>
+          <button type="button" data-role="researcher"
+            onclick="if(window.BhuLokaAI) BhuLokaAI.setRole('researcher'); setCyberAiRole('researcher');"
+            class="bhu-role-chip px-2 py-0.5 rounded text-[9.5px] font-normal border transition shrink-0 bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200">🔬
+            Researcher</button>
         </div>
 
         <!-- LIVE AGENT-2 AUTONOMOUS CARTOGRAPHIC STATUS BANNER -->
@@ -1870,7 +1967,8 @@
         </div>
 
         <!-- VOICE LISTENING BANNER (OPT-IN) -->
-        <div class="bhu-ai-voice-status-banner hidden px-2.5 py-1 bg-rose-950/60 border border-rose-500/40 rounded mb-1.5 text-[10.5px] text-rose-300 mono flex items-center shrink-0">
+        <div
+          class="bhu-ai-voice-status-banner hidden px-2.5 py-1 bg-rose-950/60 border border-rose-500/40 rounded mb-1.5 text-[10.5px] text-rose-300 mono flex items-center shrink-0">
           <span class="inline-block w-2 h-2 rounded-full bg-rose-500 animate-pulse mr-2"></span>
           <span>Listening (opt-in active)... Speak now in Hindi or English</span>
         </div>
@@ -1879,9 +1977,12 @@
         <div class="mt-2 pt-2 border-t border-slate-800 shrink-0">
           <div class="flex gap-1.5">
             <!-- Opt-in Mic Button -->
-            <button type="button" onclick="if(window.BhuLokaAI) BhuLokaAI.toggleVoiceInput()" class="bhu-ai-mic-btn px-2 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition flex items-center justify-center shrink-0" title="Voice Input (Click to speak in Hindi/English · Opt-in)">
+            <button type="button" onclick="if(window.BhuLokaAI) BhuLokaAI.toggleVoiceInput()"
+              class="bhu-ai-mic-btn px-2 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition flex items-center justify-center shrink-0"
+              title="Voice Input (Click to speak in Hindi/English · Opt-in)">
               <svg class="w-4 h-4 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 02-3-3V5a3 3 0 116 0v6a3 3 0 02-3 3z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 02-3-3V5a3 3 0 116 0v6a3 3 0 02-3 3z" />
               </svg>
             </button>
             <input id="user-input" type="text"
@@ -4776,13 +4877,13 @@
 
     const SOLAR_PLANETS = [
       { name: 'Mercury', a: 0.387098, e: 0.205630, inc: 7.005, L0: 252.25, varpi: 77.46, node: 48.33, periodDays: 87.969, radiusKm: 2439.7, color: 0x94a3b8, size: 0.38 },
-      { name: 'Venus',   a: 0.723332, e: 0.006773, inc: 3.3945, L0: 181.98, varpi: 131.53, node: 76.68, periodDays: 224.701, radiusKm: 6051.8, color: 0xfde68a, size: 0.62 },
-      { name: 'Earth',   a: 1.000000, e: 0.016708, inc: 0.0000, L0: 100.46, varpi: 102.94, node: 0.00,  periodDays: 365.256, radiusKm: 6371.0, color: 0x38bdf8, size: 0.72, isEarth: true },
-      { name: 'Mars',    a: 1.523679, e: 0.093405, inc: 1.8497, L0: 355.45, varpi: 336.04, node: 49.56, periodDays: 686.980, radiusKm: 3389.5, color: 0xfb7185, size: 0.50 },
-      { name: 'Jupiter', a: 5.204400, e: 0.048498, inc: 1.3030, L0: 34.40,  varpi: 14.75,  node: 100.56, periodDays: 4332.59, radiusKm: 69911, color: 0xfdba74, size: 1.50 },
-      { name: 'Saturn',  a: 9.582600, e: 0.055546, inc: 2.4850, L0: 49.94,  varpi: 92.43,  node: 113.72, periodDays: 10759.22, radiusKm: 58232, color: 0xfcd34d, size: 1.25, hasRings: true },
-      { name: 'Uranus',  a: 19.21840, e: 0.046381, inc: 0.7730, L0: 313.23, varpi: 170.96, node: 74.01, periodDays: 30685.4, radiusKm: 25362, color: 0x67e8f9, size: 0.90 },
-      { name: 'Neptune', a: 30.11038, e: 0.009456, inc: 1.7700, L0: 304.88, varpi: 44.97,  node: 131.78, periodDays: 60189.0, radiusKm: 24622, color: 0x60a5fa, size: 0.88 }
+      { name: 'Venus', a: 0.723332, e: 0.006773, inc: 3.3945, L0: 181.98, varpi: 131.53, node: 76.68, periodDays: 224.701, radiusKm: 6051.8, color: 0xfde68a, size: 0.62 },
+      { name: 'Earth', a: 1.000000, e: 0.016708, inc: 0.0000, L0: 100.46, varpi: 102.94, node: 0.00, periodDays: 365.256, radiusKm: 6371.0, color: 0x38bdf8, size: 0.72, isEarth: true },
+      { name: 'Mars', a: 1.523679, e: 0.093405, inc: 1.8497, L0: 355.45, varpi: 336.04, node: 49.56, periodDays: 686.980, radiusKm: 3389.5, color: 0xfb7185, size: 0.50 },
+      { name: 'Jupiter', a: 5.204400, e: 0.048498, inc: 1.3030, L0: 34.40, varpi: 14.75, node: 100.56, periodDays: 4332.59, radiusKm: 69911, color: 0xfdba74, size: 1.50 },
+      { name: 'Saturn', a: 9.582600, e: 0.055546, inc: 2.4850, L0: 49.94, varpi: 92.43, node: 113.72, periodDays: 10759.22, radiusKm: 58232, color: 0xfcd34d, size: 1.25, hasRings: true },
+      { name: 'Uranus', a: 19.21840, e: 0.046381, inc: 0.7730, L0: 313.23, varpi: 170.96, node: 74.01, periodDays: 30685.4, radiusKm: 25362, color: 0x67e8f9, size: 0.90 },
+      { name: 'Neptune', a: 30.11038, e: 0.009456, inc: 1.7700, L0: 304.88, varpi: 44.97, node: 131.78, periodDays: 60189.0, radiusKm: 24622, color: 0x60a5fa, size: 0.88 }
     ];
 
     function computeKeplerianOrbit(p, yearVal, isDistTrue) {
@@ -7054,11 +7155,11 @@
       if (window.BhuLokaLocationEngine) {
         const initState = window.BhuLokaLocationEngine.readInitialState();
         if (initState.found && initState.latitude && initState.longitude &&
-            initState.source !== 'default' &&
-            !String(initState.placeName || '').toLowerCase().includes('arabian sea') &&
-            !String(initState.placeName || '').toLowerCase().includes('sahiwal') &&
-            !String(initState.placeName || '').toLowerCase().includes('mauritania') &&
-            !String(initState.placeName || '').toLowerCase().includes('pakistan')) {
+          initState.source !== 'default' &&
+          !String(initState.placeName || '').toLowerCase().includes('arabian sea') &&
+          !String(initState.placeName || '').toLowerCase().includes('sahiwal') &&
+          !String(initState.placeName || '').toLowerCase().includes('mauritania') &&
+          !String(initState.placeName || '').toLowerCase().includes('pakistan')) {
           window.BhuLokaLocationEngine.setLocation(initState.latitude, initState.longitude, initState.placeName, {
             radiusKm: initState.analysisRadius,
             source: initState.source,
@@ -7088,8 +7189,8 @@
         return year + ' CE';
       } else if (year === 2026) {
         const d = new Date();
-        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        return `${d.getUTCDate()} ${months[d.getUTCMonth()]} ${year} · ${String(d.getUTCHours()).padStart(2,'0')}:${String(d.getUTCMinutes()).padStart(2,'0')} UTC`;
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        return `${d.getUTCDate()} ${months[d.getUTCMonth()]} ${year} · ${String(d.getUTCHours()).padStart(2, '0')}:${String(d.getUTCMinutes()).padStart(2, '0')} UTC`;
       }
       return `${year} CE`;
     }
@@ -7233,14 +7334,14 @@
       const clockEl = document.getElementById('tm-utc-clock');
       if (clockEl) {
         const d = new Date();
-        clockEl.innerText = `${String(d.getUTCHours()).padStart(2,'0')}:${String(d.getUTCMinutes()).padStart(2,'0')}:${String(d.getUTCSeconds()).padStart(2,'0')} UTC`;
+        clockEl.innerText = `${String(d.getUTCHours()).padStart(2, '0')}:${String(d.getUTCMinutes()).padStart(2, '0')}:${String(d.getUTCSeconds()).padStart(2, '0')} UTC`;
       }
     }
     setInterval(updateBhuUtcClock, 1000);
     updateBhuUtcClock();
 
     // ── NASA WORKSTATION 5-HUB NAVIGATION HANDLERS ──
-    window.setNasaNavTab = function(tab) {
+    window.setNasaNavTab = function (tab) {
       const pills = ['home', 'universe', 'agri', 'worker', 'ai'];
       pills.forEach(p => {
         const btn = document.getElementById(`nav-pill-${p}`);
@@ -7284,6 +7385,7 @@
           if (typeof switchView === 'function') switchView('world');
         }
         if (typeof switchRightDockTab === 'function') switchRightDockTab('ai');
+        const qInp = document.getElementById('query-input');
         const qInp = document.getElementById('user-input') || document.getElementById('query-input');
         if (qInp) qInp.focus();
         if (window.BhuLokaAI && typeof window.BhuLokaAI.setRole === 'function') {
@@ -7292,7 +7394,7 @@
       }
     };
 
-    window.setCyberAiRole = function(role) {
+    window.setCyberAiRole = function (role) {
       if (window.BhuLokaAI) {
         window.BhuLokaAI.setRole(role);
       }
@@ -7350,7 +7452,7 @@
       });
     }
 
-    window.triggerCinematicEarthExplore = function() {
+    window.triggerCinematicEarthExplore = function () {
       const btn = document.getElementById('bhu-explore-btn');
       if (btn) {
         btn.innerHTML = '<span>EXPLORING...</span>';
@@ -7363,7 +7465,7 @@
       }, 400);
     };
 
-    window.executeNasaFloatingAi = function(query) {
+    window.executeNasaFloatingAi = function (query) {
       if (!query || !query.trim()) return;
       const qInput = document.getElementById('query-input');
       if (qInput) {
@@ -7377,7 +7479,7 @@
       }
     };
 
-    window.showNasaAiPromptMenu = function() {
+    window.showNasaAiPromptMenu = function () {
       const input = document.getElementById('floating-ai-input');
       const prompts = [
         "Track active Indian earth observation satellites",
@@ -7392,7 +7494,7 @@
       }
     };
 
-    window.focusNasaTarget = function(targetName) {
+    window.focusNasaTarget = function (targetName) {
       const codeEl = document.getElementById('nasa-hud-target-name');
       const altEl = document.getElementById('nasa-hud-altitude');
       const velEl = document.getElementById('nasa-hud-velocity');
@@ -7424,27 +7526,27 @@
       if (typeof switchView === 'function') switchView('world');
     };
 
-    window.focusNasaTargetInView = function() {
+    window.focusNasaTargetInView = function () {
       if (typeof switchView === 'function') switchView('world');
       if (typeof zoomCamera === 'function') zoomCamera(0.8);
     };
 
-    window.focusUpcomingPasses = function() {
+    window.focusUpcomingPasses = function () {
       if (typeof switchView === 'function') switchView('world');
       if (typeof filterSatCategory === 'function') filterSatCategory('isro');
     };
 
-    window.openSatelliteRegistryModal = function() {
+    window.openSatelliteRegistryModal = function () {
       if (typeof switchRightDockTab === 'function') switchRightDockTab('insights');
     };
 
-    window.executeNasaOrbitAdjustment = function() {
+    window.executeNasaOrbitAdjustment = function () {
       const btn = event ? event.target : null;
       if (btn) btn.innerText = "Burn Executed (0.42 m/s)";
       setTimeout(() => { if (btn) btn.innerText = "Adjust orbit →"; }, 3000);
     };
 
-    window.triggerDomainAction = function(domain) {
+    window.triggerDomainAction = function (domain) {
       if (domain === 'kisan') {
         window.executeNasaFloatingAi("Irrigation deficit alert in Bhojpur: canal release status and soil moisture recommendations");
       } else if (domain === 'worker') {
@@ -7468,7 +7570,7 @@
     });
 
     // Intro Overlay dismissal
-    window.skipBhuIntro = function() {
+    window.skipBhuIntro = function () {
       const overlay = document.getElementById('bhu-intro-overlay');
       if (overlay) overlay.classList.add('bhu-intro-fadeout');
     };
@@ -7680,7 +7782,7 @@
         if (splash) splash.style.display = 'none';
         window.setNasaNavTab(initTab);
       }
-    } catch (e) {}
+    } catch (e) { }
   </script>
   <!-- GLOBAL TIME MACHINE — PERSISTENT BOTTOM BAR -->
   <div id="bhu-time-machine"

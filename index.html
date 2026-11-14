@@ -136,9 +136,19 @@
 
     /* Pulse animation for active inspection */
     @keyframes pulse-cyan {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.15); opacity: 0.7; }
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(1.15);
+        opacity: 0.7;
+      }
     }
+
     .pulse-hud {
       animation: pulse-cyan 2s infinite ease-in-out;
     }
@@ -147,8 +157,9 @@
     .cloud-overlay {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.94) 0%, rgba(220, 230, 242, 0.92) 60%, rgba(200, 215, 230, 0.88) 100%);
-      pointer-events: none;
+      background: radial-gradient(circle at 50% 50%, rgba(240, 246, 255, 0.78) 0%, rgba(200, 220, 245, 0.72) 60%, rgba(160, 190, 225, 0.65) 100%);
+      backdrop-filter: blur(4px);
+      pointer-events: auto;
       z-index: 403;
       display: none;
     }
@@ -174,7 +185,8 @@
     </div>
 
     <!-- Center Callout (Cloud Penetration) -->
-    <div class="hidden xl:flex items-center gap-2 bg-slate-900/80 border border-slate-700/60 rounded px-2.5 py-1 text-[11px] mono text-slate-300">
+    <div
+      class="hidden xl:flex items-center gap-2 bg-slate-900/80 border border-slate-700/60 rounded px-2.5 py-1 text-[11px] mono text-slate-300">
       <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
       <span>Sentinel-1 C-SAR (5.405 GHz) &middot; All-Weather Penetration &middot; Patna Flood Baseline</span>
     </div>
@@ -207,7 +219,10 @@
       <button type="button" onclick="openTransectModal()"
         class="hidden sm:flex items-center gap-1 px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 text-xs font-medium transition"
         title="Interactive Radar Backscatter Cross-Section">
-        <svg class="w-3.5 h-3.5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
+        <svg class="w-3.5 h-3.5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+        </svg>
         <span>Transect</span>
       </button>
 
@@ -215,8 +230,19 @@
       <button type="button" onclick="openWardModal()"
         class="hidden md:flex items-center gap-1 px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 text-xs font-medium transition"
         title="Patna Wards Exposure & Inundation Matrix">
-        <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+        <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+        </svg>
         <span>Wards</span>
+      </button>
+
+      <!-- User Guide Trigger -->
+      <button type="button" onclick="openUserFlowModal()"
+        class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 text-xs font-semibold transition"
+        title="Interactive Platform Tour & Step-by-Step User Guide (यूज़र गाइड)">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>User Guide (यूज़र गाइड)</span>
       </button>
 
       <!-- AI SAR Analyst Trigger -->
@@ -235,7 +261,9 @@
       </button>
 
       <div class="hidden lg:flex items-center gap-1.5 pl-2 border-l border-slate-800 text-[10px]">
-        <div class="w-6 h-6 rounded-full bg-sky-950 border border-sky-500/40 flex items-center justify-center font-bold text-sky-300">PK</div>
+        <div
+          class="w-6 h-6 rounded-full bg-sky-950 border border-sky-500/40 flex items-center justify-center font-bold text-sky-300">
+          PK</div>
         <div class="leading-tight">
           <div class="font-bold text-slate-200">Prince Kumar</div>
           <div class="text-slate-400 text-[9px]">PA2511CDH37</div>
@@ -245,7 +273,8 @@
   </header>
 
   <!-- SECONDARY TOOLBAR: View Modes, Layers & Opacity Slider -->
-  <nav class="h-10 bg-[#070b13] border-b border-slate-800/80 flex items-center justify-between px-3 text-xs z-20 shrink-0">
+  <nav
+    class="h-10 bg-[#070b13] border-b border-slate-800/80 flex items-center justify-between px-3 text-xs z-20 shrink-0">
     <!-- View Switcher -->
     <div class="flex items-center gap-1">
       <button type="button" id="btn-mode-swipe" onclick="setViewMode('swipe')"
@@ -312,7 +341,10 @@
       <!-- Telemetry Toggle -->
       <button type="button" onclick="toggleTelemetryDrawer()"
         class="px-2 py-1 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded text-slate-300 text-xs flex items-center gap-1 transition">
-        <svg class="w-3.5 h-3.5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        <svg class="w-3.5 h-3.5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
         <span class="hidden sm:inline">SAR Metadata</span>
       </button>
     </div>
@@ -323,21 +355,45 @@
     <div id="map"></div>
 
     <!-- Cloud Simulation Layer (Optical Blindness Mode) -->
-    <div id="cloud-sim-overlay" class="cloud-overlay flex items-center justify-center" style="display: none;">
-      <div class="bg-[#0b1220]/90 border border-amber-600/60 p-5 rounded-xl shadow-2xl max-w-md text-center backdrop-blur-md">
-        <div class="text-amber-400 font-bold text-sm mb-1 uppercase tracking-wider flex items-center justify-center gap-1.5">
-          <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+    <div id="cloud-sim-overlay" class="cloud-overlay flex items-center justify-center p-4 cursor-pointer" onclick="if(event.target === this) setViewMode('swipe')" style="display: none;">
+      <div
+        class="bg-[#0b1220]/95 border border-amber-500/80 p-5 rounded-xl shadow-2xl max-w-md text-center backdrop-blur-md relative cursor-default"
+        onclick="event.stopPropagation()">
+        <!-- Close Button -->
+        <button type="button" onclick="setViewMode('swipe')"
+          class="absolute top-3 right-3 text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition"
+          title="Close and Return to SAR Radar View">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+
+        <div
+          class="text-amber-400 font-bold text-sm mb-1 uppercase tracking-wider flex items-center justify-center gap-1.5 pr-6">
+          <svg class="w-4 h-4 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
           <span>Optical Satellite Blindness (29 Sep 2019)</span>
         </div>
         <div class="text-xs text-slate-300 leading-relaxed mt-2">
-          During the peak Patna deluge, dense monsoon stratocumulus clouds caused <strong>100% cloud cover</strong>. Optical sensors (MODIS, Landsat-8, Sentinel-2) were completely blind.
+          During the peak Patna deluge, dense monsoon stratocumulus clouds caused <strong>100% cloud cover</strong>.
+          Optical sensors (MODIS, Landsat-8, Sentinel-2) were completely blind.
         </div>
-        <div class="mt-3 p-2 bg-cyan-950/40 border border-cyan-800/40 rounded text-cyan-300 text-[11px] font-semibold">
-          Sentinel-1 C-band microwaves (5.405 GHz) passed directly through the storm with zero obstruction.
+        <div class="mt-3 p-2 bg-sky-950/60 border border-sky-800/60 rounded text-sky-300 text-[11px] font-semibold text-left space-y-1">
+          <div>&bull; Sentinel-1 C-band microwaves (5.405 GHz) passed directly through storm clouds.</div>
+          <div>&bull; Specular surface water reflection mapped 26.54 km&sup2; of inundated land ("Naya Paani").</div>
         </div>
-        <button type="button" onclick="setViewMode('swipe')" class="mt-4 px-3 py-1 bg-cyan-600 hover:bg-cyan-500 text-slate-900 font-bold rounded text-xs transition">
-          Switch to SAR Radar Vision
-        </button>
+        <div class="mt-4 flex items-center justify-center gap-2">
+          <button type="button" onclick="setViewMode('swipe')"
+            class="px-4 py-1.5 bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold rounded text-xs transition shadow-lg flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+            </svg>
+            <span>Switch to SAR Radar Vision</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -357,7 +413,8 @@
     </div>
 
     <!-- Scientific Map Legend (Bottom-Left) -->
-    <div class="absolute bottom-4 left-4 z-20 bg-[#090d16]/90 backdrop-blur-md border border-slate-800 rounded-lg p-3 text-[11px] shadow-2xl max-w-[280px]">
+    <div
+      class="absolute bottom-4 left-4 z-20 bg-[#090d16]/90 backdrop-blur-md border border-slate-800 rounded-lg p-3 text-[11px] shadow-2xl max-w-[280px]">
       <div class="font-bold text-slate-200 mb-1.5 flex items-center justify-between">
         <span>SAR SCATTERING &amp; FLOOD KEY</span>
         <span class="text-[9px] mono text-cyan-400">10m C-SAR</span>
@@ -395,7 +452,8 @@
     </div>
 
     <!-- FLOATING LIVE PIXEL INSPECTOR HUD (Bottom-Right) -->
-    <div id="pixel-inspector-hud" class="absolute bottom-4 right-4 z-20 bg-[#080d1a]/95 backdrop-blur-md border border-cyan-800/60 rounded-xl p-3 shadow-2xl text-[11px] w-72 mono">
+    <div id="pixel-inspector-hud"
+      class="absolute bottom-4 right-4 z-20 bg-[#080d1a]/95 backdrop-blur-md border border-cyan-800/60 rounded-xl p-3 shadow-2xl text-[11px] w-72 mono">
       <div class="flex items-center justify-between pb-2 border-b border-slate-800">
         <div class="flex items-center gap-1.5">
           <span class="w-2 h-2 rounded-full bg-cyan-400 pulse-hud"></span>
@@ -427,7 +485,9 @@
         </div>
         <div class="pt-1.5 border-t border-slate-800/80 flex items-center justify-between">
           <span class="text-slate-400">Physics State:</span>
-          <span class="px-1.5 py-0.5 rounded bg-cyan-950/80 border border-cyan-700/60 text-cyan-300 font-bold text-[9px]" id="hud-state">
+          <span
+            class="px-1.5 py-0.5 rounded bg-cyan-950/80 border border-cyan-700/60 text-cyan-300 font-bold text-[9px]"
+            id="hud-state">
             🚨 INUNDATION GAIN
           </span>
         </div>
@@ -435,7 +495,8 @@
     </div>
 
     <!-- Quick Location Zoom Shortcuts (Top Right) -->
-    <div class="absolute top-14 right-4 z-20 flex flex-col gap-1 bg-[#070b13]/85 backdrop-blur-md p-1.5 rounded-lg border border-slate-800 text-[11px]">
+    <div
+      class="absolute top-14 right-4 z-20 flex flex-col gap-1 bg-[#070b13]/85 backdrop-blur-md p-1.5 rounded-lg border border-slate-800 text-[11px]">
       <span class="text-[9px] font-bold text-slate-400 px-1 uppercase tracking-wider">Flooded Zones</span>
       <button type="button" onclick="flyToLoc(25.602, 85.160, 14, 'Rajendra Nagar (6-8 ft Flood Sink)')"
         class="text-left px-2 py-1 rounded hover:bg-slate-800 text-slate-300 hover:text-cyan-300 transition">
@@ -460,14 +521,17 @@
     </div>
 
     <!-- METADATA & TELEMETRY SIDE DRAWER -->
-    <aside id="telemetry-drawer" class="absolute top-0 right-0 bottom-0 w-80 bg-[#080c16]/95 backdrop-blur-md border-l border-slate-800 z-30 p-4 overflow-y-auto hidden">
+    <aside id="telemetry-drawer"
+      class="absolute top-0 right-0 bottom-0 w-80 bg-[#080c16]/95 backdrop-blur-md border-l border-slate-800 z-30 p-4 overflow-y-auto hidden">
       <div class="flex items-center justify-between pb-3 border-b border-slate-800">
         <div class="flex items-center gap-1.5">
           <span class="badge-sar">OBSERVED</span>
           <h2 class="font-bold text-sm text-slate-100">SAR Scene Metadata</h2>
         </div>
         <button type="button" onclick="toggleTelemetryDrawer()" class="text-slate-400 hover:text-slate-200">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
         </button>
       </div>
 
@@ -504,10 +568,14 @@
         <!-- Download & GIS Export Deliverables -->
         <div class="pt-2 border-t border-slate-800 space-y-2">
           <div class="text-[10px] font-bold text-slate-400 uppercase">NASA Space Apps Deliverables</div>
-          <a href="Data/08_Processed_Outputs/sar_flood_inundation_patna_2019.geojson" download="sar_flood_inundation_patna_2019.geojson"
+          <a href="Data/08_Processed_Outputs/sar_flood_inundation_patna_2019.geojson"
+            download="sar_flood_inundation_patna_2019.geojson"
             class="flex items-center justify-between p-2 rounded bg-cyan-950/50 hover:bg-cyan-900/70 border border-cyan-800/60 text-cyan-300 font-semibold transition text-[11px]">
             <span class="flex items-center gap-1.5">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
               <span>Download Flood GeoJSON</span>
             </span>
             <span class="mono text-[9px] text-cyan-400">26.54 km²</span>
@@ -515,7 +583,10 @@
           <a href="Data/08_Processed_Outputs/sar_flood_change_metadata.json" download="sar_flood_change_metadata.json"
             class="flex items-center justify-between p-2 rounded bg-slate-900/80 hover:bg-slate-800 border border-slate-700 text-slate-300 font-medium transition text-[11px]">
             <span class="flex items-center gap-1.5">
-              <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
               <span>Download Metadata (JSON)</span>
             </span>
             <span class="mono text-[9px] text-slate-400">100% SAR</span>
@@ -539,7 +610,9 @@
         <div class="pt-2 border-t border-slate-800">
           <div class="text-[10px] font-bold text-slate-500 uppercase mb-1">Radar Scattering Characteristics</div>
           <div class="text-slate-300 text-[11px] leading-relaxed">
-            Active C-band microwave (<span class="mono text-cyan-300">5.405 GHz</span>) interacts with surface roughness. Standing floodwaters produce specular forward scattering, driving backscatter down to <span class="mono text-cyan-300">-41.85 dB</span>.
+            Active C-band microwave (<span class="mono text-cyan-300">5.405 GHz</span>) interacts with surface
+            roughness. Standing floodwaters produce specular forward scattering, driving backscatter down to <span
+              class="mono text-cyan-300">-41.85 dB</span>.
           </div>
         </div>
       </div>
@@ -547,7 +620,8 @@
   </main>
 
   <!-- FOOTER STATUS BAR: Coordinates, Provenance & Scientific Disclaimer -->
-  <footer class="h-7 bg-[#05080e] border-t border-slate-800/80 flex items-center justify-between px-3 text-[10.5px] mono text-slate-400 z-20 shrink-0">
+  <footer
+    class="h-7 bg-[#05080e] border-t border-slate-800/80 flex items-center justify-between px-3 text-[10.5px] mono text-slate-400 z-20 shrink-0">
     <div class="flex items-center gap-3">
       <span class="text-cyan-400">PATNA FLOODPLAIN</span>
       <span>25.594°N, 85.137°E</span>
@@ -560,35 +634,171 @@
     </div>
   </footer>
 
+  <!-- MODAL 0: BILINGUAL USER FLOW GUIDE (Hindi + English) -->
+  <div id="user-flow-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop hidden" onclick="if(event.target === this) closeUserFlowModal()">
+    <div class="bg-[#0b101c] border border-emerald-500/60 rounded-xl max-w-3xl w-full p-6 shadow-2xl overflow-y-auto max-h-[90vh] space-y-4" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div class="flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
+          <h3 class="font-bold text-base text-slate-100 flex items-center gap-2">
+            <span>BHU LOKA User Flow &amp; Walkthrough</span>
+            <span class="text-xs text-emerald-400 font-normal">यूज़र गाइड और प्लेटफ़ॉर्म का उपयोग</span>
+          </h3>
+        </div>
+        <button type="button" onclick="closeUserFlowModal()" class="text-slate-400 hover:text-slate-200 p-1 rounded hover:bg-slate-800">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <p class="text-xs text-slate-300 leading-relaxed">
+        <strong>BHU LOKA (भूलोक)</strong> is a sovereign Earth intelligence workstation built for the <em>NASA Space Apps Challenge 2026: Dancing with the SARs</em>. Below is the complete step-by-step user journey:
+      </p>
+
+      <!-- 4-STEP INTERACTIVE WORKFLOW CARDS -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+        
+        <!-- STEP 1 -->
+        <div class="p-3.5 rounded-lg bg-slate-900/90 border border-sky-500/30 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2 py-0.5 rounded bg-sky-950 text-sky-300 font-bold text-[10px] mono border border-sky-500/40">STEP 1</span>
+            <span class="text-slate-400 text-[11px] mono">Hero 2D View</span>
+          </div>
+          <h4 class="font-bold text-slate-100 text-sm flex items-center gap-1">
+            <span>🛰️ SAR Swipe Comparison</span>
+          </h4>
+          <p class="text-slate-300 leading-normal">
+            <strong>How to use:</strong> Grab the vertical slider curtain (◄||►) and drag left/right. On the left is the pre-flood dry baseline (23 Sep 2019); on the right is peak flood deluge (29 Sep 2019).
+          </p>
+          <p class="text-slate-400 text-[11px] font-hindi">
+            <strong>हिन्दी:</strong> बीच के स्लाइडर को खींचकर देखें कि घने बादलों में भी रडार माइक्रोवेव ने कैसे नए फैले पानी ("नया पानी" - 26.54 km&sup2;) को काले रंग में साफ़ पकड़ा।
+          </p>
+          <div class="pt-1">
+            <button type="button" onclick="closeUserFlowModal(); setViewMode('swipe');" class="px-2.5 py-1 rounded bg-sky-600 hover:bg-sky-500 text-slate-950 font-bold text-[11px] transition">
+              Try Swipe Now &rarr;
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="p-3.5 rounded-lg bg-slate-900/90 border border-cyan-500/30 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 font-bold text-[10px] mono border border-cyan-500/40">STEP 2</span>
+            <span class="text-slate-400 text-[11px] mono">Physics Telemetry</span>
+          </div>
+          <h4 class="font-bold text-slate-100 text-sm flex items-center gap-1">
+            <span>🎯 Live Radar Pixel Inspector</span>
+          </h4>
+          <p class="text-slate-300 leading-normal">
+            <strong>How to use:</strong> Move your mouse over any map coordinate. The HUD inspects physical backscatter &sigma;⁰ in decibels (dB):
+          </p>
+          <div class="space-y-0.5 font-mono text-[10px] text-slate-300 bg-slate-950/70 p-2 rounded border border-slate-800">
+            <div>&bull; &lt; -20 dB: Specular Open River / Inundation (Black)</div>
+            <div>&bull; -14 to -18 dB: Submerged Fields / Street Sinks</div>
+            <div>&bull; &gt; -6 dB: Urban Dihedral Corner Double-Bounce</div>
+          </div>
+          <p class="text-slate-400 text-[11px] font-hindi">
+            <strong>हिन्दी:</strong> नक्शे पर माउस घुमाकर रडार सिग्नलों का वैज्ञानिक मान और सतह की स्थिति सीधे देखें।
+          </p>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="p-3.5 rounded-lg bg-slate-900/90 border border-amber-500/30 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2 py-0.5 rounded bg-amber-950 text-amber-300 font-bold text-[10px] mono border border-amber-500/40">STEP 3</span>
+            <span class="text-slate-400 text-[11px] mono">3D Workstation</span>
+          </div>
+          <h4 class="font-bold text-slate-100 text-sm flex items-center gap-1">
+            <span>🏔️ 3D Patna Terrain &amp; Wards</span>
+          </h4>
+          <p class="text-slate-300 leading-normal">
+            <strong>How to use:</strong> Open <code>bhu_loka_desktop.html</code> to explore Patna's 3D elevation mesh (Copernicus DEM). Click on any ward (Boring Road, Kankarbagh, Danapur) to inspect elevation margins.
+          </p>
+          <p class="text-slate-400 text-[11px] font-hindi">
+            <strong>हिन्दी:</strong> 3D टेरेन में देखें कि बोरिंग रोड (53.2m) सुरक्षित क्यों रहा और कंकड़बाग (44.5m) कटोरे की तरह क्यों डूब गया।
+          </p>
+          <div class="pt-1">
+            <a href="bhu_loka_desktop.html" class="inline-block px-2.5 py-1 rounded bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-[11px] transition">
+              Open 3D Workstation &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="p-3.5 rounded-lg bg-slate-900/90 border border-emerald-500/30 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 font-bold text-[10px] mono border border-emerald-500/40">STEP 4</span>
+            <span class="text-slate-400 text-[11px] mono">Persona Solutions</span>
+          </div>
+          <h4 class="font-bold text-slate-100 text-sm flex items-center gap-1">
+            <span>🌾 4 Personas &amp; BHU LOKA AI</span>
+          </h4>
+          <p class="text-slate-300 leading-normal">
+            <strong>How to use:</strong> Switch tabs on the 3D workstation to solve real problems for 4 groups:
+          </p>
+          <div class="space-y-1 text-[11px] text-slate-300">
+            <div>&bull; <strong>Farmer (किसान):</strong> Crop recommendations &amp; soil moisture</div>
+            <div>&bull; <strong>Health:</strong> Safe outdoor activity window &amp; PM2.5 air alerts</div>
+            <div>&bull; <strong>Safe Home:</strong> Flood risk percentage &amp; real estate safety</div>
+            <div>&bull; <strong>BHU LOKA AI:</strong> Ask questions by voice or text in Hindi, Hinglish, or English with visible tool traces.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- FOOTER ACTIONS -->
+      <div class="pt-3 border-t border-slate-800 flex items-center justify-between text-xs">
+        <a href="bhu_loka_desktop.html" class="text-sky-400 hover:text-sky-300 font-semibold flex items-center gap-1">
+          <span>Switch to 3D Desktop Workstation</span>
+          <span>&rarr;</span>
+        </a>
+        <button type="button" onclick="closeUserFlowModal()" class="px-4 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium transition">
+          Got it (समझ गया)
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- MODAL 1: BILINGUAL AI SAR ANALYST (Hindi + English) -->
   <div id="ai-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop hidden">
-    <div class="bg-[#0b101c] border border-cyan-800/60 rounded-xl max-w-2xl w-full p-5 shadow-2xl overflow-y-auto max-h-[90vh]">
+    <div
+      class="bg-[#0b101c] border border-cyan-800/60 rounded-xl max-w-2xl w-full p-5 shadow-2xl overflow-y-auto max-h-[90vh]">
       <div class="flex items-center justify-between pb-3 border-b border-slate-800">
         <div class="flex items-center gap-2">
           <span class="w-3 h-3 rounded-full bg-cyan-400"></span>
           <h3 class="font-bold text-base text-slate-100">AI SAR Analyst · Grounded Inundation Report</h3>
         </div>
         <button type="button" onclick="closeAiExplanationModal()" class="text-slate-400 hover:text-slate-200">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
         </button>
       </div>
 
       <div class="mt-4 space-y-4 text-xs leading-relaxed">
         <!-- Hindi Section -->
         <div class="bg-slate-900/80 p-3.5 rounded-lg border border-slate-800">
-          <div class="font-bold text-cyan-300 text-sm mb-1.5 font-hindi">सरल हिंदी में समझें (Ground Truth &amp; Analysis)</div>
+          <div class="font-bold text-cyan-300 text-sm mb-1.5 font-hindi">सरल हिंदी में समझें (Ground Truth &amp;
+            Analysis)</div>
           <div class="space-y-2 text-slate-300 font-hindi leading-relaxed text-[12.5px]">
             <p>
               <strong>1. यह क्या दिखाता है?</strong><br>
-              यह मैप 2019 के पटना में आई ऐतिहासिक बाढ़ में डूबे <strong class="text-cyan-300">26.54 वर्ग किमी</strong> इलाके को सटीक दिखाता है। रडार की किरणें पानी की शांत सतह से टकराकर शीशे की तरह आगे निकल जाती हैं (Specular Reflection), जिससे पानी रडार तस्वीर में एकदम काला दिखाई देता है। 23 सितम्बर (सूखा) और 29 सितम्बर (चरम बाढ़) की तस्वीरों की तुलना करके यह <strong class="text-cyan-300">"नया पानी" (Water Gain)</strong> निकाला गया है।
+              यह मैप 2019 के पटना में आई ऐतिहासिक बाढ़ में डूबे <strong class="text-cyan-300">26.54 वर्ग किमी</strong>
+              इलाके को सटीक दिखाता है। रडार की किरणें पानी की शांत सतह से टकराकर शीशे की तरह आगे निकल जाती हैं (Specular
+              Reflection), जिससे पानी रडार तस्वीर में एकदम काला दिखाई देता है। 23 सितम्बर (सूखा) और 29 सितम्बर (चरम
+              बाढ़) की तस्वीरों की तुलना करके यह <strong class="text-cyan-300">"नया पानी" (Water Gain)</strong> निकाला
+              गया है।
             </p>
             <p>
               <strong>2. आम लोगों और शहर पर क्या असर हुआ?</strong><br>
-              राजेंद्र नगर, कंकड़बाग और गंगा के दियारा इलाके सबसे ज़्यादा डूबे (6 से 8 फीट पानी)। नालों का पानी उल्टा शहर में घुस गया था। इस मैप से बचाव दलों (NDRF/SDRF) को यह साफ़ दिखता है कि किन सड़कों पर नावें चल सकती हैं और कौन से ऊंचे इलाके (जैसे बिहटा / IIT पटना) सुरक्षित शरणस्थल हैं।
+              राजेंद्र नगर, कंकड़बाग और गंगा के दियारा इलाके सबसे ज़्यादा डूबे (6 से 8 फीट पानी)। नालों का पानी उल्टा
+              शहर में घुस गया था। इस मैप से बचाव दलों (NDRF/SDRF) को यह साफ़ दिखता है कि किन सड़कों पर नावें चल सकती हैं
+              और कौन से ऊंचे इलाके (जैसे बिहटा / IIT पटना) सुरक्षित शरणस्थल हैं।
             </p>
             <p>
               <strong>3. SAR का सुपरपावर (बादल में भी देखना):</strong><br>
-              27 से 29 सितम्बर 2019 को पटना के आसमान में घने मानसूनी बादल थे। गूगल अर्थ या आम सैटेलाइट बादलों के कारण पूरी तरह अंधे हो चुके थे। लेकिन रडार किरणें बादलों, बारिश और रात के अंधेरे को चीरकर पानी का सटीक नक्शा बना लेती हैं।
+              27 से 29 सितम्बर 2019 को पटना के आसमान में घने मानसूनी बादल थे। गूगल अर्थ या आम सैटेलाइट बादलों के कारण
+              पूरी तरह अंधे हो चुके थे। लेकिन रडार किरणें बादलों, बारिश और रात के अंधेरे को चीरकर पानी का सटीक नक्शा बना
+              लेती हैं।
             </p>
           </div>
         </div>
@@ -597,16 +807,21 @@
         <div class="bg-slate-900/80 p-3.5 rounded-lg border border-slate-800 space-y-2 text-slate-300">
           <div class="font-bold text-sky-300 text-sm mb-1">Scientific Integrity &amp; Methodological Limits</div>
           <ul class="list-disc pl-4 space-y-1 text-slate-400">
-            <li><strong class="text-slate-200">10-Meter Resolution:</strong> Sub-resolution urban alleys (&lt;10m) between multi-storey concrete buildings may escape detection.</li>
-            <li><strong class="text-slate-200">Wind Roughening:</strong> Heavy wind gusts can generate surface capillary waves, increasing radar backscatter and potentially masking shallow water.</li>
-            <li><strong class="text-slate-200">Radar Shadow:</strong> Tall concrete high-rises cast geometric radar shadows that appear dark, controlled via Otsu change differencing.</li>
-            <li><strong class="text-slate-200">Zero Fabricated History:</strong> Derived strictly from Copernicus Sentinel-1 GRD backscatter drop (T* = -3.80 dB).</li>
+            <li><strong class="text-slate-200">10-Meter Resolution:</strong> Sub-resolution urban alleys (&lt;10m)
+              between multi-storey concrete buildings may escape detection.</li>
+            <li><strong class="text-slate-200">Wind Roughening:</strong> Heavy wind gusts can generate surface capillary
+              waves, increasing radar backscatter and potentially masking shallow water.</li>
+            <li><strong class="text-slate-200">Radar Shadow:</strong> Tall concrete high-rises cast geometric radar
+              shadows that appear dark, controlled via Otsu change differencing.</li>
+            <li><strong class="text-slate-200">Zero Fabricated History:</strong> Derived strictly from Copernicus
+              Sentinel-1 GRD backscatter drop (T* = -3.80 dB).</li>
           </ul>
         </div>
       </div>
 
       <div class="mt-4 pt-3 border-t border-slate-800 flex justify-end">
-        <button type="button" onclick="closeAiExplanationModal()" class="px-4 py-1.5 bg-cyan-600 hover:bg-cyan-500 font-semibold text-slate-900 rounded text-xs transition">
+        <button type="button" onclick="closeAiExplanationModal()"
+          class="px-4 py-1.5 bg-cyan-600 hover:bg-cyan-500 font-semibold text-slate-900 rounded text-xs transition">
           Close Report
         </button>
       </div>
@@ -615,14 +830,17 @@
 
   <!-- MODAL 2: NISAR (NASA-ISRO SAR) SCIENCE PERSPECTIVE -->
   <div id="nisar-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop hidden">
-    <div class="bg-[#0d0e1c] border border-purple-700/60 rounded-xl max-w-2xl w-full p-5 shadow-2xl overflow-y-auto max-h-[90vh]">
+    <div
+      class="bg-[#0d0e1c] border border-purple-700/60 rounded-xl max-w-2xl w-full p-5 shadow-2xl overflow-y-auto max-h-[90vh]">
       <div class="flex items-center justify-between pb-3 border-b border-purple-900/60">
         <div class="flex items-center gap-2">
           <span class="w-3 h-3 rounded-full bg-purple-400"></span>
           <h3 class="font-bold text-base text-slate-100">NISAR (NASA-ISRO) · Dual-Frequency Science Capability</h3>
         </div>
         <button type="button" onclick="closeNisarModal()" class="text-slate-400 hover:text-slate-200">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
         </button>
       </div>
 
@@ -630,7 +848,9 @@
         <div class="p-3 bg-purple-950/40 border border-purple-800/40 rounded-lg">
           <div class="font-bold text-purple-300 text-sm mb-1">NASA-ISRO Partnership Breakthrough</div>
           <div class="text-slate-300 text-[11.5px] leading-relaxed">
-            The upcoming <strong>NISAR (NASA-ISRO Synthetic Aperture Radar)</strong> mission carries the world's first dual-frequency L-band (NASA/JPL, 24 cm) and S-band (ISRO, 9.3 cm) SweepSAR architecture. This directly solves the biggest limitation of Sentinel-1 C-band in Gangetic floodplains.
+            The upcoming <strong>NISAR (NASA-ISRO Synthetic Aperture Radar)</strong> mission carries the world's first
+            dual-frequency L-band (NASA/JPL, 24 cm) and S-band (ISRO, 9.3 cm) SweepSAR architecture. This directly
+            solves the biggest limitation of Sentinel-1 C-band in Gangetic floodplains.
           </div>
         </div>
 
@@ -642,7 +862,8 @@
             </div>
             <div class="text-[11px] text-slate-300">
               • Excellent for <strong>open standing water</strong> (specular drop).<br>
-              • <strong class="text-rose-400">Limitation:</strong> Bounces off crop/tree canopies. Water standing beneath banana or paddy crops is hidden by leaf volume scattering.
+              • <strong class="text-rose-400">Limitation:</strong> Bounces off crop/tree canopies. Water standing
+              beneath banana or paddy crops is hidden by leaf volume scattering.
             </div>
           </div>
 
@@ -653,7 +874,8 @@
             </div>
             <div class="text-[11px] text-slate-300">
               • Long microwave penetrates <strong>through vegetative canopy</strong>.<br>
-              • <strong class="text-emerald-400">Superpower:</strong> Causes "trunk-ground double-bounce" reflecting strongly back, detecting <strong>sub-canopy flooded crops</strong> that optical and C-band miss!
+              • <strong class="text-emerald-400">Superpower:</strong> Causes "trunk-ground double-bounce" reflecting
+              strongly back, detecting <strong>sub-canopy flooded crops</strong> that optical and C-band miss!
             </div>
           </div>
         </div>
@@ -680,7 +902,8 @@
       </div>
 
       <div class="mt-4 pt-3 border-t border-purple-900/60 flex justify-end">
-        <button type="button" onclick="closeNisarModal()" class="px-4 py-1.5 bg-purple-700 hover:bg-purple-600 font-semibold text-slate-100 rounded text-xs transition">
+        <button type="button" onclick="closeNisarModal()"
+          class="px-4 py-1.5 bg-purple-700 hover:bg-purple-600 font-semibold text-slate-100 rounded text-xs transition">
           Close NISAR Guide
         </button>
       </div>
@@ -689,31 +912,38 @@
 
   <!-- MODAL 3: RADAR TRANSECT CROSS-SECTION PROFILE -->
   <div id="transect-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop hidden">
-    <div class="bg-[#0b101c] border border-cyan-800/60 rounded-xl max-w-3xl w-full p-5 shadow-2xl overflow-y-auto max-h-[90vh]">
+    <div
+      class="bg-[#0b101c] border border-cyan-800/60 rounded-xl max-w-3xl w-full p-5 shadow-2xl overflow-y-auto max-h-[90vh]">
       <div class="flex items-center justify-between pb-3 border-b border-slate-800">
         <div class="flex items-center gap-2">
-          <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
+          <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+          </svg>
           <h3 class="font-bold text-base text-slate-100">Radar Backscatter Transect · North-South Cross Section</h3>
         </div>
         <button type="button" onclick="closeTransectModal()" class="text-slate-400 hover:text-slate-200">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
         </button>
       </div>
 
       <div class="mt-4 space-y-3 text-xs">
         <div class="text-slate-300 leading-relaxed text-[11.5px]">
-          This 1D transect traces radar backscatter $\sigma^0$ (dB) along Longitude $85.16^\circ\text{E}$ across the Ganga Riverbed into Rajendra Nagar:
+          This 1D transect traces radar backscatter $\sigma^0$ (dB) along Longitude $85.16^\circ\text{E}$ across the
+          Ganga Riverbed into Rajendra Nagar:
         </div>
 
         <!-- SVG TRANSECT GRAPH -->
         <div class="p-3 bg-[#070b13] border border-slate-800 rounded-lg">
           <svg viewBox="0 0 680 260" class="w-full h-auto select-none">
             <!-- Grid Lines -->
-            <line x1="60" y1="30" x2="650" y2="30" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="60" y1="80" x2="650" y2="80" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="60" y1="130" x2="650" y2="130" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="60" y1="180" x2="650" y2="180" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="60" y1="220" x2="650" y2="220" stroke="#334155" stroke-width="1.5"/>
+            <line x1="60" y1="30" x2="650" y2="30" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3" />
+            <line x1="60" y1="80" x2="650" y2="80" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3" />
+            <line x1="60" y1="130" x2="650" y2="130" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3" />
+            <line x1="60" y1="180" x2="650" y2="180" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3" />
+            <line x1="60" y1="220" x2="650" y2="220" stroke="#334155" stroke-width="1.5" />
 
             <!-- Y-Axis Labels (dB) -->
             <text x="50" y="34" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="end">0 dB</text>
@@ -723,25 +953,31 @@
             <text x="50" y="224" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="end">-40 dB</text>
 
             <!-- Shaded Flood Gain Area in Rajendra Nagar (Delta Drop) -->
-            <path d="M 400 90 Q 450 92 480 94 L 480 188 Q 450 185 400 178 Z" fill="rgba(0, 229, 255, 0.18)" stroke="none"/>
+            <path d="M 400 90 Q 450 92 480 94 L 480 188 Q 450 185 400 178 Z" fill="rgba(0, 229, 255, 0.18)"
+              stroke="none" />
 
             <!-- Pre-Flood Baseline Curve (23 Sep 2019) -->
-            <path d="M 60 95 C 130 90, 180 165, 230 168 C 280 170, 310 85, 360 82 C 400 90, 450 92, 500 88 C 550 92, 600 100, 650 98"
-              fill="none" stroke="#64748b" stroke-width="2.5" stroke-dasharray="4,4"/>
+            <path
+              d="M 60 95 C 130 90, 180 165, 230 168 C 280 170, 310 85, 360 82 C 400 90, 450 92, 500 88 C 550 92, 600 100, 650 98"
+              fill="none" stroke="#64748b" stroke-width="2.5" stroke-dasharray="4,4" />
 
             <!-- Peak Deluge Curve (29 Sep 2019) -->
-            <path d="M 60 145 C 130 152, 180 172, 230 175 C 280 172, 310 88, 360 85 C 400 178, 450 185, 500 182 C 550 140, 600 110, 650 102"
-              fill="none" stroke="#00e5ff" stroke-width="3"/>
+            <path
+              d="M 60 145 C 130 152, 180 172, 230 175 C 280 172, 310 88, 360 85 C 400 178, 450 185, 500 182 C 550 140, 600 110, 650 102"
+              fill="none" stroke="#00e5ff" stroke-width="3" />
 
             <!-- Landmark Callouts -->
-            <line x1="180" y1="220" x2="180" y2="25" stroke="#334155" stroke-width="1" stroke-dasharray="2,2"/>
-            <text x="180" y="20" fill="#38bdf8" font-size="9.5" font-family="sans-serif" text-anchor="middle" font-weight="bold">Main Ganga Stream</text>
+            <line x1="180" y1="220" x2="180" y2="25" stroke="#334155" stroke-width="1" stroke-dasharray="2,2" />
+            <text x="180" y="20" fill="#38bdf8" font-size="9.5" font-family="sans-serif" text-anchor="middle"
+              font-weight="bold">Main Ganga Stream</text>
 
-            <line x1="360" y1="220" x2="360" y2="50" stroke="#334155" stroke-width="1" stroke-dasharray="2,2"/>
-            <text x="360" y="45" fill="#f59e0b" font-size="9.5" font-family="sans-serif" text-anchor="middle" font-weight="bold">Embankment / Bank</text>
+            <line x1="360" y1="220" x2="360" y2="50" stroke="#334155" stroke-width="1" stroke-dasharray="2,2" />
+            <text x="360" y="45" fill="#f59e0b" font-size="9.5" font-family="sans-serif" text-anchor="middle"
+              font-weight="bold">Embankment / Bank</text>
 
-            <line x1="450" y1="220" x2="450" y2="25" stroke="#00e5ff" stroke-width="1" stroke-dasharray="2,2"/>
-            <text x="450" y="20" fill="#00e5ff" font-size="9.5" font-family="sans-serif" text-anchor="middle" font-weight="bold">Rajendra Nagar Sump (-14.3 dB)</text>
+            <line x1="450" y1="220" x2="450" y2="25" stroke="#00e5ff" stroke-width="1" stroke-dasharray="2,2" />
+            <text x="450" y="20" fill="#00e5ff" font-size="9.5" font-family="sans-serif" text-anchor="middle"
+              font-weight="bold">Rajendra Nagar Sump (-14.3 dB)</text>
 
             <!-- X-Axis Labels -->
             <text x="80" y="240" fill="#94a3b8" font-size="10" font-family="monospace">25.64°N (Diara)</text>
@@ -753,15 +989,19 @@
 
         <div class="flex items-center justify-between p-2 rounded bg-slate-900 border border-slate-800 text-[11px]">
           <div class="flex items-center gap-3">
-            <span class="flex items-center gap-1.5"><span class="w-3 h-0.5 bg-slate-400 inline-block border-b border-dashed"></span><span class="text-slate-400">Pre-Flood Baseline (23 Sep)</span></span>
-            <span class="flex items-center gap-1.5"><span class="w-3 h-1 bg-[#00e5ff] inline-block"></span><span class="text-cyan-300 font-bold">Peak Deluge (29 Sep)</span></span>
+            <span class="flex items-center gap-1.5"><span
+                class="w-3 h-0.5 bg-slate-400 inline-block border-b border-dashed"></span><span
+                class="text-slate-400">Pre-Flood Baseline (23 Sep)</span></span>
+            <span class="flex items-center gap-1.5"><span class="w-3 h-1 bg-[#00e5ff] inline-block"></span><span
+                class="text-cyan-300 font-bold">Peak Deluge (29 Sep)</span></span>
           </div>
           <span class="text-cyan-400 mono">Otsu Drop Threshold T* = -3.80 dB</span>
         </div>
       </div>
 
       <div class="mt-4 pt-3 border-t border-slate-800 flex justify-end">
-        <button type="button" onclick="closeTransectModal()" class="px-4 py-1.5 bg-cyan-600 hover:bg-cyan-500 font-semibold text-slate-900 rounded text-xs transition">
+        <button type="button" onclick="closeTransectModal()"
+          class="px-4 py-1.5 bg-cyan-600 hover:bg-cyan-500 font-semibold text-slate-900 rounded text-xs transition">
           Close Transect
         </button>
       </div>
@@ -770,14 +1010,20 @@
 
   <!-- MODAL 4: PATNA WARDS EXPOSURE & INUNDATION MATRIX -->
   <div id="ward-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop hidden">
-    <div class="bg-[#0b101c] border border-slate-800 rounded-xl max-w-3xl w-full p-5 shadow-2xl overflow-y-auto max-h-[90vh]">
+    <div
+      class="bg-[#0b101c] border border-slate-800 rounded-xl max-w-3xl w-full p-5 shadow-2xl overflow-y-auto max-h-[90vh]">
       <div class="flex items-center justify-between pb-3 border-b border-slate-800">
         <div class="flex items-center gap-2">
-          <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          </svg>
           <h3 class="font-bold text-base text-slate-100">Patna Wards · Multi-Hazard Flood Exposure Matrix</h3>
         </div>
         <button type="button" onclick="closeWardModal()" class="text-slate-400 hover:text-slate-200">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
         </button>
       </div>
 
@@ -800,48 +1046,70 @@
                 <td class="p-2">47.2 m</td>
                 <td class="p-2 text-cyan-400 font-bold">4.12 km²</td>
                 <td class="p-2">145,000</td>
-                <td class="p-2"><span class="px-1.5 py-0.5 rounded bg-rose-950/80 border border-rose-700/60 text-rose-300 font-bold text-[9.5px]">CRITICAL (6-8 ft)</span></td>
-                <td class="p-2 text-right"><button onclick="flyToLoc(25.602, 85.160, 14, 'Rajendra Nagar'); closeWardModal();" class="text-cyan-400 hover:underline">Fly ✈</button></td>
+                <td class="p-2"><span
+                    class="px-1.5 py-0.5 rounded bg-rose-950/80 border border-rose-700/60 text-rose-300 font-bold text-[9.5px]">CRITICAL
+                    (6-8 ft)</span></td>
+                <td class="p-2 text-right"><button
+                    onclick="flyToLoc(25.602, 85.160, 14, 'Rajendra Nagar'); closeWardModal();"
+                    class="text-cyan-400 hover:underline">Fly ✈</button></td>
               </tr>
               <tr class="hover:bg-slate-900/50 transition">
                 <td class="p-2 font-bold text-slate-100">Kankarbagh Depression</td>
                 <td class="p-2">48.5 m</td>
                 <td class="p-2 text-cyan-400 font-bold">5.88 km²</td>
                 <td class="p-2">210,000</td>
-                <td class="p-2"><span class="px-1.5 py-0.5 rounded bg-amber-950/80 border border-amber-700/60 text-amber-300 font-bold text-[9.5px]">HIGH (4-6 ft)</span></td>
-                <td class="p-2 text-right"><button onclick="flyToLoc(25.589, 85.155, 14, 'Kankarbagh'); closeWardModal();" class="text-cyan-400 hover:underline">Fly ✈</button></td>
+                <td class="p-2"><span
+                    class="px-1.5 py-0.5 rounded bg-amber-950/80 border border-amber-700/60 text-amber-300 font-bold text-[9.5px]">HIGH
+                    (4-6 ft)</span></td>
+                <td class="p-2 text-right"><button
+                    onclick="flyToLoc(25.589, 85.155, 14, 'Kankarbagh'); closeWardModal();"
+                    class="text-cyan-400 hover:underline">Fly ✈</button></td>
               </tr>
               <tr class="hover:bg-slate-900/50 transition">
                 <td class="p-2 font-bold text-slate-100">Ganga Diara Floodplain</td>
                 <td class="p-2">46.8 m</td>
                 <td class="p-2 text-cyan-400 font-bold">12.45 km²</td>
                 <td class="p-2">45,000</td>
-                <td class="p-2"><span class="px-1.5 py-0.5 rounded bg-rose-950/80 border border-rose-700/60 text-rose-300 font-bold text-[9.5px]">SUBMERGED (8-11 ft)</span></td>
-                <td class="p-2 text-right"><button onclick="flyToLoc(25.626, 85.195, 13, 'Ganga Diara'); closeWardModal();" class="text-cyan-400 hover:underline">Fly ✈</button></td>
+                <td class="p-2"><span
+                    class="px-1.5 py-0.5 rounded bg-rose-950/80 border border-rose-700/60 text-rose-300 font-bold text-[9.5px]">SUBMERGED
+                    (8-11 ft)</span></td>
+                <td class="p-2 text-right"><button
+                    onclick="flyToLoc(25.626, 85.195, 13, 'Ganga Diara'); closeWardModal();"
+                    class="text-cyan-400 hover:underline">Fly ✈</button></td>
               </tr>
               <tr class="hover:bg-slate-900/50 transition">
                 <td class="p-2 font-bold text-slate-100">Digha / Danapur Fringes</td>
                 <td class="p-2">50.1 m</td>
                 <td class="p-2 text-cyan-400 font-bold">3.24 km²</td>
                 <td class="p-2">68,000</td>
-                <td class="p-2"><span class="px-1.5 py-0.5 rounded bg-sky-950/80 border border-sky-700/60 text-sky-300 font-semibold text-[9.5px]">MODERATE (2-4 ft)</span></td>
-                <td class="p-2 text-right"><button onclick="flyToLoc(25.630, 85.080, 13, 'Digha'); closeWardModal();" class="text-cyan-400 hover:underline">Fly ✈</button></td>
+                <td class="p-2"><span
+                    class="px-1.5 py-0.5 rounded bg-sky-950/80 border border-sky-700/60 text-sky-300 font-semibold text-[9.5px]">MODERATE
+                    (2-4 ft)</span></td>
+                <td class="p-2 text-right"><button onclick="flyToLoc(25.630, 85.080, 13, 'Digha'); closeWardModal();"
+                    class="text-cyan-400 hover:underline">Fly ✈</button></td>
               </tr>
               <tr class="hover:bg-slate-900/50 transition">
                 <td class="p-2 font-bold text-slate-100">Patna Junction Underpass</td>
                 <td class="p-2">49.3 m</td>
                 <td class="p-2 text-cyan-400 font-bold">0.85 km²</td>
                 <td class="p-2">85,000</td>
-                <td class="p-2"><span class="px-1.5 py-0.5 rounded bg-amber-950/80 border border-amber-700/60 text-amber-300 font-bold text-[9.5px]">TRANSIT LOCK</span></td>
-                <td class="p-2 text-right"><button onclick="flyToLoc(25.600, 85.125, 14, 'Patna Junction'); closeWardModal();" class="text-cyan-400 hover:underline">Fly ✈</button></td>
+                <td class="p-2"><span
+                    class="px-1.5 py-0.5 rounded bg-amber-950/80 border border-amber-700/60 text-amber-300 font-bold text-[9.5px]">TRANSIT
+                    LOCK</span></td>
+                <td class="p-2 text-right"><button
+                    onclick="flyToLoc(25.600, 85.125, 14, 'Patna Junction'); closeWardModal();"
+                    class="text-cyan-400 hover:underline">Fly ✈</button></td>
               </tr>
               <tr class="hover:bg-slate-900/50 transition bg-emerald-950/20">
                 <td class="p-2 font-bold text-emerald-300">Bihta / IIT Patna (Natural Ridge)</td>
                 <td class="p-2 text-emerald-400 font-bold">55.2 m</td>
                 <td class="p-2 text-emerald-400 font-bold">0.00 km²</td>
                 <td class="p-2">35,000</td>
-                <td class="p-2"><span class="px-1.5 py-0.5 rounded bg-emerald-950/80 border border-emerald-700/60 text-emerald-300 font-bold text-[9.5px]">SAFE REFUGE</span></td>
-                <td class="p-2 text-right"><button onclick="flyToLoc(25.536, 84.851, 13, 'Bihta'); closeWardModal();" class="text-emerald-400 hover:underline">Fly ✈</button></td>
+                <td class="p-2"><span
+                    class="px-1.5 py-0.5 rounded bg-emerald-950/80 border border-emerald-700/60 text-emerald-300 font-bold text-[9.5px]">SAFE
+                    REFUGE</span></td>
+                <td class="p-2 text-right"><button onclick="flyToLoc(25.536, 84.851, 13, 'Bihta'); closeWardModal();"
+                    class="text-emerald-400 hover:underline">Fly ✈</button></td>
               </tr>
             </tbody>
           </table>
@@ -849,7 +1117,8 @@
       </div>
 
       <div class="mt-4 pt-3 border-t border-slate-800 flex justify-end">
-        <button type="button" onclick="closeWardModal()" class="px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded text-xs transition">
+        <button type="button" onclick="closeWardModal()"
+          class="px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded text-xs transition">
           Close Matrix
         </button>
       </div>
@@ -862,7 +1131,9 @@
       <div class="flex items-center justify-between pb-3 border-b border-slate-800">
         <h3 class="font-bold text-base text-slate-100">BHU LOKA Workstation Modules</h3>
         <button type="button" onclick="closeRoadmapModal()" class="text-slate-400 hover:text-slate-200">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
         </button>
       </div>
 
@@ -870,7 +1141,8 @@
         <div class="p-3 rounded bg-slate-900 border border-cyan-800/40 flex items-start justify-between">
           <div>
             <div class="font-bold text-cyan-300">Dancing with the SARs (Current Hero Module)</div>
-            <div class="text-slate-400 mt-0.5">Dual-date Sentinel-1 SAR flood inundation, Otsu change detection, and swipe comparison.</div>
+            <div class="text-slate-400 mt-0.5">Dual-date Sentinel-1 SAR flood inundation, Otsu change detection, and
+              swipe comparison.</div>
           </div>
           <span class="badge-sar shrink-0">ACTIVE</span>
         </div>
@@ -878,15 +1150,19 @@
         <div class="p-3 rounded bg-slate-900/60 border border-slate-800 flex items-start justify-between">
           <div>
             <div class="font-bold text-slate-300">Sovereign 3D Earth Globe &amp; 10,797 Live Satellites</div>
-            <div class="text-slate-400 mt-0.5">Three.js WebGL globe, CelesTrak GP orbital propagation, 23.44° axial tilt, and heliocentric solar system reference.</div>
+            <div class="text-slate-400 mt-0.5">Three.js WebGL globe, CelesTrak GP orbital propagation, 23.44° axial
+              tilt, and heliocentric solar system reference.</div>
           </div>
-          <a href="bhu_loka_cyber_dashboard.html" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded text-[11px] shrink-0 font-medium">Launch 3D</a>
+          <a href="bhu_loka_cyber_dashboard.html"
+            class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded text-[11px] shrink-0 font-medium">Launch
+            3D</a>
         </div>
 
         <div class="p-3 rounded bg-slate-900/60 border border-slate-800 flex items-start justify-between">
           <div>
             <div class="font-bold text-slate-300">Precision Agriculture Kisan Engine (R0.1 MVP)</div>
-            <div class="text-slate-400 mt-0.5">Multi-point farm polygon delineation, SoilGrids 250m organic carbon, Sentinel-2 NDVI, Agmarknet mandi trends.</div>
+            <div class="text-slate-400 mt-0.5">Multi-point farm polygon delineation, SoilGrids 250m organic carbon,
+              Sentinel-2 NDVI, Agmarknet mandi trends.</div>
           </div>
           <span class="text-slate-500 font-mono text-[10px] shrink-0">ROADMAP</span>
         </div>
@@ -894,14 +1170,16 @@
         <div class="p-3 rounded bg-slate-900/60 border border-slate-800 flex items-start justify-between">
           <div>
             <div class="font-bold text-slate-300">Human Health &amp; Thermal Stress (UTCI/WBGT)</div>
-            <div class="text-slate-400 mt-0.5">COST Action 730 UTCI thermal radiation, open-pit worker safety protocols, and heatwave early warning.</div>
+            <div class="text-slate-400 mt-0.5">COST Action 730 UTCI thermal radiation, open-pit worker safety protocols,
+              and heatwave early warning.</div>
           </div>
           <span class="text-slate-500 font-mono text-[10px] shrink-0">ROADMAP</span>
         </div>
       </div>
 
       <div class="mt-5 pt-3 border-t border-slate-800 flex justify-end">
-        <button type="button" onclick="closeRoadmapModal()" class="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded text-xs transition">
+        <button type="button" onclick="closeRoadmapModal()"
+          class="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded text-xs transition">
           Close
         </button>
       </div>
@@ -1296,6 +1574,9 @@
     }
 
     // ── MODAL TOGGLES ──
+    function openUserFlowModal() { document.getElementById('user-flow-modal').classList.remove('hidden'); }
+    function closeUserFlowModal() { document.getElementById('user-flow-modal').classList.add('hidden'); }
+
     function openAiExplanationModal() { document.getElementById('ai-modal').classList.remove('hidden'); }
     function closeAiExplanationModal() { document.getElementById('ai-modal').classList.add('hidden'); }
 
