@@ -109,10 +109,10 @@ def build_knowledge_base() -> List[DocDict]:
         "category": "thermal_heat",
         "keywords": ["heat", "temperature", "modis", "lst", "thermal", "heatwave", "garmi", "uhi", "summer", "may", "june"],
         "content": (
-            "NASA Terra MODIS (MOD11A1 v061, 1km thermal sensor) tracked 91 consecutive days across April 1 - June 30, 2019. "
-            "Mean daytime urban core Land Surface Temperature (LST at 10:30 AM overpass) was 37.29°C. During the historic "
-            "Bihar heatwave on May 19, 2019 (DOY 139), peak urban surface temperature reached 46.25°C. Built-up asphalt corridors "
-            "exhibited an intense Surface Urban Heat Island (SUHI) delta of +1.03°C over rural surroundings."
+            "NASA Terra MODIS (MOD11A1 v061, 1km thermal sensor) tracked 91 consecutive days across April 1 - June 30, 2019 "
+            "(61 clear-sky scenes). Mean daytime urban core Land Surface Temperature (LST at 10:30 AM overpass) was 37.29°C "
+            "with a peak urban pixel of 46.25°C (hottest urban-core overpass DOY 139: 45.32°C). Surrounding bare fallow "
+            "cropland averaged 38.32°C, yielding a morning urban-minus-rural LST delta of -1.03°C."
         )
     })
 
@@ -224,7 +224,7 @@ def build_knowledge_base() -> List[DocDict]:
         "category": "identity_grounding",
         "keywords": ["prithvi", "identity", "name", "bhu loka", "bhuloka", "naam", "नाम", "पृथ्वी", "पहचान"],
         "content": (
-            "The sovereign project identity is strictly BHU LOKA (भूलोक) — meaning 'Earth Realm' in Sanskrit. "
+            "The sovereign project identity is strictly BHU LOKA (भूलोक) — meaning 'Earth Domain' in Sanskrit. "
             "It is completely independent, indigenously developed at IIT Patna, and must NEVER be confused with or referred to as PRITHVI. "
             "BHU LOKA was engineered specifically for multi-hazard surveillance (SAR radar, Copernicus DEM, MODIS thermal, and NCRB crime data) "
             "to ensure 100% sovereign data autonomy for India without reliance on foreign systems."

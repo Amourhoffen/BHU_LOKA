@@ -2,7 +2,7 @@
 BHU LOKA (भूलोक) - GEOAI & TORCHGEO MULTI-HAZARD OMNI-ENGINE
 ========================================================================================
 Synthesis of Core Methodologies from Repository Zoo:
-1. 'geoai' & 'GeoAI-Tutorials' : Bi-temporal change detection, foundation embeddings (Prithvi/ViT),
+1. 'geoai' & 'GeoAI-Tutorials' : Bi-temporal change detection, geospatial ViT embeddings,
                                  and spatial environmental feature fusion (AQI / PM2.5).
 2. 'torchgeo'                  : Multi-spectral tensor pipelines and spatial residual encoders.
 3. 'flood-mapping-tool'        : Automated SAR backscatter difference & double-bounce physics.

@@ -1,6 +1,6 @@
 """
 BHU LOKA (भूलोक) - Sovereign Geospatial Model Context Protocol (MCP) Server
-Provides 8 real MCP Tools & 2 Resources for AI coding agents and desktop assistants:
+Provides 11 real MCP Tools & 2 Resources for AI coding agents and desktop assistants:
   - query_bhu_loka_rag            : Dual-Agent Transformer + BM25 + FAISS + Cross Re-Ranker QA
   - get_patna_ward_ulsi           : Calibrated DEM, Sentinel-1 SAR, NCRB/Q390 & ULSI metrics
   - get_india_sovereign_hubs      : All-India 36-State sovereign bounds (6.75N-37.10N) + 12 hubs
@@ -9,6 +9,9 @@ Provides 8 real MCP Tools & 2 Resources for AI coding agents and desktop assista
   - build_3d_location_hologram    : Live Open-Meteo Copernicus/SRTM 90m DEM 8x8 grid for any city
   - get_google_earth_gee_workflow : GEE (`Repos/earthengine-api`) SDK status + India gl=IN tiles + code
   - get_system_api_health         : Zero-key vs optional credential status diagnostics
+  - analyze_site_solar_utci       : UTM projection, NOAA solar/solstice shadows, Bröde UTCI & wind rose
+  - fetch_osm_site_footprint_context: Live OpenStreetMap Overpass 350m-1000m buildings/roads/amenities
+  - export_site_cad_or_map        : Metric AutoCAD DXF, layered SVG, transect SVG, GLB 2.0, OBJ, GeoJSON
 
 Author: Prince Kumar (IIT Patna, PA2511CDH37) | Supervisor: Pallav Rustogi
 """
@@ -38,6 +41,11 @@ from bhu_loka_live_api import (
     query_hybrid_rag,
     warmup_rag_pipeline,
 )
+from bhu_loka_site_studio import (
+    export_site_package,
+    fetch_osm_site_context,
+    run_site_analysis,
+)
 from google_earth_engine_connector import BhuLokaGoogleEarthConnector
 
 
@@ -49,8 +57,8 @@ def create_mcp_server(host: str = "127.0.0.1", port: int = 8001) -> FastMCP:
         name="bhu-loka-geospatial",
         instructions=(
             "BHU LOKA (भूलोक) Sovereign Geospatial Decision Support Server built at IIT Patna "
-            "by Prince Kumar (PA2511CDH37) under Pallav Rustogi. Strictly NEVER refer to this project "
-            "as PRITHVI. Use these tools for calibrated Patna ULSI/SAR/DEM audits, complete "
+            "by Prince Kumar (PA2511CDH37) under Pallav Rustogi. Use exclusively the canonical project "
+            "name BHU LOKA. Use these tools for calibrated Patna ULSI/SAR/DEM audits, complete "
             "6.75N-37.10N 36-State India hazard hubs, live Open-Meteo weather & GloFAS river flood "
             "discharge, and Repos/earthengine-api Google Earth workflows."
         ),
@@ -128,6 +136,71 @@ def create_mcp_server(host: str = "127.0.0.1", port: int = 8001) -> FastMCP:
     ) -> Dict[str, Any]:
         """Dynamically fetch a Copernicus/SRTM 90m DEM elevation grid via Open-Meteo for Agent-2 3D terrain hologram synthesis."""
         return fetch_location_3d_dem(location_name=location_name, lat=lat, lon=lon, span_deg=span_deg)
+
+    @mcp.tool()
+    def analyze_site_solar_utci(
+        lat: float,
+        lon: float,
+        date_iso: str = "",
+        radius_m: float = 350.0,
+        building_height_m: float = 10.0,
+    ) -> Dict[str, Any]:
+        """Compute UTM metric coords, deterministic NOAA solar/solstice shadows, and live Bröde UTCI thermal comfort & wind rose."""
+        return run_site_analysis(
+            lat=lat,
+            lon=lon,
+            date_iso=date_iso.strip() or None,
+            radius_m=radius_m,
+            building_height_m=building_height_m,
+            include_osm=False,
+            include_utci=True,
+            include_dem=False,
+        )
+
+    @mcp.tool()
+    def fetch_osm_site_footprint_context(
+        lat: float,
+        lon: float,
+        radius_m: float = 350.0,
+    ) -> Dict[str, Any]:
+        """Query live OpenStreetMap Overpass context (building footprints/heights, coverage %, roads, parks, amenities) within 100m-1000m."""
+        return fetch_osm_site_context(lat=lat, lon=lon, radius_m=radius_m)
+
+    @mcp.tool()
+    def export_site_cad_or_map(
+        lat: float,
+        lon: float,
+        format: str = "geojson",
+        place_name: str = "Site",
+        radius_m: float = 350.0,
+        span_deg: float = 0.04,
+    ) -> Dict[str, Any]:
+        """Export site terrain + OSM context as true-scale metric DXF, layered SVG, elevation profile SVG, glTF 2.0 GLB, OBJ, or GeoJSON."""
+        pkg = export_site_package(
+            lat=lat,
+            lon=lon,
+            fmt=format,
+            place_name=place_name,
+            radius_m=radius_m,
+            span_deg=span_deg,
+        )
+        export_dir = PIPELINES_DIR.parent / "Data" / "08_Processed_Outputs" / "exports"
+        export_dir.mkdir(parents=True, exist_ok=True)
+        out_path = export_dir / Path(pkg["filename"]).name
+        out_path.write_bytes(pkg["bytes"])
+        preview = None
+        if pkg["format"] in {"geojson", "dxf", "svg", "profile_svg", "obj"}:
+            preview = pkg["bytes"][:4096].decode("utf-8", errors="replace")
+        return {
+            "format": pkg["format"],
+            "filename": pkg["filename"],
+            "media_type": pkg["media_type"],
+            "size_bytes": pkg["size_bytes"],
+            "saved_path": str(out_path),
+            "analysis_summary": pkg["analysis_summary"],
+            "attribution": pkg["attribution"],
+            "preview_excerpt": preview,
+        }
 
     @mcp.resource("bhu-loka://sovereign/metadata")
     def sovereign_metadata() -> str:

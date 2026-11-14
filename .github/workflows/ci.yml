@@ -1,0 +1,156 @@
+name: BHU LOKA Sovereign Intelligence CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - Test
+      - 'test*'
+  pull_request:
+    branches:
+      - main
+      - master
+      - Test
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
+jobs:
+  # ── JOB 1: CODE QUALITY & SYNTAX VALIDATION ──
+  syntax-and-lint:
+    name: Code Quality & Syntax Gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python Runtime
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Setup Node Runtime
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate Python Syntax (py_compile)
+        run: |
+          echo "Compiling Python pipeline & RAG modules..."
+          python -m py_compile Pipelines/*.py
+          python -m py_compile Models/04_Hybrid_RAG/enterprise_rag_app/main.py
+          python -m py_compile Models/04_Hybrid_RAG/enterprise_rag_app/rag/*.py
+          python -m py_compile Models/04_Hybrid_RAG/enterprise_rag_app/api/*.py
+          echo "All Python source files passed compilation."
+
+      - name: Validate JavaScript & HTML Syntax
+        run: |
+          node -e "
+            const fs = require('fs');
+            const files = [
+              'Assets/vendor/bhu_loka_location_engine.js',
+              'Assets/vendor/bhu_loka_agri.js',
+              'Assets/vendor/bhu_loka_worker.js',
+              'Assets/vendor/bhu_loka_urban.js',
+              'Assets/vendor/bhu_loka_india_intel.js'
+            ];
+            for (const f of files) {
+              if (fs.existsSync(f)) {
+                const code = fs.readFileSync(f, 'utf8');
+                new Function(code);
+                console.log('PASS: ' + f);
+              }
+            }
+          "
+
+      - name: Validate Core JSON Schemas
+        run: |
+          python -c "
+          import json, glob
+          for p in ['Data/01_Boundaries/*.json', 'Data/08_Processed_Outputs/*.json']:
+              for f in glob.glob(p):
+                  try:
+                      with open(f, 'r', encoding='utf-8') as fh:
+                          json.load(fh)
+                      print(f'Valid JSON: {f}')
+                  except Exception as e:
+                      print(f'JSON Error in {f}: {e}')
+          "
+
+  # ── JOB 2: FRONTEND ASTRONOMICAL & WORKSTATION VERIFICATION ──
+  frontend-ephemeris-verification:
+    name: Three.js World vs Solar System Verification
+    runs-on: ubuntu-latest
+    needs: [syntax-and-lint]
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python Runtime
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Google Chrome (Headless)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget gnupg
+          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg
+          echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+
+      - name: Run Headless Verification Suite
+        run: |
+          chmod +x .github/scripts/verify_frontend_headless.py
+          python .github/scripts/verify_frontend_headless.py
+
+  # ── JOB 3: PYTHON BACKEND & RAG TESTS ──
+  python-backend-tests:
+    name: Backend API & Intelligence Engine Tests
+    runs-on: ubuntu-latest
+    needs: [syntax-and-lint]
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python Runtime
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install CI Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-ci.txt
+
+      - name: Run Pytest Test Suite
+        env:
+          BHU_LOKA_ENV: test
+          PYTHONPATH: .:Models/04_Hybrid_RAG/enterprise_rag_app:Pipelines
+        run: |
+          pytest Models/04_Hybrid_RAG/enterprise_rag_app/tests/test_agri_engine.py \
+                 Models/04_Hybrid_RAG/enterprise_rag_app/tests/test_urban_business.py \
+                 Models/04_Hybrid_RAG/enterprise_rag_app/tests/test_worker_health.py \
+                 -v --tb=short
+
+  # ── JOB 4: PIPELINE RELEASE & INTEGRITY GATE ──
+  ci-cd-summary-gate:
+    name: Sovereign Release Sign-Off
+    runs-on: ubuntu-latest
+    needs: [frontend-ephemeris-verification, python-backend-tests]
+    if: always()
+    steps:
+      - name: Check Status of Upstream Jobs
+        run: |
+          if [ "${{ needs.frontend-ephemeris-verification.result }}" != "success" ] || [ "${{ needs.python-backend-tests.result }}" != "success" ]; then
+            echo "CI/CD Pipeline failed upstream checks."
+            exit 1
+          fi
+          echo "All CI/CD Pipeline Gates (Syntax, Headless Ephemeris, and Backend APIs) Passed Cleanly."

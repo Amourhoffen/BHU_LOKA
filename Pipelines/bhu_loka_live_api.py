@@ -497,6 +497,8 @@ def _propagate_gp_record(rec: Dict[str, Any], now_utc: datetime) -> Optional[Dic
             "inc_deg": round(inc_deg, 2),
             "mean_motion": round(mm_rev_day, 4),
             "raan_deg": round(raan_deg, 2),
+            "epoch_utc": epoch_dt.isoformat(),
+            "tracking_type": "ORBITAL_EPHEMERIS_ONLY",
         }
     except Exception:
         return None
@@ -667,7 +669,15 @@ def fetch_live_satellites(constellation: str = "all", timeout: float = 28.0) -> 
             "live_online": False,
             "cached": False,
             "fetched_at_utc": now_utc.strftime("%Y-%m-%d %H:%M:%S UTC"),
+            "updated_at_utc": now_utc.isoformat(),
+            "data_classification": "ORBITAL_EPHEMERIS_ONLY",
             "source_urls": source_urls,
+            "provenance": {
+                "celestrak": "CelesTrak NORAD GP/TLE Two-Body Keplerian Propagation (not live spacecraft telemetry)",
+                "iss_spot": "api.wheretheiss.at / open-notify ephemeris tracker",
+                "limitations": "Catalog unreachable offline; zero orbital positions fabricated.",
+            },
+            "limitations": "CelesTrak NORAD GP/TLE orbital tracking is ephemeris propagation only, not live spacecraft payload telemetry.",
             "counts": None,
             "iss_live": None,
             "satellites": [],
@@ -742,7 +752,16 @@ def fetch_live_satellites(constellation: str = "all", timeout: float = 28.0) -> 
         "live_online": True,
         "cached": cached,
         "fetched_at_utc": now_utc.strftime("%Y-%m-%d %H:%M:%S UTC"),
+        "updated_at_utc": now_utc.isoformat(),
+        "data_classification": "ORBITAL_EPHEMERIS_ONLY",
         "source_urls": source_urls,
+        "provenance": {
+            "celestrak": "CelesTrak NORAD GP/TLE Two-Body Keplerian Propagation (orbital ephemeris only, not spacecraft telemetry)",
+            "iss_spot": (iss_live or {}).get("source") or "api.wheretheiss.at ephemeris tracker",
+            "eo_catalog_filter": "Verified mission names only (NASA Terra/Aqua/Landsat, ESA Sentinel, ISRO Cartosat/Resourcesat/RISAT/Oceansat/EOS, NOAA/MetOp/Himawari, ISS/CSS, Starlink)",
+            "cloud_infra_exclusion": "No AWS cloud hosting metadata is used or displayed as satellite sensor telemetry.",
+        },
+        "limitations": "CelesTrak GP/TLE Keplerian propagation estimates orbital position/inclination/RAAN only and does not expose onboard spacecraft payload or sensor telemetry.",
         "counts": {
             "total_active_catalog": len(records),
             "starlink_active": len(starlink_recs),

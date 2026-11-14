@@ -1,0 +1,177 @@
+{
+  "provenance_tier": "DERIVED_SIMULATION_PROXY",
+  "n_samples": 3200,
+  "model_families": {
+    "cv_regressor": "sklearn.ensemble.RandomForestRegressor(n_estimators=100, max_depth=12, random_state=42)",
+    "quantile_regressor": "sklearn.ensemble.GradientBoostingRegressor(loss='quantile', alpha=[0.50, 0.90], n_estimators=120, max_depth=6, random_state=42)"
+  },
+  "random_cv_folds": [
+    {
+      "fold": 1,
+      "n_train": 2560,
+      "n_test": 640,
+      "r2": 0.9674,
+      "rmse": 0.0294,
+      "mae": 0.0225
+    },
+    {
+      "fold": 2,
+      "n_train": 2560,
+      "n_test": 640,
+      "r2": 0.9701,
+      "rmse": 0.0294,
+      "mae": 0.0227
+    },
+    {
+      "fold": 3,
+      "n_train": 2560,
+      "n_test": 640,
+      "r2": 0.9732,
+      "rmse": 0.0297,
+      "mae": 0.0225
+    },
+    {
+      "fold": 4,
+      "n_train": 2560,
+      "n_test": 640,
+      "r2": 0.9669,
+      "rmse": 0.0311,
+      "mae": 0.0233
+    },
+    {
+      "fold": 5,
+      "n_train": 2560,
+      "n_test": 640,
+      "r2": 0.9663,
+      "rmse": 0.0312,
+      "mae": 0.0233
+    }
+  ],
+  "spatial_cv_blocks": [
+    {
+      "block": 0,
+      "label": "Block 0: Northwest (Danapur Plain)",
+      "n_train": 2444,
+      "n_test": 756,
+      "r2": 0.9396,
+      "rmse": 0.0337,
+      "mae": 0.0247
+    },
+    {
+      "block": 1,
+      "label": "Block 1: Northeast (Ganga Riparian)",
+      "n_train": 2602,
+      "n_test": 598,
+      "r2": 0.9146,
+      "rmse": 0.0402,
+      "mae": 0.031
+    },
+    {
+      "block": 2,
+      "label": "Block 2: Central (PMC Urban Core)",
+      "n_train": 2942,
+      "n_test": 258,
+      "r2": 0.5266,
+      "rmse": 0.1044,
+      "mae": 0.0781
+    },
+    {
+      "block": 3,
+      "label": "Block 3: Southwest (Son Alluvial)",
+      "n_train": 2369,
+      "n_test": 831,
+      "r2": 0.8531,
+      "rmse": 0.0255,
+      "mae": 0.0199
+    },
+    {
+      "block": 4,
+      "label": "Block 4: Southeast (Punpun Lowland)",
+      "n_train": 2443,
+      "n_test": 757,
+      "r2": 0.8951,
+      "rmse": 0.027,
+      "mae": 0.021
+    }
+  ],
+  "summary_metrics": {
+    "random_mean_r2": 0.9688,
+    "random_mean_rmse": 0.0302,
+    "random_mean_mae": 0.0229,
+    "sbcv_mean_r2": 0.8258,
+    "sbcv_mean_rmse": 0.0462,
+    "sbcv_mean_mae": 0.0349,
+    "delta_r2": -0.143,
+    "delta_r2_pct": -14.8,
+    "delta_rmse": 0.016,
+    "delta_rmse_pct": 53.1,
+    "delta_mae": 0.0121,
+    "delta_mae_pct": 52.8
+  },
+  "thermal_desiccation_sensitivity": {
+    "count_lst_ge_40C": 181,
+    "count_lst_lt_40C": 3019,
+    "max_lst_celsius": 44.26,
+    "district_mean_c_runoff_lt_40C": 0.3277,
+    "district_mean_c_runoff_ge_40C": 0.6313,
+    "district_rel_increase_pct": 92.7,
+    "dense_urban_count_lt_40C": 19,
+    "dense_urban_count_ge_40C": 91,
+    "dense_urban_mean_c_runoff_lt_40C": 0.616,
+    "dense_urban_mean_c_runoff_ge_40C": 0.7232,
+    "dense_urban_rel_increase_pct": 17.4
+  },
+  "vif": {
+    "Elevation_m": 1.427,
+    "Slope_deg": 1.001,
+    "Dist_River_km": 1.697,
+    "Impervious_Frac": 6.175,
+    "LST_Celsius": 4.128,
+    "Rainfall_mm": 1.237,
+    "Pop_Density": 3.193
+  },
+  "spearman_with_chi": {
+    "Elevation_m": -0.5102,
+    "Slope_deg": -0.3749,
+    "Dist_River_km": -0.0757,
+    "Impervious_Frac": 0.8248,
+    "LST_Celsius": 0.6919,
+    "Rainfall_mm": 0.2778,
+    "Pop_Density": 0.8374
+  },
+  "spearman_selected_pairs": {
+    "LST_vs_Impervious": 0.643,
+    "Pluvial_vs_Slope": -0.7182,
+    "Pop_vs_Impervious": 0.8657,
+    "LST_vs_Dist_River": -0.4451
+  },
+  "feature_importances": {
+    "rf_gini": {
+      "Elevation_m": 0.0118,
+      "Slope_deg": 0.1244,
+      "Dist_River_km": 0.0039,
+      "Impervious_Frac": 0.2329,
+      "LST_Celsius": 0.0848,
+      "Rainfall_mm": 0.0069,
+      "Pop_Density": 0.5352
+    },
+    "quantile_gbr_q50": {
+      "Elevation_m": 0.0843,
+      "Slope_deg": 0.1935,
+      "Dist_River_km": 0.0301,
+      "Impervious_Frac": 0.1503,
+      "LST_Celsius": 0.1382,
+      "Rainfall_mm": 0.0735,
+      "Pop_Density": 0.3301
+    },
+    "quantile_gbr_q90": {
+      "Elevation_m": 0.1207,
+      "Slope_deg": 0.231,
+      "Dist_River_km": 0.0392,
+      "Impervious_Frac": 0.2491,
+      "LST_Celsius": 0.1485,
+      "Rainfall_mm": 0.0877,
+      "Pop_Density": 0.1238
+    }
+  }
+}

@@ -39,7 +39,7 @@ Conventional disaster risk frameworks assess urban flood hazard, topographic ter
 | Sentinel-1 SAR (10m)  |             | Copernicus DEM (30m)  |             | NASA MODIS LST (1km)  |
 | - Specular drop       |             | - Elevation (40-73m)  |             | - 91-Day Time Series  |
 | - Double-bounce       |             | - Slopes (<1.0 deg)   |             | - Peak: 46.25 deg C   |
-| - Delta sigma0        |             | - Depression Sinks    |             | - SUHI Delta +1.03 C  |
+| - Delta sigma0        |             | - Depression Sinks    |             | - Daytime Delta -1.03C|
 +-----------------------+             +-----------------------+             +-----------------------+
           |                                     |                                     |
           +-------------------------------------+-------------------------------------+
@@ -56,9 +56,9 @@ Conventional disaster risk frameworks assess urban flood hazard, topographic ter
                                                 v
 +--------------------------------------------------------------------------------------------------+
 | COMPUTATIONAL MODELING & REASONING CORE:                                                          |
-| 1. Horton-SCS Hydro-Thermodynamic Runoff Function (41.3% thermal runoff amplification)            |
-| 2. Spatial Block Cross-Validation (5-Fold SBCV, 60,000 samples, ROC-AUC = 0.7498)                 |
-| 3. Quantile Gradient Boosting (LightGBM alpha = 0.90) + Game-Theoretic Tree-SHAP                 |
+| 1. Horton-SCS Hydro-Thermodynamic Runoff Formulation (simulated thermal runoff sensitivity)      |
+| 2. Spatial Block Cross-Validation (5-Fold SBCV, 60,000 samples, ROC-AUC = 0.7498 +/- 0.0497)     |
+| 3. scikit-learn Spatial Random Forest (100 trees, depth 12) + MDI Feature Importances            |
 | 4. Sovereign Hybrid RAG Engine (BM25 Sparse + FAISS Dense LSA Vectorstore, RRF k=60)              |
 +--------------------------------------------------------------------------------------------------+
                                                 |
@@ -83,10 +83,10 @@ Delineate surface water dynamics across the Patna Municipal Corporation during t
 #### Earth Observation Data Ingested
 - Satellite Constellation: European Space Agency (ESA) Copernicus Sentinel-1A/B.
 - Sensor Specification: C-Band Synthetic Aperture Radar ($\lambda = 5.6\text{ cm}$, center frequency 5.405 GHz).
-- Observation Mode: Interferometric Wide (IW) swath mode, dual polarization (VV and VH).
+- Observation Mode: Interferometric Wide (IW) swath mode, single co-polarization (VV).
 - Granules Processed:
-  * Baseline (Pre-deluge): 10 September 2019 (orbit 121, pass 042).
-  * Peak Inundation: 28 September 2019 (orbit 121, pass 042).
+  * Baseline (Pre-deluge): 23 September 2019 (`S1A_IW_GRDH_VV_20190923_pre_flood.tif`).
+  * Peak Inundation: 29 September 2019 (`S1B_IW_GRDH_VV_20190929_peak_flood.tif`).
 - Spatial Resolution: 10 m pixel spacing, projected to UTM Zone 45N (WGS84).
 
 #### Physical Scattering Mechanisms
@@ -157,7 +157,7 @@ Quantify pre-monsoon surface thermal stress, diurnal heat trapping, and Surface 
 - Mean Urban Core Land Surface Temperature (LST): 37.29 °C.
 - Mean Rural Peri-Urban Baseline LST: 38.32 °C.
 - **Peak Heatwave Surface Temperature:** **46.25 °C** recorded during the historic Bihar heatwave on May 19, 2019 (Day of Year 139).
-- Surface Urban Heat Island (SUHI) Dynamics: Built-up commercial corridors and asphalt highway networks exhibited intense diurnal thermal storage with localized heat island deltas of $+1.03\text{ ^\circ C}$ over surrounding vegetated tracts, generating severe thermal stress between 11:30 AM and 3:30 PM.
+- Surface Urban Heat Island (SUHI) Dynamics: During the 10:30 AM Terra daytime ascending pass across the 91-day pre-monsoon window, rural fallow croplands exhibited higher bare-soil surface heating ($38.32\text{ ^\circ C}$ mean rural vs $37.29\text{ ^\circ C}$ mean urban core), yielding a daytime urban-minus-rural delta of $-1.03\text{ ^\circ C}$ in `exp03_results.json`. Built-up corridors nonetheless reached $46.25\text{ ^\circ C}$ during peak May heatwave episodes.
 
 ---
 
@@ -197,12 +197,12 @@ The composite ULSI metric scales from 0 to 100 based on weighted multi-criteria 
 
 ## 4. Spatial Block Cross-Validation and Autocorrelation Bias Analysis
 
-### 4.1 The Methodological Imperative
+### 4.1 Methodological Rationale
 Standard machine learning evaluations routinely apply random $k$-fold cross-validation to spatial data. Because proximate spatial locations share unobserved geomorphic, soil, and drainage attributes ($Cov(Z(s), Z(s+h)) > 0$), random partitioning introduces extensive data leakage between training and testing sets. Random cross-validation creates an illusion of high predictive skill that collapses when the model is transferred to adjacent, unseen geographic administrative blocks (Roberts et al., 2016).
 
 ### 4.2 Empirical Evaluation Setup
-- Spatial Samples: 60,000 spatial observation points derived from Sentinel-1, Copernicus DEM, and MODIS LST rasters across Patna District.
-- Models Evaluated: Quantile Gradient Boosted Trees (LightGBM, $\alpha = 0.90$) and Spatial Random Forest (100 estimators).
+- Spatial Samples: 60,000 spatial observation points derived from Sentinel-1, Copernicus DEM, and WorldPop rasters across Patna District (`train_spatial_model.py`).
+- Model Executed (`BHU_LOKA_Spatial_Random_Forest_v1`): scikit-learn `RandomForestClassifier` (100 estimators, max depth 12). Note: LightGBM quantile loss and Tree-SHAP remain planned extensions, not executed inside `train_spatial_model.py`.
 - Protocols Compared:
   * *Protocol A: Standard Random 5-Fold Cross-Validation.*
   * *Protocol B: 5-Quadrant Spatial Block Cross-Validation (SBCV).*
@@ -221,13 +221,14 @@ Standard machine learning evaluations routinely apply random $k$-fold cross-vali
 | **Spatial Autocorrelation Penalty ($\Delta$)** | **-0.2190 (-22.6%)** | **-0.2311 (-26.1%)** | **-22.57%** | **+0.1291 (+181%)** |
 
 ### 4.3 Feature Importance Breakdown
-Permutation feature importances derived from the spatially blocked model confirm that active radar and topographic variables dominate hazard prediction:
+Gini / Mean Decrease in Impurity feature importances saved in `spatial_cv_metrics.json` confirm that active radar and topographic variables dominate hazard prediction:
 1. `SAR_Post_dB` (Peak Flood Radar Backscatter): **36.76%**
 2. `Delta_Sigma0` (Radar Log-Ratio Difference): **29.93%**
 3. `Elevation_m` (Copernicus DEM Surface Elevation): **12.63%**
 4. `Population` (WorldPop Exposure Density): **10.49%**
 5. `Slope_deg` (Topographic Surface Slope): **8.76%**
 6. `Is_Sink` (Binary Concave Depression Indicator): **1.43%**
+7. `SAR_Pre_dB` (Constant `-12.0 dB` placeholder when precomputed `Delta_Sigma0` is loaded): **0.00%**
 
 ---
 
@@ -303,7 +304,7 @@ In strict compliance with the **Scientific Integrity Guard Protocol**:
    - Raw satellite extraction: Sentinel-1 SAR backscatter calibration, Copernicus 30m GLO DEM topographic derivatives, NASA Terra MODIS 91-day thermal time series, and WorldPop 2020 rasters.
    - Theoretical prototype simulation: Horton-SCS coupled thermodynamic runoff amplification equations ($41.3\%$ runoff increase under extreme thermal preconditioning).
 3. **Zero Emojis:** The academic report and code comments are completely devoid of informal emojis.
-4. **Scholarly Register:** All text adheres to objective, restrained academic prose, eliminating AI buzzwords (`delve`, `utilize`, `leverage`, `harness`, `pivotal`, `tapestry`).
+4. **Scholarly Register:** All text adheres to objective, restrained academic prose, avoiding promotional terms and informal emojis.
 
 ---
 

@@ -1,5 +1,5 @@
 """
-BHU LOKA RAGAS & LLM-as-a-Judge Evaluation Harness
+BHU LOKA RAGAS & LLM-as-a-Judge Evaluation Suite
 Empirical verification of Retrieval Quality, Faithfulness, Context Precision, and Agent Grounding.
 Author: Prince Kumar (IIT Patna, PA2511CDH37) | Supervisor: Pallav Rustogi
 """

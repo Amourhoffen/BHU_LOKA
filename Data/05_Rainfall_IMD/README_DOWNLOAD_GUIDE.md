@@ -28,7 +28,7 @@ For BHU LOKA, this is used to:
 **Step 1: Access**
 
 - Go to: <https://imdpune.gov.in>
-- Navigate to: Climate > Gridded Data > Rainfall
+- Open: Climate > Gridded Data > Rainfall
 
 **Alternate direct portal:**
 

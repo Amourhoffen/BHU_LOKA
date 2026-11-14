@@ -38,7 +38,7 @@ We use elevation to compute:
 
 **Step 3: Select Dataset**
 - Click "Data Sets" tab.
-- Navigate to: `Digital Elevation > SRTM > SRTM 1 Arc-Second Global`
+- Browse to: `Digital Elevation > SRTM > SRTM 1 Arc-Second Global`
 - Check the checkbox next to it.
 
 **Step 4: Results and Download**

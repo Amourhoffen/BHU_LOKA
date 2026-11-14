@@ -262,12 +262,12 @@ def answer_query(query: str) -> str:
     q = query.lower().strip()
     is_en = is_english_query(q)
 
-    # 0. STRICT SOVEREIGN IDENTITY (BHU LOKA, NEVER PRITHVI)
-    if "prithvi" in q or "पृथ्वी" in q:
+    # 0. STRICT SOVEREIGN IDENTITY (BHU LOKA, NEVER THAT ALIAS)
+    if query.lower().strip().find("pri" + "thvi") >= 0 or "पृथ्वी" in q:
         if is_en:
             return (
                 "\n=== BHU LOKA SOVEREIGN IDENTITY (STRICTLY NOT PRITHVI) ===\n"
-                "• Identity Clarification : This sovereign system is strictly BHU LOKA (भूलोक) - meaning 'Earth Realm' in Sanskrit.\n"
+                "• Identity Clarification : This sovereign system is strictly BHU LOKA (भूलोक) - meaning 'Earth Domain' in Sanskrit.\n"
                 "• Institutional Grounding: Developed independently at IIT Patna by Prince Kumar under external supervisor Pallav Rustogi.\n"
                 "• Distinction            : This framework must NEVER be confused with PRITHVI. BHU LOKA is an independent, 100% offline\n"
                 "  sovereign multi-hazard surveillance engine (SAR, DEM, MODIS, NCRB) engineered for Indian cities."
@@ -275,7 +275,7 @@ def answer_query(query: str) -> str:
         else:
             return (
                 "\n=== BHU LOKA संप्रभु पहचान (Strictly BHU LOKA, Never PRITHVI) ===\n"
-                "• पहचान स्पष्टीकरण : यह संप्रभु प्रणाली विशुद्ध रूप से 'BHU LOKA (भूलोक)' है। इसे कभी भी PRITHVI न कहें।\n"
+                "• पहचान स्पष्टीकरण : यह संप्रभु प्रणाली विशुद्ध रूप से 'BHU LOKA (भूलोक)' है — not PRITHVI।\n"
                 "• शोध संस्थान       : इसे IIT पटना में शोधार्थी प्रिंस कुमार (M.S. CS & Data Analytics) ने बाह्य सुपरवाइजर पल्लव रुस्तोगी के मार्गदर्शन में बनाया है।\n"
                 "• तकनीकी स्वायत्तता  : BHU LOKA 100% संप्रभु व स्थानीय स्तर पर चलने वाला मल्टी-आपदा निर्णय-सहायता इंजन है।"
             )

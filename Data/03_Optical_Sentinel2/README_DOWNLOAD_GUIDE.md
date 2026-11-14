@@ -61,7 +61,7 @@ Area            : Patna (draw box on map, 25.2N–25.75N, 84.7E–86.1E)
 **Website:** https://apps.sentinel-hub.com/eo-browser
 
 1. Create free account at https://www.sentinel-hub.com
-2. Navigate to Patna on the map.
+2. Browse to Patna on the map.
 3. Select Sentinel-2 L2A.
 4. Set date and cloud cover filter.
 5. Use "Analytical" download to get specific bands as GeoTIFF.

@@ -6,6 +6,10 @@ class QueryRequest(BaseModel):
     query: str
     top_k: int = 3
     language: Optional[str] = None
+    agri_context: Optional[Dict[str, Any]] = None
+    geo_context: Optional[Dict[str, Any]] = None
+    historical_epoch: Optional[Dict[str, Any]] = None
+    active_layers: Optional[List[str]] = None
 
 
 class QueryResponse(BaseModel):
@@ -20,3 +24,4 @@ class QueryResponse(BaseModel):
     latency_ms: Optional[float] = None
     eval_metrics: Optional[Dict[str, Any]] = None
     guardrails: Optional[Dict[str, Any]] = None
+    grounding_payload: Optional[Dict[str, Any]] = None

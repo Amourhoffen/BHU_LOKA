@@ -28,6 +28,8 @@ Final_Research_Work.zip
 scratch/
 .pytest_cache/
 **/node_modules/
+Refrence Image/
+Reference Image/
 
 # 7. Python Build Artifacts & Bytecode Cache
 __pycache__/

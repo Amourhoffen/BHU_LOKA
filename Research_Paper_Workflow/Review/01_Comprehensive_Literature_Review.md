@@ -15,14 +15,14 @@ Modern disaster risk science is transitioning from uncoupled, single-hazard para
 
 This finalized literature review synthesizes **eight critical pillars of contemporary disaster science**, directly informing the architecture of **BHU LOKA (भूलोक)** for Patna District, Bihar:
 
-1. **GIS–TOPSIS Multi-Criteria Decision Analysis** for multi-hazard susceptibility ranking.
-2. **Spatial Block Cross-Validation (Roberts et al., 2016)** to overcome spatial autocorrelation bias.
-3. **Sequential Thermodynamic Preconditioning (Ganguli et al., 2025)** linking pre-monsoon heatwaves to amplified pluvial flooding.
-4. **Quantile-Regressed LightGBM & Tree-SHAP Attribution (Singh et al., 2026)** for explainable extreme tail risk modeling.
-5. **Rainwater Atmospheric Chemistry & Aerosol Scavenging (IMD Monograph, 2025)** under continental monsoon regimes.
-6. **Multi-Hazard Risk Architecture (UNU-ITC RiskCity Framework; van Westen et al., 2011)** formalizing Hazard $\times$ Exposure $\times$ Vulnerability.
-7. **Disaster Telemetry & Cell-Broadcast Early Warning Systems (Japan J-Alert & GSMA Guidelines)** for real-time mobile hazard dissemination.
-8. **Indian Summer Monsoon (ISM) Dynamics & Unified Forecast System (UFS) Evaluation (Tallapragada et al., 2026)** addressing numerical downscaling gaps.
+3. **GIS–TOPSIS Multi-Criteria Decision Analysis (Jato-Espino et al., 2025)** for multi-hazard susceptibility ranking.
+4. **Spatial Block Cross-Validation (Roberts et al., 2017)** to overcome spatial autocorrelation bias.
+5. **Sequential Thermodynamic Preconditioning (Ganguli et al., 2025)** linking pre-monsoon heatwaves to amplified pluvial flooding.
+7. **Quantile Gradient Boosting & Feature Attribution (Singh et al., 2026)** for explainable extreme tail risk modeling.
+8. **Rainwater Atmospheric Chemistry & Aerosol Scavenging (IMD Monograph, 2025)** under continental monsoon regimes.
+9. **Multi-Hazard Risk Architecture (UNU-ITC RiskCity Framework; van Westen et al., 2011)** formalizing Hazard $\times$ Exposure $\times$ Vulnerability.
+10. **Disaster Telemetry & Cell-Broadcast Early Warning Systems (Japan J-Alert & GSMA Guidelines)** for real-time mobile hazard dissemination.
+11. **Indian Summer Monsoon (ISM) Dynamics & Unified Forecast System (UFS) Evaluation (Tallapragada et al., 2026)** addressing numerical downscaling gaps.
 
 ---
 
@@ -30,10 +30,10 @@ This finalized literature review synthesizes **eight critical pillars of contemp
 
 | # | Topic & Core Citation | Domain / Method | Key Theoretical Finding | Exact Role in BHU LOKA (Patna) |
 | --- | :--- | :--- | :--- | :--- |
-| **1** | **GIS–TOPSIS Multi-Hazard** *(Jato-Espino et al., 2024; Hwang & Yoon)* | Multi-Criteria Decision Analysis (MCDA) | Compact spatial variable selection; Euclidean distance to positive/negative ideal solutions ($A^+, A^-$). | Establishing baseline multi-hazard susceptibility zonation across urban wards without collinear bloat. |
-| **2** | **Spatial Cross-Validation** *(Roberts et al., 2016, Ecography)* | Spatial Statistics & ML Evaluation | Random $k$-fold CV causes severe data leakage ($>20\%$ inflated $R^2$) due to Tobler's spatial autocorrelation. | Mandating strict **Spatial Block Cross-Validation (SBCV)** across 5 geographic quadrants of Patna. |
+| **1** | **GIS–TOPSIS Multi-Hazard** *(Jato-Espino et al., 2025)* | Multi-Criteria Decision Analysis (MCDA) | Compact spatial variable selection across heat islands, floods, and particulate matter. | Establishing baseline multi-hazard susceptibility zonation across urban wards without collinear bloat. |
+| **2** | **Spatial Cross-Validation** *(Roberts et al., 2017, Ecography)* | Spatial Statistics & ML Evaluation | Random $k$-fold CV causes severe data leakage due to Tobler's spatial autocorrelation. | Mandating strict **Spatial Block Cross-Validation (SBCV)** across 5 contiguous blocks in Patna. |
 | **3** | **Heatwave-Conditioned Flood** *(Ganguli et al., 2025, GRL - Chennai)* | Hydro-Climatology & Soil Physics | Heatwave desiccation reduces soil infiltration ($f_0$); Clausius-Clapeyron super-scaling triggers flash pluvial floods. | Formulating the non-linear thermodynamic runoff amplification function for alluvial clay soils in Patna. |
-| **4** | **Quantile LightGBM & SHAP** *(Singh et al., 2026, MDPI - Delhi)* | Spatial Gradient Boosting & XAI | Pinball quantile loss isolates catastrophic tail risks ($\alpha=0.90$); Tree-SHAP explains ward-level risk drivers. | Deploying asymmetric loss to predict extreme flood ponding and local municipal intervention points. |
+| **4** | **Quantile LightGBM & SHAP** *(Singh et al., 2026, Land - Delhi)* | Spatial Gradient Boosting & XAI | Pinball quantile loss isolates catastrophic tail risks ($\alpha=0.90$); SHAP explains ward-level risk drivers. | Motivating `sklearn` quantile GBR at $\alpha \in \{0.50, 0.90\}$ to track upper-tail risk shifts. |
 | **5** | **Rainwater Chemistry Monograph** *(Rohini et al., 2025, IMD)* | Atmospheric Chemistry & GAW Stations | Long-term observational chemistry, ionic balance ($\text{Ca}^{2+}, \text{SO}_4^{2-}$), aerosol scavenging during monsoon. | Quantifying pre-monsoon atmospheric aerosol loading and its interaction with convective cloudburst events. |
 | **6** | **Multi-Hazard GIS Framework** *(van Westen et al., 2011, UNU-ITC)* | Disaster Geoinformation (RiskCity) | Multi-hazard interaction matrices (triggering vs cascading); elements-at-risk exposure mapping. | Formalizing physical exposure layering (WorldPop density + OSM transport networks + critical infrastructure). |
 | **7** | **Japan EWS & GSMA Architecture** *(GSMA EWS Guidelines; JMA J-Alert)* | Telecommunications & Early Warning | Cell Broadcast Service (CBS), sub-second latency, multi-hazard telemetry (radar + river gauges). | Designing the municipal early warning dissemination module for Patna Municipal Corporation (PMC). |
@@ -60,13 +60,13 @@ Multi-Criteria Decision Analysis (MCDA) coupled with Geographic Information Syst
    $$A^- = \{ \min_i(v_{ij}) \mid j \in J_b \}, \quad \{ \max_i(v_{ij}) \mid j \in J_c \}$$
    where $J_b$ denotes benefit criteria (e.g., elevation above river) and $J_c$ denotes cost criteria (e.g., impervious fraction, rainfall intensity).
 
-4. **Relative Closeness Index ($C_i^*$):**
+1. **Relative Closeness Index ($C_i^*$):**
    $$C_i^* = \frac{S_i^-}{S_i^+ + S_i^-} \in [0, 1]$$
    where $S_i^+ = \sqrt{\sum (v_{ij} - v_j^+)^2}$ and $S_i^- = \sqrt{\sum (v_{ij} - v_j^-)^2}$. A score approaching $1.0$ indicates maximal multi-hazard susceptibility.
 
 ### 1.2 Parsimonious Indicator Selection
 
-**Jato-Espino et al. (2024)** demonstrated that traditional multi-hazard models suffer from severe collinearity by incorporating dozens of redundant GIS layers. By utilizing a compact set of Earth Observation indices—NDVI (vegetation), NDBI (built-up imperviousness), MNDWI (surface water), and slope—predictive robustness is preserved while minimizing computational overhead and error propagation.
+**Jato-Espino et al. (2025)** demonstrated that traditional multi-hazard models suffer from severe collinearity by incorporating dozens of redundant GIS layers. By applying a compact set of Earth Observation indices—NDVI (vegetation), NDBI (built-up imperviousness), MNDWI (surface water), and slope—predictive robustness is preserved while minimizing computational overhead and error propagation.
 
 ---
 
@@ -76,11 +76,11 @@ Multi-Criteria Decision Analysis (MCDA) coupled with Geographic Information Syst
 
 A ubiquitous flaw in spatial machine learning is the misapplication of standard random $k$-fold cross-validation. In geographic domains, data points conform to **Tobler’s First Law of Geography**: *"Everything is related to everything else, but near things are more related than distant things."*
 
-**Roberts et al. (2016, *Ecography*)** demonstrated that when adjacent spatial pixels are randomly partitioned into training and testing folds:
+**Roberts et al. (2017, *Ecography*)** demonstrated that when adjacent spatial pixels are randomly partitioned into training and testing folds:
 
 - Spatial autocorrelation creates dependencies between training and test sets ($Cov(\epsilon_i, \epsilon_j) \ne 0$).
 - The algorithm simply memorizes local spatial coordinates rather than learning functional relationships between biophysical drivers and hazard outcomes.
-- Test metrics exhibit severe artificial inflation (often overestimating $R^2$ by $15-30\%$).
+- Test metrics exhibit severe artificial inflation.
 
 ```mermaid
 flowchart LR
@@ -88,14 +88,14 @@ flowchart LR
         direction TB
         R1["Random Pixel Assignment"] --> R2["Proximate Spatial Points Intermixed"]
         R2 --> R3["Spatial Autocorrelation Leakage"]
-        R3 --> R4["Artificially Inflated R² = 0.9688"]
+        R3 --> R4["Artificially Inflated R² = 0.9688 (Proxy)"]
     end
 
-    subgraph SBCV ["Spatial Block Cross-Validation (Roberts et al. 2016)"]
+    subgraph SBCV ["Spatial Block Cross-Validation (Roberts et al. 2017)"]
         direction TB
         S1["Domain Partitioned into 5 Blocks"] --> S2["Entire Regional Block Held Out"]
         S2 --> S3["Zero Neighborhood Leakage"]
-        S3 --> S4["Honest Generalization Skill R² = 0.7678<br/>(20.1% Honest Leakage Penalty)"]
+        S3 --> S4["Proxy SBCV Mean R² = 0.8258<br/>(Block 2 Urban Core R² = 0.5266)"]
     end
 ```
 
@@ -105,7 +105,7 @@ To guarantee genuine out-of-region transferability, the spatial domain $\Omega$ 
 $$\Omega = \bigcup_{k=1}^K \Omega_k, \quad \Omega_k \cap \Omega_l = \emptyset \quad (\forall k \neq l)$$
 During fold $k$, all samples falling within geometric block $\Omega_k$ are held out exclusively for testing:
 $$\mathcal{D}_{\text{test}}^{(k)} = \{(\mathbf{x}_i, y_i) \mid \mathbf{s}_i \in \Omega_k\}, \quad \mathcal{D}_{\text{train}}^{(k)} = \{(\mathbf{x}_i, y_i) \mid \mathbf{s}_i \notin \Omega_k\}$$
-In our Patna empirical benchmark, SBCV revealed a **$20.1\%$ performance drop** ($R^2 = 0.9688 \to 0.7678$), confirming the presence of significant spatial autocorrelation and establishing a rigorous, honest baseline.
+In our Patna simulation proxy benchmark ($N = 3,200$), SBCV revealed a **14.8% mean performance drop** ($R^2 = 0.9688 \to 0.8258$, with Central Urban Core Block 2 falling to $R^2 = 0.5266$), while our empirical 60,000-pixel 5-fold SBCV classifier established a baseline ROC-AUC of $0.7498 \pm 0.0497$.
 
 ---
 
@@ -131,20 +131,19 @@ While Ganguli et al. examined the coastal metropolis of Chennai (subject to mari
 
 ### 4.1 Quantile Regression Gradient Boosting
 
-**Singh et al. (2026, *MDPI*)** established an advanced benchmark for urban multi-hazard risk assessment across Delhi by integrating **Quantile Regressed LightGBM**:
+**Singh et al. (2026, *Land* 15(3), 488)** established a benchmark for urban multi-hazard risk assessment across Delhi by integrating **Quantile Regressed LightGBM**:
 
 - **Why Quantile Loss?** Conventional regression minimizes mean squared error (MSE), estimating conditional mean $\mathbb{E}[Y|X]$. However, disaster management is inherently concerned with **tail risk** (catastrophic $90^{\text{th}}$ and $95^{\text{th}}$ percentile impacts).
 - **Asymmetric Pinball Loss:**
   $$\rho_\alpha(u) = u \cdot (\alpha - \mathbb{I}(u < 0)) = \begin{cases} \alpha u, & u \ge 0 \\ (\alpha - 1) u, & u < 0 \end{cases}$$
-  By fitting models at $\alpha = 0.50$ (median) and $\alpha = 0.90$ (extreme), planners can isolate the specific thresholds where urban drainage systems fail.
+  By fitting `sklearn.GradientBoostingRegressor` models at $\alpha = 0.50$ (median) and $\alpha = 0.90$ (extreme), planners isolate upper-tail vulnerability shifts.
 
-### 4.2 Game-Theoretic Feature Attribution (Tree-SHAP)
+### 4.2 Game-Theoretic Feature Attribution (SHAP Literature vs BHU LOKA Split Weights)
 
-To eliminate the municipal "black box" critique, Singh et al. utilized Shapley Additive Explanations (SHAP) rooted in cooperative game theory:
+To address the municipal "black box" critique, Singh et al. applied Shapley Additive Explanations (SHAP) rooted in cooperative game theory:
 $$\phi_i(x) = \sum_{S \subseteq F \setminus \{i\}} \frac{|S|!(|F| - |S| - 1)!}{|F|!} \left[ f_x(S \cup \{i\}) - f_x(S) \right]$$
 
-- **Local Explanations:** For each individual municipal ward, Tree-SHAP decomposes the exact marginal contribution of elevation, imperviousness, and precipitation.
-- **Quantile Factor Shifts:** In our Patna analysis, elevation dominates median risk ($\alpha = 0.50$), but **impervious surface fraction and thermal desiccation become the dominant drivers of tail risk ($\alpha = 0.90$)**.
+- **Quantile Factor Shifts:** In BHU LOKA's `sklearn` simulation proxy, `Pop_Density` leads RF Gini ($0.5352$) and $\alpha = 0.50$ ($0.3301$), whereas at $\alpha = 0.90$ **`Impervious_Frac` ($0.2491$), `Slope_deg` ($0.2310$), and `LST_Celsius` ($0.1485$) overtake `Pop_Density` ($0.1238$)**.
 
 ---
 
@@ -227,9 +226,9 @@ The **GSMA Disaster Response Programme** defines international best practices fo
 | Research Dimension | Existing Literature Benchmark | Documented Operational Gap | BHU LOKA Breakthrough Resolution |
 | :--- | :--- | :--- | :--- |
 | **Thermodynamic Coupling** | Ganguli et al. (2025) | Focused strictly on coastal maritime Chennai; ignores continental alluvial river basins. | Formulates the coupled non-linear runoff amplification function $\Psi(T_{\text{LST}})$ for Gangetic alluvial clay soils under severe pre-monsoon baking. |
-| **Spatial Validation Rigor** | Roberts et al. (2016) | Standard random $k$-fold cross-validation artificially inflates accuracy by $>20\%$ due to spatial autocorrelation. | Enforces strict 5-fold Spatial Block Cross-Validation (SBCV), quantifying an honest baseline drop ($R^2 = 0.9688 \to 0.7678$). |
-| **Tail Risk Optimization** | Singh et al. (2026) | Conditional mean regression models average out tail extremes, failing during flash deluges. | Deploys asymmetric pinball loss at $\alpha = 0.90$ to isolate catastrophic 90th percentile stormwater thresholds. |
-| **Game-Theoretic XAI** | Black-box GeoAI | Municipal authorities and engineers reject opaque deep learning models without spatial accountability. | Employs Tree-SHAP decomposition to map exact biophysical feature contributions across Patna's 75 municipal wards. |
+| **Spatial Validation Rigor** | Roberts et al. (2017) | Standard random $k$-fold cross-validation artificially inflates accuracy due to spatial autocorrelation. | Enforces strict 5-block SBCV (Proxy $R^2 = 0.9688 \to 0.8258$, Urban Block $0.5266$; Empirical 60k-pixel $\text{ROC-AUC} = 0.7498$). |
+| **Tail Risk Optimization** | Singh et al. (2026) | Conditional mean regression models average out tail extremes, failing during flash deluges. | Fits `sklearn` quantile GBR ($\alpha = 0.90$) isolating imperviousness ($0.2491$) and slope ($0.2310$) dominance. |
+| **Game-Theoretic XAI** | SHAP Literature Benchmark | Municipal authorities require interpretable predictors rather than black-box scores. | Reports transparent RF Gini and quantile split-weight shifts across $\alpha = 0.50 \to 0.90$ (full SHAP planned after S2/IMD ingestion). |
 | **Early Warning Telemetry** | J-Alert / GSMA (2023) | High-level telecom blueprints remain disconnected from localized Earth observation and machine learning rasters. | Synthesizes Common Alerting Protocol (CAP ITU X.1303) standards with ward-level spatial hazard indices for targeted cellular dissemination. |
 
 ### 9.2 Conceptual Innovation Flowchart
@@ -246,10 +245,10 @@ flowchart TD
 
     subgraph CORE ["BHU LOKA (भूलोक) Core Innovations"]
         direction TB
-        C1["1. First coupled thermodynamic heatwave-flood hazard model for Gangetic plain"]
-        C2["2. Spatial Block Cross-Validation eliminating 20.1% spatial autocorrelation bias"]
-        C3["3. Quantile LightGBM isolating 90th percentile catastrophic municipal risk"]
-        C4["4. Game-theoretic Tree-SHAP attribution mapping local drivers across 75 wards"]
+        C1["1. Coupled thermodynamic heatwave-flood proxy for Gangetic alluvial plain"]
+        C2["2. Spatial Block Cross-Validation (Proxy -14.8% / Empirical 60k AUC 0.7498)"]
+        C3["3. Quantile GBR isolating 90th percentile impervious and slope drivers"]
+        C4["4. Bimodal Sentinel-1 SAR urban corner double-bounce (95.98% UN-SPIDER omission fix)"]
         C5["5. Policy bridge toward CAP and GSMA-compliant cell broadcast early warnings"]
     end
 
@@ -260,11 +259,11 @@ flowchart TD
 
 ## 10. Complete Standardized Bibliography
 
-1. **Jato-Espino, D., Manchado, C., & Roldán-Valcarce, A. (2024).** A compact multi-hazard assessment model to identify urban areas prone to heat islands, floods and particulate matter. *Sustainable Cities and Society*, 102, 105218.
-2. **Roberts, D. R., Bahn, V., Ciuti, S., Boyce, M. S., Elith, J., Guillera-Arroita, G., et al. (2016).** Cross-validation strategies for data with temporal, spatial, hierarchical or phylogenetic structure. *Ecography*, 40(8), 913–929.
-3. **Ganguli, P., Devi, N. N., Apel, H., Vorogushyn, S., Jena, P. P., Chatterjee, C., & Merz, B. (2025).** Growing Pluvial Flood Hazard and Exposure From Heatwave-Preconditioned Rainfall Extremes in Chennai Metropolitan Area, India. *Geophysical Research Letters*, 52(4), e2024GL113456.
-4. **Singh, S., Pandey, S., Jain, A. K., Mousa, A., Ben Hasher, F. F., & Zhran, M. (2026).** Integrated Multi-Hazard Risk Assessment for Delhi with Quantile-Regressed LightGBM and SHAP Interpretation. *Applied Sciences (MDPI)*, 16(6), 2411.
-5. **Rohini, P., Soni, V. K., Safai, P. D., Hosalikar, K. S., et al. (2025).** *The Chemistry of Rain: Long-Term Observations and Insights from Indian GAW Stations*. IMD Meteorological Monograph No. MoES/IMD/HS/Chemistry of Rain/02(2024)/64.
-6. **Van Westen, C. J., Alkema, D., Damen, M. C. J., Kerle, N., & Kingma, N. C. (2011).** *Multi-hazard risk assessment: Distance education course (RiskCity)*. United Nations University – ITC School on Disaster Geo-information Management, Enschede.
-7. **GSMA Disaster Response (2023).** *Mobile-Enabled Early Warning Systems: Practical Guidance for Mobile Network Operators and Disaster Management Authorities*. GSMA Connected Society & Humanitarian Programmes.
-8. **Tallapragada, V., Zheng, W., Li, W., & Yang, F. (2026).** Evaluation on Indian Summer Monsoon in High Resolution Prototypes of Unified Forecast System (UFS). *MAUSAM*, 75(4), 1261–1284.
+5. **Jato-Espino, D., Manchado, C., & Roldán-Valcarce, A. (2025).** A compact multi-hazard assessment model to identify urban areas prone to heat islands, floods and particulate matter. *International Journal of Disaster Risk Reduction*, 119, 105277.
+6. **Roberts, D. R., Bahn, V., Ciuti, S., Boyce, M. S., Elith, J., Guillera-Arroita, G., et al. (2017).** Cross-validation strategies for data with temporal, spatial, hierarchical or phylogenetic structure. *Ecography*, 40(8), 913–929.
+7. **Ganguli, P., Nithila Devi, N., Apel, H., Vorogushyn, S., Jena, P. P., Chatterjee, C., & Merz, B. (2025).** Growing Pluvial Flood Hazard and Exposure From Heatwave-Preconditioned Rainfall Extremes in Chennai Metropolitan Area, India. *Geophysical Research Letters*, 52, e2025GL115795.
+8. **Singh, S., Pandey, S., Jain, A. K., Mousa, A., Ben Hasher, F. F., & Zhran, M. (2026).** Integrated Multi-Hazard Risk Assessment for Delhi with Quantile-Regressed LightGBM and SHAP Interpretation. *Land*, 15(3), 488.
+9. **Rohini, P., Soni, V. K., Safai, P. D., Hosalikar, K. S., et al. (2025).** *The Chemistry of Rain: Long-Term Observations and Insights from Indian GAW Stations*. IMD Meteorological Monograph No. MoES/IMD/HS/Chemistry of Rain/02(2024)/64.
+10. **Van Westen, C. J., Alkema, D., Damen, M. C. J., Kerle, N., & Kingma, N. C. (2011).** *Multi-hazard risk assessment: Distance education course (RiskCity)*. United Nations University – ITC School on Disaster Geo-information Management, Enschede.
+11. **GSMA Disaster Response (2023).** *Mobile-Enabled Early Warning Systems: Practical Guidance for Mobile Network Operators and Disaster Management Authorities*. GSMA Connected Society & Humanitarian Programmes.
+13. **Tallapragada, V., Zheng, W., Li, W., & Yang, F. (2026).** Evaluation on Indian Summer Monsoon in High Resolution Prototypes of Unified Forecast System (UFS). *MAUSAM*, 77(4), 1261–1284.

@@ -6,21 +6,17 @@
 \setcitestyle{numbers,sort,open={(},close={)}}
 \renewcommand{\thefootnote}{\alph{footnote}}
 
-\artcategory{Original Research - UNDER REVIEW}
+\artcategory{Original Research Manuscript}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% The following information will be updated by the Editorial Office %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vol{0}
 \iss{0}
-\cpyear{2026 Under Review} 
-\doi{10.0000/000000000}
-\recdate{15 December 2025}
-\accdate{04 February 2026}
-\pubdate{10 February 2026}
-\vordate{2026}
+\cpyear{2026}
+\doi{Pending editorial assignment}
 \rhauthor{Prince Kumar and Pallav Rustogi}
-\citethisarticle{Prince Kumar and Pallav Rustogi (2026). Sequential Compound Hydro-Thermal Risk in Continental Alluvial Metropolises: Integrating Synthetic Aperture Radar, Spatial Quantile Machine Learning, and Game-Theoretic Explainability in Patna, India. \url{https://doi.org/10.0000/000000000}}
+\citethisarticle{Prince Kumar and Pallav Rustogi (2026). Sequential Compound Hydro-Thermal Risk and Urban Corner-Reflector Flood Mapping in Continental Alluvial Metropolises: Empirical Earth Observation and Spatial Validation Sensitivity over Patna, India.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%                     End Editorial Office                          %%%
@@ -28,7 +24,6 @@
 
 \graphicspath{
     {./Figures/}
-    {./logo/}
 }
 
 \begin{document}
@@ -36,337 +31,244 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%                     Begin author content                          %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Sequential Compound Hydro-Thermal Risk in Continental Alluvial Metropolises: Integrating Synthetic Aperture Radar, Spatial Quantile Machine Learning, and Game-Theoretic Explainability in Patna, India}
+\title{Sequential Compound Hydro-Thermal Risk and Urban Corner-Reflector Flood Mapping in Continental Alluvial Metropolises: Empirical Earth Observation and Spatial Validation Sensitivity over Patna, India}
 
-\author[1\orc{0009-0002-4112-9871}]{Prince Kumar}
-\author[2\orc{0000-0002-1825-0097}]{Pallav Rustogi}
+\author[1]{Prince Kumar}
+\author[2]{Pallav Rustogi}
 
 \affil[1]{Department of Computer Science and Engineering, Indian Institute of Technology Patna, Bihta, Bihar 801106, India}
 \affil[2]{AI Native Engineering \& Agentic AI Software Systems, India}
 
 \corau{Prince Kumar, \email{prince_pa2511cdh37@iitp.ac.in}, M.S. Computer Science and Data Analytics (Roll No. PA2511CDH37), Department of Computer Science and Engineering, Indian Institute of Technology Patna, Bihta, Bihar 801106, India. Tel: +91 6201437770, +91 8252110159}
 
-\abstract{Continental riverine metropolises across the Indo-Gangetic Basin increasingly confront compound hydrometeorological hazards whose joint impacts exceed those of isolated occurrences. While coastal multi-hazard interactions have been examined extensively, inland alluvial basins---characterized by low relief, elevated riverbeds, and severe pre-monsoon thermal regimes---remain poorly understood. This study investigates the sequential coupling between pre-monsoon heatwaves and subsequent pluvial flash flooding across the saucer-shaped urban terrain of Patna District, Bihar, India ($3,200\text{ km}^2$). We formulate \textbf{BHU LOKA}, a multi-hazard analytical framework that links multitemporal Sentinel-1 Synthetic Aperture Radar (SAR) backscatter observations, regular 50~m hexagonal spatial discretization, and quantile-regressed gradient boosting (LightGBM, $\alpha = 0.90$) with Tree-based Shapley Additive Explanations (Tree-SHAP). Using the catastrophic deluge of September 2019 as an empirical baseline ($342.5\text{ mm}$ rainfall in 72 hours), we assess spatial model generalizability under both random 5-fold cross-validation and rigorous Spatial Block Cross-Validation (SBCV). The evaluation demonstrates that random cross-validation yields an overly optimistic coefficient of determination ($R^2 = 0.9688$, $\text{RMSE} = 0.0301$), whereas SBCV reveals an out-of-region predictive skill of $R^2 = 0.7678$ ($\text{RMSE} = 0.0581$), quantifying a spatial autocorrelation performance penalty of $\Delta R^2 = -0.2010$ ($2020.1\% degradation). Thermodynamic simulation indicates that antecedent heatwave exposure ($\text{HWI} > 0.7$) desiccates fine-grained alluvial surface soils, reducing initial infiltration capacity and escalating surface runoff volumes by $4141.3\% under equivalent precipitation pulses. Tree-SHAP attributions identify distance to river confluence ($|\text{SHAP}| = 0.284$) and surface elevation ($|\text{SHAP}| = 0.241$) as primary physical determinants of flood ponding, while built-up density and antecedent thermal stress dominate localized urban anomalies. These findings demonstrate that multi-hazard early warning systems in alluvial plains must account for thermodynamic soil preconditioning and spatial autocorrelation biases to support municipal emergency logistics.}
+\abstract{Continental riverine metropolises in the Indo-Gangetic Plain confront cascading flood and extreme-heat hazards shaped by low relief, embanked river confluences, and dense urban canyons. Existing monsoonal satellite pipelines frequently omit urban street-canyon flooding when relying solely on open-water specular backscatter thresholds, while spatial machine learning studies often overstate transferability through random cross-validation. Here we formulate \textbf{BHU LOKA}, a dual-track reproducible analytical framework evaluated over Patna, Bihar, India, integrating (1) an \textbf{Empirical Earth Observation Track} coupling 10~m Sentinel-1A/B C-band Synthetic Aperture Radar (SAR; 23 September and 29 September 2019), 30~m Copernicus GLO-30 topography, 91 daily NASA Terra MODIS (MOD11A1.061) pre-monsoon thermal overpasses, WorldPop 2020 demographics, and a 60,000-pixel 5-fold Spatial Block Cross-Validation (SBCV) classifier; and (2) an explicitly labeled \textbf{Hydro-Thermodynamic Simulation Proxy Benchmark} ($N = 3,200$) constructed with \texttt{scikit-learn} Random Forest and Quantile Gradient Boosted Regression ($\alpha \in \{0.50, 0.90\}$). Across the Patna Municipal Corporation (PMC, $133.87\text{ km}^2$), bimodal SAR physics combining open specular drop ($\Delta\sigma^0 \le -3.80\text{ dB}$, $0.07\text{ km}^2$ inside PMC) with building-water dihedral corner double-bounce ($\Delta\sigma^0 \ge +1.5\text{ dB}$, $99.52\text{ km}^2$) recovers $99.60\text{ km}^2$ (74.4\%) inundated area, whereas a standard UN-SPIDER specular threshold ($\Delta\sigma^0 \le -2.0\text{ dB}$) detects only $4.01\text{ km}^2$ (2.99\%), quantifying a 95.98\% urban flood omission error. GLO-30 terrain analysis shows $47.24\text{ km}^2$ (33.15\%) of PMC lies in concave depression sinks, exposing 49,380 of 214,281 modeled residents to joint flood-sink overlap and lowering mean Urban Land Suitability Index (ULSI) to $52.27/100$, while MODIS records a peak urban pixel temperature of $46.25^\circ\text{C}$ and a $-1.03^\circ\text{C}$ morning urban-minus-fallow delta. Across 60,000 aligned multi-sensor pixels, 5-fold SBCV yields mean $\text{ROC-AUC} = 0.7498 \pm 0.0497$ ($\text{F1} = 0.6530$). In the controlled $N = 3,200$ simulation proxy, random 5-fold CV produces $R^2 = 0.9688$ ($\text{RMSE} = 0.0302$), whereas 5-block SBCV reduces mean explanatory skill to $R^2 = 0.8258$ ($\Delta R^2 = -0.1430$, -14.8\%; Central Urban Core Block 2 $R^2 = 0.5266$), while controlled urban thermal desiccation ($\text{LST} \ge 40^\circ\text{C}$, $\text{Impervious\_Frac} > 0.60$) elevates runoff coefficients by 17.4\% and shifts upper-tail ($\alpha = 0.90$) importance toward impervious fraction ($0.2491$) and slope ($0.2310$). Separating empirical EO outputs from sensitivity simulations establishes transparent baselines for civil protection planning.}
 
-\keyword{Compound hazards, Pluvial inundation, Synthetic Aperture Radar, Spatial block cross-validation, Quantile regression, Tree-SHAP explainability}
+\keyword{Compound hazards, Urban SAR double-bounce, Sentinel-1, Spatial block cross-validation, Quantile gradient boosting, Continental alluvial basins}
 
 \whypapermatters{
-Continental alluvial cities like Patna face a dangerous combination of pre-monsoon heatwaves followed by catastrophic monsoon flooding. This study demonstrates that prolonged heatwaves bake surface soils into an impermeable crust, increasing rainwater runoff by $4141.3\% and overwhelming municipal drainage outfalls. By coupling all-weather satellite radar with spatial artificial intelligence, this research provides disaster authorities with transparent, ward-level early warnings to deploy rescue assets before severe waterlogging occurs.
+During extreme monsoon storms, standard satellite flood maps built for open rural rivers miss over 95\% of flooded city streets because inundated buildings bounce radar signals back toward the satellite rather than reflecting them away. By pairing cloud-penetrating radar double-bounce detection with 30~m terrain sinks and spatial-block validation tests over Patna, India, this study explains why low-lying residential bowls trap water and shows how reporting random train-test splits hides real failure inside unseen urban blocks.
 }
 
 \maketitle
 
 \section{Introduction}
 
-Hydro-climatic hazard assessments have traditionally evaluated urban flood risks and atmospheric heatwaves as statistically independent phenomena \cite{VanWesten2011, JatoEspino2024}. In continental river basins, however, hazards frequently occur in close succession, establishing compound and cascading regimes where the consequences of the secondary hazard are conditioned by the physical footprint of the primary event \cite{Ganguli2025}. The Indo-Gangetic Plain represents one of the most densely populated alluvial basins on Earth, containing over 400 million residents vulnerable to consecutive climatological anomalies. Within this geographic corridor, urban conglomerates routinely transition from extreme pre-monsoon heatwaves (May--June, with surface air temperatures regularly exceeding $44^\circ\text{C}$) to monsoonal cloudbursts (July--September) that produce severe pluvial ponding.
+Hydro-climatic hazard assessments across South Asian river corridors have historically modeled pluvial flooding and pre-monsoon heat extremes as independent events \cite{VanWesten2011, JatoEspino2025}. In continental alluvial basins such as the Indo-Gangetic Plain, however, intense pre-monsoon thermal stress and late-monsoon cloudbursts operate as sequential compound stressors \cite{Ganguli2025, Rohini2025}. Prolonged spring heatwaves exceeding $44^\circ\text{C}$ dehydrate fine-grained alluvial clay topsoils, stiffen surface crusts, and elevate atmospheric moisture holding capacity in line with Clausius-Clapeyron thermodynamic scaling ($\sim$6.5\% to 7\%~K$^{-1}$) \cite{Ganguli2025, Tallapragada2026}. When heavy monsoonal precipitation subsequently strikes low-relief embanked basins, rapid surface runoff ponds behind high river levees where gravity drainage outfalls must close to prevent fluvial backflow.
 
-Standard hydrologic engineering frameworks assume stationary antecedent catchment conditions, neglecting how prolonged thermal desiccation alters surface infiltration physics. As demonstrated by Ganguli et al. \cite{Ganguli2025} in peninsular India, sustained high temperatures increase atmospheric water storage capacity in accordance with the Clausius-Clapeyron relationship (approximately $6.5\%$ to $7\%$ increase in saturation vapor pressure per Kelvin of warming), while desiccating surface soil layers. In fine-grained alluvial sediments, prolonged thermal baking causes pore collapse, surface hardening, and hydrophobic crust formation. When intense monsoonal convective cells rupture over these desiccated catchments, initial infiltration capacity ($f_0$) is suppressed, accelerating the time to peak hydrograph concentration and converting incoming precipitation into rapid overland sheetflow \cite{Rohini2025}.
+Accurate disaster monitoring during active monsoon depressions is further constrained by persistent cloud cover and dense urban morphology. Passive optical sensors (e.g., Sentinel-2 MSI and Landsat OLI) cannot image through monsoon cloud decks, making active microwave C-band Synthetic Aperture Radar (SAR, $\lambda \approx 5.6\text{ cm}$) from Copernicus Sentinel-1 essential for synoptic flood mapping \cite{MapAction2024}. Conventional rapid-mapping algorithms such as the UN-SPIDER change-detection workflow rely almost exclusively on negative backscatter shifts ($\Delta\sigma^0 \le -2.0\text{ dB}$) produced when calm open floodwaters mirror radar pulses away from the sensor. Inside compact South Asian residential canyons, however, standing street water adjacent to vertical brick and concrete walls acts as a $90^\circ$ dihedral corner reflector, amplifying radar return ($\Delta\sigma^0 \ge +1.5\text{ dB}$) rather than attenuating it. Treating built-up city blocks with open-water specular thresholds risks systematic false negatives during municipal emergency response.
 
-Simultaneously, empirical spatial modeling of multi-hazard vulnerability in urban settings has expanded through machine learning algorithms. Despite their high empirical accuracy, these models often suffer from a fundamental methodological deficiency: the uncritical application of random $k$-fold cross-validation to spatially autocorrelated data \cite{Roberts2016}. Because proximate spatial locations share unobserved geomorphic, topological, and atmospheric traits ($Cov(Z(s), Z(s+h)) > 0$), randomly partitioning training and testing sets causes extensive data leakage between folds. Models trained under random cross-validation report inflated performance metrics that fail when deployed across adjacent, unseen administrative sectors. Quantifying this spatial autocorrelation bias through Spatial Block Cross-Validation (SBCV) is therefore essential for realistic operational deployments \cite{Roberts2016}.
+Equally critical is statistical validation rigor in geospatial machine learning. As formalized by Roberts et al. \cite{Roberts2017}, randomly partitioning spatially autocorrelated environmental samples allows tree ensembles to interpolate between neighboring training pixels, producing optimistic accuracy estimates that deteriorate sharply when transferred to spatially disjoint municipal sectors. While recent urban multi-hazard pipelines employ quantile gradient boosting and post-hoc explanation frameworks to isolate extreme tail risks \cite{Singh2026}, operational deployment demands both honest out-of-block validation and strict separation between direct satellite observations and synthetic hydrological sensitivity models \cite{Boni2025, Pittore2023}.
 
-A further operational challenge lies in Earth observation during monsoonal deluges. Passive optical sensors, including Sentinel-2 MSI and Landsat-8/9 OLI, are consistently obstructed by persistent cloud decks during active monsoon troughs. Active microwave Synthetic Aperture Radar (SAR), specifically the C-band sensor aboard Sentinel-1 ($\lambda = 5.6\text{ cm}$, frequency 5.405 GHz), overcomes this barrier by penetrating cloud cover and heavy rainfall \cite{MapAction2024}. Smooth open floodwaters act as specular reflectors for incoming microwave pulses, scattering energy away from the satellite antenna and causing a distinct drop in the radar backscatter coefficient ($\sigma^0$) that can be mapped at 10~m spatial resolution regardless of solar illumination or atmospheric cloudiness.
-
-To bridge these physical, statistical, and operational gaps, this paper presents \textbf{BHU LOKA}, an integrated spatial machine learning and Earth observation framework calibrated for Patna District, Bihar, India. Patna represents an archetype of continental alluvial vulnerability, situated in a saucer-shaped trough bounded by three major river systems (Ganges, Son, and Punpun).
-
-This investigation addresses four primary objectives:
+To address these physical, observational, and validation gaps over the saucer-shaped urban basin of Patna District, Bihar, India, we develop and evaluate \textbf{BHU LOKA} across two explicitly separated analytical tracks:
 \begin{enumerate}
-    \item Couple multi-temporal Sentinel-1 C-band SAR backscatter analysis with an automated Otsu thresholding protocol to map surface water dynamics during the extreme deluge of September 2019.
-    \item Formulate a coupled hydro-thermodynamic runoff function that captures infiltration suppression resulting from antecedent heatwave desiccation.
-    \item Quantify the empirical performance degradation caused by spatial autocorrelation by contrasting random 5-fold cross-validation against a 5-quadrant Spatial Block Cross-Validation protocol using Quantile Gradient Boosted Regression (LightGBM, $\alpha = 0.90$).
-    \item Resolve feature-level risk attributions across administrative wards using Tree-based Shapley Additive Explanations (Tree-SHAP) to inform disaster management authorities.
+    \item \textbf{Empirical Earth Observation Track (\texttt{EMPIRICAL\_EO}):} Quantify open-water specular drop and urban dihedral corner double-bounce inundation across the September 2019 Patna deluge using paired Sentinel-1A/B 10~m VV scenes (23 September and 29 September 2019), benchmark omission error against UN-SPIDER thresholding \cite{MapAction2024}, extract concave drainage sinks from Copernicus GLO-30 30~m topography, summarize 91 days of NASA Terra MODIS (MOD11A1.061) pre-monsoon land surface temperature, compute WorldPop 2020 demographic exposure and an Urban Land Suitability Index (ULSI), and train a 60,000-pixel Random Forest classifier under 5-fold Spatial Block Cross-Validation (SBCV).
+    \item \textbf{Hydro-Thermodynamic Simulation Proxy Benchmark (\texttt{DERIVED\_SIMULATION\_PROXY}):} Formulate a reproducible $N = 3,200$ synthetic testbed over Patna bounding coordinates using \texttt{scikit-learn} \cite{Pedregosa2011} \texttt{RandomForestRegressor} and quantile \texttt{GradientBoostingRegressor} ($\alpha = 0.50, 0.90$) to measure spatial autocorrelation bias between random 5-fold CV and 5-block SBCV, test thermal desiccation runoff sensitivity above $40^\circ\text{C}$, and contrast median versus 90th-percentile split-weight attribution regimes.
 \end{enumerate}
 
-\section{Study Area and Environmental Setting}
+\section{Study Area and September 2019 Benchmark Event}
 
-Patna District encompasses approximately $3,200\text{ km}^2$ within the central Gangetic Alluvial Plain of Bihar, India, centered at $25.61^\circ\text{N}$ latitude and $85.14^\circ\text{E}$ longitude. The urban core, governed by the Patna Municipal Corporation (PMC), spans 75 administrative wards covering $109.2\text{ km}^2$ with an estimated population exceeding 2.3 million residents.
+Patna District occupies roughly $3,200\text{ km}^2$ in the central Indo-Gangetic Alluvial Plain of Bihar, India (centered near $25.61^\circ\text{N}, 85.14^\circ\text{E}$), bounded north by the Ganges River, west by the Son River, and south-southeast by the Punpun River. The dense urban core administered by the Patna Municipal Corporation (PMC) covers $133.87\text{ km}^2$ within our verified municipal polygon boundary. Natural river sedimentation and riverfront embankments form elevated northern levees ($53$--$55\text{ m}$ a.m.s.l.) overlooking internal residential bowls ($44$--$51\text{ m}$ a.m.s.l.) across southern and eastern neighborhoods such as Rajendra Nagar and Kankarbagh. During high monsoon stages in the Ganges, riverfront sluice gates are sealed against river intrusion, forcing storm runoff to evacuate solely through mechanical sump pumps into the Punpun and Ganges channels.
 
-The district exhibits an unusual geomorphic configuration: a saucer-shaped topographic depression where the central and southern municipal wards sit between $48\text{ m}$ and $52\text{ m}$ above mean sea level (a.m.s.l.), lower than the natural levees and engineered embankments of the Ganges River to the north ($53\text{ m}$ to $55\text{ m}$ a.m.s.l.). The territory forms the hydrodynamic confluence of three major drainage systems: the Ganges flowing west-to-east along the northern boundary, the Son River bounding the west, and the Punpun River traversing the southern and southeastern periphery.
+Between 27 and 30 September 2019, a slow-moving late-monsoon depression delivered $342.5\text{ mm}$ of rainfall over Patna within 72 hours while Ganges water levels rose above the local danger stage, inundating low-lying PMC wards for over a week. Because this event coincided with frequent cloud obscuration and well-documented urban street ponding, it serves as the empirical remote-sensing reference for our radar, topographic, thermal, and exposure analyses.
 
-\begin{boxedfigure}{\textwidth}
-\includegraphics[width=\linewidth]{Figures/Figure1.png}
-\captionof{figure}{Spatial multi-hazard risk assessment across Patna District (Bihar), illustrating (a) pluvial flood inundation susceptibility, (b) pre-monsoon thermal stress anomalies, and (c) coupled compound multi-hazard risk index (CHI) across 3,200 spatial sampling units.}
-\label{fig01}
-\end{boxedfigure}
+\section{Data and Dual-Track Methodology}
 
-During the peak southwest monsoon (July--September), high river stages in the Ganges generate a severe backwater effect. Outfall sluice gates along the riverfront embankments are closed to prevent the Ganges from entering the city. Consequently, internal pluvial runoff generated by high-intensity convective rainfall cannot discharge by gravity and must be evacuated via mechanical pumping stations into the Punpun or Ganges basins. When pumping infrastructure fails or is overwhelmed, severe internal ponding occurs.
-
-This vulnerability materialized between 27 and 30 September 2019, when a late-monsoon deep depression produced $342.5\text{ mm}$ of rainfall across Patna within 72 hours (more than $25\%$ of the total annual precipitation). The Ganges water level reached $49.85\text{ m}$, exceeding the danger mark ($48.60\text{ m}$), while internal sumps and drainage outfalls failed. Over $70\%$ of the urban center, including the low-lying sectors of Rajendra Nagar, Kankarbagh, and Pataliputra, was submerged under $1.5\text{ m}$ to $2.5\text{ m}$ of standing water for 7 to 12 days, disrupting drinking water, electricity, and emergency response logistics. This September 2019 event serves as the empirical ground-truth benchmark for this study.
-
-\section{Data and Methodology}
-
-\subsection{Earth Observation and SAR Inundation Extraction}
-
-To map the spatial extent of inundation during cloud-covered periods, we obtained Level-1 Ground Range Detected (GRD) products from the Sentinel-1A/B constellation operating in Interferometric Wide (IW) swath mode with dual polarization (VV and VH). Two primary granules were ingested:
-\begin{enumerate}
-    \item \textit{Pre-deluge baseline:} 10 September 2019 (orbit 121, relative pass 042).
-    \item \textit{Peak-flood acquisition:} 28 September 2019 (orbit 121, relative pass 042).
-\end{enumerate}
-
-\begin{boxedfigure}{\textwidth}
-\includegraphics[width=\linewidth]{Figures/Figure2.png}
-\captionof{figure}{Copernicus Sentinel-1 SAR Level-1 GRD processing and multi-temporal change detection architecture, illustrating calibration, speckle suppression, terrain correction, and automated Otsu thresholding ($T^* = -4.2\text{ dB}$).}
-\label{fig02}
-\end{boxedfigure}
-
-The SAR data processing pipeline was implemented using standard radiometric and geometric operations:
-\begin{enumerate}
-    \item \textit{Orbit Correction:} Application of precise orbit ephemerides (POD) files from the European Space Agency (ESA) to ensure accurate satellite positioning.
-    \item \textit{Thermal Noise Removal:} Removal of additive thermal noise across cross-polarization channels, particularly at the image margins.
-    \item \textit{Radiometric Calibration:} Conversion of digital pixel values to normalized radar backscatter cross-sections ($\sigma^0$):
-    \begin{equation}
-        \sigma^0 = \frac{DN_i^2}{A_i^2}
-    \end{equation}
-    where $DN_i$ is the digital number at pixel $i$ and $A_i$ is the calibration factor.
-    \item \textit{Speckle Suppression:} Application of a $5 \times 5$ refined Lee adaptive speckle filter to preserve sharp edges and linear features while reducing granular noise.
-    \item \textit{Terrain Correction:} Range-Doppler terrain correction using the 30~m Copernicus Digital Elevation Model (GLO-30), projecting data into the Universal Transverse Mercator (UTM Zone 45N, WGS84 datum) coordinate system at 10~m pixel spacing.
-    \item \textit{Decibel Scaling:} Transformation of the backscatter coefficient to a logarithmic scale:
-    \begin{equation}
-        \sigma^0\text{ (dB)} = 10 \cdot \log_{10}(\sigma^0)
-    \end{equation}
-\end{enumerate}
-
-Open water exhibits low backscatter due to specular reflection, whereas urban structures and dense vegetation generate high backscatter through volume and double-bounce scattering:
-\begin{itemize}
-    \item Baseline urban backscatter ($\sigma_{\text{VV}}^0$): $-10.8\text{ dB to } -13.2\text{ dB}$
-    \item Inundated plain backscatter ($\sigma_{\text{VV}}^0$): $-18.5\text{ dB to } -23.1\text{ dB}$
-\end{itemize}
-
-Inundation was delineated through a difference operator:
-\begin{equation}
-    \Delta \sigma^0 = \sigma_{\text{post}}^0\text{ (dB)} - \sigma_{\text{pre}}^0\text{ (dB)}
-\end{equation}
-
-An automated Otsu bimodal thresholding algorithm determined the optimal separation threshold ($T^* = -4.2\text{ dB}$). Pixels satisfying $\Delta \sigma^0 \le T^*$ and $\sigma_{\text{post}}^0 \le -18.0\text{ dB}$ on topographic slopes below $3^\circ$ were classified as inundated, eliminating steep-slope radar shadows.
-
-\subsection{Hexagonal Spatial Tessellation}
-
-Following Boni et al. \cite{Boni2025} and Pittore et al. \cite{Pittore2018}, we discretized the study domain using a regular hexagonal tessellation with an aperture diameter of 50~m (cell area $A_{hex} \approx 2,165\text{ m}^2$, yielding 3,200 analytical units across the primary sampling grid).
-
-Hexagonal units provide three mathematical advantages over standard square Cartesian grids in spatial hydrological modeling:
-\begin{enumerate}
-    \item \textit{Equidistant Neighborhoods:} Every hexagonal cell shares identical edge-to-center distances ($d = 2r/\sqrt{3}$) with all six adjacent neighbors. Square cells exhibit discontinuous centroid distances between orthogonal ($d_1 = 1.0$) and diagonal ($d_2 = \sqrt{2} \approx 1.414$) neighbors, introducing directional bias into simulated overland flow.
-    \item \textit{Isotropic Dispersion:} Cellular boundary contacts are balanced across $360^\circ$, producing realistic hydrodynamic radial dispersion models.
-    \item \textit{Vector Overlay Legibility:} As documented by Boni et al. \cite{Boni2025}, hexagonal binning prevents graphical vector overlap errors at 1:10,000 cartographic scales, enabling direct aggregation of municipal census data, road networks, and drainage channels into a single spatial layer.
-\end{enumerate}
-
-\subsection{Environmental Covariates and Feature Ingestion}
-
-For each hexagonal cell $i \in \{1, \dots, N\}$, we ingested seven environmental and anthropomorphic predictors derived from Earth observation and topographic models:
-\begin{enumerate}
-    \item \textbf{Elevation ($Z$, m a.m.s.l.):} Extracted from Copernicus GLO-30 DEM. High elevation prevents ponding; low elevations characterize the urban saucer.
-    \item \textbf{Topographic Slope ($S$, degrees):} Calculated from the DEM using Horn's algorithm. Flat slopes ($\le 0.5^\circ$) retard surface drainage.
-    \item \textbf{Distance to River Confluence ($d_{\text{riv}}$, km):} Euclidean distance to the nearest confluence of the Ganges, Son, or Punpun channels.
-    \item \textbf{Normalized Difference Vegetation Index (NDVI):} Derived from cloud-free pre-monsoon Sentinel-2 MSI surface reflectance:
-    \begin{equation}
-        \text{NDVI} = \frac{\rho_{\text{NIR}} - \rho_{\text{Red}}}{\rho_{\text{NIR}} + \rho_{\text{Red}}}
-    \end{equation}
-    \item \textbf{Normalized Difference Built-Up Index (NDBI):} Derived from Sentinel-2 SWIR and NIR bands, representing urban surface impermeability:
-    \begin{equation}
-        \text{NDBI} = \frac{\rho_{\text{SWIR}} - \rho_{\text{NIR}}}{\rho_{\text{SWIR}} + \rho_{\text{NIR}}}
-    \end{equation}
-    \item \textbf{Modified Normalized Difference Water Index (MNDWI):} Highlighting pre-existing wetness and depressions:
-    \begin{equation}
-        \text{MNDWI} = \frac{\rho_{\text{Green}} - \rho_{\text{SWIR}}}{\rho_{\text{Green}} + \rho_{\text{SWIR}}}
-    \end{equation}
-    \item \textbf{Heatwave Index (HWI, dimensionless [0, 1]):} Quantifying pre-monsoon thermal severity derived from MODIS/Terra Land Surface Temperature (LST, MOD11A2) composite anomalies (May--June 2019) relative to the 2000--2018 climatological mean:
-    \begin{equation}
-        \text{HWI}_i = \frac{\text{LST}_i - \text{LST}_{\min}}{\text{LST}_{\max} - \text{LST}_{\min}}
-    \end{equation}
-\end{enumerate}
-
-\subsection{Hydro-Thermodynamic Runoff Formulation}
-
-To quantify how antecedent heatwaves intensify subsequent rainfall runoff, we coupled Horton's soil infiltration model with a thermodynamic desiccation coefficient. Under classical soil physics, infiltration capacity $f(t)$ decreases as soil saturates:
-\begin{equation}
-    f(t) = f_c + (f_0 - f_c) e^{-k t}
-\end{equation}
-where $f_0$ is initial infiltration capacity ($\text{mm}\cdot\text{h}^{-1}$), $f_c$ is ultimate saturated infiltration capacity, and $k$ is the decay constant ($\text{h}^{-1}$).
-
-Under prolonged pre-monsoon heatwaves, fine-grained alluvial silt and silty clay undergo intense desiccation, pore closure, and hydrophobic crust formation \cite{Rohini2025, Ganguli2025}. We formulate the effective initial infiltration capacity $f_{0,\text{eff}}$ as an exponential function of antecedent thermal exposure:
-\begin{equation}
-    f_{0,\text{eff}} = f_c + (f_0 \cdot \exp(-\beta \cdot \text{HWI}) - f_c)
-\end{equation}
-where $\beta$ is an empirical soil desiccation parameter ($\beta = 1.45$ for Gangetic alluvial clay).
-
-Surface runoff volume $Q$ is computed via the SCS Curve Number (CN) framework modified for antecedent thermal conditioning:
-\begin{equation}
-    Q = \frac{(P - I_a)^2}{P - I_a + S_{\text{eff}}}, \quad \text{for } P > I_a
-\end{equation}
-where $P$ is total precipitation (mm), $I_a$ is initial abstraction ($I_a = 0.2 S_{\text{eff}}$), and $S_{\text{eff}}$ is the thermally degraded potential maximum retention:
-\begin{equation}
-    S_{\text{eff}} = S_0 \cdot \left[1 - \gamma \cdot \left(\frac{\text{NDBI} + 1}{2}\right) \cdot \text{HWI}\right]
-\end{equation}
-where $S_0 = \frac{25400}{\text{CN}_0} - 254$ and $\gamma = 0.42$. This formulation mathematically establishes that identical precipitation inputs generate greater overland runoff across urban zones that experienced severe pre-monsoon heatwave desiccation.
-
-\subsection{Quantile Gradient Boosted Regression (LightGBM)}
-
-Standard least-squares regression models optimize the conditional mean $\mathbb{E}[Y|X]$, a metric that dilutes extreme hazards and underestimates low-probability catastrophic inundation. Following Singh et al. \cite{Singh2026}, we implement \textbf{Quantile Gradient Boosted Decision Trees} using the LightGBM library.
-
-The quantile loss (pinball loss) for a specified target quantile $\alpha \in (0, 1)$ is formulated as:
-\begin{align}
-    L_\alpha(y_i, \hat{y}_i) &= \max \left[ \alpha (y_i - \hat{y}_i), (\alpha - 1) (y_i - \hat{y}_i) \right] \notag\\
-    \mathcal{L}_\alpha &= \frac{1}{N} \sum_{i=1}^N L_\alpha(y_i, \hat{y}_i)
-\end{align}
-
-By selecting $\alpha = 0.90$, we force the gradient boosting estimator to minimize penalties along the upper 10th percentile of the flood hazard distribution, isolating high-depth inundation risks critical for emergency rescue planning.
-
-Hyperparameters were systematically calibrated using Bayesian optimization: 450 boosting iterations, learning rate 0.03, maximum tree depth 6, 31 leaves, sub-sample ratio 0.80, and feature fraction 0.85.
-
-\subsection{Spatial Cross-Validation Architecture}
-
-To test the hypothesis that standard random cross-validation inflates model performance metrics through spatial data leakage, we evaluated the model under two distinct protocols:
-
-\begin{boxedfigure}{\textwidth}
-\includegraphics[width=\linewidth]{Figures/Figure3.png}
-\captionof{figure}{Comparison of spatial cross-validation strategies: (a) Protocol A Random 5-Fold CV illustrating adjacent training/test leakage, and (b) Protocol B Spatial Block Cross-Validation (SBCV) partitioning the district into five geographically disjoint quadrants.}
-\label{fig03}
-\end{boxedfigure}
-
-\begin{enumerate}
-    \item \textbf{Protocol A: Random 5-Fold Cross-Validation:} The full dataset of 3,200 hexagonal units was randomly shuffled into 5 equal subsets ($k=5$). In each iteration, four subsets were used for training and one for validation. Because spatial proximity was ignored, training points lay within tens of meters of validation points.
-    \item \textbf{Protocol B: Spatial Block Cross-Validation (SBCV):} Following Roberts et al. \cite{Roberts2016}, the study area was divided into five geographically contiguous, non-overlapping spatial blocks: Block 1 (Northwest: Danapur alluvial plain), Block 2 (Northeast: Fatuha--Ganges confluence), Block 3 (Central: Urban core saucer depression), Block 4 (Southwest: Son River agricultural plain), and Block 5 (Southeast: Punpun River lowlands). In each fold, four blocks trained the model, while the fifth spatially disjoint block served as the test set.
-\end{enumerate}
-
-\subsection{Game-Theoretic Feature Attribution (Tree-SHAP)}
-
-To explain the complex non-linear interactions driving multi-hazard vulnerability, we implemented Tree-SHAP \cite{Lundberg2017}. Grounded in cooperative game theory, Tree-SHAP calculates the marginal contribution of each environmental covariate $j$ to the predicted quantile flood susceptibility:
-\begin{equation}
-    \phi_j(x) = \sum_{S \subseteq F \setminus \{j\}} \frac{|S|! (|F| - |S| - 1)!}{|F|!} \left[ f_x(S \cup \{j\}) - f_x(S) \right]
-\end{equation}
-where $F$ is the complete set of environmental features, $S$ is a feature subset excluding covariate $j$, and $f_x(S)$ is the conditional expectation of model output given subset $S$.
-
-\section{Results and Spatial Validation}
-
-\subsection{Quantitative Evaluation of Spatial Cross-Validation Bias}
-
-Model performance was evaluated using the Coefficient of Determination ($R^2$), Root Mean Squared Error (RMSE), and Mean Absolute Error (MAE). Table~\ref{tab01} presents the comparative validation results across both experimental protocols.
+Strict provenance separation is maintained between direct multi-sensor Earth observation layers (Track 1) and parametric simulation sensitivity runs (Track 2). Table~\ref{tab01} summarizes all ingested local datasets, processing levels, resolutions, and explicitly flagged uningested external placeholders.
 
 \begin{table}
-\tbl{Predictive performance comparison between standard random 5-fold cross-validation and Spatial Block Cross-Validation (SBCV) across Patna District ($N = 3,200$).\label{tab01}}
-{\begin{tabular}{l l c c c}
+\tbl{Provenance inventory of local Earth observation datasets, derived analytical products, and external dependencies documented across Track 1 (\texttt{EMPIRICAL\_EO}) and Track 2 (\texttt{DERIVED\_SIMULATION\_PROXY}).\label{tab01}}
+{\begin{tabular}{l l l c l}
 \rowrule
-\TCH\textbf{Evaluation Scheme} & \textbf{Fold / Block Description} & \textbf{$R^2$ Score} & \textbf{RMSE} & \textbf{MAE} \\
+\TCH\textbf{Dataset / Artifact} & \textbf{Provenance Tier} & \textbf{Sensor / Algorithm} & \textbf{Spatial Grid} & \textbf{Temporal / Operational Status} \\
 \rowrule
-\textbf{Protocol A: Random 5-Fold CV} & Fold 1 (Random Split) & 0.9712 & 0.0289 & 0.0194 \\
- & Fold 2 (Random Split) & 0.9654 & 0.0314 & 0.0210 \\
- & Fold 3 (Random Split) & 0.9701 & 0.0295 & 0.0198 \\
- & Fold 4 (Random Split) & 0.9678 & 0.0305 & 0.0204 \\
- & Fold 5 (Random Split) & 0.9695 & 0.0302 & 0.0201 \\
-\rowrule
- & \textbf{Mean Random Performance} & \textbf{0.9688} & \textbf{0.0301} & \textbf{0.0201} \\
-\rowrule
-\textbf{Protocol B: Spatial Block CV} & Block 1: Northwest (Danapur) & 0.7812 & 0.0542 & 0.0398 \\
- & Block 2: Northeast (Confluence) & 0.7490 & 0.0612 & 0.0441 \\
- & Block 3: Central Urban Core & 0.7321 & 0.0645 & 0.0468 \\
- & Block 4: Southwest (Son Basin) & 0.7984 & 0.0521 & 0.0379 \\
- & Block 5: Southeast (Punpun Lowland) & 0.7785 & 0.0583 & 0.0415 \\
-\rowrule
- & \textbf{Mean Spatial Block Performance} & \textbf{0.7678} & \textbf{0.0581} & \textbf{0.0420} \\
-\rowrule
-\textbf{Autocorrelation Penalty ($\Delta$)} & \textbf{Bias Inflation Magnitude} & \textbf{-0.2010 (-20.1\%)} & \textbf{+0.0280 (+93.0\%)} & \textbf{+0.0219 (+109.0\%)} \\
+Sentinel-1A/B GRD VV & \texttt{EMPIRICAL\_EO} & C-band IW SAR (Orbit 121) & 10~m ($2602 \times 1709$ px) & 23 Sep \& 29 Sep 2019 (ingested) \\
+Copernicus GLO-30 DEM & \texttt{EMPIRICAL\_EO} & TanDEM-X DEM tiles N25E084/85 & 30~m EGM2008 & Static topographic reference (ingested) \\
+NASA Terra MODIS LST & \texttt{EMPIRICAL\_EO} & MOD11A1.061 daily HDF-EOS2 & 1~km Sinusoidal h25v06 & 91 days (61 clear-sky), Apr--Jun 2019 \\
+WorldPop India 2020 & \texttt{EMPIRICAL\_EO} & UN-adjusted demographic raster & 1~km resampled 10~m & 2020 baseline exposure (ingested) \\
+Spatial RF SBCV Raster & \texttt{EMPIRICAL\_EO} & \texttt{RandomForestClassifier} (5 strips) & $N = 60,000$ pixels & Reproducible local benchmark \\
+Simulation Proxy Grid & \texttt{DERIVED\_SIMULATION\_PROXY} & Parametric hydro-thermal equations & $N = 3,200$ points & Synthetic Patna bounds sensitivity \\
+Sentinel-2 MSI \& IMD Rain & External Planned & Optical indices; $0.25^\circ$ gauge grid & 10--20~m / $\sim 25\text{ km}$ & Portal guide placeholders only (not ingested) \\
 \rowrule
 \end{tabular}}
 {}
 \end{table}
 
-Under standard random cross-validation, the model achieves an inflated $R^2$ of 0.9688 and an RMSE of 0.0301. However, when evaluated using Spatial Block Cross-Validation, out-of-sample explanatory power stabilizes at $R^2 = 0.7678$, with RMSE increasing by $93.0\%$ to 0.0581. This discrepancy highlights the severe \textbf{spatial autocorrelation bias penalty} ($\Delta R^2 = -0.2010$). Random cross-validation allows tree ensembles to interpolate between adjacent points, memorizing local spatial structures rather than learning generalized physical laws. The 0.7678 $R^2$ obtained under SBCV represents the true operational generalizability of the model when applied to unmonitored contiguous sectors.
+\subsection{Track 1: Empirical Multi-Sensor Earth Observation (\texttt{EMPIRICAL\_EO})}
 
-\subsection{Hydro-Thermodynamic Runoff Amplification}
+\subsubsection{Bimodal Sentinel-1A/B SAR Change Detection and UN-SPIDER Benchmark}
 
-\begin{boxedfigure}{350pt}
-\includegraphics[width=\linewidth]{Figures/Figure4.png}
-\caption{Non-linear escalation of pluvial surface runoff volume under antecedent heatwave preconditioning, stratified by urban density tiers across 3,200 alluvial catchments.}
+Two Level-1 Ground Range Detected (GRD) Interferometric Wide (IW) swath VV-polarization scenes covering Orbit 121 were ingested from local storage: pre-flood baseline \texttt{S1A\_IW\_GRDH\_VV\_20190923} (23 September 2019, 693.76~MB) and peak-flood acquisition \texttt{S1B\_IW\_GRDH\_VV\_20190929} (29 September 2019, 713.72~MB). Using GeoTIFF tiepoints interpolated via \texttt{LinearNDInterpolator}, both scenes were cropped to a co-registered Patna study window spanning $85.02^\circ\text{E}$--$85.25^\circ\text{E}$ and $25.54^\circ\text{N}$--$25.65^\circ\text{N}$ ($2602 \times 1709$ pixels at 10~m spacing, total window area $444.68\text{ km}^2$), illustrated in Figure~\ref{fig01}.
+
+\begin{boxedfigure}{\textwidth}
+\includegraphics[width=\linewidth]{Figures/Figure2.png}
+\caption{Track 1 Copernicus Sentinel-1A/B SAR bimodal flood extraction workflow (\texttt{EMPIRICAL\_EO}), processing paired 23 September 2019 and 29 September 2019 VV scenes through specular drop ($T^* = -3.80\text{ dB}$) and urban corner double-bounce ($\Delta\sigma^0 \ge +1.5\text{ dB}$) branches.}
+\label{fig01}
+\end{boxedfigure}
+
+Two complementary backscatter formulations were executed and cross-checked:
+\begin{enumerate}
+    \item \textit{Window-wide Specular Otsu Extraction (\texttt{03\_process\_sar\_inundation.py}):} Applying a $5 \times 5$ spatial speckle filter and empirical DN normalization ($\sigma^0\text{ [dB]} = 20\log_{10}(\text{DN}) - 83.0$), automated bimodal Otsu thresholding over $\Delta\sigma^0 = \sigma_{\text{post}}^0 - \sigma_{\text{pre}}^0$ isolated optimal specular drop at $T^* = -3.7978\text{ dB}$ ($\approx -3.80\text{ dB}$).
+    \item \textit{Municipal-Core Bimodal Urban Physics (\texttt{run\_sar\_experiment\_v2.py}):} Rasterizing the verified $133.87\text{ km}^2$ PMC boundary and calibrating backscatter via $\sigma^0 = 10\log_{10}(\text{DN}^2 + 10^{-6}) - 52.0\text{ dB}$, permanent river channels ($\sigma_{\text{pre}}^0 < -18.0\text{ dB}$) were masked first. Non-permanent open-water inundation was identified where $\Delta\sigma^0 \le -3.80\text{ dB}$ and $\sigma_{\text{post}}^0 < -16.0\text{ dB}$. Flooded urban street canyons acting as dihedral corner reflectors between inundated pavement and building facades were captured via positive backscatter amplification:
+    \begin{equation}
+        \text{Urban Double-Bounce:} \quad (\Delta\sigma^0 \ge +1.5\text{ dB}) \;\land\; (\sigma_{\text{pre}}^0 \ge -14.0\text{ dB}) \;\land\; (\sigma_{\text{post}}^0 \ge -11.0\text{ dB}) \;\land\; (\sigma_{\text{pre}}^0 \ge -18.0\text{ dB}).
+    \end{equation}
+\end{enumerate}
+
+To measure omission bias in standard operational rapid-mapping pipelines, we reproduced the UN-SPIDER specular difference criterion \cite{MapAction2024} implemented in the local \texttt{flood-mapping-tool} baseline ($\Delta\sigma^0 \le -2.0\text{ dB}$ inside PMC) and compared raw and permanent-water-filtered masks directly against BHU LOKA's combined bimodal footprint.
+
+\subsubsection{Copernicus GLO-30 DEM, NASA MODIS LST, WorldPop ULSI, and 60,000-Pixel SBCV}
+
+Topographic elevation and slope ($30\text{ m}$ EGM2008 tiles \texttt{glo30\_N25\_E084} and \texttt{glo30\_N25\_E085}) were resampled to the PMC analysis grid ($142.48\text{ km}^2$ DEM extent). Local concave depression sinks were delineated wherever cell elevation lay at least $0.4\text{ m}$ below its local 8-neighbor mean. Pre-monsoon thermal stress was computed across all 91 daily NASA Terra MODIS \texttt{MOD11A1.061} granules from 1 April to 30 June 2019 (Sinusoidal tile \texttt{h25v06}, $\sim$10:30~AM local daytime overpass; scaled via $\text{LST [K]} = 0.02 \times \text{DN}$ for $\text{DN} \ge 7500$) over a $31 \times 31\text{ km}$ window centered on Patna, contrasting a central $5 \times 5\text{ km}$ urban mask against a peripheral rural ring ($\ge 7\text{ km}$ from center).
+
+Human exposure and composite suitability were computed by bilinearly downscaling WorldPop India 2020 ($1\text{ km}$ counts) to the $10\text{ m}$ SAR grid ($\text{pop}_{10\text{m}} = \text{pop}_{1\text{km}} / 10^4$) and evaluating a normalized Urban Land Suitability Index ($\text{ULSI} \in [0, 100]$):
+\begin{equation}
+    \text{ULSI} = 100 \times \left[1 - \left(0.45\,\mathbb{I}_{\text{flood}} + 0.30\,\mathbb{I}_{\text{sink}} + 0.15\,\text{clip}\!\left(\frac{2.5 - S}{2.5}, 0, 1\right) + 0.10\,\text{clip}\!\left(\frac{\rho_{1\text{km}}}{25,000}, 0, 1\right)\right)\right].
+\end{equation}
+Raster values were grouped into Zone S1 (High Suitability, $\ge 75$), S2 ($50$--$74$), S3 ($30$--$49$), and S4 (Critical Hazard, $< 30$). Finally, $60,000$ stratified pixels ($30,000$ flooded, $30,000$ non-flooded) were sampled across the $2602 \times 1709$ raster stack (\texttt{SAR\_Pre\_dB}, \texttt{SAR\_Post\_dB}, \texttt{Delta\_Sigma0}, \texttt{Elevation\_m}, \texttt{Slope\_deg}, \texttt{Is\_Sink}, \texttt{Population}) and evaluated via a 100-tree \texttt{RandomForestClassifier} (\texttt{max\_depth=12}) across 5 contiguous west-east spatial block strips ($520\text{ px}$ wide).
+
+\subsection{Track 2: Hydro-Thermodynamic Simulation Proxy Benchmark (\texttt{DERIVED\_SIMULATION\_PROXY})}
+
+Because local Sentinel-2 optical indices and daily IMD $0.25^\circ$ rainfall grids remain uningested portal placeholders (Table~\ref{tab01}), coupled compound heatwave-flood scaling and continuous quantile regression sensitivity were tested inside a clearly isolated synthetic testbed (\texttt{patna\_multihazard\_pipeline.py}, fixed seed 42, $N = 3,200$ uniformly distributed lat/lon coordinates over $25.30^\circ\text{N}$--$25.70^\circ\text{N}, 84.85^\circ\text{E}$--$85.35^\circ\text{E}$). Note that these 3,200 units are continuous geo-located point samples rather than regular hexagonal polygons; regular 50~m hexagonal tessellation \cite{Boni2025, Pittore2023} serves as the planned cartographic aggregation target once all empirical optical and meteorological rasters are assembled.
+
+Seven synthetic covariates were parameterized to mirror Patna's alluvial topography and urban density decay: elevation ($42$--$58\text{ m}$), exponential slope ($0.1^\circ$--$8.5^\circ$), minimum river distance to the Ganges or Punpun ($0.1$--$40.0\text{ km}$), urban impervious fraction ($0.04$--$0.94$), pre-monsoon LST ($33.0^\circ\text{C}$--$48.0^\circ\text{C}$), convective storm precipitation ($110$--$275\text{ mm}$), and log-normal population density. Pre-monsoon soil desiccation above a $T_{\text{crit}} = 40.0^\circ\text{C}$ threshold scales effective runoff coefficient $C_{\text{runoff}}$ and composite hazard index ($\text{CHI}$):
+\begin{align}
+    \Psi(T_{\text{LST}}) &= 1 + 0.35\,\max\!\left(0, \frac{T_{\text{LST}} - 40.0}{5.0}\right), \qquad C_{\text{runoff}} = \text{clip}\!\left(0.20 + 0.65\,I_{\text{frac}}\,\Psi(T_{\text{LST}}),\; 0.15,\; 0.96\right), \\
+    \text{CHI} &= \text{clip}\!\left(0.65\left[\sqrt{0.55\,\text{PFHI}^2 + 0.45\,\text{THI}^2} + 0.25(\text{PFHI}\cdot\text{THI})\right] + 0.35\,E_{\text{norm}},\; 0.02,\; 0.98\right),
+\end{align}
+where PFHI combines rainfall depth, $C_{\text{runoff}}$, inverse relief above $39\text{ m}$, and inverse slope gradient, THI normalizes LST on $[34^\circ\text{C}, 48^\circ\text{C}]$, and $E_{\text{norm}}$ scales log population density. Model generalization was evaluated using \texttt{RandomForestRegressor} (100 trees, depth 12) under (a) Random 5-Fold CV and (b) 5-Block SBCV centered at $25.50^\circ\text{N}, 85.10^\circ\text{E}$ with Block 2 isolating the Central Urban Core within $7.5\text{ km}$ of $25.61^\circ\text{N}, 85.14^\circ\text{E}$. Tail feature importance was quantified using \texttt{scikit-learn} \cite{Pedregosa2011} \texttt{GradientBoostingRegressor} with quantile pinball loss ($L_\alpha(y, \hat{y}) = \max[\alpha(y-\hat{y}), (\alpha-1)(y-\hat{y})]$) at median ($\alpha = 0.50$) and extreme tail ($\alpha = 0.90$) regimes (120 trees, depth 6). Multicollinearity was screened via Variance Inflation Factors (VIF) and Spearman rank correlations.
+
+\section{Results}
+
+\subsection{Track 1: Empirical Earth Observation over Patna (\texttt{EMPIRICAL\_EO})}
+
+\subsubsection{Bimodal SAR Flooding and UN-SPIDER Omission Error}
+
+Figure~\ref{fig02} displays the window-wide specular inundation map across $444.68\text{ km}^2$ derived from 23 and 29 September 2019 Sentinel-1A/B pairs. Automated Otsu thresholding ($T^* = -3.80\text{ dB}$) identified $26.54\text{ km}^2$ (5.97\% of the total bounding window, mean water $\sigma^0 = -41.85\text{ dB}$ under $-83\text{ dB}$ scaling) of open-water backscatter drop, concentrated over peri-urban agricultural lowlands and northern channel margins rather than dense central streets.
+
+\begin{boxedfigure}{\textwidth}
+\includegraphics[width=\linewidth]{Figures/Figure_Empirical_SAR_Flood.png}
+\caption{Track 1 empirical Sentinel-1A/B open-water specular inundation extraction ($444.68\text{ km}^2$ study window, 23 September vs 29 September 2019, 10~m VV polarization, Otsu $T^* = -3.80\text{ dB}$), showing $26.54\text{ km}^2$ (5.97\%) open specular floodwater prior to urban double-bounce integration.}
+\label{fig02}
+\end{boxedfigure}
+
+Restricting analysis inside the $133.87\text{ km}^2$ PMC boundary and masking dry-season Ganges river channels reveals why open-water thresholds severely undercount urban flooding (Figure~\ref{fig03}a). Filtered open specular drop ($\Delta\sigma^0 \le -3.80\text{ dB}, \sigma_{\text{post}}^0 < -16.0\text{ dB}$) captures only $0.07\text{ km}^2$ ($1.15\text{ km}^2$ without the post-intensity ceiling) inside PMC. Incorporating dihedral building-water corner double-bounce ($\Delta\sigma^0 \ge +1.5\text{ dB}$) recovers an additional $99.52\text{ km}^2$ ($94.08\text{ km}^2$ unfiltered threshold), bringing total empirical PMC inundation to $99.60\text{ km}^2$ (74.4\% of the municipal core). Evaluating the standard UN-SPIDER specular rule ($\Delta\sigma^0 \le -2.0\text{ dB}$) over the identical PMC mask yields only $4.01\text{ km}^2$ (2.99\% of PMC), missing $95.59\text{ km}^2$ of flooded built-up streets and producing a 95.98\% urban omission error.
+
+\begin{boxedfigure}{\textwidth}
+\includegraphics[width=\linewidth]{Figures/Figure7_Empirical_EO_Validation.png}
+\caption{Track 1 empirical Earth observation validation (\texttt{EMPIRICAL\_EO}): (a) Sentinel-1 PMC inundation detected by UN-SPIDER specular drop ($4.01\text{ km}^2$) versus BHU LOKA bimodal corner double-bounce ($99.60\text{ km}^2$, 74.40\% PMC); (b) 10~m PMC Urban Land Suitability Index (ULSI) map (mean $52.27/100$); (c) 60,000-pixel 5-fold Spatial Block Cross-Validation ROC-AUC ($0.7498 \pm 0.0497$) and F1 ($0.6530$).}
+\label{fig03}
+\end{boxedfigure}
+
+\subsubsection{Topography, Pre-Monsoon MODIS Thermal Regime, Exposure, and 60,000-Pixel SBCV}
+
+Over the $142.48\text{ km}^2$ GLO-30 PMC grid, elevations span $40.00$ to $72.99\text{ m}$ EGM2008 ($\text{mean} = 53.99\text{ m}$, $\text{SD} = 3.00\text{ m}$), with mean slope $2.31^\circ$ and 25.24\% of terrain flatter than $1.0^\circ$. Automated 8-neighbor sink detection isolates $47.24\text{ km}^2$ (33.15\%) of PMC inside concave topographic depressions ($\ge 0.4\text{ m}$ below local surroundings). Across 61 cloud-free NASA Terra MODIS overpasses out of 91 pre-monsoon days (April--June 2019), morning ($\sim$10:30~AM) urban core LST averages $37.29^\circ\text{C}$ and peaks at $46.25^\circ\text{C}$ on individual pixels (hottest urban-core overpass DOY 139: $45.32^\circ\text{C}$). Surrounding agricultural fallow pixels average $38.32^\circ\text{C}$ during the dry morning window, producing a daytime urban-minus-fallow contrast of $-1.03^\circ\text{C}$ characteristic of semi-arid harvested soils prior to crop green-up.
+
+Fusing Sentinel-1 inundation, GLO-30 depressions, slope, and WorldPop 2020 demographics ($214,281$ modeled PMC residents) indicates that $167,246$ residents live within the 2019 inundation mask, $60,790$ within depression sinks, and $49,380$ within joint flood-and-sink overlap. Across PMC pixels (Figure~\ref{fig03}b), mean ULSI equals $52.27/100$, partitioned into Zone S1 High (20.1\%), S2 Moderate (27.7\%), S3 Low (33.1\%), and S4 Critical (19.1\%). In our companion planning table within \texttt{run\_multihazard\_fusion.py}, representative locality benchmarks assign higher scores to elevated western levees (Danapur Cantonment $89.4$, Bailey Road/Khagaul $86.2$) and critical scores to southern bowls (Kankarbagh $28.2$, Rajendra Nagar $21.6$). On 60,000 aligned pixels evaluated under 5 contiguous west-east spatial blocks (Figure~\ref{fig03}c), the \texttt{RandomForestClassifier} achieves mean $\text{ROC-AUC} = 0.7498 \pm 0.0497$ (Fold 1--5 AUC: $0.6855, 0.7900, 0.7999, 0.7802, 0.6937$), mean $\text{F1} = 0.6530$, accuracy 68.88\%, and Brier score $0.2003$. Gini importances rank \texttt{SAR\_Post\_dB} ($0.3676$) and \texttt{Delta\_Sigma0} ($0.2993$) highest ($0.6669$ combined) because the flood target mask derives directly from Sentinel-1 backscatter physics (with pre-flood baseline set constant at $-12.0\text{ dB}$ when loading \texttt{delta\_sigma0.npy}), while static geomorphic and demographic predictors (\texttt{Elevation\_m} $0.1263$, \texttt{Population} $0.1049$, \texttt{Slope\_deg} $0.0876$, \texttt{Is\_Sink} $0.0143$) contribute $0.3331$ combined explanatory weight.
+
+\subsection{Track 2: Hydro-Thermodynamic Simulation Proxy Sensitivity (\texttt{DERIVED\_SIMULATION\_PROXY})}
+
+\subsubsection{Spatial Autocorrelation Leakage and Central Urban Block Breakdown}
+
+Figure~\ref{fig04} shows the simulated spatial hazard surfaces across all $N = 3,200$ points, while Figure~\ref{fig05} and Table~\ref{tab02} contrast Random 5-Fold CV against 5-Block SBCV using \texttt{RandomForestRegressor}. Random 5-fold splits yield tightly clustered, near-ceiling fits ($\text{mean } R^2 = 0.9688$, $\text{RMSE} = 0.0302$, $\text{MAE} = 0.0229$) because training samples lie adjacent to held-out test points within identical local gradients. Enforcing contiguous spatial blocks decreases mean out-of-block $R^2$ to $0.8258$ ($\text{RMSE} = 0.0462$, $\text{MAE} = 0.0349$), representing a $-0.1430$ (-14.8\%) reduction in explained variance alongside a 53.1\% RMSE increase and 52.8\% MAE increase. Most notably, Block 2 (Central PMC Urban Core, $n = 258$) drops sharply to $R^2 = 0.5266$ ($\text{RMSE} = 0.1044$, $\text{MAE} = 0.0781$), demonstrating severe extrapolation failure when a model trained on rural and peri-urban flanks is asked to predict the upper urban imperviousness tail.
+
+\begin{boxedfigure}{\textwidth}
+\includegraphics[width=\linewidth]{Figures/Figure1.png}
+\caption{Track 2 simulated multi-hazard sensitivity surfaces over Patna bounding coordinates (\texttt{DERIVED\_SIMULATION\_PROXY}, $N = 3,200$ point samples): (a) simulated pluvial hazard index (PFHI), (b) pre-monsoon thermal stress index (THI), and (c) coupled compound risk proxy (CHI).}
 \label{fig04}
 \end{boxedfigure}
 
-Figure~\ref{fig04} illustrates the simulated interaction between antecedent heatwave preconditioning and pluvial runoff generation across 3,200 hexagonal cells:
-\begin{itemize}
-    \item Across baseline catchments with low antecedent thermal stress ($\text{HWI} \le 0.20$), a 100~mm convective precipitation event generates a mean surface runoff depth of $48.2 \pm 3.1\text{ mm}$ (runoff coefficient $C = 0.48$).
-    \item In catchments subjected to severe antecedent heatwaves ($\text{HWI} \ge 0.70$), the same 100~mm event generates $68.1 \pm 4.2\text{ mm}$ of runoff ($C = 0.68$).
-\end{itemize}
-
-This represents a \textbf{41.3\% relative increase in surface runoff volume} directly attributable to heatwave preconditioning. Desiccated surface soils experience pore collapse and hydrophobic crusting, which accelerates infiltration decay ($k$) and reduces total catchment retention capacity ($S_{\text{eff}}$), overwhelming municipal drainage infrastructure.
-
-\subsection{Covariate Correlation and Multi-Collinearity}
-
-\begin{boxedfigure}{350pt}
-\includegraphics[width=\linewidth]{Figures/Figure5.png}
-\caption{Pearson correlation matrix across seven environmental and anthropomorphic predictors and the target compound multi-hazard susceptibility index.}
+\begin{boxedfigure}{\textwidth}
+\includegraphics[width=\linewidth]{Figures/Figure3.png}
+\caption{Track 2 spatial validation comparison (\texttt{DERIVED\_SIMULATION\_PROXY}, $N = 3,200$): (a) Protocol A random 5-fold split allowing spatial interpolation ($\text{mean } R^2 = 0.9688$); (b) Protocol B five-block disjoint SBCV centered at $25.50^\circ\text{N}, 85.10^\circ\text{E}$ ($\text{mean } R^2 = 0.8258$, Central Urban Core Block 2 $R^2 = 0.5266$).}
 \label{fig05}
 \end{boxedfigure}
 
-Figure~\ref{fig05} presents the Pearson correlation matrix across the seven environmental covariates and the target hazard index:
-\begin{itemize}
-    \item Surface Elevation vs Hazard Index: $r = -0.71$ ($p < 0.001$). Confirms that elevation remains the dominant physical control over ponding duration in alluvial basins.
-    \item NDBI vs Heatwave Index (HWI): $r = +0.72$ ($p < 0.001$). Demonstrates strong coupling between urban surface impermeability and intense surface urban heat islands.
-    \item MNDWI vs Elevation: $r = -0.68$ ($p < 0.001$). Demonstrates that surface depressions systematically accumulate antecedent moisture.
-    \item Distance to River Confluence vs Hazard Index: $r = -0.58$ ($p < 0.001$). Reflects regional backwater dynamics; catchments closer to the Ganges--Punpun junction experience reduced drainage hydraulic head.
-\end{itemize}
+\begin{table}
+\tbl{Track 2 (\texttt{DERIVED\_SIMULATION\_PROXY}, $N = 3,200$, \texttt{sklearn.RandomForestRegressor}) validation comparison between Random 5-Fold CV and 5-Block Spatial Block Cross-Validation (SBCV).\label{tab02}}
+{\begin{tabular}{l l r c c c}
+\rowrule
+\TCH\textbf{Validation Protocol} & \textbf{Fold / Geographic Block} & \textbf{$n_{\text{test}}$} & \textbf{$R^2$} & \textbf{RMSE} & \textbf{MAE} \\
+\rowrule
+Random 5-Fold CV & Fold 1 (Random Split) & 640 & 0.9674 & 0.0294 & 0.0225 \\
+ & Fold 2 (Random Split) & 640 & 0.9701 & 0.0294 & 0.0227 \\
+ & Fold 3 (Random Split) & 640 & 0.9732 & 0.0297 & 0.0225 \\
+ & Fold 4 (Random Split) & 640 & 0.9669 & 0.0311 & 0.0233 \\
+ & Fold 5 (Random Split) & 640 & 0.9663 & 0.0312 & 0.0233 \\
+\rowrule
+ & \textbf{Mean Random 5-Fold CV} & \textbf{640} & \textbf{0.9688} & \textbf{0.0302} & \textbf{0.0229} \\
+\rowrule
+5-Block SBCV & Block 0: Northwest (Danapur Plain) & 756 & 0.9396 & 0.0337 & 0.0247 \\
+ & Block 1: Northeast (Ganga Riparian) & 598 & 0.9146 & 0.0402 & 0.0310 \\
+ & Block 2: Central (PMC Urban Core) & 258 & 0.5266 & 0.1044 & 0.0781 \\
+ & Block 3: Southwest (Son Alluvial) & 831 & 0.8531 & 0.0255 & 0.0199 \\
+ & Block 4: Southeast (Punpun Lowland) & 757 & 0.8951 & 0.0270 & 0.0210 \\
+\rowrule
+ & \textbf{Mean 5-Block SBCV} & \textbf{640} & \textbf{0.8258} & \textbf{0.0462} & \textbf{0.0349} \\
+\rowrule
+\textbf{Bias Penalty ($\Delta$)} & \textbf{SBCV minus Random CV} & --- & \textbf{-0.1430 (-14.8\%)} & \textbf{+0.0160 (+53.1\%)} & \textbf{+0.0121 (+52.8\%)} \\
+\rowrule
+\end{tabular}}
+{}
+\end{table}
 
-Variance Inflation Factors (VIF) for all seven covariates remained below 3.8, confirming the absence of severe multicollinearity.
+\subsubsection{Thermal Desiccation Runoff Escalation, Covariate Structure, and Quantile Shift}
 
-\subsection{Tree-SHAP Feature Attributions and Interpretability}
+Figure~\ref{fig06} visualizes runoff and pluvial hazard response above the $40.0^\circ\text{C}$ thermal desiccation threshold. Across all 3,200 simulated points, 181 locations exceed $40.0^\circ\text{C}$ (maximum $44.26^\circ\text{C}$), raising mean modeled $C_{\text{runoff}}$ from $0.3277$ ($\text{LST} < 40^\circ\text{C}$, $n = 3,019$) to $0.6313$ ($\text{LST} \ge 40^\circ\text{C}$, +92.7\% across the urban-rural gradient). Controlling within dense urban pixels ($\text{Impervious\_Frac} > 0.60$) isolates pure thermal desiccation sensitivity: mean $C_{\text{runoff}}$ rises by 17.4\% from $0.6160$ ($n = 19$, $\text{LST} < 40^\circ\text{C}$) to $0.7232$ ($n = 91$, $\text{LST} \ge 40^\circ\text{C}$).
 
-\begin{boxedfigure}{350pt}
-\includegraphics[width=\linewidth]{Figures/Figure6.png}
-\caption{Global feature importance rankings derived from Tree-based Shapley Additive Explanations (Tree-SHAP) across the 90th percentile hazard distribution.}
+\begin{boxedfigure}{\textwidth}
+\includegraphics[width=\linewidth]{Figures/Figure4.png}
+\caption{Track 2 simulated compound thermal desiccation curve (\texttt{DERIVED\_SIMULATION\_PROXY}, $N = 3,200$): quadratic trends across land-cover tiers highlight accelerated runoff hazard above $40.0^\circ\text{C}$ inside dense impervious cores (+17.4\% controlled $C_{\text{runoff}}$ increase).}
 \label{fig06}
 \end{boxedfigure}
 
-Figure~\ref{fig06} illustrates global and local feature contributions computed using Tree-SHAP across the 90th percentile hazard distribution. The game-theoretic attributions rank \textbf{Distance to River Confluence} ($\text{mean } |\text{SHAP}| = 0.284$) and \textbf{Surface Elevation} ($\text{mean } |\text{SHAP}| = 0.241$) as the two most influential determinants of extreme multi-hazard vulnerability. Crucially, \textbf{Antecedent Heatwave Index (HWI)} ranks third ($\text{mean } |\text{SHAP}| = 0.187$), outpacing standard land cover metrics such as NDBI ($0.143$) and NDVI ($0.045$). In high-density wards where $\text{NDBI} > 0.40$, positive interaction effects between HWI and NDBI contribute up to $+0.32$ to the final hazard score.
+\begin{boxedfigure}{\textwidth}
+\includegraphics[width=\linewidth]{Figures/Figure5.png}
+\caption{Track 2 Spearman rank correlation matrix across seven synthetic covariates and target indices ($N = 3,200$), showing strong built-up coupling ($\text{Pop\_Density}$ $r_s = +0.84$, $\text{Impervious\_Frac}$ $r_s = +0.82$, $\text{LST}$ $r_s = +0.69$) and inverse elevation control ($r_s = -0.51$).}
+\label{fig07}
+\end{boxedfigure}
 
-\section{Discussion and Policy Implications}
+Spearman rank correlations (Figure~\ref{fig07}) confirm strong structural coupling between CHI and population density ($r_s = +0.8374$), impervious fraction ($+0.8248$), and LST ($+0.6919$), contrasted with inverse topographic controls from elevation ($-0.5102$) and slope ($-0.3749$; $\text{Pluvial\_Hazard}$ vs $\text{Slope\_deg}$ $r_s = -0.7182$). Pairwise collinearity among urban variables ($\text{Pop\_Density}$ vs $\text{Impervious\_Frac}$ $r_s = +0.8657$, $\text{LST}$ vs $\text{Impervious\_Frac}$ $r_s = +0.6430$) yields moderate VIF values ($\text{Impervious\_Frac} = 6.175$, $\text{LST} = 4.128$, $\text{Pop\_Density} = 3.193$), with all seven covariates remaining below the standard 10.0 cutoff. Finally, Figure~\ref{fig08} highlights a clear structural regime shift across conditional quantiles in \texttt{GradientBoostingRegressor}: whereas RF Gini ($0.5352$) and median quantile $\alpha = 0.50$ ($0.3301$) rank \texttt{Pop\_Density} first, moving to the catastrophic upper tail ($\alpha = 0.90$) promotes \texttt{Impervious\_Frac} ($0.2491$) to rank 1, followed by \texttt{Slope\_deg} ($0.2310$) and \texttt{LST\_Celsius} ($0.1485$), confirming that upper-tail hazard extremes respond primarily to built surface sealing, flat drainage geometry, and thermal preconditioning rather than demographic exposure weights alone.
 
-\subsection{Physical Mechanisms in Saucer-Shaped Continental Basins}
+\begin{boxedfigure}{\textwidth}
+\includegraphics[width=\linewidth]{Figures/Figure6.png}
+\caption{Track 2 model explanation shift (\texttt{DERIVED\_SIMULATION\_PROXY}): (a) \texttt{RandomForestRegressor} Gini importance led by \texttt{Pop\_Density} ($0.5352$); (b) \texttt{GradientBoostingRegressor} shift from median ($q = 0.50$) toward extreme upper-tail ($q = 0.90$) importance dominated by \texttt{Impervious\_Frac} ($0.2491$), \texttt{Slope\_deg} ($0.2310$), and \texttt{LST\_Celsius} ($0.1485$).}
+\label{fig08}
+\end{boxedfigure}
 
-The results demonstrate that compound flood dynamics in continental river basins cannot be captured through conventional uncoupled flood risk models. In coastal zones, compound flooding is driven by the coincidence of oceanic storm surge and river discharge \cite{Ganguli2025}. In continental alluvial plains like Patna, the compounding mechanism is sequential and hydro-thermodynamic:
+\section{Discussion, Limitations, and Civil Protection Implications}
+
+Our empirical SAR findings explain why rapid flood maps routinely fail municipal authorities inside dense South Asian cities. Across PMC, open specular backscatter drops capture less than $0.1\text{ km}^2$ after river channel masking because inundated alleyways in Rajendra Nagar and Kankarbagh remain flanked by masonry facades that form dihedral corner reflectors, brightening 29 September 2019 VV return by $+1.5\text{ dB}$ or more. Without modeling this urban double-bounce mechanism alongside $30\text{ m}$ depression sinks ($47.24\text{ km}^2$ or 33.15\% of PMC), emergency managers overlook 95.98\% of flooded urban blocks identified during the 2019 deluge.
+
+Equally important are the validation warnings demonstrated across both tracks. Even using real satellite and demographic rasters ($N = 60,000$ pixels), contiguous strip holdout reduces \texttt{RandomForestClassifier} performance to $\text{ROC-AUC} = 0.7498 \pm 0.0497$, and SAR change variables directly tied to label construction absorb $0.6669$ of Gini split weight. In the parametric $N = 3,200$ sensitivity benchmark, random CV conceals a catastrophic extrapolation drop in the dense urban core (Block 2 $R^2 = 0.5266$ vs Random Mean $0.9688$). Reporting spatial block splits per region exposes exactly where statistical models fail to extrapolate across sharp urban-rural gradients.
+
+To maintain strict scientific transparency, four limitations require explicit attention prior to municipal operational deployment:
 \begin{enumerate}
-    \item \textit{Pre-monsoon Stage (May--June):} Extreme solar irradiance and low relative humidity desiccate alluvial soils. In fine-grained silty clays, thermal baking contracts clay lattices, closes macropores, and hardens the topsoil layer into an impermeable crust \cite{Rohini2025}.
-    \item \textit{Atmospheric Preconditioning:} High surface temperatures elevate convective available potential energy (CAPE) and increase tropospheric moisture holding capacity ($6.5\%\text{ K}^{-1}$ Clausius-Clapeyron scaling). When the monsoon trough destabilizes, this thermodynamic charge produces intense, short-duration convective cloudbursts.
-    \item \textit{Deluge and Backwater Stage (July--September):} The desiccated urban surface behaves like an impermeable concrete apron during the initial hours of rainfall, increasing the runoff coefficient by $4141.3\%. Concurrently, high regional runoff swells the Ganges and Punpun, raising river stages above internal urban elevation. Sluice gates are shut, gravity outfalls cease functioning, and the saucer basin fills rapidly.
-\end{enumerate}
-
-\subsection{Methodological Implications: Overcoming Spatial Data Leakage}
-
-Our evaluation of spatial cross-validation has direct implications for machine learning in disaster geoinformatics. Over $85\%$ of recently published spatial machine learning studies rely on random $k$-fold cross-validation. As demonstrated in Table~\ref{tab01}, random splitting introduces extensive data leakage: proximate spatial units share identical geology, river proximity, and weather regimes. The random split allows tree ensembles to interpolate between adjacent points, yielding an artificially inflated $R^2$ of 0.9688. When tested under Spatial Block Cross-Validation (SBCV), performance drops to $R^2 = 0.7678$. This $2020.1\% degradation is an honest measurement of out-of-region predictive skill. Deploying systems evaluated solely on random splits creates false operational confidence, leading civil protection authorities to misallocate emergency response assets.
-
-\subsection{Cartographic Tessellation and Civil Protection Integration}
-
-Adopting a 50~m hexagonal tessellation, as proposed by Boni et al. \cite{Boni2025}, resolves a persistent operational challenge in disaster management. Traditional GIS disaster platforms generate complex vector polygons representing flood zones, heat islands, and demographic blocks. When overlaid, these intersecting polygons produce sliver geometries, topology errors, and unreadable maps at municipal operational scales (1:10,000). By binning multi-sensor Earth observation data into discrete 50~m hexagons, every spatial unit maintains uniform topological properties and isotropic connectivity, enabling direct integration into emergency dispatch platforms and Cell-Broadcast alerting.
-
-\subsection{Study Limitations}
-
-To maintain scientific integrity, several methodological constraints must be acknowledged:
-\begin{enumerate}
-    \item \textbf{Absence of Subsurface Drainage Telemetry:} The model calculates pluvial ponding based on surface topography, land cover, and SCS runoff equations. The Patna Municipal Corporation lacks real-time SCADA telemetry or complete GIS vector maps of underground stormwater pipes, trunk sewers, and siltation levels.
-    \item \textbf{SAR Urban Canyon Attenuation:} While Sentinel-1 C-band radar penetrates cloud cover, microwave pulses suffer from geometric distortions in dense urban canyons. In narrow streets flanked by multi-story concrete structures (e.g., Old Patna), building radar shadows and corner double-bounce reflections mask standing water on road surfaces.
-    \item \textbf{Orbital Revisit Constraints:} Sentinel-1 operates on a 6- to 12-day orbital repeat cycle over Bihar. While the 28 September 2019 acquisition captured peak flood conditions, the sensor cannot provide real-time hourly monitoring of rapidly evolving flash pluvial events. Future frameworks should integrate constellation architectures (NISAR L-band and Capella Space commercial X-band SAR).
+    \item \textbf{Pending External Optical and Rainfall Rasters:} Local Sentinel-2 MSI scenes (\texttt{Data/03\_Optical\_Sentinel2}) and IMD $0.25^\circ$ daily rainfall grids (\texttt{Data/05\_Rainfall\_IMD}) currently consist of acquisition guide placeholders only. Continuous Sentinel-2 NDBI/MNDWI layers and downscaled IMD gauge forcing must replace Track 2's parametric equations before fitting a single-track empirical quantile gradient boosting model following Singh et al. \cite{Singh2026}.
+    \item \textbf{Daytime MODIS Overpass Bias:} Morning (~10:30~AM) \texttt{MOD11A1.061} passes yield a $-1.03^\circ\text{C}$ urban-minus-fallow LST contrast because harvested bare agricultural soils warm faster in morning sunlight than shaded urban canyons. Nocturnal MODIS overpasses ($\sim$10:30~PM) are needed to quantify nighttime canopy heat retention.
+    \item \textbf{Single-Pair SAR Temporal Aliasing and Subsurface Drainage Gaps:} Sentinel-1 6-to-12 day repeat cycles cannot resolve sub-daily storm peaks, and radar imagery cannot observe choked underground sewers or sump pump status inside PMC. Future phases will couple NASA-ISRO SAR (NISAR) L-band observations with municipal pump telemetry.
+    \item \textbf{Non-Hexagonal Sensitivity Sampling:} Regular 50~m hexagonal DGGS tessellation \cite{Boni2025, Pittore2023} was adopted as BHU LOKA's target cartographic aggregation schema rather than being instantiated inside the current $N = 3,200$ random point benchmark or $10\text{ m}$ raster scripts.
 \end{enumerate}
 
 \section{Conclusions}
 
-This study formulates and validates \textbf{BHU LOKA}, an operational framework for assessing sequential compound hydro-thermal hazards in continental alluvial river basins. By coupling Sentinel-1 C-band Synthetic Aperture Radar, 50~m hexagonal discretization, quantile gradient boosting ($\alpha = 0.90$), and Tree-SHAP interpretability over Patna District, Bihar, we draw four principal conclusions:
+By separating verified multi-sensor Earth observations from controlled hydro-thermodynamic sensitivity tests over Patna, India, this study establishes four concrete conclusions:
 \begin{enumerate}
-    \item Evaluating spatial machine learning models via naive random cross-validation inflates explanatory metrics ($R^2 = 0.9688$). Spatial Block Cross-Validation reveals a true out-of-sample skill of $R^2 = 0.7678$, establishing an empirical spatial autocorrelation penalty of $\Delta R^2 = -0.2010$ ($2020.1\% reduction).
-    \item Severe antecedent pre-monsoon heatwaves ($\text{HWI} \ge 0.70$) desiccate fine-grained alluvial surface soils, reducing initial infiltration capacity and increasing subsequent pluvial surface runoff by $4141.3\% under equivalent precipitation depth.
-    \item Tree-SHAP attributions identify distance to river confluence ($|\text{SHAP}| = 0.284$) and surface elevation ($|\text{SHAP}| = 0.241$) as primary determinants of catastrophic ponding, while built-up density and antecedent heat stress control localized urban ponding anomalies.
-    \item C-band SAR backscatter log-ratio change detection ($\Delta \sigma_{\text{VV}}^0 \le -4.2\text{ dB}$, $\sigma_{\text{post}}^0 \le -18\text{ dB}$) successfully maps pluvial inundation beneath dense monsoonal cloud decks, providing empirical ground truth where optical sensors fail.
+    \item Combining Sentinel-1A/B open-water specular drop ($T^* = -3.80\text{ dB}$, $0.07\text{ km}^2$ inside PMC) with building-water dihedral corner double-bounce ($\Delta\sigma^0 \ge +1.5\text{ dB}$, $99.52\text{ km}^2$) identifies $99.60\text{ km}^2$ (74.4\%) municipal flooding during the September 2019 event, exposing a 95.98\% urban omission error in standard UN-SPIDER specular mapping ($4.01\text{ km}^2$).
+    \item Integrating Copernicus GLO-30 topography (33.15\% PMC area inside depression sinks), 61 clear-sky MODIS \texttt{MOD11A1.061} scenes (peak urban pixel $46.25^\circ\text{C}$), and WorldPop 2020 reveals $49,380$ residents residing within overlapping flood-and-sink hazard zones and a mean PMC ULSI of $52.27/100$.
+    \item Empirical 5-fold SBCV across 60,000 aligned pixels establishes baseline transferability at $\text{ROC-AUC} = 0.7498 \pm 0.0497$ ($\text{F1} = 0.6530$), while Track 2 sensitivity testing shows random CV ($R^2 = 0.9688$) masks severe urban-core holdout degradation ($R^2 = 0.5266$, overall SBCV $R^2 = 0.8258$, $\Delta R^2 = -0.1430$).
+    \item Quantile regression shifts at $\alpha = 0.90$ prioritize built imperviousness ($0.2491$), flat drainage slope ($0.2310$), and thermal preconditioning ($0.1485$; +17.4\% controlled $C_{\text{runoff}}$ rise above $40^\circ\text{C}$), guiding targeted storm-pump staging and permeable retrofits once local Sentinel-2 and IMD rainfall rasters are integrated.
 \end{enumerate}
 
 \section*{STATEMENTS AND DECLARATIONS}
 
-\begin{bmsec}[Supplementary Material]
-All supplementary datasets, python code pipelines, and high-resolution spatial GIS layers are archived publicly in the project repository: \url{https://github.com/princekumar-iitp/BHU-LOKA}.
-\end{bmsec}
-
 \begin{datres}
-The complete computational pipeline and datasets supporting the findings of this study are available in the public project repository. Sentinel-1 SAR Level-1 GRD granules are openly accessible from the European Space Agency Copernicus Open Access Hub. Topographic DEM data are available from the Copernicus 30~m Global DEM repository. Land Surface Temperature data are distributed by NASA LP DAAC.
+Processing scripts, JSON/CSV metric logs, and figure generators supporting Track 1 (\texttt{Experiments/Exp\_01}--\texttt{Exp\_04}, \texttt{Models/01\_Spatial\_ML/train\_spatial\_model.py}) and Track 2 (\texttt{Research\_Paper\_Workflow/scripts/patna\_multihazard\_pipeline.py}) are archived within the BHU LOKA workspace repository and are available from the corresponding author upon reasonable request prior to public archival release. Sentinel-1A/B GRD scenes and Copernicus GLO-30 DEM tiles are distributed by the European Space Agency Copernicus Programme; \texttt{MOD11A1.061} thermal granules are distributed by NASA LP DAAC; WorldPop 2020 rasters are openly hosted by WorldPop.
 \end{datres}
 
 \begin{bmsec}[Author Contributions]
 Following the CRediT (Contributor Roles Taxonomy) format:
-\textbf{Prince Kumar}: Conceptualization, Data curation, Formal analysis, Investigation, Methodology, Software, Validation, Visualization, Writing - original draft.
-\textbf{Pallav Rustogi}: Conceptualization, Supervision, Project administration, Methodology, Writing - review \& editing.
+\textbf{Prince Kumar}: Conceptualization, Data curation, Formal analysis, Investigation, Methodology, Software, Validation, Visualization, Writing -- original draft.
+\textbf{Pallav Rustogi}: Conceptualization, Supervision, Project administration, Methodology, Writing -- review \& editing.
 \end{bmsec}
 
 \begin{bmsec}[Conflicts of Interest]
@@ -374,17 +276,12 @@ The authors declare that they have no known competing financial interests or per
 \end{bmsec}
 
 \begin{bmsec}[Funding Received]
-This research received no external grant or commercial funding. Computational resources and laboratory access were facilitated by the Indian Institute of Technology Patna.
+This research received no external grant or commercial funding. Academic supervision and institutional computing context were supported through the Indian Institute of Technology Patna M.S. research program.
 \end{bmsec}
 
 \begin{ack}
-The authors acknowledge the European Space Agency (ESA) Copernicus Programme for providing open-access Sentinel-1 SAR and Sentinel-2 optical imagery, and the India Meteorological Department (IMD) for observational hydrometeorological baseline records.
+The authors acknowledge the European Space Agency Copernicus Programme for Sentinel-1 SAR and GLO-30 DEM access, NASA LP DAAC for Terra MODIS thermal products, WorldPop for gridded demographic estimates, and MapAction / UN-SPIDER for open-source flood mapping reference tools \cite{MapAction2024}.
 \end{ack}
-
-\begin{orcaulist}
-\orcaulistitem[0009-0002-4112-9871]{Prince Kumar}
-\orcaulistitem[0000-0002-1825-0097]{Pallav Rustogi}
-\end{orcaulist}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%                      End author content                           %%%
@@ -394,4 +291,3 @@ The authors acknowledge the European Space Agency (ESA) Copernicus Programme for
 \bibliography{Bibliography}
 
 \end{document}
-

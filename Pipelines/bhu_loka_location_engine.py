@@ -10,6 +10,7 @@ from __future__ import annotations
 import concurrent.futures
 import json
 import math
+import threading
 import time
 import urllib.parse
 import urllib.request
@@ -22,6 +23,7 @@ DATA_DIR = WORKSPACE_ROOT / "Data"
 
 # Internal in-memory cache for location intelligence: key -> (timestamp, payload)
 _LOCATION_CACHE: Dict[str, Tuple[float, Dict[str, Any]]] = {}
+_LOCATION_CACHE_LOCK = threading.Lock()
 _CACHE_TTL_SECONDS = 300.0  # 5 minutes cache
 
 # ---------------------------------------------------------------------------
@@ -62,7 +64,8 @@ STATE_BBOXES: Dict[str, Tuple[float, float, float, float]] = {
     "Madhya Pradesh": (21.08, 74.03, 26.87, 82.81),
     "Uttar Pradesh": (23.87, 77.08, 30.41, 84.63),
     "Rajasthan": (23.06, 69.49, 30.20, 78.28),
-    "Andaman and Nicobar": (6.75, 92.20, 13.70, 94.30),
+    "Dadra and Nagar Haveli and Daman and Diu": (20.08, 70.92, 20.75, 73.22),
+    "Andaman and Nicobar Islands": (6.75, 92.20, 13.70, 94.30),
     "Lakshadweep": (8.20, 71.50, 12.40, 74.00),
 }
 
@@ -225,26 +228,50 @@ def resolve_location_context(
     detected_country = "India" if detected_state != "Outside India" else None
     clean_custom = place_name.strip() if place_name and place_name.strip() else None
 
+    admin_ctx: Optional[Dict[str, Any]] = None
+    try:
+        from bhu_loka_india_intel import resolve_admin_context
+        admin_ctx = resolve_admin_context(lat, lon)
+        if admin_ctx and admin_ctx.get("in_india"):
+            detected_state = admin_ctx.get("state") or detected_state
+            detected_country = "India"
+    except Exception:
+        admin_ctx = None
+
     ctx: Dict[str, Any] = {
+        "in_india": bool(detected_country == "India"),
         "latitude": round(lat, 5),
         "longitude": round(lon, 5),
         "lat": round(lat, 5),
         "lon": round(lon, 5),
-        "placeName": clean_custom or f"{detected_state} ({lat:.4f}°N, {lon:.4f}°E)",
-        "name": clean_custom or f"{detected_state} ({lat:.4f}°N, {lon:.4f}°E)",
-        "locality": None,
-        "district": None,
+        "placeName": clean_custom or (
+            f"{admin_ctx['district']}, {detected_state}"
+            if admin_ctx and admin_ctx.get("district") and detected_state
+            else f"{detected_state} ({lat:.4f}°N, {lon:.4f}°E)"
+        ),
+        "name": clean_custom or (
+            f"{admin_ctx['district']}, {detected_state}"
+            if admin_ctx and admin_ctx.get("district") and detected_state
+            else f"{detected_state} ({lat:.4f}°N, {lon:.4f}°E)"
+        ),
+        "locality": (admin_ctx.get("nearest_settlement") or {}).get("name_en") if admin_ctx else None,
+        "district": admin_ctx.get("district") if admin_ctx else None,
+        "subdivision": admin_ctx.get("subdivision") if admin_ctx else None,
         "state": detected_state if detected_state != "Outside India" else None,
+        "state_code": admin_ctx.get("state_code") if admin_ctx else None,
         "country": detected_country,
         "administrativeBoundary": detected_state,
+        "breadcrumb": admin_ctx.get("breadcrumb") if admin_ctx else None,
+        "hierarchy_schema": admin_ctx.get("hierarchy_schema") if admin_ctx else None,
+        "admin_context": admin_ctx,
         "source": source,
         "selectedAt": now_utc,
         "analysisRadius": float(radius_km),
         "radius_km": float(radius_km),
         "crs": "EPSG:4326",
         "resolved_at_utc": now_utc,
-        "geocoding_source": "Sovereign BBox Calibration",
-        "reverseGeocodeStatus": "OFFLINE_BOUNDARY_ONLY" if detected_state != "Outside India" else "UNAVAILABLE",
+        "geocoding_source": "India SQLite R-tree Admin Boundaries" if (admin_ctx and admin_ctx.get("in_india")) else "Sovereign BBox Calibration",
+        "reverseGeocodeStatus": "RESOLVED_LOCAL_ADMIN" if (admin_ctx and admin_ctx.get("in_india")) else "UNAVAILABLE",
     }
 
     # Try BigDataCloud first (fast CORS/JSON), then Nominatim
@@ -297,6 +324,11 @@ def resolve_location_context(
         if not any(d.lower() == p.lower() for d in dedup):
             dedup.append(p)
     ctx["administrativeBoundary"] = ", ".join(dedup) or "WGS84 Coordinates"
+    ctx["in_india"] = bool(
+        (admin_ctx and admin_ctx.get("in_india"))
+        or (ctx.get("country") == "India")
+        or bool(ctx.get("state") and ctx.get("state") != "Outside India" and (6.5 <= float(lat) <= 37.5 and 68.0 <= float(lon) <= 97.5))
+    )
     return ctx
 
 
@@ -351,15 +383,27 @@ def _build_weather_and_climate_soil(lat: float, lon: float, state: str, timeout:
         sums = data["daily"].get("precipitation_sum", [])
         past_vals = [v for v in sums[:3] if isinstance(v, (int, float))]
         fut_vals = [v for v in sums[3:] if isinstance(v, (int, float))]
+        past_3d_mm = round(sum(past_vals), 1) if past_vals else None
+        fut_5d_mm = round(sum(fut_vals), 1) if fut_vals else None
+        dry_spell_flag = None
+        if past_3d_mm is not None and fut_5d_mm is not None:
+            tot_8d = past_3d_mm + fut_5d_mm
+            if tot_8d <= 1.0:
+                dry_spell_flag = "DRY_WINDOW_8D_LOW_PRECIP"
+            elif tot_8d >= 60.0:
+                dry_spell_flag = "HIGH_RAINFALL_WATCH"
+            else:
+                dry_spell_flag = "NORMAL_PRECIP_WINDOW"
         rainfall_mod: Dict[str, Any] = {
             "status": "LIVE",
             "source": "Copernicus ECMWF IFS Atmospheric Forecast",
             "spatial_resolution": "11 km",
-            "precipitation_past_3d_mm": round(sum(past_vals), 1) if past_vals else None,
-            "precipitation_forecast_5d_mm": round(sum(fut_vals), 1) if fut_vals else None,
+            "precipitation_past_3d_mm": past_3d_mm,
+            "precipitation_forecast_5d_mm": fut_5d_mm,
+            "dry_spell_flag": dry_spell_flag,
             "climate_zone": climate_type,
             "monsoon_regime": "Southwest Monsoon (Jun-Sep) & Western Disturbances (Winter)",
-            "limitations": "Localized cloudbursts (<2km) require Doppler radar."
+            "limitations": "Localized cloudbursts (<2km) require Doppler radar; 8-day precipitation window is meteorological screening only, not a statutory drought declaration."
         }
     else:
         rainfall_mod = {
@@ -367,8 +411,9 @@ def _build_weather_and_climate_soil(lat: float, lon: float, state: str, timeout:
             "source": "Copernicus ECMWF IFS",
             "precipitation_past_3d_mm": None,
             "precipitation_forecast_5d_mm": None,
+            "dry_spell_flag": "UNAVAILABLE",
             "climate_zone": climate_type,
-            "limitations": "Rainfall forecast API unreachable."
+            "limitations": "Rainfall forecast API unreachable; no synthetic drought index computed."
         }
 
     # 8. Soil & Groundwater
@@ -524,15 +569,43 @@ def _build_air_quality_module(lat: float, lon: float, timeout: float = 3.5) -> D
 
 
 def _build_satellite_imagery_module(lat: float, lon: float) -> Dict[str, Any]:
+    now_iso = datetime.now(timezone.utc).isoformat()
+    today_ymd = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     return {
         "status": "LIVE_TILES",
-        "source": "Google Earth High-Res Imagery (gl=IN) + Copernicus Sentinel-2 / NISAR Ref",
-        "spatial_resolution": "0.5m (Google Earth) / 10m (Sentinel-2)",
+        "source": "Google Earth High-Res Imagery (gl=IN) + NASA EOSDIS GIBS (MODIS Terra) + Copernicus Sentinel-2 / ISRO Bhoonidhi Ref",
+        "spatial_resolution": "0.5m (Google Earth) / 10m (Sentinel-2) / 250m-1km (MODIS Terra GIBS)",
         "gl_in_sovereign_view": True,
         "tile_provider": "mt.google.com/vt/lyrs=y&gl=IN",
+        "eosdis_gibs_layers": [
+            {
+                "id": "MODIS_Terra_CorrectedReflectance_TrueColor",
+                "agency": "NASA EOSDIS GIBS",
+                "resolution": "250m",
+                "product": "Daily Optical True Color",
+            },
+            {
+                "id": "MODIS_Terra_NDVI_8Day",
+                "agency": "NASA EOSDIS GIBS / LP DAAC",
+                "resolution": "250m (8-Day Composite)",
+                "product": "Vegetation Greenness (NDVI)",
+            },
+            {
+                "id": "MODIS_Terra_Land_Surface_Temp_Day",
+                "agency": "NASA EOSDIS GIBS / MOD11A1",
+                "resolution": "1 km",
+                "product": "Daytime Land Surface Temperature (LST)",
+            },
+        ],
+        "isro_esa_reference": {
+            "esa_copernicus": "Sentinel-1 C-SAR (10m) & Sentinel-2 MSI (10m) via Copernicus Dataspace",
+            "isro_portal": "ISRO Bhuvan / Bhoonidhi Archive (Cartosat / Resourcesat / EOS-04)",
+        },
+        "composite_reference_date": today_ymd,
+        "updated_at_utc": now_iso,
         "direct_earth_url": f"https://www.google.com/maps/@{lat:.5f},{lon:.5f},16z/data=!3m1!1e3",
         "cloud_masking": "Multi-temporal optical composite",
-        "limitations": "Optical revisit depends on cloud cover; SAR products require NASA Earthdata / ISRO Bhoonidhi access."
+        "limitations": "Tile imagery composite and STAC/catalog references only (not raw calibrated Level-1B radiance or live onboard satellite telemetry). Cloud cover limits optical revisits; ISRO Bhoonidhi / NASA Earthdata tokens expand programmatic archive access."
     }
 
 
@@ -613,34 +686,260 @@ def _build_terrain_elevation_module(lat: float, lon: float, timeout: float = 3.5
     }
 
 
-def _build_infrastructure_module(lat: float, lon: float, state: str) -> Dict[str, Any]:
+def _import_get_gis_layer():
+    try:
+        from bhu_loka_india_intel import get_gis_layer
+    except ImportError:
+        from Pipelines.bhu_loka_india_intel import get_gis_layer
+    return get_gis_layer
+
+
+def _build_infrastructure_module(
+    lat: float,
+    lon: float,
+    state: Optional[str] = None,
+    radius_km: float = 10.0,
+) -> Dict[str, Any]:
+    now_iso = datetime.now(timezone.utc).isoformat()
+    default_source = (
+        "OpenStreetMap Construction/Access Tags (ODbL) & Official Agency Advisories | "
+        "OpenStreetMap Traffic Enforcement/Controls (ODbL) & Verified Agency Advisories"
+    )
+    try:
+        get_gis_layer = _import_get_gis_layer()
+        with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
+            f_closures = pool.submit(get_gis_layer, "road_closures", lat, lon, radius_km=radius_km)
+            f_advisories = pool.submit(get_gis_layer, "traffic_advisories", lat, lon, radius_km=radius_km)
+            closures_layer = f_closures.result()
+            advisories_layer = f_advisories.result()
+    except Exception as exc:
+        err_msg = f"Road closure and traffic advisory telemetry unavailable ({exc}); zero synthetic closures substituted."
+        return {
+            "status": "UNAVAILABLE",
+            "source": default_source,
+            "source_attribution": default_source,
+            "spatial_resolution": "Vector Network",
+            "radius_km": float(radius_km),
+            "road_closure_count": 0,
+            "traffic_advisory_count": 0,
+            "incident_count": 0,
+            "incidents": [],
+            "road_closures": [],
+            "traffic_advisories": [],
+            "updated_at_utc": now_iso,
+            "unavailable_reason": err_msg,
+            "limitations": err_msg,
+        }
+
+    raw_closures = list(closures_layer.get("items") or [])
+    raw_advisories = list(advisories_layer.get("items") or [])
+
+    road_closures = [dict(item, layer_id="road_closures") for item in raw_closures]
+    traffic_advisories = [dict(item, layer_id="traffic_advisories") for item in raw_advisories]
+    incidents = sorted(
+        road_closures + traffic_advisories,
+        key=lambda x: x.get("distance_km") if isinstance(x.get("distance_km"), (int, float)) else 0.0,
+    )
+
+    c_status = str(closures_layer.get("status") or "UNAVAILABLE")
+    a_status = str(advisories_layer.get("status") or "UNAVAILABLE")
+    statuses = (c_status, a_status)
+    has_error = any(s in ("ERROR", "UNAVAILABLE") for s in statuses)
+
+    if incidents:
+        if "LIVE" in statuses:
+            status = "LIVE"
+        elif "CACHED" in statuses:
+            status = "CACHED"
+        elif "VERIFIED_LOCAL" in statuses:
+            status = "VERIFIED_LOCAL"
+        else:
+            status = "LIVE"
+    elif has_error:
+        status = "UNAVAILABLE"
+    else:
+        status = "EMPTY"
+
+    attributions: List[str] = []
+    for attr in (closures_layer.get("source_attribution"), advisories_layer.get("source_attribution")):
+        if attr and attr not in attributions:
+            attributions.append(str(attr))
+    source_attribution = " | ".join(attributions) if attributions else default_source
+
+    updated_candidates = [
+        str(ts)
+        for ts in (closures_layer.get("updated_at_utc"), advisories_layer.get("updated_at_utc"))
+        if ts
+    ]
+    updated_at_utc = max(updated_candidates) if updated_candidates else now_iso
+
+    error_details: List[str] = []
+    for label, layer in (("road_closures", closures_layer), ("traffic_advisories", advisories_layer)):
+        if layer.get("status") in ("ERROR", "UNAVAILABLE") or layer.get("error_detail"):
+            detail = layer.get("error_detail") or f"{label} telemetry unreachable"
+            error_details.append(f"{label}: {detail}")
+
+    unavailable_reason = "; ".join(error_details) if error_details else None
+    if status == "UNAVAILABLE":
+        limitations = (
+            f"Road closure and traffic advisory telemetry unavailable ({unavailable_reason or 'Overpass API unreachable'}); "
+            "zero synthetic closures or coordinates substituted."
+        )
+    elif status == "EMPTY":
+        limitations = (
+            f"No mapped road closures or traffic advisories found inside {float(radius_km):.1f} km; "
+            "unmapped temporary local restrictions may not appear."
+        )
+    elif error_details:
+        limitations = (
+            f"Partial telemetry degradation ({unavailable_reason}); "
+            "returned incidents are strictly verified from available layers."
+        )
+    else:
+        limitations = (
+            "Reflects mapped OpenStreetMap highway construction/access tags and verified agency advisories "
+            "within the analysis radius; unmapped temporary roadblocks may not appear."
+        )
+
     return {
-        "status": "VERIFIED" if state and state != "Outside India" else "OUTSIDE_INDIA_GRID",
-        "source": "MoRTH + OSM Transport Reference",
+        "status": status,
+        "source": source_attribution,
+        "source_attribution": source_attribution,
         "spatial_resolution": "Vector Network",
-        "road_network_connectivity": "High" if lat < 30.0 else "Mountain Highway",
-        "evacuation_corridor_status": "Regional Arterial Network",
-        "power_grid_feeder": "National Grid Reference",
-        "limitations": "Static infrastructure summary; live traffic closure not monitored."
+        "radius_km": float(radius_km),
+        "road_closure_count": len(road_closures),
+        "traffic_advisory_count": len(traffic_advisories),
+        "incident_count": len(incidents),
+        "incidents": incidents,
+        "road_closures": road_closures,
+        "traffic_advisories": traffic_advisories,
+        "updated_at_utc": updated_at_utc,
+        "unavailable_reason": unavailable_reason,
+        "limitations": limitations,
     }
 
 
-def _build_hospitals_amenities_module(lat: float, lon: float, district: Optional[str], state: Optional[str]) -> Dict[str, Any]:
-    scope = district or state or "Regional"
+def _build_hospitals_amenities_module(
+    lat: float,
+    lon: float,
+    district: Optional[str] = None,
+    state: Optional[str] = None,
+    radius_km: float = 10.0,
+) -> Dict[str, Any]:
+    now_iso = datetime.now(timezone.utc).isoformat()
+    default_source = "OpenStreetMap (ODbL) amenity=hospital|clinic & Emergency Registry"
+    try:
+        get_gis_layer = _import_get_gis_layer()
+        layer = get_gis_layer("hospitals", lat, lon, radius_km=radius_km)
+    except Exception as exc:
+        err_msg = f"Hospital and medical facility telemetry unavailable ({exc}); zero synthetic facilities substituted."
+        return {
+            "status": "UNAVAILABLE",
+            "source": default_source,
+            "source_attribution": default_source,
+            "spatial_resolution": "Point Facility Registry",
+            "radius_km": float(radius_km),
+            "facility_count": 0,
+            "facilities": [],
+            "updated_at_utc": now_iso,
+            "unavailable_reason": err_msg,
+            "limitations": err_msg,
+        }
+
+    facilities: List[Dict[str, Any]] = []
+    for item in (layer.get("items") or []):
+        facilities.append(
+            {
+                "facility_id": item.get("facility_id"),
+                "name": item.get("name"),
+                "facility_type": item.get("facility_type"),
+                "operator": item.get("operator"),
+                "distance_km": item.get("distance_km"),
+                "address": item.get("address"),
+                "contact_info": item.get("contact_info"),
+                "emergency_helpline": item.get("emergency_helpline"),
+                "observation_time_utc": item.get("observation_time_utc"),
+                "source_attribution": item.get("source_attribution"),
+            }
+        )
+
+    raw_status = str(layer.get("status") or "UNAVAILABLE")
+    if raw_status in ("ERROR", "UNAVAILABLE"):
+        status = "UNAVAILABLE"
+    elif raw_status in ("LIVE", "CACHED", "VERIFIED_LOCAL", "EMPTY"):
+        status = raw_status
+    else:
+        status = "LIVE" if facilities else "EMPTY"
+
+    source_attribution = str(layer.get("source_attribution") or default_source)
+    updated_at_utc = str(layer.get("updated_at_utc") or now_iso)
+    error_detail = layer.get("error_detail")
+
+    unavailable_reason = (
+        str(error_detail or "Hospital Overpass telemetry unreachable; zero synthetic facilities substituted.")
+        if status == "UNAVAILABLE"
+        else None
+    )
+    if status == "UNAVAILABLE":
+        limitations = (
+            f"Hospital and medical facility telemetry unavailable ({unavailable_reason}); "
+            "zero template or synthetic facilities substituted."
+        )
+    elif status == "EMPTY":
+        limitations = str(
+            layer.get("empty_message")
+            or f"No verified hospital or clinic records found inside {float(radius_km):.1f} km of selected location."
+        )
+    else:
+        limitations = "Emergency hospital bed counts and real-time trauma capacity require live HMIS integration."
+
     return {
-        "status": "STATUTORY_DIRECTORY",
-        "source": "National Health Mission (NHM) Directory",
-        "spatial_resolution": "District Reference",
-        "nearest_tertiary_care": f"District Sadar / Referral Hospital, {scope}",
-        "limitations": "Emergency hospital bed counts require live HMIS integration."
+        "status": status,
+        "source": source_attribution,
+        "source_attribution": source_attribution,
+        "spatial_resolution": "Point Facility Registry",
+        "radius_km": float(radius_km),
+        "facility_count": len(facilities),
+        "facilities": facilities,
+        "updated_at_utc": updated_at_utc,
+        "unavailable_reason": unavailable_reason,
+        "limitations": limitations,
     }
 
 
 def _build_public_cameras_module(lat: float, lon: float, radius_km: float) -> Dict[str, Any]:
+    try:
+        from bhu_loka_india_intel import CCTV_EMPTY_MESSAGE, get_gis_layer
+        layer = get_gis_layer("street_cctv", lat, lon, radius_km=radius_km)
+        cams = layer.get("items") or []
+        if cams:
+            return {
+                "status": "AUTHORIZED_PUBLIC_FEEDS_FOUND",
+                "source": layer["source_attribution"],
+                "camera_count": len(cams),
+                "cameras": cams,
+                "geojson": layer["geojson"],
+                "stream_format": "Public Status / Official Agency Portal Link",
+                "updated_at_utc": layer["updated_at_utc"],
+                "limitations": "Only authorized public or agency-referenced traffic camera nodes are listed; restricted feeds require official operator credentials.",
+            }
+        return {
+            "status": "NO_PUBLIC_FEEDS_PUBLISHED_IN_RADIUS",
+            "source": layer["source_attribution"],
+            "camera_count": 0,
+            "cameras": [],
+            "empty_message": CCTV_EMPTY_MESSAGE,
+            "nearest_search_radius_km": radius_km,
+            "updated_at_utc": layer["updated_at_utc"],
+            "limitations": CCTV_EMPTY_MESSAGE,
+        }
+    except Exception:
+        pass
+
     nearby = []
     for cam in AUTHORIZED_PUBLIC_CAMERAS:
         dist = haversine_distance_km(lat, lon, cam["lat"], cam["lon"])
-        if dist <= max(radius_km, 25.0):
+        if dist <= radius_km:
             item = dict(cam)
             item["distance_km"] = dist
             nearby.append(item)
@@ -662,19 +961,49 @@ def _build_public_cameras_module(lat: float, lon: float, radius_km: float) -> Di
         "source": "State Police & Municipal Public Register",
         "camera_count": 0,
         "cameras": [],
+        "empty_message": "No publicly accessible CCTV feed verified for this location.",
         "nearest_search_radius_km": radius_km,
-        "limitations": "No authorized public camera feeds indexed in this radius. Zero fabricated streams."
+        "limitations": "No publicly accessible CCTV feed verified for this location."
     }
 
 
-def _build_regional_news_module(district: Optional[str], state: Optional[str]) -> Dict[str, Any]:
+def _build_regional_news_module(
+    district: Optional[str],
+    state: Optional[str],
+    lat: float = 25.594,
+    lon: float = 85.137,
+    radius_km: float = 10.0,
+) -> Dict[str, Any]:
     scope = ", ".join(p for p in (district, state) if p) or "Regional"
+    try:
+        from bhu_loka_india_intel import get_gis_layer
+        layer = get_gis_layer("local_news", lat, lon, radius_km=radius_km)
+        pinned = layer.get("items") or []
+        unpinned = layer.get("non_pinned_items") or []
+        combined = pinned + unpinned
+        if combined:
+            return {
+                "status": layer["status"],
+                "source": layer["source_attribution"],
+                "scope": scope,
+                "headline_count": len(combined),
+                "pinned_count": len(pinned),
+                "non_pinned_count": len(unpinned),
+                "headlines": combined[:30],
+                "updated_at_utc": layer["updated_at_utc"],
+                "limitations": layer.get("description"),
+            }
+    except Exception:
+        pass
     return {
-        "status": "RSS_FEED_NOT_QUERIED",
-        "source": "Press Information Bureau (PIB India) & Doordarshan News",
+        "status": "EMPTY",
+        "source": "Press Information Bureau (PIB India) & NDMA Sachet",
         "scope": scope,
+        "headline_count": 0,
+        "pinned_count": 0,
+        "non_pinned_count": 0,
         "headlines": [],
-        "limitations": "Live headline articles require active RSS/news connector (Phase 2)."
+        "limitations": "No verified RSS items matched this scope."
     }
 
 
@@ -792,7 +1121,8 @@ def fetch_universal_location_intelligence(
     cache_key = f"{lat:.4f},{lon:.4f},{radius_km:.1f},{(place_name or '').strip().lower()}"
 
     now = time.time()
-    cached = _LOCATION_CACHE.get(cache_key)
+    with _LOCATION_CACHE_LOCK:
+        cached = _LOCATION_CACHE.get(cache_key)
     if cached and (now - cached[0]) < _CACHE_TTL_SECONDS:
         res = dict(cached[1])
         res["cached"] = True
@@ -820,10 +1150,22 @@ def fetch_universal_location_intelligence(
     flood_mod = _build_flood_waterlogging_module(lat, lon, elev_m, state_label)
     sat_mod = _build_satellite_imagery_module(lat, lon)
     landuse_mod = _build_land_use_cover_module(lat, lon, elev_m)
-    infra_mod = _build_infrastructure_module(lat, lon, state_label)
-    hosp_mod = _build_hospitals_amenities_module(lat, lon, ctx.get("district"), state_label)
-    cam_mod = _build_public_cameras_module(lat, lon, radius_km)
-    news_mod = _build_regional_news_module(ctx.get("district"), state_label)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as gis_pool:
+        f_infra = gis_pool.submit(_build_infrastructure_module, lat, lon, state_label, radius_km)
+        f_hosp = gis_pool.submit(_build_hospitals_amenities_module, lat, lon, ctx.get("district"), state_label, radius_km)
+        f_cam = gis_pool.submit(_build_public_cameras_module, lat, lon, radius_km)
+        f_news = gis_pool.submit(
+            _build_regional_news_module,
+            ctx.get("district"),
+            state_label,
+            lat=lat,
+            lon=lon,
+            radius_km=radius_km,
+        )
+        infra_mod = f_infra.result()
+        hosp_mod = f_hosp.result()
+        cam_mod = f_cam.result()
+        news_mod = f_news.result()
     hazard_mod = _build_hazard_profile_module(state_label, lat, lon)
     suit_mod = _build_land_suitability_module(
         elev_m=elev_m,
@@ -850,17 +1192,23 @@ def fetch_universal_location_intelligence(
         "14_historical_hazard_profile": hazard_mod,
         "15_land_suitability_analysis": suit_mod,
     }
+    generated_iso = datetime.now(timezone.utc).isoformat()
+    for _mod_payload in modules.values():
+        if isinstance(_mod_payload, dict) and not _mod_payload.get("updated_at_utc"):
+            _mod_payload["updated_at_utc"] = generated_iso
 
     sources_registry = [
         {"id": "open_meteo_weather", "name": "Open-Meteo High-Resolution DWD/ECMWF", "type": "Live Telemetry", "resolution": "1-11 km"},
         {"id": "glofas_hydrology", "name": "Copernicus GloFAS v4", "type": "Live / Modelled Hydrology", "resolution": "0.05° (~5 km)"},
         {"id": "copernicus_dem", "name": "Copernicus GLO-90 DEM", "type": "Elevation & Slope", "resolution": "90m"},
         {"id": "sentinel1_sar", "name": "ESA Sentinel-1 C-SAR IW Mode", "type": "Flood Inundation & SAR Backscatter", "resolution": "10m"},
+        {"id": "nasa_eosdis_gibs", "name": "NASA EOSDIS GIBS (MODIS Terra TrueColor, NDVI, MOD11A1 LST)", "type": "Satellite Imagery Composite", "resolution": "250m - 1 km"},
         {"id": "copernicus_cams", "name": "Copernicus CAMS & CPCB NAQI", "type": "Atmospheric Air Quality", "resolution": "11 km"},
         {"id": "google_earth_gl_in", "name": "Google Earth High-Res Satellite (gl=IN)", "type": "Optical Satellite Composite", "resolution": "0.5m"},
         {"id": "esa_worldcover", "name": "ESA WorldCover 10m", "type": "Land Use / Land Cover", "resolution": "10m"},
         {"id": "cgwb_groundwater", "name": "Central Ground Water Board (CGWB) 2022-2023", "type": "Statutory Aquifer Compilation", "resolution": "State/District"},
         {"id": "bis_seismic_is1893", "name": "Bureau of Indian Standards IS 1893:2016", "type": "Statutory Seismic Zonation", "resolution": "National"},
+        {"id": "osm_overpass_infra_hospitals", "name": "OpenStreetMap Overpass (ODbL) Roads, Traffic & Hospitals", "type": "Live GIS Spatial Layer", "resolution": "Point / Vector Network"},
         {"id": "state_police_cctv", "name": "State Police & Smart City Municipal Traffic Portals", "type": "Authorized Public Registry", "resolution": "Point CCTV"},
         {"id": "pib_dd_news", "name": "Press Information Bureau (PIB) & Doordarshan News", "type": "Official Public Broadcast Registry", "resolution": "Regional"},
     ]
@@ -876,5 +1224,6 @@ def fetch_universal_location_intelligence(
         "latency_ms": total_latency
     }
 
-    _LOCATION_CACHE[cache_key] = (now, result)
+    with _LOCATION_CACHE_LOCK:
+        _LOCATION_CACHE[cache_key] = (now, result)
     return result

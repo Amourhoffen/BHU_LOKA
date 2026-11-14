@@ -8,13 +8,16 @@ os.makedirs(target_dir, exist_ok=True)
 netrc_file = os.path.join(target_dir, "_netrc_temp")
 cookie_file = os.path.join(target_dir, "_cookie_temp.txt")
 
-# Setup netrc
-username = "ljprincekashyap_google"
-password = "Prince@262626"
+# Setup netrc from environment variables (never hardcode credentials)
+username = os.environ.get("NASA_EARTHDATA_USER", "").strip()
+password = os.environ.get("NASA_EARTHDATA_PASS", "").strip()
+if not username or not password:
+    raise SystemExit(
+        "NASA Earthdata credentials not set. Export NASA_EARTHDATA_USER and NASA_EARTHDATA_PASS before running."
+    )
 
 with open(netrc_file, "w", encoding="ascii") as f:
     f.write(f"machine urs.earthdata.nasa.gov login {username} password {password}\n")
-    f.write(f"machine urs.earthdata.nasa.gov login ljprincekashyap password {password}\n")
 
 urls = [
     "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/MOD11A2.061/MOD11A2.A2019177.h25v06.061.2020355121942/MOD11A2.A2019177.h25v06.061.2020355121942.hdf",

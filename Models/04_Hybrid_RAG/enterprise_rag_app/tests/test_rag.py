@@ -1,7 +1,10 @@
 import asyncio
+import json
 import os
 import sys
 import unittest
+import urllib.error
+from unittest.mock import patch
 
 import httpx
 
@@ -227,12 +230,15 @@ class TestEnterpriseRAG(unittest.TestCase):
         self.assertTrue(expected.issubset(names), f"Missing MCP tools: {expected - names}")
 
     def test_universal_location_intelligence_15_modules(self):
+        import bhu_loka_location_engine as loc_engine
         from bhu_loka_location_engine import fetch_universal_location_intelligence
         # Reject out-of-range coordinates instead of silent fallback/clamping
         with self.assertRaises(ValueError):
             fetch_universal_location_intelligence(999.0, 999.0)
         with self.assertRaises(ValueError):
             fetch_universal_location_intelligence(25.5, 85.1, radius_km=0.0)
+
+        valid_gis_statuses = ("LIVE", "CACHED", "VERIFIED_LOCAL", "EMPTY", "UNAVAILABLE")
 
         # Test metropolitan location (Mumbai) & canonical LocationContext schema
         intel = fetch_universal_location_intelligence(19.0760, 72.8777, place_name="Mumbai", radius_km=15.0, timeout=3.0)
@@ -251,11 +257,80 @@ class TestEnterpriseRAG(unittest.TestCase):
         self.assertIn("4_flood_waterlogging", mods)
         self.assertIn("5_air_quality_pollution", mods)
         self.assertIn("9_terrain_elevation", mods)
+
+        # Module 10: Roads & Infrastructure (real GIS layer wiring, zero fabricated closures)
+        self.assertIn("10_roads_infrastructure", mods)
+        infra = mods["10_roads_infrastructure"]
+        self.assertIn(infra["status"], valid_gis_statuses)
+        self.assertTrue(bool(infra.get("source_attribution")))
+        self.assertTrue(bool(infra.get("updated_at_utc")))
+        self.assertEqual(infra.get("radius_km"), 15.0)
+        self.assertIsInstance(infra.get("incidents"), list)
+        self.assertEqual(infra.get("incident_count"), len(infra["incidents"]))
+        self.assertEqual(infra.get("road_closure_count"), len(infra.get("road_closures", [])))
+        self.assertEqual(infra.get("traffic_advisory_count"), len(infra.get("traffic_advisories", [])))
+        if infra["status"] == "UNAVAILABLE":
+            self.assertTrue(bool(infra.get("unavailable_reason")))
+            self.assertTrue(bool(infra.get("limitations")))
+
+        # Module 11: Hospitals & Public Amenities (real GIS layer wiring, zero template hospital names)
+        self.assertIn("11_hospitals_public_amenities", mods)
+        hosp = mods["11_hospitals_public_amenities"]
+        self.assertIn(hosp["status"], valid_gis_statuses)
+        self.assertTrue(bool(hosp.get("source_attribution")))
+        self.assertTrue(bool(hosp.get("updated_at_utc")))
+        self.assertEqual(hosp.get("radius_km"), 15.0)
+        self.assertIsInstance(hosp.get("facilities"), list)
+        self.assertEqual(hosp.get("facility_count"), len(hosp["facilities"]))
+        self.assertNotIn("nearest_tertiary_care", hosp)
+        self.assertNotIn("District Sadar / Referral Hospital", json.dumps(hosp))
+        for fac in hosp["facilities"]:
+            for req_key in (
+                "name",
+                "facility_type",
+                "distance_km",
+                "address",
+                "contact_info",
+                "emergency_helpline",
+                "observation_time_utc",
+            ):
+                self.assertIn(req_key, fac)
+        if hosp["status"] == "UNAVAILABLE":
+            self.assertTrue(bool(hosp.get("unavailable_reason")))
+            self.assertTrue(bool(hosp.get("limitations")))
+
         self.assertIn("12_public_camera_discovery", mods)
         self.assertIn("14_historical_hazard_profile", mods)
         self.assertIn("15_land_suitability_analysis", mods)
         # Verify data sources registry
         self.assertGreaterEqual(len(intel["sources_registry"]), 10)
+
+        # Offline mock: verify non-blocking fail-closed behavior & radius_km propagation
+        with loc_engine._LOCATION_CACHE_LOCK:
+            loc_engine._LOCATION_CACHE.clear()
+        with patch.object(loc_engine.urllib.request, "urlopen", side_effect=urllib.error.URLError("offline")):
+            offline_intel = fetch_universal_location_intelligence(
+                27.5861, 91.8594, place_name="Tawang", radius_km=12.0, timeout=2.0
+            )
+        self.assertEqual(offline_intel["modules_count"], 15)
+        off_infra = offline_intel["modules"]["10_roads_infrastructure"]
+        self.assertEqual(off_infra["status"], "UNAVAILABLE")
+        self.assertEqual(off_infra["radius_km"], 12.0)
+        self.assertEqual(off_infra["incident_count"], 0)
+        self.assertEqual(off_infra["incidents"], [])
+        self.assertTrue(bool(off_infra.get("unavailable_reason")))
+        self.assertTrue(bool(off_infra.get("source_attribution")))
+        self.assertTrue(bool(off_infra.get("updated_at_utc")))
+
+        off_hosp = offline_intel["modules"]["11_hospitals_public_amenities"]
+        self.assertEqual(off_hosp["status"], "UNAVAILABLE")
+        self.assertEqual(off_hosp["radius_km"], 12.0)
+        self.assertEqual(off_hosp["facility_count"], 0)
+        self.assertEqual(off_hosp["facilities"], [])
+        self.assertTrue(bool(off_hosp.get("unavailable_reason")))
+        self.assertTrue(bool(off_hosp.get("source_attribution")))
+        self.assertTrue(bool(off_hosp.get("updated_at_utc")))
+        self.assertNotIn("District Sadar / Referral Hospital", json.dumps(off_hosp))
 
 
 if __name__ == "__main__":

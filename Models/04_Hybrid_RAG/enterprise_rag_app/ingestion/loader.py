@@ -21,7 +21,7 @@ class KnowledgeLoader:
                 "source_provenance": "IIT Patna Research Record (PA2511CDH37)",
                 "keywords": "who built you created kisne banaya aap kaun prince kumar pallav rustogi iit patna bhuloka bhu loka किसने बनाया परिचय",
                 "content": (
-                    "BHU LOKA (भूलोक — Sanskrit for 'Earth Realm') was conceived, engineered, and built by "
+                    "BHU LOKA (भूलोक — Sanskrit for 'Earth Domain') was conceived, engineered, and built by "
                     "Prince Kumar at the Indian Institute of Technology Patna (IIT Patna, Roll No: PA2511CDH37, "
                     "M.S. in Computer Science and Data Analytics) under the external research supervision of Pallav Rustogi. "
                     "It fuses local BM25 + Transformer FAISS Vector Search + Cross-Signal Re-Ranking with ESA Sentinel-1 SAR (10m), "
@@ -144,9 +144,9 @@ class KnowledgeLoader:
                 "id": "doc_modis_lst",
                 "title": "NASA Terra MODIS Pre-Monsoon Summer 2019 Thermal Analysis",
                 "category": "Thermal Hazard",
-                "source_provenance": "NASA Terra MODIS MOD11A2 (91 Daily Overpasses, Apr-Jun 2019)",
+                "source_provenance": "NASA Terra MODIS MOD11A1.061 (91 Daily Overpasses, 61 Clear-Sky Scenes, Apr-Jun 2019)",
                 "keywords": "modis thermal heatwave lst temperature 46.25 uhi heat garmi summer",
-                "content": "Analysis of 91 daily NASA Terra MODIS Land Surface Temperature (LST) observations (MOD11A2) for April 1 to June 30, 2019 across Patna reveals a mean urban LST of 37.29°C. On May 19, 2019, an intense heatwave peaked at 46.25°C. Impervious concrete surfaces in commercial corridors exhibit an Urban Heat Island (UHI) delta of +1.03°C over surrounding vegetative areas.",
+                "content": "Analysis of 91 daily NASA Terra MODIS daytime (~10:30 AM local) Land Surface Temperature (LST) observations (MOD11A1.061, 61 clear-sky scenes) for April 1 to June 30, 2019 across Patna reveals a mean urban core LST of 37.29°C and a peak urban pixel temperature of 46.25°C (hottest urban-core overpass DOY 139: 45.32°C). Surrounding bare fallow agricultural pixels averaged 38.32°C at morning overpass, yielding a daytime urban-minus-rural delta of -1.03°C due to exposed dry pre-monsoon soil heating.",
             },
             {
                 "id": "doc_danapur_cantt",
@@ -250,7 +250,7 @@ class KnowledgeLoader:
                 "category": "Identity Grounding",
                 "source_provenance": "BHU LOKA Core Identity Registry (IIT Patna)",
                 "keywords": "prithvi identity name bhu loka bhuloka",
-                "content": "The sovereign project identity is strictly BHU LOKA (भूलोक) — meaning 'Earth Realm' in Sanskrit. It was developed independently at IIT Patna by Prince Kumar under external research supervision of Pallav Rustogi, and must NEVER be referred to as PRITHVI. It delivers transparent sovereign geospatial intelligence with explicit source attribution.",
+                "content": "The sovereign project identity is strictly BHU LOKA (भूलोक) — meaning 'Earth Domain' in Sanskrit. It was developed independently at IIT Patna by Prince Kumar under external research supervision of Pallav Rustogi, and must NEVER be referred to as PRITHVI. It delivers transparent sovereign geospatial intelligence with explicit source attribution.",
             },
         ]
 
