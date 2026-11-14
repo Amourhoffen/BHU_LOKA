@@ -194,6 +194,10 @@
 
     mountPanel() {
       if (typeof document === 'undefined') return;
+      if (!document.body) {
+        document.addEventListener('DOMContentLoaded', () => this.mountPanel());
+        return;
+      }
       let panel = document.getElementById('bhu-worker-panel');
       if (panel) return;
 

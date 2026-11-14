@@ -597,7 +597,7 @@
           </button>
           <button type="button" id="left-tab-btn-vitals" role="tab" aria-selected="false"
             onclick="switchLeftDockTab('vitals')" class="bhu-dock-tab">
-            🫁 Vitals
+            Vitals
           </button>
         </div>
         <div class="flex items-center gap-1">
@@ -739,7 +739,7 @@
               title="Voice Input (Click to speak in Hindi/English · Opt-in)">
               <svg class="w-4 h-4 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 02-3-3V5a3 3 0 116 0v6a3 3 0 02-3 3z" />
+                  d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
               </svg>
             </button>
             <input id="user-input" type="text"
@@ -1252,7 +1252,7 @@
               <!-- VERIDIA PULMONARY RESPIRATORY CALLOUT -->
               <div id="callout-pulmonary" class="max-w-[250px] bhu-nasa-glass p-2.5 rounded-xl border border-cyan-500/40 shadow-[0_8px_28px_rgba(6,182,212,0.2)] transition-all duration-300 relative group">
                 <div class="flex items-center justify-between text-[9px] mono text-cyan-400 font-bold mb-1">
-                  <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-cyan-400"></span>🫁 PULMONARY ZONE</span>
+                  <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-cyan-400"></span>PULMONARY ALVEOLAR ZONE</span>
                   <span class="text-[8px] px-1.5 py-0.2 rounded bg-cyan-950/80 text-cyan-300 border border-cyan-700">PM2.5 ALERT</span>
                 </div>
                 <div class="text-[11px] font-bold text-slate-100">Bronchial Load: 42.1 μg/m³</div>
@@ -1269,7 +1269,7 @@
               <!-- VERIDIA CARDIAC CALLOUT -->
               <div id="callout-cardiac" class="max-w-[250px] bhu-nasa-glass p-2.5 rounded-xl border border-rose-500/40 shadow-[0_8px_28px_rgba(244,63,94,0.2)] transition-all duration-300 relative group">
                 <div class="flex items-center justify-between text-[9px] mono text-rose-400 font-bold mb-1">
-                  <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-rose-400 animate-pulse"></span>❤️ CARDIAC RHYTHM</span>
+                  <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-rose-400 animate-pulse"></span>CARDIAC HEMODYNAMICS</span>
                   <span class="text-[8px] px-1.5 py-0.2 rounded bg-rose-950/80 text-rose-300 border border-rose-700">72 BPM</span>
                 </div>
                 <div class="text-[11px] font-bold text-slate-100">Sinus Normal · Heat Stress: Low</div>
@@ -1283,7 +1283,7 @@
               <!-- GI METABOLISM & FLOOD RUNOFF CALLOUT -->
               <div id="callout-gi" class="max-w-[250px] bhu-nasa-glass p-2.5 rounded-xl border border-emerald-500/40 shadow-[0_8px_28px_rgba(16,185,129,0.2)] transition-all duration-300 relative group">
                 <div class="flex items-center justify-between text-[9px] mono text-emerald-400 font-bold mb-1">
-                  <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>🧬 GI &amp; WATER PURITY</span>
+                  <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>GI &amp; WATERBORNE PURITY</span>
                   <span class="text-[8px] px-1.5 py-0.2 rounded bg-emerald-950/80 text-emerald-300 border border-emerald-700">S4 SINK WATCH</span>
                 </div>
                 <div class="text-[11px] font-bold text-slate-100">Pathogen Barrier Active</div>
@@ -1300,31 +1300,31 @@
           <div id="human-layer-switcher" class="hidden absolute bottom-3 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1.5 p-1 rounded-full bg-slate-950/90 backdrop-blur-xl border border-cyan-500/30 shadow-[0_8px_32px_rgba(0,0,0,0.85)] select-none">
             <button type="button" id="layer-btn-all" onclick="setHumanAnatomyLayer('all')"
               class="px-3 py-1 rounded-full text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.4)] transition">
-              ✨ Full Atlas
+              Full Body
             </button>
             <button type="button" id="layer-btn-skeleton" onclick="setHumanAnatomyLayer('skeleton')"
               class="px-2.5 py-1 rounded-full text-[10px] mono text-slate-400 hover:text-slate-200 bg-slate-900/60 border border-slate-800 transition">
-              🦴 Skeletal
+              Skeletal
             </button>
             <button type="button" id="layer-btn-respiratory" onclick="setHumanAnatomyLayer('respiratory')"
               class="px-2.5 py-1 rounded-full text-[10px] mono text-slate-400 hover:text-slate-200 bg-slate-900/60 border border-slate-800 transition">
-              🫁 Respiratory
+              Respiratory
             </button>
             <button type="button" id="layer-btn-cardiac" onclick="setHumanAnatomyLayer('cardiac')"
               class="px-2.5 py-1 rounded-full text-[10px] mono text-slate-400 hover:text-slate-200 bg-slate-900/60 border border-slate-800 transition">
-              ❤️ Circulatory
+              Circulatory
             </button>
             <button type="button" id="layer-btn-neural" onclick="setHumanAnatomyLayer('neural')"
               class="px-2.5 py-1 rounded-full text-[10px] mono text-slate-400 hover:text-slate-200 bg-slate-900/60 border border-slate-800 transition">
-              🧠 Nervous
+              Nervous
             </button>
             <button type="button" id="layer-btn-organs" onclick="setHumanAnatomyLayer('organs')"
               class="px-2.5 py-1 rounded-full text-[10px] mono text-slate-400 hover:text-slate-200 bg-slate-900/60 border border-slate-800 transition">
-              🧬 Digestive / GI
+              Digestive / GI
             </button>
             <button type="button" id="layer-btn-exploded" onclick="toggleHumanExplodedView()"
               class="px-2.5 py-1 rounded-full text-[10px] mono text-amber-400 hover:text-amber-200 bg-amber-950/60 border border-amber-800/80 transition">
-              💥 Exploded View
+              Exploded View
             </button>
           </div>
 
@@ -1660,6 +1660,24 @@
 
       
         <!-- HEALTH VISUAL DECK: GRAPHS OVER TEXT, ORGAN STRESS METERS, VECTOR TIMELINE -->
+        <div 
+        <!-- FLOATING BOTTOM TELEMETRY STRIP & DECK TOGGLE -->
+        <div id="bhu-health-deck-toggle" class="hidden shrink-0 flex items-center justify-between px-3 py-1.5 bg-[#050811]/90 backdrop-blur border-t border-slate-800 text-[10px] select-none">
+          <div class="flex items-center gap-3">
+            <span class="flex items-center gap-1.5 text-cyan-300 font-bold">
+              <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+              <span>3D Clinical Twin Active</span>
+            </span>
+            <span class="text-slate-400">PM2.5: <b class="text-rose-400">142 μg/m³</b></span>
+            <span class="text-slate-400">Cardiac: <b class="text-emerald-400">72 bpm</b></span>
+            <span class="text-slate-400">S4 Flooded Sinks: <b class="text-amber-400">26.54 km²</b></span>
+          </div>
+          <button type="button" onclick="const hd = document.getElementById('bhu-health-bottom-deck'); if(hd){ hd.classList.toggle('hidden'); this.textContent = hd.classList.contains('hidden') ? 'Expand Analytical Deck' : 'Collapse Analytical Deck'; }"
+            class="px-2.5 py-0.5 rounded bg-slate-800/90 hover:bg-slate-700 text-sky-300 border border-slate-700 text-[9.5px] transition">
+            Expand Analytical Deck
+          </button>
+        </div>
+
         <div id="bhu-health-bottom-deck" class="hidden grid grid-cols-1 md:grid-cols-3 gap-2 mt-1.5 shrink-0">
 
           <!-- CARD 1: VITAL ORGAN STRESS METERS (VISUAL BARS) -->
@@ -2675,7 +2693,7 @@
           </div>
         </div>
 
-        <!-- 🥗 FOOD & VITAMIN RECOMMENDATIONS BY ORGAN (WHAT TO EAT RIGHT NOW) -->
+        <!-- CLIMATE NUTRITION & VITAMIN RX RECOMMENDATIONS BY ORGAN (WHAT TO EAT RIGHT NOW) -->
         <div class="bhu-nasa-glass p-2.5 flex flex-col gap-2 shrink-0">
           <div class="flex items-center justify-between border-b border-slate-800/80 pb-1">
             <span class="text-[11px] font-semibold text-amber-300 tracking-wide flex items-center gap-1.5">
@@ -2688,7 +2706,7 @@
             <!-- Lungs Food -->
             <div class="p-2 rounded bg-slate-900/60 border-l-2 border-sky-400">
               <div class="flex justify-between items-center mb-0.5">
-                <b class="text-sky-300 flex items-center gap-1">🫁 Lungs (For PM2.5 / PM10 Dust)</b>
+                <b class="text-sky-300 flex items-center gap-1">Pulmonary Alveolar Rx (PM2.5/PM10)</b>
                 <span class="mono text-[8.5px] text-sky-400 bg-sky-950/60 px-1 rounded">VITAMIN C + GUR</span>
               </div>
               <div class="text-slate-300 leading-relaxed">
@@ -3319,11 +3337,18 @@
     window.skipBhuIntro = function () {
       if (isIntroGliding) {
         isIntroGliding = false;
-        camera.position.copy(WORKSTATION_CAM_POS);
-        camera.lookAt(0, 0, 0);
+        if (activeMode !== 'human') {
+          camera.position.copy(WORKSTATION_CAM_POS);
+          camera.lookAt(0, 0, 0);
+        }
       }
-      targetCameraDistance = 34;
-      targetCameraY = 27;
+      if (activeMode === 'human') {
+        targetCameraDistance = 5.8;
+        targetCameraY = 1.35;
+      } else {
+        targetCameraDistance = 34;
+        targetCameraY = 27;
+      }
       const overlay = document.getElementById('bhu-intro-overlay');
       if (overlay) {
         overlay.style.display = 'none';
@@ -3394,6 +3419,21 @@
     const hologramGroup = new THREE.Group();
     const solarGroup = new THREE.Group();
     const human3dGroup = new THREE.Group();
+    let isHumanExplodedView = false;
+    let humanHeartMesh = null;
+    let humanBrainMesh = null;
+    let humanLungsMeshL = null;
+    let humanLungsMeshR = null;
+    let humanKidneysMesh = null;
+    let humanCoreMesh = null;
+    let humanScanPlane = null;
+    let humanParticles = null;
+    let humanSpineGroup = null;
+    let humanRibcageGroup = null;
+    let humanBodyMesh = null;
+    let humanBodyPoints = null;
+    let humanAnomalyGroup = null;
+    let humanActiveLayer = 'all';
     human3dGroup.visible = false;
     worldGroup.visible = false;
     indiaGroup.visible = true;
@@ -6585,10 +6625,15 @@
 
         if (rawProgress >= 1.0) {
           isIntroGliding = false;
-          camera.position.copy(WORKSTATION_CAM_POS);
-          camera.lookAt(0, 0, 0);
-          targetCameraDistance = 34;
-          targetCameraY = 27;
+          if (activeMode === 'human') {
+            targetCameraDistance = 5.8;
+            targetCameraY = 1.35;
+          } else {
+            camera.position.copy(WORKSTATION_CAM_POS);
+            camera.lookAt(0, 0, 0);
+            targetCameraDistance = 34;
+            targetCameraY = 27;
+          }
           if (overlay) {
             overlay.classList.add('bhu-intro-fadeout');
             setTimeout(() => {
@@ -6597,11 +6642,14 @@
           }
         }
       } else {
-        camera.position.z += (targetCameraDistance - camera.position.z) * 0.08;
-        camera.position.y += (targetCameraY - camera.position.y) * 0.08;
         if (activeMode === 'human') {
-          camera.lookAt(0, 1.0, 0);
+          camera.position.x += (0 - camera.position.x) * 0.08;
+          camera.position.y += (targetCameraY - camera.position.y) * 0.08;
+          camera.position.z += (targetCameraDistance - camera.position.z) * 0.08;
+          camera.lookAt(0, 1.35, 0);
         } else {
+          camera.position.z += (targetCameraDistance - camera.position.z) * 0.08;
+          camera.position.y += (targetCameraY - camera.position.y) * 0.08;
           camera.lookAt(0, 0, 0);
         }
       }
@@ -6708,207 +6756,221 @@
 
     
     // -------------------------------------------------------------------------
-    // SCIENTIFIC HOLOGRAPHIC DIGITAL-TWIN ANATOMY (HEALTRIX & VERIDIA MASTERPIECE)
+    // HIGH-PRECISION ANATOMICAL HUMAN BODY GENERATOR (UNSLOPPED HEALTRIX/VERIDIA)
     // -------------------------------------------------------------------------
-    let humanHeartMesh = null;
-    let humanBrainMesh = null;
-    let humanLungsMeshL = null;
-    let humanLungsMeshR = null;
-    let humanKidneysMesh = null;
-    let humanCoreMesh = null;
-    let humanLiverMesh = null;
-    let humanScanPlane = null;
-    let humanParticles = null;
-    let humanSpineGroup = null;
-    let humanRibcageGroup = null;
-    let humanLimbsGroup = null;
-    let humanSkullMesh = null;
-    let humanShroudMesh = null;
-    let humanAnomalyGroup = null;
-    let humanActiveLayer = 'all';
+    function createAnatomicalHumanBodyGeometry() {
+      // 28 Anthropometric Cross-Sections: [y, radiusX, radiusZ, centerZ, offsetX]
+      const slices = [
+        [4.25, 0.08, 0.08, 0.0, 0.0],      // Crown apex
+        [4.15, 0.42, 0.52, 0.02, 0.0],     // Upper parietal cranium
+        [3.95, 0.72, 0.86, 0.04, 0.0],     // Mid cranium
+        [3.72, 0.76, 0.88, 0.03, 0.0],     // Brow / temples
+        [3.50, 0.70, 0.82, 0.08, 0.0],     // Nasal bridge / orbit level
+        [3.32, 0.62, 0.74, 0.12, 0.0],     // Maxilla / cheekbone contour
+        [3.10, 0.48, 0.58, 0.16, 0.0],     // Mandible / oral cavity
+        [2.92, 0.36, 0.44, 0.12, 0.0],     // Mentum (chin) apex
+        [2.78, 0.30, 0.34, 0.00, 0.0],     // Submandibular neck
+        [2.55, 0.32, 0.36, -0.04, 0.0],    // Mid cervical neck
+        [2.35, 0.48, 0.44, -0.06, 0.0],    // Trapezius junction
+        [2.22, 1.25, 0.52, -0.04, 0.0],    // Clavicular ridge
+        [2.08, 1.55, 0.58, -0.02, 0.0],    // Acromion / deltoid breadth
+        [1.92, 1.48, 0.66, 0.04, 0.0],     // Axilla / upper pectoral
+        [1.75, 1.38, 0.74, 0.08, 0.0],     // Mid thorax / sternal body
+        [1.55, 1.28, 0.72, 0.06, 0.0],     // Xiphoid / lower pectoral
+        [1.35, 1.15, 0.68, 0.02, 0.0],     // Costal margin
+        [1.15, 1.02, 0.62, -0.02, 0.0],    // Upper epigastric waist
+        [0.92, 0.96, 0.58, -0.04, 0.0],    // Narrow umbilical waistline
+        [0.72, 1.05, 0.62, -0.02, 0.0],    // Iliac crest span
+        [0.50, 1.18, 0.68, 0.00, 0.0],     // Greater trochanter / pelvic basin
+        [0.28, 1.22, 0.72, 0.02, 0.0],     // Gluteal crest
+        [0.05, 1.18, 0.68, 0.02, 0.0],     // Perineum / upper thigh
+        [-0.30, 1.08, 0.62, 0.00, 0.0],    // Proximal femoral shaft
+        [-0.70, 0.98, 0.55, -0.02, 0.0],   // Mid femoral shaft
+        [-1.10, 0.88, 0.48, -0.04, 0.0],   // Distal femoral taper
+        [-1.50, 0.78, 0.42, -0.04, 0.0],   // Suprapatellar region
+        [-1.85, 0.68, 0.38, -0.02, 0.0]    // Patellar knee margin
+      ];
 
-    // Human Atlas Exploded View State (ashemag/human-atlas spatial inventory standard)
-    let isHumanExplodedView = false;
-    window.toggleHumanExplodedView = function() {
-      isHumanExplodedView = !isHumanExplodedView;
-      const btn = document.getElementById('layer-btn-exploded');
-      if (btn) {
-        btn.className = isHumanExplodedView
-          ? "px-3 py-1 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.5)] transition"
-          : "px-2.5 py-1 rounded-full text-[10px] mono text-slate-400 hover:text-slate-200 bg-slate-900/60 border border-slate-800 transition";
-        btn.textContent = isHumanExplodedView ? "💥 Exploded (Active)" : "💥 Exploded View";
+      const radialSegments = 32;
+      const heightSegments = slices.length;
+      const vertices = [];
+      const normals = [];
+      const uvs = [];
+      const indices = [];
+
+      for (let i = 0; i < heightSegments; i++) {
+        const [y, rx, rz, cz, ox] = slices[i];
+        const v = i / (heightSegments - 1);
+        for (let j = 0; j <= radialSegments; j++) {
+          const u = j / radialSegments;
+          const theta = u * Math.PI * 2;
+          const cosT = Math.cos(theta);
+          const sinT = Math.sin(theta);
+
+          let modRx = rx;
+          let modRz = rz;
+          if (y > 1.3 && y < 2.1) {
+            if (sinT > 0) modRz *= (1.0 + 0.15 * Math.sin(theta));
+            else modRz *= 0.88;
+          } else if (y > 3.0 && y < 3.8) {
+            if (sinT > 0.3) modRz *= 0.92;
+          }
+
+          const x = ox + cosT * modRx;
+          const z = cz + sinT * modRz;
+
+          vertices.push(x, y, z);
+          uvs.push(u, v);
+
+          const nx = cosT / modRx;
+          const nz = sinT / modRz;
+          const len = Math.sqrt(nx * nx + nz * nz) || 1;
+          normals.push(nx / len, 0.05, nz / len);
+        }
       }
-    };
 
-    window.inspectHumanOrgan = function(info) {
-      if (!info) return;
-      const hud = document.getElementById('human-organ-inspect-hud');
-      if (!hud) return;
-      hud.classList.remove('hidden');
-      document.getElementById('organ-inspect-name').textContent = info.name;
-      document.getElementById('organ-inspect-system').textContent = info.system;
-      document.getElementById('organ-inspect-latin').textContent = info.latin;
-      document.getElementById('organ-inspect-risk').textContent = info.climateRisk;
-      document.getElementById('organ-inspect-status').textContent = info.status;
-      document.getElementById('organ-inspect-rx').textContent = info.rx;
-      document.getElementById('organ-inspect-ref').textContent = info.ref;
-    };
+      for (let i = 0; i < heightSegments - 1; i++) {
+        for (let j = 0; j < radialSegments; j++) {
+          const a = i * (radialSegments + 1) + j;
+          const b = a + radialSegments + 1;
+          const c = a + 1;
+          const d = b + 1;
+
+          indices.push(a, b, c);
+          indices.push(c, b, d);
+        }
+      }
+
+      const geom = new THREE.BufferGeometry();
+      geom.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+      geom.setAttribute('normal', new THREE.Float32BufferAttribute(normals, 3));
+      geom.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
+      geom.setIndex(indices);
+      geom.computeVertexNormals();
+      return geom;
+    }
+
+    // (Anatomical variables initialized at top Three.js scope)
 
     function build3DHumanAnatomyCenterStage() {
       if (!human3dGroup) return;
-      // Clear existing children
       while (human3dGroup.children.length > 0) {
         human3dGroup.remove(human3dGroup.children[0]);
       }
 
-      // Dedicated Medical Hologram Lighting (Cyan Rim + Ambient + Crimson Core)
+      // 1. REFINED MEDICAL LIGHTING (QUIET OBSIDIAN SCENE WITH TARGETED ILLUMINATION)
       const humanChestLight = new THREE.PointLight(0x38bdf8, 4.2, 22);
-      humanChestLight.position.set(0, 2.2, 4.0);
+      humanChestLight.position.set(0, 2.2, 3.8);
       human3dGroup.add(humanChestLight);
 
-      const humanBackLight = new THREE.DirectionalLight(0x0ea5e9, 2.8);
+      const humanBackLight = new THREE.DirectionalLight(0x0ea5e9, 2.4);
       humanBackLight.position.set(-2.5, 3.2, -3.5);
       human3dGroup.add(humanBackLight);
 
-      const humanHeartLight = new THREE.PointLight(0xf43f5e, 3.5, 6.0);
+      const humanHeartLight = new THREE.PointLight(0xf43f5e, 3.5, 5.0);
       humanHeartLight.position.set(-0.15, 1.95, 0.45);
       human3dGroup.add(humanHeartLight);
 
+      // 2. CONTINUOUS ANATOMICAL BODY SILHOUETTE (VERIDIA HOLOGRAPHIC STANDARD)
+      const bodyGeom = createAnatomicalHumanBodyGeometry();
+      
+      // A. Translucent Obsidian Glass Shroud
+      const bodyMat = new THREE.MeshStandardMaterial({
+        color: 0x071b38,
+        emissive: 0x0284c7,
+        emissiveIntensity: 0.52,
+        transparent: true,
+        opacity: 0.42,
+        roughness: 0.15,
+        metalness: 0.25,
+        side: THREE.DoubleSide
+      });
+      humanBodyMesh = new THREE.Mesh(bodyGeom, bodyMat);
+      human3dGroup.add(humanBodyMesh);
 
-      // Material Palettes (Dark Obsidian Sci-Fi & High-Tech Medical Glass)
+      // B. Dense Luminous Cyber-Plexus Points (Healtrix Precision Points)
+      const plexusMat = new THREE.PointsMaterial({
+        color: 0x38bdf8,
+        size: 0.038,
+        transparent: true,
+        opacity: 0.72
+      });
+      humanBodyPoints = new THREE.Points(bodyGeom, plexusMat);
+      human3dGroup.add(humanBodyPoints);
+
+      // 3. ANATOMICAL SKELETAL COLUMN & RIBCAGE (NO GOOGLY EYES OR DISJOINTED HOOPS)
       const boneMat = new THREE.MeshStandardMaterial({
         color: 0x94a3b8,
         emissive: 0x0ea5e9,
-        emissiveIntensity: 0.45,
+        emissiveIntensity: 0.42,
         wireframe: true,
         transparent: true,
-        opacity: 0.82,
-        roughness: 0.2
+        opacity: 0.85,
+        roughness: 0.25
       });
-
       const solidBoneMat = new THREE.MeshStandardMaterial({
         color: 0x64748b,
         emissive: 0x0284c7,
         emissiveIntensity: 0.35,
-        roughness: 0.3,
-        metalness: 0.4
+        roughness: 0.25,
+        metalness: 0.35
       });
 
-      // 1. ANATOMICAL CRANIUM & FACIAL SKELETON (HEALTRIX SKULL STANDARD)
-      humanSkullMesh = new THREE.Group();
-      
-      // Cranial Vault Dome
-      const skullGeom = new THREE.IcosahedronGeometry(0.82, 3);
-      skullGeom.scale(0.85, 1.12, 0.96);
-      const skullVault = new THREE.Mesh(skullGeom, boneMat);
-      skullVault.position.set(0, 3.65, 0.04);
-      humanSkullMesh.add(skullVault);
-
-      // Zygomatic Cheekbone Arches
-      const cheekL = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.55, 8), solidBoneMat);
-      cheekL.rotation.z = 0.55;
-      cheekL.position.set(-0.48, 3.35, 0.38);
-      const cheekR = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.55, 8), solidBoneMat);
-      cheekR.rotation.z = -0.55;
-      cheekR.position.set(0.48, 3.35, 0.38);
-      humanSkullMesh.add(cheekL, cheekR);
-
-      // Orbital Eye Sockets (Dual glowing cyan biometric scan rings)
-      const eyeRingL = new THREE.Mesh(new THREE.TorusGeometry(0.14, 0.025, 8, 20), boneMat);
-      eyeRingL.position.set(-0.28, 3.48, 0.58);
-      const eyeRingR = new THREE.Mesh(new THREE.TorusGeometry(0.14, 0.025, 8, 20), boneMat);
-      eyeRingR.position.set(0.28, 3.48, 0.58);
-      humanSkullMesh.add(eyeRingL, eyeRingR);
-
-      // Mandible Jawline & Chin
-      const jawGeom = new THREE.TorusGeometry(0.38, 0.05, 8, 20, Math.PI);
-      const jawMesh = new THREE.Mesh(jawGeom, boneMat);
-      jawMesh.rotation.x = Math.PI / 2;
-      jawMesh.position.set(0, 3.02, 0.26);
-      humanSkullMesh.add(jawMesh);
-      human3dGroup.add(humanSkullMesh);
-
-      // 2. VERTEBRAL COLUMN: 24 Stacked Vertebrae with S-Lordosis Curve & Glowing Spinal Cord
+      // 24 Vertebrae Spine with Lordosis S-Curve
       humanSpineGroup = new THREE.Group();
       for (let i = 0; i < 24; i++) {
-        const vGeom = new THREE.CylinderGeometry(0.19 - i * 0.0025, 0.21 - i * 0.0025, 0.075, 14);
-        const vMesh = new THREE.Mesh(vGeom, boneMat);
-        const yPos = 2.95 - i * 0.138;
-        const zCurve = Math.sin(i * 0.28) * 0.11 - 0.12; // Anatomical lordosis/kyphosis S-curve
+        const vGeom = new THREE.CylinderGeometry(0.18 - i * 0.002, 0.20 - i * 0.002, 0.075, 14);
+        const vMesh = new THREE.Mesh(vGeom, solidBoneMat);
+        const yPos = 2.90 - i * 0.135;
+        const zCurve = Math.sin(i * 0.28) * 0.10 - 0.10;
         vMesh.position.set(0, yPos, zCurve);
         humanSpineGroup.add(vMesh);
       }
-      // Glowing Cyan Spinal Cord Core
-      const spineCordGeom = new THREE.CylinderGeometry(0.045, 0.045, 3.3, 8);
+      // Luminous Spinal Cord Canal
+      const spineCordGeom = new THREE.CylinderGeometry(0.04, 0.04, 3.2, 8);
       const spineCordMat = new THREE.MeshBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.95 });
       const spineCordMesh = new THREE.Mesh(spineCordGeom, spineCordMat);
-      spineCordMesh.position.set(0, 1.42, -0.09);
+      spineCordMesh.position.set(0, 1.45, -0.08);
       humanSpineGroup.add(spineCordMesh);
       human3dGroup.add(humanSpineGroup);
 
-      // 3. THORACIC RIBCAGE (10 Anatomical Rib Pairs T1-T10 + Sternum + Clavicles)
+      // 10 Anatomical Rib Pairs Contoured to Thoracic Cavity
       humanRibcageGroup = new THREE.Group();
       for (let r = 0; r < 10; r++) {
-        const radX = 0.56 + Math.sin((r / 9) * Math.PI) * 0.46;
-        const radZ = 0.42 + Math.sin((r / 9) * Math.PI) * 0.32;
+        const radX = 0.56 + Math.sin((r / 9) * Math.PI) * 0.44;
+        const radZ = 0.42 + Math.sin((r / 9) * Math.PI) * 0.30;
         const ribGeom = new THREE.TorusGeometry(radX, 0.028, 8, 28, Math.PI * 1.84);
         const ribMesh = new THREE.Mesh(ribGeom, boneMat);
         ribMesh.rotation.x = Math.PI / 2 + (r * 0.038);
         ribMesh.rotation.z = Math.PI / 2;
-        ribMesh.position.set(0, 2.5 - r * 0.18, 0.02);
+        ribMesh.position.set(0, 2.45 - r * 0.175, 0.03);
         humanRibcageGroup.add(ribMesh);
       }
-      // 3-Piece Sternum Plate (Breastbone)
-      const sternumGeom = new THREE.CylinderGeometry(0.07, 0.05, 1.4, 8);
+      // Sternal Breastplate
+      const sternumGeom = new THREE.CylinderGeometry(0.07, 0.05, 1.35, 8);
       const sternumMesh = new THREE.Mesh(sternumGeom, solidBoneMat);
-      sternumMesh.position.set(0, 1.9, 0.52);
+      sternumMesh.position.set(0, 1.88, 0.52);
       humanRibcageGroup.add(sternumMesh);
 
-      // S-Curved Clavicles (Collarbones)
-      const clavicleCurveL = new THREE.CatmullRomCurve3([
-        new THREE.Vector3(-0.06, 2.72, 0.45),
-        new THREE.Vector3(-0.55, 2.76, 0.35),
-        new THREE.Vector3(-1.12, 2.68, 0.12)
-      ]);
-      const clavicleMeshL = new THREE.Mesh(new THREE.TubeGeometry(clavicleCurveL, 16, 0.045, 8, false), solidBoneMat);
-      const clavicleCurveR = new THREE.CatmullRomCurve3([
-        new THREE.Vector3(0.06, 2.72, 0.45),
-        new THREE.Vector3(0.55, 2.76, 0.35),
-        new THREE.Vector3(1.12, 2.68, 0.12)
-      ]);
-      const clavicleMeshR = new THREE.Mesh(new THREE.TubeGeometry(clavicleCurveR, 16, 0.045, 8, false), solidBoneMat);
-      humanRibcageGroup.add(clavicleMeshL, clavicleMeshR);
-
-      // Dual Scapulae (Shoulder Blade Wings on Posterior Wall)
-      const scapulaGeom = new THREE.BufferGeometry();
-      const scapVertsL = new Float32Array([
-        -0.45, 2.45, -0.28,  -1.05, 2.38, -0.15,  -0.65, 1.65, -0.25
-      ]);
-      scapulaGeom.setAttribute('position', new THREE.BufferAttribute(scapVertsL, 3));
-      scapulaGeom.computeVertexNormals();
-      const scapulaMeshL = new THREE.Mesh(scapulaGeom, solidBoneMat);
-      const scapulaGeomR = new THREE.BufferGeometry();
-      const scapVertsR = new Float32Array([
-        0.45, 2.45, -0.28,   1.05, 2.38, -0.15,   0.65, 1.65, -0.25
-      ]);
-      scapulaGeomR.setAttribute('position', new THREE.BufferAttribute(scapVertsR, 3));
-      scapulaGeomR.computeVertexNormals();
-      const scapulaMeshR = new THREE.Mesh(scapulaGeomR, solidBoneMat);
-      humanRibcageGroup.add(scapulaMeshL, scapulaMeshR);
+      // Clavicles (Collarbones)
+      const clavicleGeom = new THREE.CylinderGeometry(0.045, 0.045, 1.95, 12);
+      const clavicleMesh = new THREE.Mesh(clavicleGeom, solidBoneMat);
+      clavicleMesh.rotation.z = Math.PI / 2;
+      clavicleMesh.position.set(0, 2.68, 0.14);
+      humanRibcageGroup.add(clavicleMesh);
       humanRibcageGroup.userData.organInfo = {
         name: "Thoracic Ribcage (10 Rib Pairs T1-T10 & Sternum)",
         system: "Skeletal System (FMA:9938)",
         latin: "Costae verae et spuriae",
-        climateRisk: "Physical Rescue Strain & Relief Material Logistics",
+        climateRisk: "Physical Rescue Strain & Relief Logistics",
         status: "Bone Density & Thoracic Volume Intact",
         rx: "Calcium + Vitamin D3 · Ergonomic Support for Disaster Workers",
         ref: "BodyParts3D v4.0 / Human Atlas Standard"
       };
       human3dGroup.add(humanRibcageGroup);
 
-      // 4. HEALTRIX SIGNATURE ANOMALY HEATMAP (UPPER SCAPULAR & CLAVICULAR ZONE)
+      // 4. HEALTRIX SIGNATURE ANOMALY HEATMAP (UPPER SCAPULA / CLAVICLE)
       humanAnomalyGroup = new THREE.Group();
-      // Glowing Amber / Crimson Anomaly Heatmap Nodes
       const anomMat = new THREE.MeshStandardMaterial({
         color: 0xf59e0b,
         emissive: 0xef4444,
@@ -6917,65 +6979,13 @@
       });
       const anomCore = new THREE.Mesh(new THREE.SphereGeometry(0.14, 12, 12), anomMat);
       anomCore.position.set(-0.85, 2.62, 0.22);
-      // Pulsing radar ring
-      const anomRing = new THREE.Mesh(new THREE.RingGeometry(0.16, 0.32, 24), new THREE.MeshBasicMaterial({ color: 0xf59e0b, wireframe: true, transparent: true, opacity: 0.8, side: THREE.DoubleSide }));
+      const anomRing = new THREE.Mesh(new THREE.TorusGeometry(0.24, 0.012, 8, 24), new THREE.MeshBasicMaterial({ color: 0xf59e0b, transparent: true, opacity: 0.9 }));
       anomRing.position.set(-0.85, 2.62, 0.22);
       humanAnomalyGroup.add(anomCore, anomRing);
       human3dGroup.add(humanAnomalyGroup);
 
-      // 5. PELVIC GIRDLE & SKELETAL LIMBS
-      humanLimbsGroup = new THREE.Group();
-      const pelvisGeom = new THREE.TorusGeometry(0.74, 0.07, 10, 28);
-      const pelvisMesh = new THREE.Mesh(pelvisGeom, solidBoneMat);
-      pelvisMesh.rotation.x = Math.PI / 2;
-      pelvisMesh.position.set(0, 0.45, 0);
-      humanLimbsGroup.add(pelvisMesh);
-
-      // Joint Node Spheres
-      const jointMat = new THREE.MeshStandardMaterial({
-        color: 0x38bdf8,
-        emissive: 0x0284c7,
-        emissiveIntensity: 0.7,
-        roughness: 0.2
-      });
-      const jointGeom = new THREE.SphereGeometry(0.09, 12, 12);
-      const addBoneChain = (pts) => {
-        const lineMat = new THREE.LineBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.85 });
-        const geom = new THREE.BufferGeometry().setFromPoints(pts.map(p => new THREE.Vector3(...p)));
-        humanLimbsGroup.add(new THREE.Line(geom, lineMat));
-        pts.forEach(p => {
-          const jMesh = new THREE.Mesh(jointGeom, jointMat);
-          jMesh.position.set(...p);
-          humanLimbsGroup.add(jMesh);
-        });
-      };
-      // Arms (Shoulder -> Elbow -> Wrist)
-      addBoneChain([[-1.12, 2.68, 0.12], [-1.55, 1.62, 0.08], [-1.82, 0.52, 0.18]]);
-      addBoneChain([[1.12, 2.68, 0.12], [1.55, 1.62, 0.08], [1.82, 0.52, 0.18]]);
-      // Legs (Hip -> Knee -> Ankle)
-      addBoneChain([[-0.52, 0.42, 0], [-0.58, -1.25, 0.08], [-0.62, -2.85, -0.05]]);
-      addBoneChain([[0.52, 0.42, 0], [0.58, -1.25, 0.08], [0.62, -2.85, -0.05]]);
-      human3dGroup.add(humanLimbsGroup);
-
-      // 6. TRANSLUCENT HOLOGRAPHIC BODY SHROUD (VERIDIA GLASS SILHOUETTE)
-      const shroudMat = new THREE.MeshStandardMaterial({
-        color: 0x0284c7,
-        emissive: 0x0369a1,
-        emissiveIntensity: 0.35,
-        transparent: true,
-        opacity: 0.16,
-        roughness: 0.15,
-        metalness: 0.2
-      });
-      // Torso & Upper Body Volumetric Glass Capsule
-      const shroudGeom = new THREE.CylinderGeometry(1.22, 0.85, 2.4, 24);
-      shroudGeom.scale(1.15, 1.0, 0.72);
-      humanShroudMesh = new THREE.Mesh(shroudGeom, shroudMat);
-      humanShroudMesh.position.set(0, 1.85, 0.05);
-      human3dGroup.add(humanShroudMesh);
-
-      // 7. VOLUMETRIC LUMINOUS ORGANS (VERIDIA SCIENTIFIC GLOW)
-      // A. Pulmonary Lungs (Dual Anatomical Respiratory Lobes + Bronchial Tree)
+      // 5. VOLUMETRIC MEDICAL ORGANS (VERIDIA SCIENTIFIC GLOW)
+      // A. Pulmonary Lungs (Dual Anatomical Lobes + Bronchial Tree)
       const lungsMat = new THREE.MeshStandardMaterial({
         color: 0x06b6d4,
         emissive: 0x0891b2,
@@ -6983,7 +6993,7 @@
         roughness: 0.18,
         metalness: 0.22,
         transparent: true,
-        opacity: 0.94
+        opacity: 0.92
       });
       const lungGeomL = new THREE.SphereGeometry(0.36, 18, 16);
       lungGeomL.scale(0.74, 1.38, 0.86);
@@ -6994,27 +7004,26 @@
       lungGeomR.scale(0.74, 1.38, 0.86);
       humanLungsMeshR = new THREE.Mesh(lungGeomR, lungsMat);
       humanLungsMeshR.position.set(0.38, 1.88, 0.08);
+
       const lungsInfo = {
         name: "Pulmonary Lungs (Pulmo Dexter & Sinister)",
         system: "Respiratory System (FMA:7195)",
         latin: "Organa respiratoria",
-        climateRisk: "Severe PM2.5 (142 μg/m³) Resuspension & Winter Smog Inversion",
+        climateRisk: "Severe PM2.5 (142 μg/m³) Resuspension & Smog Inversion",
         status: "Moderate-High Alveolar Stress · FEV1 92%",
-        rx: "N95 Respirator Mask · N-Acetylcysteine (NAC) 600mg · Tulsi-Amla Decoction",
+        rx: "N95 Respirator Mask · N-Acetylcysteine (NAC) 600mg · Tulsi Decoction",
         ref: "BodyParts3D v4.0 / Human Atlas Standard"
       };
       humanLungsMeshL.userData.organInfo = lungsInfo;
       humanLungsMeshR.userData.organInfo = lungsInfo;
-      human3dGroup.add(humanLungsMeshL, humanLungsMeshR);
 
-      // Trachea Bronchial Tree
       const tracheaGeom = new THREE.CylinderGeometry(0.065, 0.055, 0.75, 12);
       const tracheaMat = new THREE.MeshBasicMaterial({ color: 0x22d3ee, transparent: true, opacity: 0.85 });
       const tracheaMesh = new THREE.Mesh(tracheaGeom, tracheaMat);
       tracheaMesh.position.set(0, 2.52, 0.08);
-      human3dGroup.add(tracheaMesh);
+      human3dGroup.add(tracheaMesh, humanLungsMeshL, humanLungsMeshR);
 
-      // B. Cardiovascular Heart (Pulsing Cardiac Mass with Ascending Aorta Arch)
+      // B. Cardiovascular Heart (Pulsing Cardiac Mass with Aorta Arch)
       const heartMat = new THREE.MeshStandardMaterial({
         color: 0xf43f5e,
         emissive: 0xe11d48,
@@ -7026,7 +7035,6 @@
       heartGeom.scale(0.86, 1.18, 0.96);
       humanHeartMesh = new THREE.Mesh(heartGeom, heartMat);
       humanHeartMesh.position.set(-0.15, 1.94, 0.24);
-      // Aorta Loop
       const aortaGeom = new THREE.TorusGeometry(0.11, 0.035, 8, 20, Math.PI);
       const aortaMesh = new THREE.Mesh(aortaGeom, heartMat);
       aortaMesh.position.set(-0.15, 2.18, 0.22);
@@ -7035,7 +7043,7 @@
         name: "Cardiovascular Heart & Aorta (Cor)",
         system: "Circulatory System (FMA:7088)",
         latin: "Myocardium & Arcus aortae",
-        climateRisk: "MODIS LST 41.8°C Heat Stress & WBGT Thermal Dome",
+        climateRisk: "MODIS LST 41.8°C Heat Stress & Thermal Dome",
         status: "Sinus Rhythm 72 bpm (Normal Sinus)",
         rx: "Electrolyte Minerals (Potassium/Magnesium) · Tender Coconut Water",
         ref: "BodyParts3D v4.0 / Human Atlas Standard"
@@ -7058,7 +7066,7 @@
         name: "Cerebral Cortex & Brain (Encephalon)",
         system: "Central Nervous System (FMA:50801)",
         latin: "Cerebrum & Truncus encephalicus",
-        climateRisk: "Thermal Delirium & Dehydration Stroke Warning",
+        climateRisk: "Thermal Delirium & Dehydration Warning",
         status: "Synaptic Tone Stable · Low Edema Risk",
         rx: "Frequent Shaded Cooling Breaks · B-Complex & Omega-3 Lipids",
         ref: "BodyParts3D v4.0 / Human Atlas Standard"
@@ -7084,9 +7092,9 @@
         name: "Retroperitoneal Kidneys (Renes)",
         system: "Urinary / Excretory System (FMA:7203)",
         latin: "Organa urinaria",
-        climateRisk: "Acute Dehydration & Heatwave Metabolic Filtration Load",
+        climateRisk: "Acute Dehydration & Heatwave Filtration Load",
         status: "Filtration Optimal · eGFR Normal",
-        rx: "2.5L+ Pure Safe Hydration · Electrolyte Balance · Low Sodium in Heat",
+        rx: "2.5L+ Pure Safe Hydration · Low Sodium during extreme heat",
         ref: "BodyParts3D v4.0 / Human Atlas Standard"
       };
       kL.userData.organInfo = humanKidneysMesh.userData.organInfo;
@@ -7117,62 +7125,102 @@
       };
       human3dGroup.add(humanCoreMesh);
 
-      // 8. OSCILLATING LASER SCANNING RING & POINT-CLOUD PLEXUS
-      const planeGeom = new THREE.RingGeometry(0.2, 1.8, 40);
-      const planeMat = new THREE.MeshBasicMaterial({
-        color: 0x38bdf8,
-        wireframe: true,
-        transparent: true,
-        opacity: 0.55,
-        side: THREE.DoubleSide
-      });
-      humanScanPlane = new THREE.Mesh(planeGeom, planeMat);
-      humanScanPlane.rotation.x = Math.PI / 2;
+      // 6. SLEEK HORIZONTAL LASER SCANNING RING (HEALTRIX CLINICAL SWEEP)
+      humanScanPlane = new THREE.Group();
+      const scanRingGeom = new THREE.TorusGeometry(1.65, 0.012, 8, 48);
+      const scanRingMat = new THREE.MeshBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.85 });
+      const scanRing = new THREE.Mesh(scanRingGeom, scanRingMat);
+      scanRing.rotation.x = Math.PI / 2;
+
+      const scanDiscGeom = new THREE.CircleGeometry(1.64, 36);
+      const scanDiscMat = new THREE.MeshBasicMaterial({ color: 0x0284c7, transparent: true, opacity: 0.07, side: THREE.DoubleSide });
+      const scanDisc = new THREE.Mesh(scanDiscGeom, scanDiscMat);
+      scanDisc.rotation.x = Math.PI / 2;
+
+      humanScanPlane.add(scanRing, scanDisc);
       humanScanPlane.position.set(0, 2.0, 0);
       human3dGroup.add(humanScanPlane);
 
-      // 360 Luminous Bio-Data Particles
-      const partCount = 360;
-      const partGeom = new THREE.BufferGeometry();
-      const partPos = new Float32Array(partCount * 3);
-      for (let p = 0; p < partCount * 3; p += 3) {
-        partPos[p] = (Math.random() - 0.5) * 3.0;
-        partPos[p + 1] = Math.random() * 6.5 - 2.5;
-        partPos[p + 2] = (Math.random() - 0.5) * 2.0;
-      }
-      partGeom.setAttribute('position', new THREE.BufferAttribute(partPos, 3));
-      const partMat = new THREE.PointsMaterial({
-        color: 0x38bdf8,
-        size: 0.055,
-        transparent: true,
-        opacity: 0.75
-      });
-      humanParticles = new THREE.Points(partGeom, partMat);
-      human3dGroup.add(humanParticles);
-
       // Concentric Rotating Azimuth Base Pedestal
-      const baseOuter = new THREE.RingGeometry(1.5, 2.6, 52);
+      const baseOuter = new THREE.RingGeometry(1.2, 2.2, 48);
       const baseMat = new THREE.MeshBasicMaterial({
         color: 0x0ea5e9,
         wireframe: true,
         transparent: true,
-        opacity: 0.5,
+        opacity: 0.28,
         side: THREE.DoubleSide
       });
       const baseMesh = new THREE.Mesh(baseOuter, baseMat);
       baseMesh.rotation.x = Math.PI / 2;
       baseMesh.position.set(0, -2.85, 0);
       human3dGroup.add(baseMesh);
+      // 7. AMBIENT BIO-DATA PARTICLES (VERIDIA HOLOGRAPHIC STANDARD)
+      const pGeom = new THREE.BufferGeometry();
+      const pPos = [];
+      for (let p = 0; p < 180; p++) {
+        pPos.push(
+          (Math.random() - 0.5) * 4.5,
+          (Math.random() - 0.5) * 6.0 + 1.2,
+          (Math.random() - 0.5) * 4.5
+        );
+      }
+      pGeom.setAttribute('position', new THREE.Float32BufferAttribute(pPos, 3));
+      humanParticles = new THREE.Points(pGeom, new THREE.PointsMaterial({
+        color: 0x38bdf8,
+        size: 0.028,
+        transparent: true,
+        opacity: 0.45
+      }));
+      human3dGroup.add(humanParticles);
+
 
       // Master Scale & Centering: Upper body fills center stage with dignity
-      human3dGroup.scale.set(1.36, 1.36, 1.36);
-      human3dGroup.position.set(0, -1.05, 0);
+      human3dGroup.scale.set(1.35, 1.35, 1.35);
+      human3dGroup.position.set(0, -0.85, 0);
     }
 
-    // Anatomical Layer Isolation (Healtrix / Veridia Layer Filtering)
+    // Anatomical Layer Isolation (Healtrix / Veridia / Human Atlas Filtering)
+    window.toggleHumanExplodedView = function () {
+      isHumanExplodedView = !isHumanExplodedView;
+      const btn = document.getElementById('btn-exploded-view');
+      if (btn) {
+        if (isHumanExplodedView) {
+          btn.className = "px-3 py-1 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.4)] transition";
+          btn.textContent = "Exploded (Active)";
+        } else {
+          btn.className = "px-2.5 py-1 rounded-full text-[10px] mono text-slate-400 hover:text-slate-200 bg-slate-900/60 border border-slate-800 transition";
+          btn.textContent = "Exploded View";
+        }
+      }
+    };
+
+    function inspectHumanOrgan(info) {
+      if (!info) return;
+      const hud = document.getElementById('human-organ-inspect-hud');
+      if (!hud) return;
+      hud.classList.remove('hidden');
+
+      const sysEl = document.getElementById('organ-inspect-system');
+      const nameEl = document.getElementById('organ-inspect-name');
+      const latinEl = document.getElementById('organ-inspect-latin');
+      const riskEl = document.getElementById('organ-inspect-risk');
+      const statEl = document.getElementById('organ-inspect-status');
+      const rxEl = document.getElementById('organ-inspect-rx');
+      const refEl = document.getElementById('organ-inspect-ref');
+
+      if (sysEl) sysEl.textContent = info.system || 'Physiological System';
+      if (nameEl) nameEl.textContent = info.name || 'Organ';
+      if (latinEl) latinEl.textContent = info.latin || '';
+      if (riskEl) riskEl.textContent = info.climateRisk || 'Coupled to Sentinel-1 SAR & NAQI';
+      if (statEl) statEl.textContent = info.status || 'Active Surveillance';
+      if (rxEl) rxEl.textContent = info.rx || 'Follow WHO / ICMR Guidelines';
+      if (refEl) refEl.textContent = info.ref || 'BodyParts3D v4.0 / Human Atlas Standard';
+    }
+    window.inspectHumanOrgan = inspectHumanOrgan;
+
     window.setHumanAnatomyLayer = function (layer) {
       humanActiveLayer = layer;
-      const layers = ['all', 'respiratory', 'cardiac', 'neural', 'organs', 'skeleton'];
+      const layers = ['all', 'skeleton', 'respiratory', 'cardiac', 'neural', 'organs'];
       layers.forEach(l => {
         const btn = document.getElementById(`layer-btn-${l}`);
         if (btn) {
@@ -7182,12 +7230,10 @@
         }
       });
 
-      // Adjust mesh visibilities based on active layer
       if (humanRibcageGroup) humanRibcageGroup.visible = (layer === 'all' || layer === 'skeleton');
       if (humanSpineGroup) humanSpineGroup.visible = (layer === 'all' || layer === 'skeleton');
-      if (humanLimbsGroup) humanLimbsGroup.visible = (layer === 'all' || layer === 'skeleton');
-      if (humanSkullMesh) humanSkullMesh.visible = (layer === 'all' || layer === 'skeleton' || layer === 'neural');
-      if (humanShroudMesh) humanShroudMesh.visible = (layer === 'all');
+      if (humanBodyMesh) humanBodyMesh.visible = (layer === 'all');
+      if (humanBodyPoints) humanBodyPoints.visible = (layer === 'all' || layer === 'skeleton');
       if (humanAnomalyGroup) humanAnomalyGroup.visible = (layer === 'all' || layer === 'skeleton');
       if (humanLungsMeshL && humanLungsMeshR) {
         humanLungsMeshL.visible = (layer === 'all' || layer === 'respiratory');
@@ -7198,7 +7244,6 @@
       if (humanCoreMesh) humanCoreMesh.visible = (layer === 'all' || layer === 'organs');
       if (humanKidneysMesh) humanKidneysMesh.visible = (layer === 'all' || layer === 'organs');
 
-      // Update callouts visibility based on layer
       const calloutResp = document.getElementById('callout-pulmonary');
       const calloutCard = document.getElementById('callout-cardiac');
       const calloutAnom = document.getElementById('callout-anomaly');
@@ -7208,7 +7253,6 @@
       if (calloutAnom) calloutAnom.style.opacity = (layer === 'all' || layer === 'skeleton') ? '1' : '0.2';
       if (calloutGI) calloutGI.style.opacity = (layer === 'all' || layer === 'organs') ? '1' : '0.2';
 
-      // Camera Focus & Smooth Glide
       if (layer === 'respiratory') {
         targetCameraY = 1.45; targetCameraDistance = 5.2;
       } else if (layer === 'cardiac') {
@@ -7244,10 +7288,14 @@
       if (nasaDeck && healthDeck) {
         if (mode === 'human') {
           nasaDeck.classList.add('hidden');
-          healthDeck.classList.remove('hidden');
+          healthDeck.classList.add('hidden'); // Kept collapsed so 3D human body has full vertical space!
+          const hToggle = document.getElementById('bhu-health-deck-toggle');
+          if (hToggle) hToggle.classList.remove('hidden');
         } else {
           nasaDeck.classList.remove('hidden');
           healthDeck.classList.add('hidden');
+          const hToggle = document.getElementById('bhu-health-deck-toggle');
+          if (hToggle) hToggle.classList.add('hidden');
         }
       }
 
@@ -7255,15 +7303,19 @@
         human3dGroup.visible = (mode === 'human');
         if (mode === 'human') {
           if (typeof build3DHumanAnatomyCenterStage === 'function') build3DHumanAnatomyCenterStage();
-          targetCameraDistance = 6.8;
+          targetCameraDistance = 5.8;
           targetCameraY = 1.35;
-          camera.position.set(0, 1.35, 6.8);
+          camera.position.set(0, 1.35, 5.8);
           camera.lookAt(0, 1.35, 0);
           if (typeof controls !== 'undefined' && controls) controls.target.set(0, 1.35, 0);
           const targetLbl = document.getElementById('target-label');
-          if (targetLbl) targetLbl.innerText = 'TARGET: HUMAN ANATOMICAL 3D (CLIMATE & FLOOD HEALTH)';
+          if (targetLbl) targetLbl.innerText = 'TARGET: PATNA CLINICAL TWIN · HUMAN 3D (SAR FLOOD & PM2.5 COUPLING)';
           const coordsLbl = document.getElementById('coords-label');
           if (coordsLbl) coordsLbl.innerText = '5 VITAL ORGANS · SENTINEL-1 SAR FLOOD & PM2.5 COUPLING';
+          const geoBadge = document.getElementById('geo-level-badge');
+          if (geoBadge) geoBadge.innerText = 'LEVEL: PHYSIOLOGICAL TWIN';
+          const featureInfo = document.getElementById('feature-info');
+          if (featureInfo) featureInfo.innerText = 'Human Physiological Digital Twin';
         }
       }
 
