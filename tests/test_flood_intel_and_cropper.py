@@ -256,3 +256,34 @@ def test_sovereign_command_dock_spectral_legend_and_presentation():
     res = subprocess.run(["node", "-e", node_test], cwd=BHU_ROOT, capture_output=True, text=True, check=True)
     out = json.loads(res.stdout.strip())
     assert out["ok"] is True
+
+
+def test_area_flood_prediction_modal_and_endpoint():
+    """Verify that #bhu-area-predict-modal exists and FastAPI predict endpoint executes."""
+    soup = BeautifulSoup(DASHBOARD_HTML_PATH.read_text(encoding="utf-8"), "html.parser")
+    modal = soup.find("div", id="bhu-area-predict-modal")
+    assert modal is not None, "Missing #bhu-area-predict-modal in dashboard HTML"
+    assert soup.find("button", id="btn-area-flood-predict") is not None, "Missing #btn-area-flood-predict button"
+
+    import sys
+    rag_dir = BHU_ROOT / "Models" / "04_Hybrid_RAG" / "enterprise_rag_app"
+    if str(rag_dir) not in sys.path:
+        sys.path.insert(0, str(rag_dir))
+    from main import FloodPredictionRequest, predict_flood_inundation
+
+    req = FloodPredictionRequest(
+        location_name="Rajendra Nagar Basin",
+        elevation_m=44.5,
+        slope_deg=0.20,
+        sar_pre_db=-12.4,
+        sar_post_db=-7.6,
+        is_sink=1,
+        area_km2=4.25
+    )
+    result = predict_flood_inundation(req)
+    assert result["status"] == "success"
+    assert result["inundation_probability"] > 0.50
+    assert result["predicted_flooded_area_km2"] > 2.0
+    assert "DOUBLE-BOUNCE" in result["hazard_classification"] or "INUNDATION" in result["hazard_classification"]
+    assert "Prince Kumar" in result["model_metadata"]["authors"]
+    assert "Payal Priyadarshini" in result["model_metadata"]["authors"]
