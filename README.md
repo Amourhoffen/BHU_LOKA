@@ -18,9 +18,9 @@
 * **Prince Kumar** — Lead Geospatial AI Researcher & System Architect  
   *Indian Institute of Technology Patna (IIT Patna)*  
   Department of Computer Science & Data Analytics (Roll: `PA2511CDH37`)
-* **Payal Priyadarshini** — Co-Author & Remote Sensing AI Lead  
+* **Payal Priyadarshini** — Product Lead | UI/UX Designer 
   *Indian Institute of Information Technology, Design and Manufacturing Jabalpur (IIITDM Jabalpur)*
-* **Dr. Pallav Rustogi** — Academic Advisor & Research Supervisor  
+* **Pallav Rustogi** — Academic Advisor & Research Supervisor  
 * **Research Collaboration:** **Team Amour Hoffen**  
 * **Formal Manuscript:** *Sequential Compound Hydro-Thermal Risk and Urban Corner-Reflector Flood Mapping in Continental Alluvial Metropolises: Empirical Earth Observation and Spatial Validation Sensitivity over Patna, India*
 
@@ -40,7 +40,7 @@
 
 ---
 
-## 1. Scientific Abstract
+## 1. Abstract
 
 Catastrophic pluvial-fluvial compound deluges in continental alluvial metropolises present severe Earth Observation (EO) challenges due to **100% optical cloud blindness** during peak monsoon storms and the complex microwave scattering environment of dense urban settlements. In late September 2019, the metropolis of **Patna, Bihar** ($25.59^\circ\text{N}, 85.14^\circ\text{E}$)—situated in the low-gradient Gangetic floodplain at the confluence of the Ganga, Gandak, Son, and Punpun rivers—experienced a catastrophic $342.5\text{ mm}$ rainstorm over 72 hours, submerging residential sectors under $1.5\text{ m}$ to $3.0\text{ m}$ of standing deluge while the Ganga river-lock crest ($49.5\text{ m}$ AMSL) blocked gravity drainage outfalls.
 
@@ -50,7 +50,7 @@ Crucially, standard SAR thresholding assumes water causes a steep backscatter dr
 
 ---
 
-## 2. Scientific Publication Figures
+## 2. Publication Figures
 
 ### Figure 1: Patna Multi-Hazard Spatial Inundation & Micro-Elevation Map
 The $444.68\text{ km}^2$ study domain spanning the perennial Ganga River Channel ($113.82\text{ km}^2$), the low-lying southern saucer basins (Rajendra Nagar, Kankarbagh at $44.5\text{m} - 45.1\text{m}$ AMSL), and the elevated natural levee terraces (Danapur, Boring Road at $>52\text{m}$ AMSL).
