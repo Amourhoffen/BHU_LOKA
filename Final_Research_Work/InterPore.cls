@@ -49,21 +49,21 @@
 \newcommand{\rhauthor}[1]{\def\@rhauthor{#1}}
 \newcommand{\citethisarticle}[1]{\def\@citethisarticle{#1}}
 \newcommand{\orc}[1]{\href{https://orcid.org/#1}{\textcolor{interporeblue}{[#1]}}}
-\newcommand{\email}[1]{\href{mailto:#1}{\nolinkurl{#1}}}
+\newcommand{\email}[1]{\href{mailto:#1}{\texttt{#1}}}
 
 \renewcommand{\author}[2][]{\g@addto@macro\@authorlines{\textbf{#2}\textsuperscript{#1}\quad }}
 \newcommand{\@authorlines}{}
 \newcommand{\affil}[2][]{\g@addto@macro\@affillines{\textsuperscript{#1}\textit{#2}\\} }
 \newcommand{\@affillines}{}
-\newcommand{\corau}[1]{\def\@corau{#1}}
-\renewcommand{\abstract}[1]{\def\@abstract{#1}}
-\newcommand{\keyword}[1]{\def\@keyword{#1}}
-\newcommand{\whypapermatters}[1]{\def\@whypapermatters{#1}}
+\newcommand{\corau}[1]{\long\def\@corau{#1}}
+\renewcommand{\abstract}[1]{\long\def\@abstract{#1}}
+\newcommand{\keyword}[1]{\long\def\@keyword{#1}}
+\newcommand{\whypapermatters}[1]{\long\def\@whypapermatters{#1}}
 
 \renewcommand{\maketitle}{%
     \begin{center}
         \vspace*{-1cm}
-        {\raggedright \textbf{\color{interporeorange}\MakeUppercase{\@artcategory}} \hfill \small \textit{InterPore Journal} | \@cpyear\par}
+        {\raggedright \textbf{\color{interporeorange}\MakeUppercase{\@artcategory}} \hfill \small \textit{Research Manuscript / Preprint} | \@cpyear\par}
         \vspace{0.4em}\hrule height 1.5pt \vspace{1em}
         {\LARGE \bfseries \@title \par}
         \vspace{1.2em}
@@ -84,7 +84,7 @@
             {\small \textbf{Keywords:} \@keyword \par}
             \ifdefined\@whypapermatters
             \vspace{0.6em}
-            {\small \textbf{Why This Paper Matters:} \textit{\@whypapermatters} \par}
+            {\small \textbf{Why This Paper Matters:} \itshape \@whypapermatters \par}
             \fi
             \vspace{0.8em}\hrule height 0.5pt
         \end{minipage}
@@ -93,10 +93,10 @@
 }
 
 % Boxed figure environment
-\newenvironment{boxedfigure}[2][htbp]{%
-    \begin{figure}[#1]
+\newenvironment{boxedfigure}[1]{%
+    \begin{figure}[htbp]
     \centering
-    \begin{minipage}{#2}
+    \begin{minipage}{#1}
     \centering
 }{%
     \end{minipage}
