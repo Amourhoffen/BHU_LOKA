@@ -13,7 +13,7 @@
 
 ---
 
-## 👥 Research Team & Academic Authorship
+## Research Team & Academic Authorship
 
 * **Prince Kumar** — Lead Geospatial AI Researcher & System Architect  
   *Indian Institute of Technology Patna (IIT Patna)*  
@@ -26,7 +26,7 @@
 
 ---
 
-## 🌐 Live Platform Access & Publication Deliverables
+## Live Platform Access & Publication Deliverables
 
 | Deliverable | Access Link | Description |
 |---|---|---|
@@ -146,13 +146,13 @@ For the Patna September 2019 deluge, the empirical global optimum resolves at **
 ### 4.3 Patna Wards Empirical Flood Risk Ranking
 | Ward / Locality Name | Mean Elev (MASL) | Flooded Area ($\text{km}^2$) | Inundation % | Peak $\Delta\sigma^0$ (dB) | Mechanism | Exposure Classification |
 |---|---|---|---|---|---|---|
-| **Rajendra Nagar Basin** | $44.5\text{ m}$ | $4.11\text{ km}^2$ | **$96.8\%$** | $+4.8\text{ dB}$ | Dihedral Double-Bounce | 🚨 Critical Emergency Deluge |
-| **Kankarbagh Silt Pond** | $45.1\text{ m}$ | $5.28\text{ km}^2$ | **$94.2\%$** | $+3.6\text{ dB}$ | Dihedral Double-Bounce | 🚨 Severe Waterlogging |
-| **Patna City / East Core** | $47.2\text{ m}$ | $3.25\text{ km}^2$ | **$47.8\%$** | $+2.1\text{ dB}$ | Mixed Urban Silt | ⚠️ Moderate Pluvial Silt |
-| **Patliputra / Boring Rd** | $48.3\text{ m}$ | $0.85\text{ km}^2$ | **$25.0\%$** | $+1.3\text{ dB}$ | Peripheral Surface Ponding | ⚠️ Low / Surface Runoff |
-| **Gandhi Maidan Levee** | $50.1\text{ m}$ | $0.21\text{ km}^2$ | **$10.0\%$** | $+0.4\text{ dB}$ | Natural Levee Crown | 🛡️ Resilient Natural Terrace |
-| **Danapur Cantt Terrace** | $52.8\text{ m}$ | $0.15\text{ km}^2$ | **$2.1\%$** | $-0.3\text{ dB}$ | Elevated Safe Ridge | 🛡️ High Elevation Safe Zone |
-| **Bihta / IIT Patna Ridge**| $55.2\text{ m}$ | $0.00\text{ km}^2$ | **$0.0\%$** | $-0.4\text{ dB}$ | Alluvial Highland | 🛡️ Zero Inundation Benchmark |
+| **Rajendra Nagar Basin** | $44.5\text{ m}$ | $4.11\text{ km}^2$ | **$96.8\%$** | $+4.8\text{ dB}$ | Dihedral Double-Bounce |  Critical Emergency Deluge |
+| **Kankarbagh Silt Pond** | $45.1\text{ m}$ | $5.28\text{ km}^2$ | **$94.2\%$** | $+3.6\text{ dB}$ | Dihedral Double-Bounce |  Severe Waterlogging |
+| **Patna City / East Core** | $47.2\text{ m}$ | $3.25\text{ km}^2$ | **$47.8\%$** | $+2.1\text{ dB}$ | Mixed Urban Silt |  Moderate Pluvial Silt |
+| **Patliputra / Boring Rd** | $48.3\text{ m}$ | $0.85\text{ km}^2$ | **$25.0\%$** | $+1.3\text{ dB}$ | Peripheral Surface Ponding |  Low / Surface Runoff |
+| **Gandhi Maidan Levee** | $50.1\text{ m}$ | $0.21\text{ km}^2$ | **$10.0\%$** | $+0.4\text{ dB}$ | Natural Levee Crown |  Resilient Natural Terrace |
+| **Danapur Cantt Terrace** | $52.8\text{ m}$ | $0.15\text{ km}^2$ | **$2.1\%$** | $-0.3\text{ dB}$ | Elevated Safe Ridge |  High Elevation Safe Zone |
+| **Bihta / IIT Patna Ridge**| $55.2\text{ m}$ | $0.00\text{ km}^2$ | **$0.0\%$** | $-0.4\text{ dB}$ | Alluvial Highland |  Zero Inundation Benchmark |
 
 ---
 
@@ -172,10 +172,10 @@ The repository contains two trained, production-ready machine learning checkpoin
    - Optimized for instant edge inference and offline client execution.
 
 ### Interactive Live Model Predictor in Web Interface
-Users can test these models interactively via the **`🔮 PREDICT AREA (ML)`** button on the workstation top subbar:
+Users can test these models interactively via the **` PREDICT AREA (ML)`** button on the workstation top subbar:
 - Select from 8 benchmark presets or input custom coordinates.
 - Get instant inundation probability, predicted inundated area ($km^2$), physical scattering classification, and Tree-SHAP attribution bars.
-- Click **`🗺️ View on 3D Terrain`** to highlight the flood prediction directly onto the 3D Copernicus DEM relief.
+- Click **`View on 3D Terrain`** to highlight the flood prediction directly onto the 3D Copernicus DEM relief.
 
 ---
 
@@ -290,7 +290,7 @@ If you use BHU LOKA, its empirical SAR methodology, spatial machine learning mod
 
 ---
 
-## 📜 License & Open-Source Sovereignty
+##  License & Open-Source Sovereignty
 
 This project is licensed under the **MIT Open Source License** — see the [LICENSE](LICENSE) file for details.  
 *Dedicated to the citizens of Patna, Bihar and open-source scientific disaster resilience worldwide.*
