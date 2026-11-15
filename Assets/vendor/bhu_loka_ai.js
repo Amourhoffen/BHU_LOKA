@@ -659,6 +659,50 @@
       else lang = 'en';
     }
 
+    // 1A. 2D Land Cropping to 3D Extrusion & Layer-by-Layer Hazard Overlays (Uchai-Neechai & Compound Risk)
+    if (q.includes('uchai') || q.includes('neechai') || q.includes('unchai') || q.includes('layer by layer') || q.includes('layar') || (q.includes('crop') && (q.includes('3d') || q.includes('hazard') || q.includes('color') || q.includes('land')))) {
+      if (typeof window.setHoloHazardLayer === 'function') {
+        setTimeout(() => window.setHoloHazardLayer('topo'), 250);
+      }
+      if (lang === 'hi') {
+        return {
+          answer: `हाँ, BHU LOKA में आप किसी भी भूमि/खेत को क्रॉप करके उसकी 3D ऊँचाई-नीचाई और परत-दर-परत (Layer-by-Layer) आपदा रंग देख सकते हैं:\n\n` +
+            `1. 📐 **2D CROP TO 3D कैसे काम करता है (3D ऊँचाई-नीचाई निष्कर्षण):**\n` +
+            `   • टॉप बार में **'📐 2D CROP TO 3D'** बटन दबाएं और नक्शे पर अपने खेत या भूखंड (Bounding Box) को खींचकर चुनें।\n` +
+            `   • **'Crop & Extrude 3D Terrain'** पर क्लिक करते ही आपका चुना हुआ क्षेत्र सीधे मुख्य दृश्य में **Copernicus 30m वास्तविक डिजिटल एलिवेशन मॉडल (DEM)** के साथ 3D में एक्सट्रूड हो जाएगा।\n` +
+            `   • इसमें आपको अपने खेत का सटीक न्यूनतम, औसत व अधिकतम स्तर (MIN/MEAN/MAX MASL) और ढलान (Slope) 3D में दिखाई देगी।\n\n` +
+            `2. 🎨 **3D टेरेन पर परत-दर-परत (Layer-by-Layer) आपदा रंग:**\n` +
+            `   • 3D सब-बार में नया **'3D Hazard'** कंट्रोल सक्रिय है, जहाँ आप एक क्लिक में परतें बदल सकते हैं:\n` +
+            `     - 🏔️ **Topo (ऊँचाई-नीचाई):** लाल (<46m खतरनाक डूब गढ्ढे), पीला/एम्बर (48–52m जलभराव क्षेत्र), हरा (>52m सुरक्षित ऊँचा कछार)।\n` +
+            `     - 🌊 **Flood SAR:** मैजेंटा/गुलाबी (Sentinel-1 रडार अर्बन डबल-बाउंस +4.2 dB), सियान/नीला (खुला जलभराव)।\n` +
+            `     - 🌡️ **Thermal:** चटक नारंगी-लाल (40°C–45°C प्री-मानसून हीटवेव, जो मिट्टी सुखाकर रनऑफ +17.4% बढ़ाती है)।\n` +
+            `     - 💧 **Sinks:** गहरा रॉयल ब्लू (प्राकृतिक जल निकास और हाइड्रोलॉजिकल सिंक)।\n` +
+            `     - 🛰️ **Sat:** उच्च-रिजॉल्यूशन Google Earth Hybrid ऑप्टिकल उपग्रह दृश्य।\n` +
+            `   • **BLEND स्लाइडर (0%–100%):** आप स्लाइडर घुमाकर उपग्रह चित्र के ऊपर इन आपदा रंगों की पारदर्शिता (Opacity) अपनी पसंद अनुसार सेट कर सकते हैं।`,
+          citations: [GROUNDED_KNOWLEDGE.elevation, GROUNDED_KNOWLEDGE.sar_flood],
+          sourceTag: 'Copernicus 30m Global DEM + Sentinel-1 SAR Dual-Track Inundation Engine'
+        };
+      } else {
+        return {
+          answer: `Yes, in BHU LOKA you can crop any land parcel and visualize its true 3D elevation relief (height & depth) with layer-by-layer hazard color overlays:\n\n` +
+            `1. 📐 **How 2D CROP TO 3D Works (Real 3D Topographic Extrusion):**\n` +
+            `   • Click **'📐 2D CROP TO 3D'** in the top navigation dock and adjust the bounding box over your farm or plot.\n` +
+            `   • Click **'Crop & Extrude 3D Terrain'** — the engine immediately cuts and extrudes the underlying **Copernicus 30m DEM** into a true 3D topographic mesh in the primary viewport.\n` +
+            `   • You immediately get real micro-topographic relief with MIN, MEAN, MAX MASL elevation and slope angle in 3D.\n\n` +
+            `2. 🎨 **Layer-by-Layer Scientific Hazard Color Overlays on 3D Mesh:**\n` +
+            `   • Use the dedicated **'3D Hazard'** switcher directly above the 3D terrain canvas:\n` +
+            `     - 🏔️ **Topo (Elevation Relief):** Red (<46m Critical Sinks), Amber (48–52m Silt Ponding), Emerald Green (>52m Safe Levees & Terraces).\n` +
+            `     - 🌊 **Flood SAR:** Hot Pink / Magenta (Sentinel-1 Corner Reflector Double-Bounce +4.2 dB), Cyan (Specular Water Sink).\n` +
+            `     - 🌡️ **Thermal:** Radiant Orange-Red (Pre-monsoon 40°C–45°C heat stress that desiccates clay and escalates runoff by +17.4%).\n` +
+            `     - 💧 **Sinks:** Royal Blue (Hydrological convergence vectors and catchment ponding depressions).\n` +
+            `     - 🛰️ **Sat:** Google Earth Hybrid true-color base with NIR vegetation spectral tones.\n` +
+            `   • **BLEND Opacity Slider (0%–100%):** Adjust the slider to seamlessly blend the hazard heatmap directly over the roads, crops, and buildings on the 3D surface.`,
+          citations: [GROUNDED_KNOWLEDGE.elevation, GROUNDED_KNOWLEDGE.sar_flood],
+          sourceTag: 'Copernicus 30m Global DEM + Sentinel-1 SAR Dual-Track Inundation Engine'
+        };
+      }
+    }
+
     // 1. 3D Terrain Spectral & Color Meaning (NIR Vegetation vs GPS Beacon & Water Sinks)
     if (q.includes('pink') || q.includes('blue') || q.includes('color') || q.includes('colour') || q.includes('rang') || q.includes('blum') || q.includes('gulabi') || q.includes('neela') || q.includes('kya mtlb') || q.includes('point') || q.includes('pin') || q.includes('dot')) {
       if (lang === 'hi') {
