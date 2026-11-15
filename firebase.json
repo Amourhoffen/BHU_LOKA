@@ -1,0 +1,45 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "Dockerfile",
+      ".dockerignore",
+      "Data/02_SAR_Sentinel1/**",
+      "Data/04_DEM_SRTM/**",
+      "Data/06_LST_Thermal/**",
+      "Data/07_Population_WorldPop/**",
+      "Repos/**",
+      "Skills/**",
+      "Models/**",
+      "Pipelines/**",
+      "scratch/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/api/**",
+        "run": {
+          "serviceId": "bhu-loka-api",
+          "region": "asia-south1"
+        }
+      },
+      {
+        "source": "/",
+        "destination": "/bhu_loka_cyber_dashboard.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "**/*.@(js|css)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=86400"
+          }
+        ]
+      }
+    ]
+  }
+}

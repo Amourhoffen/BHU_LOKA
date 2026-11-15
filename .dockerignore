@@ -1,0 +1,43 @@
+# ==============================================================================
+# BHU LOKA (भूलोक) - Docker Build Ignore File
+# Excludes heavy raw satellite rasters (>2 GB) and development artifacts
+# ==============================================================================
+
+# Raw Heavy Satellite Rasters & GeoTIFFs (Decoupled to Cloud Storage)
+Data/02_SAR_Sentinel1/
+Data/04_DEM_SRTM/
+Data/06_LST_Thermal/
+Data/07_Population_WorldPop/
+Data/MOD11A2*
+Data/01_Boundaries/*.gpkg
+Data/01_Boundaries/*.geojson
+*.tif
+*.tiff
+*.hdf
+*.h5
+
+# Repositories & Submodules
+Repos/
+Skills/
+Summery/
+Memory/
+.agents/
+
+# Python Cache & Virtual Environments
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+.pytest_cache/
+.coverage
+
+# Git & Editor Settings
+.git/
+.gitignore
+.vscode/
+.idea/
+*.bak
+scratch/

@@ -28,6 +28,28 @@
   <script src="Assets/vendor/bhu_loka_ai.js"></script>
   <!-- BHU LOKA SCIENTIFIC FLOOD MODEL INTELLIGENCE & RESEARCH SUITE (NASA 2026 / IIT PATNA) -->
   <script src="Assets/vendor/bhu_loka_flood_intel.js"></script>
+  <!-- Firebase App & Analytics SDK (Project: bhu-loka) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyAAkKgYx1u-1KwTK3C4FVxYjamx2newU3I",
+      authDomain: "bhu-loka.firebaseapp.com",
+      projectId: "bhu-loka",
+      storageBucket: "bhu-loka.firebasestorage.app",
+      messagingSenderId: "841379276119",
+      appId: "1:841379276119:web:89dd6cbcf7137e358f4a12",
+      measurementId: "G-BFPHE50VT0"
+    };
+    try {
+      const fbApp = initializeApp(firebaseConfig);
+      const fbAnalytics = getAnalytics(fbApp);
+      window.__FIREBASE_APP__ = fbApp;
+      window.__FIREBASE_ANALYTICS__ = fbAnalytics;
+    } catch (e) {
+      console.warn("Firebase initialization skipped or offline:", e);
+    }
+  </script>
   <script>
     // Lightweight early intro dismissal fallback before Three.js scene glides
     window.skipBhuIntro = function () {
