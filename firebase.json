@@ -1,31 +1,10 @@
 {
   "hosting": {
-    "public": ".",
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**",
-      "Dockerfile",
-      ".dockerignore",
-      "requirements*.txt",
-      "pyproject.toml",
-      "Data/01_Boundaries/**",
-      "Data/02_SAR_Sentinel1/**",
-      "Data/03_Sentinel2_MSI/**",
-      "Data/04_DEM_SRTM/**",
-      "Data/05_Precipitation_GPM/**",
-      "Data/06_LST_Thermal/**",
-      "Data/07_Population_WorldPop/**",
-      "Data/MOD11A2*/**",
-      "Data/08_Processed_Outputs/*.npy",
-      "Repos/**",
-      "Skills/**",
-      "Models/**",
-      "Pipelines/**",
-      "Research_Paper_Workflow/**",
-      "Final*/**",
-      "tests/**",
-      "scratch/**"
+      "**/node_modules/**"
     ],
     "rewrites": [
       {
@@ -38,12 +17,12 @@
       },
       {
         "source": "**",
-        "destination": "/bhu_loka_cyber_dashboard.html"
+        "destination": "/index.html"
       }
     ],
     "headers": [
       {
-        "source": "**/*.@(js|css)",
+        "source": "**/*.@(js|css|png|jpg)",
         "headers": [
           {
             "key": "Cache-Control",

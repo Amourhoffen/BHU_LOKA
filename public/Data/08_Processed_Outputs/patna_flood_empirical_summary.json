@@ -1,0 +1,20 @@
+{
+  "event": "Patna Pluvial Deluge (September 2019)",
+  "sensors": [
+    "Copernicus Sentinel-1A (23 Sep 2019, 00:20 UTC) - Baseline Dry",
+    "Copernicus Sentinel-1B (29 Sep 2019, 00:19 UTC) - Peak Flood"
+  ],
+  "polarization": "VV",
+  "spatial_resolution_meters": 10.0,
+  "otsu_threshold_dB": -3.797786235809326,
+  "total_mapped_urban_area_km2": 444.6818,
+  "empirical_flooded_area_km2": 26.5422,
+  "inundation_percentage": 5.96880735843023,
+  "water_mean_backscatter_dB": -41.845035552978516,
+  "urban_bounding_box": {
+    "min_lon": 85.02,
+    "max_lon": 85.25,
+    "min_lat": 25.54,
+    "max_lat": 25.65
+  }
+}

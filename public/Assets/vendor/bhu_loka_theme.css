@@ -1,0 +1,260 @@
+/*
+ * BHU LOKA (भूलोक) — Cartographic Instrument Design System (BHU-DESIGN-v1.0)
+ * Unified obsidian palette, 4px spacing tokens, tabular monospace metrics,
+ * hairline docked workstations, and accessible keyboard focus controls.
+ */
+
+:root {
+  --bg-void: #05080c;
+  --bg-canvas: #06090e;
+  --bg-inset: #070b12;
+  --bg-panel: #0b1019;
+  --bg-elevated: #101724;
+  --bg-hover: #162032;
+
+  --border-hairline: rgba(148, 163, 184, 0.14);
+  --border-strong: rgba(148, 163, 184, 0.24);
+  --border-focus: #38bdf8;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  --accent-primary: #38bdf8;
+  --state-verified: #10b981;
+  --state-warning: #f59e0b;
+  --state-unavailable: #f43f5e;
+  --state-idle: #94a3b8;
+
+  --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+}
+
+.bhu-workstation {
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+}
+
+.bhu-workstation .mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Minimum 10px readability floor across scientific telemetry, tables & charts */
+.bhu-workstation .text-\[8px\],
+.bhu-workstation .text-\[9px\] {
+  font-size: 10px !important;
+  line-height: 1.35 !important;
+}
+
+.bhu-workstation .panel {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-hairline);
+  border-radius: 6px;
+  box-shadow: none;
+}
+
+.bhu-workstation .panel-inset {
+  background-color: var(--bg-inset);
+  border: 1px solid var(--border-hairline);
+  border-radius: 4px;
+}
+
+.bhu-workstation .badge-chip {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border-hairline);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+/* Segmented Dock Tab Controls */
+.bhu-dock-tabbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg-inset);
+  border: 1px solid var(--border-hairline);
+  border-radius: 4px;
+  padding: 2px;
+}
+
+.bhu-dock-tab {
+  flex: 1 1 0%;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  text-align: center;
+  transition: background-color 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out;
+}
+
+.bhu-dock-tab:hover {
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+}
+
+.bhu-dock-tab[aria-selected="true"] {
+  background: rgba(56, 189, 248, 0.14);
+  border-color: rgba(56, 189, 248, 0.42);
+  color: #7dd3fc;
+}
+
+/* Docked Host Slots (Non-Occluding Mode on Desktop >= 1024px) */
+#bhu-intel-dock-slot #bhu-india-intel-panel {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: 100% !important;
+  max-height: 100% !important;
+  height: 100%;
+  min-height: 0;
+  z-index: auto !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  background: var(--bg-panel) !important;
+  border: 1px solid var(--border-hairline) !important;
+  border-radius: 6px !important;
+}
+
+#bhu-location-dock-slot #bhu-loka-intel-drawer {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: 100% !important;
+  max-height: 100% !important;
+  height: 100%;
+  min-height: 0;
+  z-index: auto !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+}
+
+#bhu-location-dock-slot #bhu-loka-intel-drawer #bhu-drawer-modules-scroll {
+  max-height: none !important;
+  flex: 1 1 0%;
+  min-height: 0;
+}
+
+#bhu-agri-dock-slot #bhu-agri-panel {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: 100% !important;
+  max-height: 100% !important;
+  height: 100%;
+  min-height: 0;
+  z-index: auto !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+#bhu-agri-dock-slot #bhu-agri-panel #bhu-ag-body {
+  flex: 1 1 0%;
+  min-height: 0;
+}
+
+/* Unified 28px Bottom Instrument Provenance & CRS Bar */
+.bhu-bottom-bar {
+  height: 28px;
+  min-height: 28px;
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-hairline);
+  border-radius: 4px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 10px;
+  color: var(--text-secondary);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.bhu-bottom-bar.bhu-bar-edge {
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+/* Keep focus outlines clean and never trigger viewport jump */
+.bhu-workstation button:focus-visible,
+.bhu-workstation a:focus-visible,
+.bhu-workstation select:focus-visible,
+.bhu-workstation input:focus-visible,
+.bhu-workstation textarea:focus-visible {
+  outline: 1.5px solid var(--border-focus);
+  outline-offset: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .bhu-workstation *,
+  .bhu-workstation *::before,
+  .bhu-workstation *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Sleek dark instrument scrollbars matching obsidian surfaces */
+.bhu-workstation * {
+  scrollbar-width: thin;
+  scrollbar-color: #334155 #070b12;
+}
+
+.bhu-workstation ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.bhu-workstation ::-webkit-scrollbar-track {
+  background: #070b12;
+}
+
+.bhu-workstation ::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 3px;
+}
+
+.bhu-workstation ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Global Time Machine Collapsed State */
+#bhu-time-machine {
+  transition: height 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#bhu-time-machine.tm-collapsed {
+  height: 24px !important;
+}

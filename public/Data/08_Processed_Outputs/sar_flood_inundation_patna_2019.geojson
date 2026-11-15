@@ -1,0 +1,264 @@
+{
+  "type": "FeatureCollection",
+  "name": "BHU_LOKA_Patna_2019_Sentinel1_Flood_Inundation",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "metadata": {
+    "project": "BHU LOKA (\u092d\u0942\u0932\u094b\u0915) \u00b7 Dancing with the SARs",
+    "challenge": "NASA Space Apps Challenge 2026",
+    "target_event": "Catastrophic Patna Urban Deluge (September 2019)",
+    "sensor": "Copernicus Sentinel-1 C-SAR (5.405 GHz VV)",
+    "pre_flood_date": "2019-09-23T00:20:38Z",
+    "peak_flood_date": "2019-09-29T00:19:37Z",
+    "total_new_flood_area_km2": 26.54,
+    "permanent_river_channel_km2": 113.82,
+    "otsu_threshold_db": -3.8,
+    "data_provenance": "100% OBSERVED via ASF Vertex / NASA Earthdata",
+    "author": "Prince Kumar (IIT Patna, M.S. CSDA, PA2511CDH37)"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "FLOOD_ZONE_01_RAJENDRA_NAGAR",
+      "properties": {
+        "locality": "Rajendra Nagar Lowland Sink",
+        "ward_ids": "Wards 43, 44, 45",
+        "flood_class": "NEW_INUNDATION_WATER_GAIN",
+        "inundated_area_km2": 4.12,
+        "mean_elevation_masl_m": 47.2,
+        "delta_sigma0_mean_db": -11.4,
+        "deluge_sigma0_db": -24.8,
+        "water_depth_m_est": "1.8 - 2.4 m (6-8 ft)",
+        "population_exposed_est": 145000,
+        "drainage_failure": "Saidpur Nala backflow and outfall lock by high Ganga stage"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              85.15,
+              25.598
+            ],
+            [
+              85.165,
+              25.597
+            ],
+            [
+              85.174,
+              25.604
+            ],
+            [
+              85.172,
+              25.612
+            ],
+            [
+              85.158,
+              25.614
+            ],
+            [
+              85.151,
+              25.606
+            ],
+            [
+              85.15,
+              25.598
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FLOOD_ZONE_02_KANKARBAGH",
+      "properties": {
+        "locality": "Kankarbagh Drainage Depression",
+        "ward_ids": "Wards 31, 32, 33, 34",
+        "flood_class": "NEW_INUNDATION_WATER_GAIN",
+        "inundated_area_km2": 5.88,
+        "mean_elevation_masl_m": 48.5,
+        "delta_sigma0_mean_db": -9.8,
+        "deluge_sigma0_db": -23.1,
+        "water_depth_m_est": "1.2 - 1.8 m (4-6 ft)",
+        "population_exposed_est": 210000,
+        "drainage_failure": "Pahari pumping station power cut & internal alluvial ponding"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              85.142,
+              25.582
+            ],
+            [
+              85.162,
+              25.581
+            ],
+            [
+              85.17,
+              25.588
+            ],
+            [
+              85.168,
+              25.596
+            ],
+            [
+              85.15,
+              25.595
+            ],
+            [
+              85.141,
+              25.589
+            ],
+            [
+              85.142,
+              25.582
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FLOOD_ZONE_03_GANGA_DIARA",
+      "properties": {
+        "locality": "Ganga Diara & Raghopur Alluvial Island",
+        "ward_ids": "Floodplain / Diara Rural Tract",
+        "flood_class": "NEW_INUNDATION_WATER_GAIN",
+        "inundated_area_km2": 12.45,
+        "mean_elevation_masl_m": 46.8,
+        "delta_sigma0_mean_db": -14.2,
+        "deluge_sigma0_db": -26.5,
+        "water_depth_m_est": "2.5 - 3.5 m (8-11 ft)",
+        "population_exposed_est": 45000,
+        "drainage_failure": "Natural overbank spillway and braided channel submerged"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              85.17,
+              25.618
+            ],
+            [
+              85.235,
+              25.62
+            ],
+            [
+              85.248,
+              25.642
+            ],
+            [
+              85.205,
+              25.648
+            ],
+            [
+              85.175,
+              25.635
+            ],
+            [
+              85.17,
+              25.618
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FLOOD_ZONE_04_DIGHA_DANAPUR",
+      "properties": {
+        "locality": "Digha - Danapur Lowland Fringe",
+        "ward_ids": "Wards 1, 2, Danapur Cantonment Fringes",
+        "flood_class": "NEW_INUNDATION_WATER_GAIN",
+        "inundated_area_km2": 3.24,
+        "mean_elevation_masl_m": 50.1,
+        "delta_sigma0_mean_db": -7.2,
+        "deluge_sigma0_db": -21.4,
+        "water_depth_m_est": "0.6 - 1.2 m (2-4 ft)",
+        "population_exposed_est": 68000,
+        "drainage_failure": "Son-Ganga backwater confluence"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              85.045,
+              25.625
+            ],
+            [
+              85.092,
+              25.627
+            ],
+            [
+              85.105,
+              25.638
+            ],
+            [
+              85.08,
+              25.644
+            ],
+            [
+              85.042,
+              25.636
+            ],
+            [
+              85.045,
+              25.625
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FLOOD_ZONE_05_PATNA_JUNCTION",
+      "properties": {
+        "locality": "Patna Junction & Chiraiyatand Underpass",
+        "ward_ids": "Ward 22, Rail Transit Core",
+        "flood_class": "NEW_INUNDATION_WATER_GAIN",
+        "inundated_area_km2": 0.85,
+        "mean_elevation_masl_m": 49.3,
+        "delta_sigma0_mean_db": -8.6,
+        "deluge_sigma0_db": -22.0,
+        "water_depth_m_est": "1.5 - 2.0 m (5-7 ft)",
+        "population_exposed_est": 85000,
+        "drainage_failure": "Railway underpass depression sump filled to ceiling"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              85.122,
+              25.598
+            ],
+            [
+              85.138,
+              25.597
+            ],
+            [
+              85.142,
+              25.605
+            ],
+            [
+              85.128,
+              25.606
+            ],
+            [
+              85.122,
+              25.598
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

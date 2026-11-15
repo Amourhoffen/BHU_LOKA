@@ -1,0 +1,50 @@
+{
+  "Danapur Cantt": {
+    "predicted_winter_pm25_ug_m3": 195.6,
+    "aqi_category": "Very Poor",
+    "elevation_m": 52.8,
+    "lst_celsius": 35.5
+  },
+  "Bailey Road / Saguna": {
+    "predicted_winter_pm25_ug_m3": 263.0,
+    "aqi_category": "Severe / Hazardous",
+    "elevation_m": 52.4,
+    "lst_celsius": 37.0
+  },
+  "Boring Road / SK Puri": {
+    "predicted_winter_pm25_ug_m3": 284.1,
+    "aqi_category": "Severe / Hazardous",
+    "elevation_m": 49.5,
+    "lst_celsius": 38.2
+  },
+  "Patliputra Colony": {
+    "predicted_winter_pm25_ug_m3": 235.4,
+    "aqi_category": "Very Poor",
+    "elevation_m": 50.8,
+    "lst_celsius": 36.8
+  },
+  "Kankarbagh": {
+    "predicted_winter_pm25_ug_m3": 314.8,
+    "aqi_category": "Severe / Hazardous",
+    "elevation_m": 45.1,
+    "lst_celsius": 39.5
+  },
+  "Rajendra Nagar": {
+    "predicted_winter_pm25_ug_m3": 291.9,
+    "aqi_category": "Severe / Hazardous",
+    "elevation_m": 44.5,
+    "lst_celsius": 38.9
+  },
+  "Gandhi Maidan": {
+    "predicted_winter_pm25_ug_m3": 269.4,
+    "aqi_category": "Severe / Hazardous",
+    "elevation_m": 50.2,
+    "lst_celsius": 37.5
+  },
+  "Patna Bypass": {
+    "predicted_winter_pm25_ug_m3": 344.6,
+    "aqi_category": "Severe / Hazardous",
+    "elevation_m": 46.8,
+    "lst_celsius": 41.5
+  }
+}

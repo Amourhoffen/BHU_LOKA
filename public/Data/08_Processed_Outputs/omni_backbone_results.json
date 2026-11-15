@@ -1,0 +1,86 @@
+{
+  "Danapur Cantonment": {
+    "elevation_m": 52.8,
+    "inundation_prob_pct": 48.32,
+    "vulnerability_index": 0.532,
+    "ulsi_score": 90.0,
+    "zone": "Zone S1 (Prime)"
+  },
+  "Bailey Road / Saguna More": {
+    "elevation_m": 52.4,
+    "inundation_prob_pct": 48.28,
+    "vulnerability_index": 0.532,
+    "ulsi_score": 90.0,
+    "zone": "Zone S1 (Prime)"
+  },
+  "RPS More / Canal Road": {
+    "elevation_m": 52.6,
+    "inundation_prob_pct": 48.28,
+    "vulnerability_index": 0.532,
+    "ulsi_score": 90.0,
+    "zone": "Zone S1 (Prime)"
+  },
+  "Boring Road / SK Puri": {
+    "elevation_m": 49.5,
+    "inundation_prob_pct": 48.24,
+    "vulnerability_index": 0.534,
+    "ulsi_score": 62.5,
+    "zone": "Zone S2 (Moderate)"
+  },
+  "Patliputra Colony": {
+    "elevation_m": 48.3,
+    "inundation_prob_pct": 48.28,
+    "vulnerability_index": 0.537,
+    "ulsi_score": 62.5,
+    "zone": "Zone S2 (Moderate)"
+  },
+  "Digha / Kurji": {
+    "elevation_m": 51.8,
+    "inundation_prob_pct": 48.31,
+    "vulnerability_index": 0.531,
+    "ulsi_score": 62.5,
+    "zone": "Zone S2 (Moderate)"
+  },
+  "Gardanibagh / Anisabad": {
+    "elevation_m": 48.7,
+    "inundation_prob_pct": 48.34,
+    "vulnerability_index": 0.536,
+    "ulsi_score": 62.5,
+    "zone": "Zone S2 (Moderate)"
+  },
+  "Phulwari Sharif": {
+    "elevation_m": 51.2,
+    "inundation_prob_pct": 48.28,
+    "vulnerability_index": 0.533,
+    "ulsi_score": 62.5,
+    "zone": "Zone S2 (Moderate)"
+  },
+  "Gandhi Maidan / Ashok Rajpath": {
+    "elevation_m": 50.1,
+    "inundation_prob_pct": 48.36,
+    "vulnerability_index": 0.537,
+    "ulsi_score": 62.5,
+    "zone": "Zone S2 (Moderate)"
+  },
+  "Kankarbagh Colony": {
+    "elevation_m": 45.1,
+    "inundation_prob_pct": 48.3,
+    "vulnerability_index": 0.539,
+    "ulsi_score": 22.5,
+    "zone": "Zone S4 (Critical)"
+  },
+  "Rajendra Nagar": {
+    "elevation_m": 44.5,
+    "inundation_prob_pct": 48.4,
+    "vulnerability_index": 0.542,
+    "ulsi_score": 22.5,
+    "zone": "Zone S4 (Critical)"
+  },
+  "Patna Bypass / Transport Nagar": {
+    "elevation_m": 46.8,
+    "inundation_prob_pct": 48.34,
+    "vulnerability_index": 0.541,
+    "ulsi_score": 22.5,
+    "zone": "Zone S4 (Critical)"
+  }
+}

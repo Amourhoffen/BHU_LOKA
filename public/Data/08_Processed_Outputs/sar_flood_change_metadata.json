@@ -1,0 +1,83 @@
+{
+  "project": "BHU LOKA (भूलोक) · Sovereign Earth & Climate Workstation",
+  "challenge": "NASA Space Apps Challenge 2026 - Dancing with the SARs",
+  "study_area": {
+    "name": "Patna & Ganga Floodplain, Bihar, India",
+    "river_confluence": "Ganga, Gandak, Son, and Punpun Rivers",
+    "historical_context": "Catastrophic 2019 Patna Urban Deluge (September 2019)",
+    "bounding_box": {
+      "min_lon": 85.02,
+      "max_lon": 85.25,
+      "min_lat": 25.54,
+      "max_lat": 25.65
+    },
+    "center": [
+      25.595,
+      85.13499999999999
+    ],
+    "crs": "EPSG:4326 (WGS84)"
+  },
+  "scenes": [
+    {
+      "label": "Pre-Flood Baseline (Dry Season)",
+      "scene_id": "S1A_IW_GRDH_1SDV_20190923T002026_20190923T002051_029141_034EEC",
+      "acquisition_time_utc": "2019-09-23T00:20:38Z",
+      "sensor": "Copernicus Sentinel-1A C-SAR (ESA)",
+      "provenance_archive": "ASF Vertex (search.asf.alaska.edu) / NASA Earthdata",
+      "polarization": "VV",
+      "swath_mode": "IW (Interferometric Wide)",
+      "product_type": "GRD (Ground Range Detected High Resolution)",
+      "pixel_spacing_m": 10.0,
+      "frequency_ghz": 5.405,
+      "orbit_pass": "Descending",
+      "mean_backscatter_db": -35.932220458984375
+    },
+    {
+      "label": "Peak Flood Deluge (Monsoon Inundation)",
+      "scene_id": "S1B_IW_GRDH_1SDV_20190929T001924_20190929T001949_018245_0225AB",
+      "acquisition_time_utc": "2019-09-29T00:19:37Z",
+      "sensor": "Copernicus Sentinel-1B C-SAR (ESA)",
+      "provenance_archive": "ASF Vertex (search.asf.alaska.edu) / NASA Earthdata",
+      "polarization": "VV",
+      "swath_mode": "IW (Interferometric Wide)",
+      "product_type": "GRD (Ground Range Detected High Resolution)",
+      "pixel_spacing_m": 10.0,
+      "frequency_ghz": 5.405,
+      "orbit_pass": "Descending",
+      "mean_backscatter_db": -35.129573822021484
+    }
+  ],
+  "methodology": {
+    "technique": "Dual-Date Logarithmic Backscatter Difference & Otsu Physical Water Thresholding",
+    "calibration_formula": "sigma0_dB = 10 * log10(DN^2) - 83.0 dB",
+    "speckle_suppression": "5x5 Median Kernel (preserving sharp water-land boundaries)",
+    "otsu_delta_threshold_db": -3.797786235809326,
+    "water_threshold_abs_db": -15.0,
+    "morphological_filter": "Binary Opening (3x3) + Closing (4x4)",
+    "why_sar_matters": "Active microwave C-band (5.405 GHz) radar penetrates dense monsoon cloud cover and operates day/night. During the September 2019 Patna deluge, optical satellites (MODIS / Landsat / Sentinel-2) were 100% blind due to overcast monsoon skies."
+  },
+  "quantitative_results": {
+    "total_study_area_km2": 444.68,
+    "permanent_river_channel_km2": 113.82,
+    "newly_inundated_flood_area_km2": 26.54,
+    "total_deluge_water_extent_km2": 140.36,
+    "inundation_area_fraction_pct": 5.97,
+    "water_mean_backscatter_db": -41.85,
+    "temporal_gap_days": 6
+  },
+  "scientific_integrity_audit": {
+    "data_authenticity": "100% OBSERVED Copernicus Sentinel-1 C-SAR via ASF Vertex",
+    "synthetic_data": false,
+    "provenance_badges": {
+      "radar_backscatter": "OBSERVED (SAR)",
+      "water_inundation_mask": "DERIVED (WATER MASK)",
+      "basemap_context": "CONTEXT (OPTICAL)"
+    },
+    "limitations": [
+      "10-meter spatial resolution cannot resolve narrow sub-resolution alleys (<10m).",
+      "Strong surface winds may roughen open water causing Bragg scattering and increased backscatter.",
+      "Radar shadow from tall urban concrete structures may mimic low-backscatter water.",
+      "No live in-situ river gauge is embedded in the pixel; values represent calibrated dielectric/geometric surface properties."
+    ]
+  }
+}

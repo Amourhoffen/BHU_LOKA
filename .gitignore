@@ -52,4 +52,7 @@ Thumbs.db
 .matplotlib/
 *.tmp
 .vscode/
+.firebase/
+firebase-debug.log
+
 
