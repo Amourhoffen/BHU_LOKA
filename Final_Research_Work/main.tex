@@ -24,6 +24,8 @@
 
 \graphicspath{
     {./Figures/}
+    {./}
+    {Figures/}
 }
 
 \begin{document}
@@ -39,7 +41,7 @@
 \affil[1]{Department of Computer Science and Engineering, Indian Institute of Technology Patna, Bihta, Bihar 801106, India. Team: Amour Hoffen (NASA Space Apps Challenge 2026)}
 \affil[2]{Indian Institute of Information Technology, Design and Manufacturing Jabalpur, Dumna Nature Reserve, Jabalpur, Madhya Pradesh 482005, India. Team: Amour Hoffen (NASA Space Apps Challenge 2026)}
 
-\corau{Prince Kumar, \email{prince_pa2511cdh37@iitp.ac.in}, Team Lead (Amour Hoffen), M.S. Computer Science and Data Analytics (Roll No. PA2511CDH37), Department of Computer Science and Engineering, Indian Institute of Technology Patna, Bihta, Bihar 801106, India. Tel: +91 6201437770, +91 8252110159. Team Member: Payal Priyadarshini, Indian Institute of Information Technology, Design and Manufacturing Jabalpur (IIITDM Jabalpur).}
+\corau{Prince Kumar, \email{prince\_pa2511cdh37@iitp.ac.in}, Team Lead (Amour Hoffen), M.S. Computer Science and Data Analytics (Roll No. PA2511CDH37), Department of Computer Science and Engineering, Indian Institute of Technology Patna, Bihta, Bihar 801106, India. Tel: +91 6201437770, +91 8252110159. Team Member: Payal Priyadarshini, Indian Institute of Information Technology, Design and Manufacturing Jabalpur (IIITDM Jabalpur).}
 
 \abstract{Continental riverine metropolises in the Indo-Gangetic Plain confront cascading flood and extreme-heat hazards shaped by low relief, embanked river confluences, and dense urban canyons. Existing monsoonal satellite pipelines frequently omit urban street-canyon flooding when relying solely on open-water specular backscatter thresholds, while spatial machine learning studies often overstate transferability through random cross-validation. Here we formulate \textbf{BHU LOKA}, a dual-track reproducible analytical framework evaluated over Patna, Bihar, India, integrating (1) an \textbf{Empirical Earth Observation Track} coupling 10~m Sentinel-1A/B C-band Synthetic Aperture Radar (SAR; 23 September and 29 September 2019), 30~m Copernicus GLO-30 topography, 91 daily NASA Terra MODIS (MOD11A1.061) pre-monsoon thermal overpasses, WorldPop 2020 demographics, and a 60,000-pixel 5-fold Spatial Block Cross-Validation (SBCV) classifier; and (2) an explicitly labeled \textbf{Hydro-Thermodynamic Simulation Proxy Benchmark} ($N = 3,200$) constructed with \texttt{scikit-learn} Random Forest and Quantile Gradient Boosted Regression ($\alpha \in \{0.50, 0.90\}$). Across the Patna Municipal Corporation (PMC, $133.87\text{ km}^2$), bimodal SAR physics combining open specular drop ($\Delta\sigma^0 \le -3.80\text{ dB}$, $0.07\text{ km}^2$ inside PMC) with building-water dihedral corner double-bounce ($\Delta\sigma^0 \ge +1.5\text{ dB}$, $99.52\text{ km}^2$) recovers $99.60\text{ km}^2$ (74.4\%) inundated area, whereas a standard UN-SPIDER specular threshold ($\Delta\sigma^0 \le -2.0\text{ dB}$) detects only $4.01\text{ km}^2$ (2.99\%), quantifying a 95.98\% urban flood omission error. GLO-30 terrain analysis shows $47.24\text{ km}^2$ (33.15\%) of PMC lies in concave depression sinks, exposing 49,380 of 214,281 modeled residents to joint flood-sink overlap and lowering mean Urban Land Suitability Index (ULSI) to $52.27/100$, while MODIS records a peak urban pixel temperature of $46.25^\circ\text{C}$ and a $-1.03^\circ\text{C}$ morning urban-minus-fallow delta. Across 60,000 aligned multi-sensor pixels, 5-fold SBCV yields mean $\text{ROC-AUC} = 0.7498 \pm 0.0497$ ($\text{F1} = 0.6530$). In the controlled $N = 3,200$ simulation proxy, random 5-fold CV produces $R^2 = 0.9688$ ($\text{RMSE} = 0.0302$), whereas 5-block SBCV reduces mean explanatory skill to $R^2 = 0.8258$ ($\Delta R^2 = -0.1430$, -14.8\%; Central Urban Core Block 2 $R^2 = 0.5266$), while controlled urban thermal desiccation ($\text{LST} \ge 40^\circ\text{C}$, $\text{Impervious\_Frac} > 0.60$) elevates runoff coefficients by 17.4\% and shifts upper-tail ($\alpha = 0.90$) importance toward impervious fraction ($0.2491$) and slope ($0.2310$). Separating empirical EO outputs from sensitivity simulations establishes transparent baselines for civil protection planning.}
 
@@ -75,12 +77,15 @@ Between 27 and 30 September 2019, a slow-moving late-monsoon depression delivere
 
 Strict provenance separation is maintained between direct multi-sensor Earth observation layers (Track 1) and parametric simulation sensitivity runs (Track 2). Table~\ref{tab01} summarizes all ingested local datasets, processing levels, resolutions, and explicitly flagged uningested external placeholders.
 
-\begin{table}
-\tbl{Provenance inventory of local Earth observation datasets, derived analytical products, and external dependencies documented across Track 1 (\texttt{EMPIRICAL\_EO}) and Track 2 (\texttt{DERIVED\_SIMULATION\_PROXY}).\label{tab01}}
-{\begin{tabular}{l l l c l}
-\rowrule
-\TCH\textbf{Dataset / Artifact} & \textbf{Provenance Tier} & \textbf{Sensor / Algorithm} & \textbf{Spatial Grid} & \textbf{Temporal / Operational Status} \\
-\rowrule
+\begin{table}[htbp]
+\centering
+\caption{Provenance inventory of local Earth observation datasets, derived analytical products, and external dependencies documented across Track 1 (\texttt{EMPIRICAL\_EO}) and Track 2 (\texttt{DERIVED\_SIMULATION\_PROXY}).}\label{tab01}
+\vspace{0.4em}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l l l c l}
+\toprule
+\textbf{Dataset / Artifact} & \textbf{Provenance Tier} & \textbf{Sensor / Algorithm} & \textbf{Spatial Grid} & \textbf{Temporal / Operational Status} \\
+\midrule
 Sentinel-1A/B GRD VV & \texttt{EMPIRICAL\_EO} & C-band IW SAR (Orbit 121) & 10~m ($2602 \times 1709$ px) & 23 Sep \& 29 Sep 2019 (ingested) \\
 Copernicus GLO-30 DEM & \texttt{EMPIRICAL\_EO} & TanDEM-X DEM tiles N25E084/85 & 30~m EGM2008 & Static topographic reference (ingested) \\
 NASA Terra MODIS LST & \texttt{EMPIRICAL\_EO} & MOD11A1.061 daily HDF-EOS2 & 1~km Sinusoidal h25v06 & 91 days (61 clear-sky), Apr--Jun 2019 \\
@@ -88,9 +93,9 @@ WorldPop India 2020 & \texttt{EMPIRICAL\_EO} & UN-adjusted demographic raster & 
 Spatial RF SBCV Raster & \texttt{EMPIRICAL\_EO} & \texttt{RandomForestClassifier} (5 strips) & $N = 60,000$ pixels & Reproducible local benchmark \\
 Simulation Proxy Grid & \texttt{DERIVED\_SIMULATION\_PROXY} & Parametric hydro-thermal equations & $N = 3,200$ points & Synthetic Patna bounds sensitivity \\
 Sentinel-2 MSI \& IMD Rain & External Planned & Optical indices; $0.25^\circ$ gauge grid & 10--20~m / $\sim 25\text{ km}$ & Portal guide placeholders only (not ingested) \\
-\rowrule
-\end{tabular}}
-{}
+\bottomrule
+\end{tabular}%
+}
 \end{table}
 
 \subsection{Track 1: Empirical Multi-Sensor Earth Observation (\texttt{EMPIRICAL\_EO})}
@@ -183,32 +188,35 @@ Figure~\ref{fig04} shows the simulated spatial hazard surfaces across all $N = 3
 \label{fig05}
 \end{boxedfigure}
 
-\begin{table}
-\tbl{Track 2 (\texttt{DERIVED\_SIMULATION\_PROXY}, $N = 3,200$, \texttt{sklearn.RandomForestRegressor}) validation comparison between Random 5-Fold CV and 5-Block Spatial Block Cross-Validation (SBCV).\label{tab02}}
-{\begin{tabular}{l l r c c c}
-\rowrule
-\TCH\textbf{Validation Protocol} & \textbf{Fold / Geographic Block} & \textbf{$n_{\text{test}}$} & \textbf{$R^2$} & \textbf{RMSE} & \textbf{MAE} \\
-\rowrule
+\begin{table}[htbp]
+\centering
+\caption{Track 2 (\texttt{DERIVED\_SIMULATION\_PROXY}, $N = 3,200$, \texttt{sklearn.RandomForestRegressor}) validation comparison between Random 5-Fold CV and 5-Block Spatial Block Cross-Validation (SBCV).}\label{tab02}
+\vspace{0.4em}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l l r c c c}
+\toprule
+\textbf{Validation Protocol} & \textbf{Fold / Geographic Block} & \textbf{$n_{\text{test}}$} & \textbf{$R^2$} & \textbf{RMSE} & \textbf{MAE} \\
+\midrule
 Random 5-Fold CV & Fold 1 (Random Split) & 640 & 0.9674 & 0.0294 & 0.0225 \\
  & Fold 2 (Random Split) & 640 & 0.9701 & 0.0294 & 0.0227 \\
  & Fold 3 (Random Split) & 640 & 0.9732 & 0.0297 & 0.0225 \\
  & Fold 4 (Random Split) & 640 & 0.9669 & 0.0311 & 0.0233 \\
  & Fold 5 (Random Split) & 640 & 0.9663 & 0.0312 & 0.0233 \\
-\rowrule
+\midrule
  & \textbf{Mean Random 5-Fold CV} & \textbf{640} & \textbf{0.9688} & \textbf{0.0302} & \textbf{0.0229} \\
-\rowrule
+\midrule
 5-Block SBCV & Block 0: Northwest (Danapur Plain) & 756 & 0.9396 & 0.0337 & 0.0247 \\
  & Block 1: Northeast (Ganga Riparian) & 598 & 0.9146 & 0.0402 & 0.0310 \\
  & Block 2: Central (PMC Urban Core) & 258 & 0.5266 & 0.1044 & 0.0781 \\
  & Block 3: Southwest (Son Alluvial) & 831 & 0.8531 & 0.0255 & 0.0199 \\
  & Block 4: Southeast (Punpun Lowland) & 757 & 0.8951 & 0.0270 & 0.0210 \\
-\rowrule
+\midrule
  & \textbf{Mean 5-Block SBCV} & \textbf{640} & \textbf{0.8258} & \textbf{0.0462} & \textbf{0.0349} \\
-\rowrule
+\midrule
 \textbf{Bias Penalty ($\Delta$)} & \textbf{SBCV minus Random CV} & --- & \textbf{-0.1430 (-14.8\%)} & \textbf{+0.0160 (+53.1\%)} & \textbf{+0.0121 (+52.8\%)} \\
-\rowrule
-\end{tabular}}
-{}
+\bottomrule
+\end{tabular}%
+}
 \end{table}
 
 \subsubsection{Thermal Desiccation Runoff Escalation, Covariate Structure, and Quantile Shift}

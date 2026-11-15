@@ -49,7 +49,7 @@
 \newcommand{\rhauthor}[1]{\def\@rhauthor{#1}}
 \newcommand{\citethisarticle}[1]{\def\@citethisarticle{#1}}
 \newcommand{\orc}[1]{\href{https://orcid.org/#1}{\textcolor{interporeblue}{[#1]}}}
-\newcommand{\email}[1]{\href{mailto:#1}{\texttt{#1}}}
+\newcommand{\email}[1]{\href{mailto:#1}{\nolinkurl{#1}}}
 
 \renewcommand{\author}[2][]{\g@addto@macro\@authorlines{\textbf{#2}\textsuperscript{#1}\quad }}
 \newcommand{\@authorlines}{}
@@ -93,7 +93,7 @@
 }
 
 % Boxed figure environment
-\newenvironment{boxedfigure}[2][]{%
+\newenvironment{boxedfigure}[2][htbp]{%
     \begin{figure}[#1]
     \centering
     \begin{minipage}{#2}
