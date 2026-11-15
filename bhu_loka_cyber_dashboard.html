@@ -671,20 +671,18 @@
 
       <div id="left-ai-view" class="panel p-2.5 flex-1 min-h-[320px] lg:min-h-0 flex flex-col overflow-hidden">
 
-        <!-- CONSOLE HEADER & LANGUAGE BUTTONS -->
         <!-- CONSOLE HEADER & CONTROLS -->
-        <div class="flex flex-wrap items-center justify-between gap-1.5 border-b border-slate-800 pb-2 mb-1.5 shrink-0">
+        <div class="flex items-center justify-between gap-1.5 border-b border-slate-800 pb-1.5 mb-1.5 shrink-0">
           <div class="min-w-0">
-            <div class="section-header whitespace-nowrap">Dual-Agent Decision Terminal</div>
-            <div class="mono text-[10px] text-slate-400 truncate">Agent-1: Transformer RAG · Agent-2: Map Director</div>
-            <div class="section-header whitespace-nowrap flex items-center gap-1.5">
-              <span>BHU LOKA AI</span>
-              <span class="text-[10px] text-sky-400 font-normal">भूलोक AI</span>
+            <div class="flex items-center gap-1.5">
+              <span class="section-header font-bold text-sky-400">BHU LOKA AI</span>
+              <span class="text-[10px] text-slate-400 font-normal">भूलोक AI</span>
+              <span class="badge-chip bg-sky-950/70 text-sky-300 border-sky-600/40 text-[9px] px-1 py-0.5" id="console-status-badge">DUAL-AGENT</span>
+              <span class="badge-chip bg-slate-900 text-slate-400 border-slate-700 text-[9px] px-1 py-0.5 hidden sm:inline" id="sovereign-ai-status-badge">SOVEREIGN AI</span>
             </div>
-            <div class="mono text-[10px] text-slate-400 truncate">Sovereign Earth Assistant · Agent-1: Grounded RAG ·
-              Agent-2: Map Director</div>
+            <div class="mono text-[9.5px] text-slate-400 truncate">Agent-1: Grounded Transformer RAG &bull; Agent-2: Map Director</div>
           </div>
-          <div class="flex items-center gap-1.5 shrink-0">
+          <div class="flex items-center gap-1 shrink-0">
             <!-- Voice Output Toggle -->
             <button type="button" onclick="if(window.BhuLokaAI) BhuLokaAI.toggleVoiceOutput()" id="btn-cyber-tts"
               class="bhu-ai-tts-btn p-1 rounded border border-slate-700 bg-slate-800 text-slate-400 hover:text-slate-200 transition"
@@ -707,12 +705,9 @@
                 onclick="setLanguageMode('hi'); if(window.BhuLokaAI) BhuLokaAI.setLanguage('hi');" id="btn-lang-hi"
                 class="px-1.5 py-0.5 rounded text-slate-400 hover:text-slate-200">HI</button>
             </div>
-            <span class="badge-chip bg-slate-800 text-slate-300 border-slate-700"
-              id="console-status-badge">DUAL-AGENT</span>
-            <span class="badge-chip bg-slate-800 text-sky-300 border-slate-700" id="sovereign-ai-status-badge">SOVEREIGN
-              AI</span>
             <button type="button" onclick="clearChatFeed()"
-              class="mono text-[10px] px-2 py-0.5 rounded bg-slate-800/70 hover:bg-slate-700 text-slate-400 hover:text-slate-200 border border-slate-700 transition">
+              class="mono text-[10px] px-1.5 py-0.5 rounded bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-slate-200 border border-slate-700 transition"
+              title="Clear Terminal Chat Feed">
               CLEAR
             </button>
           </div>
@@ -756,22 +751,30 @@
 
         <!-- QUERY OUTPUT STREAM -->
         <div id="chat-feed" class="flex-1 min-h-0 overflow-y-auto space-y-2 pr-1 text-xs">
-          <div class="panel-inset p-2.5 text-slate-300 leading-relaxed">
-            <div class="mono text-[11px] font-semibold text-sky-300 mb-1">SYSTEM INITIALIZED · BHU LOKA v3.0 DUAL-AGENT
-              ENGINE</div>
-            <div class="mono text-[11px] space-y-0.5 text-slate-300">
-              <div><span class="text-slate-500">Creator:</span> Prince Kumar (IIT Patna, PA2511CDH37) · Supervisor:
-                Pallav Rustogi</div>
-              <div><span class="text-slate-500">Agent-1:</span> Transformer (`all-MiniLM-L6-v2` 384d) + FAISS + BM25 +
-                Stage-2 Re-Ranker</div>
-              <div><span class="text-slate-500">Agent-2:</span> Controls 3D World (Live Starlink/ISS/ISRO), India 36,
-                Bihar 38 &amp; Auto DEM</div>
-              <div><span class="text-slate-500">Languages:</span> Auto-replies in Hindi (देवनागरी), Hinglish, or English
-                first</div>
+          <div class="panel-inset p-2.5 text-slate-300 leading-relaxed border border-sky-500/20 bg-gradient-to-b from-sky-950/20 to-transparent rounded-lg">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-1.5 mb-2">
+              <div class="mono text-[11px] font-bold text-sky-400 flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>NASA SPACE APPS 2026 &bull; DANCING WITH THE SARS</span>
+              </div>
+              <span class="mono text-[9px] text-slate-400 bg-slate-900 px-1.5 py-0.5 rounded border border-slate-800">TEAM AMOUR HOFFEN</span>
             </div>
-            <div class="mt-2 pt-1.5 border-t border-slate-800 text-[11px] text-slate-400">
-              Ask about any red/blue map line, live Starlink satellites, best land in India, Bihar 38 districts,
-              Ramayana / Harappa ASI sites, who built this AI, or live source provenance!
+            <div class="mono text-[10.5px] space-y-1 text-slate-300">
+              <div class="flex items-center justify-between">
+                <span class="text-slate-400">Authors:</span>
+                <span class="text-slate-200 font-medium">Prince Kumar (IIT Patna) &bull; Payal Priyadarshini (IIITDMJ)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-400">Agent-1 RAG:</span>
+                <span class="text-sky-300">Sentinel-1 Bimodal SAR &bull; Copernicus GLO-30 DEM &bull; MODIS LST</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-400">Agent-2 Map:</span>
+                <span class="text-emerald-300">3D Earth &bull; India 36 &bull; Bihar 38 &bull; 90m Holograms &bull; CelesTrak Orbits</span>
+              </div>
+            </div>
+            <div class="mt-2 pt-1.5 border-t border-slate-800/80 text-[10px] text-slate-400 leading-normal">
+              Scientific Mission Console active. Select a scientific directive below or query SAR double-bounce physics, depression sinks, 96% omission audits, or evacuation triage.
             </div>
           </div>
         </div>
@@ -796,7 +799,7 @@
               </svg>
             </button>
             <input id="user-input" type="text"
-              placeholder="Ask in Hindi, Hinglish, or English (e.g. 'ye red blue line q hain', 'kankarbagh safe hai?')..."
+              placeholder="Ask in English or Hindi (e.g. 'SAR double-bounce physics', 'Patna depression sinks', 'Bihta safe ridge')..."
               class="flex-1 bg-[#090d13] border border-slate-700 rounded px-2.5 py-1.5 text-xs mono text-slate-100 placeholder-slate-500 focus:outline-none focus:border-sky-400"
               onkeydown="if(event.key === 'Enter') submitQuery()">
             <button type="button" onclick="submitQuery()"
@@ -805,54 +808,62 @@
             </button>
           </div>
 
-          <div class="flex flex-wrap gap-1.5 mt-2">
+          <!-- SCIENTIFIC DIRECTIVE PRESETS (Sleek horizontal scroll chip rail: preserves 75%+ height for chat) -->
+          <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1 mt-1.5 border-t border-slate-800/80 mono text-[10px] shrink-0"
+               style="scrollbar-width: none; -ms-overflow-style: none;">
+            <span class="text-slate-500 uppercase text-[9px] font-bold shrink-0 flex items-center gap-1">
+              <span>🔬</span>
+              <span>Directives:</span>
+            </span>
             <button type="button" onclick="injectQuery('Map par pink aur blue color ka kya matlab hai')"
-              class="mono text-[10px] bg-pink-950/60 hover:bg-pink-900/80 text-pink-200 px-2 py-1 rounded border border-pink-500/50 shadow-sm transition-colors flex items-center gap-1 font-semibold"
-              title="Learn why healthy crops appear Pink (NIR/FLIR Thermal) and why the tracking beacon is Blue">
-              🎨 Pink &amp; Blue Color Meaning
+              class="px-2 py-0.5 rounded-full bg-pink-950/60 hover:bg-pink-900/90 text-pink-200 border border-pink-500/50 transition-colors shrink-0 flex items-center gap-1 whitespace-nowrap"
+              title="Spectral Remote Sensing: Pink NIR vegetation & Blue GPS RTK tracker beacon">
+              <span>🌸</span> Spectral Legend
             </button>
-            <button type="button" onclick="injectQuery('Patna me baadh kyu aati hai saucer bowl topography')"
-              class="mono text-[10px] bg-sky-950/60 hover:bg-sky-900/80 text-sky-200 px-2 py-1 rounded border border-sky-500/50 shadow-sm transition-colors flex items-center gap-1"
+            <button type="button" onclick="injectQuery('Patna me baadh kyu aati hai saucer bowl topography depression sink')"
+              class="px-2 py-0.5 rounded-full bg-sky-950/60 hover:bg-sky-900/90 text-sky-200 border border-sky-500/50 transition-colors shrink-0 flex items-center gap-1 whitespace-nowrap"
               title="Copernicus DEM discovery: 33.15% Depression Sinks behind 53-55m Levee Walls">
-              🌊 Patna Flood Kyu?
+              <span>🥣</span> Saucer Geomorphology
             </button>
-            <button type="button" onclick="injectQuery('Dancing with the SARs model accuracy kitta accurate hai omission error')"
-              class="mono text-[10px] bg-amber-950/60 hover:bg-amber-900/80 text-amber-200 px-2 py-1 rounded border border-amber-500/50 shadow-sm transition-colors flex items-center gap-1"
+            <button type="button" onclick="injectQuery('Dancing with the SARs model accuracy omission error double bounce')"
+              class="px-2 py-0.5 rounded-full bg-amber-950/60 hover:bg-amber-900/90 text-amber-200 border border-amber-500/50 transition-colors shrink-0 flex items-center gap-1 whitespace-nowrap"
               title="Bimodal Double-Bounce SAR Physics recovering 95.98% Omission Error in UN-SPIDER">
-              🛰️ Model Accuracy (96% Omission)
+              <span>🛰️</span> SAR 96% Omission Audit
             </button>
             <button type="button" onclick="injectQuery('Kitte saal aage ka prediction kr skta hai forecast horizon zero hallucination')"
-              class="mono text-[10px] bg-cyan-950/60 hover:bg-cyan-900/80 text-cyan-200 px-2 py-1 rounded border border-cyan-500/50 shadow-sm transition-colors flex items-center gap-1"
-              title="Scientifically Validated 24h-72h Lead Time vs Unscientific 20-Year Hallucinations">
-              ⏳ Forecast Horizon (24h–72h)
+              class="px-2 py-0.5 rounded-full bg-cyan-950/60 hover:bg-cyan-900/90 text-cyan-200 border border-cyan-500/50 transition-colors shrink-0 flex items-center gap-1 whitespace-nowrap"
+              title="Scientifically Validated 24h-72h Lead Time vs Zero Hallucination Policy">
+              <span>⏱️</span> 24h–72h Horizon
             </button>
             <button type="button" onclick="injectQuery('Patna safe place kahan hai shelter bihta ridge')"
-              class="mono text-[10px] bg-emerald-950/60 hover:bg-emerald-900/80 text-emerald-200 px-2 py-1 rounded border border-emerald-500/50 shadow-sm transition-colors flex items-center gap-1"
+              class="px-2 py-0.5 rounded-full bg-emerald-950/60 hover:bg-emerald-900/90 text-emerald-200 border border-emerald-500/50 transition-colors shrink-0 flex items-center gap-1 whitespace-nowrap"
               title="Bihta High Ridge 55.2m (0% flood risk) vs Rajendra Nagar 46.2m Depression Sink">
-              🛡️ Safe Places (Bihta vs Sinks)
+              <span>🛡️</span> Bihta Ridge (55.2m)
             </button>
             <button type="button" onclick="injectQuery('Heatwave compound hazard runoff escalation 40C')"
-              class="mono text-[10px] bg-rose-950/60 hover:bg-rose-900/80 text-rose-200 px-2 py-1 rounded border border-rose-500/50 shadow-sm transition-colors flex items-center gap-1"
+              class="px-2 py-0.5 rounded-full bg-rose-950/60 hover:bg-rose-900/90 text-rose-200 border border-rose-500/50 transition-colors shrink-0 flex items-center gap-1 whitespace-nowrap"
               title="Thermal Desiccation + Clausius-Clapeyron +17.4% Urban Flood Volume Escalation">
-              🔥 Heatwave Cascade (+17.4%)
+              <span>🔥</span> Heatwave (+17.4%)
             </button>
             <button type="button" onclick="injectQuery('Cropper studio open karo 2d bounding box')"
-              class="mono text-[10px] bg-teal-950/60 hover:bg-teal-900/80 text-teal-200 px-2 py-1 rounded border border-teal-500/50 shadow-sm transition-colors flex items-center gap-1"
+              class="px-2 py-0.5 rounded-full bg-teal-950/60 hover:bg-teal-900/90 text-teal-200 border border-teal-500/50 transition-colors shrink-0 flex items-center gap-1 whitespace-nowrap"
               title="Interactive 2D Bounding Box Cropper & 3D Extrusion Studio">
-              📐 2D Map Cropper Studio
+              <span>📐</span> 2D Cropper
             </button>
             <button type="button" onclick="injectQuery('NASA presentation deck slides dikhao')"
-              class="mono text-[10px] bg-purple-950/60 hover:bg-purple-900/80 text-purple-200 px-2 py-1 rounded border border-purple-500/50 shadow-sm transition-colors flex items-center gap-1"
+              class="px-2 py-0.5 rounded-full bg-purple-950/60 hover:bg-purple-900/90 text-purple-200 border border-purple-500/50 transition-colors shrink-0 flex items-center gap-1 whitespace-nowrap"
               title="Launch NASA Space Apps 2026 9-Slide Interactive Deck (Team Amour Hoffen)">
-              📊 NASA Presentation Deck
+              <span>📊</span> NASA Deck
             </button>
             <button type="button" onclick="injectQuery('Explain the RED and BLUE lines on the map')"
-              class="mono text-[10px] bg-[#070b12] hover:bg-slate-800 text-slate-400 px-2 py-0.5 rounded border border-slate-700/80 transition-colors">
-              Red/Blue Lines
+              class="px-2 py-0.5 rounded-full bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 transition-colors shrink-0 flex items-center gap-1 whitespace-nowrap"
+              title="Cartographic Arc & Boundary Legend">
+              <span>🌐</span> Cartographic Legend
             </button>
             <button type="button" onclick="injectQuery('Where is the best safe land in India and show its real 3D hologram?')"
-              class="mono text-[10px] bg-[#070b12] hover:bg-slate-800 text-slate-400 px-2 py-0.5 rounded border border-slate-700/80 transition-colors">
-              Best India Land + 3D
+              class="px-2 py-0.5 rounded-full bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 transition-colors shrink-0 flex items-center gap-1 whitespace-nowrap"
+              title="Top Low-Hazard Land Corridors in India">
+              <span>🇮🇳</span> Best Safe Land
             </button>
           </div>
         </div>
@@ -2197,7 +2208,7 @@
 
 
       <!-- PATNA WARDS RISK MATRIX (COLLAPSIBLE TRAY) -->
-      <div id="wards-audit-panel" class="panel p-2 shrink-0">
+      <div id="wards-audit-panel" class="panel p-2 shrink-0 hidden">
         <div class="flex items-center justify-between border-b border-slate-800 pb-1 mb-1">
           <span class="section-header">Patna Wards Multi-Hazard Audit</span>
           <div class="flex items-center gap-2">
@@ -4000,13 +4011,13 @@
     const camera = new THREE.PerspectiveCamera(45, initW / initH, 0.1, 1000);
 
     // ── CINEMATIC STARTUP IDENTITY ANIMATION & CAMERA TRAJECTORY (R2) ──
-    const WORKSTATION_CAM_POS = new THREE.Vector3(0, 27, 34);
+    const WORKSTATION_CAM_POS = new THREE.Vector3(0, 10, 22); // Active workstation vector (27, 34 ref)
     const DEEP_SPACE_CAM_POS = new THREE.Vector3(0, 55, 95);
     const INTRO_DURATION_MS = 2300; // 2.3 seconds (smooth 2.0 to 2.5s budget)
     let isIntroGliding = false;
     let introStartTime = 0;
-    let targetCameraDistance = 34;
-    let targetCameraY = 27;
+    let targetCameraDistance = 22;
+    let targetCameraY = 10;
 
     const prefersReducedMotion = Boolean(
       typeof window !== 'undefined' &&
@@ -4050,8 +4061,8 @@
         targetCameraDistance = 5.8;
         targetCameraY = 1.35;
       } else {
-        targetCameraDistance = 34;
-        targetCameraY = 27;
+        targetCameraDistance = 22;
+        targetCameraY = 10;
       }
       const overlay = document.getElementById('bhu-intro-overlay');
       if (overlay) {
@@ -7457,8 +7468,8 @@
           } else {
             camera.position.copy(WORKSTATION_CAM_POS);
             camera.lookAt(0, 0, 0);
-            targetCameraDistance = 34;
-            targetCameraY = 27;
+            targetCameraDistance = 22;
+            targetCameraY = 10;
           }
           if (overlay) {
             overlay.classList.add('bhu-intro-fadeout');
@@ -8206,7 +8217,10 @@
 
       if (mode !== 'human') {
         const wardsPanel = document.getElementById('wards-audit-panel');
-        if (wardsPanel) wardsPanel.classList.remove('hidden');
+        if (wardsPanel) {
+          // Only show Patna wards matrix when focusing on Bihar or Patna 30m DEM
+          wardsPanel.classList.toggle('hidden', !(mode === 'terrain' || mode === 'bihar'));
+        }
         const telemStatus = document.getElementById('telemetry-status');
         if (telemStatus) telemStatus.innerText = 'DRAG TO ORBIT · SCROLL TO ZOOM · CLICK PIN OR SATELLITE';
       }
@@ -8246,7 +8260,7 @@
         }
         if (desc) desc.innerText = 'Textured 3D Earth with real NORAD CelesTrak orbital spacecraft & click-anywhere intelligence';
         worldGroup.rotation.set(0.32, Math.PI + 0.14, 0);
-        camera.position.set(0, 12, 34); targetCameraDistance = 34; targetCameraY = 12;
+        camera.position.set(0, 10, 22); targetCameraDistance = 22; targetCameraY = 10;
         if (!liveSatState.live_online) loadLiveSatellites();
       } else if (mode === 'india') {
         if (note) note.innerText = 'INDIA 3D (28+8=36)';
@@ -8341,8 +8355,8 @@
     }
 
     function resetCamera() {
-      targetCameraDistance = 34;
-      camera.position.set(0, 12, 34);
+      targetCameraDistance = 22;
+      camera.position.set(0, 10, 22);
       camera.lookAt(0, 0, 0);
       switchView('world', false);
     }
@@ -9176,13 +9190,30 @@
         </details>`;
     }
 
+    function formatAiAnswerHtml(raw) {
+      if (!raw) return '';
+      let s = escapeHtml(raw);
+      // Mission directive banner: [TITLE - SUBTITLE]
+      s = s.replace(/^\[([A-Z0-9\s\-–—\(\)\.\+\:\|\&]{3,90})\]/gm,
+        '<div class="px-2 py-1 my-1 rounded bg-sky-950/70 border border-sky-500/40 text-sky-300 font-bold tracking-wide text-[10.5px] uppercase shadow-sm flex items-center gap-1.5"><span>🛰️</span><span>$1</span></div>');
+      // **Bold text**
+      s = s.replace(/\*\*([^*]+)\*\*/g, '<strong class="text-sky-200 font-semibold">$1</strong>');
+      // `inline code`
+      s = s.replace(/`([^`]+)`/g, '<code class="px-1 py-0.5 rounded bg-slate-950 border border-slate-800 text-cyan-300 font-mono text-[9.5px]">$1</code>');
+      // Numbered lists: "1. " or "2. "
+      s = s.replace(/^(\d+)\.\s+/gm, '<span class="text-amber-400 font-bold font-mono">$1.</span> ');
+      // Bullet points: "• " or "- "
+      s = s.replace(/^[•\-\*]\s+/gm, '<span class="text-cyan-400 font-bold">&bull;</span> ');
+      return s;
+    }
+
     async function submitQuery() {
       const input = document.getElementById('user-input');
       const text = input.value.trim();
       if (!text) return;
 
       const chat = document.getElementById('chat-feed');
-      chat.innerHTML += `<div class="mono text-[11px] text-sky-300 font-semibold pt-1 flex items-center gap-1.5"><span class="text-slate-500">&gt;</span><span>${escapeHtml(text)}</span></div>`;
+      chat.innerHTML += `<div class="mono text-[11px] text-sky-300 font-semibold pt-1.5 flex items-start gap-1.5"><span class="text-emerald-400 font-bold">&gt;</span><span class="text-slate-100 bg-slate-900/90 px-2 py-0.5 rounded border border-slate-800/80">${escapeHtml(text)}</span></div>`;
       input.value = '';
       chat.scrollTop = chat.scrollHeight;
 
@@ -9248,7 +9279,6 @@
             const ql = text.toLowerCase();
             if ((ql.includes('starlink') || ql.includes('satellite') || ql.includes('setelight')) && liveSatState.live_online && liveSatState.counts) {
               const c = liveSatState.counts, iss = liveSatState.iss_live;
-              extraLive = `\n\n[LIVE CELESTRAK ORBIT SNAPSHOT @ ${liveSatState.fetched_at_utc}]\n• Active Catalog: ${c.total_active_catalog.toLocaleString()} | Starlink: ${(c.starlink_active || 0).toLocaleString()} | EO: ${c.earth_observation_eo || 0} | ISRO: ${c.isro_matched || 0}` + (iss ? `\n• ISS (ZARYA): ${Number(iss.lat).toFixed(2)}°, ${Number(iss.lon).toFixed(2)}° @ ${Number(iss.alt_km).toFixed(0)} km` : '');
               extraLive = `\n\n[LIVE CELESTRAK ORBIT SNAPSHOT @ ${liveSatState.fetched_at_utc}]\n• Active Catalog: ${c.total_active_catalog.toLocaleString()} | Starlink: ${(c.starlink_active || 0).toLocaleString()} | EO: ${c.earth_observation_eo || 0} | ISRO: ${c.isro_matched || 0} (ORBITAL EPHEMERIS ONLY)\n` + (iss ? `• ISS (ZARYA): ${Number(iss.lat).toFixed(2)}°, ${Number(iss.lon).toFixed(2)}° @ ${Number(iss.alt_km).toFixed(0)} km` : '');
             }
             const contextTagHtml = renderGroundingContextTag(groundingPayload, ungroundedEval);
@@ -9258,7 +9288,7 @@
                   ${encChip}
                   <div class="flex gap-2">${langChip}${latChip}</div>
                 </div>
-                <div class="whitespace-pre-line">${escapeHtml(payload.answer + extraLive)}</div>
+                <div class="whitespace-pre-line leading-relaxed text-slate-200">${formatAiAnswerHtml(payload.answer + extraLive)}</div>
                 <div class="flex flex-wrap items-center gap-1 mt-2 pt-1.5 border-t border-slate-800">${statusChip}${evalChip}${groundChip}${tags}</div>
                 ${contextTagHtml}
                 <details class="bhu-agent-trace mt-1.5 pt-1 border-t border-slate-800/80 text-[10px] text-slate-400">
@@ -9282,11 +9312,11 @@
       const contextTagHtml = renderGroundingContextTag(groundingPayload, ungroundedEval);
       chat.innerHTML += `
         <div class="panel-inset p-2.5 text-[11px] text-slate-200 mono leading-relaxed">
-          <div class="flex justify-between text-[10px] text-slate-400 border-b border-slate-800 pb-1 mb-1.5">
-            <span>LOCAL DUAL-AGENT ENGINE</span>
-            <span class="text-amber-300 uppercase">LANG: ${escapeHtml(localRes.language)}</span>
+          <div class="flex items-center justify-between text-[10px] text-slate-400 border-b border-slate-800 pb-1 mb-1.5">
+            <span class="font-bold text-sky-400 flex items-center gap-1"><span>🛰️</span> BHU LOKA SCIENTIFIC MISSION DIRECTIVE</span>
+            <span class="mono text-slate-400 text-[9px] uppercase">LANG: ${escapeHtml(localRes.language)}</span>
           </div>
-          <div class="whitespace-pre-line">${escapeHtml(localRes.answer)}</div>
+          <div class="whitespace-pre-line leading-relaxed text-slate-200">${formatAiAnswerHtml(localRes.answer)}</div>
           <div class="flex flex-wrap items-center gap-1 mt-2 pt-1.5 border-t border-slate-800">${statusChip}</div>
           ${contextTagHtml}
           <div class="mt-1.5 pt-1 border-t border-slate-800 text-[10px] text-slate-400">Provenance: ${escapeHtml(localRes.provenance)}</div>
@@ -11681,11 +11711,14 @@ Generated on: ${new Date().toISOString()}
   <!-- SOVEREIGN FLOATING WORKSPACE COMMAND DOCK (OMNIPRESENT AAA NAVIGATION)   -->
   <!-- ========================================================================= -->
   <nav id="sovereign-quick-dock" aria-label="Sovereign Workspace Command Bar"
-    class="fixed bottom-14 left-1/2 -translate-x-1/2 z-55 bg-[#060a12]/95 backdrop-blur-xl border border-cyan-500/40 rounded-full px-3 py-1.5 shadow-[0_12px_40px_rgba(0,0,0,0.92)] flex items-center gap-1.5 transition-all select-none max-w-[96vw] overflow-x-auto no-scrollbar pointer-events-auto">
+    class="dock-minimized fixed bottom-14 left-1/2 -translate-x-1/2 z-55 bg-[#060a12]/95 backdrop-blur-xl border border-cyan-500/40 rounded-full px-3 py-1.5 shadow-[0_12px_40px_rgba(0,0,0,0.92)] flex items-center gap-1.5 transition-all select-none max-w-[96vw] overflow-x-auto no-scrollbar pointer-events-auto">
     
     <div id="dock-label-pill" class="flex items-center gap-1.5 pr-1 border-r border-slate-700/80 cursor-pointer" onclick="toggleQuickDockCollapse()" title="Toggle Dock Expand / Collapse">
       <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
       <span class="text-[10px] font-mono font-bold text-cyan-300">COMMANDS</span>
+      <svg id="dock-toggle-icon" class="w-3 h-3 text-cyan-400 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+      </svg>
     </div>
 
     <!-- 1. 3D Globe & Twins -->
