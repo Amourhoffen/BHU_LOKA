@@ -287,3 +287,34 @@ def test_area_flood_prediction_modal_and_endpoint():
     assert "DOUBLE-BOUNCE" in result["hazard_classification"] or "INUNDATION" in result["hazard_classification"]
     assert "Prince Kumar" in result["model_metadata"]["authors"]
     assert "Payal Priyadarshini" in result["model_metadata"]["authors"]
+
+
+def test_3d_in_map_flood_visualizer_and_hud():
+    """Verify that the 3D in-map flood visualizer HUD, 3D beacon, and water elevation slider exist and are wired."""
+    html_text = DASHBOARD_HTML_PATH.read_text(encoding="utf-8")
+    soup = BeautifulSoup(html_text, "html.parser")
+
+    hud = soup.find("div", id="bhu-pred-map-hud")
+    assert hud is not None, "Missing #bhu-pred-map-hud on-viewport 3D flood visualizer HUD"
+
+    # Core telemetry display elements
+    assert soup.find("div", id="bhu-hud-locality-name") is not None
+    assert soup.find("span", id="bhu-hud-hazard-badge") is not None
+    assert soup.find("div", id="bhu-hud-flooded-area") is not None
+    assert soup.find("div", id="bhu-hud-prob") is not None
+    assert soup.find("div", id="bhu-hud-radar-delta") is not None
+    assert soup.find("div", id="bhu-hud-basin-elev") is not None
+
+    # Interactive water elevation slider
+    slider = soup.find("input", id="bhu-hud-water-slider")
+    assert slider is not None, "Missing #bhu-hud-water-slider for layer-by-layer flood elevation simulation"
+    assert float(slider.get("min", 0)) <= 42.0
+    assert float(slider.get("max", 0)) >= 54.0
+
+    # 3D Inundation Engine JavaScript functions
+    assert "build3DFloodInundationMesh" in html_text
+    assert "renderSpatialPredictionOn3DMap" in html_text
+    assert "update3DFloodSimulationElevation" in html_text
+    assert "selectAndHighlightBenchmark" in html_text
+    assert "createPredictionHologramBeacon" in html_text
+    assert "bhuPredictionGroup" in html_text

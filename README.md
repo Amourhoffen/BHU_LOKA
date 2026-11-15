@@ -1,5 +1,8 @@
 # BHU LOKA (भूलोक) · Dancing with the SARs
+
+
 ## Sovereign Dual-Date SAR Flood Inundation, Urban Corner-Reflector Mapping & Spatial Machine Learning Workstation
+
 ### NASA Space Apps Challenge 2026 · Global Challenge: *"Dancing with the SARs"*
 
 [![Live Web Platform](https://img.shields.io/badge/Live%20Platform-bhu--loka.web.app-0284c7.svg?style=for-the-badge&logo=firebase)](https://bhu-loka.web.app)
@@ -13,7 +16,9 @@
 
 ---
 
+
 ## 👥 Research Team & Academic Authorship
+
 
 * **Prince Kumar** — Lead Geospatial AI Researcher & System Architect  
   *Indian Institute of Technology Patna (IIT Patna)*  
@@ -29,7 +34,7 @@
 ## 🌐 Live Platform Access & Publication Deliverables
 
 | Deliverable | Access Link | Description |
-|---|---|---|
+| --- | --- | --- |
 | **Live 3D Sovereign Workstation** | [https://bhu-loka.web.app](https://bhu-loka.web.app) | Full 3D WebGL2 workstation: 3D Earth, Sovereign India 36, 38 Bihar Districts, 30m DEM, live satellites |
 | **Live 2D GIS Deluge Explorer** | [https://bhu-loka.web.app/2d](https://bhu-loka.web.app/2d) | Hardware-accelerated Swipe Curtain (23 Sep vs 29 Sep 2019), pixel inspector, ward matrix |
 | **Interactive Presentation Deck** | [https://bhu-loka.web.app/presentation](https://bhu-loka.web.app/presentation) | 9-Slide interactive NASA pitch deck with live Chart.js radar curves, DEM profiles, and KPIs |
@@ -40,6 +45,7 @@
 
 ---
 
+
 ## 1. Scientific Abstract
 
 Catastrophic pluvial-fluvial compound deluges in continental alluvial metropolises present severe Earth Observation (EO) challenges due to **100% optical cloud blindness** during peak monsoon storms and the complex microwave scattering environment of dense urban settlements. In late September 2019, the metropolis of **Patna, Bihar** ($25.59^\circ\text{N}, 85.14^\circ\text{E}$)—situated in the low-gradient Gangetic floodplain at the confluence of the Ganga, Gandak, Son, and Punpun rivers—experienced a catastrophic $342.5\text{ mm}$ rainstorm over 72 hours, submerging residential sectors under $1.5\text{ m}$ to $3.0\text{ m}$ of standing deluge while the Ganga river-lock crest ($49.5\text{ m}$ AMSL) blocked gravity drainage outfalls.
@@ -48,32 +54,42 @@ Optical satellite constellations (Landsat-8, Sentinel-2, MODIS) were rendered co
 
 Crucially, standard SAR thresholding assumes water causes a steep backscatter drop due to specular forward scattering. In dense urban alleyways, however, standing water forms $90^\circ$ dihedral retro-reflectors between flooded streets and vertical masonry walls, causing an anomalous **backscatter surge ($\Delta\sigma^0 \ge +1.5\text{ dB}$ up to $+4.8\text{ dB}$)**. By coupling dihedral corner-reflector detection with 5-Fold Spatial Block Cross-Validation (SBCV) to eliminate spatial autocorrelation data leakage (Tobler's First Law of Geography), BHU LOKA achieves an empirical inundation mapping accuracy of **$94.6\%$** and an **F1-Score of $0.902$**, successfully isolating **$26.54\text{ km}^2$** of newly inundated land (**"Naya Paani"**) across the Patna urban core.
 
+
 ---
+
 
 ## 2. Scientific Publication Figures
 
+
 ### Figure 1: Patna Multi-Hazard Spatial Inundation & Micro-Elevation Map
+
 The $444.68\text{ km}^2$ study domain spanning the perennial Ganga River Channel ($113.82\text{ km}^2$), the low-lying southern saucer basins (Rajendra Nagar, Kankarbagh at $44.5\text{m} - 45.1\text{m}$ AMSL), and the elevated natural levee terraces (Danapur, Boring Road at $>52\text{m}$ AMSL).
 
 ![Figure 1: Patna Multi-Hazard Spatial Inundation & Elevation Map](Research_Paper_Workflow/plots/Figure1_Patna_MultiHazard_Spatial_Map.png)
 
 ---
 
+
 ### Figure 2: Copernicus Sentinel-1 Dual-Date SAR Processing Pipeline
+
 End-to-end radiometric calibration, $5 \times 5$ speckle filtering, logarithmic backscatter difference, and automated bimodal Otsu thresholding ($\tau^* = -3.80\text{ dB}$).
 
 ![Figure 2: Sentinel-1 SAR Dual-Date Processing Pipeline](Research_Paper_Workflow/plots/Figure2_Sentinel1_SAR_Processing_Pipeline.png)
 
 ---
 
+
 ### Figure 3: 5-Fold Spatial Block Cross-Validation (SBCV) Architecture
+
 Dividing the study domain into 5 geographically contiguous spatial folds to guarantee zero spatial data leakage between training and testing blocks.
+
 
 ![Figure 3: Spatial Block Cross-Validation Architecture](Research_Paper_Workflow/plots/Figure3_Spatial_Block_Cross_Validation_Architecture.png)
 
 ---
 
 ### Figure 4: Explainable AI (Tree-SHAP) Feature Attributions
+
 Quantitative SHAP contribution weights demonstrating that Sentinel-1 radar change ($\Delta\sigma^0$) ($38\%$) and Copernicus GLO-30 DEM elevation ($31\%$) govern inundation physics, supported by depression sinks ($17\%$) and slope gradient ($9\%$).
 
 ![Figure 4: Explainable AI Tree-SHAP Feature Attributions](Research_Paper_Workflow/plots/Figure4_Explainable_AI_Feature_Attributions.png)
@@ -81,6 +97,7 @@ Quantitative SHAP contribution weights demonstrating that Sentinel-1 radar chang
 ---
 
 ### Figure 5: Empirical Earth Observation Validation
+
 Spatial intersection between verified Sentinel-1 flood extents, depression sinks, and municipal ward infrastructure.
 
 ![Figure 5: Empirical Earth Observation Validation](Research_Paper_Workflow/plots/Figure_Empirical_EO_Validation.png)
@@ -90,6 +107,7 @@ Spatial intersection between verified Sentinel-1 flood extents, depression sinks
 ## 3. Mathematical & Physical Formulation
 
 ### 3.1 Radiometric Calibration (DN to $\sigma^0$)
+
 Raw Digital Numbers ($DN$) from Copernicus Sentinel-1 GRDH products are calibrated to sigma-nought backscatter in decibels ($\text{dB}$) via:
 
 $$\sigma^0\text{ (dB)} = 10 \cdot \log_{10}(DN^2 + \varepsilon) - K_{\text{cal}}$$
@@ -97,11 +115,13 @@ $$\sigma^0\text{ (dB)} = 10 \cdot \log_{10}(DN^2 + \varepsilon) - K_{\text{cal}}
 Where $K_{\text{cal}} = 52.0\text{ dB}$ (derived from ESA Sentinel-1 Calibration Look-Up Tables for continental alluvial terrain) and $\varepsilon = 10^{-6}$ prevents zero-argument singularity.
 
 ### 3.2 Dual-Date Logarithmic Backscatter Difference ($\Delta\sigma^0$)
+
 The relative change between the dry baseline scene (23 Sep 2019, Sentinel-1A) and peak flood scene (29 Sep 2019, Sentinel-1B) is formulated as:
 
 $$\Delta\sigma^0 = \sigma^0_{\text{post}} - \sigma^0_{\text{pre}} = 10 \cdot \log_{10}\left(\frac{\sigma^0_{\text{post, linear}}}{\sigma^0_{\text{pre, linear}}}\right)$$
 
 ### 3.3 Urban Dihedral Corner-Reflector Backscatter Surge
+
 Unlike unbuilt plains where standing water acts as a flat mirror causing specular forward scattering ($\Delta\sigma^0 \le -3.80\text{ dB}$), urban settlements exhibit dihedral retro-reflection:
 
 $$\sigma^0_{\text{urban, flooded}} = \sigma^0_{\text{direct}} + \sigma^0_{\text{wall}\rightarrow\text{water}} + \sigma^0_{\text{water}\rightarrow\text{wall}} + \sigma^0_{\text{corner}}$$
@@ -111,6 +131,7 @@ When water depth reaches the threshold where street pavement roughness is smooth
 $$\Delta\sigma^0 \ge +1.50\text{ dB} \quad \text{for} \quad \text{Elevation} \le 50.0\text{ m MASL}$$
 
 ### 3.4 Automated Bimodal Otsu Thresholding ($\tau^*$)
+
 The automated separation of specular floodwaters minimizes intra-class variance $\sigma_w^2(t)$:
 
 $$\tau^* = \arg\max_{t} \left\{ \omega_0(t)\omega_1(t) \left[ \mu_0(t) - \mu_1(t) \right]^2 \right\}$$
@@ -122,8 +143,9 @@ For the Patna September 2019 deluge, the empirical global optimum resolves at **
 ## 4. Quantitative Results & Validation Matrix
 
 ### 4.1 Study Area Extents
+
 | Metric | Empirical Value | Description |
-|---|---|---|
+| --- | --- | --- |
 | **Total Mapped Study AOI** | **$444.68\text{ km}^2$** | Patna Urban Core & Ganga Floodplain Bounding Box |
 | **Permanent River Channel** | **$113.82\text{ km}^2$** | Pre-flood baseline perennial Ganga channel ($\sigma^0_{\text{pre}} \le -40.0\text{ dB}$) |
 | **Newly Inundated Floodwater ("Naya Paani")** | **$26.54\text{ km}^2$** | Verified pluvial flood gain ($\Delta\sigma^0 \le -3.80\text{ dB}$, $\sigma^0_{\text{post}} \le -15.0\text{ dB}$) |
@@ -134,8 +156,9 @@ For the Patna September 2019 deluge, the empirical global optimum resolves at **
 | **Specular Water Mean Backscatter** | **$-41.85\text{ dB}$** | Flat water specular mirror absorption |
 
 ### 4.2 Spatial Model Validation & Performance Metrics (5-Fold SBCV)
+
 | Evaluation Metric | Spatial Cross-Validation (SBCV) | Random Split (Standard CV) | Improvement / Delta |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | **Overall Accuracy** | **$94.6\%$** | $96.8\%$ (Overoptimistic) | Eliminates $+2.2\%$ Autocorrelation Bias |
 | **Precision (Positive Predictive Value)** | **$88.4\%$** | $91.2\%$ | Verified Ground Truth |
 | **Recall (Sensitivity / Detection Rate)** | **$92.1\%$** | $94.5\%$ | High Deluge Catch Rate |
@@ -144,15 +167,16 @@ For the Patna September 2019 deluge, the empirical global optimum resolves at **
 | **Brier Score Loss** | **$0.048$** | $0.039$ | Well-Calibrated Probability |
 
 ### 4.3 Patna Wards Empirical Flood Risk Ranking
+
 | Ward / Locality Name | Mean Elev (MASL) | Flooded Area ($\text{km}^2$) | Inundation % | Peak $\Delta\sigma^0$ (dB) | Mechanism | Exposure Classification |
-|---|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- | --- |
 | **Rajendra Nagar Basin** | $44.5\text{ m}$ | $4.11\text{ km}^2$ | **$96.8\%$** | $+4.8\text{ dB}$ | Dihedral Double-Bounce | 🚨 Critical Emergency Deluge |
 | **Kankarbagh Silt Pond** | $45.1\text{ m}$ | $5.28\text{ km}^2$ | **$94.2\%$** | $+3.6\text{ dB}$ | Dihedral Double-Bounce | 🚨 Severe Waterlogging |
 | **Patna City / East Core** | $47.2\text{ m}$ | $3.25\text{ km}^2$ | **$47.8\%$** | $+2.1\text{ dB}$ | Mixed Urban Silt | ⚠️ Moderate Pluvial Silt |
 | **Patliputra / Boring Rd** | $48.3\text{ m}$ | $0.85\text{ km}^2$ | **$25.0\%$** | $+1.3\text{ dB}$ | Peripheral Surface Ponding | ⚠️ Low / Surface Runoff |
 | **Gandhi Maidan Levee** | $50.1\text{ m}$ | $0.21\text{ km}^2$ | **$10.0\%$** | $+0.4\text{ dB}$ | Natural Levee Crown | 🛡️ Resilient Natural Terrace |
 | **Danapur Cantt Terrace** | $52.8\text{ m}$ | $0.15\text{ km}^2$ | **$2.1\%$** | $-0.3\text{ dB}$ | Elevated Safe Ridge | 🛡️ High Elevation Safe Zone |
-| **Bihta / IIT Patna Ridge**| $55.2\text{ m}$ | $0.00\text{ km}^2$ | **$0.0\%$** | $-0.4\text{ dB}$ | Alluvial Highland | 🛡️ Zero Inundation Benchmark |
+| **Bihta / IIT Patna Ridge** | $55.2\text{ m}$ | $0.00\text{ km}^2$ | **$0.0\%$** | $-0.4\text{ dB}$ | Alluvial Highland | 🛡️ Zero Inundation Benchmark |
 
 ---
 
@@ -161,21 +185,22 @@ For the Patna September 2019 deluge, the empirical global optimum resolves at **
 The repository contains two trained, production-ready machine learning checkpoints developed by Prince Kumar & Payal Priyadarshini:
 
 1. **`Models/Checkpoints/bhu_loka_spatial_rf_v1.joblib` (`21.9 MB`)**:
-   - Comprehensive **7-Feature Spatial Random Forest Classifier**.
-   - Input Features: `[SAR_pre_dB, SAR_post_dB, Delta_sigma0, Elevation, Slope, Is_Sink, Population]`.
-   - Trained on $2602 \times 1709$ raster grid with 5-Fold Spatial Block Cross-Validation (Roberts et al., 2017).
-   - Generates calibrated flood inundation probabilities, confidence metrics, and SHAP feature attributions.
+   * Comprehensive **7-Feature Spatial Random Forest Classifier**.
+   * Input Features: `[SAR_pre_dB, SAR_post_dB, Delta_sigma0, Elevation, Slope, Is_Sink, Population]`.
+   * Trained on $2602 \times 1709$ raster grid with 5-Fold Spatial Block Cross-Validation (Roberts et al., 2017).
+   * Generates calibrated flood inundation probabilities, confidence metrics, and SHAP feature attributions.
 
 2. **`mera_pehle_model.joblib` (`168 KB`)**:
-   - Lightweight, ultra-fast **3-Feature Random Forest Classifier**.
-   - Input Features: `[Delta_sigma0, Elevation, Slope]`.
-   - Optimized for instant edge inference and offline client execution.
+   * Lightweight, ultra-fast **3-Feature Random Forest Classifier**.
+   * Input Features: `[Delta_sigma0, Elevation, Slope]`.
+   * Optimized for instant edge inference and offline client execution.
 
 ### Interactive Live Model Predictor in Web Interface
+
 Users can test these models interactively via the **`🔮 PREDICT AREA (ML)`** button on the workstation top subbar:
-- Select from 8 benchmark presets or input custom coordinates.
-- Get instant inundation probability, predicted inundated area ($km^2$), physical scattering classification, and Tree-SHAP attribution bars.
-- Click **`🗺️ View on 3D Terrain`** to highlight the flood prediction directly onto the 3D Copernicus DEM relief.
+* Select from 8 benchmark presets or input custom coordinates.
+* Get instant inundation probability, predicted inundated area ($km^2$), physical scattering classification, and Tree-SHAP attribution bars.
+* Click **`🗺️ View on 3D Terrain`** to highlight the flood prediction directly onto the 3D Copernicus DEM relief.
 
 ---
 
@@ -221,7 +246,9 @@ Users can test these models interactively via the **`🔮 PREDICT AREA (ML)`** b
 ## 7. Quickstart & Local Reproduction
 
 ### Option A: 1-Click Windows Full-Stack Launcher (Recommended)
+
 Double-click `Launch_BhuLoka_FullStack.bat` in the repository root. This automatically:
+
 1. Starts the FastAPI Telemetry & Spatial ML Inference Server on `http://127.0.0.1:8000`.
 2. Launches the Chromium Sovereign Workstation in app mode at full resolution.
 
@@ -230,6 +257,7 @@ Double-click `Launch_BhuLoka_FullStack.bat` in the repository root. This automat
 ```
 
 ### Option B: Standalone Python Server & Pytest
+
 ```bash
 # 1. Install dependencies
 pip install fastapi uvicorn numpy scikit-learn joblib httpx faiss-cpu pytest
@@ -242,11 +270,13 @@ python Models/04_Hybrid_RAG/enterprise_rag_app/main.py
 ```
 
 ### Option C: Run Spatial ML Inference via CLI
+
 ```bash
 python Models/01_Spatial_ML/predict_hazard.py "rajendra nagar"
 ```
 
 Output:
+
 ```text
 =================================================================
  BHU LOKA ML INFERENCE RESULT: RAJENDRA NAGAR
