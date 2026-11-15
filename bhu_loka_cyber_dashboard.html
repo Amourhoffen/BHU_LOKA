@@ -379,6 +379,21 @@
       background: linear-gradient(180deg, #38bdf8 0%, rgba(56, 189, 248, 0.15) 100%);
       box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
     }
+
+    #bhu-agri-dock-slot #bhu-agri-panel {
+      position: static !important;
+      top: auto !important;
+      right: auto !important;
+      width: 100% !important;
+      max-height: 100% !important;
+      box-shadow: none !important;
+      border: none !important;
+      border-radius: 0 !important;
+      display: flex !important;
+      flex: 1 1 0% !important;
+      overflow: hidden !important;
+      z-index: auto !important;
+    }
   </style>
 </head>
 
@@ -797,24 +812,27 @@
       
       <!-- HEALTRIX / VERIDIA CLINICAL VITALS & CITIZEN HEALTH CARD -->
       <div id="left-health-vitals" class="hidden flex flex-col gap-2 p-2.5 overflow-y-auto">
-        <!-- CITIZEN PROFILE -->
+        <!-- CITIZEN PROFILE (VERIDIA PATIENT DOSSIER STYLE) -->
         <div class="bhu-nasa-glass p-2.5 flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-cyan-600 to-sky-400 flex items-center justify-center text-white font-black text-xs shadow-[0_0_12px_rgba(56,189,248,0.5)]">
-              PAT
+          <div class="flex items-center gap-2.5">
+            <div class="relative w-10 h-10 rounded-full bg-gradient-to-tr from-cyan-600 via-sky-500 to-emerald-400 p-0.5 shadow-[0_0_14px_rgba(56,189,248,0.4)]">
+              <div class="w-full h-full rounded-full bg-slate-950 flex items-center justify-center text-white font-black text-xs">
+                PAT
+              </div>
+              <span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-slate-950"></span>
             </div>
             <div>
               <div class="text-xs font-bold text-slate-100 flex items-center gap-1.5">
-                <span>Patna Citizen Vitals</span>
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                <span>Michael Anderson · Patna Twin</span>
               </div>
-              <div class="text-[9px] mono text-slate-400">Exposure Zone: S4 (&lt;46m Sinks) · Resilient</div>
+              <div class="text-[9px] mono text-slate-400">ID: PAT-983-4578 · Male · 42 yrs · B+</div>
+              <div class="text-[8.5px] mono text-emerald-400 mt-0.5">● Exposure: S4 Sinks (&lt;46m) · Resilient Active</div>
             </div>
           </div>
-          <span class="px-2 py-0.5 rounded-full text-[9px] mono bg-cyan-950/80 text-cyan-300 border border-cyan-800">ACTIVE</span>
+          <span class="px-2 py-0.5 rounded-full text-[9px] mono bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">MONITORED</span>
         </div>
 
-        <!-- 4 CLINICAL VITALS WITH SVG WAVEFORMS (HEALTRIX STYLE) -->
+        <!-- 4 CLINICAL VITALS WITH SVG WAVEFORMS (HEALTRIX PRECISION) -->
         <div class="grid grid-cols-2 gap-2">
           <!-- Heart Rate with ECG Wave -->
           <div class="bhu-nasa-glass p-2">
@@ -828,7 +846,6 @@
               <span class="text-lg font-black text-slate-100 font-mono">72</span>
               <span class="text-[9px] mono text-slate-400">bpm</span>
             </div>
-            <!-- ECG Wave Line SVG -->
             <svg class="w-full h-5 mt-1" viewBox="0 0 100 20" preserveAspectRatio="none">
               <path d="M0,10 L30,10 L35,2 L40,18 L45,6 L50,14 L55,10 L100,10" fill="none" stroke="#fb7185" stroke-width="1.5"/>
             </svg>
@@ -846,7 +863,6 @@
               <span class="text-lg font-black text-slate-100 font-mono">120/78</span>
               <span class="text-[8px] mono text-slate-400">SYS/DIA</span>
             </div>
-            <!-- Radial Bar / Arc Gauge -->
             <div class="w-full bg-slate-800 rounded-full h-1.5 mt-2.5 overflow-hidden">
               <div class="bg-sky-400 h-1.5 rounded-full" style="width: 78%;"></div>
             </div>
@@ -887,20 +903,202 @@
           </div>
         </div>
 
-        <!-- CIRCULAR HEALTH SCORE CARD (VERIDIA STYLE) -->
+        <!-- CIRCULAR HEALTH SCORE CARD (VERIDIA HERO STYLE) -->
         <div class="bhu-nasa-glass p-3 flex items-center justify-between">
           <div>
             <div class="text-[10px] font-semibold text-slate-300">Resilient Health Score</div>
             <div class="text-sm font-bold text-emerald-400 mt-0.5">86 / 100</div>
-            <div class="text-[8.5px] text-slate-400 mt-0.5">Hydration &amp; pulmonary resilience high</div>
+            <div class="text-[8.5px] text-slate-400 mt-0.5">Hydration &amp; pulmonary alveolar resilience high</div>
           </div>
-          <!-- Circular Progress Ring SVG -->
           <div class="relative w-12 h-12 flex items-center justify-center">
             <svg class="w-12 h-12 -rotate-90" viewBox="0 0 36 36">
               <circle cx="18" cy="18" r="15" fill="none" stroke="#1e293b" stroke-width="3"></circle>
               <circle cx="18" cy="18" r="15" fill="none" stroke="#10b981" stroke-width="3" stroke-dasharray="94.2" stroke-dashoffset="13.2" stroke-linecap="round"></circle>
             </svg>
             <span class="absolute text-[10px] font-mono font-black text-slate-100">86%</span>
+          </div>
+        </div>
+
+        <!-- AI HEALTH INSIGHTS BANNER (VERIDIA STYLE) -->
+        <div class="bhu-nasa-glass p-2.5 border-l-2 border-cyan-400 bg-cyan-950/20">
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-[9.5px] font-bold text-cyan-300 uppercase tracking-wider flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
+              AI Health Insights
+            </span>
+            <span class="text-[8px] mono text-slate-400">UPDATED 2m AGO</span>
+          </div>
+          <p class="text-[9.5px] text-slate-300 leading-relaxed">
+            Your recovery is progressing well. Keep focusing on cardio and hydration during the 41.8°C thermal inversion. SAR deluge recession in S4 lowlands demands strict boiled water protocols.
+          </p>
+        </div>
+
+        <!-- LAB RESULTS & BIOMARKERS (VERIDIA STYLE) -->
+        <div class="bhu-nasa-glass p-2.5 space-y-1.5">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-1">
+            <span class="text-[10px] font-bold text-slate-200">Lab Results &amp; Biomarkers</span>
+            <span class="text-[8.5px] mono text-cyan-400">VIEW ALL &rarr;</span>
+          </div>
+          <div class="space-y-1 text-[9px] mono">
+            <div class="flex items-center justify-between py-0.5 border-b border-slate-800/60">
+              <span class="text-slate-300">Complete Blood Count</span>
+              <div class="flex items-center gap-2">
+                <span class="text-slate-400">May 12</span>
+                <span class="text-emerald-400 font-bold">Normal</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between py-0.5 border-b border-slate-800/60">
+              <span class="text-slate-300">Lipid Panel (Chol 172)</span>
+              <div class="flex items-center gap-2">
+                <span class="text-slate-400">May 12</span>
+                <span class="text-emerald-400 font-bold">Normal</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between py-0.5 border-b border-slate-800/60">
+              <span class="text-slate-300">Metabolic Panel (eGFR 102)</span>
+              <div class="flex items-center gap-2">
+                <span class="text-slate-400">May 10</span>
+                <span class="text-emerald-400 font-bold">Normal</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between py-0.5">
+              <span class="text-slate-300">HbA1c Glycemic</span>
+              <div class="flex items-center gap-2">
+                <span class="text-slate-400">May 08</span>
+                <span class="text-emerald-400 font-bold">5.4% (Optimal)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RECENT DIAGNOSTIC SCANS (VERIDIA RADIOGRAPHY TILES) -->
+        <div class="bhu-nasa-glass p-2.5">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-1 mb-1.5">
+            <span class="text-[10px] font-bold text-slate-200">Recent Diagnostic Scans</span>
+            <span class="text-[8.5px] mono text-cyan-400">ARCHIVE &rarr;</span>
+          </div>
+          <div class="grid grid-cols-3 gap-1.5 text-center">
+            <!-- Scan 1: Chest X-Ray -->
+            <div class="p-1 rounded bg-slate-900/80 border border-slate-800 hover:border-cyan-500/50 transition">
+              <div class="w-full h-10 rounded bg-[#030712] border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-1">
+                <svg class="w-5 h-5 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              </div>
+              <div class="text-[8.5px] font-bold text-slate-200 truncate">Chest X-Ray</div>
+              <div class="text-[7.5px] mono text-slate-400">May 12 · Clear</div>
+            </div>
+            <!-- Scan 2: Cardiac MRI -->
+            <div class="p-1 rounded bg-slate-900/80 border border-slate-800 hover:border-cyan-500/50 transition">
+              <div class="w-full h-10 rounded bg-[#030712] border border-rose-500/30 flex items-center justify-center text-rose-400 mb-1">
+                <svg class="w-5 h-5 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+              </div>
+              <div class="text-[8.5px] font-bold text-slate-200 truncate">Cardiac MRI</div>
+              <div class="text-[7.5px] mono text-slate-400">May 08 · LVEF 62%</div>
+            </div>
+            <!-- Scan 3: Brain CT -->
+            <div class="p-1 rounded bg-slate-900/80 border border-slate-800 hover:border-cyan-500/50 transition">
+              <div class="w-full h-10 rounded bg-[#030712] border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-1">
+                <svg class="w-5 h-5 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+              <div class="text-[8.5px] font-bold text-slate-200 truncate">Brain CT</div>
+              <div class="text-[7.5px] mono text-slate-400">May 02 · Stable</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HEART RATE 7-DAY TREND (VERIDIA CHART) -->
+        <div class="bhu-nasa-glass p-2.5">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-1 mb-1.5">
+            <span class="text-[10px] font-bold text-slate-200">Heart Rate 7-Day Trend</span>
+            <span class="text-[9px] mono text-cyan-400 font-bold">72 bpm avg</span>
+          </div>
+          <div class="relative w-full h-16 pt-1">
+            <svg class="w-full h-full" viewBox="0 0 280 60" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="hrGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.35"/>
+                  <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.0"/>
+                </linearGradient>
+              </defs>
+              <line x1="0" y1="15" x2="280" y2="15" stroke="#1e293b" stroke-dasharray="2,2"/>
+              <line x1="0" y1="35" x2="280" y2="35" stroke="#1e293b" stroke-dasharray="2,2"/>
+              <path d="M0,38 L40,32 L80,36 L120,28 L160,35 L200,30 L240,33 L280,31 L280,60 L0,60 Z" fill="url(#hrGrad)"/>
+              <path d="M0,38 L40,32 L80,36 L120,28 L160,35 L200,30 L240,33 L280,31" fill="none" stroke="#38bdf8" stroke-width="2"/>
+              <circle cx="0" cy="38" r="2.5" fill="#38bdf8"/>
+              <circle cx="40" cy="32" r="2.5" fill="#38bdf8"/>
+              <circle cx="80" cy="36" r="2.5" fill="#38bdf8"/>
+              <circle cx="120" cy="28" r="3" fill="#00f0ff"/>
+              <circle cx="160" cy="35" r="2.5" fill="#38bdf8"/>
+              <circle cx="200" cy="30" r="2.5" fill="#38bdf8"/>
+              <circle cx="240" cy="33" r="2.5" fill="#38bdf8"/>
+              <circle cx="280" cy="31" r="3" fill="#10b981"/>
+            </svg>
+            <div class="flex justify-between text-[7.5px] mono text-slate-400 mt-1">
+              <span>May 7</span><span>May 8</span><span>May 9</span><span>May 10</span><span>May 11</span><span>May 12</span><span>May 13</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RECOVERY MILESTONES (VERIDIA CHECKLIST) -->
+        <div class="bhu-nasa-glass p-2.5">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-1 mb-1.5">
+            <span class="text-[10px] font-bold text-slate-200">Recovery Milestones</span>
+            <span class="text-[8.5px] mono text-cyan-400">PLAN &rarr;</span>
+          </div>
+          <div class="space-y-1 text-[9px] mono">
+            <div class="flex items-center justify-between">
+              <span class="text-slate-300 flex items-center gap-1.5">
+                <span class="w-3.5 h-3.5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[8px] font-bold">✓</span>
+                Initial Flood Triage
+              </span>
+              <span class="text-slate-400">Completed · Nov 12</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-slate-300 flex items-center gap-1.5">
+                <span class="w-3.5 h-3.5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[8px] font-bold">✓</span>
+                SAR S4 Vector Risk Profiling
+              </span>
+              <span class="text-slate-400">Completed · Nov 13</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-slate-300 flex items-center gap-1.5">
+                <span class="w-3.5 h-3.5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[8px] font-bold">✓</span>
+                Spirometry FEV1 92%
+              </span>
+              <span class="text-slate-400">Completed · Nov 14</span>
+            </div>
+            <div class="flex items-center justify-between pt-0.5 border-t border-slate-800/60">
+              <span class="text-cyan-300 flex items-center gap-1.5 font-semibold">
+                <span class="w-3.5 h-3.5 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-[8px] font-bold">⏱</span>
+                Post-Inversion Health Review
+              </span>
+              <span class="text-amber-400">Upcoming · Nov 20</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACTIVE MEDICATIONS & PROTOCOL (HEALTRIX STYLE) -->
+        <div class="bhu-nasa-glass p-2.5">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-1 mb-1.5">
+            <span class="text-[10px] font-bold text-slate-200">Prescriptions &amp; Climate Defense</span>
+            <span class="text-[8.5px] mono text-emerald-400">DISPENSED</span>
+          </div>
+          <div class="grid grid-cols-2 gap-1.5 text-[8.5px] mono">
+            <div class="p-1.5 rounded bg-slate-900/60 border border-slate-800">
+              <div class="font-bold text-slate-200">ORS Electrolytes</div>
+              <div class="text-slate-400 text-[7.5px]">500ml · Heat Defense</div>
+            </div>
+            <div class="p-1.5 rounded bg-slate-900/60 border border-slate-800">
+              <div class="font-bold text-slate-200">NAC 600mg</div>
+              <div class="text-slate-400 text-[7.5px]">Daily · PM2.5 Clearance</div>
+            </div>
+            <div class="p-1.5 rounded bg-slate-900/60 border border-slate-800">
+              <div class="font-bold text-slate-200">Halazone Tabs</div>
+              <div class="text-slate-400 text-[7.5px]">4mg/L · Water Purity</div>
+            </div>
+            <div class="p-1.5 rounded bg-slate-900/60 border border-slate-800">
+              <div class="font-bold text-slate-200">LLIN Bed Net</div>
+              <div class="text-slate-400 text-[7.5px]">Active · Vector Shield</div>
+            </div>
           </div>
         </div>
       </div>
@@ -1965,6 +2163,10 @@
             onclick="switchRightDockTab('intel')" class="bhu-dock-tab">
             Explorer (A–F)
           </button>
+          <button type="button" id="right-tab-btn-agri" role="tab" aria-selected="false"
+            onclick="switchRightDockTab('agri')" class="bhu-dock-tab" title="Precision Agriculture, QGIS FARM Tools & Safe Land Investment">
+            🌾 Farm &amp; Biz
+          </button>
           <button type="button" id="right-tab-btn-health" role="tab" aria-selected="false"
             onclick="switchRightDockTab('health')" class="bhu-dock-tab" title="Public Health, Citizen Action Plan & SAR News">
             ✦ Health &amp; News
@@ -2599,6 +2801,11 @@
 
       <div id="right-intel-view" class="hidden flex-1 min-h-0 flex flex-col overflow-hidden">
         <div id="bhu-intel-dock-slot" class="flex-1 min-h-0 flex flex-col overflow-hidden"></div>
+      </div>
+
+      <!-- AGRICULTURE, QGIS FARM TOOLS & SAFE LAND INVESTMENT VIEW -->
+      <div id="right-agri-view" class="hidden flex-1 min-h-0 flex flex-col overflow-hidden">
+        <div id="bhu-agri-dock-slot" class="flex-1 min-h-0 flex flex-col overflow-hidden"></div>
       </div>
 
       
@@ -3702,6 +3909,9 @@
     const solarGroup = new THREE.Group();
     const human3dGroup = new THREE.Group();
     let isHumanExplodedView = false;
+    let isGodsEyeOrbitActive = false;
+    let godsEyeOrbitAngle = 0;
+    let isGodsEyeFlirActive = false;
     let humanHeartMesh = null;
     let humanBrainMesh = null;
     let humanLungsMeshL = null;
@@ -7613,11 +7823,11 @@
         human3dGroup.visible = (mode === 'human');
         if (mode === 'human') {
           if (typeof build3DHumanAnatomyCenterStage === 'function') build3DHumanAnatomyCenterStage();
-          targetCameraDistance = 5.8;
-          targetCameraY = 1.35;
-          camera.position.set(0, 1.35, 5.8);
-          camera.lookAt(0, 1.35, 0);
-          if (typeof controls !== 'undefined' && controls) controls.target.set(0, 1.35, 0);
+          targetCameraDistance = 4.4;
+          targetCameraY = 1.95;
+          camera.position.set(0, 1.95, 4.4);
+          camera.lookAt(0, 1.95, 0);
+          if (typeof controls !== 'undefined' && controls) controls.target.set(0, 1.95, 0);
           const targetLbl = document.getElementById('target-label');
           if (targetLbl) targetLbl.innerText = 'TARGET: PATNA CLINICAL TWIN · HUMAN 3D (SAR FLOOD & PM2.5 COUPLING)';
           const coordsLbl = document.getElementById('coords-label');
@@ -7626,6 +7836,12 @@
           if (geoBadge) geoBadge.innerText = 'LEVEL: PHYSIOLOGICAL TWIN';
           const featureInfo = document.getElementById('feature-info');
           if (featureInfo) featureInfo.innerText = 'Human Physiological Digital Twin (BodyParts3D & Human Atlas Standard)';
+
+          const wardsPanel = document.getElementById('wards-audit-panel');
+          if (wardsPanel) wardsPanel.classList.add('hidden');
+
+          const telemStatus = document.getElementById('telemetry-status');
+          if (telemStatus) telemStatus.innerText = 'DRAG TO ROTATE · SCROLL TO ZOOM · CLICK ORGAN TO AUDIT CLINICAL TELEMETRY';
 
           // Synchronize workspace panels to Public Health & Vitals
           if (typeof switchRightDockTab === 'function') switchRightDockTab('health');
@@ -7643,6 +7859,13 @@
             }
           });
         }
+      }
+
+      if (mode !== 'human') {
+        const wardsPanel = document.getElementById('wards-audit-panel');
+        if (wardsPanel) wardsPanel.classList.remove('hidden');
+        const telemStatus = document.getElementById('telemetry-status');
+        if (telemStatus) telemStatus.innerText = 'DRAG TO ORBIT · SCROLL TO ZOOM · CLICK PIN OR SATELLITE';
       }
 
       const ws = document.getElementById('world-subbar');
@@ -8944,19 +9167,23 @@
         const inBtn = document.getElementById('right-tab-btn-intel');
         const lcBtn = document.getElementById('right-tab-btn-loc');
         const hlBtn = document.getElementById('right-tab-btn-health');
+        const agBtn = document.getElementById('right-tab-btn-agri');
         if (scBtn) scBtn.classList.toggle('active', tab === 'scene');
         if (inBtn) inBtn.classList.toggle('active', tab === 'intel');
         if (lcBtn) lcBtn.classList.toggle('active', tab === 'loc');
         if (hlBtn) hlBtn.classList.toggle('active', tab === 'health');
+        if (agBtn) agBtn.classList.toggle('active', tab === 'agri');
 
         const scView = document.getElementById('right-scene-view');
         const inView = document.getElementById('right-intel-view');
         const lcView = document.getElementById('right-loc-view');
         const hlView = document.getElementById('right-health-view');
+        const agView = document.getElementById('right-agri-view');
         if (scView) scView.classList.toggle('hidden', tab !== 'scene');
         if (inView) inView.classList.toggle('hidden', tab !== 'intel');
         if (lcView) lcView.classList.toggle('hidden', tab !== 'loc');
         if (hlView) hlView.classList.toggle('hidden', tab !== 'health');
+        if (agView) agView.classList.toggle('hidden', tab !== 'agri');
         return;
       }
       function _orig_applyRightDockTab(tab) {
@@ -8986,6 +9213,21 @@
     }
 
     function switchRightDockTab(tab) {
+      if (tab === 'agri') {
+        const right = document.getElementById('right-rail');
+        if (right && _isRailCollapsed(right)) {
+          _expandRail(right);
+          isTheaterMode = false;
+          document.body.classList.remove('bhu-theater-mode');
+        }
+        _applyRightDockTab('agri');
+        if (window.BhuLokaAgri && typeof window.BhuLokaAgri.openWorkspace === 'function') {
+          window.BhuLokaAgri.openWorkspace('MAP');
+        }
+        updateCenterStageLayout();
+        syncWorkspaceToggleUI();
+        return;
+      }
       if (tab === 'ai' || tab === 'insights') {
         const left = document.getElementById('left-rail');
         if (left && _isRailCollapsed(left)) {
@@ -9575,10 +9817,16 @@
         if (typeof activeMode !== 'undefined' && (activeMode === 'solar' || activeMode === 'world')) {
           if (typeof switchView === 'function') switchView('bihar');
         }
-        if (window.BhuLokaAgri && typeof window.BhuLokaAgri.openWorkspace === 'function') {
-          window.BhuLokaAgri.openWorkspace('MAP');
-        } else if (window.BhuLokaAgri && typeof window.BhuLokaAgri.toggleWorkspace === 'function') {
-          window.BhuLokaAgri.toggleWorkspace('MAP');
+        const right = document.getElementById('right-rail');
+        if (right && _isRailCollapsed(right)) {
+          _expandRail(right);
+          isTheaterMode = false;
+          document.body.classList.remove('bhu-theater-mode');
+        }
+        switchRightDockTab('agri');
+        if (window.BhuLokaAI && typeof window.BhuLokaAI.setRole === 'function') {
+          window.BhuLokaAI.setRole('farmer');
+          if (typeof setCyberAiRole === 'function') setCyberAiRole('farmer');
         }
       } else if (tab === 'worker') {
         // Switch center 3D stage directly to 3D Human Anatomical model
@@ -9839,9 +10087,7 @@
     // =========================================================================
     // GOD'S EYE ORBIT & FLIR THERMAL SHADER CONTROLLER
     // =========================================================================
-    let isGodsEyeOrbitActive = false;
-    let godsEyeOrbitAngle = 0;
-    let isGodsEyeFlirActive = false;
+    // (isGodsEyeOrbitActive declared at top Three.js scope)
 
     window.toggleGodsEyeOrbit = function () {
       isGodsEyeOrbitActive = !isGodsEyeOrbitActive;
