@@ -28,6 +28,22 @@
   <script src="Assets/vendor/bhu_loka_ai.js"></script>
   <!-- BHU LOKA SCIENTIFIC FLOOD MODEL INTELLIGENCE & RESEARCH SUITE (NASA 2026 / IIT PATNA) -->
   <script src="Assets/vendor/bhu_loka_flood_intel.js"></script>
+  <script>
+    // Lightweight early intro dismissal fallback before Three.js scene glides
+    window.skipBhuIntro = function () {
+      window.bhuIntroDismissed = true;
+      var ov = document.getElementById('bhu-intro-overlay');
+      if (ov) {
+        ov.style.transition = 'opacity 0.25s ease-out';
+        ov.style.opacity = '0';
+        setTimeout(function() { if (ov && ov.parentNode) ov.parentNode.removeChild(ov); }, 260);
+      }
+    };
+    window.dismissBhuIntro = window.skipBhuIntro;
+    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      window.skipBhuIntro();
+    }
+  </script>
   <style>
     :root {
       --bg-canvas: #06090e;
@@ -442,30 +458,6 @@
       </div>
     </div>
   </div>
-  <script>
-    function dismissBhuIntro() {
-      window.bhuIntroDismissed = true;
-      var ov = document.getElementById('bhu-intro-overlay');
-      if (ov) {
-        ov.style.transition = 'opacity 0.35s ease-out';
-        ov.style.opacity = '0';
-        setTimeout(function() {
-          if (ov && ov.parentNode) ov.parentNode.removeChild(ov);
-        }, 360);
-      }
-      if (typeof camera !== 'undefined' && camera && typeof WORKSTATION_CAM_POS !== 'undefined') {
-        camera.position.copy(WORKSTATION_CAM_POS);
-        targetCameraDistance = 22;
-        targetCameraY = 10;
-        if (typeof controls !== 'undefined' && controls) controls.target.set(0, 0, 0);
-      }
-    }
-    window.skipBhuIntro = dismissBhuIntro;
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      dismissBhuIntro();
-    }
-    setTimeout(dismissBhuIntro, 2400);
-  </script>
 
   <!-- TOP COMMAND HEADER (NASA FUTURISTIC SPACE COMMAND CENTER) -->
   <header class="bhu-nasa-glass px-4 py-2 flex flex-wrap xl:flex-nowrap items-center justify-between gap-3 shrink-0"
@@ -2069,7 +2061,7 @@
           <span class="text-slate-400">Cardiac: <b class="text-emerald-400">72 bpm</b></span>
           <span class="text-slate-400">S4 Flooded Sinks: <b class="text-amber-400">26.54 km²</b></span>
         </div>
-        <button type="button" onclick="const hd = document.getElementById('bhu-health-bottom-deck'); if(hd){ hd.classList.toggle('hidden'); this.textContent = hd.classList.contains('hidden') ? 'Expand Analytical Deck' : 'Collapse Analytical Deck'; }"
+        <button type="button" onclick="var hd = document.getElementById('bhu-health-bottom-deck'); if(hd){ hd.classList.toggle('hidden'); this.textContent = hd.classList.contains('hidden') ? 'Expand Analytical Deck' : 'Collapse Analytical Deck'; }"
           class="px-2.5 py-0.5 rounded bg-slate-800/90 hover:bg-slate-700 text-sky-300 border border-slate-700 text-[9.5px] transition">
           Expand Analytical Deck
         </button>
@@ -6537,11 +6529,11 @@
         let fallbackLat = lat != null ? Number(lat) : 25.5940;
         let fallbackLon = lon != null ? Number(lon) : 85.1378;
         if (typeof CITY_COORDS_LOCAL !== 'undefined') {
-          const qLow = qLoc.toLowerCase();
-          const matchKey = Object.keys(CITY_COORDS_LOCAL).find(k => qLow.includes(k));
-          if (matchKey) {
-            fallbackLat = CITY_COORDS_LOCAL[matchKey].lat;
-            fallbackLon = CITY_COORDS_LOCAL[matchKey].lon;
+          const fbQLow = qLoc.toLowerCase();
+          const fbMatchKey = Object.keys(CITY_COORDS_LOCAL).find(k => fbQLow.includes(k));
+          if (fbMatchKey) {
+            fallbackLat = CITY_COORDS_LOCAL[fbMatchKey].lat;
+            fallbackLon = CITY_COORDS_LOCAL[fbMatchKey].lon;
           }
         }
         demData = synthesizeCalibratedDemGrid(fallbackLat, fallbackLon, qLoc, 'India', spanDeg, 10);
@@ -8164,7 +8156,15 @@
 
       const nasaDeck = document.getElementById('bhu-nasa-bottom-deck');
       const healthDeck = document.getElementById('bhu-health-bottom-deck');
+      const hToggle = document.getElementById('bhu-health-deck-toggle');
       const elevFooter = document.getElementById('bhu-terrain-elevation-footer');
+      const targetLbl = document.getElementById('target-label');
+      const coordsLbl = document.getElementById('coords-label');
+      const geoBadge = document.getElementById('geo-level-badge');
+      const featureInfo = document.getElementById('feature-info');
+      const wardsPanel = document.getElementById('wards-audit-panel');
+      const telemStatus = document.getElementById('telemetry-status');
+
       if (elevFooter) {
         elevFooter.classList.toggle('hidden', mode === 'human');
       }
@@ -8172,12 +8172,10 @@
         if (mode === 'human') {
           nasaDeck.classList.add('hidden');
           healthDeck.classList.add('hidden'); // Kept collapsed so 3D human body has full vertical space!
-          const hToggle = document.getElementById('bhu-health-deck-toggle');
           if (hToggle) hToggle.classList.remove('hidden');
         } else {
           nasaDeck.classList.remove('hidden');
           healthDeck.classList.add('hidden');
-          const hToggle = document.getElementById('bhu-health-deck-toggle');
           if (hToggle) hToggle.classList.add('hidden');
         }
       }
@@ -8191,19 +8189,13 @@
           camera.position.set(0, 1.95, 4.4);
           camera.lookAt(0, 1.95, 0);
           if (typeof controls !== 'undefined' && controls) controls.target.set(0, 1.95, 0);
-          const targetLbl = document.getElementById('target-label');
           if (targetLbl) targetLbl.innerText = 'TARGET: PATNA CLINICAL TWIN · HUMAN 3D (SAR FLOOD & PM2.5 COUPLING)';
-          const coordsLbl = document.getElementById('coords-label');
           if (coordsLbl) coordsLbl.innerText = '5 VITAL ORGANS · SENTINEL-1 SAR FLOOD & PM2.5 COUPLING';
-          const geoBadge = document.getElementById('geo-level-badge');
           if (geoBadge) geoBadge.innerText = 'LEVEL: PHYSIOLOGICAL TWIN';
-          const featureInfo = document.getElementById('feature-info');
           if (featureInfo) featureInfo.innerText = 'Human Physiological Digital Twin (BodyParts3D & Human Atlas Standard)';
 
-          const wardsPanel = document.getElementById('wards-audit-panel');
           if (wardsPanel) wardsPanel.classList.add('hidden');
 
-          const telemStatus = document.getElementById('telemetry-status');
           if (telemStatus) telemStatus.innerText = 'DRAG TO ROTATE · SCROLL TO ZOOM · CLICK ORGAN TO AUDIT CLINICAL TELEMETRY';
 
           // Synchronize workspace panels to Public Health & Vitals
@@ -8225,12 +8217,10 @@
       }
 
       if (mode !== 'human') {
-        const wardsPanel = document.getElementById('wards-audit-panel');
         if (wardsPanel) {
           // Only show Patna wards matrix when focusing on Bihar or Patna 30m DEM
           wardsPanel.classList.toggle('hidden', !(mode === 'terrain' || mode === 'bihar'));
         }
-        const telemStatus = document.getElementById('telemetry-status');
         if (telemStatus) telemStatus.innerText = 'DRAG TO ORBIT · SCROLL TO ZOOM · CLICK PIN OR SATELLITE';
       }
 
@@ -8272,8 +8262,7 @@
         worldGroup.rotation.set(0.35, -2.15, 0);
         camera.position.set(0, 8, 22); targetCameraDistance = 22; targetCameraY = 8;
         if (!liveSatState.live_online) loadLiveSatellites();
-        const deckEl = document.getElementById('bhu-nasa-bottom-deck');
-        if (deckEl) deckEl.classList.remove('hidden');
+        if (nasaDeck) nasaDeck.classList.remove('hidden');
       } else if (mode === 'india') {
         if (note) note.innerText = 'INDIA 3D (28+8=36)';
         if (!hasCustomLoc) {
@@ -8313,16 +8302,13 @@
         camera.position.set(0, 1.0, 9.2);
         camera.lookAt(0, 1.0, 0);
         if (typeof controls !== 'undefined' && controls) controls.target.set(0, 1.0, 0);
-        const targetLbl = document.getElementById('target-label');
         if (targetLbl) targetLbl.innerText = 'TARGET: HUMAN ANATOMICAL 3D (CLIMATE & FLOOD HEALTH)';
-        const coordsLbl = document.getElementById('coords-label');
         if (coordsLbl) coordsLbl.innerText = '5 VITAL ORGANS · SENTINEL-1 SAR FLOOD & PM2.5 COUPLING';
       } else {
         if (note) note.innerText = 'AUTO 3D HOLOGRAM';
         camera.position.set(0, 22, 32); targetCameraDistance = 32; targetCameraY = 22;
         // Hide global orbit deck in local cadastral/terrain mode to maximize 3D terrain viewport
-        const deckEl = document.getElementById('bhu-nasa-bottom-deck');
-        if (deckEl) deckEl.classList.add('hidden');
+        if (nasaDeck) nasaDeck.classList.add('hidden');
         if (autoBuild) {
           if (hasCustomLoc) buildAuto3DHologram(activeCtx.placeName, activeCtx.latitude, activeCtx.longitude);
           else if (hologramGroup.children.length === 0) buildAuto3DHologram('Ayodhya');
