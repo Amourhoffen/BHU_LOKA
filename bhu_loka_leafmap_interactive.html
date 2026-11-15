@@ -195,6 +195,11 @@
         class="bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/40 px-2 py-1 rounded font-medium transition">
         Site 350m
       </button>
+      <button id="btn-crop-to-3d" type="button" onclick="cropCurrentBoundsTo3D()"
+        class="bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/50 px-2.5 py-1 rounded font-semibold transition flex items-center gap-1 shadow-[0_0_10px_rgba(16,185,129,0.2)]"
+        title="Crop current Leaflet view bounding box and extrude directly into 3D DEM Terrain Workstation">
+        <span>📐 Crop Bounds to 3D</span>
+      </button>
       <a id="link-open-3d-workstation" href="bhu_loka_cyber_dashboard.html"
         class="bg-sky-500 hover:bg-sky-400 text-slate-950 px-2.5 py-1 rounded font-semibold transition">
         3D Workstation &rarr;
@@ -974,6 +979,29 @@
         });
       }
     }
+
+    window.cropCurrentBoundsTo3D = function () {
+      if (typeof map === 'undefined' || !map) return;
+      const b = map.getBounds();
+      const minLat = b.getSouth().toFixed(5);
+      const minLon = b.getWest().toFixed(5);
+      const maxLat = b.getNorth().toFixed(5);
+      const maxLon = b.getEast().toFixed(5);
+      const center = map.getCenter();
+      const label = `Leaflet View [${center.lat.toFixed(2)}N, ${center.lng.toFixed(2)}E]`;
+      try {
+        localStorage.setItem('bhu_crop_params', JSON.stringify({
+          crop: true,
+          minLat: parseFloat(minLat),
+          minLon: parseFloat(minLon),
+          maxLat: parseFloat(maxLat),
+          maxLon: parseFloat(maxLon),
+          label: label
+        }));
+      } catch (e) { }
+      const targetUrl = `bhu_loka_cyber_dashboard.html?crop=true&minLat=${minLat}&minLon=${minLon}&maxLat=${maxLat}&maxLon=${maxLon}&label=${encodeURIComponent(label)}`;
+      window.location.href = targetUrl;
+    };
 
     async function focusSiteStudio350m() {
       const eng = window.BhuLokaLocationEngine;

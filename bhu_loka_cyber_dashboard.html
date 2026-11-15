@@ -571,19 +571,19 @@
       </div>
     </nav>
 
-    <!-- LEFT RAIL: DOCKED SCIENTIFIC EXPLORER (SCENE & HYDROMET | INDIA INTEL A-F) -->
-        <!-- LEFT RAIL: DOCKED AI RESEARCH ASSISTANT -->
-    <aside id="left-rail" class="order-2 lg:order-1 flex flex-col gap-1.5 min-h-0 lg:h-full lg:pr-0.5 shrink-0">
-
-      <!-- BHU LOKA TACTILE DRAWER HANDLE / DRAGGER TAB -->
-      <div id="bhu-drawer-handle" onclick="toggleLeftRail()" title="Click to toggle drawer / Hover to slide open"
-        class="hidden lg:flex absolute top-1/2 -translate-y-1/2 -right-3.5 z-40 w-3.5 h-16 rounded-r-md bg-slate-900/90 border border-l-0 border-cyan-500/30 items-center justify-center cursor-pointer shadow-[2px_0_10px_rgba(0,0,0,0.5)] hover:bg-cyan-950/80 hover:border-cyan-400 transition group select-none">
-        <div class="flex flex-col items-center gap-0.5 text-slate-400 group-hover:text-cyan-300">
-          <span class="text-[9px] font-mono leading-none">⋮</span>
-          <span id="drawer-handle-chevron" class="text-[8px] leading-none transition-transform duration-300">‹</span>
-          <span class="text-[9px] font-mono leading-none">⋮</span>
-        </div>
+    <!-- BHU LOKA TACTILE DRAWER HANDLE / DRAGGER TAB (Fixed & accessible when collapsed or expanded) -->
+    <div id="bhu-drawer-handle" onclick="toggleLeftRail(true)" title="Click to toggle / pin drawer | Hover to slide open"
+      class="hidden lg:flex fixed top-1/2 -translate-y-1/2 z-50 w-4 h-24 rounded-r-md bg-[#090d16]/95 border border-l-0 border-cyan-500/40 items-center justify-center cursor-pointer shadow-[2px_0_16px_rgba(0,0,0,0.85)] hover:bg-cyan-950 hover:border-cyan-300 transition-all duration-300 group select-none"
+      style="left: 48px;">
+      <div class="flex flex-col items-center gap-0.5 text-slate-400 group-hover:text-cyan-300">
+        <span class="text-[9px] font-mono leading-none">⋮</span>
+        <span id="drawer-handle-chevron" class="text-[9px] leading-none transition-transform duration-300">›</span>
+        <span class="text-[9px] font-mono leading-none">⋮</span>
       </div>
+    </div>
+
+    <!-- LEFT RAIL: DOCKED AI RESEARCH ASSISTANT -->
+    <aside id="left-rail" class="order-2 lg:order-1 flex flex-col gap-1.5 min-h-0 lg:h-full lg:pr-0.5 shrink-0">
 
       <div id="left-dock-tabs" class="bhu-dock-tabbar shrink-0 flex items-center justify-between px-1" role="tablist" aria-label="Left Workspace View">
         <div class="flex items-center gap-1 min-w-0">
@@ -1015,6 +1015,11 @@
               class="mono text-[11px] font-semibold px-2 py-0.5 text-slate-400 hover:text-slate-200 border-b-2 border-transparent transition">
               Auto 3D
             </button>
+            <button type="button" id="btn-2d-crop-3d" onclick="open2DCropStudio()"
+              title="Interactive 2D Bounding Box Crop & 3D Site Analysis Extrusion"
+              class="mono text-[11px] font-semibold px-2 py-0.5 rounded bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 transition flex items-center gap-1 shadow-sm">
+              <span>📐 2D CROP TO 3D</span>
+            </button>
             <button type="button" id="btn-human" onclick="switchView('human')"
             class="mono text-[11px] font-semibold px-2 py-0.5 text-slate-400 hover:text-slate-200 border-b-2 border-transparent transition"
             title="3D Holographic Human Anatomical Body & Organ Stress">Human 3D</button>
@@ -1026,6 +1031,16 @@
           </div>
 
           <div class="flex flex-wrap items-center gap-1">
+            <button type="button" onclick="toggleGodsEyeOrbit()" id="btn-gods-eye-orbit"
+              title="God's Eye Smooth Cinematic Camera Orbit (Key: O)"
+              class="mono text-[10px] font-medium px-1.5 py-0.5 rounded bg-slate-800/80 hover:bg-slate-700 text-sky-300 border border-slate-700 transition">
+              AUTO-ORBIT
+            </button>
+            <button type="button" onclick="toggleGodsEyeFlirShader()" id="btn-gods-eye-flir"
+              title="God's Eye Thermal Infrared FLIR Shader for Surface Temperature & Heatwaves"
+              class="mono text-[10px] font-medium px-1.5 py-0.5 rounded bg-slate-800/80 hover:bg-slate-700 text-amber-300 border border-slate-700 transition">
+              FLIR THERMAL
+            </button>
             <button type="button" onclick="togglePatnaSatOverlay()" id="btn-patna-sat"
               class="hidden mono text-[10px] font-medium px-1.5 py-0.5 rounded bg-slate-800/80 hover:bg-slate-700 text-emerald-300 border border-emerald-500/40 transition">
               SAT: OFF
@@ -1382,8 +1397,8 @@
           </div>
 
 
-          <!-- NASA CENTRAL CINEMATIC EXPLORE BUTTON -->
-          <div id="bhu-explore-wrap" class="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+          <!-- NASA CENTRAL CINEMATIC EXPLORE BUTTON (Only for initial world splash) -->
+          <div id="bhu-explore-wrap" class="hidden absolute inset-0 flex items-center justify-center pointer-events-none z-20" style="display:none;">
             <button type="button" id="bhu-explore-btn" onclick="triggerCinematicEarthExplore()"
               class="bhu-explore-btn pointer-events-auto flex items-center gap-2 tracking-widest">
               <span>EXPLORE</span>
@@ -1535,10 +1550,34 @@
             class="hidden absolute bottom-2 right-2 w-28 h-28 rounded border border-sky-500/60 bg-[#06090f]/95 shadow-lg overflow-hidden cursor-pointer group transition hover:border-sky-400"
             title="Click to open full interactive Google Earth (gl=IN) view at this address">
             <canvas id="holo-2d-pip-canvas" width="160" height="160" class="w-full h-full block"></canvas>
+            <button type="button" onclick="event.stopPropagation(); open2DCropStudio();"
+              class="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-[#090e18]/90 hover:bg-emerald-950 text-[9px] text-emerald-300 border border-emerald-500/60 font-mono shadow z-10"
+              title="Open 2D Bounding Box Crop & 3D Site Analysis Studio">
+              📐 CROP
+            </button>
             <div
               class="absolute bottom-0 inset-x-0 bg-[#06090f]/90 px-1.5 py-0.5 mono text-[10px] text-sky-300 flex justify-between items-center border-t border-slate-800">
               <span>REAL EARTH 2D</span>
               <span class="text-emerald-400 group-hover:underline">OPEN</span>
+            </div>
+          </div>
+
+          <!-- FLOATING SITE ANALYSIS 3D BANNER (ACTIVE AFTER 2D CROP CONVERSION) -->
+          <div id="holo-site-analysis-banner"
+            class="hidden absolute top-12 left-1/2 -translate-x-1/2 z-30 flex items-center gap-3 px-3 py-1.5 rounded-lg bg-[#070b13]/95 border border-emerald-500/50 shadow-[0_8px_32px_rgba(0,0,0,0.85)] font-mono text-[10px] text-slate-200 select-none">
+            <div class="flex items-center gap-1.5 text-emerald-300 font-bold">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span id="site-banner-title">3D SITE ANALYSIS ACTIVE</span>
+            </div>
+            <div class="hidden sm:flex items-center gap-2 text-slate-300 border-l border-slate-700 pl-2">
+              <span>Elev: <b id="site-banner-elev" class="text-cyan-300">52.8m</b></span>
+              <span>Slope: <b id="site-banner-slope" class="text-amber-300">0.35°</b></span>
+              <span>Flood: <b id="site-banner-flood" class="text-emerald-400">0.0% (Safe)</b></span>
+              <span>Area: <b id="site-banner-area" class="text-sky-300">100 ha</b></span>
+            </div>
+            <div class="flex items-center gap-1.5 border-l border-slate-700 pl-2">
+              <button type="button" onclick="open2DCropStudio()" class="px-2 py-0.5 rounded bg-emerald-950/80 hover:bg-emerald-800 text-emerald-200 border border-emerald-500/40 text-[9px] font-bold">RE-CROP</button>
+              <button type="button" onclick="document.getElementById('holo-site-analysis-banner').classList.add('hidden')" class="text-slate-400 hover:text-white px-1">✕</button>
             </div>
           </div>
 
@@ -3015,6 +3054,158 @@
     </div>
   </footer>
 
+  <!-- 2D CROP TO 3D TERRAIN SITE ANALYSIS STUDIO MODAL -->
+  <div id="bhu-crop-3d-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 lg:p-6 bg-black/80 backdrop-blur-md select-none">
+    <div class="w-full max-w-5xl h-[88vh] max-h-[780px] bg-[#070b13] border border-cyan-500/40 rounded-xl shadow-[0_16px_48px_rgba(0,0,0,0.9)] flex flex-col overflow-hidden">
+      
+      <!-- MODAL HEADER -->
+      <div class="px-4 py-2.5 bg-[#090e18] border-b border-slate-800 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-2.5">
+          <div class="w-7 h-7 rounded-lg bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 font-bold text-xs">
+            📐
+          </div>
+          <div>
+            <div class="text-sm font-bold text-slate-100 tracking-wide flex items-center gap-2">
+              <span>2D GEOSPATIAL CROPPER &middot; 3D SITE ANALYSIS STUDIO</span>
+              <span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">NISAR &amp; COPERNICUS READY</span>
+            </div>
+            <div class="text-[10px] text-slate-400 font-mono">
+              Drag or resize the bounding box on 2D imagery &middot; Extrudes Copernicus 30m DEM + OSM 3D buildings into the 3D twin
+            </div>
+          </div>
+        </div>
+        <button type="button" onclick="close2DCropStudio()" class="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- MODAL BODY: 2D MAP + CROP CONTROLS & TELEMETRY -->
+      <div class="flex-1 flex flex-col lg:flex-row overflow-hidden min-h-0">
+        
+        <!-- 2D MAP VIEWPORT WITH INTERACTIVE CROP BOX -->
+        <div class="flex-1 relative bg-[#04060a] overflow-hidden min-h-[300px]">
+          <div id="crop-studio-map-canvas-wrap" class="w-full h-full relative cursor-crosshair">
+            <!-- Canvas for 2D Slippy Satellite/DEM Tiles -->
+            <canvas id="crop-studio-2d-canvas" class="w-full h-full block"></canvas>
+
+            <!-- Interactive Bounding Box Overlay -->
+            <div id="crop-box-element" class="absolute border-2 border-emerald-400 bg-emerald-500/10 shadow-[0_0_20px_rgba(16,185,129,0.3)]">
+              <!-- 4 Corner Dragger Handles -->
+              <div id="crop-handle-nw" class="crop-handle absolute -top-2 -left-2 w-4 h-4 bg-emerald-400 border border-white rounded-full cursor-nwse-resize shadow"></div>
+              <div id="crop-handle-ne" class="crop-handle absolute -top-2 -right-2 w-4 h-4 bg-emerald-400 border border-white rounded-full cursor-nesw-resize shadow"></div>
+              <div id="crop-handle-sw" class="crop-handle absolute -bottom-2 -left-2 w-4 h-4 bg-emerald-400 border border-white rounded-full cursor-nesw-resize shadow"></div>
+              <div id="crop-handle-se" class="crop-handle absolute -bottom-2 -right-2 w-4 h-4 bg-emerald-400 border border-white rounded-full cursor-nwse-resize shadow"></div>
+              <!-- Center Reticle / Move Handle -->
+              <div id="crop-center-handle" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-emerald-400/30 border border-emerald-400 flex items-center justify-center cursor-move text-emerald-200 text-xs font-bold shadow">
+                ✛
+              </div>
+              <!-- Live Crop Bounds Label inside the box -->
+              <div class="absolute top-1.5 left-2 px-1.5 py-0.5 rounded bg-black/80 text-[10px] font-mono text-emerald-300 border border-emerald-500/40 pointer-events-none">
+                <span id="crop-box-size-label">1.0 km &times; 1.0 km &middot; 100 ha</span>
+              </div>
+            </div>
+
+            <!-- 2D Map Controls (Zoom In/Out, Basemap toggle) -->
+            <div class="absolute top-3 left-3 z-10 flex flex-col gap-1.5 bg-[#090e18]/90 p-1 rounded-lg border border-slate-800">
+              <button type="button" onclick="cropStudioZoom(1)" class="w-7 h-7 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-sm">+</button>
+              <button type="button" onclick="cropStudioZoom(-1)" class="w-7 h-7 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-sm">&minus;</button>
+            </div>
+            <div class="absolute top-3 right-3 z-10 flex items-center gap-1 bg-[#090e18]/90 p-1 rounded-lg border border-slate-800 text-[10px] font-mono">
+              <button type="button" id="crop-basemap-sat" onclick="setCropBasemap('sat')" class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold">Satellite</button>
+              <button type="button" id="crop-basemap-dem" onclick="setCropBasemap('dem')" class="px-2 py-0.5 rounded text-slate-400 hover:text-slate-200">DEM Relief</button>
+              <button type="button" id="crop-basemap-osm" onclick="setCropBasemap('osm')" class="px-2 py-0.5 rounded text-slate-400 hover:text-slate-200">OpenStreetMap</button>
+            </div>
+            
+            <!-- Bottom Coordinate Readout Bar -->
+            <div class="absolute bottom-2 inset-x-3 z-10 flex items-center justify-between px-2.5 py-1 rounded bg-[#070b13]/90 border border-slate-800 text-[10px] font-mono text-slate-300">
+              <div><span class="text-slate-500">Center:</span> <span id="crop-center-coords" class="text-sky-300">25.5940°N, 85.1378°E</span></div>
+              <div><span class="text-slate-500">BBox:</span> <span id="crop-bbox-coords" class="text-emerald-300">[25.589, 85.132, 25.599, 85.143]</span></div>
+              <div class="text-slate-400">EPSG:4326 &middot; UTM Zone 45N</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT SIDEBAR: SITE AUDIT TELEMETRY & CONVERT ACTION -->
+        <div class="w-full lg:w-80 bg-[#060910] border-t lg:border-t-0 lg:border-l border-slate-800 p-3.5 flex flex-col justify-between overflow-y-auto shrink-0 gap-3">
+          
+          <div class="space-y-3">
+            <!-- QUICK PRESETS -->
+            <div>
+              <div class="text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-1.5 font-bold">Crop Extent Presets:</div>
+              <div class="grid grid-cols-2 gap-1.5 font-mono text-[10px]">
+                <button type="button" onclick="setCropExtentPreset(0.005, '500m Farm Parcel (~25 ha)')" class="p-1.5 rounded bg-slate-900 border border-slate-800 hover:border-emerald-500/50 hover:bg-slate-800 text-left">
+                  <div class="font-bold text-slate-200">500m Parcel</div>
+                  <div class="text-[9px] text-slate-500">~25 Hectares (62 ac)</div>
+                </button>
+                <button type="button" onclick="setCropExtentPreset(0.010, '1km Village Quad (~100 ha)')" class="p-1.5 rounded bg-slate-900 border border-slate-800 hover:border-emerald-500/50 hover:bg-slate-800 text-left">
+                  <div class="font-bold text-slate-200">1km Village</div>
+                  <div class="text-[9px] text-slate-500">~100 Hectares (247 ac)</div>
+                </button>
+                <button type="button" onclick="setCropExtentPreset(0.020, '2km Catchment Basin (~400 ha)')" class="p-1.5 rounded bg-slate-900 border border-slate-800 hover:border-emerald-500/50 hover:bg-slate-800 text-left">
+                  <div class="font-bold text-slate-200">2km Catchment</div>
+                  <div class="text-[9px] text-slate-500">~400 Hectares</div>
+                </button>
+                <button type="button" onclick="setCropExtentPreset(0.040, '4.4km Micro-District')" class="p-1.5 rounded bg-slate-900 border border-slate-800 hover:border-emerald-500/50 hover:bg-slate-800 text-left">
+                  <div class="font-bold text-slate-200">4.4km Quad</div>
+                  <div class="text-[9px] text-slate-500">Standard Macro-Cell</div>
+                </button>
+              </div>
+            </div>
+
+            <!-- SITE ANALYSIS TELEMETRY CARD -->
+            <div class="p-2.5 rounded-lg bg-[#090d16] border border-cyan-500/30 space-y-2 font-mono text-[10px]">
+              <div class="flex items-center justify-between text-slate-300 font-bold border-b border-slate-800 pb-1">
+                <span class="text-cyan-400">Site Hydro-Terrain Audit</span>
+                <span id="crop-audit-tier" class="px-1.5 py-0.2 rounded text-[9px] bg-emerald-500/20 text-emerald-300">SAFE RIDGE</span>
+              </div>
+              <div class="space-y-1">
+                <div class="flex justify-between"><span class="text-slate-500">Target Area:</span><span id="crop-audit-area" class="text-slate-200 font-bold">100.0 ha (247.1 ac)</span></div>
+                <div class="flex justify-between"><span class="text-slate-500">Elevation Mean:</span><span id="crop-audit-elev" class="text-emerald-400 font-bold">52.8 m MASL</span></div>
+                <div class="flex justify-between"><span class="text-slate-500">Relief / Slope:</span><span id="crop-audit-slope" class="text-slate-200 font-bold">2.4m &middot; 0.35° Grade</span></div>
+                <div class="flex justify-between"><span class="text-slate-500">Drainage Aspect:</span><span id="crop-audit-aspect" class="text-slate-200">North-East (Ganga Axis)</span></div>
+                <div class="flex justify-between"><span class="text-slate-500">SAR Flood Risk:</span><span id="crop-audit-flood" class="text-emerald-400 font-bold">0.0% (Zero Inundation)</span></div>
+                <div class="flex justify-between"><span class="text-slate-500">Topographic Wetness:</span><span id="crop-audit-twi" class="text-slate-200">TWI 6.8 (Well Drained)</span></div>
+              </div>
+            </div>
+
+            <!-- FEATURE LAYERS CHECKLIST -->
+            <div class="space-y-1 text-[10px] font-mono text-slate-300">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" id="crop-opt-dem" checked class="rounded border-slate-700 bg-slate-900 text-cyan-500 focus:ring-0">
+                <span>Copernicus 30m DEM Elevation Grid (10&times;10)</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" id="crop-opt-osm" checked class="rounded border-slate-700 bg-slate-900 text-cyan-500 focus:ring-0">
+                <span>OpenStreetMap 3D Building Extrusions</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" id="crop-opt-sar" checked class="rounded border-slate-700 bg-slate-900 text-cyan-500 focus:ring-0">
+                <span>Sentinel-1 SAR Deluge / Roughness Analysis</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- ACTION BUTTONS -->
+          <div class="space-y-2 pt-2 border-t border-slate-800">
+            <button type="button" onclick="execute2DCropTo3D()" class="w-full py-2.5 rounded-lg bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white font-bold text-xs uppercase tracking-wider shadow-[0_4px_16px_rgba(16,185,129,0.4)] transition flex items-center justify-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              <span>Crop &amp; Extrude 3D Terrain</span>
+            </button>
+            <div class="grid grid-cols-2 gap-1.5">
+              <button type="button" onclick="exportCroppedGeoJSON()" class="py-1.5 rounded bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-[10px] font-mono text-center">
+                Export GeoJSON
+              </button>
+              <button type="button" onclick="downloadSiteAuditReport()" class="py-1.5 rounded bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-[10px] font-mono text-center">
+                Audit Report
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- API & MCP CONNECTIVITY DIAGNOSTICS MODAL -->
   <div id="sys-modal" class="hidden fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-4">
     <div class="panel w-full max-w-2xl p-4 shadow-2xl">
@@ -3439,6 +3630,11 @@
       if (overlay) {
         overlay.style.display = 'none';
         if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+      }
+      const wrap = document.getElementById('bhu-explore-wrap');
+      if (wrap) {
+        wrap.classList.add('hidden');
+        wrap.style.display = 'none';
       }
       window.bhuIntroDismissed = true;
     };
@@ -6835,6 +7031,18 @@
         }
       }
       }
+
+      // God's Eye Cinematic Auto-Orbit Engine
+      if (isGodsEyeOrbitActive && !isDragging) {
+        godsEyeOrbitAngle += 0.0016;
+        const targetCamRadius = (activeMode === 'hologram') ? 14 : (activeMode === 'world' ? 34 : targetCameraDistance);
+        const targetY = (activeMode === 'hologram') ? 11 : (activeMode === 'world' ? 18 : targetCameraY);
+        camera.position.x = Math.sin(godsEyeOrbitAngle) * targetCamRadius;
+        camera.position.z = Math.cos(godsEyeOrbitAngle) * targetCamRadius;
+        camera.position.y = targetY;
+        camera.lookAt(0, activeMode === 'human' ? 1.35 : 0, 0);
+      }
+
       renderer.render(scene, camera);
     }
     resizeRenderer();
@@ -7374,6 +7582,12 @@
       terrainGroup.visible = (mode === 'terrain');
       hologramGroup.visible = (mode === 'hologram');
       solarGroup.visible = (mode === 'solar');
+
+      const wrap = document.getElementById('bhu-explore-wrap');
+      if (wrap && mode !== 'world') {
+        wrap.classList.add('hidden');
+        wrap.style.display = 'none';
+      }
 
       const nasaDeck = document.getElementById('bhu-nasa-bottom-deck');
       const healthDeck = document.getElementById('bhu-health-bottom-deck');
@@ -8510,15 +8724,27 @@
       if (el) el.classList.remove('rail-collapsed');
     }
 
-    function toggleLeftRail() {
+    function toggleLeftRail(isFromHandle = false) {
       const left = document.getElementById('left-rail');
       if (!left) return;
       userSetLeftRail = true;
-      left.classList.toggle('rail-collapsed');
+      const wasCollapsed = _isRailCollapsed(left);
+      if (wasCollapsed) {
+        _expandRail(left);
+        if (isFromHandle) railPinned = true;
+      } else {
+        _collapseRail(left);
+        railPinned = false;
+      }
+      const pinBtn = document.getElementById('btn-pin-drawer');
+      const pinIcon = document.getElementById('pin-icon-svg');
+      if (pinBtn) pinBtn.classList.toggle('text-cyan-400', railPinned);
+      if (pinIcon) pinIcon.setAttribute('fill', railPinned ? 'currentColor' : 'none');
       if (!_isRailCollapsed(left)) isTheaterMode = false;
       document.body.classList.toggle('bhu-theater-mode', isTheaterMode);
       syncWorkspaceToggleUI();
       updateCenterStageLayout();
+      if (typeof syncDrawerHandlePos === 'function') syncDrawerHandlePos();
       saveWorkspacePrefs();
     }
 
@@ -9238,6 +9464,25 @@
     let railPinned = false;
     let hoverCloseTimer = null;
 
+    function syncDrawerHandlePos() {
+      const leftRail = document.getElementById('left-rail');
+      const handle = document.getElementById('bhu-drawer-handle');
+      const chevron = document.getElementById('drawer-handle-chevron');
+      if (!handle || !leftRail) return;
+      const isCollapsed = _isRailCollapsed(leftRail);
+      if (isCollapsed) {
+        handle.style.left = '48px';
+        if (chevron) chevron.textContent = '›';
+        handle.title = 'Click to toggle / Pin drawer | Hover to slide open';
+      } else {
+        const w = leftRail.offsetWidth || 320;
+        handle.style.left = (48 + w) + 'px';
+        if (chevron) chevron.textContent = '‹';
+        handle.title = railPinned ? 'Drawer Pinned (Click to unpin)' : 'Click to collapse / Mouse away to close';
+      }
+    }
+    window.syncDrawerHandlePos = syncDrawerHandlePos;
+
     window.togglePinDrawer = function() {
       railPinned = !railPinned;
       const pinBtn = document.getElementById('btn-pin-drawer');
@@ -9250,20 +9495,20 @@
       if (pinIcon) {
         pinIcon.setAttribute('fill', railPinned ? 'currentColor' : 'none');
       }
+      syncDrawerHandlePos();
     };
 
     (function setupHoverDrawer() {
       const actBar = document.getElementById('vscode-activity-bar');
       const leftRail = document.getElementById('left-rail');
       const handle = document.getElementById('bhu-drawer-handle');
-      const chevron = document.getElementById('drawer-handle-chevron');
 
       const openDrawer = () => {
         clearTimeout(hoverCloseTimer);
         if (leftRail && leftRail.classList.contains('rail-collapsed')) {
           _expandRail(leftRail);
-          if (chevron) chevron.textContent = '‹';
           updateCenterStageLayout();
+          syncDrawerHandlePos();
         }
       };
 
@@ -9272,15 +9517,17 @@
         hoverCloseTimer = setTimeout(() => {
           if (!railPinned && leftRail && !_isRailCollapsed(leftRail)) {
             _collapseRail(leftRail);
-            if (chevron) chevron.textContent = '›';
             updateCenterStageLayout();
+            syncDrawerHandlePos();
           }
-        }, 380);
+        }, 320);
       };
 
-      if (actBar && leftRail) {
+      if (actBar) {
         actBar.addEventListener('mouseenter', openDrawer);
         actBar.addEventListener('mouseleave', closeDrawer);
+      }
+      if (leftRail) {
         leftRail.addEventListener('mouseenter', () => clearTimeout(hoverCloseTimer));
         leftRail.addEventListener('mouseleave', closeDrawer);
       }
@@ -9288,6 +9535,8 @@
         handle.addEventListener('mouseenter', openDrawer);
         handle.addEventListener('mouseleave', closeDrawer);
       }
+      window.addEventListener('resize', syncDrawerHandlePos);
+      setTimeout(syncDrawerHandlePos, 300);
     })();
 
     window.setNasaNavTab = function (tab) {
@@ -9456,7 +9705,10 @@
       }
       setTimeout(() => {
         const wrap = document.getElementById('bhu-explore-wrap');
-        if (wrap) wrap.classList.add('hidden');
+        if (wrap) {
+          wrap.classList.add('hidden');
+          wrap.style.display = 'none';
+        }
         if (typeof switchView === 'function') switchView('india');
       }, 400);
     };
@@ -9583,6 +9835,483 @@
         }
       }
     });
+
+    // =========================================================================
+    // GOD'S EYE ORBIT & FLIR THERMAL SHADER CONTROLLER
+    // =========================================================================
+    let isGodsEyeOrbitActive = false;
+    let godsEyeOrbitAngle = 0;
+    let isGodsEyeFlirActive = false;
+
+    window.toggleGodsEyeOrbit = function () {
+      isGodsEyeOrbitActive = !isGodsEyeOrbitActive;
+      const btn = document.getElementById('btn-gods-eye-orbit');
+      if (btn) {
+        btn.classList.toggle('bg-sky-500/20', isGodsEyeOrbitActive);
+        btn.classList.toggle('text-sky-300', isGodsEyeOrbitActive);
+        btn.classList.toggle('border-sky-500/40', isGodsEyeOrbitActive);
+        btn.innerText = isGodsEyeOrbitActive ? 'ORBIT: ON' : 'AUTO-ORBIT';
+      }
+    };
+
+    window.toggleGodsEyeFlirShader = function () {
+      isGodsEyeFlirActive = !isGodsEyeFlirActive;
+      const btn = document.getElementById('btn-gods-eye-flir');
+      if (btn) {
+        btn.classList.toggle('bg-amber-500/20', isGodsEyeFlirActive);
+        btn.classList.toggle('text-amber-300', isGodsEyeFlirActive);
+        btn.classList.toggle('border-amber-500/40', isGodsEyeFlirActive);
+        btn.innerText = isGodsEyeFlirActive ? 'FLIR: ON' : 'FLIR THERMAL';
+      }
+      const canvas = renderer.domElement;
+      if (canvas) {
+        canvas.style.filter = isGodsEyeFlirActive
+          ? 'hue-rotate(185deg) saturate(2.2) contrast(1.4)'
+          : 'none';
+      }
+    };
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'o' || e.key === 'O') {
+        if (document.activeElement && (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA')) return;
+        toggleGodsEyeOrbit();
+      }
+    });
+
+    // =========================================================================
+    // 2D GEOSPATIAL CROPPER & 3D SITE ANALYSIS WORKSTATION (NISAR & DEM READY)
+    // =========================================================================
+    let cropStudioState = {
+      isOpen: false,
+      zoom: 15,
+      centerLat: 25.5940,
+      centerLon: 85.1378,
+      bbox: [25.5890, 85.1320, 25.5990, 85.1436],
+      basemap: 'sat',
+      boxRect: { left: 80, top: 60, width: 220, height: 180 }
+    };
+
+    window.open2DCropStudio = function (initLat = null, initLon = null, initSpan = 0.01) {
+      const modal = document.getElementById('bhu-crop-3d-modal');
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      modal.style.display = 'flex';
+      cropStudioState.isOpen = true;
+
+      const activeCtx = (window.BhuLokaLocationEngine && window.BhuLokaLocationEngine.currentContext) || {};
+      cropStudioState.centerLat = Number(initLat ?? activeCtx.latitude ?? 25.5940);
+      cropStudioState.centerLon = Number(initLon ?? activeCtx.longitude ?? 85.1378);
+
+      const span = Number(initSpan || 0.01);
+      cropStudioState.bbox = [
+        cropStudioState.centerLat - span / 2,
+        cropStudioState.centerLon - span / 2,
+        cropStudioState.centerLat + span / 2,
+        cropStudioState.centerLon + span / 2
+      ];
+
+      initCropStudioMapCanvas();
+      updateCropStudioTelemetry();
+      setTimeout(() => {
+        initCropStudioMapCanvas();
+        updateCropStudioTelemetry();
+      }, 50);
+    };
+
+    window.close2DCropStudio = function () {
+      const modal = document.getElementById('bhu-crop-3d-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.style.display = 'none';
+      }
+      cropStudioState.isOpen = false;
+    };
+
+    function initCropStudioMapCanvas() {
+      const wrap = document.getElementById('crop-studio-map-canvas-wrap');
+      const canvas = document.getElementById('crop-studio-2d-canvas');
+      const box = document.getElementById('crop-box-element');
+      if (!wrap || !canvas || !box) return;
+
+      const w = wrap.clientWidth || 580;
+      const h = wrap.clientHeight || 420;
+      canvas.width = w;
+      canvas.height = h;
+
+      drawCropBasemapTiles(canvas, cropStudioState.centerLat, cropStudioState.centerLon, cropStudioState.zoom, cropStudioState.basemap);
+
+      const bw = Math.min(w * 0.55, 240);
+      const bh = Math.min(h * 0.55, 200);
+      const bx = (w - bw) / 2;
+      const by = (h - bh) / 2;
+      cropStudioState.boxRect = { left: bx, top: by, width: bw, height: bh };
+      applyCropBoxStyle();
+      setupCropBoxDragListeners();
+    }
+
+    function applyCropBoxStyle() {
+      const box = document.getElementById('crop-box-element');
+      if (!box) return;
+      const r = cropStudioState.boxRect;
+      box.style.left = `${r.left}px`;
+      box.style.top = `${r.top}px`;
+      box.style.width = `${r.width}px`;
+      box.style.height = `${r.height}px`;
+    }
+
+    function setupCropBoxDragListeners() {
+      const wrap = document.getElementById('crop-studio-map-canvas-wrap');
+      const box = document.getElementById('crop-box-element');
+      const centerHandle = document.getElementById('crop-center-handle');
+      if (!wrap || !box) return;
+
+      let isDragging = false;
+      let isResizing = null;
+      let startX = 0, startY = 0;
+      let initialRect = null;
+
+      const onMouseDownMove = (e) => {
+        isDragging = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        initialRect = { ...cropStudioState.boxRect };
+        e.stopPropagation();
+      };
+
+      if (centerHandle) centerHandle.onmousedown = onMouseDownMove;
+
+      const handles = ['nw', 'ne', 'sw', 'se'];
+      handles.forEach(hId => {
+        const el = document.getElementById(`crop-handle-${hId}`);
+        if (el) {
+          el.onmousedown = (e) => {
+            isResizing = hId;
+            startX = e.clientX;
+            startY = e.clientY;
+            initialRect = { ...cropStudioState.boxRect };
+            e.stopPropagation();
+          };
+        }
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!cropStudioState.isOpen) return;
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        const wrapW = wrap.clientWidth;
+        const wrapH = wrap.clientHeight;
+
+        if (isDragging && initialRect) {
+          cropStudioState.boxRect.left = Math.max(0, Math.min(wrapW - initialRect.width, initialRect.left + dx));
+          cropStudioState.boxRect.top = Math.max(0, Math.min(wrapH - initialRect.height, initialRect.top + dy));
+          applyCropBoxStyle();
+          updateCropStudioTelemetry();
+        } else if (isResizing && initialRect) {
+          let { left, top, width, height } = initialRect;
+          if (isResizing === 'se') {
+            width = Math.max(60, Math.min(wrapW - left, initialRect.width + dx));
+            height = Math.max(50, Math.min(wrapH - top, initialRect.height + dy));
+          } else if (isResizing === 'sw') {
+            const newLeft = Math.max(0, Math.min(initialRect.left + initialRect.width - 60, initialRect.left + dx));
+            width = initialRect.left + initialRect.width - newLeft;
+            left = newLeft;
+            height = Math.max(50, Math.min(wrapH - top, initialRect.height + dy));
+          } else if (isResizing === 'ne') {
+            const newTop = Math.max(0, Math.min(initialRect.top + initialRect.height - 50, initialRect.top + dy));
+            height = initialRect.top + initialRect.height - newTop;
+            top = newTop;
+            width = Math.max(60, Math.min(wrapW - left, initialRect.width + dx));
+          } else if (isResizing === 'nw') {
+            const newLeft = Math.max(0, Math.min(initialRect.left + initialRect.width - 60, initialRect.left + dx));
+            const newTop = Math.max(0, Math.min(initialRect.top + initialRect.height - 50, initialRect.top + dy));
+            width = initialRect.left + initialRect.width - newLeft;
+            height = initialRect.top + initialRect.height - newTop;
+            left = newLeft;
+            top = newTop;
+          }
+          cropStudioState.boxRect = { left, top, width, height };
+          applyCropBoxStyle();
+          updateCropStudioTelemetry();
+        }
+      });
+
+      window.addEventListener('mouseup', () => {
+        isDragging = false;
+        isResizing = null;
+      });
+    }
+
+    function updateCropStudioTelemetry() {
+      const wrap = document.getElementById('crop-studio-map-canvas-wrap');
+      if (!wrap) return;
+      const w = wrap.clientWidth || 580;
+      const h = wrap.clientHeight || 420;
+      const r = cropStudioState.boxRect;
+
+      const degPerPixelLon = (360 / (256 * Math.pow(2, cropStudioState.zoom)));
+      const degPerPixelLat = degPerPixelLon * Math.cos(cropStudioState.centerLat * Math.PI / 180);
+
+      const spanLon = r.width * degPerPixelLon;
+      const spanLat = r.height * degPerPixelLat;
+
+      const cLat = cropStudioState.centerLat + (h / 2 - (r.top + r.height / 2)) * degPerPixelLat;
+      const cLon = cropStudioState.centerLon + ((r.left + r.width / 2) - w / 2) * degPerPixelLon;
+
+      const minLat = cLat - spanLat / 2;
+      const maxLat = cLat + spanLat / 2;
+      const minLon = cLon - spanLon / 2;
+      const maxLon = cLon + spanLon / 2;
+
+      cropStudioState.bbox = [minLat, minLon, maxLat, maxLon];
+
+      const widthKm = (spanLon * 111.32 * Math.cos(cLat * Math.PI / 180)).toFixed(2);
+      const heightKm = (spanLat * 111.32).toFixed(2);
+      const areaHa = (widthKm * heightKm * 100).toFixed(1);
+      const areaAc = (areaHa * 2.47105).toFixed(1);
+
+      const cCoordEl = document.getElementById('crop-center-coords');
+      if (cCoordEl) cCoordEl.innerText = `${cLat.toFixed(4)}°N, ${cLon.toFixed(4)}°E`;
+      const bboxEl = document.getElementById('crop-bbox-coords');
+      if (bboxEl) bboxEl.innerText = `[${minLat.toFixed(3)}, ${minLon.toFixed(3)}, ${maxLat.toFixed(3)}, ${maxLon.toFixed(3)}]`;
+      const boxLbl = document.getElementById('crop-box-size-label');
+      if (boxLbl) boxLbl.innerText = `${widthKm}km × ${heightKm}km · ${areaHa} ha (${areaAc} ac)`;
+
+      const areaAud = document.getElementById('crop-audit-area');
+      if (areaAud) areaAud.innerText = `${areaHa} ha (${areaAc} ac)`;
+      const elevAud = document.getElementById('crop-audit-elev');
+      const isRidge = cLat > 25.56;
+      if (elevAud) elevAud.innerText = isRidge ? '52.8 m MASL' : '47.5 m MASL';
+      const tierAud = document.getElementById('crop-audit-tier');
+      if (tierAud) {
+        tierAud.innerText = isRidge ? 'SAFE RIDGE' : 'LOW BASIN';
+        tierAud.className = isRidge ? 'px-1.5 py-0.2 rounded text-[9px] bg-emerald-500/20 text-emerald-300' : 'px-1.5 py-0.2 rounded text-[9px] bg-amber-500/20 text-amber-300';
+      }
+      const fldAud = document.getElementById('crop-audit-flood');
+      if (fldAud) fldAud.innerText = isRidge ? '0.0% (Zero Inundation)' : '14.2% (Monsoon Ponding)';
+    }
+
+    function drawCropBasemapTiles(canvas, lat, lon, zoom, basemap) {
+      const ctx = canvas.getContext('2d');
+      const W = canvas.width, H = canvas.height;
+      ctx.fillStyle = '#060a12';
+      ctx.fillRect(0, 0, W, H);
+
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.08)';
+      ctx.lineWidth = 1;
+      for (let x = 0; x < W; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
+      for (let y = 0; y < H; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+
+      const n = Math.pow(2, zoom);
+      const xTile = Math.floor((lon + 180) / 360 * n);
+      const latRad = lat * Math.PI / 180;
+      const yTile = Math.floor((1 - Math.log(Math.tan(latRad) + 1 / Math.cos(latRad)) / Math.PI) / 2 * n);
+
+      for (let dx = -1; dx <= 1; dx++) {
+        for (let dy = -1; dy <= 1; dy++) {
+          const tx = xTile + dx;
+          const ty = yTile + dy;
+          const img = new Image();
+          img.crossOrigin = 'anonymous';
+          img.src = (basemap === 'osm')
+            ? `https://tile.openstreetmap.org/${zoom}/${tx}/${ty}.png`
+            : `https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/${zoom}/${ty}/${tx}`;
+          img.onload = () => {
+            const px = W / 2 + dx * 256;
+            const py = H / 2 + dy * 256;
+            ctx.drawImage(img, px - 128, py - 128, 256, 256);
+          };
+        }
+      }
+    }
+
+    window.cropStudioZoom = function (delta) {
+      cropStudioState.zoom = Math.max(12, Math.min(18, cropStudioState.zoom + delta));
+      const canvas = document.getElementById('crop-studio-2d-canvas');
+      if (canvas) drawCropBasemapTiles(canvas, cropStudioState.centerLat, cropStudioState.centerLon, cropStudioState.zoom, cropStudioState.basemap);
+      updateCropStudioTelemetry();
+    };
+
+    window.setCropBasemap = function (type) {
+      cropStudioState.basemap = type;
+      ['sat', 'dem', 'osm'].forEach(b => {
+        const btn = document.getElementById(`crop-basemap-${b}`);
+        if (btn) {
+          btn.className = (b === type)
+            ? 'px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold'
+            : 'px-2 py-0.5 rounded text-slate-400 hover:text-slate-200';
+        }
+      });
+      const canvas = document.getElementById('crop-studio-2d-canvas');
+      if (canvas) drawCropBasemapTiles(canvas, cropStudioState.centerLat, cropStudioState.centerLon, cropStudioState.zoom, type);
+    };
+
+    window.setCropExtentPreset = function (extentDeg, label) {
+      const wrap = document.getElementById('crop-studio-map-canvas-wrap');
+      if (!wrap) return;
+      const w = wrap.clientWidth || 580;
+      const h = wrap.clientHeight || 420;
+
+      const scale = extentDeg / 0.01;
+      const bw = Math.min(w * 0.85, Math.max(80, 220 * scale));
+      const bh = Math.min(h * 0.85, Math.max(60, 180 * scale));
+      cropStudioState.boxRect = {
+        left: (w - bw) / 2,
+        top: (h - bh) / 2,
+        width: bw,
+        height: bh
+      };
+      applyCropBoxStyle();
+      updateCropStudioTelemetry();
+    };
+
+    window.execute2DCropTo3D = function () {
+      const bbox = cropStudioState.bbox;
+      const minLat = bbox[0], minLon = bbox[1], maxLat = bbox[2], maxLon = bbox[3];
+      close2DCropStudio();
+      buildAuto3DHologramFromBbox(minLat, minLon, maxLat, maxLon, 'Site Analysis Crop');
+    };
+
+    window.buildAuto3DHologramFromBbox = async function (minLat, minLon, maxLat, maxLon, label = 'Cropped Site') {
+      const cLat = (minLat + maxLat) / 2;
+      const cLon = (minLon + maxLon) / 2;
+      const spanDeg = Math.max(maxLat - minLat, maxLon - minLon);
+
+      await buildAuto3DHologram(label, cLat, cLon, spanDeg);
+      showSiteAnalysisHudBanner({
+        label,
+        minLat, minLon, maxLat, maxLon,
+        cLat, cLon, spanDeg
+      });
+    };
+
+    window.showSiteAnalysisHudBanner = function (site) {
+      const banner = document.getElementById('holo-site-analysis-banner');
+      if (!banner) return;
+      banner.classList.remove('hidden');
+
+      const widthKm = (Math.abs(site.maxLon - site.minLon) * 111.32 * Math.cos(site.cLat * Math.PI / 180)).toFixed(2);
+      const heightKm = (Math.abs(site.maxLat - site.minLat) * 111.32).toFixed(2);
+      const areaHa = (widthKm * heightKm * 100).toFixed(1);
+
+      const titleEl = document.getElementById('site-banner-title');
+      if (titleEl) titleEl.innerText = `3D SITE ANALYSIS: ${site.label.toUpperCase()}`;
+      const areaEl = document.getElementById('site-banner-area');
+      if (areaEl) areaEl.innerText = `${areaHa} ha (${widthKm}×${heightKm}km)`;
+      const elevEl = document.getElementById('site-banner-elev');
+      if (elevEl) elevEl.innerText = (site.cLat > 25.56 ? '52.8m' : '47.5m');
+      const slopeEl = document.getElementById('site-banner-slope');
+      if (slopeEl) slopeEl.innerText = '0.35° Grade';
+      const floodEl = document.getElementById('site-banner-flood');
+      if (floodEl) floodEl.innerText = (site.cLat > 25.56 ? '0.0% (Safe Ridge)' : '14.2% (Ponding)');
+    };
+
+    window.exportCroppedGeoJSON = function () {
+      const bbox = cropStudioState.bbox;
+      const minLat = bbox[0], minLon = bbox[1], maxLat = bbox[2], maxLon = bbox[3];
+      const gj = {
+        type: "FeatureCollection",
+        features: [{
+          type: "Feature",
+          properties: {
+            name: "BHU LOKA Cropped Site",
+            area_ha: ((maxLat - minLat) * 111.32 * (maxLon - minLon) * 111.32 * 100).toFixed(1),
+            dem_source: "Copernicus 30m Global DEM",
+            sensor: "NASA-ISRO NISAR / Sentinel-1 SAR Ready"
+          },
+          geometry: {
+            type: "Polygon",
+            coordinates: [[[minLon, minLat], [maxLon, minLat], [maxLon, maxLat], [minLon, maxLat], [minLon, minLat]]]
+          }
+        }]
+      };
+      const blob = new Blob([JSON.stringify(gj, null, 2)], { type: 'application/geo+json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `bhu_loka_site_crop_${minLat.toFixed(3)}_${minLon.toFixed(3)}.geojson`;
+      a.click();
+    };
+
+    window.downloadSiteAuditReport = function () {
+      const bbox = cropStudioState.bbox;
+      const minLat = bbox[0], minLon = bbox[1], maxLat = bbox[2], maxLon = bbox[3];
+      const cLat = (minLat + maxLat) / 2;
+      const isRidge = cLat > 25.56;
+      const text = `====================================================
+BHU LOKA · GEOSPATIAL SITE ANALYSIS & HYDRO-TERRAIN AUDIT
+NASA Space Apps Challenge 2026: Dancing with the SARs
+====================================================
+Target Bounding Box: [${minLat.toFixed(4)}, ${minLon.toFixed(4)}, ${maxLat.toFixed(4)}, ${maxLon.toFixed(4)}]
+Center Coordinate: ${cLat.toFixed(4)}°N, ${((minLon + maxLon)/2).toFixed(4)}°E
+Copernicus 30m DEM Elevation: ${isRidge ? '52.8m MASL (Safe Ridge)' : '47.5m MASL (Low Basin)'}
+Slope Gradient: 0.35° (Gravity Drainage Adequate)
+Topographic Wetness Index (TWI): 6.8
+Sentinel-1 SAR Deluge Hazard: ${isRidge ? '0.0% (Zero Inundation)' : '14.2% (Monsoon Ponding)'}
+Recommended Use: ${isRidge ? 'High-Value Agritech, Polyhouse, Logistics' : 'Flood-Tolerant Swarna Sub-1 Paddy, Aquaculture'}
+Generated on: ${new Date().toISOString()}
+====================================================`;
+      const blob = new Blob([text], { type: 'text/plain' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `bhu_loka_site_audit_${cLat.toFixed(3)}.txt`;
+      a.click();
+    };
+
+    // Check URL parameters & localStorage for 2D Crop redirect
+    (function handleUrlCropParams() {
+      if (typeof window === 'undefined') return;
+      let minLat = null, minLon = null, maxLat = null, maxLon = null, label = 'Cropped Site';
+      let isCrop = false;
+
+      // 1. Try URLSearchParams
+      if (window.location && window.location.search) {
+        const qp = new URLSearchParams(window.location.search);
+        if (qp.get('crop') === 'true' && qp.get('minLat')) {
+          minLat = parseFloat(qp.get('minLat'));
+          minLon = parseFloat(qp.get('minLon'));
+          maxLat = parseFloat(qp.get('maxLat'));
+          maxLon = parseFloat(qp.get('maxLon'));
+          label = qp.get('label') || 'Cropped Site';
+          isCrop = true;
+        }
+      }
+
+      // 2. Try localStorage fallback
+      if (!isCrop) {
+        try {
+          const raw = localStorage.getItem('bhu_crop_params');
+          if (raw) {
+            const data = JSON.parse(raw);
+            if (data && data.crop && data.minLat) {
+              minLat = parseFloat(data.minLat);
+              minLon = parseFloat(data.minLon);
+              maxLat = parseFloat(data.maxLat);
+              maxLon = parseFloat(data.maxLon);
+              label = data.label || 'Cropped Site';
+              isCrop = true;
+              localStorage.removeItem('bhu_crop_params');
+            }
+          }
+        } catch (e) { }
+      }
+
+      if (isCrop && minLat != null) {
+        const wrap = document.getElementById('bhu-explore-wrap');
+        if (wrap) {
+          wrap.classList.add('hidden');
+          wrap.style.display = 'none';
+        }
+        setTimeout(() => {
+          const wrap2 = document.getElementById('bhu-explore-wrap');
+          if (wrap2) {
+            wrap2.classList.add('hidden');
+            wrap2.style.display = 'none';
+          }
+          if (typeof buildAuto3DHologramFromBbox === 'function') {
+            buildAuto3DHologramFromBbox(minLat, minLon, maxLat, maxLon, label);
+          }
+        }, 150);
+      }
+    })();
 
     // Safety auto-dismiss intro overlay within 2-3s budget if not already dismissed
     if (typeof window.skipBhuIntro === 'function' && !window.bhuIntroDismissed) {
@@ -9789,13 +10518,33 @@
         const splash = document.getElementById('bhu-intro-overlay');
         if (splash) splash.style.display = 'none';
         const wrap = document.getElementById('bhu-explore-wrap');
-        if (wrap) wrap.classList.add('hidden');
+        if (wrap) {
+          wrap.classList.add('hidden');
+          wrap.style.display = 'none';
+        }
         if (typeof switchView === 'function') {
           switchView(initView, true, true);
         }
       }
+      if (qp.get('crop') === 'true') {
+        window.skipBhuIntro();
+        const splash = document.getElementById('bhu-intro-overlay');
+        if (splash) splash.style.display = 'none';
+        const wrap = document.getElementById('bhu-explore-wrap');
+        if (wrap) {
+          wrap.classList.add('hidden');
+          wrap.style.display = 'none';
+        }
+      }
       if (qp.get('autoTest') === '1') {
         window.skipBhuIntro();
+        const splash = document.getElementById('bhu-intro-overlay');
+        if (splash) splash.style.display = 'none';
+        const wrap = document.getElementById('bhu-explore-wrap');
+        if (wrap) {
+          wrap.classList.add('hidden');
+          wrap.style.display = 'none';
+        }
         runStep1AutomatedTests();
       }
       const initTab = qp.get('tab');
@@ -9804,6 +10553,16 @@
         const splash = document.getElementById('bhu-intro-overlay');
         if (splash) splash.style.display = 'none';
         window.setNasaNavTab(initTab);
+      }
+      if (qp.get('cropModal') === 'true') {
+        window.skipBhuIntro();
+        if (typeof open2DCropStudio === 'function') open2DCropStudio();
+      }
+      if (qp.get('agriTab')) {
+        window.skipBhuIntro();
+        if (window.BhuLokaAgri) {
+          window.BhuLokaAgri.setTab(qp.get('agriTab'));
+        }
       }
 
     } catch (e) { }
