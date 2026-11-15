@@ -1,5 +1,5 @@
 # BHU LOKA (भूलोक) · Dancing with the SARs
-
+<img width="1461" height="820" alt="image" src="https://github.com/user-attachments/assets/8edad3ee-72f4-4035-8a97-aa90c676a495" />
 
 ## Sovereign Dual-Date SAR Flood Inundation, Urban Corner-Reflector Mapping & Spatial Machine Learning Workstation
 
@@ -15,6 +15,7 @@
 [![Data Provenance](https://img.shields.io/badge/Provenance-ASF%20Vertex%20%2F%20NASA%20Earthdata-blue.svg)](https://search.asf.alaska.edu/)
 
 ---
+<img width="1467" height="820" alt="image" src="https://github.com/user-attachments/assets/04ae7501-3aa7-4d8a-a19b-6426189e5412" />
 
 
 ## Research Team & Academic Authorship
@@ -44,7 +45,7 @@
 | **Trained Spatial ML Checkpoints** | [`bhu_loka_spatial_rf_v1.joblib`](./Models/Checkpoints/bhu_loka_spatial_rf_v1.joblib) & [`mera_pehle_model.joblib`](./mera_pehle_model.joblib) | 7-feature & 3-feature trained Random Forest classifiers with 5-fold spatial cross-validation |
 
 ---
-
+<img width="1460" height="815" alt="image" src="https://github.com/user-attachments/assets/b8bbf125-f391-4ff4-935e-9b6eada52db5" />
 
 ## 1.  Abstract
 
@@ -200,9 +201,10 @@ The repository contains two trained, production-ready machine learning checkpoin
 Users can test these models interactively via the **`🔮 PREDICT AREA (ML)`** button on the workstation top subbar:
 * Select from 8 benchmark presets or input custom coordinates.
 * Get instant inundation probability, predicted inundated area ($km^2$), physical scattering classification, and Tree-SHAP attribution bars.
-* Click **`🗺️ View on 3D Terrain`** to highlight the flood prediction directly onto the 3D Copernicus DEM relief.
+* Click **` View on 3D Terrain`** to highlight the flood prediction directly onto the 3D Copernicus DEM relief.
 
 ---
+<img width="1461" height="817" alt="image" src="https://github.com/user-attachments/assets/dfa6adeb-8444-4277-a1e5-a10a5c19cc18" />
 
 ## 6. Software Architecture & Technology Stack
 
@@ -319,6 +321,9 @@ If you use BHU LOKA, its empirical SAR methodology, spatial machine learning mod
 ```
 
 ---
+<img width="1460" height="768" alt="image" src="https://github.com/user-attachments/assets/b737f31c-cf9e-43ab-bbef-486fec786c2f" />
+<img width="1460" height="815" alt="image" src="https://github.com/user-attachments/assets/8c9d59bf-795d-4151-ba35-2368b9b251bc" />
+
 
 ##  License & Open-Source Sovereignty
 
