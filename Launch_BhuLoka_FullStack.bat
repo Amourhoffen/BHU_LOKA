@@ -19,12 +19,12 @@ if exist "%ROOT%BhuLoka_Chromium_App\node_modules\.bin\electron.cmd" (
 )
 
 if exist "C:\Program Files\Google\Chrome\Application\chrome.exe" (
-    start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --app="file:///%TARGET_HTML:\=/%" --window-size=1600,960
+    start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --app="http://127.0.0.1:8000/" --window-size=1600,960
     goto :eof
 )
 
 if exist "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" (
-    start "" "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --app="file:///%TARGET_HTML:\=/%" --window-size=1600,960
+    start "" "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --app="http://127.0.0.1:8000/" --window-size=1600,960
     goto :eof
 )
 

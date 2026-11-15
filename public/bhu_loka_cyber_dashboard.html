@@ -30,24 +30,28 @@
   <script src="Assets/vendor/bhu_loka_flood_intel.js"></script>
   <!-- Firebase App & Analytics SDK (Project: bhu-loka) -->
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
-    const firebaseConfig = {
-      apiKey: "AIzaSyAAkKgYx1u-1KwTK3C4FVxYjamx2newU3I",
-      authDomain: "bhu-loka.firebaseapp.com",
-      projectId: "bhu-loka",
-      storageBucket: "bhu-loka.firebasestorage.app",
-      messagingSenderId: "841379276119",
-      appId: "1:841379276119:web:89dd6cbcf7137e358f4a12",
-      measurementId: "G-BFPHE50VT0"
-    };
-    try {
-      const fbApp = initializeApp(firebaseConfig);
-      const fbAnalytics = getAnalytics(fbApp);
-      window.__FIREBASE_APP__ = fbApp;
-      window.__FIREBASE_ANALYTICS__ = fbAnalytics;
-    } catch (e) {
-      console.warn("Firebase initialization skipped or offline:", e);
+    if (typeof window !== 'undefined' && window.location && (window.location.protocol === 'http:' || window.location.protocol === 'https:')) {
+      import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js").then(({ initializeApp }) => {
+        import("https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js").then(({ getAnalytics }) => {
+          const firebaseConfig = {
+            apiKey: "AIzaSyAAkKgYx1u-1KwTK3C4FVxYjamx2newU3I",
+            authDomain: "bhu-loka.firebaseapp.com",
+            projectId: "bhu-loka",
+            storageBucket: "bhu-loka.firebasestorage.app",
+            messagingSenderId: "841379276119",
+            appId: "1:841379276119:web:89dd6cbcf7137e358f4a12",
+            measurementId: "G-BFPHE50VT0"
+          };
+          try {
+            const fbApp = initializeApp(firebaseConfig);
+            const fbAnalytics = getAnalytics(fbApp);
+            window.__FIREBASE_APP__ = fbApp;
+            window.__FIREBASE_ANALYTICS__ = fbAnalytics;
+          } catch (e) {
+            console.warn("Firebase initialization skipped or offline:", e);
+          }
+        }).catch(() => {});
+      }).catch(() => {});
     }
   </script>
   <script>
@@ -1273,11 +1277,11 @@
         <div class="flex flex-wrap items-center justify-between gap-1 pb-1 border-b border-slate-800 shrink-0">
           <div class="inline-flex flex-wrap bg-[#070b12] p-0.5 rounded border border-slate-800 gap-0.5">
             <button type="button" id="btn-world" onclick="switchView('world')" title="World Earth + Orbital Tracking"
-              class="mono text-[11px] font-semibold px-2 py-0.5 text-slate-400 hover:text-slate-200 border-b-2 border-transparent transition">
+              class="mono text-[11px] font-semibold px-2 py-0.5 border-b-2 border-[#2d9cdb] text-slate-100 transition">
               World
             </button>
             <button type="button" id="btn-india" onclick="switchView('india')" title="Sovereign India (36 States/UTs)"
-              class="mono text-[11px] font-semibold px-2 py-0.5 text-slate-100 border-b-2 border-[#2d9cdb] transition">
+              class="mono text-[11px] font-semibold px-2 py-0.5 text-slate-400 hover:text-slate-200 border-b-2 border-transparent transition">
               India 36
             </button>
             <button type="button" id="btn-bihar" onclick="switchView('bihar')" title="Bihar 38 Districts"
@@ -4065,13 +4069,13 @@
     const camera = new THREE.PerspectiveCamera(45, initW / initH, 0.1, 1000);
 
     // ── CINEMATIC STARTUP IDENTITY ANIMATION & CAMERA TRAJECTORY (R2) ──
-    const WORKSTATION_CAM_POS = new THREE.Vector3(0, 10, 22); // Active workstation vector (27, 34 ref)
+    const WORKSTATION_CAM_POS = new THREE.Vector3(0, 8, 22); // Active workstation vector
     const DEEP_SPACE_CAM_POS = new THREE.Vector3(0, 55, 95);
     const INTRO_DURATION_MS = 2300; // 2.3 seconds (smooth 2.0 to 2.5s budget)
     let isIntroGliding = false;
     let introStartTime = 0;
     let targetCameraDistance = 22;
-    let targetCameraY = 10;
+    let targetCameraY = 8;
 
     const prefersReducedMotion = Boolean(
       typeof window !== 'undefined' &&
@@ -4180,7 +4184,7 @@
     }
     if (typeof ResizeObserver !== 'undefined') new ResizeObserver(scheduleResizeRenderer).observe(container);
 
-    let activeMode = 'india';
+    let activeMode = 'world';
     let wireframeActive = false;
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
@@ -4212,12 +4216,11 @@
     let humanAnomalyGroup = null;
     let humanActiveLayer = 'all';
     human3dGroup.visible = false;
-    worldGroup.visible = false;
-    indiaGroup.visible = true;
+    worldGroup.visible = true;
+    indiaGroup.visible = false;
     biharGroup.visible = false;
     terrainGroup.visible = false;
     hologramGroup.visible = false;
-    scene.add(worldGroup, indiaGroup, biharGroup, terrainGroup, hologramGroup);
     solarGroup.visible = false;
     scene.add(worldGroup, indiaGroup, biharGroup, terrainGroup, hologramGroup, solarGroup, human3dGroup);
 
@@ -4363,27 +4366,48 @@
     let holoRingOuter = null, holoRingInner = null, holoScanBeam = null;
 
     if (D && D.india_states && D.india_states.features) {
-      const indiaGrid = new THREE.GridHelper(44, 22, 0x1e3a5f, 0x0f172a);
-      indiaGrid.position.y = -0.35;
+      // Solid Illuminated Cyber Pedestal for India 36 Workstation Table
+      const pedestalGeo = new THREE.CylinderGeometry(18.5, 19.5, 0.4, 48);
+      const pedestalMat = new THREE.MeshStandardMaterial({
+        color: 0x07111e,
+        roughness: 0.85,
+        metalness: 0.2,
+        transparent: true,
+        opacity: 0.88
+      });
+      const pedestalMesh = new THREE.Mesh(pedestalGeo, pedestalMat);
+      pedestalMesh.position.y = -0.45;
+      indiaHoloGridGroup.add(pedestalMesh);
+
+      const pedestalRim = new THREE.Mesh(
+        new THREE.RingGeometry(18.4, 18.7, 64),
+        new THREE.MeshBasicMaterial({ color: 0x38bdf8, side: THREE.DoubleSide, transparent: true, opacity: 0.65 })
+      );
+      pedestalRim.rotation.x = Math.PI / 2;
+      pedestalRim.position.y = -0.24;
+      indiaHoloGridGroup.add(pedestalRim);
+
+      const indiaGrid = new THREE.GridHelper(44, 22, 0x0284c7, 0x0f172a);
+      indiaGrid.position.y = -0.22;
       indiaHoloGridGroup.add(indiaGrid);
 
       holoRingOuter = new THREE.Mesh(
         new THREE.RingGeometry(15.2, 15.5, 96),
-        new THREE.MeshBasicMaterial({ color: 0x38bdf8, side: THREE.DoubleSide, transparent: true, opacity: 0.45 })
+        new THREE.MeshBasicMaterial({ color: 0x38bdf8, side: THREE.DoubleSide, transparent: true, opacity: 0.65 })
       );
-      holoRingOuter.rotation.x = Math.PI / 2; holoRingOuter.position.y = -0.24;
+      holoRingOuter.rotation.x = Math.PI / 2; holoRingOuter.position.y = -0.20;
       indiaHoloGridGroup.add(holoRingOuter);
 
       holoRingInner = new THREE.Mesh(
         new THREE.RingGeometry(12.8, 13.0, 64),
-        new THREE.MeshBasicMaterial({ color: 0x10b981, side: THREE.DoubleSide, transparent: true, opacity: 0.45 })
+        new THREE.MeshBasicMaterial({ color: 0x10b981, side: THREE.DoubleSide, transparent: true, opacity: 0.65 })
       );
-      holoRingInner.rotation.x = Math.PI / 2; holoRingInner.position.y = -0.18;
+      holoRingInner.rotation.x = Math.PI / 2; holoRingInner.position.y = -0.16;
       indiaHoloGridGroup.add(holoRingInner);
 
       holoScanBeam = new THREE.Mesh(
         new THREE.BoxGeometry(29, 0.05, 0.18),
-        new THREE.MeshBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.55 })
+        new THREE.MeshBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.75 })
       );
       holoScanBeam.position.set(0, 1.4, 0);
       indiaHoloGridGroup.add(holoScanBeam);
@@ -4402,7 +4426,7 @@
           if (allowFill && (k % 2 === 0 || k === ring.length - 1)) shapePts.push(new THREE.Vector2(px, -pz));
         }
         const colHex = isOuterComp ? 0x7dd3fc : (isBihar ? 0xf43f5e : (isCrown ? 0x34d399 : 0x38bdf8));
-        const op = isOuterComp ? 1.0 : (isBihar ? 0.98 : (isCrown ? 0.95 : 0.70));
+        const op = isOuterComp ? 1.0 : (isBihar ? 0.98 : (isCrown ? 0.95 : 0.85));
         const lineObj = new THREE.Line(
           new THREE.BufferGeometry().setFromPoints(ptsTop),
           new THREE.LineBasicMaterial({ color: colHex, transparent: true, opacity: op })
@@ -4416,8 +4440,8 @@
             const shape = new THREE.Shape(shapePts);
             const extrudeGeo = new THREE.ExtrudeGeometry(shape, { depth: prismDepth, bevelEnabled: false, curveSegments: 1 });
             extrudeGeo.rotateX(-Math.PI / 2);
-            const fillOp = isBihar ? 0.34 : (isCrown ? 0.24 : 0.14);
-            const fillCol = isBihar ? 0xf43f5e : (isCrown ? 0x10b981 : 0x0ea5e9);
+            const fillOp = isBihar ? 0.65 : (isCrown ? 0.55 : 0.42);
+            const fillCol = isBihar ? 0xf43f5e : (isCrown ? 0x10b981 : 0x0284c7);
             const mesh = new THREE.Mesh(extrudeGeo, new THREE.MeshBasicMaterial({ color: fillCol, side: THREE.DoubleSide, transparent: true, opacity: fillOp, depthWrite: false }));
             mesh.position.y = 0.05;
             mesh.userData = { stateName: stateTag };
@@ -5225,6 +5249,78 @@
     earthSystemGroup.add(moonOrbitGroup);
 
     worldGroup.add(earthSystemGroup);
+
+    // Instant Procedural Planetary Canvas Texture (guarantees vibrant Earth on file:/// and offline)
+    function createProceduralEarthCanvas() {
+      const c = document.createElement('canvas');
+      c.width = 1024; c.height = 512;
+      const ctx = c.getContext('2d');
+      if (!ctx) return c;
+      const oceanGrad = ctx.createLinearGradient(0, 0, 0, 512);
+      oceanGrad.addColorStop(0, '#0c2340');
+      oceanGrad.addColorStop(0.5, '#0f3a68');
+      oceanGrad.addColorStop(1, '#0c2340');
+      ctx.fillStyle = oceanGrad;
+      ctx.fillRect(0, 0, 1024, 512);
+
+      // Coordinate Grid Lines
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.14)';
+      ctx.lineWidth = 1;
+      for (let x = 0; x < 1024; x += 64) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, 512); ctx.stroke();
+      }
+      for (let y = 0; y < 512; y += 42) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(1024, y); ctx.stroke();
+      }
+
+      // Continents (Africa, Eurasia, India, Americas, Australia)
+      ctx.fillStyle = '#166534';
+      ctx.beginPath();
+      ctx.ellipse(540, 260, 75, 110, 0.1, 0, Math.PI * 2);
+      ctx.ellipse(535, 140, 55, 45, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#15803d';
+      ctx.beginPath();
+      ctx.ellipse(710, 160, 130, 80, -0.1, 0, Math.PI * 2);
+      ctx.ellipse(745, 230, 45, 55, 0.2, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Sovereign India Subcontinent (Golden Green Highlight)
+      ctx.fillStyle = '#22c55e';
+      ctx.beginPath();
+      ctx.moveTo(690, 205);
+      ctx.lineTo(745, 205);
+      ctx.lineTo(720, 275);
+      ctx.closePath();
+      ctx.fill();
+
+      // Americas
+      ctx.fillStyle = '#166534';
+      ctx.beginPath();
+      ctx.ellipse(260, 160, 95, 75, -0.2, 0, Math.PI * 2);
+      ctx.ellipse(320, 330, 55, 95, 0.25, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Australia
+      ctx.beginPath();
+      ctx.ellipse(840, 360, 45, 35, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Polar Ice Caps
+      ctx.fillStyle = 'rgba(240, 249, 255, 0.9)';
+      ctx.fillRect(0, 0, 1024, 28);
+      ctx.fillRect(0, 484, 1024, 28);
+      return c;
+    }
+
+    // Apply procedural texture immediately so 3D Earth renders vibrantly from frame 0
+    try {
+      const instantEarthTex = new THREE.CanvasTexture(createProceduralEarthCanvas());
+      earthMat.map = instantEarthTex;
+      earthMat.color.setHex(0xffffff);
+      earthMat.needsUpdate = true;
+    } catch (e) { }
 
     // Load genuine NASA Blue Marble & Copernicus Topology bump map (local cached instant + CDN fallback)
     const texLoader = new THREE.TextureLoader();
@@ -8644,6 +8740,13 @@
         window.BhuLokaIndiaIntel.renderThreeOverlays();
       }
       camera.lookAt(0, 0, 0);
+    }
+
+    // Explicit initial view synchronization to World 3D Earth
+    try {
+      switchView('world', false, true);
+    } catch (e) {
+      console.warn('Initial switchView error:', e);
     }
 
     function toggleWireframeMode() {
