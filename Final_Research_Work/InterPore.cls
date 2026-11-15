@@ -16,7 +16,7 @@
 \RequirePackage{geometry}
 \geometry{top=2.2cm, bottom=2.2cm, left=2.0cm, right=2.0cm}
 \RequirePackage{amsmath,amssymb,amsfonts}
-\RequirePackage{graphicx}
+\RequirePackage[final]{graphicx}
 \RequirePackage{xcolor}
 \RequirePackage{hyperref}
 \RequirePackage{booktabs}
