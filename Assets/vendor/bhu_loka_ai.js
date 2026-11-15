@@ -576,6 +576,45 @@
       tools.push({ name: 'clear_overlays', args: { target: 'all_user_shapes' } });
     }
 
+    // 2D Cropper & 3D Extrusion Studio
+    if (q.includes('crop') || q.includes('katna') || q.includes('qgis') || q.includes('bounding box') || q.includes('3d extrud') || q.includes('terrain mesh')) {
+      if (typeof window.open2DCropStudio === 'function') {
+        setTimeout(() => window.open2DCropStudio(), 300);
+      }
+      tools.push({ name: 'open_2d_cropper_studio', args: { capability: 'Copernicus 30m DEM Bounding Box 3D Extrusion' } });
+    }
+
+    // Flood Model Intelligence Modal (Dancing with the SARs)
+    if (q.includes('dancing') || q.includes('model intel') || q.includes('omission') || q.includes('sbcv') || q.includes('evaluat') || q.includes('accuracy') || q.includes('confusion')) {
+      let tab = 'overview';
+      if (q.includes('evaluat') || q.includes('accuracy') || q.includes('metric') || q.includes('f1') || q.includes('sbcv') || q.includes('confusion')) tab = 'performance';
+      else if (q.includes('horizon') || q.includes('lead time') || q.includes('forecast') || q.includes('saal') || q.includes('year')) tab = 'horizon';
+      else if (q.includes('omission') || q.includes('blindspot') || q.includes('un-spider') || q.includes('specular') || q.includes('double bounce')) tab = 'omission';
+      else if (q.includes('shelter') || q.includes('evacuat') || q.includes('safe place') || q.includes('ridge')) tab = 'shelters';
+      else if (q.includes('citation') || q.includes('paper') || q.includes('dossier') || q.includes('nasa')) tab = 'citations';
+
+      if (typeof window.openModelIntelModal === 'function') {
+        setTimeout(() => window.openModelIntelModal(tab), 300);
+      }
+      tools.push({ name: 'open_flood_model_intel', args: { activeTab: tab, challenge: 'Dancing with the SARs (NASA 2026)' } });
+    }
+
+    // NASA Presentation Deck (9 Slides)
+    if (q.includes('presentation') || q.includes('ppt') || q.includes('slide') || q.includes('present karna') || q.includes('show ppt')) {
+      if (typeof window.openPresentationDeck === 'function') {
+        setTimeout(() => window.openPresentationDeck(), 300);
+      }
+      tools.push({ name: 'launch_presentation_deck', args: { deck: 'BHU_LOKA_Presentation_Amour_Hoffen.html', totalSlides: 9 } });
+    }
+
+    // 3D Spectral & Color Meaning (Pink Vegetation & Blue Beacon)
+    if (q.includes('pink') || q.includes('blue') || q.includes('gulabi') || q.includes('neela') || q.includes('color meaning') || q.includes('colour') || q.includes('blum') || q.includes('point')) {
+      if (typeof window.showHoloPointTelemetry === 'function') {
+        setTimeout(() => window.showHoloPointTelemetry({ name: 'Vidyapati Nagar Core', lat: 25.6420, lon: 85.8360, elev: 45.5 }), 300);
+      }
+      tools.push({ name: 'inspect_spectral_legend', args: { activeSensor: 'NIR Band 8 / FLIR Thermal', target: 'Vidyapati Nagar, Bihar' } });
+    }
+
     return tools;
   }
 
@@ -630,6 +669,126 @@
           sourceTag: 'BHU LOKA Real-Time Mandi Radar + ICAR-IARI Agronomic Standards'
         };
       }
+    }
+
+    // 0.15 3D Terrain Spectral & Color Meaning (Pink Vegetation & Blue Beacon)
+    if (q.includes('pink') || q.includes('blue') || q.includes('gulabi') || q.includes('neela') || q.includes('kya mtlb') || q.includes('color meaning') || q.includes('colour') || q.includes('blum') || q.includes('point')) {
+      if (lang === 'hi' || lang === 'hinglish') {
+        return {
+          answer: `3D टेरेन और उपग्रह मानचित्र पर रंगों का वैज्ञानिक अर्थ (Remote Sensing & FLIR Thermal Audit):\n\n1. 🌸 **PINK / MAGENTA रंग का कारण (फसलें व बायोमास):**\n   • आपके दृश्य में **FLIR (Forward-Looking Infrared)** थर्मल शेडर चालू है।\n   • उपग्रह रिमोट सेंसिंग में स्वस्थ रबी फसलें (मक्का, गेहूं, सरसों) सूर्य के प्रकाश के **Near-Infrared (NIR - Band 8)** को अत्यधिक परावर्तित (Reflect) करती हैं।\n   • थर्मल शेडर व NIR फॉल्स-कलर में यह उच्च क्लोरोफिल बायोमास **चमकीले गुलाबी/मैजेंटा** रंग में चमकता है। यह दर्शाता है कि विद्यापति नगर का यह क्षेत्र सघन एवं उपजाऊ फसलों से आच्छादित है।\n\n2. 🔵 **BLUE (नीला) पिन व निशानों का मतलब:**\n   • **ब्लू पिन / सर्कल:** यह आपका **रीयल-टाइम जीपीएस नेविगेशन एंकर (Live Sensor Tracking Beacon)** है। हमने इसमें 1 Hz लाइव पल्सिंग और टैक्टिकल टेलीमेट्री HUD जोड़ दिया है।\n   • **गहरे नीले/काले जलाशय (धमनी पोखर - Dhamani Pokhar):** पानी माइक्रोवेव तरंगों को आईने की तरह आगे उछाल देता है (Specular Forward Scatter), इसलिए जल निकाय गहरे नीले/काले दिखते हैं।\n\n3. ⚪ **WHITE / GREY:** मणियारपुर पुल (Maniyarpur Bridge), पक्की सड़कें और कंक्रीट निर्माण।\n4. 🟢 **GREEN PINS:** सार्वजनिक तालाब व पोखर (जैसे धमनी पोखर) और सुरक्षित प्राकृतिक कछार।\n5. 🏥 **CYAN/RED CROSS:** PHC विद्यापतिनगर (प्राथमिक स्वास्थ्य केंद्र - आपातकालीन अस्पताल)।`,
+          citations: [GROUNDED_KNOWLEDGE.elevation, GROUNDED_KNOWLEDGE.meteorology],
+          sourceTag: "Copernicus Sentinel-2 NIR Band 8 + God's Eye FLIR Thermal Shader + GPS RTK Telemetry"
+        };
+      } else {
+        return {
+          answer: `Scientific Geomorphic & Spectral Meaning of 3D Terrain Colors:\n\n1. 🌸 **PINK / MAGENTA Areas (Active Crop Canopy & FLIR Thermal):**\n   • The **FLIR (Forward-Looking Infrared)** thermal shader is currently active in your viewport.\n   • In satellite remote sensing, healthy agricultural vegetation (Rabi maize, wheat) strongly reflects **Near-Infrared (NIR - Band 8)** radiation due to high leaf mesophyll cell wall scattering.\n   • Under false-color infrared composites and FLIR shaders, dense photosynthetic crop biomass displays as vivid **Pink / Magenta**.\n\n2. 🔵 **BLUE Pins & Markers (Live GPS Tracking & Pokhars):**\n   • **Blue Dot / Pin:** Your active **Real-Time GPS Target Track Beacon**, now coupled with live 1 Hz tactical telemetry streaming.\n   • **Dark / Deep Blue Bodies (Dhamani Pokhar):** Standing water reflects radar and optical energy away in specular forward scatter, rendering ponds dark blue or black.\n\n3. ⚪ **WHITE / GREY Corridors:** Concrete transport infrastructure (Maniyarpur Bridge), metalled roads, and brick settlements.\n4. 🟢 **GREEN Badges:** Community reservoirs, open ground, and elevated safe terraces.\n5. 🏥 **CYAN/RED Crosses:** Primary Health Centres (PHC Vidyapatinagar - Emergency medical staging hub).`,
+          citations: [GROUNDED_KNOWLEDGE.elevation, GROUNDED_KNOWLEDGE.meteorology],
+          sourceTag: "Copernicus Sentinel-2 NIR Band 8 + God's Eye FLIR Thermal Shader + GPS RTK Telemetry"
+        };
+      }
+    }
+
+    // 0.2 Scientific Reason for Patna Flood & Saucer Basin Topography
+    if (q.includes('patna flood kyu') || q.includes('baarh kyu') || q.includes('saucer bowl') || q.includes('why patna flood') || q.includes('flood reason') || q.includes('deluge reason') || q.includes('depression sink')) {
+      if (lang === 'hi') {
+        return {
+          answer: `पटना में विनाशकारी बाढ़ का वैज्ञानिक भू-आकृतिक कारण (Scientific Physical Explanation - Copernicus DEM & SAR Audit):\n\n1. **तश्तरीनुमा भू-आकृति ('Saucer Basin' Topography):**\n   • पटना तीन प्रमुख नदियों के बीच घिरा है: उत्तर में गंगा, पश्चिम में सोन, और दक्षिण-पूर्व में पुनपुन।\n   • उत्तरी गंगा तट का प्राकृतिक लेवी बांध 53-55m ऊंचा है, जबकि आंतरिक दक्षिणी वार्ड (राजेंद्र नगर, कंकड़बाग) 44-48m के गहरे गड्ढे (Concave Bowl) में स्थित हैं।\n\n2. **स्लुइस गेट बंदी एवं बैकफ्लो (Sluice Gate Lock):**\n   • जब गंगा नदी खतरे के निशान से ऊपर बहती है, तो शहर का पानी नदी में जाने वाले स्लुइस गेट्स को बंद कर दिया जाता है ताकि गंगा का पानी शहर में न घुसे।\n   • इससे सारा सतही वर्षा जल (Runoff) शहर के अंदर ही कैद हो जाता है और केवल सैदपुर/कंकड़बाग पंपिंग स्टेशनों पर निर्भर हो जाता है।\n\n3. **33.15% भूभाग अवसाद सिंक में (Copernicus GLO-30 DEM Discovery):**\n   • हमारे 30m DEM विश्लेषण से पता चलता है कि पटना नगर निगम (PMC) का 47.24 km² (33.15%) क्षेत्रफल प्राकृतिक डिप्रेशन सिंक है।\n   • 2019 में 72 घंटे में 342.5mm बारिश हुई और संप पंप डूबने से 9 दिनों तक 49,380 निवासी जलमग्न सिंक में फंसे रहे।\n\n*निष्कर्ष:* जब तक शहर का ढलान प्राकृतिक रूप से उत्तर से दक्षिण की ओर नीचा रहेगा, तब तक बिना हाई-कैपेसिटी लिफ्ट ड्रेनेज के निचले वार्ड्स में जलभराव अपरिहार्य है। सुरक्षित क्षेत्र: बिहटा (>55m) और बेली रोड (>52m)।`,
+          citations: [GROUNDED_KNOWLEDGE.elevation, GROUNDED_KNOWLEDGE.sar_flood],
+          sourceTag: 'Copernicus 30m GLO-30 DEM + Sentinel-1 Bimodal SAR Research Track'
+        };
+      } else {
+        return {
+          answer: `Scientific Geomorphic Root Causes of Patna Urban Inundation (NASA Space Apps Research Track):\n\n1. **The 'Saucer Basin' Morphology:**\n   • Patna is geographically entrapped between the Ganges (North), Son (West), and Punpun (South-East).\n   • The northern riverfront embankment stands high at 53–55m a.m.s.l., creating an elevated lip overlooking internal southern residential bowls dipping down to 44–48m a.m.s.l. (Rajendra Nagar, Kankarbagh).\n\n2. **Hydraulic Sluice Gate Locking:**\n   • During peak monsoons, Ganges stages rise above municipal danger levels. Gravity drainage outfalls are sealed to prevent fluvial intrusion, trapping 100% of urban storm runoff inside the bowl.\n   • Drainage becomes entirely dependent on mechanical sump pump stations (Saidpur, Pahari), which fail when electrical switchgears submerge.\n\n3. **Copernicus GLO-30 DEM Topographic Sinks:**\n   • D8 flow accumulation confirms that 47.24 km² (33.15%) of the Patna Municipal Corporation (PMC) sits in natural concave depression sinks.\n   • In September 2019 (342.5mm rain in 72h), 49,380 residents were trapped in joint flood-sink overlap for >9 days.\n\n*Safe Resettlement Ridges:* Bihta / IIT Patna Corridor (55.2m a.m.s.l., 0.0% flood risk) and Bailey Road Ridge (52.8m a.m.s.l.).`,
+          citations: [GROUNDED_KNOWLEDGE.elevation, GROUNDED_KNOWLEDGE.sar_flood],
+          sourceTag: 'Copernicus 30m GLO-30 DEM + Sentinel-1 Bimodal SAR Research Track'
+        };
+      }
+    }
+
+    // 0.3 Dancing with the SARs: Model Accuracy, Bimodal SAR & 95.98% Omission Error
+    if (q.includes('dancing') || q.includes('sars') || q.includes('model accuracy') || q.includes('kitta accurate') || q.includes('omission') || q.includes('double-bounce') || q.includes('double bounce') || q.includes('specular') || q.includes('f1 score') || q.includes('sbcv')) {
+      if (lang === 'hi') {
+        return {
+          answer: `NASA Space Apps 2026 'Dancing with the SARs' - मॉडल अनुसंधान व सटीकता ऑडिट:\n\n1. **मॉडल ने ऐतिहासिक डेटा से क्या सीखा?**\n   • पारंपरिक UN-SPIDER चेंज डिटेक्शन केवल पानी के काले दिखने (Specular Drop: Δσ⁰ ≤ -2.0 dB) को बाढ़ मानता है।\n   • हमारे मॉडल ने सीखा कि शहर की गलियों में खड़ी कंक्रीट/ईंट की दीवारें और पानी मिलकर **90° डाईहेड्रल कॉर्नर रिफ्लेक्टर** बनाते हैं। इससे रडार सिग्नल कमजोर होने के बजाय **मजबूत (+1.5 dB से ऊपर)** उछलता है (Urban Double-Bounce)!\n\n2. **तकनीकी सटीकता व 95.98% ओमिशन एरर:**\n   • पारंपरिक UN-SPIDER ने पटना में केवल **4.01 km² (2.99%)** बाढ़ पकड़ी।\n   • BHU LOKA के बाइमोडल मॉडल ने **99.60 km² (74.4%)** वास्तविक जलमग्न क्षेत्र को पुनर्प्राप्त किया — यानी पुराने मॉडल 95.98% शहरी बाढ़ को 'मिस' कर रहे थे!\n   • 60,000 पिक्सल Spatial Block Cross-Validation (SBCV) में मॉडल का **ROC-AUC = 0.7498 ± 0.0497** और **F1 = 0.6530** है।\n\n3. **ईमानदार AI सत्यापन (SBCV Penalty):**\n   • जब रैंडम स्प्लिट किया गया तो R² = 0.9688 (अत्यधिक आशावादी) आया। लेकिन जब 5 अलग-अलग भौगोलिक ब्लॉकों पर परखा गया तो वास्तविक सामान्यीकरण क्षमता **R² = 0.8258 (-14.8% पेनल्टी)** रही, जिससे शहरी कोर की जटिलता स्पष्ट हुई।\n\n*शीर्ष पर '🔬 MODEL EVALUATION' बटन दबाकर लाइव कन्फ्यूजन मैट्रिक्स और आरओसी कर्व देखें।*`,
+          citations: [GROUNDED_KNOWLEDGE.sar_flood, GROUNDED_KNOWLEDGE.elevation],
+          sourceTag: 'NASA Space Apps 2026: Dancing with the SARs Submission Suite'
+        };
+      } else {
+        return {
+          answer: `NASA Space Apps Challenge 2026: 'Dancing with the SARs' — Scientific Model Audit:\n\n1. **What the Model Learned from Historical SAR Physics:**\n   • Standard satellite rapid mapping (UN-SPIDER) assumes open floodwaters scatter microwave energy away (Specular Drop: Δσ⁰ ≤ -2.0 dB).\n   • Our research identified that dense urban street corridors act as **90° dihedral corner retro-reflectors**, bouncing radar energy off standing water into building facades and directly back to the sensor (Double-Bounce: Δσ⁰ ≥ +1.5 dB)!\n\n2. **Benchmarked Accuracy & 95.98% Omission Error:**\n   • UN-SPIDER Specular Threshold detected only **4.01 km² (2.99%)** within the Patna Municipal boundary.\n   • BHU LOKA Bimodal SAR Physics recovered **99.60 km² (74.4%)** of inundated urban fabric, exposing a **95.98% urban flood omission error** in standard disaster mapping!\n   • Multi-Sensor 60,000-pixel SBCV: **Mean ROC-AUC = 0.7498 ± 0.0497** (F1 = 0.6530, Recall = 0.7180).\n\n3. **Spatial AI Rigor (Roberts et al. 2017):**\n   • Random 5-fold CV inflated R² to 0.9688 via spatial autocorrelation data leakage.\n   • 5-Block Spatial Block Cross-Validation (SBCV) revealed true out-of-block performance: **R² = 0.8258 (-14.8% spatial penalty)**, with the Central Urban Core (Block 2) dropping to R² = 0.5266.\n\n*Click the '🔬 MODEL EVALUATION' badge at the top to inspect the interactive confusion matrix and ROC curves.*`,
+          citations: [GROUNDED_KNOWLEDGE.sar_flood, GROUNDED_KNOWLEDGE.elevation],
+          sourceTag: 'NASA Space Apps 2026: Dancing with the SARs Submission Suite'
+        };
+      }
+    }
+
+    // 0.4 Forecast Horizon & Zero-Hallucination Policy (24h–72h vs 20 Years)
+    if (q.includes('kitte saal') || q.includes('kitne saal') || q.includes('forecast horizon') || q.includes('prediction kitne') || q.includes('how far ahead') || q.includes('20 year') || q.includes('hallucination')) {
+      if (lang === 'hi') {
+        return {
+          answer: `पूर्वानुमान सीमा (Forecast Horizon) एवं शून्य-मतिभ्रम नीति (Zero Hallucination):\n\n• **सत्यापित भौतिक सीमा: 24 से 72 घंटे (Validated 24h–72h Lead Time)**\n  हमारा मॉडल उपग्रह रडार पास, पूर्व-मानसून मिट्टी के तापमान (MODIS LST >40°C), अवशिष्ट मिट्टी की नमी, और 72-घंटे के वर्षा पूर्वानुमान को जोड़कर **24 से 72 घंटे का वास्तविक समय चेतावनी** प्रदान करता है। नागरिक सुरक्षा और एनडीआरएफ के बचाव अभियान के लिए यही समय-सीमा वैज्ञानिक रूप से सटीक और जीवन रक्षक है।\n\n• **20 साल आगे का पूर्वानुमान क्यों अमान्य है? (Why No 20-Year Speculation):**\n  मौसम और मानसूनी डिप्रेशन अव्यवस्थित (Chaotic) वायुमंडलीय प्रक्रियाएं हैं। कोई भी एआई मॉडल जो 10 या 20 साल आगे की विशिष्ट तारीख पर पटना की गली में बाढ़ का दावा करता है, वह विशुद्ध वैज्ञानिक मतिभ्रम (Scientific Hallucination) है।\n\n• **दीर्घकालिक विश्लेषण केवल जलवायु सुभेद्यता (Vulnerability Projection) है:**\n  हम 20-वर्षीय भविष्यवाणियों के बजाय 30-वर्षीय भू-आकृतिक सिंक (Copernicus DEM) और शहरीकरण दर के आधार पर 'स्ट्रक्चरल वल्नरेबिलिटी इंडेक्स' (ULSI) प्रदान करते हैं, जिसे नगर नियोजन में उपयोग किया जाना चाहिए।`,
+          citations: [GROUNDED_KNOWLEDGE.elevation, GROUNDED_KNOWLEDGE.meteorology],
+          sourceTag: 'WMO & Copernicus Standards for Operational Disaster Forecasting'
+        };
+      } else {
+        return {
+          answer: `Forecast Horizon & Zero-Hallucination Scientific Policy:\n\n• **Scientifically Validated Operational Horizon: 24 to 72 Hours**\n  The model couples multi-temporal Sentinel-1 SAR overpasses, antecedent MODIS thermal crusting (>40°C), residual soil moisture, and short-range numerical precipitation pulses to deliver **24h to 72h physics-bounded early warnings**. This lead time is actionable for civil protection, pump deployment, and neighborhood evacuation.\n\n• **Rejection of Speculative 20-Year Climate Projections:**\n  Monsoon cloudbursts and convective cells operate under chaotic non-linear dynamics. Any AI system claiming deterministic street-level flood forecasts 10–20 years into the future is engaging in scientifically unsupportable hallucination.\n\n• **Long-Term Planning Uses Structural Vulnerability (ULSI):**\n  For decadal planning, BHU LOKA computes the static **Urban Land Suitability Index (ULSI)** derived from GLO-30 depression sinks, perennial river confluences, and impervious expansion—guiding resilient urban zoning rather than speculative weather forecasts.`,
+          citations: [GROUNDED_KNOWLEDGE.elevation, GROUNDED_KNOWLEDGE.meteorology],
+          sourceTag: 'WMO & Copernicus Standards for Operational Disaster Forecasting'
+        };
+      }
+    }
+
+    // 0.5 Patna Evacuation Corridors & Safe Shelters (Rajendra Nagar vs Bihta)
+    if (q.includes('safe shelter') || q.includes('evacuat') || q.includes('kahan bachen') || q.includes('rajendra nagar') || q.includes('safe place patna') || q.includes('shelter')) {
+      if (lang === 'hi') {
+        return {
+          answer: `पटना नागरिक सुरक्षा एवं निकासी गलियारा (Evacuation Corridor & Safe Ridge Triage):\n\n1. **निकासी हेतु उच्च जोखिम वाले सिंक क्षेत्र (Evacuate FROM):**\n   • **राजेंद्र नगर (वार्ड 40-44):** ऊंचाई 46.2m AMSL · जलभराव सिंक गहराई >2.8m · डेंगू/मलेरिया का उच्च जोखिम।\n   • **कंकड़बाग (वार्ड 45-48):** ऊंचाई 47.1m AMSL · जलभराव सिंक गहराई >2.1m · नाला ओवरफ्लो।\n   • **सैदपुर / बाजार समिति:** संप पंप सबमर्जन जोन · पीने के पानी के स्रोत दूषित।\n\n2. **सुरक्षित उच्च-भूमि आश्रय स्थल (Evacuate TO):**\n   • **बिहटा / आईआईटी पटना रिज:** ऊंचाई 55.2m AMSL · बाढ़ जोखिम: 0.0% · ULSI स्कोर: 88/100 · 100% सुरक्षित प्राकृतिक कछार।\n   • **बेली रोड एलिवेटेड कॉरिडोर:** ऊंचाई 52.8m AMSL · प्राकृतिक जल-विभाजक कछार (Well-Drained)।\n   • **बोरिंग रोड / दानापुर कैंट:** ऊंचाई 53.5–54.1m AMSL · गंगा जलस्तर से >6.5m सुरक्षित ऊंचाई।\n\n3. **नागरिक आपातकालीन प्रोटोकॉल:**\n   • पीने का पानी न्यूनतम 10 मिनट उबालें (उथले हैंडपंप दूषित हो चुके हैं)।\n   • ठहरे हुए पानी में 48-72 घंटे के भीतर मच्छर लार्वा पनपते हैं — DEET 20% का उपयोग करें।\n   • बाढ़ की मिट्टी सूखने पर N95 मास्क पहनें (PM2.5 रीसस्पेंडेड सिल्ट 142 µg/m³ तक उछलता है)।`,
+          citations: [GROUNDED_KNOWLEDGE.elevation, GROUNDED_KNOWLEDGE.sar_flood],
+          sourceTag: 'Copernicus 30m Topography & Patna Disaster Management Plan 2026'
+        };
+      } else {
+        return {
+          answer: `Patna Civil Protection & Evacuation Triage (Copernicus DEM & SAR Grounded):\n\n1. **Priority Evacuation Sinks (Evacuate FROM):**\n   • **Rajendra Nagar (Wards 40-44):** Elevation 46.2m a.m.s.l. · Trap Depth >2.8m · Vector hazard critical.\n   • **Kankarbagh (Wards 45-48):** Elevation 47.1m a.m.s.l. · Trap Depth >2.1m · Urban sump failure.\n   • **Saidpur / Bazar Samiti:** Drainage lock zone · Shallow tubewell contamination.\n\n2. **Designated High-Ground Safe Havens (Evacuate TO):**\n   • **Bihta / IIT Patna High Ridge:** Elevation 55.2m a.m.s.l. · Inundation Risk: 0.0% · ULSI: 88/100 · Optimal emergency logistics staging hub.\n   • **Bailey Road Corridor:** Elevation 52.8m a.m.s.l. · Natural watershed divide · Resilient power infrastructure.\n   • **Danapur Cantt Terrace:** Elevation 54.1m a.m.s.l. · >6.2m vertical clearance above 2019 high-water marks.\n\n3. **Immediate Public Health Actions:**\n   • Boil all drinking water (>10 min); shallow aquifers face severe sewage cross-contamination.\n   • Vector protection (DEET 20%+) active within 48–72h mosquito incubation window in <46m ponds.\n   • Wear N95 masks for drying toxic silt particulates (PM2.5 aerosolized dust spikes to 142 µg/m³).`,
+          citations: [GROUNDED_KNOWLEDGE.elevation, GROUNDED_KNOWLEDGE.sar_flood],
+          sourceTag: 'Copernicus 30m Topography & Patna Disaster Management Plan 2026'
+        };
+      }
+    }
+
+    // 0.6 Compound Heatwave-to-Flood Thermodynamic Cascade
+    if (q.includes('heatwave') || q.includes('desiccation') || q.includes('mitti sukhna') || q.includes('compound hazard') || q.includes('clausius') || q.includes('thermal runoff') || q.includes('40c')) {
+      if (lang === 'hi') {
+        return {
+          answer: `पूर्व-मानसून ग्रीष्म लहर एवं बाढ़ का थर्मोडायनामिक चक्र (Compound Hydro-Thermal Physics):\n\n• **मिट्टी का बेकिंग प्रभाव (Thermal Desiccation):**\n  मई-जून में जब तापमान 44°C (पीक पिक्सल 46.25°C) पार करता है, तो जलोढ़ मिट्टी के छिद्र बंद हो जाते हैं और जमीन पर एक कठोर, अभेद्य (Hydrophobic) पपड़ी जम जाती है।\n\n• **क्लॉसियस-क्लेपरॉन वायुमंडलीय स्केलिंग (Clausius-Clapeyron Scaling):**\n  प्रत्येक 1°C गर्मी बढ़ने पर हवा में नमी धारण करने की क्षमता ~6.5% से 7% बढ़ जाती है। इसका परिणाम यह होता है कि मानसून का पहला बादल भारी 'क्लाउडबर्स्ट' के रूप में फटता है।\n\n• **रनऑफ में +17.4% की भारी वृद्धि:**\n  कठोर सूखी मिट्टी बारिश के पानी को सोख नहीं पाती। हमारे नियंत्रित मॉडल में, जब तापमान 40°C से ऊपर पहुंचता है, तो घने शहरी क्षेत्रों (>60% पक्का निर्माण) में रनऑफ गुणांक (C_runoff) 0.6160 से बढ़कर 0.7232 (+17.4%) हो जाता है, जिससे तुरंत फ्लैश फ्लड आ जाता है।`,
+          citations: [GROUNDED_KNOWLEDGE.elevation, GROUNDED_KNOWLEDGE.meteorology],
+          sourceTag: 'NASA Terra MODIS LST (MOD11A1) + Track 2 Simulation Benchmark'
+        };
+      } else {
+        return {
+          answer: `Sequential Compound Hydro-Thermal Cascade Physics (Grounded in MODIS & Track 2 Simulation):\n\n• **Thermal Desiccation & Soil Pore Collapse:**\n  Prolonged pre-monsoon heatwaves exceeding 44°C (peak MODIS LST 46.25°C) bake the smectite/illite alluvial clay topsoils of the Indo-Gangetic Plain, collapsing surface pores and creating a hydrophobic crust.\n\n• **Clausius-Clapeyron Thermodynamic Scaling:**\n  Atmospheric moisture holding capacity increases by ~6.5% to 7% per Kelvin of boundary-layer warming, intensifying the peak volume of late-monsoon convective cloudbursts.\n\n• **Infiltration Suppression & +17.4% Runoff Escalation:**\n  Because the baked clay crust repels initial rainwater, initial infiltration capacity (f₀) is suppressed. Controlling for impervious fraction (>60%), thermal baking above 40.0°C increases the modeled runoff coefficient (C_runoff) from 0.6160 to 0.7232 (+17.4%), accelerating flood hydrographs toward low-lying urban sinks.`,
+          citations: [GROUNDED_KNOWLEDGE.elevation, GROUNDED_KNOWLEDGE.meteorology],
+          sourceTag: 'NASA Terra MODIS LST (MOD11A1) + Track 2 Simulation Benchmark'
+        };
+      }
+    }
+
+    // 0.7 2D Geospatial Cropper & 3D Extrusion Studio Guide
+    if (q.includes('cropper') || q.includes('crop map') || q.includes('qgis') || q.includes('bounding box') || q.includes('3d extrud')) {
+      return {
+        answer: `BHU LOKA 2D Geospatial Cropper & 3D Site Analysis Studio (QGIS-Grade Web Tool):\n\n• **क्षमताएं:** भारत के किसी भी स्थान पर 2D बाउंडिंग बॉक्स खींचें (ड्रैग/रीसाइज)।\n• **Copernicus 30m DEM एकीकरण:** बॉक्स के अंदर 30m रेजोल्यूशन एलिवेशन ग्रिड (10x10) और ओपनस्ट्रीटमैप 3D बिल्डिंग्स को तुरंत एक्सट्रूड करके 3D टेरेन मेश बनाता है।\n• **ऑडिट मेट्रिक्स:** लक्षित क्षेत्रफल (हेक्टेयर/एकड़), न्यूनतम/अधिकतम ऊंचाई, ढलान ग्रेड (°), जल निकासी ढलान (Drainage Aspect), और टोपोग्राफिक वेटनेस इंडेक्स (TWI)।\n• **निर्यात:** एक्सट्रूडेड 3D मॉडल को सीधे मुख्य वर्कस्टेशन पर लोड करें या GeoJSON बाउंड्री डाउनलोड करें।\n\n*2D Cropper Studio आपके लिए स्वतः खोल दिया गया है। बाउंडिंग बॉक्स को खींचें और 'Crop & Extrude 3D Terrain' पर क्लिक करें।*`,
+        citations: [GROUNDED_KNOWLEDGE.elevation],
+        sourceTag: 'Copernicus 30m Global DEM + OpenStreetMap 3D Extrusion Studio'
+      };
+    }
+
+    // 0.8 NASA Space Apps Presentation Deck Launcher
+    if (q.includes('presentation') || q.includes('ppt') || q.includes('slide') || q.includes('present karna') || q.includes('show ppt')) {
+      return {
+        answer: `BHU LOKA Official 9-Slide Presentation Deck is Ready for NASA Space Apps Challenge 2026:\n\n• **Slide 1:** Title & Mission (Team Amour Hoffen: Prince Kumar & Payal Priyadarshini)\n• **Slide 2:** 96% Urban Radar Blindspot Solved (UN-SPIDER vs Dihedral Double-Bounce)\n• **Slide 3:** Patna Saucer Basin & 47.24 km² Topographic Sinks\n• **Slide 4:** Pre-Monsoon Heatwave to Runoff Escalation (+17.4%)\n• **Slide 5:** Spatial Block Cross-Validation (SBCV) vs Random Data Leakage\n• **Slide 6:** Dual-Track Architecture & Tree-SHAP Attribution\n• **Slide 7:** Operational Cyber Workstation (5 Live Workspaces)\n• **Slide 8:** Citizen Evacuation Triage & Public Health Protocol\n• **Slide 9:** Official Submission Deliverables & Team Signoff\n\n*Presentation Deck file: 'BHU_LOKA_Presentation_Amour_Hoffen.html'. Press 'F' for Fullscreen, 'P' to Export 16:9 PDF slides!*`,
+        citations: [GROUNDED_KNOWLEDGE.sar_flood, GROUNDED_KNOWLEDGE.elevation],
+        sourceTag: 'NASA Space Apps Challenge 2026: Team Amour Hoffen'
+      };
     }
 
     // 1. Farmer Queries
@@ -896,6 +1055,8 @@
     toggleVoiceInput: toggleVoiceInput,
     toggleVoiceOutput: toggleVoiceOutput,
     submitQuery: submitQuery,
+    generateSovereignResponse: generateSovereignResponse,
+    extractIntentAndTools: extractIntentAndTools,
     executeTool: executeTool,
     confirmAction: confirmAction,
     registerTool: registerTool,

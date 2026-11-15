@@ -206,3 +206,53 @@ def test_calibrated_dem_synthesizer_output():
         assert r["matrixRows"] == 10
         assert r["matrixCols"] == 10
         assert r["inRange"] is True, f"Elevation out of range for {r['name']}: {r['meanM']}m"
+
+
+def test_sovereign_command_dock_spectral_legend_and_presentation():
+    """Verify the omnipresent Sovereign Command Dock, Hologram Spectral Legend, Live GPS HUD, and Presentation Modal."""
+    with open(DASHBOARD_HTML_PATH, "r", encoding="utf-8") as f:
+        soup = BeautifulSoup(f.read(), "html.parser")
+
+    # 1. Sovereign Command Dock
+    dock = soup.find("nav", id="sovereign-quick-dock")
+    assert dock is not None, "Missing #sovereign-quick-dock"
+    dock_btns = dock.find_all("button")
+    assert len(dock_btns) >= 7, f"Expected at least 7 workspace quick-switch buttons, found {len(dock_btns)}"
+
+    # 2. Hologram Spectral & Color Legend HUD
+    spectral_legend = soup.find("div", id="holo-spectral-legend")
+    assert spectral_legend is not None, "Missing #holo-spectral-legend HUD"
+    assert "Pink / Magenta" in spectral_legend.text
+    assert "Blue Dot / Pin" in spectral_legend.text
+    assert "Dhamani Pokhar" in spectral_legend.text
+
+    # 3. Real-Time Tactical GPS Telemetry HUD
+    live_hud = soup.find("div", id="holo-live-tracker-hud")
+    assert live_hud is not None, "Missing #holo-live-tracker-hud"
+    assert "Real-Time GPS Stream" in live_hud.text
+    assert "45.5m MASL" in live_hud.text
+
+    # 4. NASA Presentation Deck Modal
+    pres_modal = soup.find("div", id="bhu-presentation-modal")
+    assert pres_modal is not None, "Missing #bhu-presentation-modal"
+    iframe = pres_modal.find("iframe", id="bhu-presentation-iframe")
+    assert iframe is not None, "Missing iframe inside presentation modal"
+
+    # 5. Top Header Badges
+    assert soup.find("button", id="btn-open-cropper-header") is not None
+    assert soup.find("button", id="btn-open-presentation-header") is not None
+
+    # 6. AI Assistant Spectral Color Reasoning Check
+    ai_script_path = BHU_ROOT / "Assets" / "vendor" / "bhu_loka_ai.js"
+    assert ai_script_path.exists()
+    node_test = """
+    const fs = require('fs');
+    global.window = {};
+    global.document = { getElementById: () => null, querySelector: () => null, querySelectorAll: () => [], addEventListener: () => {} };
+    eval(fs.readFileSync('Assets/vendor/bhu_loka_ai.js', 'utf8'));
+    const res = window.BhuLokaAI.generateSovereignResponse('Map par pink aur blue color ka kya matlab hai', 'farmer', 'hi');
+    console.log(JSON.stringify({ ok: !!res.answer && res.answer.includes('PINK') && res.answer.includes('BLUE') }));
+    """
+    res = subprocess.run(["node", "-e", node_test], cwd=BHU_ROOT, capture_output=True, text=True, check=True)
+    out = json.loads(res.stdout.strip())
+    assert out["ok"] is True
