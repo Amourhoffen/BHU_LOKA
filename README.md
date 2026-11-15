@@ -23,15 +23,15 @@
 * **Prince Kumar** — Lead Geospatial AI Researcher & System Architect  
   *Indian Institute of Technology Patna (IIT Patna)*  
   Department of Computer Science & Data Analytics (Roll: `PA2511CDH37`)
-* **Payal Priyadarshini** — Co-Author & Remote Sensing AI Lead  
+* **Payal Priyadarshini** — Product Lead | UI/UX Designer 
   *Indian Institute of Information Technology, Design and Manufacturing Jabalpur (IIITDM Jabalpur)*
-* **Dr. Pallav Rustogi** — Academic Advisor & Research Supervisor  
+* **Pallav Rustogi** — Academic Advisor & Research Supervisor  
 * **Research Collaboration:** **Team Amour Hoffen**  
 * **Formal Manuscript:** *Sequential Compound Hydro-Thermal Risk and Urban Corner-Reflector Flood Mapping in Continental Alluvial Metropolises: Empirical Earth Observation and Spatial Validation Sensitivity over Patna, India*
 
 ---
 
-## 🌐 Live Platform Access & Publication Deliverables
+## Live Platform Access & Publication Deliverables
 
 | Deliverable | Access Link | Description |
 | --- | --- | --- |
@@ -320,7 +320,7 @@ If you use BHU LOKA, its empirical SAR methodology, spatial machine learning mod
 
 ---
 
-## 📜 License & Open-Source Sovereignty
+##  License & Open-Source Sovereignty
 
 This project is licensed under the **MIT Open Source License** — see the [LICENSE](LICENSE) file for details.  
 *Dedicated to the citizens of Patna, Bihar and open-source scientific disaster resilience worldwide.*
