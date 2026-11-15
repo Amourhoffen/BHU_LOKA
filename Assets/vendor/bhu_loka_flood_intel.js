@@ -24,13 +24,14 @@
     metadata: {
       title: "Sequential Compound Hydro-Thermal Risk and Urban Corner-Reflector Flood Mapping in Continental Alluvial Metropolises",
       shortTitle: "BHU LOKA · Scientific Flood Model Intelligence",
-      institution: "Department of Computer Science and Engineering, Indian Institute of Technology Patna, Bihta, Bihar 801106, India",
+      teamName: "Amour Hoffen",
+      challenge: "NASA Space Apps Challenge 2026 · Dancing with the SARs",
+      institution: "Indian Institute of Technology Patna (IITP) & IIITDM Jabalpur",
       authors: [
-        { name: "Prince Kumar", role: "Lead Researcher", affiliation: "IIT Patna", roll: "PA2511CDH37", email: "prince_pa2511cdh37@iitp.ac.in" },
-        { name: "Pallav Rustogi", role: "Co-Author & Systems Architect", affiliation: "AI Native Engineering, India" }
+        { name: "Prince Kumar", role: "Team Lead & Lead Researcher", affiliation: "Indian Institute of Technology Patna (IITP)", roll: "PA2511CDH37", email: "prince_pa2511cdh37@iitp.ac.in" },
+        { name: "Payal Priyadarshini", role: "Team Member & Co-Author (Geospatial Systems & UI/UX)", affiliation: "Indian Institute of Information Technology, Design and Manufacturing Jabalpur (IIITDM Jabalpur)", email: "payal_priyadarshini@iiitdmj.ac.in" }
       ],
       event: "Patna Pluvial Deluge (27–30 September 2019, 342.5mm rain in 72h)",
-      challenge: "NASA Space Apps Challenge 2026 · Dancing with the SARs",
       pmcAreaKm2: 133.87,
       windowAreaKm2: 444.68,
       provenanceTiers: {
@@ -379,17 +380,21 @@
             <!-- HERO PAPER BANNER -->
             <div class="p-3.5 rounded-xl bg-gradient-to-r from-[#0c1424] via-[#091120] to-[#080d18] border border-cyan-500/30">
               <div class="flex items-center justify-between gap-2 border-b border-slate-800 pb-2 mb-2">
-                <span class="text-[11px] font-mono text-cyan-400 font-bold uppercase tracking-wider">Original Research Manuscript · IIT Patna Computer Science &amp; Engineering</span>
+                <div class="flex items-center gap-2">
+                  <span class="text-[11px] font-mono text-cyan-400 font-bold uppercase tracking-wider">NASA Space Apps Challenge 2026 &middot; Dancing with the SARs</span>
+                  <span class="px-2 py-0.5 rounded text-[9.5px] font-mono bg-amber-500/20 text-amber-300 border border-amber-500/40 font-bold">TEAM: AMOUR HOFFEN</span>
+                </div>
                 <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold">PEER-REVIEW COMPLIANT</span>
               </div>
               <h2 class="text-sm sm:text-base font-bold text-slate-100 leading-snug">
                 Sequential Compound Hydro-Thermal Risk and Urban Corner-Reflector Flood Mapping in Continental Alluvial Metropolises
               </h2>
-              <div class="text-[11px] text-slate-400 mt-1">
-                Authors: <strong class="text-slate-200">Prince Kumar</strong> (M.S. CSDA, Roll PA2511CDH37, IIT Patna) &amp; <strong class="text-slate-200">Pallav Rustogi</strong> (2026)
+              <div class="text-[11px] text-slate-300 mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
+                <span>Lead: <strong class="text-cyan-300">Prince Kumar</strong> (IIT Patna &middot; M.S. CSDA, Roll: PA2511CDH37)</span>
+                <span>Member: <strong class="text-cyan-300">Payal Priyadarshini</strong> (IIITDM Jabalpur &middot; Geospatial Systems)</span>
               </div>
-              <div class="text-[10px] text-slate-500 font-mono mt-0.5">
-                Evaluation Geography: Patna Municipal Corporation (PMC, 133.87 km²) &amp; Ganga Alluvial Floodplain (444.68 km²), Bihar, India
+              <div class="text-[10px] text-slate-400 font-mono mt-1">
+                Study Area: Patna Municipal Corporation (PMC, 133.87 km²) &amp; Ganga Floodplain (444.68 km²), Bihar, India
               </div>
             </div>
 
@@ -1139,9 +1144,12 @@
 
             <!-- ACADEMIC CITATION CARD -->
             <div class="p-3 rounded-lg bg-[#080d16] border border-cyan-500/30 space-y-1 font-mono text-[10.5px]">
-              <div class="text-cyan-300 font-bold">OFFICIAL CITATION:</div>
+              <div class="text-cyan-300 font-bold flex items-center justify-between">
+                <span>OFFICIAL NASA CHALLENGE CITATION:</span>
+                <span class="text-amber-400">TEAM: AMOUR HOFFEN</span>
+              </div>
               <div class="p-2 rounded bg-black/60 text-slate-200 select-all border border-slate-800 text-[10px]">
-                Prince Kumar and Pallav Rustogi (2026). <em>Sequential Compound Hydro-Thermal Risk and Urban Corner-Reflector Flood Mapping in Continental Alluvial Metropolises: Empirical Earth Observation and Spatial Validation Sensitivity over Patna, India</em>. Department of Computer Science and Engineering, Indian Institute of Technology Patna.
+                Prince Kumar and Payal Priyadarshini (Team Amour Hoffen, 2026). <em>Sequential Compound Hydro-Thermal Risk and Urban Corner-Reflector Flood Mapping in Continental Alluvial Metropolises: Empirical Earth Observation and Spatial Validation Sensitivity over Patna, India</em>. NASA Space Apps Challenge 2026: Dancing with the SARs. Indian Institute of Technology Patna &amp; IIITDM Jabalpur.
               </div>
             </div>
 
@@ -1185,12 +1193,17 @@
 
     const reportContent = `# BHU LOKA (भूलोक) · SCIENTIFIC RESEARCH & FLOOD MODEL INTELLIGENCE REPORT
 NASA Space Apps Challenge 2026: Dancing with the SARs
+Team: Amour Hoffen
+Lead Author: Prince Kumar (IIT Patna)
+Team Member: Payal Priyadarshini (IIITDM Jabalpur)
 ========================================================================================
 
 ## Citation & Authorship
 **Title:** Sequential Compound Hydro-Thermal Risk and Urban Corner-Reflector Flood Mapping in Continental Alluvial Metropolises: Empirical Earth Observation and Spatial Validation Sensitivity over Patna, India
-**Lead Author:** Prince Kumar (M.S. Computer Science & Data Analytics, Roll No. PA2511CDH37, Department of Computer Science and Engineering, Indian Institute of Technology Patna, Bihta, Bihar 801106, India)
-**Co-Author:** Pallav Rustogi (AI Native Engineering & Agentic AI Software Systems, India)
+**Challenge:** NASA Space Apps Challenge 2026 (Category: Dancing with the SARs)
+**Team Name:** Amour Hoffen
+**Team Lead:** Prince Kumar (M.S. Computer Science & Data Analytics, Roll No. PA2511CDH37, Department of Computer Science and Engineering, Indian Institute of Technology Patna, Bihta, Bihar 801106, India. Email: prince_pa2511cdh37@iitp.ac.in)
+**Team Member:** Payal Priyadarshini (Indian Institute of Information Technology, Design and Manufacturing Jabalpur, Dumna Nature Reserve, Jabalpur 482005, India. Email: payal_priyadarshini@iiitdmj.ac.in)
 **Date:** November 2026
 **Study Area:** Patna Municipal Corporation (PMC, 133.87 km²) & Ganga Alluvial Basin (444.68 km²), Bihar, India
 

@@ -15,8 +15,8 @@
 \iss{0}
 \cpyear{2026}
 \doi{Pending editorial assignment}
-\rhauthor{Prince Kumar and Pallav Rustogi}
-\citethisarticle{Prince Kumar and Pallav Rustogi (2026). Sequential Compound Hydro-Thermal Risk and Urban Corner-Reflector Flood Mapping in Continental Alluvial Metropolises: Empirical Earth Observation and Spatial Validation Sensitivity over Patna, India.}
+\rhauthor{Prince Kumar and Payal Priyadarshini (Team Amour Hoffen)}
+\citethisarticle{Prince Kumar and Payal Priyadarshini (Team: Amour Hoffen, 2026). Sequential Compound Hydro-Thermal Risk and Urban Corner-Reflector Flood Mapping in Continental Alluvial Metropolises: Empirical Earth Observation and Spatial Validation Sensitivity over Patna, India. NASA Space Apps Challenge 2026: Dancing with the SARs.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%                     End Editorial Office                          %%%
@@ -33,13 +33,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{Sequential Compound Hydro-Thermal Risk and Urban Corner-Reflector Flood Mapping in Continental Alluvial Metropolises: Empirical Earth Observation and Spatial Validation Sensitivity over Patna, India}
 
-\author[1]{Prince Kumar}
-\author[2]{Pallav Rustogi}
+\author[1]{Prince Kumar (Team Lead)}
+\author[2]{Payal Priyadarshini}
 
-\affil[1]{Department of Computer Science and Engineering, Indian Institute of Technology Patna, Bihta, Bihar 801106, India}
-\affil[2]{AI Native Engineering \& Agentic AI Software Systems, India}
+\affil[1]{Department of Computer Science and Engineering, Indian Institute of Technology Patna, Bihta, Bihar 801106, India. Team: Amour Hoffen (NASA Space Apps Challenge 2026)}
+\affil[2]{Indian Institute of Information Technology, Design and Manufacturing Jabalpur, Dumna Nature Reserve, Jabalpur, Madhya Pradesh 482005, India. Team: Amour Hoffen (NASA Space Apps Challenge 2026)}
 
-\corau{Prince Kumar, \email{prince_pa2511cdh37@iitp.ac.in}, M.S. Computer Science and Data Analytics (Roll No. PA2511CDH37), Department of Computer Science and Engineering, Indian Institute of Technology Patna, Bihta, Bihar 801106, India. Tel: +91 6201437770, +91 8252110159}
+\corau{Prince Kumar, \email{prince_pa2511cdh37@iitp.ac.in}, Team Lead (Amour Hoffen), M.S. Computer Science and Data Analytics (Roll No. PA2511CDH37), Department of Computer Science and Engineering, Indian Institute of Technology Patna, Bihta, Bihar 801106, India. Tel: +91 6201437770, +91 8252110159. Team Member: Payal Priyadarshini, Indian Institute of Information Technology, Design and Manufacturing Jabalpur (IIITDM Jabalpur).}
 
 \abstract{Continental riverine metropolises in the Indo-Gangetic Plain confront cascading flood and extreme-heat hazards shaped by low relief, embanked river confluences, and dense urban canyons. Existing monsoonal satellite pipelines frequently omit urban street-canyon flooding when relying solely on open-water specular backscatter thresholds, while spatial machine learning studies often overstate transferability through random cross-validation. Here we formulate \textbf{BHU LOKA}, a dual-track reproducible analytical framework evaluated over Patna, Bihar, India, integrating (1) an \textbf{Empirical Earth Observation Track} coupling 10~m Sentinel-1A/B C-band Synthetic Aperture Radar (SAR; 23 September and 29 September 2019), 30~m Copernicus GLO-30 topography, 91 daily NASA Terra MODIS (MOD11A1.061) pre-monsoon thermal overpasses, WorldPop 2020 demographics, and a 60,000-pixel 5-fold Spatial Block Cross-Validation (SBCV) classifier; and (2) an explicitly labeled \textbf{Hydro-Thermodynamic Simulation Proxy Benchmark} ($N = 3,200$) constructed with \texttt{scikit-learn} Random Forest and Quantile Gradient Boosted Regression ($\alpha \in \{0.50, 0.90\}$). Across the Patna Municipal Corporation (PMC, $133.87\text{ km}^2$), bimodal SAR physics combining open specular drop ($\Delta\sigma^0 \le -3.80\text{ dB}$, $0.07\text{ km}^2$ inside PMC) with building-water dihedral corner double-bounce ($\Delta\sigma^0 \ge +1.5\text{ dB}$, $99.52\text{ km}^2$) recovers $99.60\text{ km}^2$ (74.4\%) inundated area, whereas a standard UN-SPIDER specular threshold ($\Delta\sigma^0 \le -2.0\text{ dB}$) detects only $4.01\text{ km}^2$ (2.99\%), quantifying a 95.98\% urban flood omission error. GLO-30 terrain analysis shows $47.24\text{ km}^2$ (33.15\%) of PMC lies in concave depression sinks, exposing 49,380 of 214,281 modeled residents to joint flood-sink overlap and lowering mean Urban Land Suitability Index (ULSI) to $52.27/100$, while MODIS records a peak urban pixel temperature of $46.25^\circ\text{C}$ and a $-1.03^\circ\text{C}$ morning urban-minus-fallow delta. Across 60,000 aligned multi-sensor pixels, 5-fold SBCV yields mean $\text{ROC-AUC} = 0.7498 \pm 0.0497$ ($\text{F1} = 0.6530$). In the controlled $N = 3,200$ simulation proxy, random 5-fold CV produces $R^2 = 0.9688$ ($\text{RMSE} = 0.0302$), whereas 5-block SBCV reduces mean explanatory skill to $R^2 = 0.8258$ ($\Delta R^2 = -0.1430$, -14.8\%; Central Urban Core Block 2 $R^2 = 0.5266$), while controlled urban thermal desiccation ($\text{LST} \ge 40^\circ\text{C}$, $\text{Impervious\_Frac} > 0.60$) elevates runoff coefficients by 17.4\% and shifts upper-tail ($\alpha = 0.90$) importance toward impervious fraction ($0.2491$) and slope ($0.2310$). Separating empirical EO outputs from sensitivity simulations establishes transparent baselines for civil protection planning.}
 

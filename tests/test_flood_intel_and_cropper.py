@@ -44,7 +44,8 @@ def test_research_data_empirical_metrics():
     assert "Sequential Compound Hydro-Thermal Risk" in meta["title"]
     authors = [a["name"] for a in meta["authors"]]
     assert "Prince Kumar" in authors
-    assert "Pallav Rustogi" in authors
+    assert "Payal Priyadarshini" in authors
+    assert meta["teamName"] == "Amour Hoffen"
 
     # Technical Performance (Track 1)
     perf = data["technicalPerformance"]
