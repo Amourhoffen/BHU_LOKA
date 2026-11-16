@@ -10159,8 +10159,8 @@
     return { answer: ans, language: lang, provenance: prov, agent2_map_actions: { view_mode: 'india', summary: 'Authorship & Research Registry' } };
   }
 
-  // 2. ENTERPRISE AI ARCHITECTURE & MODELS INTENT
-  if (/(?:rag|sbert|bert|transformer|transformar|vector|rerank|cross[- ]?encoder|faiss|bm25|langchain|langgraph|lang graph|llama|lamma|gemma|gamma|jev|laya|adk|sdk|decision tree|design tree|architecture|ai stack|kya stack)/i.test(q)) {
+  // 2. ENTERPRISE AI ARCHITECTURE & MODELS INTENT (STRICT - ONLY WHEN EXPLICITLY ASKED)
+  if (/(?:tech\s*stack|ai\s*stack|system\s*architecture|what\s*(?:is\s*the\s*)?(?:ai\s*|tech\s*)?architecture|technical\s*architecture|kya\s*stack\s*hai|internal\s*stack|developer\s*stack)/i.test(q)) {
     prov = "BHU LOKA Enterprise Dual-Agent Architecture & Calibrated RAG Pipeline";
     ans = 
       "[ENTERPRISE GEOSPATIAL AI & RAG ARCHITECTURE STACK]\n\n" +
@@ -11286,15 +11286,19 @@
             </div>
           </div>
           <div class="whitespace-pre-line leading-relaxed text-slate-200">${formatAiAnswerHtml(localRes.answer)}</div>
-          <div class="flex flex-wrap items-center gap-1 mt-2.5 pt-1.5 border-t border-slate-800">
-            ${rbacChip}${guardrailChip}${toolChips}
-          </div>
-          <details class="bhu-agent-trace mt-1.5 pt-1 border-t border-slate-800/80 text-[10px] text-slate-400">
-            <summary class="cursor-pointer select-none text-sky-400 hover:text-sky-300 font-semibold">
-              Live Agent Telemetry, Tool Calls &amp; Trace (${autoActions.length} Actions Dispatched)
+          <!-- Clean Production Mode: Telemetry & Security Audit tucked into subtle collapsed drawer -->
+          <details class="bhu-agent-trace mt-2 pt-1 border-t border-slate-800/40 text-[9px] text-slate-500">
+            <summary class="cursor-pointer select-none text-slate-500 hover:text-slate-400 font-mono text-[9px] flex items-center justify-between py-0.5">
+              <span>Security &amp; Tool Telemetry (Audit Log)</span>
+              <span class="text-[8px] text-slate-600">DETAILS &darr;</span>
             </summary>
-            <div class="mt-1 space-y-0.5 pl-1 border-l border-slate-700 text-slate-300 font-mono text-[9.5px]">
-              ${traceRows}
+            <div class="mt-1 p-1.5 rounded bg-slate-950/80 border border-slate-800/60 space-y-1">
+              <div class="flex flex-wrap items-center gap-1 pb-1 border-b border-slate-800/60">
+                ${rbacChip}${guardrailChip}${toolChips}
+              </div>
+              <div class="space-y-0.5 text-slate-400 font-mono text-[9px]">
+                ${traceRows}
+              </div>
             </div>
           </details>
         </div>`;
