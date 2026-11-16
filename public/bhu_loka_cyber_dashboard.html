@@ -724,6 +724,27 @@
         to { transform: translateY(0); }
       }
     }
+
+    /* ── ACCESSIBILITY: VISIBLE FOCUS RINGS (KEYBOARD NAVIGATION) ── */
+    :focus-visible {
+      outline: 2px solid var(--accent-primary) !important;
+      outline-offset: 2px !important;
+    }
+    button:focus:not(:focus-visible),
+    a:focus:not(:focus-visible) {
+      outline: none !important;
+    }
+
+    /* ── MOBILE ACCESSIBILITY: PREVENT AUTO-ZOOM ON IOS SAFARI ── */
+    @media (max-width: 767px) {
+      input[type="text"],
+      input[type="number"],
+      input[type="search"],
+      select,
+      textarea {
+        font-size: 16px !important;
+      }
+    }
 </style>
 </head>
 
@@ -785,7 +806,7 @@
       </div>
       <span class="badge-chip hidden sm:inline-flex"
         id="runtime-badge">WebGL2</span>
-      <a id="link-open-2d-earth" href="bhu_loka_leafmap_interactive.html" target="_blank"
+      <a id="link-open-2d-earth" href="bhu_loka_leafmap_interactive.html" target="_blank" aria-label="Open 2D Earth interactive satellite map in new tab"
         class="badge-chip hidden md:inline-flex">
         2D Earth &rarr;
       </a>
@@ -828,11 +849,11 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
-        <input id="global-location-search" type="text" placeholder="Place or lat, lon..."
-          class="bg-transparent text-[11px] mono text-slate-100 w-32 md:w-40 min-w-0 focus:outline-none placeholder-slate-500"
+        <input id="global-location-search" type="text" placeholder="Place or lat, lon..." aria-label="Search global location by place name or coordinates" autocomplete="off"
+          class="bg-transparent text-base sm:text-[11px] mono text-slate-100 w-32 md:w-40 min-w-0 focus:outline-none placeholder-slate-500"
           onkeydown="if(event.key==='Enter') executeUniversalLocationSearch(this.value)">
       </div>
-      <button type="button" onclick="openSystemModal('api')" id="btn-api-chip"
+      <button type="button" onclick="openSystemModal('api')" id="btn-api-chip" aria-label="Open API status and system telemetry"
         class="relative w-8 h-8 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 flex items-center justify-center border border-slate-700 transition"
         title="API Status & Alerts">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -842,7 +863,7 @@
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 absolute -top-0.5 -right-0.5" id="api-dot"></span>
         <span class="hidden" id="api-chip-text">API: ONLINE</span>
       </button>
-      <button type="button" onclick="toggleHeroMap()"
+      <button type="button" onclick="toggleHeroMap()" aria-label="Toggle theater mode to maximize 3D viewport"
         class="w-8 h-8 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 flex items-center justify-center border border-slate-700 transition"
         title="Theater Mode (Maximize Viewport)">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
