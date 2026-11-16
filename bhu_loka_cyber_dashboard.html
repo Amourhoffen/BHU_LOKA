@@ -540,29 +540,43 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 34px;
-      height: 34px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      background: rgba(8, 12, 22, 0.65);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: var(--text-secondary);
+      background: rgba(15, 23, 42, 0.90) !important;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1.5px solid rgba(255, 255, 255, 0.40) !important;
+      color: #ffffff !important;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      z-index: 25;
-      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+      z-index: 35;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.75), 0 0 12px rgba(56, 189, 248, 0.45);
     }
     .bhu-nav-chevron:hover {
-      background: rgba(45, 156, 219, 0.2);
-      border-color: rgba(45, 156, 219, 0.45);
-      color: var(--text-primary);
+      background: rgba(30, 41, 59, 0.98) !important;
+      border-color: #38bdf8 !important;
+      color: #38bdf8 !important;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.85), 0 0 18px rgba(56, 189, 248, 0.7);
+      transform: translateY(-50%) scale(1.08);
     }
-    .bhu-nav-chevron.prev { left: 10px; }
-    .bhu-nav-chevron.next { right: 10px; }
+    .bhu-nav-chevron:active {
+      transform: translateY(-50%) scale(0.94) !important;
+    }
+    .bhu-nav-chevron i {
+      font-size: 15px !important;
+      color: #ffffff !important;
+      filter: drop-shadow(0 1px 3px rgba(0,0,0,0.9));
+      transition: color 0.15s ease;
+    }
+    .bhu-nav-chevron:hover i {
+      color: #38bdf8 !important;
+    }
+    .bhu-nav-chevron.prev { left: 12px; }
+    .bhu-nav-chevron.next { right: 12px; }
 
     /* ── PLANET / MODE SIDE DOTS ── */
     .bhu-side-dot {
@@ -628,24 +642,27 @@
         border-radius: 16px !important;
       }
 
-      /* Floating iOS Segmented Control on 3D Viewport */
+      /* Apple iOS Segmented Control on 3D Viewport - In Normal Flow to Avoid Collisions */
       .ios-segmented-control {
-        position: absolute;
-        top: 10px;
-        left: 50%;
-        transform: translateX(-50%);
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        margin: 4px auto 6px auto !important;
         z-index: 24;
         display: flex;
-        background: rgba(8, 14, 26, 0.78);
+        align-self: center;
+        background: rgba(8, 14, 26, 0.88);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         padding: 3px;
         border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.16);
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-        max-width: 95%;
+        max-width: 98%;
         overflow-x: auto;
         scrollbar-width: none;
+        flex-shrink: 0;
       }
       .ios-segmented-control::-webkit-scrollbar { display: none; }
 
@@ -744,6 +761,74 @@
       textarea {
         font-size: 16px !important;
       }
+
+      /* High-contrast mobile chevrons */
+      .bhu-nav-chevron {
+        width: 36px !important;
+        height: 36px !important;
+      }
+      .bhu-nav-chevron.prev { left: 8px !important; }
+      .bhu-nav-chevron.next { right: 8px !important; }
+      .bhu-nav-chevron i {
+        font-size: 13px !important;
+      }
+
+      /* Mobile HUD constraints: prevent overlapping and covering 3D globe */
+      #holo-live-tracker-hud {
+        position: fixed !important;
+        top: auto !important;
+        bottom: 70px !important;
+        left: 50% !important;
+        right: auto !important;
+        transform: translateX(-50%) !important;
+        width: calc(100vw - 24px) !important;
+        max-width: 360px !important;
+        max-height: 55vh !important;
+        overflow-y: auto !important;
+        z-index: 50 !important;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.95), 0 0 20px rgba(6,182,212,0.3) !important;
+      }
+
+      #holo-spectral-legend {
+        position: fixed !important;
+        top: auto !important;
+        bottom: 70px !important;
+        left: 50% !important;
+        right: auto !important;
+        transform: translateX(-50%) !important;
+        width: calc(100vw - 24px) !important;
+        max-width: 340px !important;
+        max-height: 50vh !important;
+        overflow-y: auto !important;
+        z-index: 50 !important;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.95), 0 0 20px rgba(6,182,212,0.3) !important;
+      }
+
+      #bhu-pred-map-hud {
+        position: fixed !important;
+        top: auto !important;
+        bottom: 70px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: calc(100vw - 24px) !important;
+        max-width: 360px !important;
+        max-height: 60vh !important;
+        overflow-y: auto !important;
+        z-index: 50 !important;
+      }
+
+      /* Compact single-row scrollable solar lighting bar on mobile */
+      #holo-solar-hud {
+        position: absolute !important;
+        top: 6px !important;
+        left: 6px !important;
+        max-width: calc(100% - 12px) !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+        scrollbar-width: none !important;
+      }
+      #holo-solar-hud::-webkit-scrollbar { display: none; }
     }
 </style>
 </head>
@@ -1992,10 +2077,10 @@
         <div id="three-canvas-wrap" class="relative flex-1 w-full min-h-0 lg:min-h-[215px] overflow-hidden viewport-bg">
           <!-- FLOATING PLANET / VIEW NAVIGATION CHEVRONS (MOBILE & DESKTOP) -->
           <button type="button" class="bhu-nav-chevron prev" onclick="switchPreviousView()" aria-label="Previous Planet or 3D Layer" title="Previous 3D Mode (‹)">
-            <i class="fa-solid fa-chevron-left text-xs" aria-hidden="true"></i>
+            <i class="fa-solid fa-chevron-left text-sm" aria-hidden="true"></i>
           </button>
           <button type="button" class="bhu-nav-chevron next" onclick="switchNextView()" aria-label="Next Planet or 3D Layer" title="Next 3D Mode (›)">
-            <i class="fa-solid fa-chevron-right text-xs" aria-hidden="true"></i>
+            <i class="fa-solid fa-chevron-right text-sm" aria-hidden="true"></i>
           </button>
 
           <!-- VERTICAL SIDE DOTS FOR PLANET / MODE SELECTION -->
@@ -10081,10 +10166,11 @@
       if (bps) bps.classList.toggle('hidden', mode !== 'terrain');
       if (pip) pip.classList.toggle('hidden', !(mode === 'hologram' && currentHoloSatCanvas));
       if (solarHud) solarHud.classList.toggle('hidden', mode !== 'hologram');
+      const isMobile = window.innerWidth < 768;
       const holoLegend = document.getElementById('holo-spectral-legend');
       const holoHud = document.getElementById('holo-live-tracker-hud');
-      if (holoLegend) holoLegend.classList.toggle('hidden', mode !== 'hologram');
-      if (holoHud) holoHud.classList.toggle('hidden', mode !== 'hologram' || (typeof isHoloTrackingActive !== 'undefined' && !isHoloTrackingActive));
+      if (holoLegend) holoLegend.classList.toggle('hidden', mode !== 'hologram' || isMobile);
+      if (holoHud) holoHud.classList.toggle('hidden', mode !== 'hologram' || isMobile || (typeof isHoloTrackingActive !== 'undefined' && !isHoloTrackingActive));
       applyHoloLightingState();
 
       const note = document.getElementById('layer-mode-note');
@@ -14708,7 +14794,7 @@ Generated on: ${new Date().toISOString()}
   <!-- SOVEREIGN FLOATING WORKSPACE COMMAND DOCK (OMNIPRESENT AAA NAVIGATION)   -->
   <!-- ========================================================================= -->
   <nav id="sovereign-quick-dock" aria-label="Sovereign Workspace Command Bar"
-    class="dock-minimized fixed bottom-16 left-1/2 -translate-x-1/2 z-55 bg-[#060a12]/95 backdrop-blur-xl border border-cyan-500/40 rounded-full px-3 py-1.5 shadow-lg flex items-center gap-1.5 transition-all select-none max-w-[96vw] overflow-x-auto no-scrollbar pointer-events-auto">
+    class="hidden lg:flex dock-minimized fixed bottom-16 left-1/2 -translate-x-1/2 z-55 bg-[#060a12]/95 backdrop-blur-xl border border-cyan-500/40 rounded-full px-3 py-1.5 shadow-lg items-center gap-1.5 transition-all select-none max-w-[96vw] overflow-x-auto no-scrollbar pointer-events-auto">
 
     <div id="dock-label-pill" class="flex items-center gap-1.5 pr-1 border-r border-slate-700/80 cursor-pointer"
       onclick="toggleQuickDockCollapse()" title="Toggle Dock Expand / Collapse">
