@@ -1,5 +1,5 @@
 # BHU LOKA (भूलोक) · Dancing with the SARs
-
+<img width="1461" height="820" alt="image" src="https://github.com/user-attachments/assets/8edad3ee-72f4-4035-8a97-aa90c676a495" />
 
 ## Sovereign Dual-Date SAR Flood Inundation, Urban Corner-Reflector Mapping & Spatial Machine Learning Workstation
 
@@ -15,9 +15,10 @@
 [![Data Provenance](https://img.shields.io/badge/Provenance-ASF%20Vertex%20%2F%20NASA%20Earthdata-blue.svg)](https://search.asf.alaska.edu/)
 
 ---
+<img width="1467" height="820" alt="image" src="https://github.com/user-attachments/assets/04ae7501-3aa7-4d8a-a19b-6426189e5412" />
 
 
-## 👥 Research Team & Academic Authorship
+## Research Team & Academic Authorship
 
 
 * **Prince Kumar** — Lead Geospatial AI Researcher & System Architect  
@@ -44,9 +45,9 @@
 | **Trained Spatial ML Checkpoints** | [`bhu_loka_spatial_rf_v1.joblib`](./Models/Checkpoints/bhu_loka_spatial_rf_v1.joblib) & [`mera_pehle_model.joblib`](./mera_pehle_model.joblib) | 7-feature & 3-feature trained Random Forest classifiers with 5-fold spatial cross-validation |
 
 ---
+<img width="1460" height="815" alt="image" src="https://github.com/user-attachments/assets/b8bbf125-f391-4ff4-935e-9b6eada52db5" />
 
-
-## 1. Scientific Abstract
+## 1.  Abstract
 
 Catastrophic pluvial-fluvial compound deluges in continental alluvial metropolises present severe Earth Observation (EO) challenges due to **100% optical cloud blindness** during peak monsoon storms and the complex microwave scattering environment of dense urban settlements. In late September 2019, the metropolis of **Patna, Bihar** ($25.59^\circ\text{N}, 85.14^\circ\text{E}$)—situated in the low-gradient Gangetic floodplain at the confluence of the Ganga, Gandak, Son, and Punpun rivers—experienced a catastrophic $342.5\text{ mm}$ rainstorm over 72 hours, submerging residential sectors under $1.5\text{ m}$ to $3.0\text{ m}$ of standing deluge while the Ganga river-lock crest ($49.5\text{ m}$ AMSL) blocked gravity drainage outfalls.
 
@@ -58,7 +59,7 @@ Crucially, standard SAR thresholding assumes water causes a steep backscatter dr
 ---
 
 
-## 2. Scientific Publication Figures
+## 2. Publication Figures
 
 
 ### Figure 1: Patna Multi-Hazard Spatial Inundation & Micro-Elevation Map
@@ -170,13 +171,13 @@ For the Patna September 2019 deluge, the empirical global optimum resolves at **
 
 | Ward / Locality Name | Mean Elev (MASL) | Flooded Area ($\text{km}^2$) | Inundation % | Peak $\Delta\sigma^0$ (dB) | Mechanism | Exposure Classification |
 | --- | --- | --- | --- | --- | --- | --- |
-| **Rajendra Nagar Basin** | $44.5\text{ m}$ | $4.11\text{ km}^2$ | **$96.8\%$** | $+4.8\text{ dB}$ | Dihedral Double-Bounce | 🚨 Critical Emergency Deluge |
-| **Kankarbagh Silt Pond** | $45.1\text{ m}$ | $5.28\text{ km}^2$ | **$94.2\%$** | $+3.6\text{ dB}$ | Dihedral Double-Bounce | 🚨 Severe Waterlogging |
-| **Patna City / East Core** | $47.2\text{ m}$ | $3.25\text{ km}^2$ | **$47.8\%$** | $+2.1\text{ dB}$ | Mixed Urban Silt | ⚠️ Moderate Pluvial Silt |
-| **Patliputra / Boring Rd** | $48.3\text{ m}$ | $0.85\text{ km}^2$ | **$25.0\%$** | $+1.3\text{ dB}$ | Peripheral Surface Ponding | ⚠️ Low / Surface Runoff |
-| **Gandhi Maidan Levee** | $50.1\text{ m}$ | $0.21\text{ km}^2$ | **$10.0\%$** | $+0.4\text{ dB}$ | Natural Levee Crown | 🛡️ Resilient Natural Terrace |
-| **Danapur Cantt Terrace** | $52.8\text{ m}$ | $0.15\text{ km}^2$ | **$2.1\%$** | $-0.3\text{ dB}$ | Elevated Safe Ridge | 🛡️ High Elevation Safe Zone |
-| **Bihta / IIT Patna Ridge** | $55.2\text{ m}$ | $0.00\text{ km}^2$ | **$0.0\%$** | $-0.4\text{ dB}$ | Alluvial Highland | 🛡️ Zero Inundation Benchmark |
+| **Rajendra Nagar Basin** | $44.5\text{ m}$ | $4.11\text{ km}^2$ | **$96.8\%$** | $+4.8\text{ dB}$ | Dihedral Double-Bounce | Critical Emergency Deluge |
+| **Kankarbagh Silt Pond** | $45.1\text{ m}$ | $5.28\text{ km}^2$ | **$94.2\%$** | $+3.6\text{ dB}$ | Dihedral Double-Bounce |  Severe Waterlogging |
+| **Patna City / East Core** | $47.2\text{ m}$ | $3.25\text{ km}^2$ | **$47.8\%$** | $+2.1\text{ dB}$ | Mixed Urban Silt |  Moderate Pluvial Silt |
+| **Patliputra / Boring Rd** | $48.3\text{ m}$ | $0.85\text{ km}^2$ | **$25.0\%$** | $+1.3\text{ dB}$ | Peripheral Surface Ponding |  Low / Surface Runoff |
+| **Gandhi Maidan Levee** | $50.1\text{ m}$ | $0.21\text{ km}^2$ | **$10.0\%$** | $+0.4\text{ dB}$ | Natural Levee Crown |  Resilient Natural Terrace |
+| **Danapur Cantt Terrace** | $52.8\text{ m}$ | $0.15\text{ km}^2$ | **$2.1\%$** | $-0.3\text{ dB}$ | Elevated Safe Ridge |  High Elevation Safe Zone |
+| **Bihta / IIT Patna Ridge** | $55.2\text{ m}$ | $0.00\text{ km}^2$ | **$0.0\%$** | $-0.4\text{ dB}$ | Alluvial Highland |  Zero Inundation Benchmark |
 
 ---
 
@@ -200,9 +201,10 @@ The repository contains two trained, production-ready machine learning checkpoin
 Users can test these models interactively via the **`🔮 PREDICT AREA (ML)`** button on the workstation top subbar:
 * Select from 8 benchmark presets or input custom coordinates.
 * Get instant inundation probability, predicted inundated area ($km^2$), physical scattering classification, and Tree-SHAP attribution bars.
-* Click **`🗺️ View on 3D Terrain`** to highlight the flood prediction directly onto the 3D Copernicus DEM relief.
+* Click **` View on 3D Terrain`** to highlight the flood prediction directly onto the 3D Copernicus DEM relief.
 
 ---
+<img width="1461" height="817" alt="image" src="https://github.com/user-attachments/assets/dfa6adeb-8444-4277-a1e5-a10a5c19cc18" />
 
 ## 6. Software Architecture & Technology Stack
 
@@ -319,6 +321,9 @@ If you use BHU LOKA, its empirical SAR methodology, spatial machine learning mod
 ```
 
 ---
+<img width="1460" height="768" alt="image" src="https://github.com/user-attachments/assets/b737f31c-cf9e-43ab-bbef-486fec786c2f" />
+<img width="1460" height="815" alt="image" src="https://github.com/user-attachments/assets/8c9d59bf-795d-4151-ba35-2368b9b251bc" />
+
 
 ##  License & Open-Source Sovereignty
 
