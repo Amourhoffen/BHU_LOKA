@@ -303,6 +303,13 @@ class BhuLokaCordisPlugin:
             category="read_only",
         )
 
+        self.tools["bhu_generate_universal_3d_dem"] = DshToolSpec(
+            name="bhu_generate_universal_3d_dem",
+            description="Generates high-resolution displaced 3D DEM holographic wireframe mesh for ANY global or Indian location with multi-hazard shaders (sinks, sukhar, safe ridges, SAR double-bounce).",
+            parameters={"location": {"type": "string"}, "span_deg": {"type": "number", "default": 0.04}},
+            category="read_only",
+        )
+
         self.tools["dispatch_relief_convoy"] = DshToolSpec(
             name="dispatch_relief_convoy",
             description="CRITICAL ACTION: Dispatches emergency relief carrier trucks via >52m safe ridge corridors.",
@@ -351,6 +358,15 @@ class BhuLokaCordisPlugin:
         # 4. 2D Land Cropping to 3D Extrusion
         if re.search(r"\b(crop|khet|zameen|land|uchai|neechai|extrud)\b", q):
             actions.append({"tool": "bhu_crop_and_extrude", "args": {}})
+
+        # 4B. Universal 3D DEM Simulation
+        if re.search(r"\b(3d\s*dem|3d\s*simulation|3d\s*semulation|dem\s*simulation|3d\s*terrain|wireframe)\b", q):
+            found_loc = "Ayodhya"
+            for candidate in ["ayodhya", "varanasi", "delhi", "mumbai", "bengaluru", "darbhanga", "muzaffarpur", "gaya", "bhagalpur", "bihta", "danapur", "rajendra", "kankarbagh", "kedarnath", "pune", "kolkata", "chennai", "hyderabad", "lucknow", "jaipur", "shimla", "leh"]:
+                if candidate in q:
+                    found_loc = candidate.title()
+                    break
+            actions.append({"tool": "bhu_generate_universal_3d_dem", "args": {"location": found_loc}})
 
         # 5. SBCV Area Prediction
         if re.search(r"\b(predict|prediction|forecast|sbcv|area flood)\b", q):
@@ -511,6 +527,7 @@ def run_dsh_benchmark() -> Dict[str, Any]:
         {"q": "2029 sukhar aur drought predict karo", "expected_tool": "bhu_set_hazard_layer"},
         {"q": "mera khet 2d se 3d me crop karo", "expected_tool": "bhu_crop_and_extrude"},
         {"q": "rajendra nagar area flood prediction sbcv run karo", "expected_tool": "bhu_run_sbcv_prediction"},
+        {"q": "ayodhya ka 3d dem simulation banao", "expected_tool": "bhu_generate_universal_3d_dem"},
         {"q": "bihta depot relief supply chain dikhao", "expected_tool": "bhu_query_supply_chain"},
         {"q": "bihta se emergency relief convoy dispatch karo", "expected_tool": "dispatch_relief_convoy"},
     ]
