@@ -585,6 +585,145 @@
       border-color: var(--accent-primary);
       box-shadow: 0 0 10px rgba(45, 156, 219, 0.5);
     }
+
+    /* ── APPLE iOS NATIVE APP THEME (MOBILE ONLY) ── */
+    @media (max-width: 1023px) {
+      html, body {
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y;
+      }
+
+      /* Compact iOS Top Bar */
+      header.bhu-nasa-glass {
+        padding: 6px 12px !important;
+        gap: 6px !important;
+        border-radius: 16px !important;
+        backdrop-filter: blur(25px) !important;
+        -webkit-backdrop-filter: blur(25px) !important;
+      }
+
+      /* Hide bulky desktop badges from mobile header */
+      #link-open-sar-hero,
+      #btn-open-cropper-header,
+      #btn-open-presentation-header,
+      #runtime-badge,
+      #link-open-2d-earth {
+        display: none !important;
+      }
+
+      /* Full Hero Viewport for 3D Globe */
+      #viewport-panel {
+        height: auto !important;
+        min-height: 480px !important;
+        padding: 6px !important;
+        border-radius: 20px !important;
+        position: relative;
+        overflow: hidden !important;
+      }
+
+      #three-canvas-wrap {
+        min-height: 380px !important;
+        height: 52vh !important;
+        border-radius: 16px !important;
+      }
+
+      /* Floating iOS Segmented Control on 3D Viewport */
+      .ios-segmented-control {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 24;
+        display: flex;
+        background: rgba(8, 14, 26, 0.78);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 3px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        max-width: 95%;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+      .ios-segmented-control::-webkit-scrollbar { display: none; }
+
+      .ios-segmented-pill {
+        padding: 4px 11px;
+        border-radius: 999px;
+        font-size: 10.5px;
+        font-weight: 600;
+        color: #94a3bd;
+        white-space: nowrap;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font-family: 'Space Grotesk', system-ui, sans-serif;
+      }
+      .ios-segmented-pill.active {
+        background: rgba(45, 156, 219, 0.25);
+        color: #f0f4f8;
+        border: 1px solid rgba(45, 156, 219, 0.5);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Apple Maps style Bottom Card */
+      #bhu-nasa-bottom-deck {
+        margin-top: 6px !important;
+        border-radius: 16px !important;
+        background: rgba(10, 16, 28, 0.8) !important;
+        backdrop-filter: blur(20px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        padding: 8px 10px !important;
+      }
+
+      /* Add padding at bottom of body so content doesn't get hidden behind iOS tabbar */
+      body.bhu-workstation {
+        padding-bottom: 72px !important;
+      }
+
+      /* iOS Tab Bar Item Styling */
+      .ios-tab-item {
+        transition: transform 0.15s ease, color 0.15s ease;
+        padding: 3px 8px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+      }
+      .ios-tab-item:active {
+        transform: scale(0.90);
+      }
+      .ios-tab-item.active {
+        color: var(--accent-primary) !important;
+      }
+
+      /* Mobile Slide-up Sheet for Left/Right Rail */
+      #left-rail.ios-sheet-open,
+      #right-rail.ios-sheet-open {
+        display: flex !important;
+        position: fixed !important;
+        inset: 48px 0 0 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        z-index: 100 !important;
+        border-radius: 24px 24px 0 0 !important;
+        background: rgba(8, 12, 22, 0.96) !important;
+        backdrop-filter: blur(28px) !important;
+        -webkit-backdrop-filter: blur(28px) !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.18) !important;
+        box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.85) !important;
+        padding: 14px 12px 76px 12px !important;
+        overflow-y: auto !important;
+        animation: iosSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      @keyframes iosSlideUp {
+        from { transform: translateY(100%); }
+        to { transform: translateY(0); }
+      }
+    }
 </style>
 </head>
 
@@ -730,7 +869,7 @@
   <main id="workstation-main" class="flex flex-col lg:flex-row gap-2 lg:gap-0 flex-1 min-h-0 lg:overflow-hidden">
     <!-- VS CODE STYLE ACTIVITY BAR (FAR LEFT) -->
     <nav id="vscode-activity-bar"
-      class="w-12 bg-[#05080e] border-r border-slate-800/80 flex flex-col items-center py-2.5 justify-between shrink-0 z-30 select-none">
+      class="hidden lg:flex w-12 bg-[#05080e] border-r border-slate-800/80 flex-col items-center py-2.5 justify-between shrink-0 z-30 select-none">
       <div class="flex flex-col items-center gap-2.5 w-full">
         <!-- Sovereign Logo -->
         <a href="index.html" title="BHU LOKA Home"
@@ -847,6 +986,17 @@
 
     <!-- LEFT RAIL: DOCKED AI RESEARCH ASSISTANT -->
     <aside id="left-rail" class="order-2 lg:order-1 flex flex-col gap-1.5 min-h-0 lg:h-full lg:pr-0.5 shrink-0">
+      <!-- iOS MOBILE SHEET DISMISS HEADER -->
+      <div class="lg:hidden flex items-center justify-between pb-2 mb-2 border-b border-white/10 shrink-0">
+        <div class="flex items-center gap-2">
+          <div class="w-2 h-2 rounded-full bg-sky-400"></div>
+          <span class="text-xs font-bold text-slate-100 mono uppercase tracking-wider">AI Geospatial Assistant</span>
+        </div>
+        <button type="button" onclick="iosCloseSheet()" aria-label="Close Assistant" class="w-7 h-7 rounded-full bg-slate-800 text-slate-300 flex items-center justify-center hover:bg-slate-700">
+          <i class="fa-solid fa-xmark text-xs"></i>
+        </button>
+      </div>
+
 
       <div id="left-dock-tabs" class="bhu-dock-tabbar shrink-0 flex items-center justify-between px-1" role="tablist"
         aria-label="Left Workspace View">
@@ -1500,9 +1650,19 @@
       <!-- 3D GEOSPATIAL VIEWPORT (CONSTRAINED TO PARENT, EXPANDS CLEANLY IN THEATER/FULLSCREEN) -->
       <div id="viewport-panel"
         class="panel p-2 flex flex-col h-[430px] sm:h-[480px] lg:h-auto lg:flex-1 min-h-0 overflow-hidden">
+        <!-- FLOATING APPLE iOS SEGMENTED CONTROL (MOBILE ONLY) -->
+        <div class="ios-segmented-control lg:hidden" role="tablist" aria-label="3D Modes">
+          <button type="button" class="ios-segmented-pill active" data-mode="world" onclick="switchView('world'); iosUpdateSegmentedPills('world');">World</button>
+          <button type="button" class="ios-segmented-pill" data-mode="india" onclick="switchView('india'); iosUpdateSegmentedPills('india');">India 36</button>
+          <button type="button" class="ios-segmented-pill" data-mode="bihar" onclick="switchView('bihar'); iosUpdateSegmentedPills('bihar');">Bihar 38</button>
+          <button type="button" class="ios-segmented-pill" data-mode="terrain" onclick="switchView('terrain'); iosUpdateSegmentedPills('terrain');">Patna DEM</button>
+          <button type="button" class="ios-segmented-pill" data-mode="hologram" onclick="switchView('hologram'); iosUpdateSegmentedPills('hologram');">Auto 3D</button>
+          <button type="button" class="ios-segmented-pill" data-mode="solar" onclick="switchView('solar'); iosUpdateSegmentedPills('solar');">Solar</button>
+        </div>
+
 
         <!-- MULTI-SCALE 3D MODE BUTTONS + WIREFRAME / ZOOM / RESET / THEATER / FULLSCREEN -->
-        <div class="flex flex-wrap items-center justify-between gap-1 pb-1 border-b border-slate-800 shrink-0">
+        <div class="hidden lg:flex flex-wrap items-center justify-between gap-1 pb-1 border-b border-slate-800 shrink-0">
           <div class="inline-flex flex-wrap bg-[#070b12] p-0.5 rounded border border-slate-800 gap-0.5">
             <button type="button" id="btn-world" onclick="switchView('world')" title="World Earth + Orbital Tracking"
               class="mono text-[11px] font-semibold px-2 py-0.5 border-b-2 border-[#2d9cdb] text-slate-100 transition">
@@ -2910,6 +3070,17 @@
     <!-- RIGHT RAIL: DOCKED SCIENTIFIC EXPLORER & TOOLS -->
     <aside id="right-rail"
       class="order-3 lg:order-5 flex flex-col gap-1.5 min-h-0 lg:h-full lg:overflow-hidden shrink-0">
+      <!-- iOS MOBILE SHEET DISMISS HEADER -->
+      <div class="lg:hidden flex items-center justify-between pb-2 mb-2 border-b border-white/10 shrink-0">
+        <div class="flex items-center gap-2">
+          <div class="w-2 h-2 rounded-full bg-emerald-400"></div>
+          <span class="text-xs font-bold text-slate-100 mono uppercase tracking-wider">Precision Agriculture & Hydromet</span>
+        </div>
+        <button type="button" onclick="iosCloseSheet()" aria-label="Close Panel" class="w-7 h-7 rounded-full bg-slate-800 text-slate-300 flex items-center justify-center hover:bg-slate-700">
+          <i class="fa-solid fa-xmark text-xs"></i>
+        </button>
+      </div>
+
       <div id="right-dock-tabs" class="bhu-dock-tabbar shrink-0 flex items-center justify-between px-1" role="tablist"
         aria-label="Right Inspector View">
         <div class="flex items-center gap-1 min-w-0 overflow-x-auto">
@@ -9781,6 +9952,7 @@
 
     function switchView(mode, autoBuild = true, skipNavSync = false) {
       activeMode = mode;
+      if (typeof scheduleResizeRenderer === 'function') scheduleResizeRenderer();
       if (!skipNavSync && window.BhuGeographicNavigator) {
         window.BhuGeographicNavigator.syncFromMode(mode);
       }
@@ -14703,6 +14875,178 @@ Generated on: ${new Date().toISOString()}
     if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
     gsap.from('.panel', {opacity:0, y:12, duration:0.45, stagger:{each:0.055,from:'start'}, ease:'back.out(1.2)', delay:0.3});
   })();
+  </script>
+
+  <!-- APPLE iOS NATIVE GLASS BOTTOM TAB BAR (MOBILE ONLY) -->
+  <nav id="ios-bottom-tabbar" class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#080d18]/90 backdrop-blur-2xl border-t border-white/10 px-4 py-2 flex items-center justify-around select-none" style="padding-bottom: max(8px, env(safe-area-inset-bottom));">
+    <button type="button" onclick="iosSwitchTab('globe')" id="ios-tab-globe" class="ios-tab-item active flex flex-col items-center gap-0.5 text-sky-400">
+      <i class="fa-solid fa-earth-asia text-base"></i>
+      <span class="text-[9px] font-medium tracking-tight">3D Earth</span>
+    </button>
+    <button type="button" onclick="iosSwitchTab('ai')" id="ios-tab-ai" class="ios-tab-item flex flex-col items-center gap-0.5 text-slate-400">
+      <i class="fa-solid fa-brain text-base"></i>
+      <span class="text-[9px] font-medium tracking-tight">AI Agent</span>
+    </button>
+    <button type="button" onclick="iosSwitchTab('sar')" id="ios-tab-sar" class="ios-tab-item flex flex-col items-center gap-0.5 text-slate-400">
+      <i class="fa-solid fa-satellite-dish text-base"></i>
+      <span class="text-[9px] font-medium tracking-tight">Flood SAR</span>
+    </button>
+    <button type="button" onclick="iosSwitchTab('agri')" id="ios-tab-agri" class="ios-tab-item flex flex-col items-center gap-0.5 text-slate-400">
+      <i class="fa-solid fa-wheat-awn text-base"></i>
+      <span class="text-[9px] font-medium tracking-tight">Agro Intel</span>
+    </button>
+    <button type="button" onclick="iosSwitchTab('menu')" id="ios-tab-menu" class="ios-tab-item flex flex-col items-center gap-0.5 text-slate-400">
+      <i class="fa-solid fa-compass text-base"></i>
+      <span class="text-[9px] font-medium tracking-tight">Explore</span>
+    </button>
+  </nav>
+
+  <!-- APPLE iOS EXPLORE ACTION SHEET (MOBILE ONLY) -->
+  <div id="ios-explore-sheet" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex flex-col justify-end" onclick="if(event.target===this)iosCloseSheet();">
+    <div class="bg-[#090e1a]/95 backdrop-blur-2xl border-t border-white/15 rounded-t-3xl p-5 shadow-2xl flex flex-col gap-4 animate-in slide-in-from-bottom duration-300" style="padding-bottom: max(24px, env(safe-area-inset-bottom));">
+      <div class="w-10 h-1 rounded-full bg-slate-500/40 mx-auto -mt-1 cursor-pointer" onclick="iosCloseSheet()"></div>
+      <div class="flex items-center justify-between">
+        <div>
+          <div class="text-sm font-bold text-slate-100 uppercase tracking-wider font-display">BHU LOKA · Sovereign Workstation</div>
+          <div class="text-[10px] text-slate-400 mono">NASA Space Apps 2026 · IIT Patna & IIITDMJ</div>
+        </div>
+        <button type="button" onclick="iosCloseSheet()" class="w-7 h-7 rounded-full bg-slate-800 text-slate-300 flex items-center justify-center hover:bg-slate-700">
+          <i class="fa-solid fa-xmark text-xs"></i>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2.5">
+        <a href="bhu_loka_leafmap_interactive.html" target="_blank" class="p-3 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] flex items-center gap-2.5 transition">
+          <div class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center text-sm shrink-0">
+            <i class="fa-solid fa-map"></i>
+          </div>
+          <div>
+            <div class="text-[11px] font-semibold text-slate-200">2D Earth Map</div>
+            <div class="text-[9px] text-slate-400">Leaflet & Vector</div>
+          </div>
+        </a>
+
+        <button type="button" onclick="open2DCropStudio(); iosCloseSheet();" class="p-3 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] flex items-center gap-2.5 transition text-left">
+          <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-sm shrink-0">
+            <i class="fa-solid fa-crop-simple"></i>
+          </div>
+          <div>
+            <div class="text-[11px] font-semibold text-slate-200">2D Map Cropper</div>
+            <div class="text-[9px] text-slate-400">3D Extrusion Studio</div>
+          </div>
+        </button>
+
+        <button type="button" onclick="if(typeof openAreaFloodPredictionModal==='function')openAreaFloodPredictionModal(); iosCloseSheet();" class="p-3 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] flex items-center gap-2.5 transition text-left">
+          <div class="w-8 h-8 rounded-lg bg-rose-500/20 text-rose-400 flex items-center justify-center text-sm shrink-0">
+            <i class="fa-solid fa-water-ladder"></i>
+          </div>
+          <div>
+            <div class="text-[11px] font-semibold text-slate-200">Flood Prediction</div>
+            <div class="text-[9px] text-slate-400">SBCV ML Random Forest</div>
+          </div>
+        </button>
+
+        <button type="button" onclick="if(typeof openPresentationDeck==='function')openPresentationDeck(); iosCloseSheet();" class="p-3 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] flex items-center gap-2.5 transition text-left">
+          <div class="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center text-sm shrink-0">
+            <i class="fa-solid fa-chalkboard-user"></i>
+          </div>
+          <div>
+            <div class="text-[11px] font-semibold text-slate-200">NASA Slides</div>
+            <div class="text-[9px] text-slate-400">7-Slide Deck</div>
+          </div>
+        </button>
+
+        <button type="button" onclick="if(typeof openModelIntelModal==='function')openModelIntelModal('performance'); iosCloseSheet();" class="p-3 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] flex items-center gap-2.5 transition text-left">
+          <div class="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-sm shrink-0">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+          <div>
+            <div class="text-[11px] font-semibold text-slate-200">SBCV Evaluation</div>
+            <div class="text-[9px] text-slate-400">Spatial Validation</div>
+          </div>
+        </button>
+
+        <button type="button" onclick="openSystemModal('api'); iosCloseSheet();" class="p-3 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] flex items-center gap-2.5 transition text-left">
+          <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-sm shrink-0">
+            <i class="fa-solid fa-server"></i>
+          </div>
+          <div>
+            <div class="text-[11px] font-semibold text-slate-200">System Telemetry</div>
+            <div class="text-[9px] text-slate-400">API Status & Keys</div>
+          </div>
+        </button>
+      </div>
+
+      <button type="button" onclick="iosCloseSheet()" class="w-full py-2.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] text-xs font-semibold text-slate-300 border border-white/10 transition">
+        Done
+      </button>
+    </div>
+  </div>
+
+  <script>
+  window.iosUpdateSegmentedPills = function(mode) {
+    const pills = document.querySelectorAll('.ios-segmented-pill');
+    pills.forEach(p => {
+      if (p.getAttribute('data-mode') === mode) {
+        p.classList.add('active');
+      } else {
+        p.classList.remove('active');
+      }
+    });
+  };
+
+  window.iosSwitchTab = function(tab) {
+    document.querySelectorAll('.ios-tab-item').forEach(el => el.classList.remove('active'));
+    const activeBtn = document.getElementById('ios-tab-' + tab);
+    if (activeBtn) activeBtn.classList.add('active');
+
+    const left = document.getElementById('left-rail');
+    const right = document.getElementById('right-rail');
+    const exploreSheet = document.getElementById('ios-explore-sheet');
+
+    if (tab === 'globe') {
+      if (left) left.classList.remove('ios-sheet-open');
+      if (right) right.classList.remove('ios-sheet-open');
+      if (exploreSheet) exploreSheet.classList.add('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (typeof scheduleResizeRenderer === 'function') scheduleResizeRenderer();
+    } else if (tab === 'ai') {
+      if (exploreSheet) exploreSheet.classList.add('hidden');
+      if (right) right.classList.remove('ios-sheet-open');
+      if (typeof switchLeftDockTab === 'function') switchLeftDockTab('ai');
+      if (left) {
+        left.classList.remove('rail-collapsed');
+        left.classList.add('ios-sheet-open');
+      }
+    } else if (tab === 'sar') {
+      if (left) left.classList.remove('ios-sheet-open');
+      if (right) right.classList.remove('ios-sheet-open');
+      if (exploreSheet) exploreSheet.classList.add('hidden');
+      if (typeof openModelIntelModal === 'function') openModelIntelModal('overview');
+    } else if (tab === 'agri') {
+      if (left) left.classList.remove('ios-sheet-open');
+      if (exploreSheet) exploreSheet.classList.add('hidden');
+      if (typeof switchRightDockTab === 'function') switchRightDockTab('agri');
+      if (right) {
+        right.classList.remove('rail-collapsed');
+        right.classList.add('ios-sheet-open');
+      }
+    } else if (tab === 'menu') {
+      if (left) left.classList.remove('ios-sheet-open');
+      if (right) right.classList.remove('ios-sheet-open');
+      if (exploreSheet) exploreSheet.classList.toggle('hidden');
+    }
+  };
+
+  window.iosCloseSheet = function() {
+    const left = document.getElementById('left-rail');
+    const right = document.getElementById('right-rail');
+    const exploreSheet = document.getElementById('ios-explore-sheet');
+    if (left) left.classList.remove('ios-sheet-open');
+    if (right) right.classList.remove('ios-sheet-open');
+    if (exploreSheet) exploreSheet.classList.add('hidden');
+    iosSwitchTab('globe');
+  };
   </script>
 </body>
 
