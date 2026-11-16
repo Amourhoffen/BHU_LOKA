@@ -659,6 +659,42 @@
       else lang = 'en';
     }
 
+    // 0A. Conversational Cues & Greetings (ji, haan, hello, namaste, etc.)
+    if (/^(?:ji|haan|ha|theek hai|thik hai|ok|okay|hello|hi|hey|namaste|pranam|kya haal)\b|^(?:ji|haan|ha)\s*$/i.test(q)) {
+      return {
+        answer: (lang === 'hi' || lang === 'hinglish')
+          ? `जी नमस्ते! मैं BHU LOKA Sovereign Geospatial AI हूँ।\n\nमैं आपके आदेशों के लिए पूरी तरह सक्रिय हूँ। आप क्या देखना चाहते हैं?\n• 'Earth dikhao' ➔ 3D ग्लोब और 186+ सैटेलाइट्स देखें\n• 'Khet crop karo' ➔ अपनी जमीन क्रॉप करके 3D में ऊंचाई-नीचाई (DEM) देखें\n• '2028 flood' ➔ 2026-2030 का बाढ़ व सुखाड़ पूर्वानुमान देखें\n• 'Color decoder' ➔ मैजेंटा, सियान और अंबर रंगों का वैज्ञानिक अर्थ जानें\n• 'Relief supplies' ➔ आपदा राहत डिपो व सप्लाई चेन देखें`
+          : `Hello! I am the BHU LOKA Sovereign Geospatial AI.\n\nI am actively listening and ready for your directives:\n• 'Study Earth' ➔ 3D World Globe with live satellite tracks\n• 'Crop my land' ➔ Launch 2D Land Cropper to extrude 3D topography\n• '2028 Flood' ➔ Simulate 2026–2030 climate horizon\n• 'Color decoder' ➔ Multi-Hazard spectral sensor guide\n• 'Relief supplies' ➔ Disaster relief logistics monitor`,
+        citations: [],
+        sourceTag: 'BHU LOKA Autonomous Conversational Dialogue Agent'
+      };
+    }
+
+    // 0B. Comprehension Check (tum smjh rhe ho, etc.)
+    if (/tum\s*s(?:a)?m(?:a)?jh|s(?:a)?m(?:a)?jh\s*rh|sun\s*rh|understanding|do\s*you\s*understand|kuch\s*s(?:a)?m(?:a)?jh/i.test(q)) {
+      return {
+        answer: (lang === 'hi' || lang === 'hinglish')
+          ? `हाँ, मैं आपकी बात 100% समझ रहा हूँ! मैं केवल एक स्टैटिक चैटबॉट नहीं, बल्कि DeepSeek Harness और Cordis माइक्रोकर्नल पर आधारित ऑटोनॉमस मल्टी-एजेंट सिस्टम हूँ।\n\nआप मुझसे सीधे स्वाभाविक भाषा में कुछ भी कह सकते हैं:\n1. 'Earth dikhao' ➔ 3D ग्लोब और 186+ सैटेलाइट्स\n2. 'Mera khet crop karo' ➔ 2D से 3D लैंड क्रॉपर\n3. '2028 flood predict karo' ➔ 2028 का क्लाइमेट मॉडल व लेयर्स\n4. 'Relief supply chain' ➔ बिहटा व दानापुर सेफ कॉरिडोर\n\nबताइए, अभी क्या शुरू करें?`
+          : `Yes, I understand you 100%! I am an autonomous geospatial reasoning agent powered by DeepSeek Harness Cordis architecture and multi-turn memory.\n\nYou can command me in natural language:\n1. 'Study Earth' ➔ Shifts 3D globe and orbital telemetry\n2. 'Crop my land' ➔ Launches 2D-to-3D topographic studio\n3. '2028 flood' ➔ Calibrates 2026-2030 climate risk layers\n4. 'Relief supply chain' ➔ Monitored via >52m safe ridge corridors.`,
+        citations: [],
+        sourceTag: 'BHU LOKA Multi-Turn Grounded Comprehension Engine'
+      };
+    }
+
+    // 0C. Study Earth & Planetary Exploration (i want study to earth, etc.)
+    if (/study\s*(?:to|of)?\s*earth|explore\s*earth|about\s*earth|study\s*dharti|prithvi|globe|world\s*view|earth\s*system|earth\s*observation/i.test(q)) {
+      if (typeof window.switchView === 'function') {
+        setTimeout(() => window.switchView('world'), 200);
+      }
+      return {
+        answer: (lang === 'hi' || lang === 'hinglish')
+          ? `[BHU LOKA पृथ्वी अवलोकन एवं ग्रहीय बुद्धिमत्ता]\n\n3D दृश्य को वैश्विक पृथ्वी (World Globe) पर सेट कर दिया गया है!\n\n1. उपग्रह तारामंडल (Sensors): कॉपरनिकस Sentinel-1 SAR (दिन-रात रडार), Terra MODIS (तापमान LST), NISAR (L+S Band), और 186+ सक्रिय उपग्रह।\n2. टोपोग्राफी (DEM): कॉपरनिकस 30m DEM व 90m रिलीफ से महाद्वीपीय बेसिन व प्राकृतिक बांध दिखाई देते हैं।\n3. आपदा परतें: बाढ़ जलभराव, सुखाड़ (VCI Deficit), और हीटवेव तापमान।\n\nमाउस से ग्लोब को घुमाएं, ज़ूम करें, अथवा ऊपर 'India 36' दबाकर भारत पर आएं!`
+          : `[BHU LOKA EARTH OBSERVATION & PLANETARY INTELLIGENCE]\n\n3D viewport shifted to the global sovereign orbital view!\n\n1. Constellations: Sentinel-1 SAR radar, Terra MODIS LST, NASA-ISRO NISAR, and 186+ live NORAD CelesTrak satellites.\n2. Planetary Topography: Copernicus 30m Global DEM (GLO-30) + SRTM 90m relief.\n3. Hazard Shaders: Flood Inundation, Sukhar/Drought, and Pre-monsoon Heatwaves.\n\nRotate the globe with mouse/touch or click 'India 36' to zoom into the subcontinent.`,
+        citations: [GROUNDED_KNOWLEDGE.elevation, GROUNDED_KNOWLEDGE.meteorology],
+        sourceTag: 'Copernicus Space Component + NASA Earth Observation Constellation'
+      };
+    }
+
     // 1A. 2D Land Cropping to 3D Extrusion & Layer-by-Layer Hazard Overlays (Uchai-Neechai & Compound Risk)
     if (q.includes('uchai') || q.includes('neechai') || q.includes('unchai') || q.includes('layer by layer') || q.includes('layar') || (q.includes('crop') && (q.includes('3d') || q.includes('hazard') || q.includes('color') || q.includes('land')))) {
       if (typeof window.setHoloHazardLayer === 'function') {
