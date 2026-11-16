@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -6,9 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BHU LOKA (भूलोक) · Dual-Agent Sovereign Geospatial Workstation v3.0</title>
   <link rel="icon" href="data:,">
+  <!-- BHU LOKA Design System Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 Free -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="Assets/vendor/bhu_loka_theme.css" />
   <script src="Assets/vendor/tailwindcss.js"></script>
   <script src="Assets/vendor/three.min.js"></script>
+  <!-- GSAP Animation Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="Assets/vendor/satellite.min.js"></script>
   <!-- Sovereign 36-State India GeoJSON (6.75N-37.10N) + All 38 Bihar Districts + Patna Copernicus DEM & Sentinel-1 SAR -->
   <script src="Data/08_Processed_Outputs/bhu_loka_real_geodata.js"></script>
@@ -72,18 +81,28 @@
   </script>
   <style>
     :root {
-      --bg-canvas: #06090e;
-      --bg-panel: #0b0f17;
-      --bg-inset: #070b12;
-      --border-hairline: rgba(148, 163, 184, 0.14);
-      --border-strong: rgba(148, 163, 184, 0.24);
-      --text-primary: #f8fafc;
-      --text-secondary: #94a3b8;
-      --text-muted: #64748b;
-      --accent-sky: #2d9cdb;
+      --bg-canvas: #040710;
+      --bg-panel: rgba(8, 12, 22, 0.72);
+      --bg-inset: rgba(4, 7, 16, 0.65);
+      --bg-glass: rgba(255, 255, 255, 0.045);
+      --bg-glass-hover: rgba(255, 255, 255, 0.075);
+      --border-hairline: rgba(255, 255, 255, 0.07);
+      --border-glass: rgba(255, 255, 255, 0.12);
+      --border-strong: rgba(255, 255, 255, 0.18);
+      --text-primary: #f0f4f8;
+      --text-secondary: #8fa3bd;
+      --text-muted: #4e6075;
+      --accent-primary: #2d9cdb;
+      --accent-primary-dim: rgba(45, 156, 219, 0.18);
       --accent-emerald: #10b981;
-      --accent-rose: #f43f5e;
-      --accent-amber: #f59e0b;
+      --accent-amber: #d97706;
+      --accent-rose: #e53e5a;
+      --accent-violet: #7c3aed;
+      --blur-panel: blur(18px);
+      --blur-modal: blur(24px);
+      --radius-panel: 12px;
+      --radius-card: 8px;
+      --radius-chip: 6px;
     }
 
     * {
@@ -92,8 +111,11 @@
 
     body {
       background-color: var(--bg-canvas);
+      background-image: 
+        radial-gradient(ellipse at 20% 50%, rgba(45,156,219,0.04) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(16,185,129,0.03) 0%, transparent 50%);
       color: var(--text-primary);
-      font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       overflow-x: hidden;
       overflow-anchor: none;
       margin: 0;
@@ -101,57 +123,74 @@
     }
 
     .mono {
-      font-family: 'IBM Plex Mono', 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+      font-family: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
       font-variant-numeric: tabular-nums;
     }
 
     .panel {
-      background-color: var(--bg-panel);
-      border: 1px solid var(--border-hairline);
-      border-radius: 6px;
+      background: var(--bg-panel);
+      backdrop-filter: var(--blur-panel);
+      -webkit-backdrop-filter: var(--blur-panel);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-panel);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.055);
     }
 
     .panel-inset {
-      background-color: var(--bg-inset);
+      background: var(--bg-inset);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border: 1px solid var(--border-hairline);
-      border-radius: 4px;
+      border-radius: var(--radius-card);
     }
 
     .section-header {
-      font-family: 'IBM Plex Mono', 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
-      font-size: 11px;
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-size: 10px;
       font-weight: 600;
-      letter-spacing: 0.01em;
-      color: #cbd5e1;
+      letter-spacing: 0.08em;
+      color: var(--text-secondary);
+      text-transform: uppercase;
     }
 
     .badge-chip {
-      font-family: 'IBM Plex Mono', 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+      background: var(--bg-glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-glass);
+      color: var(--text-secondary);
+      font-family: 'Space Grotesk', system-ui, sans-serif;
       font-size: 10px;
       font-weight: 500;
-      padding: 2px 8px;
-      border-radius: 4px;
-      border: 1px solid var(--border-hairline);
+      padding: 3px 10px;
+      border-radius: var(--radius-chip);
       display: inline-flex;
       align-items: center;
       gap: 6px;
       white-space: nowrap;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+      cursor: pointer;
+    }
+
+    .badge-chip:hover {
+      background: var(--bg-glass-hover);
+      border-color: var(--border-strong);
+      color: var(--text-primary);
     }
 
     .source-chip {
-      font-family: 'IBM Plex Mono', 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
-      font-size: 10px;
-      font-weight: 500;
-      padding: 2px 6px;
+      font-family: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 9.5px;
+      font-weight: 400;
+      padding: 2px 7px;
       border-radius: 4px;
-      border: 1px solid rgba(148, 163, 184, 0.16);
-      background-color: rgba(15, 23, 42, 0.6);
-      color: #cbd5e1;
+      border: 1px solid var(--border-hairline);
+      background: var(--bg-glass);
+      color: var(--text-secondary);
       display: inline-block;
       max-width: 100%;
-      white-space: normal;
       word-break: break-word;
-      line-height: 1.35;
+      line-height: 1.4;
     }
 
     .viewport-bg {
@@ -169,21 +208,47 @@
     }
 
     ::-webkit-scrollbar {
-      width: 5px;
-      height: 5px;
+      width: 4px;
+      height: 4px;
     }
 
     ::-webkit-scrollbar-track {
-      background: #06090e;
+      background: transparent;
     }
 
     ::-webkit-scrollbar-thumb {
-      background: #1e293b;
-      border-radius: 3px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 4px;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-      background: #334155;
+      background: rgba(255,255,255,0.18);
+    }
+
+    /* ── CUSTOM CURSOR ── */
+    @media (hover: hover) and (pointer: fine) {
+      * { cursor: none !important; }
+      #bhu-cursor-dot {
+        position: fixed; pointer-events: none; z-index: 99999;
+        width: 6px; height: 6px; border-radius: 50%;
+        background: var(--accent-primary);
+        transform: translate(-50%,-50%);
+        transition: transform 0.08s ease, opacity 0.2s ease;
+        will-change: transform;
+      }
+      #bhu-cursor-ring {
+        position: fixed; pointer-events: none; z-index: 99998;
+        width: 28px; height: 28px; border-radius: 50%;
+        border: 1px solid rgba(45,156,219,0.5);
+        transform: translate(-50%,-50%);
+        transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, transform 0.12s ease;
+        will-change: transform;
+      }
+      body:has(button:hover) #bhu-cursor-ring,
+      body:has(a:hover) #bhu-cursor-ring {
+        width: 44px; height: 44px;
+        border-color: rgba(45,156,219,0.8);
+      }
     }
 
     /* ── FULLSCREEN ── */
@@ -327,7 +392,7 @@
       position: fixed;
       inset: 0;
       z-index: 9999;
-      background: radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.15) 0%, rgba(6, 9, 16, 0.94) 55%, #030712 100%);
+      background: radial-gradient(ellipse at 50% 60%, rgba(45,156,219,0.12) 0%, rgba(4,7,16,0.97) 55%, #020509 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -351,33 +416,34 @@
 
     /* ── NASA FUTURISTIC SPACE COMMAND UI THEME ── */
     .bhu-nasa-glass {
-      background: rgba(10, 16, 28, 0.78) !important;
-      backdrop-filter: blur(20px) !important;
-      -webkit-backdrop-filter: blur(20px) !important;
-      border: 1px solid rgba(56, 189, 248, 0.22) !important;
-      border-radius: 18px !important;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+      background: var(--bg-panel) !important;
+      backdrop-filter: var(--blur-panel) !important;
+      -webkit-backdrop-filter: var(--blur-panel) !important;
+      border: 1px solid var(--border-glass) !important;
+      border-radius: var(--radius-panel) !important;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.065) !important;
     }
 
 
     .bhu-explore-btn {
-      background: rgba(10, 16, 28, 0.88);
-      border: 1.5px solid #38bdf8;
-      color: #f8fafc;
-      padding: 8px 32px;
-      border-radius: 9999px;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 2.5px;
-      box-shadow: 0 0 24px rgba(56, 189, 248, 0.5), inset 0 0 14px rgba(56, 189, 248, 0.3);
+      background: var(--bg-glass);
+      backdrop-filter: var(--blur-panel);
+      -webkit-backdrop-filter: var(--blur-panel);
+      border: 1px solid var(--border-glass);
+      color: var(--text-primary);
+      padding: 7px 28px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      font-family: 'Space Grotesk', system-ui, sans-serif;
       cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: background 0.2s ease, border-color 0.2s ease;
     }
 
     .bhu-explore-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 35px rgba(56, 189, 248, 0.85), inset 0 0 20px rgba(56, 189, 248, 0.5);
-      color: #38bdf8;
+      background: var(--bg-glass-hover);
+      border-color: var(--border-strong);
     }
 
     .bhu-radar-container {
@@ -403,7 +469,7 @@
       position: absolute;
       inset: 0;
       border-radius: 50%;
-      background: conic-gradient(from 0deg, transparent 0deg, transparent 270deg, rgba(56, 189, 248, 0.55) 360deg);
+      background: conic-gradient(from 0deg, transparent 0deg, transparent 270deg, rgba(45, 156, 219, 0.4) 360deg);
       animation: bhuRadarSpin 3.5s linear infinite;
     }
 
@@ -421,7 +487,6 @@
       width: 14px;
       border-radius: 3px;
       background: linear-gradient(180deg, #38bdf8 0%, rgba(56, 189, 248, 0.15) 100%);
-      box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
     }
 
     #bhu-agri-dock-slot #bhu-agri-panel {
@@ -448,12 +513,87 @@
     #sovereign-quick-dock.dock-minimized .dock-sep {
       display: none !important;
     }
-  </style>
+  
+    /* ── TYPOGRAPHY: CORMORANT GARAMOND & SPACE GROTESK ── */
+    h1, h2, h3, .bhu-display-title, .bhu-brand-title {
+      font-family: 'Cormorant Garamond', Georgia, serif !important;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── TACTILE BUTTON FEEDBACK (SCALE ON PRESS) ── */
+    button:active,
+    .badge-chip:active,
+    .bhu-explore-btn:active,
+    .bhu-nav-chevron:active {
+      transform: scale(0.96) !important;
+      transition: transform 0.08s ease-out !important;
+    }
+
+    /* ── CONCENTRIC BORDER RADII & OPTICAL ALIGNMENT ── */
+    .button-with-icon {
+      padding-inline-start: 12px;
+      padding-inline-end: 10px;
+    }
+
+    /* ── 3D VIEWPORT PLANET NAVIGATION CHEVRONS (MOBILE & DESKTOP) ── */
+    .bhu-nav-chevron {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(8, 12, 22, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 25;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+    .bhu-nav-chevron:hover {
+      background: rgba(45, 156, 219, 0.2);
+      border-color: rgba(45, 156, 219, 0.45);
+      color: var(--text-primary);
+    }
+    .bhu-nav-chevron.prev { left: 10px; }
+    .bhu-nav-chevron.next { right: 10px; }
+
+    /* ── PLANET / MODE SIDE DOTS ── */
+    .bhu-side-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bhu-side-dot:hover {
+      background: rgba(45, 156, 219, 0.6);
+      transform: scale(1.3);
+    }
+    .bhu-side-dot.active {
+      height: 18px;
+      border-radius: 4px;
+      background: var(--accent-primary);
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 10px rgba(45, 156, 219, 0.5);
+    }
+</style>
 </head>
 
 <body class="bhu-workstation p-1.5 sm:p-2 min-h-screen lg:h-screen lg:overflow-hidden flex flex-col gap-1.5">
+  <div id="bhu-cursor-dot" aria-hidden="true"></div>
+  <div id="bhu-cursor-ring" aria-hidden="true"></div>
   <!-- STARTUP IDENTITY ANIMATION OVERLAY (Cinematic, auto-fading, non-blocking) -->
   <div id="bhu-intro-overlay" role="dialog" aria-label="BHU LOKA Workstation Initializing">
+    <canvas id="bhu-star-canvas" aria-hidden="true"></canvas>
     <!-- Atmospheric horizon glow aura behind Earth -->
     <div class="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"
       aria-hidden="true">
@@ -496,42 +636,43 @@
     <!-- LEFT: BRAND & SOVEREIGN ANCHOR -->
     <div class="flex items-center gap-3 shrink-0">
       <div class="flex items-center gap-2">
-        <span class="text-xl font-black tracking-widest text-slate-100 uppercase"
-          style="font-family: system-ui, -apple-system, sans-serif; letter-spacing: 3px;">BHU LOKA</span>
+        <span class="text-2xl font-bold tracking-widest text-slate-100 uppercase bhu-brand-title"
+          style="font-family: 'Cormorant Garamond', Georgia, serif; letter-spacing: 2px;">BHU LOKA</span>
         <span
           class="text-[9px] px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/40 font-bold mono">SOVEREIGN</span>
       </div>
       <div class="text-[9.5px] mono text-slate-400 hidden xl:block border-l border-slate-700/80 pl-2.5">
         IIT PATNA · M.S. CSDA
       </div>
-      <span class="badge-chip bg-slate-800/80 text-slate-300 border-slate-700 hidden sm:inline-flex"
+      <span class="badge-chip hidden sm:inline-flex"
         id="runtime-badge">WebGL2</span>
       <a id="link-open-2d-earth" href="bhu_loka_leafmap_interactive.html" target="_blank"
-        class="badge-chip bg-sky-500/10 hover:bg-sky-500/20 text-sky-300 border-sky-500/35 transition cursor-pointer hidden md:inline-flex">
+        class="badge-chip hidden md:inline-flex">
         2D Earth &rarr;
       </a>
       <button type="button" id="link-open-sar-hero"
         onclick="if(typeof openModelIntelModal==='function')openModelIntelModal('overview');"
-        class="badge-chip bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border-amber-500/50 font-bold tracking-wide transition cursor-pointer flex items-center gap-1.5 shadow-none"
+        class="badge-chip font-bold tracking-wide"
+        style="border-color: var(--accent-primary); color: var(--accent-primary);"
         title="Open NASA Space Apps Challenge 2026: Dancing with the SARs (Scientific Flood Model Intelligence)">
-        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+        <span class="w-2 h-2 rounded-full bg-[var(--accent-primary)] animate-pulse"></span>
         DANCING WITH THE SARS · NASA 2026
       </button>
       <button type="button" id="btn-open-model-eval"
         onclick="if(typeof openModelIntelModal==='function')openModelIntelModal('performance');"
-        class="badge-chip bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border-cyan-500/50 font-bold tracking-wide transition cursor-pointer hidden lg:flex items-center gap-1 shadow-none"
+        class="badge-chip font-bold tracking-wide hidden lg:flex items-center gap-1"
         title="Open Scientific Model Evaluation Dashboard (Spatial Block Cross-Validation & Confusion Matrix)">
         MODEL EVALUATION (SBCV)
       </button>
       <button type="button" id="btn-open-cropper-header"
         onclick="if(typeof open2DCropStudio==='function')open2DCropStudio();"
-        class="badge-chip bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border-emerald-500/50 font-bold tracking-wide transition cursor-pointer flex items-center gap-1.5 shadow-none"
+        class="badge-chip font-bold tracking-wide flex items-center gap-1.5"
         title="Pan-India 2D Map Bounding Box Cropper & 3D Extrusion Studio (Copernicus 30m DEM + OSM)">
         2D MAP CROPPER
       </button>
       <button type="button" id="btn-open-presentation-header"
         onclick="if(typeof openPresentationDeck==='function')openPresentationDeck();"
-        class="badge-chip bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 border-purple-500/50 font-bold tracking-wide transition cursor-pointer flex items-center gap-1.5 shadow-none"
+        class="badge-chip font-bold tracking-wide flex items-center gap-1.5"
         title="Launch NASA Space Apps 2026 9-Slide Presentation Deck (Team Amour Hoffen)">
         NASA PRESENTATION (7 SLIDES)
       </button>
@@ -630,7 +771,7 @@
         <button type="button" id="act-btn-cropper" onclick="if(typeof open2DCropStudio==='function')open2DCropStudio()"
           title="2D Map Cropper & 3D Extrusion Studio"
           class="w-8 h-8 rounded-lg flex items-center justify-center text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/20 transition relative">
-          <span class="text-xs">📐</span>
+          <i class="fa-solid fa-ruler-combined text-xs" aria-hidden="true"></i>
         </button>
 
         <!-- 3C. NASA Space Apps Presentation Deck -->
@@ -638,7 +779,7 @@
           onclick="if(typeof openPresentationDeck==='function')openPresentationDeck()"
           title="NASA Space Apps 2026 Presentation Deck (9 Slides)"
           class="w-8 h-8 rounded-lg flex items-center justify-center text-purple-400 hover:text-purple-300 hover:bg-purple-500/20 transition relative">
-          <span class="text-xs">📊</span>
+          <i class="fa-solid fa-chart-simple text-xs" aria-hidden="true"></i>
         </button>
 
         <!-- 4. Health & Thermal Stress -->
@@ -716,7 +857,7 @@
           </button>
           <button type="button" id="left-tab-btn-insights" role="tab" aria-selected="false"
             onclick="switchLeftDockTab('insights')" class="bhu-dock-tab">
-            ✦ Insights
+            <i class="fa-solid fa-circle-nodes text-[10px] mr-1 text-sky-400" aria-hidden="true"></i> Insights
           </button>
           <button type="button" id="left-tab-btn-vitals" role="tab" aria-selected="false"
             onclick="switchLeftDockTab('vitals')" class="bhu-dock-tab">
@@ -794,24 +935,19 @@
           <span class="text-slate-500 uppercase text-[9px] font-bold shrink-0">Role:</span>
           <button type="button" data-role="farmer"
             onclick="if(window.BhuLokaAI) BhuLokaAI.setRole('farmer'); setCyberAiRole('farmer');"
-            class="bhu-role-chip active px-2 py-0.5 rounded text-[9.5px] font-semibold border transition shrink-0 bg-sky-500/20 text-sky-300 border-sky-400/50">🌾
-            Farmer</button>
+            class="bhu-role-chip active px-2 py-0.5 rounded text-[9.5px] font-semibold border transition shrink-0 bg-sky-500/20 text-sky-300 border-sky-400/50"><i class="fa-solid fa-wheat-awn mr-1" aria-hidden="true"></i> Farmer</button>
           <button type="button" data-role="business"
             onclick="if(window.BhuLokaAI) BhuLokaAI.setRole('business'); setCyberAiRole('business');"
-            class="bhu-role-chip px-2 py-0.5 rounded text-[9.5px] font-normal border transition shrink-0 bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200">💼
-            Business</button>
+            class="bhu-role-chip px-2 py-0.5 rounded text-[9.5px] font-normal border transition shrink-0 bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200"><i class="fa-solid fa-briefcase mr-1" aria-hidden="true"></i> Business</button>
           <button type="button" data-role="student"
             onclick="if(window.BhuLokaAI) BhuLokaAI.setRole('student'); setCyberAiRole('student');"
-            class="bhu-role-chip px-2 py-0.5 rounded text-[9.5px] font-normal border transition shrink-0 bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200">🎓
-            Student</button>
+            class="bhu-role-chip px-2 py-0.5 rounded text-[9.5px] font-normal border transition shrink-0 bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200"><i class="fa-solid fa-graduation-cap mr-1" aria-hidden="true"></i> Student</button>
           <button type="button" data-role="worker"
             onclick="if(window.BhuLokaAI) BhuLokaAI.setRole('worker'); setCyberAiRole('worker');"
-            class="bhu-role-chip px-2 py-0.5 rounded text-[9.5px] font-normal border transition shrink-0 bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200">👷
-            Worker</button>
+            class="bhu-role-chip px-2 py-0.5 rounded text-[9.5px] font-normal border transition shrink-0 bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200"><i class="fa-solid fa-user-gear mr-1" aria-hidden="true"></i> Worker</button>
           <button type="button" data-role="researcher"
             onclick="if(window.BhuLokaAI) BhuLokaAI.setRole('researcher'); setCyberAiRole('researcher');"
-            class="bhu-role-chip px-2 py-0.5 rounded text-[9.5px] font-normal border transition shrink-0 bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200">🔬
-            Researcher</button>
+            class="bhu-role-chip px-2 py-0.5 rounded text-[9.5px] font-normal border transition shrink-0 bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200"><i class="fa-solid fa-microscope mr-1" aria-hidden="true"></i> Researcher</button>
         </div>
 
         <!-- LIVE AGENT-2 AUTONOMOUS CARTOGRAPHIC STATUS BANNER -->
@@ -1284,7 +1420,7 @@
         <!-- TITLE HEADER -->
         <div class="bhu-nasa-glass p-2 flex items-center justify-between shrink-0">
           <div class="flex items-center gap-1.5">
-            <span class="text-sky-400 font-bold text-sm">✦</span>
+            <i class="fa-solid fa-sparkles text-sky-400 text-xs mr-1" aria-hidden="true"></i>
             <span class="text-xs font-bold tracking-wider text-slate-100 uppercase">Orbital Intelligence</span>
           </div>
           <span
@@ -1333,17 +1469,17 @@
           <div class="space-y-1 mono text-[9.5px]">
             <button type="button" onclick="setNasaNavTab('agri')"
               class="w-full text-left p-1.5 rounded bg-slate-800/80 hover:bg-slate-700/90 border border-slate-700 text-slate-200 flex items-center justify-between transition">
-              <span class="text-emerald-300 font-semibold truncate">🌾 Precision Agriculture (FAO-56 / NDVI)</span>
+              <span class="text-emerald-300 font-semibold truncate"><i class="fa-solid fa-wheat-awn mr-1 text-emerald-400" aria-hidden="true"></i> Precision Agriculture (FAO-56 / NDVI)</span>
               <span class="text-[8.5px] text-slate-400">OPEN &rarr;</span>
             </button>
             <button type="button" onclick="setNasaNavTab('worker')"
               class="w-full text-left p-1.5 rounded bg-slate-800/80 hover:bg-slate-700/90 border border-slate-700 text-slate-200 flex items-center justify-between transition">
-              <span class="text-amber-300 font-semibold truncate">👷 Worker Climate Health (WBGT / PM2.5)</span>
+              <span class="text-amber-300 font-semibold truncate"><i class="fa-solid fa-user-gear mr-1 text-amber-400" aria-hidden="true"></i> Worker Climate Health (WBGT / PM2.5)</span>
               <span class="text-[8.5px] text-slate-400">OPEN &rarr;</span>
             </button>
             <button type="button" onclick="switchRightDockTab('intel')"
               class="w-full text-left p-1.5 rounded bg-slate-800/80 hover:bg-slate-700/90 border border-slate-700 text-slate-200 flex items-center justify-between transition">
-              <span class="text-sky-300 font-semibold truncate">🗺️ India Intel (Modules A–F)</span>
+              <span class="text-sky-300 font-semibold truncate"><i class="fa-solid fa-map-location-dot mr-1 text-sky-400" aria-hidden="true"></i> India Intel (Modules A–F)</span>
               <span class="text-[8.5px] text-slate-400">VIEW &rarr;</span>
             </button>
           </div>
@@ -1406,7 +1542,7 @@
               title="NASA Space Apps 2026 Flood Model Intelligence & Scientific Evaluation"
               class="mono text-[11px] font-bold px-2 py-0.5 rounded bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 transition flex items-center gap-1 shadow-sm">
               <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
-              <span>🔬 MODEL INTEL</span>
+              <span><i class="fa-solid fa-microscope mr-1" aria-hidden="true"></i> MODEL INTEL</span>
             </button>
             <button type="button" id="btn-human" onclick="switchView('human')"
               class="mono text-[11px] font-semibold px-2 py-0.5 text-slate-400 hover:text-slate-200 border-b-2 border-transparent transition"
@@ -1673,6 +1809,24 @@
 
         <!-- THREE.JS WEBGL2 CANVAS CONTAINER -->
         <div id="three-canvas-wrap" class="relative flex-1 w-full min-h-0 lg:min-h-[215px] overflow-hidden viewport-bg">
+          <!-- FLOATING PLANET / VIEW NAVIGATION CHEVRONS (MOBILE & DESKTOP) -->
+          <button type="button" class="bhu-nav-chevron prev" onclick="switchPreviousView()" aria-label="Previous Planet or 3D Layer" title="Previous 3D Mode (‹)">
+            <i class="fa-solid fa-chevron-left text-xs" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="bhu-nav-chevron next" onclick="switchNextView()" aria-label="Next Planet or 3D Layer" title="Next 3D Mode (›)">
+            <i class="fa-solid fa-chevron-right text-xs" aria-hidden="true"></i>
+          </button>
+
+          <!-- VERTICAL SIDE DOTS FOR PLANET / MODE SELECTION -->
+          <div id="bhu-planet-side-dots" class="absolute right-3.5 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-20 pointer-events-auto" role="tablist" aria-label="Planet Navigation Dots">
+            <button type="button" class="bhu-side-dot active" data-mode="world" onclick="switchView('world')" title="World Earth" aria-label="World Earth"></button>
+            <button type="button" class="bhu-side-dot" data-mode="india" onclick="switchView('india')" title="Sovereign India 36" aria-label="Sovereign India 36"></button>
+            <button type="button" class="bhu-side-dot" data-mode="bihar" onclick="switchView('bihar')" title="Bihar 38 Districts" aria-label="Bihar 38 Districts"></button>
+            <button type="button" class="bhu-side-dot" data-mode="terrain" onclick="switchView('terrain')" title="Patna Copernicus DEM" aria-label="Patna Copernicus DEM"></button>
+            <button type="button" class="bhu-side-dot" data-mode="hologram" onclick="switchView('hologram')" title="Universal 3D Hologram" aria-label="Universal 3D Hologram"></button>
+            <button type="button" class="bhu-side-dot" data-mode="solar" onclick="switchView('solar')" title="Solar System" aria-label="Solar System"></button>
+          </div>
+
           <div id="three-canvas" class="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing"></div>
 
           <!-- HEALTRIX & VERIDIA FLOATING SCIENTIFIC CALLOUTS OVERLAY -->
@@ -2055,7 +2209,7 @@
             <button type="button" id="btn-holo-legend-toggle" onclick="toggleHoloSpectralLegend()"
               class="px-1.5 py-0.5 rounded bg-pink-500/20 hover:bg-pink-500/30 text-pink-300 border border-pink-500/40 font-semibold transition"
               title="Toggle 3D Spectral & Color Meaning Legend (Pink Crops, Blue Beacon, Pokhars)">
-              🎨 LEGEND
+              <i class="fa-solid fa-palette mr-1 text-sky-400" aria-hidden="true"></i> LEGEND
             </button>
             <span id="holo-solar-readout" class="text-sky-300 ml-1">AZ --° · EL --°</span>
             <span id="holo-osm-status" class="text-slate-400 ml-1"></span>
@@ -2120,7 +2274,7 @@
             class="hidden absolute bottom-3 left-3 z-20 bg-[#060a12]/92 backdrop-blur-md border border-cyan-500/40 rounded-xl p-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.85)] max-w-xs text-[10.5px] font-mono select-none transition-all">
             <div class="flex items-center justify-between border-b border-slate-800 pb-1 mb-1.5">
               <span class="text-cyan-300 font-bold flex items-center gap-1.5">
-                <span class="text-sm">🎨</span> 3D SPECTRAL &amp; COLOR GUIDE
+                <i class="fa-solid fa-palette text-sm mr-1 text-sky-400" aria-hidden="true"></i> 3D SPECTRAL &amp; COLOR GUIDE
               </span>
               <button type="button" onclick="toggleHoloSpectralLegend()"
                 class="text-slate-400 hover:text-white px-1 font-bold text-xs"
@@ -2198,7 +2352,7 @@
             <div class="mt-2.5 pt-1.5 border-t border-slate-800/80 flex items-center justify-between">
               <button type="button" onclick="simulateHoloGpsPing()"
                 class="px-2 py-0.5 rounded bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/40 text-[9px] font-bold">
-                🎯 PING BEACON
+                <i class="fa-solid fa-crosshairs mr-1 text-sky-400" aria-hidden="true"></i> PING BEACON
               </button>
               <button type="button"
                 onclick="document.getElementById('holo-live-tracker-hud').classList.toggle('hidden')"
@@ -2218,7 +2372,7 @@
                 <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping shrink-0"></span>
                 <div class="truncate">
                   <div class="text-[9px] uppercase tracking-wider text-cyan-400 font-bold flex items-center gap-1.5">
-                    <span>🔮 ML FLOOD DELUGE VISUALIZER</span>
+                    <span><i class="fa-solid fa-water-ladder mr-1 text-cyan-400" aria-hidden="true"></i> ML FLOOD DELUGE VISUALIZER</span>
                     <span
                       class="px-1 py-0.2 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[8px]">SBCV
                       RF</span>
@@ -2275,7 +2429,7 @@
             <div class="p-2 rounded bg-slate-900/90 border border-cyan-500/30 mb-2">
               <div class="flex items-center justify-between text-[10px] mb-1">
                 <span class="text-cyan-300 font-bold flex items-center gap-1">
-                  <span>🌊 SIMULATE WATER LEVEL:</span>
+                  <span><i class="fa-solid fa-water mr-1 text-cyan-400" aria-hidden="true"></i> SIMULATE WATER LEVEL:</span>
                   <span id="bhu-hud-sim-elev-val" class="text-white text-xs font-mono font-bold">49.5m</span>
                 </span>
                 <span class="text-[8.5px] text-rose-400 font-mono">Ganga Lock (49.5m)</span>
@@ -2319,11 +2473,11 @@
             <div class="grid grid-cols-3 gap-1 pt-1.5 border-t border-slate-800">
               <button type="button" onclick="toggleVisualFloodMesh()" id="bhu-btn-hud-water"
                 class="py-1 px-1 rounded bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-200 border border-cyan-500/40 text-[9px] font-bold uppercase transition flex items-center justify-center gap-1">
-                <span>🌊 Water: ON</span>
+                <span><i class="fa-solid fa-water mr-1" aria-hidden="true"></i> Water: ON</span>
               </button>
               <button type="button" onclick="focusPredictionLocalityCamera()"
                 class="py-1 px-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-[9px] font-bold uppercase transition flex items-center justify-center gap-1">
-                <span>🎯 Re-Center</span>
+                <span><i class="fa-solid fa-crosshairs mr-1" aria-hidden="true"></i> Re-Center</span>
               </button>
               <button type="button" onclick="openAreaFloodPredictionModal()"
                 class="py-1 px-1 rounded bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-[9px] font-bold uppercase transition flex items-center justify-center gap-1">
@@ -2340,7 +2494,7 @@
             <button type="button" onclick="event.stopPropagation(); open2DCropStudio();"
               class="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-[#090e18]/90 hover:bg-emerald-950 text-[9px] text-emerald-300 border border-emerald-500/60 font-mono shadow z-10"
               title="Open 2D Bounding Box Crop & 3D Site Analysis Studio">
-              📐 CROP
+              <i class="fa-solid fa-crop-simple mr-1" aria-hidden="true"></i> CROP
             </button>
             <div
               class="absolute bottom-0 inset-x-0 bg-[#06090f]/90 px-1.5 py-0.5 mono text-[10px] text-sky-300 flex justify-between items-center border-t border-slate-800">
@@ -2587,7 +2741,7 @@
         <div class="bhu-nasa-glass p-2.5 flex flex-col justify-between">
           <div class="flex items-center justify-between text-slate-300">
             <span class="text-[11px] font-semibold tracking-wide flex items-center gap-1.5">
-              <span>📈</span> Patna AQI 24h Visual Trend
+              <i class="fa-solid fa-chart-line mr-1 text-amber-400" aria-hidden="true"></i> Patna AQI 24h Visual Trend
             </span>
             <span class="mono text-[8.5px] text-amber-400">PM2.5: 142 · PM10: 210</span>
           </div>
@@ -2625,7 +2779,7 @@
         <div class="bhu-nasa-glass p-2.5 flex flex-col justify-between">
           <div class="flex items-center justify-between text-slate-300">
             <span class="text-[11px] font-semibold tracking-wide flex items-center gap-1.5">
-              <span>🌊</span> SAR Vector Breeding Timeline
+              <i class="fa-solid fa-water mr-1 text-cyan-400" aria-hidden="true"></i> SAR Vector Breeding Timeline
             </span>
             <span class="mono text-[8.5px] text-rose-400">48h LARVA PHASE</span>
           </div>
@@ -2770,12 +2924,12 @@
           <button type="button" id="right-tab-btn-agri" role="tab" aria-selected="false"
             onclick="switchRightDockTab('agri')" class="bhu-dock-tab"
             title="Precision Agriculture, QGIS FARM Tools & Safe Land Investment">
-            🌾 Farm &amp; Biz
+            <i class="fa-solid fa-wheat-awn mr-1" aria-hidden="true"></i> Farm &amp; Biz
           </button>
           <button type="button" id="right-tab-btn-health" role="tab" aria-selected="false"
             onclick="switchRightDockTab('health')" class="bhu-dock-tab"
             title="Public Health, Citizen Action Plan & SAR News">
-            ✦ Health &amp; News
+            <i class="fa-solid fa-heart-pulse mr-1" aria-hidden="true"></i> Health &amp; News
           </button>
           <button type="button" id="right-tab-btn-loc" role="tab" aria-selected="false"
             onclick="switchRightDockTab('loc')" class="bhu-dock-tab">
@@ -3874,11 +4028,11 @@
             15-module telemetry and provenance.</div>
         </div>
 
-        <!-- 🩺 RECENT DIAGNOSTIC SCANS GALLERY (VERIDIA HEALTH SUITE STYLE) -->
+        <!-- RECENT DIAGNOSTIC SCANS GALLERY (VERIDIA HEALTH SUITE STYLE) -->
         <div class="bhu-nasa-glass p-2.5 flex flex-col gap-2 shrink-0">
           <div class="flex items-center justify-between border-b border-slate-800/80 pb-1">
             <span class="text-[11px] font-semibold text-cyan-300 tracking-wide flex items-center gap-1.5">
-              <span>🩺</span> Recent Diagnostic Scans (Clinical Grounding)
+              <i class="fa-solid fa-stethoscope mr-1 text-sky-400" aria-hidden="true"></i> Recent Diagnostic Scans (Clinical Grounding)
             </span>
             <span class="mono text-[8.5px] text-cyan-400 bg-cyan-950/60 px-1.5 py-0.5 rounded border border-cyan-800">3
               VERIFIED</span>
@@ -3975,9 +4129,7 @@
       <div class="px-4 py-2.5 bg-[#090e18] border-b border-slate-800 flex items-center justify-between shrink-0">
         <div class="flex items-center gap-2.5">
           <div
-            class="w-7 h-7 rounded-lg bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 font-bold text-xs">
-            📐
-          </div>
+            class="w-7 h-7 rounded-lg bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 font-bold text-xs"><i class="fa-solid fa-crop-simple text-xs" aria-hidden="true"></i></div>
           <div>
             <div class="text-sm font-bold text-slate-100 tracking-wide flex items-center gap-2">
               <span>2D GEOSPATIAL CROPPER &middot; 3D SITE ANALYSIS STUDIO</span>
@@ -4065,32 +4217,23 @@
             <div
               class="absolute top-11 left-12 right-64 z-10 flex items-center gap-1 overflow-x-auto py-0.5 text-[9px] font-mono no-scrollbar">
               <button type="button" onclick="cropStudioGoTo(25.5940, 85.1378, 'Patna Urban Core (52m)')"
-                class="px-1.5 py-0.5 rounded bg-[#090e18]/90 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 border border-slate-700 whitespace-nowrap">📍
-                Patna (52m)</button>
+                class="px-1.5 py-0.5 rounded bg-[#090e18]/90 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 border border-slate-700 whitespace-nowrap"><i class="fa-solid fa-location-dot text-[9px] mr-1 text-sky-400" aria-hidden="true"></i> Patna (52m)</button>
               <button type="button" onclick="cropStudioGoTo(25.5360, 84.8510, 'Bihta / IIT Patna (55.8m)')"
-                class="px-1.5 py-0.5 rounded bg-[#090e18]/90 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 border border-slate-700 whitespace-nowrap">📍
-                IITP Bihta (55.8m)</button>
+                class="px-1.5 py-0.5 rounded bg-[#090e18]/90 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 border border-slate-700 whitespace-nowrap"><i class="fa-solid fa-location-dot text-[9px] mr-1 text-sky-400" aria-hidden="true"></i> IITP Bihta (55.8m)</button>
               <button type="button" onclick="cropStudioGoTo(26.7922, 82.1998, 'Ayodhya Saryu Basin (98m)')"
-                class="px-1.5 py-0.5 rounded bg-[#090e18]/90 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 border border-slate-700 whitespace-nowrap">📍
-                Ayodhya (98m)</button>
+                class="px-1.5 py-0.5 rounded bg-[#090e18]/90 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 border border-slate-700 whitespace-nowrap"><i class="fa-solid fa-location-dot text-[9px] mr-1 text-sky-400" aria-hidden="true"></i> Ayodhya (98m)</button>
               <button type="button" onclick="cropStudioGoTo(25.3176, 82.9739, 'Varanasi Ghats (78m)')"
-                class="px-1.5 py-0.5 rounded bg-[#090e18]/90 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 border border-slate-700 whitespace-nowrap">📍
-                Varanasi (78m)</button>
+                class="px-1.5 py-0.5 rounded bg-[#090e18]/90 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 border border-slate-700 whitespace-nowrap"><i class="fa-solid fa-location-dot text-[9px] mr-1 text-sky-400" aria-hidden="true"></i> Varanasi (78m)</button>
               <button type="button" onclick="cropStudioGoTo(12.9716, 77.5946, 'Bengaluru Deccan Plateau (920m)')"
-                class="px-1.5 py-0.5 rounded bg-[#090e18]/90 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 border border-slate-700 whitespace-nowrap">📍
-                Bengaluru (920m)</button>
+                class="px-1.5 py-0.5 rounded bg-[#090e18]/90 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 border border-slate-700 whitespace-nowrap"><i class="fa-solid fa-location-dot text-[9px] mr-1 text-sky-400" aria-hidden="true"></i> Bengaluru (920m)</button>
               <button type="button" onclick="cropStudioGoTo(19.0760, 72.8777, 'Mumbai Coastal (14m)')"
-                class="px-1.5 py-0.5 rounded bg-[#090e18]/90 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 border border-slate-700 whitespace-nowrap">📍
-                Mumbai (14m)</button>
+                class="px-1.5 py-0.5 rounded bg-[#090e18]/90 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 border border-slate-700 whitespace-nowrap"><i class="fa-solid fa-location-dot text-[9px] mr-1 text-sky-400" aria-hidden="true"></i> Mumbai (14m)</button>
               <button type="button" onclick="cropStudioGoTo(28.6139, 77.2090, 'Delhi Yamuna Basin (216m)')"
-                class="px-1.5 py-0.5 rounded bg-[#090e18]/90 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 border border-slate-700 whitespace-nowrap">📍
-                Delhi (216m)</button>
+                class="px-1.5 py-0.5 rounded bg-[#090e18]/90 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 border border-slate-700 whitespace-nowrap"><i class="fa-solid fa-location-dot text-[9px] mr-1 text-sky-400" aria-hidden="true"></i> Delhi (216m)</button>
               <button type="button" onclick="cropStudioGoTo(34.1526, 77.5771, 'Ladakh High Plateau (3500m)')"
-                class="px-1.5 py-0.5 rounded bg-[#090e18]/90 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 border border-slate-700 whitespace-nowrap">📍
-                Ladakh (3500m)</button>
+                class="px-1.5 py-0.5 rounded bg-[#090e18]/90 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 border border-slate-700 whitespace-nowrap"><i class="fa-solid fa-location-dot text-[9px] mr-1 text-sky-400" aria-hidden="true"></i> Ladakh (3500m)</button>
               <button type="button" onclick="cropStudioGoTo(23.2420, 69.6669, 'Kutch Rann Basin (12m)')"
-                class="px-1.5 py-0.5 rounded bg-[#090e18]/90 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 border border-slate-700 whitespace-nowrap">📍
-                Kutch (12m)</button>
+                class="px-1.5 py-0.5 rounded bg-[#090e18]/90 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 border border-slate-700 whitespace-nowrap"><i class="fa-solid fa-location-dot text-[9px] mr-1 text-sky-400" aria-hidden="true"></i> Kutch (12m)</button>
             </div>
 
             <div
@@ -4228,9 +4371,7 @@
       <div class="px-4 py-2.5 bg-[#090e18] border-b border-slate-800 flex items-center justify-between shrink-0">
         <div class="flex items-center gap-3">
           <div
-            class="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 font-bold text-sm">
-            🔮
-          </div>
+            class="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 font-bold text-sm"><i class="fa-solid fa-water-ladder text-sm" aria-hidden="true"></i></div>
           <div>
             <div class="text-sm font-bold text-slate-100 tracking-wide flex items-center gap-2">
               <span>BHU LOKA &middot; AREA FLOOD PREDICTION &amp; INUNDATION ESTIMATOR</span>
@@ -4505,11 +4646,11 @@
           <div class="grid grid-cols-2 gap-2 pt-1">
             <button type="button" onclick="highlightPredictionOn3DMap()"
               class="py-2 rounded bg-sky-500/20 hover:bg-sky-500/30 text-sky-200 border border-sky-400/50 font-bold text-[10px] uppercase flex items-center justify-center gap-1.5 transition">
-              <span>🗺️ View on 3D Terrain</span>
+              <span><i class="fa-solid fa-cube mr-1 text-sky-400" aria-hidden="true"></i> View on 3D Terrain</span>
             </button>
             <button type="button" onclick="exportAreaPredictionReport()"
               class="py-2 rounded bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-[10px] uppercase flex items-center justify-center gap-1.5 transition">
-              <span>📥 Export Report</span>
+              <span><i class="fa-solid fa-file-export mr-1" aria-hidden="true"></i> Export Report</span>
             </button>
           </div>
 
@@ -4529,9 +4670,7 @@
       <div class="px-4 py-2.5 bg-[#090e18] border-b border-slate-800 flex items-center justify-between shrink-0">
         <div class="flex items-center gap-3">
           <div
-            class="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 font-bold text-sm shadow-none">
-            🛰️
-          </div>
+            class="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 font-bold text-sm shadow-none"><i class="fa-solid fa-satellite text-sm" aria-hidden="true"></i></div>
           <div>
             <div class="text-sm font-bold text-slate-100 tracking-wide flex items-center gap-2">
               <span>BHU LOKA &middot; SCIENTIFIC FLOOD MODEL INTELLIGENCE</span>
@@ -4553,7 +4692,7 @@
         <div class="flex items-center gap-2">
           <button type="button" onclick="downloadComprehensiveResearchReport()"
             class="px-2.5 py-1 rounded bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/40 text-[10px] font-mono font-bold transition flex items-center gap-1 shadow-sm">
-            <span>📥 DOWNLOAD REPORT (.MD)</span>
+            <span><i class="fa-solid fa-download mr-1" aria-hidden="true"></i> DOWNLOAD REPORT (.MD)</span>
           </button>
           <button type="button" onclick="closeModelIntelModal()"
             class="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition">
@@ -4569,11 +4708,11 @@
         class="px-3 py-1.5 bg-[#060a12] border-b border-slate-800 flex items-center gap-1.5 overflow-x-auto text-[10.5px] font-mono shrink-0">
         <button type="button" id="tab-btn-overview" onclick="setModelIntelTab('overview')"
           class="model-intel-tab-btn px-2.5 py-1 rounded font-bold transition flex items-center gap-1.5 bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-sm">
-          <span>📋 Overview</span>
+          <span><i class="fa-solid fa-clipboard-list mr-1" aria-hidden="true"></i> Overview</span>
         </button>
         <button type="button" id="tab-btn-performance" onclick="setModelIntelTab('performance')"
           class="model-intel-tab-btn px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent transition flex items-center gap-1.5">
-          <span>🔬 Performance &amp; SBCV</span>
+          <span><i class="fa-solid fa-chart-column mr-1" aria-hidden="true"></i> Performance &amp; SBCV</span>
         </button>
         <button type="button" id="tab-btn-horizon" onclick="setModelIntelTab('horizon')"
           class="model-intel-tab-btn px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent transition flex items-center gap-1.5">
@@ -4585,19 +4724,19 @@
         </button>
         <button type="button" id="tab-btn-exposure" onclick="setModelIntelTab('exposure')"
           class="model-intel-tab-btn px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent transition flex items-center gap-1.5">
-          <span>👥 Exposed Population &amp; Sinks</span>
+          <span><i class="fa-solid fa-users mr-1" aria-hidden="true"></i> Exposed Population &amp; Sinks</span>
         </button>
         <button type="button" id="tab-btn-shelters" onclick="setModelIntelTab('shelters')"
           class="model-intel-tab-btn px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent transition flex items-center gap-1.5">
-          <span>🛡️ Safe Shelters &amp; High Levees</span>
+          <span><i class="fa-solid fa-shield-halved mr-1" aria-hidden="true"></i> Safe Shelters &amp; High Levees</span>
         </button>
         <button type="button" id="tab-btn-nisar" onclick="setModelIntelTab('nisar')"
           class="model-intel-tab-btn px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent transition flex items-center gap-1.5">
-          <span>🛰️ NASA-ISRO NISAR vs Sentinel-1</span>
+          <span><i class="fa-solid fa-satellite mr-1" aria-hidden="true"></i> NASA-ISRO NISAR vs Sentinel-1</span>
         </button>
         <button type="button" id="tab-btn-report" onclick="setModelIntelTab('report')"
           class="model-intel-tab-btn px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent transition flex items-center gap-1.5">
-          <span>📄 Publication Report</span>
+          <span><i class="fa-solid fa-file-contract mr-1" aria-hidden="true"></i> Publication Report</span>
         </button>
       </div>
 
@@ -8637,6 +8776,58 @@
       };
     })();
 
+    
+    // ── MOBILE TOUCH CONTROLS (Single-touch rotate + Pinch-to-zoom) ──
+    let touchStartDist = 0;
+    let prevTouchPos = { x: 0, y: 0 };
+    let isTouching = false;
+
+    container.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        isTouching = true;
+        totalDragDist = 0;
+        prevTouchPos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      } else if (e.touches.length === 2) {
+        isTouching = false;
+        touchStartDist = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+      }
+    }, { passive: true });
+
+    container.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 1 && isTouching) {
+        const dx = e.touches[0].clientX - prevTouchPos.x;
+        const dy = e.touches[0].clientY - prevTouchPos.y;
+        totalDragDist += Math.abs(dx) + Math.abs(dy);
+        const grpMap = { world: worldGroup, india: indiaGroup, bihar: biharGroup, terrain: terrainGroup, hologram: hologramGroup, solar: solarGroup, human: (typeof human3dGroup !== "undefined" ? human3dGroup : indiaGroup) };
+        const g = grpMap[activeMode] || indiaGroup;
+        g.rotation.y += dx * 0.007;
+        g.rotation.x = Math.max(-0.9, Math.min(0.9, g.rotation.x + dy * 0.007));
+        prevTouchPos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      } else if (e.touches.length === 2 && touchStartDist > 0) {
+        const dist = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+        const diff = touchStartDist - dist;
+        const sens = targetCameraDistance > 60 ? 0.35 : (targetCameraDistance > 12 ? 0.08 : 0.03);
+        targetCameraDistance = Math.max(0.5, Math.min(380, targetCameraDistance + diff * sens));
+        touchStartDist = dist;
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchend', (e) => {
+      if (e.touches.length === 0) {
+        isTouching = false;
+        touchStartDist = 0;
+      } else if (e.touches.length === 1) {
+        prevTouchPos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        isTouching = true;
+      }
+    }, { passive: true });
+
     container.addEventListener('mousedown', (e) => { isDragging = true; totalDragDist = 0; prevMousePos = { x: e.clientX, y: e.clientY }; });
     window.addEventListener('mouseup', () => { isDragging = false; });
     container.addEventListener('mousemove', (e) => {
@@ -9563,6 +9754,30 @@
         targetCameraY = 1.35; targetCameraDistance = 6.8;
       }
     };
+
+    
+    window.switchPreviousView = function() {
+      const modes = ['world', 'india', 'bihar', 'terrain', 'hologram', 'solar'];
+      const curIdx = modes.indexOf(activeMode);
+      const nextIdx = (curIdx - 1 + modes.length) % modes.length;
+      switchView(modes[nextIdx]);
+    };
+    window.switchNextView = function() {
+      const modes = ['world', 'india', 'bihar', 'terrain', 'hologram', 'solar'];
+      const curIdx = modes.indexOf(activeMode);
+      const nextIdx = (curIdx + 1) % modes.length;
+      switchView(modes[nextIdx]);
+    };
+    function updatePlanetSideDots(mode) {
+      const dots = document.querySelectorAll('.bhu-side-dot');
+      dots.forEach(d => {
+        if (d.getAttribute('data-mode') === mode) {
+          d.classList.add('active');
+        } else {
+          d.classList.remove('active');
+        }
+      });
+    }
 
     function switchView(mode, autoBuild = true, skipNavSync = false) {
       activeMode = mode;
@@ -10895,7 +11110,7 @@
       let s = escapeHtml(raw);
       // Mission directive banner: [TITLE - SUBTITLE]
       s = s.replace(/^\[([A-Z0-9\s\-–—\(\)\.\+\:\|\&]{3,90})\]/gm,
-        '<div class="px-2 py-1 my-1 rounded bg-sky-950/70 border border-sky-500/40 text-sky-300 font-bold tracking-wide text-[10.5px] uppercase shadow-sm flex items-center gap-1.5"><span>🛰️</span><span>$1</span></div>');
+        '<div class="px-2 py-1 my-1 rounded bg-sky-950/70 border border-sky-500/40 text-sky-300 font-bold tracking-wide text-[10.5px] uppercase shadow-sm flex items-center gap-1.5"><span><i class="fa-solid fa-satellite" aria-hidden="true"></i></span><span>$1</span></div>');
       // **Bold text**
       s = s.replace(/\*\*([^*]+)\*\*/g, '<strong class="text-sky-200 font-semibold">$1</strong>');
       // `inline code`
@@ -12629,7 +12844,7 @@
         type === 'success' ? 'border-emerald-500/60 bg-emerald-950/90 text-emerald-200 shadow-[0_4px_20px_rgba(16,185,129,0.3)]' :
           'border-cyan-500/60 bg-slate-950/90 text-cyan-200 shadow-[0_4px_20px_rgba(6,182,212,0.3)]';
       toast.className = `p-3 rounded-xl border backdrop-blur-md text-xs font-mono transition-all transform duration-300 translate-y-2 opacity-0 pointer-events-auto flex items-start gap-2.5 ${borderCol}`;
-      const icon = type === 'warn' ? '⚠️' : type === 'success' ? '✅' : '🛰️';
+      const icon = type === 'warn' ? '[!]' : type === 'success' ? '[OK]' : '[SAT]';
       toast.innerHTML = `<span class="text-sm shrink-0">${icon}</span><div class="flex-1 leading-relaxed">${escapeHtml(message)}</div>`;
       container.appendChild(toast);
       requestAnimationFrame(() => {
@@ -12651,7 +12866,7 @@
         }
         modal.classList.remove('hidden');
         modal.style.display = 'flex';
-        showSovereignToast('📊 NASA Space Apps 2026 Presentation Deck Active (9 Slides). Press F for Fullscreen inside deck.', 'info', 4500);
+        showSovereignToast('[NASA] Space Apps 2026 Presentation Deck Active (9 Slides). Press F for Fullscreen inside deck.', 'info', 4500);
       } else {
         window.open('BHU_LOKA_Presentation_Amour_Hoffen.html', '_blank');
       }
@@ -12708,7 +12923,7 @@
           rateEl.classList.remove('bg-emerald-500/30', 'text-emerald-200');
         }, 1200);
       }
-      showSovereignToast('🎯 GPS L1/L5 RTK Locked: Vidyapati Nagar (25.6420°N, 85.8360°E) · Copernicus Elev: 45.5m AMSL', 'success', 3500);
+      showSovereignToast('[GPS] L1/L5 RTK Locked: Vidyapati Nagar (25.6420°N, 85.8360°E) · Copernicus Elev: 45.5m AMSL', 'success', 3500);
     };
 
     window.showHoloPointTelemetry = function (pointData) {
@@ -12782,7 +12997,7 @@
         }
       }
 
-      showSovereignToast(`🎯 GPS RTK Locked: ${lat.toFixed(4)}°N, ${lon.toFixed(4)}°E · Elev: ${elev.toFixed(1)}m MASL`, 'success', 3000);
+      showSovereignToast(`[GPS] RTK Locked: ${lat.toFixed(4)}°N, ${lon.toFixed(4)}°E · Elev: ${elev.toFixed(1)}m MASL`, 'success', 3000);
     };
 
     window.toggleQuickDockCollapse = function () {
@@ -13265,7 +13480,7 @@
       }
 
       if (typeof showSovereignToast === 'function') {
-        showSovereignToast(`🔮 3D Flood Inundation Mapped: ${result.name} · ${result.probPct} (${result.floodedArea.toFixed(2)} km²)`, 'success', 5000);
+        showSovereignToast(`[FLOOD] 3D Inundation Mapped: ${result.name} · ${result.probPct} (${result.floodedArea.toFixed(2)} km²)`, 'success', 5000);
       }
     };
 
@@ -13328,7 +13543,7 @@
       isPredFloodMeshVisible = !isPredFloodMeshVisible;
       if (bhuPredFloodMesh) bhuPredFloodMesh.visible = isPredFloodMeshVisible;
       const btn = document.getElementById('bhu-btn-hud-water');
-      if (btn) btn.innerText = isPredFloodMeshVisible ? '🌊 Water: ON' : '🌊 Water: OFF';
+      if (btn) btn.innerText = isPredFloodMeshVisible ? 'Water: ON' : 'Water: OFF';
     };
 
     window.focusPredictionLocalityCamera = function () {
@@ -13771,7 +13986,7 @@ Timestamp: ${new Date().toISOString()}
       close2DCropStudio();
       buildAuto3DHologramFromBbox(minLat, minLon, maxLat, maxLon, 'Site Analysis Crop');
       if (typeof showSovereignToast === 'function') {
-        showSovereignToast(`📐 Cropped Terrain Extruded: [${minLat.toFixed(3)}, ${minLon.toFixed(3)} to ${maxLat.toFixed(3)}, ${maxLon.toFixed(3)}] · Copernicus 30m DEM + 3D Mesh Active`, 'success', 5000);
+        showSovereignToast(`[TERRAIN] Cropped Extruded: [${minLat.toFixed(3)}, ${minLon.toFixed(3)} to ${maxLat.toFixed(3)}, ${maxLon.toFixed(3)}] · Copernicus 30m DEM + 3D Mesh Active`, 'success', 5000);
       }
     };
 
@@ -14324,7 +14539,7 @@ Generated on: ${new Date().toISOString()}
     <button type="button" onclick="if(typeof open2DCropStudio==='function')open2DCropStudio()"
       class="quick-dock-btn px-2.5 py-1 rounded-full text-emerald-300 bg-emerald-500/15 hover:bg-emerald-500/30 text-xs font-mono font-bold flex items-center gap-1.5 transition border border-emerald-500/40 shadow-none"
       title="Pan-India 2D Map Bounding Box Cropper & 3D Extrusion Studio (Alt+2)">
-      <span>📐</span>
+      <span><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i></span>
       <span class="hidden md:inline">2D Cropper 3D</span>
     </button>
 
@@ -14332,7 +14547,7 @@ Generated on: ${new Date().toISOString()}
     <button type="button" onclick="if(typeof openModelIntelModal==='function')openModelIntelModal('overview')"
       class="quick-dock-btn px-2.5 py-1 rounded-full text-amber-300 bg-amber-500/15 hover:bg-amber-500/30 text-xs font-mono font-bold flex items-center gap-1.5 transition border border-amber-500/40 shadow-none"
       title="Dancing with the SARs: Flood Model Intelligence (Alt+3)">
-      <span>🛰️</span>
+      <span><i class="fa-solid fa-satellite" aria-hidden="true"></i></span>
       <span class="hidden md:inline">Flood Intel</span>
     </button>
 
@@ -14340,7 +14555,7 @@ Generated on: ${new Date().toISOString()}
     <button type="button" onclick="if(typeof openModelIntelModal==='function')openModelIntelModal('performance')"
       class="quick-dock-btn px-2.5 py-1 rounded-full text-cyan-300 hover:text-white hover:bg-cyan-500/20 text-xs font-mono font-bold flex items-center gap-1.5 transition border border-transparent hover:border-cyan-500/40"
       title="Scientific Model Evaluation & Spatial Block CV (Alt+4)">
-      <span>🔬</span>
+      <span><i class="fa-solid fa-microscope" aria-hidden="true"></i></span>
       <span class="hidden md:inline">Evaluation</span>
     </button>
 
@@ -14348,7 +14563,7 @@ Generated on: ${new Date().toISOString()}
     <button type="button" onclick="setNasaNavTab('agri')"
       class="quick-dock-btn px-2.5 py-1 rounded-full text-slate-300 hover:text-emerald-300 hover:bg-emerald-500/20 text-xs font-mono font-bold flex items-center gap-1.5 transition border border-transparent hover:border-emerald-500/40"
       title="Precision Agriculture & Kisan Cadastral Hub (Alt+5)">
-      <span>🌾</span>
+      <span><i class="fa-solid fa-wheat-awn" aria-hidden="true"></i></span>
       <span class="hidden md:inline">Agri Hub</span>
     </button>
 
@@ -14356,7 +14571,7 @@ Generated on: ${new Date().toISOString()}
     <button type="button" onclick="setNasaNavTab('worker')"
       class="quick-dock-btn px-2.5 py-1 rounded-full text-slate-300 hover:text-rose-300 hover:bg-rose-500/20 text-xs font-mono font-bold flex items-center gap-1.5 transition border border-transparent hover:border-rose-500/40"
       title="Human 3D Anatomy & WBGT Thermal Heat Stress (Alt+6)">
-      <span>🧬</span>
+      <span><i class="fa-solid fa-dna" aria-hidden="true"></i></span>
       <span class="hidden md:inline">Human Twin</span>
     </button>
 
@@ -14364,7 +14579,7 @@ Generated on: ${new Date().toISOString()}
     <button type="button" onclick="if(typeof openPresentationDeck==='function')openPresentationDeck()"
       class="quick-dock-btn px-2.5 py-1 rounded-full text-purple-300 bg-purple-500/15 hover:bg-purple-500/30 text-xs font-mono font-bold flex items-center gap-1.5 transition border border-purple-500/40 shadow-none"
       title="Official NASA Space Apps 2026 Presentation Deck (Alt+7)">
-      <span>📊</span>
+      <span><i class="fa-solid fa-chart-simple" aria-hidden="true"></i></span>
       <span class="hidden md:inline">NASA Deck (9 Slides)</span>
     </button>
 
@@ -14374,7 +14589,7 @@ Generated on: ${new Date().toISOString()}
     <button type="button" onclick="setNasaNavTab('ai')"
       class="quick-dock-btn px-2.5 py-1 rounded-full text-sky-300 hover:text-white hover:bg-sky-500/20 text-xs font-mono font-bold flex items-center gap-1.5 transition border border-transparent hover:border-sky-500/40"
       title="BHU LOKA AI Terminal & Scientific Assistant">
-      <span>🤖</span>
+      <span><i class="fa-solid fa-brain" aria-hidden="true"></i></span>
       <span class="hidden md:inline">AI Intel</span>
     </button>
 
@@ -14400,9 +14615,7 @@ Generated on: ${new Date().toISOString()}
       <div class="px-4 py-2.5 bg-[#090e18] border-b border-slate-800 flex items-center justify-between shrink-0">
         <div class="flex items-center gap-3">
           <div
-            class="w-8 h-8 rounded-lg bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-400 font-bold text-sm shadow-[0_0_12px_rgba(168,85,247,0.3)]">
-            📊
-          </div>
+            class="w-8 h-8 rounded-lg bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-400 font-bold text-sm shadow-[0_0_12px_rgba(168,85,247,0.3)]"><i class="fa-solid fa-chalkboard-user text-sm" aria-hidden="true"></i></div>
           <div>
             <div class="text-sm font-bold text-slate-100 tracking-wide flex items-center gap-2">
               <span>BHU LOKA &middot; OFFICIAL 9-SLIDE RESEARCH PRESENTATION</span>
@@ -14451,6 +14664,46 @@ Generated on: ${new Date().toISOString()}
   <!-- FLOATING SOVEREIGN TOAST NOTIFICATION CONTAINER -->
   <div id="sovereign-toast-container"
     class="fixed top-14 right-4 z-50 flex flex-col gap-2 pointer-events-none max-w-sm"></div>
+
+  <script>
+  (function(){
+    const c=document.getElementById('bhu-star-canvas');
+    if(!c)return;
+    c.style.cssText='position:absolute;inset:0;width:100%;height:100%;pointer-events:none;';
+    const ctx=c.getContext('2d');
+    function draw(){
+      c.width=window.innerWidth;c.height=window.innerHeight;
+      ctx.clearRect(0,0,c.width,c.height);
+      for(let i=0;i<220;i++){
+        const x=Math.random()*c.width,y=Math.random()*c.height,r=Math.random()*1.1+0.2;
+        ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);
+        ctx.fillStyle=`rgba(240,244,248,${Math.random()*0.6+0.1})`;ctx.fill();
+      }
+    }
+    draw();window.addEventListener('resize',draw);
+  })();
+  </script>
+  <script>
+  (function(){
+    if(!window.matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+    const dot=document.getElementById('bhu-cursor-dot');
+    const ring=document.getElementById('bhu-cursor-ring');
+    if(!dot||!ring)return;
+    let mx=0,my=0,rx=0,ry=0,raf;
+    document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+    function loop(){rx+=(mx-rx)*0.14;ry+=(my-ry)*0.14;ring.style.left=rx+'px';ring.style.top=ry+'px';raf=requestAnimationFrame(loop);}
+    loop();
+    document.addEventListener('mousedown',function(){dot.style.transform='translate(-50%,-50%) scale(1.8)';});
+    document.addEventListener('mouseup',function(){dot.style.transform='translate(-50%,-50%) scale(1)';});
+  })();
+  </script>
+  <script>
+  (function(){
+    if(typeof gsap==='undefined')return;
+    if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+    gsap.from('.panel', {opacity:0, y:12, duration:0.45, stagger:{each:0.055,from:'start'}, ease:'back.out(1.2)', delay:0.3});
+  })();
+  </script>
 </body>
 
 </html>
