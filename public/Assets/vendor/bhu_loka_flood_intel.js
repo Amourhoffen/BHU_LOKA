@@ -764,7 +764,7 @@
               <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
                 <button type="button" onclick="runInteractiveRfInference()"
                   class="px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-600 to-sky-500 hover:from-cyan-500 hover:to-sky-400 text-slate-950 font-bold font-mono text-xs tracking-wider transition flex items-center gap-2 shadow-[0_0_16px_rgba(6,182,212,0.35)]">
-                  <span>⚡</span>
+                  <span></span>
                   <span>RUN MODEL INFERENCE (RANDOM FOREST V1)</span>
                 </button>
 
@@ -833,7 +833,7 @@
             <!-- MANDATORY INTEGRITY WARNING CARD -->
             <div class="p-3.5 rounded-lg bg-rose-950/30 border border-rose-500/50 space-y-1.5">
               <div class="flex items-center gap-2 text-rose-300 font-bold font-mono text-xs">
-                <span>⚠️ SCIENTIFIC INTEGRITY ENFORCEMENT: CAN THIS MODEL FORECAST 5, 10, OR 20 YEARS AHEAD?</span>
+                <span> SCIENTIFIC INTEGRITY ENFORCEMENT: CAN THIS MODEL FORECAST 5, 10, OR 20 YEARS AHEAD?</span>
               </div>
               <div class="text-xs text-rose-200 font-bold">
                 ANSWER: NO. IT DOES NOT AND CANNOT FORECAST 5, 10, OR 20 YEARS INTO THE FUTURE.
@@ -978,7 +978,7 @@
             <!-- PHYSICAL RADAR MECHANISM EXPLAINER -->
             <div class="p-3.5 rounded-lg bg-[#080d16] border border-slate-800 space-y-3">
               <div class="font-bold text-slate-100 text-xs flex items-center gap-2">
-                <span>🔬 The Radar Microwave Physics: Specular Mirror vs 90° Dihedral Corner Reflector</span>
+                <span> The Radar Microwave Physics: Specular Mirror vs 90° Dihedral Corner Reflector</span>
               </div>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-[10.5px] leading-relaxed">
                 <div class="p-2.5 rounded bg-black/40 border border-slate-800 space-y-1">
@@ -1127,7 +1127,7 @@
                 <div class="p-3 rounded-lg bg-[#080d16] border border-slate-800 hover:border-emerald-500/40 transition space-y-1.5 font-mono text-[10.5px]">
                   <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800/80 pb-1">
                     <div class="flex items-center gap-2">
-                      <span class="text-emerald-400 font-bold text-xs">🛡️ ${site.name}</span>
+                      <span class="text-emerald-400 font-bold text-xs"> ${site.name}</span>
                       <span class="px-1.5 py-0.2 rounded text-[9px] bg-emerald-500/20 text-emerald-300 font-bold">${site.ulsiTier}</span>
                     </div>
                     <div class="text-[10px] text-slate-400">

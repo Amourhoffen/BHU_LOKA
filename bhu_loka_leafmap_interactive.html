@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BHU LOKA (भूलोक) · Google Earth, Heritage, Satellites &amp; Sovereign India GIS</title>
   <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="Assets/vendor/leaflet.css" />
   <link rel="stylesheet" href="Assets/vendor/bhu_loka_theme.css" />
   <script src="Assets/vendor/leaflet.js"></script>
@@ -21,6 +23,8 @@
   <script src="Assets/vendor/bhu_loka_india_intel.js"></script>
   <!-- BHU LOKA PRECISION AGRICULTURE INTELLIGENCE (R0.1 MVP) -->
   <script src="Assets/vendor/bhu_loka_agri.js"></script>
+  <!-- BHU LOKA UNIFIED 2D LAYER INTELLIGENCE & SHARED REGISTRY -->
+  <script src="Assets/vendor/bhu_loka_2d_layer_panel.js?v=40"></script>
   <style>
     body,
     html {
@@ -104,6 +108,7 @@
       outline-offset: 1px;
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
 
 <body class="bhu-workstation text-slate-100 h-screen overflow-hidden flex flex-col">
@@ -198,7 +203,7 @@
       <button id="btn-crop-to-3d" type="button" onclick="cropCurrentBoundsTo3D()"
         class="bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/50 px-2.5 py-1 rounded font-semibold transition flex items-center gap-1 shadow-[0_0_10px_rgba(16,185,129,0.2)]"
         title="Crop current Leaflet view bounding box and extrude directly into 3D DEM Terrain Workstation">
-        <span>📐 Crop Bounds to 3D</span>
+        <span><i class="fa-solid fa-crop-simple mr-1"></i> Crop Bounds to 3D</span>
       </button>
       <a id="link-open-3d-workstation" href="bhu_loka_cyber_dashboard.html"
         class="bg-sky-500 hover:bg-sky-400 text-slate-950 px-2.5 py-1 rounded font-semibold transition">
@@ -207,7 +212,7 @@
       <a id="link-open-sar-hero" href="index.html" target="_blank"
         class="bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/50 px-2.5 py-1 rounded font-semibold transition flex items-center gap-1"
         title="Open NASA Space Apps 2026: Dancing with the SARs Hero Application">
-        🛰️ SAR Hero (NASA 2026) &rarr;
+        <i class="fa-solid fa-satellite mr-1"></i> SAR Hero (NASA 2026) &rarr;
       </a>
     </div>
   </header>
@@ -360,7 +365,8 @@
           <div>Coords: <span id="hud-sar-coords" class="text-slate-100 font-semibold">25.602°N, 85.160°E</span></div>
           <div>Post-Flood σ°: <span id="hud-sar-post" class="text-cyan-300 font-bold">-16.8 dB</span> (Δσ°: <span
               id="hud-sar-delta" class="text-rose-400">-7.2 dB</span>)</div>
-          <div>Scatter: <span id="hud-sar-class" class="text-amber-300 font-semibold">🚨 INUNDATION GAIN</span></div>
+          <div>Scatter: <span id="hud-sar-class" class="text-amber-300 font-semibold"><i
+                class="fa-solid fa-triangle-exclamation mr-1"></i> INUNDATION GAIN</span></div>
         </div>
       </div>
 
@@ -510,6 +516,10 @@
     // ATTACH UNIVERSAL LOCATION-AWARE INTELLIGENCE ENGINE (AUTO-REFRESH ON ANY MAP CLICK)
     if (window.BhuLokaLocationEngine) {
       window.BhuLokaLocationEngine.attachMap('2d', map);
+    }
+    window.bhuLeafmapInstance = map;
+    if (typeof window.initBhuLoka2DLayerPanel === 'function') {
+      window.initBhuLoka2DLayerPanel(map);
     }
 
     // COMPLIANT, ZERO-KEY BASEMAPS (ESRI WORLD IMAGERY + OPENSTREETMAP + NASA GIBS + ESRI DARK)
@@ -1186,15 +1196,15 @@
       if (lat >= 25.625 && lat <= 25.655 && lon >= 85.10 && lon <= 85.25) {
         postDb = -21.4;
         deltaDb = -1.2;
-        cat = "🌊 SPECULAR RIVERBED";
+        cat = "[WATER] SPECULAR RIVERBED";
       } else if (lat >= 25.585 && lat <= 25.605 && lon >= 85.145 && lon <= 85.175) {
         postDb = -16.8;
         deltaDb = -7.2;
-        cat = "🚨 INUNDATION GAIN (Naya Paani)";
+        cat = "[ALERT] INUNDATION GAIN (Naya Paani)";
       } else if (lat >= 25.600 && lat <= 25.625 && lon >= 85.080 && lon <= 85.140) {
         postDb = -9.5;
         deltaDb = -0.3;
-        cat = "🏙️ URBAN DOUBLE-BOUNCE";
+        cat = "[URBAN] URBAN DOUBLE-BOUNCE";
       }
 
       if (pEl) pEl.innerText = `${postDb.toFixed(1)} dB`;

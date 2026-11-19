@@ -37,75 +37,75 @@
     farmer: {
       id: 'farmer',
       name: 'Farmer (किसान)',
-      icon: '🌾',
+      icon: '',
       badgeClass: 'text-emerald-400 border-emerald-500/30 bg-emerald-950/40',
       description: 'कृषि सलाहकार (AIAg & QGIS FARM Tools): फसल चयन, उपग्रह मॉनिटरिंग, मिट्टी ग्रिड, और सिंचाई',
       systemPrompt: 'You are BHU LOKA AI acting as an agricultural remote-sensing advisor for Bihar farmers, grounded in gulabpatel/AIAg and QGIS FARM Tools methodologies. Focus on crop suitability, soil types, Sentinel-2 NDVI/NDRE vigor, Sentinel-1 SAR soil moisture, and FAO-56 Penman-Monteith irrigation schedules. Maintain an honest, encouraging, and scientifically sound tone in Hindi, Hinglish, or English.',
       quickPrompts: [
-        '🌾 QGIS FARM Tools: Is khet ke liye 5-point soil sampling grid generate karo',
-        '🌾 Sentinel-2 NDVI aur Sentinel-1 SAR moisture dekh kar wheat crop vigor batao',
-        '🌾 FAO-56 Penman-Monteith ETc se 7-day irrigation schedule kya banega?',
-        '🌾 What is the recommended wheat variety for heavy clay loam in Bihar Zone III?'
+        ' QGIS FARM Tools: Is khet ke liye 5-point soil sampling grid generate karo',
+        ' Sentinel-2 NDVI aur Sentinel-1 SAR moisture dekh kar wheat crop vigor batao',
+        ' FAO-56 Penman-Monteith ETc se 7-day irrigation schedule kya banega?',
+        ' What is the recommended wheat variety for heavy clay loam in Bihar Zone III?'
       ],
       suggestedTools: ['run_zonal_stats', 'toggle_layer(flood)', 'fly_to']
     },
     business: {
       id: 'business',
       name: 'Agribusiness & Commercial',
-      icon: '💼',
+      icon: '',
       badgeClass: 'text-amber-400 border-amber-500/30 bg-amber-950/40',
       description: 'Commercial Agribusiness & Real Estate (AIAg): APMC Mandi price radar, yield forecasting, and PMFBY claim audit',
       systemPrompt: 'You are BHU LOKA AI acting as a spatial agribusiness and location analyst, powered by gulabpatel/AIAg models. Provide real-time data on APMC Mandi price spreads (Patna, Bihta, Gulabbagh Purnia) vs MSP, machine learning crop yield forecasts (quintals/ha), PMFBY crop insurance satellite loss validation, and land elevation AMSL.',
       quickPrompts: [
-        '💼 Patna vs Gulabbagh APMC Mandi prices compare karo aur gross profit margin batao',
-        '💼 AIAg ML Yield Forecast: Is plot par kitne quintal production ka anuman hai?',
-        '💼 PMFBY Crop Insurance: Sentinel-1 SAR deluge se is holding me kitna damage claim banega?',
-        '💼 Which ward or agricultural corridor has the lowest flood risk and best logistics?'
+        ' Patna vs Gulabbagh APMC Mandi prices compare karo aur gross profit margin batao',
+        ' AIAg ML Yield Forecast: Is plot par kitne quintal production ka anuman hai?',
+        ' PMFBY Crop Insurance: Sentinel-1 SAR deluge se is holding me kitna damage claim banega?',
+        ' Which ward or agricultural corridor has the lowest flood risk and best logistics?'
       ],
       suggestedTools: ['draw_buffer', 'run_zonal_stats', 'fly_to']
     },
     student: {
       id: 'student',
       name: 'Student',
-      icon: '🎓',
+      icon: '',
       badgeClass: 'text-sky-400 border-sky-500/30 bg-sky-950/40',
       description: 'Earth Observation & Science: Orbits, radar physics, remote sensing bands & DEMs',
       systemPrompt: 'You are BHU LOKA AI acting as an Earth observation educator. Explain remote sensing principles (microwaves vs optical, DEM vertical accuracy, LEO orbits) in clear, educational language with real satellite mission citations.',
       quickPrompts: [
-        '🎓 Sentinel-1 C-band SAR microwave optical satellite se kaise alag hai?',
-        '🎓 How does radar penetrate monsoon clouds when optical cameras fail?',
-        '🎓 DEM (Digital Elevation Model) kya hota hai aur Copernicus 30m kitna accurate hai?',
-        '🎓 Explain why water appears pitch black (low backscatter) in radar images'
+        ' Sentinel-1 C-band SAR microwave optical satellite se kaise alag hai?',
+        ' How does radar penetrate monsoon clouds when optical cameras fail?',
+        ' DEM (Digital Elevation Model) kya hota hai aur Copernicus 30m kitna accurate hai?',
+        ' Explain why water appears pitch black (low backscatter) in radar images'
       ],
       suggestedTools: ['open_tab(universe)', 'start_timelapse', 'toggle_layer(sar)']
     },
     worker: {
       id: 'worker',
       name: 'Worker (श्रमिक/नागरिक)',
-      icon: '👷',
+      icon: '',
       badgeClass: 'text-orange-400 border-orange-500/30 bg-orange-950/40',
       description: 'Public Health & Safety: Wet-Bulb Globe Temp (WBGT), heat stress, AQI & safe outdoor hours',
       systemPrompt: 'You are BHU LOKA AI assisting outdoor workers, gig couriers, and citizens with environmental occupational safety. Cite real Open-Meteo PM2.5, heat index, and WBGT. Never make individual medical diagnosis claims.',
       quickPrompts: [
-        '👷 Aaj dhoop aur heat index me bahar physical labour karna safe hai?',
-        '👷 Patna PM2.5 air quality ke anusar morning exercise window kab safe hai?',
-        '👷 Gig delivery workers ke liye hydration aur rest break recommendation kya hai?',
-        '👷 Waterborne diseases risk in low-lying depression sinks after rain'
+        ' Aaj dhoop aur heat index me bahar physical labour karna safe hai?',
+        ' Patna PM2.5 air quality ke anusar morning exercise window kab safe hai?',
+        ' Gig delivery workers ke liye hydration aur rest break recommendation kya hai?',
+        ' Waterborne diseases risk in low-lying depression sinks after rain'
       ],
       suggestedTools: ['open_tab(worker)', 'run_zonal_stats', 'toggle_layer(aqi)']
     },
     researcher: {
       id: 'researcher',
       name: 'Researcher',
-      icon: '🔬',
+      icon: '',
       badgeClass: 'text-indigo-400 border-indigo-500/30 bg-indigo-950/40',
       description: 'Geospatial Research: Sigma-0 backscatter (dB), Otsu thresholding, GLO-30 RMSE',
       systemPrompt: 'You are BHU LOKA AI acting as a peer researcher in microwave remote sensing and hydrodynamics. Provide exact numerical parameters, sensor bands (5.405 GHz C-band, 1.257 GHz L-band), dB backscatter ranges, and geodetic frames (EPSG:4326 / UTM 45N).',
       quickPrompts: [
-        '🔬 What backscatter threshold in dB was used to extract "Naya Paani" in Patna?',
-        '🔬 Explain double-bounce urban backscatter in flooded masonry corridors',
-        '🔬 What is the vertical RMSE of Copernicus GLO-30 DEM across Indo-Gangetic alluvium?',
-        '🔬 Compare Sentinel-1 C-SAR vs NISAR L-band forest canopy penetration'
+        ' What backscatter threshold in dB was used to extract "Naya Paani" in Patna?',
+        ' Explain double-bounce urban backscatter in flooded masonry corridors',
+        ' What is the vertical RMSE of Copernicus GLO-30 DEM across Indo-Gangetic alluvium?',
+        ' Compare Sentinel-1 C-SAR vs NISAR L-band forest canopy penetration'
       ],
       suggestedTools: ['toggle_layer(sar)', 'draw_buffer', 'run_zonal_stats']
     }
@@ -663,8 +663,8 @@
     if (/^(?:ji|haan|ha|theek hai|thik hai|ok|okay|hello|hi|hey|namaste|pranam|kya haal)\b|^(?:ji|haan|ha)\s*$/i.test(q)) {
       return {
         answer: (lang === 'hi' || lang === 'hinglish')
-          ? `जी नमस्ते! मैं BHU LOKA Sovereign Geospatial AI हूँ।\n\nमैं आपके आदेशों के लिए पूरी तरह सक्रिय हूँ। आप क्या देखना चाहते हैं?\n• 'Earth dikhao' ➔ 3D ग्लोब और 186+ सैटेलाइट्स देखें\n• 'Khet crop karo' ➔ अपनी जमीन क्रॉप करके 3D में ऊंचाई-नीचाई (DEM) देखें\n• '2028 flood' ➔ 2026-2030 का बाढ़ व सुखाड़ पूर्वानुमान देखें\n• 'Color decoder' ➔ मैजेंटा, सियान और अंबर रंगों का वैज्ञानिक अर्थ जानें\n• 'Relief supplies' ➔ आपदा राहत डिपो व सप्लाई चेन देखें`
-          : `Hello! I am the BHU LOKA Sovereign Geospatial AI.\n\nI am actively listening and ready for your directives:\n• 'Study Earth' ➔ 3D World Globe with live satellite tracks\n• 'Crop my land' ➔ Launch 2D Land Cropper to extrude 3D topography\n• '2028 Flood' ➔ Simulate 2026–2030 climate horizon\n• 'Color decoder' ➔ Multi-Hazard spectral sensor guide\n• 'Relief supplies' ➔ Disaster relief logistics monitor`,
+          ? `जी नमस्ते! मैं BHU LOKA Sovereign Geospatial AI हूँ।\n\nमैं आपके आदेशों के लिए पूरी तरह सक्रिय हूँ। आप क्या देखना चाहते हैं?\n• 'Earth dikhao' -> 3D ग्लोब और 186+ सैटेलाइट्स देखें\n• 'Khet crop karo' -> अपनी जमीन क्रॉप करके 3D में ऊंचाई-नीचाई (DEM) देखें\n• '2028 flood' -> 2026-2030 का बाढ़ व सुखाड़ पूर्वानुमान देखें\n• 'Color decoder' -> मैजेंटा, सियान और अंबर रंगों का वैज्ञानिक अर्थ जानें\n• 'Relief supplies' -> आपदा राहत डिपो व सप्लाई चेन देखें`
+          : `Hello! I am the BHU LOKA Sovereign Geospatial AI.\n\nI am actively listening and ready for your directives:\n• 'Study Earth' -> 3D World Globe with live satellite tracks\n• 'Crop my land' -> Launch 2D Land Cropper to extrude 3D topography\n• '2028 Flood' -> Simulate 2026–2030 climate horizon\n• 'Color decoder' -> Multi-Hazard spectral sensor guide\n• 'Relief supplies' -> Disaster relief logistics monitor`,
         citations: [],
         sourceTag: 'BHU LOKA Autonomous Conversational Dialogue Agent'
       };
@@ -674,8 +674,8 @@
     if (/tum\s*s(?:a)?m(?:a)?jh|s(?:a)?m(?:a)?jh\s*rh|sun\s*rh|understanding|do\s*you\s*understand|kuch\s*s(?:a)?m(?:a)?jh/i.test(q)) {
       return {
         answer: (lang === 'hi' || lang === 'hinglish')
-          ? `हाँ, मैं आपकी बात 100% समझ रहा हूँ! मैं केवल एक स्टैटिक चैटबॉट नहीं, बल्कि DeepSeek Harness और Cordis माइक्रोकर्नल पर आधारित ऑटोनॉमस मल्टी-एजेंट सिस्टम हूँ।\n\nआप मुझसे सीधे स्वाभाविक भाषा में कुछ भी कह सकते हैं:\n1. 'Earth dikhao' ➔ 3D ग्लोब और 186+ सैटेलाइट्स\n2. 'Mera khet crop karo' ➔ 2D से 3D लैंड क्रॉपर\n3. '2028 flood predict karo' ➔ 2028 का क्लाइमेट मॉडल व लेयर्स\n4. 'Relief supply chain' ➔ बिहटा व दानापुर सेफ कॉरिडोर\n\nबताइए, अभी क्या शुरू करें?`
-          : `Yes, I understand you 100%! I am an autonomous geospatial reasoning agent powered by DeepSeek Harness Cordis architecture and multi-turn memory.\n\nYou can command me in natural language:\n1. 'Study Earth' ➔ Shifts 3D globe and orbital telemetry\n2. 'Crop my land' ➔ Launches 2D-to-3D topographic studio\n3. '2028 flood' ➔ Calibrates 2026-2030 climate risk layers\n4. 'Relief supply chain' ➔ Monitored via >52m safe ridge corridors.`,
+          ? `हाँ, मैं आपकी बात 100% समझ रहा हूँ! मैं केवल एक स्टैटिक चैटबॉट नहीं, बल्कि DeepSeek Harness और Cordis माइक्रोकर्नल पर आधारित ऑटोनॉमस मल्टी-एजेंट सिस्टम हूँ।\n\nआप मुझसे सीधे स्वाभाविक भाषा में कुछ भी कह सकते हैं:\n1. 'Earth dikhao' -> 3D ग्लोब और 186+ सैटेलाइट्स\n2. 'Mera khet crop karo' -> 2D से 3D लैंड क्रॉपर\n3. '2028 flood predict karo' -> 2028 का क्लाइमेट मॉडल व लेयर्स\n4. 'Relief supply chain' -> बिहटा व दानापुर सेफ कॉरिडोर\n\nबताइए, अभी क्या शुरू करें?`
+          : `Yes, I understand you 100%! I am an autonomous geospatial reasoning agent powered by DeepSeek Harness Cordis architecture and multi-turn memory.\n\nYou can command me in natural language:\n1. 'Study Earth' -> Shifts 3D globe and orbital telemetry\n2. 'Crop my land' -> Launches 2D-to-3D topographic studio\n3. '2028 flood' -> Calibrates 2026-2030 climate risk layers\n4. 'Relief supply chain' -> Monitored via >52m safe ridge corridors.`,
         citations: [],
         sourceTag: 'BHU LOKA Multi-Turn Grounded Comprehension Engine'
       };
@@ -703,17 +703,17 @@
       if (lang === 'hi') {
         return {
           answer: `हाँ, BHU LOKA में आप किसी भी भूमि/खेत को क्रॉप करके उसकी 3D ऊँचाई-नीचाई और परत-दर-परत (Layer-by-Layer) आपदा रंग देख सकते हैं:\n\n` +
-            `1. 📐 **2D CROP TO 3D कैसे काम करता है (3D ऊँचाई-नीचाई निष्कर्षण):**\n` +
-            `   • टॉप बार में **'📐 2D CROP TO 3D'** बटन दबाएं और नक्शे पर अपने खेत या भूखंड (Bounding Box) को खींचकर चुनें।\n` +
+            `1.  **2D CROP TO 3D कैसे काम करता है (3D ऊँचाई-नीचाई निष्कर्षण):**\n` +
+            `   • टॉप बार में **' 2D CROP TO 3D'** बटन दबाएं और नक्शे पर अपने खेत या भूखंड (Bounding Box) को खींचकर चुनें।\n` +
             `   • **'Crop & Extrude 3D Terrain'** पर क्लिक करते ही आपका चुना हुआ क्षेत्र सीधे मुख्य दृश्य में **Copernicus 30m वास्तविक डिजिटल एलिवेशन मॉडल (DEM)** के साथ 3D में एक्सट्रूड हो जाएगा।\n` +
             `   • इसमें आपको अपने खेत का सटीक न्यूनतम, औसत व अधिकतम स्तर (MIN/MEAN/MAX MASL) और ढलान (Slope) 3D में दिखाई देगी।\n\n` +
-            `2. 🎨 **3D टेरेन पर परत-दर-परत (Layer-by-Layer) आपदा रंग:**\n` +
+            `2.  **3D टेरेन पर परत-दर-परत (Layer-by-Layer) आपदा रंग:**\n` +
             `   • 3D सब-बार में नया **'3D Hazard'** कंट्रोल सक्रिय है, जहाँ आप एक क्लिक में परतें बदल सकते हैं:\n` +
-            `     - 🏔️ **Topo (ऊँचाई-नीचाई):** लाल (<46m खतरनाक डूब गढ्ढे), पीला/एम्बर (48–52m जलभराव क्षेत्र), हरा (>52m सुरक्षित ऊँचा कछार)।\n` +
-            `     - 🌊 **Flood SAR:** मैजेंटा/गुलाबी (Sentinel-1 रडार अर्बन डबल-बाउंस +4.2 dB), सियान/नीला (खुला जलभराव)।\n` +
-            `     - 🌡️ **Thermal:** चटक नारंगी-लाल (40°C–45°C प्री-मानसून हीटवेव, जो मिट्टी सुखाकर रनऑफ +17.4% बढ़ाती है)।\n` +
-            `     - 💧 **Sinks:** गहरा रॉयल ब्लू (प्राकृतिक जल निकास और हाइड्रोलॉजिकल सिंक)।\n` +
-            `     - 🛰️ **Sat:** उच्च-रिजॉल्यूशन Google Earth Hybrid ऑप्टिकल उपग्रह दृश्य।\n` +
+            `     - ️ **Topo (ऊँचाई-नीचाई):** लाल (<46m खतरनाक डूब गढ्ढे), पीला/एम्बर (48–52m जलभराव क्षेत्र), हरा (>52m सुरक्षित ऊँचा कछार)।\n` +
+            `     -  **Flood SAR:** मैजेंटा/गुलाबी (Sentinel-1 रडार अर्बन डबल-बाउंस +4.2 dB), सियान/नीला (खुला जलभराव)।\n` +
+            `     - ️ **Thermal:** चटक नारंगी-लाल (40°C–45°C प्री-मानसून हीटवेव, जो मिट्टी सुखाकर रनऑफ +17.4% बढ़ाती है)।\n` +
+            `     -  **Sinks:** गहरा रॉयल ब्लू (प्राकृतिक जल निकास और हाइड्रोलॉजिकल सिंक)।\n` +
+            `     - ️ **Sat:** उच्च-रिजॉल्यूशन Google Earth Hybrid ऑप्टिकल उपग्रह दृश्य।\n` +
             `   • **BLEND स्लाइडर (0%–100%):** आप स्लाइडर घुमाकर उपग्रह चित्र के ऊपर इन आपदा रंगों की पारदर्शिता (Opacity) अपनी पसंद अनुसार सेट कर सकते हैं।`,
           citations: [GROUNDED_KNOWLEDGE.elevation, GROUNDED_KNOWLEDGE.sar_flood],
           sourceTag: 'Copernicus 30m Global DEM + Sentinel-1 SAR Dual-Track Inundation Engine'
@@ -721,17 +721,17 @@
       } else {
         return {
           answer: `Yes, in BHU LOKA you can crop any land parcel and visualize its true 3D elevation relief (height & depth) with layer-by-layer hazard color overlays:\n\n` +
-            `1. 📐 **How 2D CROP TO 3D Works (Real 3D Topographic Extrusion):**\n` +
-            `   • Click **'📐 2D CROP TO 3D'** in the top navigation dock and adjust the bounding box over your farm or plot.\n` +
+            `1.  **How 2D CROP TO 3D Works (Real 3D Topographic Extrusion):**\n` +
+            `   • Click **' 2D CROP TO 3D'** in the top navigation dock and adjust the bounding box over your farm or plot.\n` +
             `   • Click **'Crop & Extrude 3D Terrain'** — the engine immediately cuts and extrudes the underlying **Copernicus 30m DEM** into a true 3D topographic mesh in the primary viewport.\n` +
             `   • You immediately get real micro-topographic relief with MIN, MEAN, MAX MASL elevation and slope angle in 3D.\n\n` +
-            `2. 🎨 **Layer-by-Layer Scientific Hazard Color Overlays on 3D Mesh:**\n` +
+            `2.  **Layer-by-Layer Scientific Hazard Color Overlays on 3D Mesh:**\n` +
             `   • Use the dedicated **'3D Hazard'** switcher directly above the 3D terrain canvas:\n` +
-            `     - 🏔️ **Topo (Elevation Relief):** Red (<46m Critical Sinks), Amber (48–52m Silt Ponding), Emerald Green (>52m Safe Levees & Terraces).\n` +
-            `     - 🌊 **Flood SAR:** Hot Pink / Magenta (Sentinel-1 Corner Reflector Double-Bounce +4.2 dB), Cyan (Specular Water Sink).\n` +
-            `     - 🌡️ **Thermal:** Radiant Orange-Red (Pre-monsoon 40°C–45°C heat stress that desiccates clay and escalates runoff by +17.4%).\n` +
-            `     - 💧 **Sinks:** Royal Blue (Hydrological convergence vectors and catchment ponding depressions).\n` +
-            `     - 🛰️ **Sat:** Google Earth Hybrid true-color base with NIR vegetation spectral tones.\n` +
+            `     - ️ **Topo (Elevation Relief):** Red (<46m Critical Sinks), Amber (48–52m Silt Ponding), Emerald Green (>52m Safe Levees & Terraces).\n` +
+            `     -  **Flood SAR:** Hot Pink / Magenta (Sentinel-1 Corner Reflector Double-Bounce +4.2 dB), Cyan (Specular Water Sink).\n` +
+            `     - ️ **Thermal:** Radiant Orange-Red (Pre-monsoon 40°C–45°C heat stress that desiccates clay and escalates runoff by +17.4%).\n` +
+            `     -  **Sinks:** Royal Blue (Hydrological convergence vectors and catchment ponding depressions).\n` +
+            `     - ️ **Sat:** Google Earth Hybrid true-color base with NIR vegetation spectral tones.\n` +
             `   • **BLEND Opacity Slider (0%–100%):** Adjust the slider to seamlessly blend the hazard heatmap directly over the roads, crops, and buildings on the 3D surface.`,
           citations: [GROUNDED_KNOWLEDGE.elevation, GROUNDED_KNOWLEDGE.sar_flood],
           sourceTag: 'Copernicus 30m Global DEM + Sentinel-1 SAR Dual-Track Inundation Engine'
@@ -744,32 +744,32 @@
       if (lang === 'hi') {
         return {
           answer: `3D टेरेन और उपग्रह मानचित्र पर रंगों का वैज्ञानिक अर्थ (Remote Sensing & FLIR Thermal Audit):\n\n` +
-            `1. 🌸 **PINK / MAGENTA रंग का वैज्ञानिक कारण (Healthy Rabi Crops & FLIR Thermal):**\n` +
+            `1.  **PINK / MAGENTA रंग का वैज्ञानिक कारण (Healthy Rabi Crops & FLIR Thermal):**\n` +
             `   • आपके 3D दृश्य में FLIR (Forward-Looking Infrared) थर्मल शेडर और Sentinel-2 NIR (Band 8) स्पेक्ट्रल रिफ्लेक्टेंस सक्रिय है।\n` +
             `   • स्वस्थ फसलें (गेहूं, मक्का, दलहन) सूर्य के प्रकाश के Near-Infrared (NIR) स्पेक्ट्रम को अत्यधिक परावर्तित करती हैं।\n` +
             `   • यह उच्च क्लोरोफिल बायोमास FLIR शेडर में चमकीले PINK / MAGENTA रंग में चमकता है, जो दर्शाता है कि भूमि उपजाऊ एवं फसलों से लहलहा रही है।\n\n` +
-            `2. 🔵 **BLUE (नीला) पिन व निशानों का मतलब (Real-Time GPS Beacon & Pokhar Sinks):**\n` +
+            `2.  **BLUE (नीला) पिन व निशानों का मतलब (Real-Time GPS Beacon & Pokhar Sinks):**\n` +
             `   • **ब्लू डॉट / पिन (BLUE PIN):** यह आपका रीयल-टाइम जीपीएस नेविगेशन एंकर (Live Tactical GPS Tracking Beacon) है। इसमें 1 Hz लाइव पल्सिंग और सटीक एल्टीट्यूड (45.5m MASL) टेलीमेट्री सक्रिय है।\n` +
             `   • **गहरे नीले/काले जलाशय (Dhamani Pokhar):** पानी रडार व माइक्रोवेव ऊर्जा को आईने की तरह आगे उछाल (Specular Forward Scatter) देता है, जिससे पानी गहरा BLUE या काला दिखाई देता है।\n\n` +
-            `3. ⚪ **WHITE / GREY:** पक्की सड़कें, कंक्रीट की इमारतें और मणियारपुर पुल।\n` +
-            `4. 🟢 **GREEN PINS:** सामुदायिक प्राकृतिक पोखर, सुरक्षित कछार और प्राथमिक जल निकास।\n` +
-            `5. 🏥 **CYAN / RED CROSS:** PHC विद्यापतिनगर (आपातकालीन प्राथमिक स्वास्थ्य केंद्र)।`,
+            `3.  **WHITE / GREY:** पक्की सड़कें, कंक्रीट की इमारतें और मणियारपुर पुल।\n` +
+            `4.  **GREEN PINS:** सामुदायिक प्राकृतिक पोखर, सुरक्षित कछार और प्राथमिक जल निकास।\n` +
+            `5.  **CYAN / RED CROSS:** PHC विद्यापतिनगर (आपातकालीन प्राथमिक स्वास्थ्य केंद्र)।`,
           citations: [GROUNDED_KNOWLEDGE.elevation, GROUNDED_KNOWLEDGE.sar_flood],
           sourceTag: 'Copernicus Sentinel-2 NIR Band 8 + God Eye FLIR Thermal Shader + GPS RTK Telemetry'
         };
       } else {
         return {
           answer: `Scientific Remote Sensing & Color Meaning on 3D Terrain & Satellite Imagery:\n\n` +
-            `1. 🌸 **PINK / MAGENTA Spectral Meaning (Healthy Biomass & FLIR Thermal):**\n` +
+            `1.  **PINK / MAGENTA Spectral Meaning (Healthy Biomass & FLIR Thermal):**\n` +
             `   • The 3D hologram is rendered using the God's Eye FLIR (Forward-Looking Infrared) thermal shader coupled with Sentinel-2 NIR (Band 8) reflectance.\n` +
             `   • Healthy vegetation (Rabi wheat, maize, lentils) exhibits high chlorophyll scattering in the Near-Infrared spectrum.\n` +
             `   • Under false-color thermal rendering, dense vegetative biomass shines in vivid PINK / MAGENTA, confirming active agricultural productivity.\n\n` +
-            `2. 🔵 **BLUE Pin & Markings Meaning (Real-Time GPS Tracking & Water Sinks):**\n` +
+            `2.  **BLUE Pin & Markings Meaning (Real-Time GPS Tracking & Water Sinks):**\n` +
             `   • **Blue Dot / Pin (BLUE PIN):** Represents the live real-time GPS positioning beacon (1 Hz tactical pulse) with elevation readout (45.5m MASL).\n` +
             `   • **Dark Blue / Black Water Bodies (Dhamani Pokhar):** Flat surface water produces specular reflection, scattering microwave and optical rays away from the sensor, rendering standing water in deep BLUE / black tones.\n\n` +
-            `3. ⚪ **WHITE / GREY:** Concrete structures, masonry buildings, and Maniyarpur Bridge.\n` +
-            `4. 🟢 **GREEN PINS:** Community tanks, agrarian water reservoirs, and well-drained floodplains.\n` +
-            `5. 🏥 **CYAN / RED CROSS:** Primary Health Centre (PHC Vidyapati Nagar - emergency triage).`,
+            `3.  **WHITE / GREY:** Concrete structures, masonry buildings, and Maniyarpur Bridge.\n` +
+            `4.  **GREEN PINS:** Community tanks, agrarian water reservoirs, and well-drained floodplains.\n` +
+            `5.  **CYAN / RED CROSS:** Primary Health Centre (PHC Vidyapati Nagar - emergency triage).`,
           citations: [GROUNDED_KNOWLEDGE.elevation, GROUNDED_KNOWLEDGE.sar_flood],
           sourceTag: 'Copernicus Sentinel-2 NIR Band 8 + God Eye FLIR Thermal Shader + GPS RTK Telemetry'
         };
@@ -890,15 +890,15 @@
       if (lang === 'hi') {
         return {
           answer: `पटना नागरिक सुरक्षा एवं सुरक्षित उच्च-भूमि आश्रय स्थल (Copernicus DEM & SAR Grounded):\n\n` +
-            `1. ⚠️ **निकासी योग्य उच्च-जोखिम डिप्रेशन सिंक (Evacuate FROM):**\n` +
+            `1.  **निकासी योग्य उच्च-जोखिम डिप्रेशन सिंक (Evacuate FROM):**\n` +
             `   • **राजेंद्र नगर (वार्ड 40-44):** ऊंचाई 46.2m AMSL · जलभराव सिंक गहराई >2.8m · डेंगू व वेक्टर का गंभीर खतरा।\n` +
             `   • **कंकड़बाग (वार्ड 45-48):** ऊंचाई 47.1m AMSL · जलभराव सिंक गहराई >2.1m · नाला बैकफ्लो।\n` +
             `   • **सैदपुर / बाजार समिति:** संप पंप सबमर्जन जोन · पीने के उथले हैंडपंप दूषित।\n\n` +
-            `2. 🛡️ **नामित 100% सुरक्षित उच्च-भूमि आश्रय स्थल (Evacuate TO - >52m AMSL):**\n` +
+            `2.  **नामित 100% सुरक्षित उच्च-भूमि आश्रय स्थल (Evacuate TO - >52m AMSL):**\n` +
             `   • **बिहटा / आईआईटी पटना रिज:** ऊंचाई 55.2m AMSL · बाढ़ जोखिम: 0.0% · ULSI स्कोर: 88/100 · प्राकृतिक ऊंचा कछार।\n` +
             `   • **दानापुर कैंट टेरेस:** ऊंचाई 54.1m AMSL · ऐतिहासिक बाढ़ जलस्तर से >6.2m सुरक्षित ऊंचाई।\n` +
             `   • **बेली रोड एलिवेटेड कॉरिडोर:** ऊंचाई 52.8m AMSL · प्राकृतिक जल-विभाजक कछार (Well-Drained)।\n\n` +
-            `3. 🚨 **नागरिक आपातकालीन निर्देश:**\n` +
+            `3.  **नागरिक आपातकालीन निर्देश:**\n` +
             `   • पीने का पानी न्यूनतम 10 मिनट उबालें; जलभराव वाले क्षेत्रों में हैंडपंप सीवेज से संदूषित हो जाते हैं।\n` +
             `   • 48-72 घंटे में ठहरे पानी में मच्छर पनपते हैं — DEET 20% का प्रयोग करें।\n` +
             `   • बाढ़ सूखने पर N95 मास्क पहनें (सिल्ट कण हवा में 142 µg/m³ तक उछलते हैं)।`,
@@ -908,15 +908,15 @@
       } else {
         return {
           answer: `Patna Civil Protection & Evacuation Triage (Copernicus DEM & SAR Grounded):\n\n` +
-            `1. ⚠️ **Priority Evacuation Sinks (Evacuate FROM):**\n` +
+            `1.  **Priority Evacuation Sinks (Evacuate FROM):**\n` +
             `   • **Rajendra Nagar (Wards 40-44):** Elevation 46.2m a.m.s.l. · Trap depth >2.8m · Severe vector hazard.\n` +
             `   • **Kankarbagh (Wards 45-48):** Elevation 47.1m a.m.s.l. · Trap depth >2.1m · Urban sump failure.\n` +
             `   • **Saidpur / Bazar Samiti:** Sump submergence zone · Cross-contamination of shallow aquifers.\n\n` +
-            `2. 🛡️ **Designated High-Ground Safe Havens (Evacuate TO - Elevation >52m a.m.s.l.):**\n` +
+            `2.  **Designated High-Ground Safe Havens (Evacuate TO - Elevation >52m a.m.s.l.):**\n` +
             `   • **Bihta / IIT Patna High Ridge:** Elevation 55.2m a.m.s.l. · Inundation Risk: 0.0% · ULSI: 88/100 · Optimal logistics staging hub.\n` +
             `   • **Danapur Cantt Terrace:** Elevation 54.1m a.m.s.l. · >6.2m vertical clearance above 2019 high-water marks.\n` +
             `   • **Bailey Road Corridor:** Elevation 52.8m a.m.s.l. · Natural watershed divide with robust grid power.\n\n` +
-            `3. 🚨 **Immediate Public Health Actions:**\n` +
+            `3.  **Immediate Public Health Actions:**\n` +
             `   • Boil drinking water (>10 min); shallow tubewells suffer urban runoff cross-contamination.\n` +
             `   • Vector control (DEET 20%+) within 48–72h mosquito breeding cycle in stagnant pools.\n` +
             `   • Wear N95 masks during post-flood drying (aerosolized toxic silt PM2.5 spikes to 142 µg/m³).`,
@@ -956,13 +956,13 @@
       if (lang === 'hi') {
         return {
           answer: `पटना में विनाशकारी बाढ़ का वैज्ञानिक भू-आकृतिक कारण (Scientific Physical Explanation - Copernicus DEM & SAR Audit):\n\n` +
-            `1. 🥣 **तश्तरीनुमा भू-आकृति ('Saucer Basin' Topography):**\n` +
+            `1.  **तश्तरीनुमा भू-आकृति ('Saucer Basin' Topography):**\n` +
             `   • पटना तीन प्रमुख नदियों के बीच घिरा है: उत्तर में गंगा, पश्चिम में सोन, और दक्षिण-पूर्व में पुनपुन।\n` +
             `   • उत्तरी गंगा तट का प्राकृतिक लेवी बांध 53-55m ऊंचा है, जबकि आंतरिक दक्षिणी आवासीय वार्ड (राजेंद्र नगर, कंकड़बाग) 44-48m के गहरे गड्ढे (Concave Bowl) में स्थित हैं।\n\n` +
-            `2. 🔒 **स्लुइस गेट बंदी एवं बैकफ्लो (Sluice Gate Locking):**\n` +
+            `2.  **स्लुइस गेट बंदी एवं बैकफ्लो (Sluice Gate Locking):**\n` +
             `   • जब गंगा नदी खतरे के निशान (49.5m) से ऊपर बहती है, तो शहर का पानी नदी में जाने वाले स्लुइस गेट्स को बंद कर दिया जाता है ताकि नदी का पानी शहर में न घुसे।\n` +
             `   • इससे सारा सतही वर्षा जल (Runoff) शहर के अंदर ही कैद हो जाता है और केवल सैदपुर/कंकड़बाग संप पंपों पर निर्भर हो जाता है।\n\n` +
-            `3. 📉 **33.15% भूभाग अवसाद सिंक में (Copernicus GLO-30 DEM Discovery):**\n` +
+            `3.  **33.15% भूभाग अवसाद सिंक में (Copernicus GLO-30 DEM Discovery):**\n` +
             `   • 30m DEM विश्लेषण से पता चलता है कि पटना नगर निगम (PMC) का 47.24 km² (33.15%) क्षेत्रफल प्राकृतिक डिप्रेशन सिंक है।\n` +
             `   • 2019 में 72 घंटे में 342.5mm बारिश हुई और संप पंप डूबने से 9 दिनों तक 49,380 निवासी जलमग्न सिंक में फंसे रहे।\n\n` +
             `*निष्कर्ष:* जब तक शहर का ढलान प्राकृतिक रूप से उत्तर से दक्षिण की ओर नीचा रहेगा, तब तक बिना हाई-कैपेसिटी लिफ्ट ड्रेनेज के निचले वार्ड्स में जलभराव अपरिहार्य है। सुरक्षित क्षेत्र: बिहटा (>55m) और बेली रोड (>52m)।`,
@@ -972,13 +972,13 @@
       } else {
         return {
           answer: `Scientific Geomorphic Root Causes of Patna Urban Inundation (NASA Space Apps Research Track):\n\n` +
-            `1. 🥣 **The 'Saucer Basin' Morphology:**\n` +
+            `1.  **The 'Saucer Basin' Morphology:**\n` +
             `   • Patna is geographically entrapped between the Ganges (North), Son (West), and Punpun (South-East).\n` +
             `   • The northern riverfront embankment stands high at 53–55m a.m.s.l., creating an elevated lip overlooking internal southern residential bowls dipping down to 44–48m a.m.s.l. (Rajendra Nagar, Kankarbagh).\n\n` +
-            `2. 🔒 **Hydraulic Sluice Gate Locking:**\n` +
+            `2.  **Hydraulic Sluice Gate Locking:**\n` +
             `   • During peak monsoons, Ganges stages rise above municipal danger levels (49.5m). Gravity drainage outfalls are sealed to prevent fluvial intrusion, trapping 100% of urban storm runoff inside the bowl.\n` +
             `   • Drainage becomes entirely dependent on mechanical sump pump stations (Saidpur, Pahari), which fail when electrical switchgears submerge.\n\n` +
-            `3. 📉 **Copernicus GLO-30 DEM Topographic Sinks:**\n` +
+            `3.  **Copernicus GLO-30 DEM Topographic Sinks:**\n` +
             `   • D8 flow accumulation confirms that 47.24 km² (33.15%) of the Patna Municipal Corporation (PMC) sits in natural concave depression sinks.\n` +
             `   • In September 2019 (342.5mm rain in 72h), 49,380 residents were trapped in joint flood-sink overlap for >9 days.\n\n` +
             `*Safe Resettlement Ridges:* Bihta / IIT Patna Corridor (55.2m a.m.s.l., 0.0% flood risk) and Bailey Road Ridge (52.8m a.m.s.l.).`,
@@ -1003,7 +1003,7 @@
             `3. **स्पैटियल ब्लॉक वैलिडेशन (Roberts et al. 2017):**\n` +
             `   • जब यादृच्छिक (Random) 5-फोल्ड किया गया तो डेटा लीकेज से R² = 0.9688 आया।\n` +
             `   • 5 अलग-अलग भौगोलिक ब्लॉकों पर परीक्षण करने पर वास्तविक सामान्यीकरण क्षमता **R² = 0.8258 (-14.8% पेनल्टी)** रही, जिसमें सघन शहरी कोर (Block 2) में R² = 0.5266 प्राप्त हुआ।\n\n` +
-            `*शीर्ष पर '🔬 MODEL EVALUATION' बटन दबाकर लाइव कन्फ्यूजन मैट्रिक्स और आरओसी कर्व देखें।*`,
+            `*शीर्ष पर ' MODEL EVALUATION' बटन दबाकर लाइव कन्फ्यूजन मैट्रिक्स और आरओसी कर्व देखें।*`,
           citations: [GROUNDED_KNOWLEDGE.sar_flood, GROUNDED_KNOWLEDGE.elevation],
           sourceTag: 'NASA Space Apps 2026: Dancing with the SARs Submission Suite'
         };
@@ -1020,7 +1020,7 @@
             `3. **Spatial AI Rigor (Roberts et al. 2017):**\n` +
             `   • Random 5-fold CV inflated R² to 0.9688 via spatial autocorrelation data leakage.\n` +
             `   • 5-Block Spatial Block Cross-Validation (SBCV) revealed true out-of-block performance: **R² = 0.8258 (-14.8% spatial penalty)**, with the Central Urban Core (Block 2) dropping to R² = 0.5266.\n\n` +
-            `*Click the '🔬 MODEL EVALUATION' badge at the top to inspect the interactive confusion matrix and ROC curves.*`,
+            `*Click the ' MODEL EVALUATION' badge at the top to inspect the interactive confusion matrix and ROC curves.*`,
           citations: [GROUNDED_KNOWLEDGE.sar_flood, GROUNDED_KNOWLEDGE.elevation],
           sourceTag: 'NASA Space Apps 2026: Dancing with the SARs Submission Suite'
         };
@@ -1118,7 +1118,7 @@
           `• **Copernicus 30m Global DEM Extrusion:** Automatically extracts a 10x10 elevation grid (MASL) and drapes high-resolution satellite imagery.\n` +
           `• **OSM 3D Buildings:** Procedurally extrudes OpenStreetMap structural footprints with true height attributes.\n` +
           `• **Site Topography Metrics:** Area (hectares), elevation profile (min, mean, max), slope gradient, and drainage aspect.\n\n` +
-          `*Click the '📐 2D MAP CROPPER' button at the top or in the activity bar to launch.*`,
+          `*Click the ' 2D MAP CROPPER' button at the top or in the activity bar to launch.*`,
         citations: [GROUNDED_KNOWLEDGE.elevation],
         sourceTag: 'Copernicus 30m Global DEM + OpenStreetMap 3D Extrusion Studio'
       };
