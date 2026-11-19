@@ -2090,180 +2090,253 @@
        BHU LOKA v6.0 NAVIGATION & RESPONSIVE LAYOUT DESIGN SYSTEM
        ════════════════════════════════════════════════════════════════ -->
   <style id="bhu-v60-navigation-css">
-    /* ── Top Navigation Bar (Desktop ≥ 768px) ── */
+    /* ════════════════════════════════════════════════════════════════
+       BHU LOKA v6.0 — APPLE-INSPIRED PREMIUM DARK DESIGN SYSTEM
+       ════════════════════════════════════════════════════════════════ */
+    :root {
+      --color-bg-main: #09090B;
+      --color-bg-secondary: #101114;
+      --color-surface-primary: #15171B;
+      --color-surface-elevated: #1B1E23;
+      --color-text-primary: #F5F5F7;
+      --color-text-secondary: #A1A1AA;
+      --color-text-muted: #71717A;
+      --color-border: rgba(255, 255, 255, 0.10);
+      --color-glass: rgba(255, 255, 255, 0.055);
+      --color-accent: #8AB4F8;
+      --color-success: #30D158;
+      --color-warning: #FFB340;
+      --color-danger: #FF453A;
+    }
+
+    body.bhu-workstation {
+      background-color: #09090B !important;
+      color: #F5F5F7 !important;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif !important;
+    }
+
+    /* ── Desktop Top Nav (≥ 768px) ── */
     #bhu-top-nav {
-      background: rgba(8, 12, 20, 0.94) !important;
-      backdrop-filter: blur(28px) saturate(180%) !important;
-      -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
-      border: 1px solid rgba(255, 255, 255, 0.12) !important;
-      border-top: 1px solid rgba(255, 255, 255, 0.22) !important;
-      border-radius: 20px !important;
-      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+      background: rgba(21, 23, 27, 0.88) !important;
+      backdrop-filter: blur(20px) saturate(140%) !important;
+      -webkit-backdrop-filter: blur(20px) saturate(140%) !important;
+      border: 1px solid rgba(255, 255, 255, 0.10) !important;
+      border-radius: 14px !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45) !important;
+      padding: 6px 16px !important;
+      min-height: 52px !important;
     }
 
     .bhu-top-nav-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 6px 13px;
-      border-radius: 9999px;
-      font-family: 'Space Grotesk', system-ui, sans-serif;
-      font-size: 11.5px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      color: #9CA3AF;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      cursor: pointer;
-      transition: all 0.16s cubic-bezier(0.2, 0.8, 0.2, 1);
-      white-space: nowrap;
-      text-decoration: none;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      height: 38px !important;
+      padding: 0 14px !important;
+      border-radius: 10px !important;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif !important;
+      font-size: 13px !important;
+      font-weight: 500 !important;
+      color: #A1A1AA !important;
+      background: transparent !important;
+      border: 1px solid transparent !important;
+      cursor: pointer !important;
+      transition: all 0.18s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+      white-space: nowrap !important;
+      text-decoration: none !important;
     }
 
     .bhu-top-nav-btn:hover {
-      background: rgba(255, 255, 255, 0.09);
-      border-color: rgba(255, 255, 255, 0.18);
-      color: #F5F7FA;
-      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.055) !important;
+      border-color: rgba(255, 255, 255, 0.10) !important;
+      color: #F5F5F7 !important;
     }
 
     .bhu-top-nav-btn:active {
-      transform: scale(0.97);
+      transform: scale(0.98) !important;
     }
 
     .bhu-top-nav-btn.active {
-      background: rgba(0, 86, 210, 0.25) !important;
-      border-color: rgba(75, 147, 255, 0.6) !important;
-      color: #4B93FF !important;
-      box-shadow: 0 0 14px rgba(0, 86, 210, 0.35);
+      background: rgba(138, 180, 248, 0.15) !important;
+      border-color: rgba(138, 180, 248, 0.40) !important;
+      color: #8AB4F8 !important;
+      box-shadow: 0 0 12px rgba(138, 180, 248, 0.20) !important;
     }
 
     .bhu-top-icon-btn {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.10);
-      color: #9CA3AF;
-      cursor: pointer;
-      transition: all 0.15s ease;
+      width: 38px !important;
+      height: 38px !important;
+      border-radius: 10px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      background: rgba(255, 255, 255, 0.055) !important;
+      border: 1px solid rgba(255, 255, 255, 0.10) !important;
+      color: #A1A1AA !important;
+      cursor: pointer !important;
+      transition: all 0.18s ease !important;
     }
 
     .bhu-top-icon-btn:hover {
-      background: rgba(255, 255, 255, 0.10);
-      border-color: rgba(255, 255, 255, 0.22);
-      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.10) !important;
+      border-color: rgba(255, 255, 255, 0.20) !important;
+      color: #F5F5F7 !important;
     }
 
     /* ── Mobile Top Bar (< 768px) ── */
     #bhu-mobile-top-bar {
-      height: 52px;
-      position: sticky;
-      top: 0;
-      z-index: 80;
+      height: 52px !important;
+      background: rgba(16, 17, 20, 0.94) !important;
+      backdrop-filter: blur(20px) saturate(140%) !important;
+      -webkit-backdrop-filter: blur(20px) saturate(140%) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.10) !important;
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 80 !important;
     }
 
     /* ── Mobile Bottom Navigation (< 768px, exactly 5 tabs) ── */
     #bhu-mobile-bottom-nav {
-      box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+      background: rgba(16, 17, 20, 0.94) !important;
+      backdrop-filter: blur(20px) saturate(140%) !important;
+      -webkit-backdrop-filter: blur(20px) saturate(140%) !important;
+      border-top: 1px solid rgba(255, 255, 255, 0.10) !important;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5) !important;
+      height: 64px !important;
     }
 
     .bhu-mnav-btn {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 3px;
-      color: #6B7280;
-      background: transparent;
-      border: none;
-      height: 56px;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      -webkit-tap-highlight-color: transparent;
+      flex: 1 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 3px !important;
+      color: #71717A !important;
+      background: transparent !important;
+      border: none !important;
+      height: 56px !important;
+      cursor: pointer !important;
+      transition: all 0.16s ease !important;
+      -webkit-tap-highlight-color: transparent !important;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif !important;
     }
 
     .bhu-mnav-btn:active {
-      transform: scale(0.92);
+      transform: scale(0.92) !important;
     }
 
     .bhu-mnav-btn.active {
-      color: #4B93FF !important;
+      color: #8AB4F8 !important;
     }
 
     .bhu-mnav-btn.active i {
-      color: #4B93FF !important;
-      text-shadow: 0 0 10px rgba(75, 147, 255, 0.5);
+      color: #8AB4F8 !important;
     }
 
-    /* AI Center Button: Elevated prominent circular button */
+    /* AI Center Button (Apple Elevation) */
     .bhu-mnav-center-btn {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      position: relative;
-      top: -8px;
-      -webkit-tap-highlight-color: transparent;
+      flex: 1 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      background: transparent !important;
+      border: none !important;
+      cursor: pointer !important;
+      position: relative !important;
+      top: -8px !important;
+      -webkit-tap-highlight-color: transparent !important;
     }
 
     .bhu-mnav-ai-circle {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #0056D2 0%, #4B93FF 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 6px 20px rgba(0, 86, 210, 0.6), 0 2px 6px rgba(0,0,0,0.4);
-      border: 2px solid rgba(255, 255, 255, 0.25);
-      margin-bottom: 2px;
-      transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.15s ease;
+      width: 48px !important;
+      height: 48px !important;
+      border-radius: 50% !important;
+      background: linear-gradient(135deg, #0056D2 0%, #3B82F6 100%) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      box-shadow: 0 4px 16px rgba(0, 86, 210, 0.45) !important;
+      border: 1px solid rgba(255, 255, 255, 0.22) !important;
+      margin-bottom: 2px !important;
+      transition: transform 0.16s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.16s ease !important;
     }
 
     .bhu-mnav-center-btn:active .bhu-mnav-ai-circle {
-      transform: scale(0.92);
-      box-shadow: 0 2px 10px rgba(0, 86, 210, 0.4);
+      transform: scale(0.92) !important;
     }
 
-    /* ── Side Drawer Links ── */
+    /* ── Side Drawer (FIX TEXT SQUISHING BUG) ── */
+    #bhu-side-drawer {
+      width: 320px !important;
+      min-width: 320px !important;
+      max-width: 85vw !important;
+      background: #101114 !important;
+      border-right: 1px solid rgba(255, 255, 255, 0.10) !important;
+      box-sizing: border-box !important;
+      box-shadow: 12px 0 36px rgba(0, 0, 0, 0.75) !important;
+    }
+
     .bhu-drawer-link {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      width: 100%;
-      padding: 10px 14px;
-      border-radius: 12px;
-      color: #9CA3AF;
-      background: transparent;
-      border: 1px solid transparent;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      text-decoration: none;
+      display: flex !important;
+      align-items: center !important;
+      gap: 12px !important;
+      width: 100% !important;
+      padding: 10px 14px !important;
+      border-radius: 10px !important;
+      color: #A1A1AA !important;
+      background: transparent !important;
+      border: 1px solid transparent !important;
+      cursor: pointer !important;
+      transition: all 0.16s ease !important;
+      text-decoration: none !important;
+      white-space: nowrap !important;
+      box-sizing: border-box !important;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif !important;
+      font-size: 13px !important;
+      font-weight: 500 !important;
+    }
+
+    .bhu-drawer-link span {
+      white-space: nowrap !important;
     }
 
     .bhu-drawer-link:hover {
-      background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(255, 255, 255, 0.10);
-      color: #F5F7FA;
+      background: rgba(255, 255, 255, 0.055) !important;
+      border-color: rgba(255, 255, 255, 0.10) !important;
+      color: #F5F5F7 !important;
     }
 
     .bhu-drawer-link:active {
-      transform: scale(0.98);
+      transform: scale(0.98) !important;
     }
 
     .bhu-drawer-link.active {
-      background: rgba(0, 86, 210, 0.20);
-      border-color: rgba(75, 147, 255, 0.4);
-      color: #4B93FF;
+      background: rgba(138, 180, 248, 0.14) !important;
+      border-color: rgba(138, 180, 248, 0.35) !important;
+      color: #8AB4F8 !important;
+    }
+
+    /* ── Land Studio Leaflet Fallback Inline Fix ── */
+    #urban-2d-panel {
+      flex: 1 1 auto !important;
+      min-height: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      position: relative !important;
+      display: flex !important;
+      flex-direction: column !important;
+    }
+
+    #urban-leaflet-map {
+      width: 100% !important;
+      height: 100% !important;
+      min-height: 350px !important;
+      position: absolute !important;
+      inset: 0 !important;
+      background: #09090B !important;
+      z-index: 1 !important;
     }
   </style>
 
@@ -6049,7 +6122,7 @@
           </div>
 
           <div id="urban-2d-panel" style="flex:1 1 auto;min-height:0;display:flex;flex-direction:column;position:relative;">
-            <div id="urban-leaflet-map"></div>
+            <div id="urban-leaflet-map" style="width:100%;height:100%;min-height:350px;position:absolute;inset:0;background:#09090B;z-index:1;"></div>
           </div>
 
           <div id="urban-3d-panel" style="flex:1 1 auto;min-height:0;display:none;flex-direction:column;position:relative;">

@@ -1,260 +1,210 @@
 /*
- * BHU LOKA (भूलोक) — Cartographic Instrument Design System (BHU-DESIGN-v1.0)
- * Unified obsidian palette, 4px spacing tokens, tabular monospace metrics,
- * hairline docked workstations, and accessible keyboard focus controls.
+ * BHU LOKA (भूलोक) — Apple-Inspired Premium Dark Design System (v6.0)
+ * Precision geospatial command workstation: sophisticated obsidian palette,
+ * 8pt grid tokens, SF Pro typography hierarchy, and subtle glassmorphism.
  */
 
 :root {
-  --bg-void: #05080c;
-  --bg-canvas: #06090e;
-  --bg-inset: #070b12;
-  --bg-panel: #0b1019;
-  --bg-elevated: #101724;
-  --bg-hover: #162032;
+  /* 1. Core Colour System */
+  --color-bg-main: #09090B;
+  --color-bg-secondary: #101114;
+  --color-surface-primary: #15171B;
+  --color-surface-elevated: #1B1E23;
+  --color-text-primary: #F5F5F7;
+  --color-text-secondary: #A1A1AA;
+  --color-text-muted: #71717A;
+  --color-border: rgba(255, 255, 255, 0.10);
+  --color-glass: rgba(255, 255, 255, 0.055);
+  --color-accent: #8AB4F8;
+  --color-success: #30D158;
+  --color-warning: #FFB340;
+  --color-danger: #FF453A;
 
-  --border-hairline: rgba(148, 163, 184, 0.14);
-  --border-strong: rgba(148, 163, 184, 0.24);
-  --border-focus: #38bdf8;
+  /* Backward Compatibility Aliases */
+  --bg-canvas: #09090B;
+  --bg-panel: rgba(21, 23, 27, 0.85);
+  --bg-inset: #101114;
+  --text-primary: #F5F5F7;
+  --text-secondary: #A1A1AA;
+  --text-muted: #71717A;
+  --accent-primary: #8AB4F8;
+  --accent-bright: #8AB4F8;
+  --border-glass: rgba(255, 255, 255, 0.10);
 
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
+  /* 2. Typography Font Stacks */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", Menlo, Monaco, Consolas, "JetBrains Mono", monospace;
 
-  --accent-primary: #38bdf8;
-  --state-verified: #10b981;
-  --state-warning: #f59e0b;
-  --state-unavailable: #f43f5e;
-  --state-idle: #94a3b8;
+  /* 3. Spacing System (8-Point Grid) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 40px;
+  --space-8: 48px;
+  --space-9: 64px;
+  --space-10: 80px;
+  --space-11: 96px;
 
-  --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --font-mono: 'IBM Plex Mono', 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+  /* 4. Radius Tokens */
+  --radius-sm: 8px;
+  --radius-input: 10px;
+  --radius-btn: 10px;
+  --radius-panel: 14px;
+  --radius-overlay: 18px;
+  --radius-modal: 20px;
+  --radius-pill: 9999px;
+
+  /* 5. Glassmorphism & Shadows */
+  --glass-bg: rgba(22, 24, 28, 0.72);
+  --glass-blur: blur(20px) saturate(140%);
+  --shadow-subtle: 0 4px 16px rgba(0, 0, 0, 0.35);
+  --shadow-elevated: 0 12px 36px rgba(0, 0, 0, 0.55);
+
+  /* 6. Transitions */
+  --transition-fast: 160ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --transition-smooth: 220ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.bhu-workstation {
-  background-color: var(--bg-canvas);
-  color: var(--text-primary);
+* {
+  box-sizing: border-box;
+}
+
+body.bhu-workstation {
+  background-color: var(--color-bg-main);
+  color: var(--color-text-primary);
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
 }
 
-.bhu-workstation .mono {
+.mono {
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
 }
 
-/* Minimum 10px readability floor across scientific telemetry, tables & charts */
-.bhu-workstation .text-\[8px\],
-.bhu-workstation .text-\[9px\] {
-  font-size: 10px !important;
-  line-height: 1.35 !important;
+/* Glass Panel Component */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-subtle);
 }
 
-.bhu-workstation .panel {
-  background-color: var(--bg-panel);
-  border: 1px solid var(--border-hairline);
-  border-radius: 6px;
-  box-shadow: none;
-}
-
-.bhu-workstation .panel-inset {
-  background-color: var(--bg-inset);
-  border: 1px solid var(--border-hairline);
-  border-radius: 4px;
-}
-
-.bhu-workstation .badge-chip {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 500;
-  padding: 2px 8px;
-  border-radius: 4px;
-  border: 1px solid var(--border-hairline);
+/* Apple Buttons */
+.apple-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  white-space: nowrap;
-}
-
-/* Segmented Dock Tab Controls */
-.bhu-dock-tabbar {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  background: var(--bg-inset);
-  border: 1px solid var(--border-hairline);
-  border-radius: 4px;
-  padding: 2px;
-}
-
-.bhu-dock-tab {
-  flex: 1 1 0%;
-  font-family: var(--font-mono);
-  font-size: 10px;
+  justify-content: center;
+  gap: var(--space-2);
+  height: 40px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-btn);
+  font-family: var(--font-sans);
+  font-size: 14px;
   font-weight: 500;
-  padding: 4px 8px;
-  border-radius: 3px;
-  border: 1px solid transparent;
-  color: var(--text-secondary);
-  background: transparent;
+  color: var(--color-text-primary);
+  background: var(--color-glass);
+  border: 1px solid var(--color-border);
   cursor: pointer;
+  transition: all var(--transition-fast);
   white-space: nowrap;
-  text-align: center;
-  transition: background-color 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out;
+  text-decoration: none;
 }
 
-.bhu-dock-tab:hover {
-  color: var(--text-primary);
-  background: var(--bg-elevated);
+.apple-btn:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.18);
 }
 
-.bhu-dock-tab[aria-selected="true"] {
-  background: rgba(56, 189, 248, 0.14);
-  border-color: rgba(56, 189, 248, 0.42);
-  color: #7dd3fc;
+.apple-btn:active {
+  transform: scale(0.98);
 }
 
-/* Docked Host Slots (Non-Occluding Mode on Desktop >= 1024px) */
-#bhu-intel-dock-slot #bhu-india-intel-panel {
-  position: static !important;
-  top: auto !important;
-  left: auto !important;
-  right: auto !important;
-  bottom: auto !important;
-  width: 100% !important;
-  max-height: 100% !important;
-  height: 100%;
-  min-height: 0;
-  z-index: auto !important;
-  box-shadow: none !important;
-  backdrop-filter: none !important;
-  background: var(--bg-panel) !important;
-  border: 1px solid var(--border-hairline) !important;
-  border-radius: 6px !important;
+.apple-btn.primary {
+  background: #0056D2;
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
 }
 
-#bhu-location-dock-slot #bhu-loka-intel-drawer {
-  position: static !important;
-  top: auto !important;
-  left: auto !important;
-  right: auto !important;
-  bottom: auto !important;
-  width: 100% !important;
-  max-height: 100% !important;
-  height: 100%;
-  min-height: 0;
-  z-index: auto !important;
-  box-shadow: none !important;
-  backdrop-filter: none !important;
-  background: transparent !important;
-  border: 0 !important;
-  padding: 0 !important;
+.apple-btn.primary:hover {
+  background: #0046b0;
 }
 
-#bhu-location-dock-slot #bhu-loka-intel-drawer #bhu-drawer-modules-scroll {
-  max-height: none !important;
-  flex: 1 1 0%;
-  min-height: 0;
+/* Apple Input */
+.apple-input {
+  height: 44px;
+  padding: 0 var(--space-3);
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-input);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-#bhu-agri-dock-slot #bhu-agri-panel {
-  position: static !important;
-  top: auto !important;
-  left: auto !important;
-  right: auto !important;
-  bottom: auto !important;
-  width: 100% !important;
-  max-height: 100% !important;
-  height: 100%;
-  min-height: 0;
-  z-index: auto !important;
-  box-shadow: none !important;
-  backdrop-filter: none !important;
-  background: transparent !important;
-  border: 0 !important;
-  border-radius: 0 !important;
+.apple-input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px rgba(138, 180, 248, 0.25);
 }
 
-#bhu-agri-dock-slot #bhu-agri-panel #bhu-ag-body {
-  flex: 1 1 0%;
-  min-height: 0;
+/* Typography Hierarchy Helpers */
+.text-hero-heading {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--color-text-primary);
 }
 
-/* Unified 28px Bottom Instrument Provenance & CRS Bar */
-.bhu-bottom-bar {
-  height: 28px;
-  min-height: 28px;
-  background-color: var(--bg-panel);
-  border: 1px solid var(--border-hairline);
-  border-radius: 4px;
-  padding: 0 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  font-family: var(--font-mono);
-  font-variant-numeric: tabular-nums;
-  font-size: 10px;
-  color: var(--text-secondary);
-  overflow: hidden;
-  flex-shrink: 0;
+.text-page-heading {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
 }
 
-.bhu-bottom-bar.bhu-bar-edge {
-  border-radius: 0;
-  border-left: 0;
-  border-right: 0;
-  border-bottom: 0;
+.text-section-heading {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--color-text-primary);
 }
 
-/* Keep focus outlines clean and never trigger viewport jump */
-.bhu-workstation button:focus-visible,
-.bhu-workstation a:focus-visible,
-.bhu-workstation select:focus-visible,
-.bhu-workstation input:focus-visible,
-.bhu-workstation textarea:focus-visible {
-  outline: 1.5px solid var(--border-focus);
-  outline-offset: 1px;
+.text-panel-heading {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
 }
 
-@media (prefers-reduced-motion: reduce) {
-
-  .bhu-workstation *,
-  .bhu-workstation *::before,
-  .bhu-workstation *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+.text-body-regular {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
 }
 
-/* Sleek dark instrument scrollbars matching obsidian surfaces */
-.bhu-workstation * {
-  scrollbar-width: thin;
-  scrollbar-color: #334155 #070b12;
+.text-secondary-label {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--color-text-secondary);
 }
 
-.bhu-workstation ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-.bhu-workstation ::-webkit-scrollbar-track {
-  background: #070b12;
-}
-
-.bhu-workstation ::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 3px;
-}
-
-.bhu-workstation ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
-}
-
-/* Global Time Machine Collapsed State */
-#bhu-time-machine {
-  transition: height 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-#bhu-time-machine.tm-collapsed {
-  height: 24px !important;
+.text-caption {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-text-muted);
 }

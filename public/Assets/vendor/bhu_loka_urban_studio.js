@@ -51,30 +51,32 @@
     style.id = 'urban-studio-v4-css';
     style.textContent = `
       /* ==========================================================================
-         APPLE HIG & LIQUID GLASS SPECIFICATIONS (BHU LOKA URBAN INTELLIGENCE)
+         BHU LOKA LAND STUDIO — APPLE-INSPIRED PREMIUM DARK DESIGN SYSTEM
          ========================================================================== */
       :root {
-        --us-bg-oled: #000000;
+        --us-bg-oled: #09090B;
+        --us-bg-secondary: #101114;
+        --us-surface-primary: #15171B;
+        --us-surface-elevated: #1B1E23;
+        --us-accent-blue: #8AB4F8;
         --us-coursera-blue: #0056D2;
-        --us-bright-blue: #4B93FF;
-        --us-glass-surface: rgba(28, 28, 30, 0.55);
-        --us-glass-elevated: rgba(38, 38, 42, 0.65);
-        --us-glass-border: rgba(255, 255, 255, 0.14);
-        --us-glass-border-specular: rgba(255, 255, 255, 0.22);
-        --us-glass-blur: blur(24px) saturate(180%);
-        --us-text-primary: #F5F7FA;
-        --us-text-secondary: #9CA3AF;
-        --us-radius-shell: 24px;
-        --us-radius-panel: 20px;
-        --us-radius-card: 16px;
+        --us-text-primary: #F5F5F7;
+        --us-text-secondary: #A1A1AA;
+        --us-text-muted: #71717A;
+        --us-border: rgba(255, 255, 255, 0.10);
+        --us-glass-surface: rgba(21, 23, 27, 0.78);
+        --us-glass-blur: blur(20px) saturate(140%);
+        --us-radius-shell: 20px;
+        --us-radius-panel: 14px;
+        --us-radius-card: 12px;
         --us-radius-pill: 9999px;
       }
 
       #bhu-urban-studio-modal {
         z-index: 9999 !important;
-        background-color: rgba(0, 0, 0, 0.82) !important;
-        backdrop-filter: blur(20px) !important;
-        -webkit-backdrop-filter: blur(20px) !important;
+        background-color: rgba(9, 9, 11, 0.88) !important;
+        backdrop-filter: blur(24px) saturate(140%) !important;
+        -webkit-backdrop-filter: blur(24px) saturate(140%) !important;
         position: fixed !important;
         inset: 0 !important;
         display: flex !important;
@@ -83,45 +85,31 @@
         padding: 16px !important;
       }
 
-      /* Ambient Lighting: 2 subtle, blurred radial gradient orbs behind the glass shell */
+      /* Subtle Apple Ambient Glow Behind Shell */
       .us-ambient-orb-1 {
         position: absolute;
-        width: 520px;
-        height: 520px;
-        left: 2%;
-        top: 8%;
-        background: radial-gradient(circle, rgba(0, 86, 210, 0.22) 0%, rgba(0, 86, 210, 0.06) 50%, transparent 75%);
+        width: 480px;
+        height: 480px;
+        left: 5%;
+        top: 10%;
+        background: radial-gradient(circle, rgba(138, 180, 248, 0.12) 0%, rgba(138, 180, 248, 0.02) 50%, transparent 75%);
         filter: blur(75px);
         border-radius: 50%;
         pointer-events: none;
         z-index: 1;
-        animation: usOrbFloat1 18s ease-in-out infinite alternate;
       }
 
       .us-ambient-orb-2 {
         position: absolute;
-        width: 480px;
-        height: 480px;
-        right: 4%;
-        bottom: 8%;
-        background: radial-gradient(circle, rgba(59, 130, 246, 0.14) 0%, rgba(59, 130, 246, 0.04) 50%, transparent 75%);
+        width: 440px;
+        height: 440px;
+        right: 6%;
+        bottom: 10%;
+        background: radial-gradient(circle, rgba(0, 86, 210, 0.14) 0%, rgba(0, 86, 210, 0.03) 50%, transparent 75%);
         filter: blur(80px);
         border-radius: 50%;
         pointer-events: none;
         z-index: 1;
-        animation: usOrbFloat2 22s ease-in-out infinite alternate;
-      }
-
-      @keyframes usOrbFloat1 {
-        0% { transform: translate(0, 0) scale(1); }
-        50% { transform: translate(40px, 30px) scale(1.08); }
-        100% { transform: translate(-30px, 20px) scale(0.95); }
-      }
-
-      @keyframes usOrbFloat2 {
-        0% { transform: translate(0, 0) scale(1); }
-        50% { transform: translate(-30px, -40px) scale(1.1); }
-        100% { transform: translate(20px, -20px) scale(0.92); }
       }
 
       /* Liquid Glass Main Shell */
@@ -131,30 +119,24 @@
         width: 98vw !important;
         max-width: 1880px !important;
         height: 94vh !important;
-        background: rgba(18, 18, 20, 0.65) !important;
-        backdrop-filter: blur(32px) saturate(190%) !important;
-        -webkit-backdrop-filter: blur(32px) saturate(190%) !important;
-        border: 1px solid var(--us-glass-border) !important;
-        border-top: 1px solid var(--us-glass-border-specular) !important;
+        background: #101114 !important;
+        border: 1px solid var(--us-border) !important;
         border-radius: var(--us-radius-shell) !important;
         display: flex !important;
         flex-direction: column !important;
         overflow: hidden !important;
-        box-shadow: 0 32px 100px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
-        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", system-ui, sans-serif !important;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.85) !important;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif !important;
         color: var(--us-text-primary) !important;
       }
 
-      /* Apple Top Navigation Bar */
+      /* Top Bar */
       .us3-topbar {
         height: 52px !important;
         flex-shrink: 0 !important;
         padding: 0 18px !important;
-        background: rgba(28, 28, 30, 0.55) !important;
-        backdrop-filter: var(--us-glass-blur) !important;
-        -webkit-backdrop-filter: var(--us-glass-blur) !important;
-        border-bottom: 1px solid var(--us-glass-border) !important;
-        border-top: 1px solid var(--us-glass-border-specular) !important;
+        background: var(--us-surface-primary) !important;
+        border-bottom: 1px solid var(--us-border) !important;
         display: flex !important;
         align-items: center !important;
         justify-content: space-between !important;
@@ -167,28 +149,24 @@
         display: flex !important;
         flex-direction: row !important;
         overflow: hidden !important;
-        background: transparent !important;
+        background: var(--us-bg-oled) !important;
         padding: 10px !important;
         gap: 10px !important;
       }
 
-      /* Floating Apple Liquid Glass Left & Right Rails */
+      /* Rails */
       .us3-left {
         width: 278px !important;
         flex: 0 0 278px !important;
         min-height: 0 !important;
-        background: var(--us-glass-surface) !important;
-        backdrop-filter: var(--us-glass-blur) !important;
-        -webkit-backdrop-filter: var(--us-glass-blur) !important;
-        border: 1px solid var(--us-glass-border) !important;
-        border-top: 1px solid var(--us-glass-border-specular) !important;
+        background: var(--us-surface-primary) !important;
+        border: 1px solid var(--us-border) !important;
         border-radius: var(--us-radius-panel) !important;
         display: flex !important;
         flex-direction: column !important;
         overflow-y: auto !important;
         padding: 14px !important;
         gap: 12px !important;
-        box-shadow: 0 12px 36px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.12) !important;
       }
 
       .us3-center {
@@ -196,33 +174,27 @@
         min-width: 0 !important;
         min-height: 0 !important;
         height: 100% !important;
-        background: #000000 !important;
-        border: 1px solid var(--us-glass-border) !important;
-        border-top: 1px solid var(--us-glass-border-specular) !important;
+        background: var(--us-bg-oled) !important;
+        border: 1px solid var(--us-border) !important;
         border-radius: var(--us-radius-panel) !important;
         display: flex !important;
         flex-direction: column !important;
         position: relative !important;
         overflow: hidden !important;
-        box-shadow: 0 12px 36px rgba(0,0,0,0.5) !important;
       }
 
       .us3-right {
         width: 298px !important;
         flex: 0 0 298px !important;
         min-height: 0 !important;
-        background: var(--us-glass-surface) !important;
-        backdrop-filter: var(--us-glass-blur) !important;
-        -webkit-backdrop-filter: var(--us-glass-blur) !important;
-        border: 1px solid var(--us-glass-border) !important;
-        border-top: 1px solid var(--us-glass-border-specular) !important;
+        background: var(--us-surface-primary) !important;
+        border: 1px solid var(--us-border) !important;
         border-radius: var(--us-radius-panel) !important;
         display: flex !important;
         flex-direction: column !important;
         overflow-y: auto !important;
         padding: 14px !important;
         gap: 12px !important;
-        box-shadow: 0 12px 36px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.12) !important;
         transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
       }
 
@@ -235,30 +207,49 @@
         overflow: hidden !important;
       }
 
-      /* Floating Apple Segmented Controls Toolbar */
+      /* LEAFLET 2D MAP FULL CONTAINER EXPANSION FIX */
+      #urban-2d-panel {
+        flex: 1 1 auto !important;
+        min-height: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        position: relative !important;
+        display: flex !important;
+        flex-direction: column !important;
+      }
+
+      #urban-leaflet-map {
+        flex: 1 1 auto !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 350px !important;
+        position: absolute !important;
+        inset: 0 !important;
+        background: #09090B !important;
+        z-index: 1 !important;
+      }
+
+      /* Toolbar & Tabs */
       .us3-toolbar {
         min-height: 44px !important;
         flex-shrink: 0 !important;
         padding: 6px 14px !important;
-        background: rgba(28, 28, 30, 0.45) !important;
-        backdrop-filter: var(--us-glass-blur) !important;
-        -webkit-backdrop-filter: var(--us-glass-blur) !important;
-        border-bottom: 1px solid var(--us-glass-border) !important;
+        background: var(--us-surface-primary) !important;
+        border-bottom: 1px solid var(--us-border) !important;
         display: flex !important;
         align-items: center !important;
         justify-content: space-between !important;
         flex-wrap: wrap !important;
         gap: 8px !important;
+        z-index: 10 !important;
       }
 
-      /* Apple Pill Tabs */
       .us3-tab {
         padding: 6px 14px !important;
         border-radius: var(--us-radius-pill) !important;
-        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif !important;
-        font-size: 11px !important;
-        font-weight: 600 !important;
-        letter-spacing: -0.2px !important;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif !important;
+        font-size: 12px !important;
+        font-weight: 500 !important;
         cursor: pointer !important;
         border: 1px solid transparent !important;
         background: transparent !important;
@@ -266,125 +257,85 @@
         display: inline-flex !important;
         align-items: center !important;
         gap: 6px !important;
-        transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+        transition: all 0.16s ease !important;
         min-height: 32px !important;
       }
 
       .us3-tab:hover {
         color: var(--us-text-primary) !important;
-        background: rgba(255, 255, 255, 0.08) !important;
-      }
-
-      .us3-tab:active {
-        transform: scale(0.96) !important;
+        background: rgba(255, 255, 255, 0.055) !important;
       }
 
       .us3-tab.active {
-        background: rgba(0, 86, 210, 0.3) !important;
-        color: var(--us-bright-blue) !important;
-        border: 1px solid rgba(75, 147, 255, 0.4) !important;
-        box-shadow: 0 2px 10px rgba(0, 86, 210, 0.35) !important;
+        background: rgba(138, 180, 248, 0.16) !important;
+        color: var(--us-accent-blue) !important;
+        border: 1px solid rgba(138, 180, 248, 0.4) !important;
       }
 
-      /* Apple Pill Buttons */
+      /* Buttons */
       .us3-btn {
         padding: 6px 12px !important;
         border-radius: var(--us-radius-pill) !important;
-        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif !important;
-        font-size: 11px !important;
-        font-weight: 600 !important;
-        letter-spacing: -0.2px !important;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif !important;
+        font-size: 12px !important;
+        font-weight: 500 !important;
         cursor: pointer !important;
-        border: 1px solid var(--us-glass-border) !important;
-        border-top: 1px solid var(--us-glass-border-specular) !important;
-        background: rgba(255, 255, 255, 0.07) !important;
+        border: 1px solid var(--us-border) !important;
+        background: rgba(255, 255, 255, 0.05) !important;
         color: var(--us-text-primary) !important;
         display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
         gap: 6px !important;
-        transition: all 0.15s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+        transition: all 0.16s ease !important;
         white-space: nowrap !important;
         min-height: 32px !important;
       }
 
       .us3-btn:hover {
-        border-color: rgba(75, 147, 255, 0.5) !important;
-        background: rgba(255, 255, 255, 0.12) !important;
-        color: #FFFFFF !important;
+        border-color: rgba(255, 255, 255, 0.18) !important;
+        background: rgba(255, 255, 255, 0.09) !important;
       }
 
       .us3-btn:active {
         transform: scale(0.98) !important;
-        background: rgba(255, 255, 255, 0.16) !important;
       }
 
       .us3-btn.active {
-        background: rgba(0, 86, 210, 0.32) !important;
-        border-color: rgba(75, 147, 255, 0.6) !important;
-        color: var(--us-bright-blue) !important;
-        box-shadow: 0 0 10px rgba(0, 86, 210, 0.3) !important;
+        background: rgba(138, 180, 248, 0.20) !important;
+        border-color: rgba(138, 180, 248, 0.45) !important;
+        color: var(--us-accent-blue) !important;
       }
 
-      /* Primary Brand CTA Button (Coursera Blue #0056D2 with White Text & 44px Touch Target) */
+      /* CTA */
       .us3-btn-primary, #urban-load-osm {
-        background: var(--us-coursera-blue) !important;
-        border: 1px solid rgba(255, 255, 255, 0.22) !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.35) !important;
+        background: #0056D2 !important;
+        border: 1px solid rgba(255, 255, 255, 0.18) !important;
         color: #FFFFFF !important;
-        font-weight: 700 !important;
+        font-weight: 600 !important;
         border-radius: var(--us-radius-pill) !important;
-        min-height: 44px !important;
-        box-shadow: 0 6px 20px rgba(0, 86, 210, 0.45) !important;
+        min-height: 40px !important;
+        box-shadow: 0 4px 14px rgba(0, 86, 210, 0.35) !important;
         font-size: 13px !important;
-        letter-spacing: -0.2px !important;
       }
 
       .us3-btn-primary:hover, #urban-load-osm:hover {
         background: #0046b0 !important;
-        box-shadow: 0 8px 24px rgba(0, 86, 210, 0.55) !important;
       }
 
-      .us3-btn-primary:active, #urban-load-osm:active {
-        transform: scale(0.98) !important;
-        background: #003a94 !important;
-      }
-
-      .us3-btn:disabled {
-        opacity: 0.45 !important;
-        cursor: not-allowed !important;
-      }
-
-      /* Apple Section Headers & Cards */
-      .us3-sec-title {
-        font-size: 11px !important;
-        font-weight: 700 !important;
-        color: var(--us-text-secondary) !important;
-        letter-spacing: 0.04em !important;
-        text-transform: uppercase !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        margin-bottom: 4px !important;
-      }
-
+      /* Cards & Rows */
       .us3-card {
         padding: 12px !important;
         border-radius: var(--us-radius-card) !important;
-        background: rgba(38, 38, 42, 0.45) !important;
-        backdrop-filter: blur(16px) !important;
-        -webkit-backdrop-filter: blur(16px) !important;
-        border: 1px solid var(--us-glass-border) !important;
-        border-top: 1px solid var(--us-glass-border-specular) !important;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+        background: var(--us-surface-elevated) !important;
+        border: 1px solid var(--us-border) !important;
       }
 
       .us3-layer-row {
         padding: 8px 10px !important;
-        border-radius: 12px !important;
-        background: rgba(38, 38, 42, 0.4) !important;
-        border: 1px solid var(--us-glass-border) !important;
-        border-top: 1px solid var(--us-glass-border-specular) !important;
+        border-radius: 10px !important;
+        background: var(--us-surface-elevated) !important;
+        border: 1px solid var(--us-border) !important;
         display: flex !important;
         flex-direction: column !important;
         gap: 6px !important;
@@ -392,7 +343,7 @@
       }
 
       .us3-layer-row:hover {
-        background: rgba(48, 48, 54, 0.55) !important;
+        background: rgba(48, 48, 56, 0.5) !important;
       }
 
       .us3-layer-lbl {
@@ -402,39 +353,35 @@
         flex: 1 !important;
         min-width: 0 !important;
         cursor: pointer !important;
-        font-size: 11px !important;
-        font-weight: 600 !important;
+        font-size: 12px !important;
+        font-weight: 500 !important;
         color: var(--us-text-primary) !important;
       }
 
       .us3-badge {
-        font-size: 9px !important;
-        font-weight: 700 !important;
+        font-size: 9.5px !important;
+        font-weight: 600 !important;
         padding: 2px 7px !important;
         border-radius: var(--us-radius-pill) !important;
         flex-shrink: 0 !important;
       }
 
-      .us3-st-OBSERVED    { background: rgba(16,185,129,0.18) !important; color: #34d399 !important; border: 1px solid rgba(16,185,129,0.35) !important; }
-      .us3-st-DERIVED     { background: rgba(0,86,210,0.24) !important; color: var(--us-bright-blue) !important; border: 1px solid rgba(75,147,255,0.4) !important; }
-      .us3-st-MODELLED    { background: rgba(217,119,6,0.18) !important; color: #fbbf24 !important; border: 1px solid rgba(217,119,6,0.35) !important; }
-      .us3-st-UNAVAILABLE { background: rgba(100,116,139,0.18) !important; color: var(--us-text-secondary) !important; border: 1px solid rgba(100,116,139,0.3) !important; }
+      .us3-st-OBSERVED    { background: rgba(48,209,88,0.18) !important; color: #30D158 !important; border: 1px solid rgba(48,209,88,0.35) !important; }
+      .us3-st-DERIVED     { background: rgba(138,180,248,0.18) !important; color: #8AB4F8 !important; border: 1px solid rgba(138,180,248,0.35) !important; }
+      .us3-st-MODELLED    { background: rgba(255,179,64,0.18) !important; color: #FFB340 !important; border: 1px solid rgba(255,179,64,0.35) !important; }
+      .us3-st-UNAVAILABLE { background: rgba(113,113,122,0.18) !important; color: #71717A !important; border: 1px solid rgba(113,113,122,0.35) !important; }
 
-      /* Floating Bottom Status Bar */
       .us3-statusbar {
         height: 32px !important;
         flex-shrink: 0 !important;
         padding: 0 16px !important;
-        background: rgba(28, 28, 30, 0.65) !important;
-        backdrop-filter: var(--us-glass-blur) !important;
-        -webkit-backdrop-filter: var(--us-glass-blur) !important;
-        border-top: 1px solid var(--us-glass-border) !important;
+        background: var(--us-surface-primary) !important;
+        border-top: 1px solid var(--us-border) !important;
         display: flex !important;
         align-items: center !important;
         justify-content: space-between !important;
         gap: 12px !important;
-        font-size: 10px !important;
-        font-weight: 500 !important;
+        font-size: 11px !important;
         color: var(--us-text-secondary) !important;
       }
 
@@ -448,16 +395,12 @@
       }
 
       .us3-board-tile {
-        background: rgba(28, 28, 30, 0.55) !important;
-        backdrop-filter: var(--us-glass-blur) !important;
-        -webkit-backdrop-filter: var(--us-glass-blur) !important;
-        border: 1px solid var(--us-glass-border) !important;
-        border-top: 1px solid var(--us-glass-border-specular) !important;
+        background: var(--us-surface-primary) !important;
+        border: 1px solid var(--us-border) !important;
         border-radius: var(--us-radius-card) !important;
         overflow: hidden !important;
         display: flex !important;
         flex-direction: column !important;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.35) !important;
       }
 
       .us3-3d-overlay {
@@ -467,20 +410,16 @@
         z-index: 20 !important;
         padding: 8px 14px !important;
         border-radius: var(--us-radius-card) !important;
-        background: rgba(28, 28, 30, 0.65) !important;
-        backdrop-filter: blur(20px) !important;
-        -webkit-backdrop-filter: blur(20px) !important;
-        border: 1px solid var(--us-glass-border) !important;
-        border-top: 1px solid var(--us-glass-border-specular) !important;
-        font-size: 11px !important;
-        font-weight: 600 !important;
+        background: var(--us-surface-primary) !important;
+        border: 1px solid var(--us-border) !important;
+        font-size: 12px !important;
+        font-weight: 500 !important;
         color: var(--us-text-primary) !important;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.4) !important;
       }
 
       @keyframes us3spin { to { transform: rotate(360deg); } }
-      .us3-spin { display: inline-block; width: 12px; height: 12px; border: 2px solid rgba(255,255,255,0.25); border-top-color: #fff; border-radius: 50%; animation: us3spin 0.7s linear infinite; }
-    `;
+      .us3-spin { display: inline-block; width: 12px; height: 12px; border: 2px solid rgba(255,255,255,0.25); border-top-color: #8AB4F8; border-radius: 50%; animation: us3spin 0.7s linear infinite; }
+`;
     document.head.appendChild(style);
   }
 
@@ -2194,7 +2133,18 @@
         this._bindSearch();
       }
       this.switchTab('2d');
+      const forceMapRedraw = () => {
+        if (this.leaflet && this.leaflet.map) {
+          this.leaflet.map.invalidateSize(true);
+          const mapEl = document.getElementById('urban-leaflet-map');
+          if (mapEl && (mapEl.clientHeight === 0 || mapEl.clientWidth === 0)) {
+            mapEl.style.height = '100%';
+            mapEl.style.width = '100%';
+          }
+        }
+      };
       setTimeout(() => {
+        forceMapRedraw();
         if (this.leaflet) {
           this.leaflet.handleResize();
           if (!this.dataset) {
@@ -2202,8 +2152,9 @@
             this.extractForBounds(b, this.activeSite.name);
           }
         }
-      }, 120);
-      setTimeout(() => { if (this.leaflet) this.leaflet.handleResize(); }, 450);
+      }, 50);
+      setTimeout(() => forceMapRedraw(), 200);
+      setTimeout(() => forceMapRedraw(), 500);
     }
 
     closeStudio() {
