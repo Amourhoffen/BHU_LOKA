@@ -1565,7 +1565,12 @@
       this.baseLayers.osm       = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap', maxZoom: 19 });
       this.baseLayers.terrain   = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenTopoMap', maxZoom: 17 });
       this.baseLayers.dark      = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; CARTO', maxZoom: 19 });
-      this.baseLayers.satellite.addTo(this.map);
+      this.baseLayers.osm.addTo(this.map); // Default fast & reliable OSM base
+      this.baseLayers.satellite.addTo(this.map); // Esri on top with seamless blend
+      this.baseLayers.satellite.on('tileerror', () => {
+        // Fallback gracefully to OSM if Esri tile errors occur
+        if (!this.map.hasLayer(this.baseLayers.osm)) this.baseLayers.osm.addTo(this.map);
+      });
 
       // Initialize Leaflet Geoman (100% Free MIT) for interactive Draw, Drag/Move, Resize & Edit AOI
       if (this.map.pm) {
@@ -1600,6 +1605,7 @@
       this.map.on('mouseup',   (e) => this._onMouseUp(e));
       this.map.on('click',     (e) => this._onMapClick(e));
       this.map.on('dblclick',  (e) => this._onMapDblClick(e));
+      window.addEventListener('resize', () => { if (this.map) this.map.invalidateSize(true); });
     }
 
     switchBasemap(type) {
@@ -2108,6 +2114,86 @@
       if (tbBtn) tbBtn.onclick = () => this.openStudio();
     }
 
+    
+    switchMobileView(view) {
+      this.activeMobileView = view;
+      const left = document.getElementById('us3-left-panel');
+      const center = document.getElementById('us3-center-panel');
+      const right = document.getElementById('us3-right-panel');
+
+      // Update mobile tabs
+      ['controls', 'map', 'results', 'export'].forEach(v => {
+        const btn = document.getElementById(`us3-mtab-${v}`);
+        if (btn) btn.classList.toggle('active', v === view);
+      });
+
+      const cExt = document.getElementById('us3-card-extrusion');
+      const cMet = document.getElementById('us3-card-metrics');
+      const cCom = document.getElementById('us3-card-composite');
+      const cExp = document.getElementById('us3-card-export');
+
+      if (window.innerWidth < 768) {
+        if (view === 'controls') {
+          if (left) { left.style.display = 'flex'; left.style.width = '100%'; left.style.flex = '1'; }
+          if (center) center.style.display = 'none';
+          if (right) right.style.display = 'none';
+        } else if (view === 'map') {
+          if (left) left.style.display = 'none';
+          if (center) {
+            center.style.display = 'flex';
+            center.style.width = '100%';
+            center.style.height = '100%';
+            center.style.flex = '1';
+          }
+          if (right) right.style.display = 'none';
+          setTimeout(() => {
+            const p2d = document.getElementById('urban-2d-panel');
+            const mapEl = document.getElementById('urban-leaflet-map');
+            if (p2d) { p2d.style.height = '100%'; p2d.style.flex = '1 1 0%'; p2d.style.display = 'flex'; p2d.style.position = 'relative'; }
+            if (mapEl) { mapEl.style.height = '100%'; mapEl.style.width = '100%'; mapEl.style.position = 'absolute'; mapEl.style.inset = '0'; }
+            if (this.leaflet && this.leaflet.map) {
+              this.leaflet.map.invalidateSize(true);
+            }
+          }, 80);
+        } else if (view === 'results') {
+          if (left) left.style.display = 'none';
+          if (center) center.style.display = 'none';
+          if (right) {
+            right.style.display = 'flex';
+            right.style.width = '100%';
+            right.style.flex = '1';
+          }
+          if (cExt) cExt.style.display = 'flex';
+          if (cMet) cMet.style.display = 'block';
+          if (cCom) cCom.style.display = 'flex';
+          if (cExp) cExp.style.display = 'none';
+        } else if (view === 'export') {
+          if (left) left.style.display = 'none';
+          if (center) center.style.display = 'none';
+          if (right) {
+            right.style.display = 'flex';
+            right.style.width = '100%';
+            right.style.flex = '1';
+          }
+          if (cExt) cExt.style.display = 'none';
+          if (cMet) cMet.style.display = 'none';
+          if (cCom) cCom.style.display = 'none';
+          if (cExp) cExp.style.display = 'flex';
+        }
+      } else {
+        // Desktop: Restore all 3 columns side-by-side
+        if (left) { left.style.display = 'flex'; left.style.width = '278px'; left.style.flex = '0 0 278px'; }
+        if (center) { center.style.display = 'flex'; center.style.width = 'auto'; center.style.flex = '1 1 auto'; }
+        if (right) {
+          right.style.display = 'flex'; right.style.width = '298px'; right.style.flex = '0 0 298px';
+        }
+        if (cExt) cExt.style.display = 'flex';
+        if (cMet) cMet.style.display = 'block';
+        if (cCom) cCom.style.display = 'flex';
+        if (cExp) cExp.style.display = 'flex';
+      }
+    }
+
     openStudio(siteId) {
       const modal = document.getElementById('bhu-urban-studio-modal');
       if (!modal) return;
@@ -2133,14 +2219,27 @@
         this._bindSearch();
       }
       this.switchTab('2d');
+      if (window.innerWidth < 768) {
+        this.switchMobileView('controls');
+      } else {
+        this.switchMobileView('desktop');
+      }
       const forceMapRedraw = () => {
+        const mapEl = document.getElementById('urban-leaflet-map');
+        const p2d = document.getElementById('urban-2d-panel');
+        if (p2d) {
+          p2d.style.height = '100%';
+          p2d.style.flex = '1 1 0%';
+          p2d.style.display = 'block';
+        }
+        if (mapEl) {
+          mapEl.style.height = '100%';
+          mapEl.style.width = '100%';
+          mapEl.style.minHeight = '350px';
+          mapEl.style.display = 'block';
+        }
         if (this.leaflet && this.leaflet.map) {
           this.leaflet.map.invalidateSize(true);
-          const mapEl = document.getElementById('urban-leaflet-map');
-          if (mapEl && (mapEl.clientHeight === 0 || mapEl.clientWidth === 0)) {
-            mapEl.style.height = '100%';
-            mapEl.style.width = '100%';
-          }
         }
       };
       setTimeout(() => {
@@ -2640,6 +2739,7 @@
   const ctrl = new UrbanIntelligenceController();
   window.UrbanIntelligenceController = ctrl;
 
+  window.switchUrbanMobileView     = (view) => ctrl.switchMobileView(view);
   window.openUrbanStudio           = (siteId) => ctrl.openStudio(siteId);
   window.closeUrbanStudio          = () => ctrl.closeStudio();
   window.setUrbanStudioSite        = (id) => ctrl.setSite(id);

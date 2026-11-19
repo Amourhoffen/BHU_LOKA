@@ -2340,6 +2340,259 @@
     }
   </style>
 
+<style id="bhu-v61-app-shell-css">
+    /* ════════════════════════════════════════════════════════════════
+       BHU LOKA v6.1 — ONE APP SHELL & MOBILE-FIRST SPECIFICATION
+       ════════════════════════════════════════════════════════════════ */
+    html, body {
+      height: 100% !important;
+      height: 100dvh !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      box-sizing: border-box !important;
+      overflow-x: hidden !important;
+      background-color: #09090B !important;
+      color: #F5F5F7 !important;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif !important;
+    }
+
+    body.bhu-workstation {
+      display: flex !important;
+      flex-direction: column !important;
+      height: 100dvh !important;
+      max-height: 100dvh !important;
+      padding: 0 !important;
+      gap: 0 !important;
+      overflow: hidden !important;
+    }
+
+    /* ── Single Header: Exactly 56px ── */
+    #bhu-top-nav, #bhu-mobile-top-bar {
+      height: 56px !important;
+      min-height: 56px !important;
+      max-height: 56px !important;
+      box-sizing: border-box !important;
+      flex-shrink: 0 !important;
+      z-index: 50 !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+    }
+
+    /* Desktop header (≥768px) */
+    @media (min-width: 768px) {
+      #bhu-top-nav { display: flex !important; }
+      #bhu-mobile-top-bar { display: none !important; }
+      #bhu-mobile-bottom-nav { display: none !important; }
+      #workstation-main {
+        flex: 1 1 0% !important;
+        min-height: 0 !important;
+        height: calc(100dvh - 56px) !important;
+        overflow: hidden !important;
+      }
+    }
+
+    /* Mobile header & bottom bar (<768px) */
+    @media (max-width: 767px) {
+      #bhu-top-nav { display: none !important; }
+      #bhu-mobile-top-bar { display: flex !important; }
+      #bhu-mobile-bottom-nav { display: flex !important; }
+      #workstation-main {
+        flex: 1 1 0% !important;
+        min-height: 0 !important;
+        height: calc(100dvh - 56px - 64px - env(safe-area-inset-bottom, 0px)) !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        padding-bottom: 8px !important;
+      }
+    }
+
+    /* ── Mobile Bottom Nav: Exactly 64px ── */
+    #bhu-mobile-bottom-nav {
+      height: 64px !important;
+      min-height: 64px !important;
+      max-height: 64px !important;
+      box-sizing: border-box !important;
+      z-index: 60 !important;
+      position: fixed !important;
+      bottom: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      background: rgba(16, 17, 20, 0.96) !important;
+      backdrop-filter: blur(20px) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+      border-top: 1px solid rgba(255, 255, 255, 0.10) !important;
+      padding-bottom: env(safe-area-inset-bottom, 0px) !important;
+    }
+
+    /* Floating buttons: sit above bottom nav (bottom: nav-height + 12px) */
+    #bhu-3d-fab {
+      z-index: 55 !important;
+      bottom: calc(64px + 12px + env(safe-area-inset-bottom, 0px)) !important;
+      right: 16px !important;
+    }
+    @media (min-width: 768px) {
+      #bhu-3d-fab {
+        bottom: 24px !important;
+      }
+    }
+
+    /* ── SIDEBAR DRAWER (Clean 85vw flex column, no text squishing) ── */
+    #bhu-side-drawer {
+      position: fixed !important;
+      top: 0 !important;
+      bottom: 0 !important;
+      left: 0 !important;
+      width: 85vw !important;
+      max-width: 320px !important;
+      height: 100dvh !important;
+      background: #101114 !important;
+      border-right: 1px solid rgba(255, 255, 255, 0.10) !important;
+      z-index: 100 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      box-sizing: border-box !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow-y: auto !important;
+      transform: translateX(-100%) !important;
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      box-shadow: 16px 0 48px rgba(0, 0, 0, 0.8) !important;
+    }
+
+    #bhu-side-drawer.drawer-open {
+      transform: translateX(0) !important;
+    }
+
+    /* Each drawer item: flex row, fixed 24px icon, label, gap 12px, padding 12px 16px */
+    .bhu-drawer-item {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      gap: 12px !important;
+      padding: 12px 16px !important;
+      width: 100% !important;
+      min-height: 48px !important;
+      color: #A1A1AA !important;
+      background: transparent !important;
+      border: none !important;
+      box-sizing: border-box !important;
+      cursor: pointer !important;
+      text-decoration: none !important;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif !important;
+      font-size: 14px !important;
+      font-weight: 500 !important;
+      position: static !important;
+      transform: none !important;
+      margin: 0 !important;
+    }
+
+    .bhu-drawer-item:hover, .bhu-drawer-item.active {
+      background: rgba(255, 255, 255, 0.055) !important;
+      color: #F5F5F7 !important;
+    }
+
+    .bhu-drawer-item.active {
+      color: #8AB4F8 !important;
+    }
+
+    .bhu-drawer-icon {
+      width: 24px !important;
+      height: 24px !important;
+      flex: 0 0 24px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-size: 16px !important;
+      text-align: center !important;
+    }
+
+    .bhu-drawer-label {
+      flex: 1 1 auto !important;
+      text-align: left !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+    /* ── LAND STUDIO RESPONSIVE SPECIFICATION ── */
+    @media (max-width: 767px) {
+      .us3-shell {
+        width: 100vw !important;
+        height: 100dvh !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+      }
+      .us3-topbar {
+        padding: 0 12px !important;
+        height: 48px !important;
+      }
+      .us3-body {
+        flex-direction: column !important;
+        padding: 0 !important;
+        gap: 0 !important;
+        overflow: hidden !important;
+      }
+      #us3-left-panel {
+        width: 100% !important;
+        border-radius: 0 !important;
+        border: none !important;
+      }
+      #us3-center-panel {
+        width: 100% !important;
+        border-radius: 0 !important;
+        border: none !important;
+      }
+      #us3-right-panel {
+        width: 100% !important;
+        border-radius: 0 !important;
+        border: none !important;
+      }
+    }
+
+    /* Desktop Land Studio: Expansive width */
+    @media (min-width: 768px) {
+      .us3-shell {
+        width: 98vw !important;
+        max-width: 1800px !important;
+        height: 95vh !important;
+        border-radius: 20px !important;
+      }
+    }
+
+    /* Leaflet Canvas Zero-Height Prevention */
+    #urban-2d-panel {
+      flex: 1 1 0% !important;
+      min-height: 380px !important;
+      height: 100% !important;
+      width: 100% !important;
+      display: block !important;
+      position: relative !important;
+    }
+    #urban-leaflet-map {
+      width: 100% !important;
+      height: 100% !important;
+      min-height: 380px !important;
+      display: block !important;
+      background: #09090B !important;
+    }
+
+    /* Mobile AI Full-Screen Chat Overlay */
+    @media (max-width: 767px) {
+      #left-rail.ai-mobile-fullscreen {
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100dvh !important;
+        z-index: 105 !important;
+        background: #09090B !important;
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+    }
+  </style>
 </head>
 
 <a id="skip-to-main" href="#workstation-main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[99999] focus:px-3 focus:py-1.5 focus:bg-sky-600 focus:text-white focus:rounded focus:text-sm">Skip to main content</a>
@@ -5956,7 +6209,7 @@
           <div style="min-width:0;">
             <div style="display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:#f8fafc;letter-spacing:0.03em;">
               <span>LAND INTELLIGENCE STUDIO</span>
-              <span class="us3-badge us3-st-DERIVED">MAP-FIRST &middot; REAL OSM + DEM</span>
+              <span class="hidden md:inline-flex us3-badge us3-st-DERIVED">MAP-FIRST &middot; REAL OSM + DEM</span>
             </div>
             <div style="display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:#94a3b8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
               <span id="urban-site-title" style="color:#e2e8f0;font-weight:600;">RAJENDRA NAGAR, PATNA</span>
@@ -5988,10 +6241,27 @@
       </div>
 
       <!-- 3-COLUMN WORKSPACE BODY -->
-      <div class="us3-body">
+      
+        <!-- Mobile Segmented Tabs: Controls | Map/3D | Results | Export (<768px) -->
+        <div id="us3-mobile-subnav" class="md:hidden flex items-center justify-around bg-[#15171B] border-b border-white/10 px-2 py-1.5 shrink-0 z-20">
+          <button type="button" onclick="switchUrbanMobileView('controls')" id="us3-mtab-controls" class="us3-tab active" style="flex:1;text-align:center;padding:6px 4px;font-size:11px;">
+            <i class="fa-solid fa-sliders"></i> <span>Controls</span>
+          </button>
+          <button type="button" onclick="switchUrbanMobileView('map')" id="us3-mtab-map" class="us3-tab" style="flex:1;text-align:center;padding:6px 4px;font-size:11px;">
+            <i class="fa-solid fa-map-location-dot"></i> <span>Map/3D</span>
+          </button>
+          <button type="button" onclick="switchUrbanMobileView('results')" id="us3-mtab-results" class="us3-tab" style="flex:1;text-align:center;padding:6px 4px;font-size:11px;">
+            <i class="fa-solid fa-chart-pie"></i> <span>Results</span>
+          </button>
+          <button type="button" onclick="switchUrbanMobileView('export')" id="us3-mtab-export" class="us3-tab" style="flex:1;text-align:center;padding:6px 4px;font-size:11px;">
+            <i class="fa-solid fa-download"></i> <span>Export</span>
+          </button>
+        </div>
+
+        <div class="us3-body">
 
         <!-- COLUMN 1: GLOBAL SEARCH, AOI CROP & 9-LAYER CATALOGUE -->
-        <div class="us3-left">
+        <div id="us3-left-panel" class="us3-left">
           <div>
             <div class="us3-sec-title" style="margin-bottom:5px;">
               <span>Location Search</span>
@@ -6072,7 +6342,7 @@
         </div>
 
         <!-- COLUMN 2: PRIMARY INTERACTIVE VIEWPORT (~70% WIDTH) -->
-        <div class="us3-center">
+        <div id="us3-center-panel" class="us3-center">
           <div class="us3-toolbar">
             <div style="display:flex;align-items:center;gap:4px;">
               <button type="button" id="urban-tab-2d" class="us3-tab active" onclick="switchUrbanTab('2d')">
@@ -6158,7 +6428,7 @@
 
         <!-- COLUMN 3: COLLAPSIBLE RIGHT INSPECTOR -->
         <div id="us3-right-panel" class="us3-right">
-          <div class="us3-card" style="display:flex;flex-direction:column;gap:6px;">
+          <div id="us3-card-extrusion" class="us3-card" style="display:flex;flex-direction:column;gap:6px;">
             <div class="us3-sec-title">
               <span>3D Extrusion &amp; Scale</span>
               <span style="font-weight:400;color:#64748b;">Meters</span>
@@ -6184,7 +6454,7 @@
             </div>
           </div>
 
-          <div class="us3-card">
+          <div id="us3-card-metrics" class="us3-card">
             <div class="us3-sec-title" style="margin-bottom:6px;">
               <span>Computed AOI Metrics</span>
               <span class="us3-badge us3-st-DERIVED">LIVE CALC</span>
@@ -6217,7 +6487,7 @@
             </div>
           </div>
 
-          <div class="us3-card" style="display:flex;flex-direction:column;gap:7px;">
+          <div id="us3-card-composite" class="us3-card" style="display:flex;flex-direction:column;gap:7px;">
             <div class="us3-sec-title">
               <span>Composite Index</span>
               <span id="urban-composite-grade" class="text-[9px] font-bold text-slate-400">PENDING</span>
@@ -6271,7 +6541,7 @@
             </div>
           </div>
 
-          <div class="us3-card" style="display:flex;flex-direction:column;gap:6px;">
+          <div id="us3-card-export" class="us3-card" style="display:flex;flex-direction:column;gap:6px;">
             <div class="us3-sec-title"><span>Export Centre</span></div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
               <button type="button" onclick="exportUrbanGeoJSON('all')" class="us3-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> GeoJSON</button>
@@ -17183,21 +17453,24 @@ Generated on: ${new Date().toISOString()}
   <!-- ════════════════════════════════════════════════════════════════
        BHU LOKA v6.0 — SIDE SLIDER DRAWER MENU (MOBILE & DESKTOP)
        ════════════════════════════════════════════════════════════════ -->
-  <div id="bhu-drawer-backdrop" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity duration-300" style="z-index: 100;" onclick="bhuCloseDrawer()"></div>
+    <!-- ════════════════════════════════════════════════════════════════
+       BHU LOKA v6.1 — SIDEBAR DRAWER (85vw flex column, fixed 24px icons)
+       ════════════════════════════════════════════════════════════════ -->
+  <div id="bhu-drawer-backdrop" class="hidden fixed inset-0 bg-black/75 backdrop-blur-sm transition-opacity duration-300" style="z-index: 95;" onclick="bhuCloseDrawer()"></div>
 
-  <aside id="bhu-side-drawer" class="fixed top-0 bottom-0 left-0 w-80 max-w-[85vw] bg-[#070b14]/98 backdrop-blur-3xl border-r border-white/12 flex flex-col transform -translate-x-full transition-transform duration-300 ease-out shadow-2xl select-none overflow-hidden" style="z-index: 101;" role="dialog" aria-label="Navigation Menu">
-    <!-- USER AVATAR & HEADER -->
-    <div class="p-4 border-b border-white/10 flex items-center justify-between bg-white/[0.02]">
+  <aside id="bhu-side-drawer" class="select-none" role="dialog" aria-label="Navigation Menu">
+    <!-- USER AVATAR & HEADER (56px) -->
+    <div class="p-4 border-b border-white/10 flex items-center justify-between shrink-0 bg-white/[0.02]" style="height: 56px; box-sizing: border-box;">
       <div class="flex items-center gap-3">
-        <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-[#0056D2] to-[#4B93FF] flex items-center justify-center text-white shadow-lg text-lg font-bold border border-white/20">
+        <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-[#0056D2] to-[#4B93FF] flex items-center justify-center text-white text-sm font-bold border border-white/20">
           <i class="fa-solid fa-user"></i>
         </div>
         <div>
-          <div class="text-sm font-bold text-slate-100 flex items-center gap-1.5">
+          <div class="text-xs font-bold text-slate-100 flex items-center gap-1.5">
             <span>Sovereign User</span>
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
           </div>
-          <div class="text-[10px] mono text-slate-400">BHU LOKA · PAN-INDIA</div>
+          <div class="text-[9.5px] mono text-slate-400">BHU LOKA · PAN-INDIA</div>
         </div>
       </div>
       <button type="button" onclick="bhuCloseDrawer()" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white flex items-center justify-center transition" aria-label="Close menu">
@@ -17206,90 +17479,97 @@ Generated on: ${new Date().toISOString()}
     </div>
 
     <!-- SCROLLABLE DRAWER NAV ITEMS -->
-    <div class="flex-1 overflow-y-auto p-3 space-y-1 text-xs">
+    <div class="flex-1 overflow-y-auto py-2 flex flex-col">
       <!-- Chat History -->
-      <button type="button" onclick="bhuOpenChatHistory(); bhuCloseDrawer();" class="bhu-drawer-link">
-        <i class="fa-solid fa-clock-rotate-left w-5 text-center text-sky-400"></i>
-        <span class="flex-1 text-left font-medium">Chat History</span>
-        <span class="text-[9px] mono px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30">Local</span>
+      <button type="button" onclick="bhuOpenChatHistory(); bhuCloseDrawer();" class="bhu-drawer-item">
+        <span class="bhu-drawer-icon text-sky-400"><i class="fa-solid fa-clock-rotate-left"></i></span>
+        <span class="bhu-drawer-label">Chat History</span>
+        <span class="text-[9px] mono px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300">Local</span>
       </button>
 
       <!-- Home -->
-      <button type="button" onclick="bhuNavTo('home'); bhuCloseDrawer();" class="bhu-drawer-link">
-        <i class="fa-solid fa-house w-5 text-center text-blue-400"></i>
-        <span class="flex-1 text-left font-medium">Home</span>
+      <button type="button" onclick="bhuNavTo('home'); bhuCloseDrawer();" class="bhu-drawer-item">
+        <span class="bhu-drawer-icon text-blue-400"><i class="fa-solid fa-house"></i></span>
+        <span class="bhu-drawer-label">Home</span>
       </button>
 
       <!-- 2D Earth -->
-      <a href="bhu_loka_leafmap_interactive.html" target="_blank" onclick="bhuCloseDrawer();" class="bhu-drawer-link">
-        <i class="fa-solid fa-globe w-5 text-center text-emerald-400"></i>
-        <span class="flex-1 text-left font-medium">2D Earth</span>
+      <a href="bhu_loka_leafmap_interactive.html" target="_blank" onclick="bhuCloseDrawer();" class="bhu-drawer-item">
+        <span class="bhu-drawer-icon text-emerald-400"><i class="fa-solid fa-globe"></i></span>
+        <span class="bhu-drawer-label">2D Earth</span>
         <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500"></i>
       </a>
 
       <!-- Hazard Analysis -->
-      <button type="button" onclick="bhuNavTo('hazard'); bhuCloseDrawer();" class="bhu-drawer-link">
-        <i class="fa-solid fa-triangle-exclamation w-5 text-center text-amber-400"></i>
-        <span class="flex-1 text-left font-medium">Hazard Analysis</span>
+      <button type="button" onclick="bhuNavTo('hazard'); bhuCloseDrawer();" class="bhu-drawer-item">
+        <span class="bhu-drawer-icon text-amber-400"><i class="fa-solid fa-triangle-exclamation"></i></span>
+        <span class="bhu-drawer-label">Hazard Analysis</span>
       </button>
 
       <!-- Land Studio -->
-      <button type="button" onclick="bhuNavTo('land-studio'); bhuCloseDrawer();" class="bhu-drawer-link">
-        <i class="fa-solid fa-layer-group w-5 text-center text-cyan-400"></i>
-        <span class="flex-1 text-left font-medium">Land Studio</span>
-        <span class="text-[9px] mono px-1.5 py-0.5 rounded bg-blue-600/20 text-sky-300 border border-blue-500/30">JAL RAKSHA</span>
+      <button type="button" onclick="bhuNavTo('land-studio'); bhuCloseDrawer();" class="bhu-drawer-item">
+        <span class="bhu-drawer-icon text-cyan-400"><i class="fa-solid fa-layer-group"></i></span>
+        <span class="bhu-drawer-label">Land Studio</span>
+        <span class="text-[9px] mono px-1.5 py-0.5 rounded bg-blue-600/20 text-sky-300">JAL RAKSHA</span>
       </button>
 
-      <!-- AI -->
-      <button type="button" onclick="bhuNavTo('ai'); bhuCloseDrawer();" class="bhu-drawer-link">
-        <i class="fa-solid fa-microchip w-5 text-center text-indigo-400"></i>
-        <span class="flex-1 text-left font-medium">AI Assistant</span>
+      <!-- AI Assistant -->
+      <button type="button" onclick="bhuNavTo('ai'); bhuCloseDrawer();" class="bhu-drawer-item">
+        <span class="bhu-drawer-icon text-indigo-400"><i class="fa-solid fa-microchip"></i></span>
+        <span class="bhu-drawer-label">AI Assistant</span>
       </button>
 
       <!-- Farmer -->
-      <button type="button" onclick="bhuNavTo('farmer'); bhuCloseDrawer();" class="bhu-drawer-link">
-        <i class="fa-solid fa-seedling w-5 text-center text-emerald-400"></i>
-        <span class="flex-1 text-left font-medium">Farmer</span>
+      <button type="button" onclick="bhuNavTo('farmer'); bhuCloseDrawer();" class="bhu-drawer-item">
+        <span class="bhu-drawer-icon text-emerald-400"><i class="fa-solid fa-seedling"></i></span>
+        <span class="bhu-drawer-label">Farmer</span>
       </button>
 
       <!-- Health -->
-      <button type="button" onclick="bhuNavTo('health'); bhuCloseDrawer();" class="bhu-drawer-link">
-        <i class="fa-solid fa-heart-pulse w-5 text-center text-rose-400"></i>
-        <span class="flex-1 text-left font-medium">Health</span>
+      <button type="button" onclick="bhuNavTo('health'); bhuCloseDrawer();" class="bhu-drawer-item">
+        <span class="bhu-drawer-icon text-rose-400"><i class="fa-solid fa-heart-pulse"></i></span>
+        <span class="bhu-drawer-label">Health</span>
       </button>
 
-      <div class="h-px bg-white/10 my-2"></div>
-      <div class="text-[9.5px] font-bold tracking-wider text-slate-500 uppercase px-3 py-1 mono">Governance & Platform</div>
+      <!-- Research Report (Separate item as requested) -->
+      <button type="button" onclick="if(typeof openModelIntelModal==='function')openModelIntelModal('overview'); bhuCloseDrawer();" class="bhu-drawer-item">
+        <span class="bhu-drawer-icon text-teal-400"><i class="fa-solid fa-file-lines"></i></span>
+        <span class="bhu-drawer-label">Research Report</span>
+        <span class="text-[9px] mono px-1.5 py-0.5 rounded bg-teal-500/20 text-teal-300">NASA 2026</span>
+      </button>
 
-      <!-- Private Policy -->
-      <button type="button" onclick="bhuOpenInfoModal('privacy'); bhuCloseDrawer();" class="bhu-drawer-link">
-        <i class="fa-solid fa-file-shield w-5 text-center text-slate-400"></i>
-        <span class="flex-1 text-left font-medium">Privacy Policy</span>
+      <div class="h-px bg-white/10 my-2 mx-4"></div>
+      <div class="text-[10px] font-semibold tracking-wider text-slate-500 uppercase px-4 py-1 mono">Governance & Platform</div>
+
+      <!-- Privacy Policy -->
+      <button type="button" onclick="bhuOpenInfoModal('privacy'); bhuCloseDrawer();" class="bhu-drawer-item">
+        <span class="bhu-drawer-icon text-slate-400"><i class="fa-solid fa-file-shield"></i></span>
+        <span class="bhu-drawer-label">Privacy Policy</span>
       </button>
 
       <!-- Security -->
-      <button type="button" onclick="bhuOpenInfoModal('security'); bhuCloseDrawer();" class="bhu-drawer-link">
-        <i class="fa-solid fa-shield-halved w-5 text-center text-slate-400"></i>
-        <span class="flex-1 text-left font-medium">Security</span>
+      <button type="button" onclick="bhuOpenInfoModal('security'); bhuCloseDrawer();" class="bhu-drawer-item">
+        <span class="bhu-drawer-icon text-slate-400"><i class="fa-solid fa-shield-halved"></i></span>
+        <span class="bhu-drawer-label">Security</span>
       </button>
 
-      <!-- About -->
-      <button type="button" onclick="bhuOpenInfoModal('about'); bhuCloseDrawer();" class="bhu-drawer-link">
-        <i class="fa-solid fa-circle-info w-5 text-center text-sky-400"></i>
-        <span class="flex-1 text-left font-medium">About BHU LOKA</span>
+      <!-- About BHU LOKA -->
+      <button type="button" onclick="bhuOpenInfoModal('about'); bhuCloseDrawer();" class="bhu-drawer-item">
+        <span class="bhu-drawer-icon text-sky-400"><i class="fa-solid fa-circle-info"></i></span>
+        <span class="bhu-drawer-label">About BHU LOKA</span>
       </button>
 
-      <!-- Setting -->
-      <button type="button" onclick="bhuOpenInfoModal('settings'); bhuCloseDrawer();" class="bhu-drawer-link">
-        <i class="fa-solid fa-gear w-5 text-center text-slate-400"></i>
-        <span class="flex-1 text-left font-medium">Settings</span>
+      <!-- Settings -->
+      <button type="button" onclick="bhuOpenInfoModal('settings'); bhuCloseDrawer();" class="bhu-drawer-item">
+        <span class="bhu-drawer-icon text-slate-400"><i class="fa-solid fa-gear"></i></span>
+        <span class="bhu-drawer-label">Settings</span>
       </button>
     </div>
 
-    <!-- FOOTER IN DRAWER -->
-    <div class="p-3 border-t border-white/10 bg-black/40 text-[9.5px] mono text-slate-400 flex items-center justify-between">
-      <span>BHU LOKA v6.0</span>
-      <span>SOVEREIGN · INDIA</span>
+    <!-- DRAWER FOOTER -->
+    <div class="p-3 border-t border-white/10 bg-black/40 text-[10px] mono text-slate-400 flex items-center justify-between shrink-0">
+      <span>BHU LOKA v6.1</span>
+      <span>PAN-INDIA</span>
     </div>
   </aside>
 
@@ -17386,23 +17666,23 @@ Generated on: ${new Date().toISOString()}
       window.bhuOpenDrawer = function () {
         const drawer = document.getElementById('bhu-side-drawer');
         const backdrop = document.getElementById('bhu-drawer-backdrop');
-        if (drawer) drawer.classList.remove('-translate-x-full');
+        if (drawer) drawer.classList.add('drawer-open');
         if (backdrop) backdrop.classList.remove('hidden');
       };
 
       window.bhuCloseDrawer = function () {
         const drawer = document.getElementById('bhu-side-drawer');
         const backdrop = document.getElementById('bhu-drawer-backdrop');
-        if (drawer) drawer.classList.add('-translate-x-full');
+        if (drawer) drawer.classList.remove('drawer-open');
         if (backdrop) backdrop.classList.add('hidden');
       };
 
       window.bhuToggleDrawer = function () {
         const drawer = document.getElementById('bhu-side-drawer');
-        if (drawer && drawer.classList.contains('-translate-x-full')) {
-          bhuOpenDrawer();
-        } else {
+        if (drawer && drawer.classList.contains('drawer-open')) {
           bhuCloseDrawer();
+        } else {
+          bhuOpenDrawer();
         }
       };
 
@@ -17631,23 +17911,27 @@ Generated on: ${new Date().toISOString()}
           if (typeof setNasaNavTab === 'function') setNasaNavTab('home');
           else if (typeof switchView === 'function') switchView('world');
         } else if (module === 'hazard') {
-          // Open 3D Hazard Panel or Model Intel Modal
-          if (typeof openModelIntelModal === 'function') {
-            openModelIntelModal('overview');
+          // Route to the multi-hazard 3D studio (crop AOI -> layer-by-layer flood, crime, terrain)
+          if (typeof open2DCropStudio === 'function') {
+            open2DCropStudio();
           } else if (typeof bhuToggle3D === 'function') {
             bhuToggle3D(true);
           } else if (typeof switchView === 'function') {
             switchView('terrain');
           }
         } else if (module === 'ai') {
-          if (typeof setNasaNavTab === 'function') {
-            setNasaNavTab('ai');
+          // AI Assistant: Full-screen mobile chat on mobile, docked on desktop
+          const left = document.getElementById('left-rail');
+          if (window.innerWidth < 768 && left) {
+            left.classList.remove('rail-collapsed');
+            left.classList.add('ai-mobile-fullscreen');
+            left.style.display = 'flex';
           } else {
-            const left = document.getElementById('left-rail');
             if (left) {
               left.classList.remove('rail-collapsed');
               left.classList.add('ios-sheet-open');
             }
+            if (typeof setNasaNavTab === 'function') setNasaNavTab('ai');
             if (typeof switchLeftDockTab === 'function') switchLeftDockTab('ai');
           }
         } else if (module === 'land-studio') {
