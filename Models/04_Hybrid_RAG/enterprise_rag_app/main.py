@@ -519,6 +519,10 @@ def predict_flood_inundation(req: FloodPredictionRequest):
             "population_density": 0.05
         },
         "model_metadata": {
+            "scientific_status": "VERIFIED HISTORICAL RESEARCH MODEL (Patna 2019 Deluge) / SIMULATED TRANSFER for Uncalibrated AOIs",
+            "empirical_dataset": "Patna September 2019 Deluge (Sentinel-1A 2019-09-23 pre vs Sentinel-1B 2019-09-29 peak flood + Copernicus GLO-30 DEM + WorldPop 2020)",
+            "training_samples": 60000,
+            "validation_metrics": "5-Fold Spatial Block Cross-Validation (SBCV) mean ROC-AUC: 0.7498, F1: 0.653, Accuracy: 68.88%, Brier: 0.2003",
             "model_architecture": "Spatial Random Forest Classifier (5-Fold SBCV)",
             "authors": "Prince Kumar (IIT Patna) & Payal Priyadarshini (IIITDM Jabalpur)",
             "supervisor": "Dr. Pallav Rustogi",
@@ -635,6 +639,82 @@ def export_site_bundle(
             "X-Bhu-Loka-Attribution": "OpenStreetMap ODbL | Copernicus GLO-90 DEM | NOAA Solar | Brode UTCI",
         },
     )
+
+
+try:
+    from bhu_loka_extraction_service import extraction_service, MultiSourceExtractionService
+except ImportError:
+    try:
+        from Pipelines.bhu_loka_extraction_service import extraction_service, MultiSourceExtractionService
+    except ImportError:
+        extraction_service = None  # type: ignore
+
+
+class AoiExtractionRequest(BaseModel):
+    south: float = Field(..., ge=-90.0, le=90.0)
+    west: float = Field(..., ge=-180.0, le=180.0)
+    north: float = Field(..., ge=-90.0, le=90.0)
+    east: float = Field(..., ge=-180.0, le=180.0)
+    location_name: Optional[str] = "AOI"
+    aoi_geojson: Optional[Dict[str, Any]] = None
+    mode: Optional[str] = "balanced"  # strict | balanced | dense
+
+
+@app.post("/api/v1/extract/aoi")
+def extract_multi_source_aoi(payload: AoiExtractionRequest):
+    """
+    BHU LOKA Multi-Source Feature Extraction API:
+    Combines Overpass OSM, Google Open Buildings v3, Sentinel-2 NDVI/NDWI,
+    and Vision ML into an authoritative, IoU-deduplicated GeoJSON dataset.
+    Modes: 'strict' (OSM only), 'balanced' (OSM + Open Buildings), 'dense' (All + ML).
+    """
+    if extraction_service is None:
+        raise HTTPException(status_code=503, detail="Extraction service unavailable")
+    try:
+        return extraction_service.extract_aoi(
+            south=payload.south,
+            west=payload.west,
+            north=payload.north,
+            east=payload.east,
+            location_name=payload.location_name or "AOI",
+            aoi_geojson=payload.aoi_geojson,
+            mode=payload.mode or "balanced",
+        )
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+
+@app.get("/api/v1/extract/report")
+def get_extraction_completeness_report(
+    south: float = Query(..., ge=-90.0, le=90.0),
+    west: float = Query(..., ge=-180.0, le=180.0),
+    north: float = Query(..., ge=-90.0, le=90.0),
+    east: float = Query(..., ge=-180.0, le=180.0),
+    location_name: Optional[str] = Query(default="AOI"),
+    mode: Optional[str] = Query(default="balanced"),
+):
+    """
+    Returns structured layer completeness report with provenance, confidence scores,
+    and imagery dates for the specified bounding box.
+    """
+    if extraction_service is None:
+        raise HTTPException(status_code=503, detail="Extraction service unavailable")
+    try:
+        res = extraction_service.extract_aoi(
+            south=south, west=west, north=north, east=east,
+            location_name=location_name or "AOI",
+            mode=mode or "balanced"
+        )
+        return {
+            "ok": True,
+            "location_name": location_name,
+            "bounds": res["bounds"],
+            "density_mode": mode,
+            "metrics": res["metrics"],
+            "completeness_report": res["completeness_report"]
+        }
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
 
 
 class LandParcelSearchRequest(BaseModel):

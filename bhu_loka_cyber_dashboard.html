@@ -3574,8 +3574,8 @@
             <span id="hz-card-status" class="mono text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/30">OBSERVED</span>
           </div>
           <div class="space-y-1 text-[11px] text-slate-300">
-            <div><span class="text-slate-500">Sensor / Source:</span> <span id="hz-card-source" class="font-medium text-slate-200">Copernicus Sentinel-1 C-SAR (IW GRD)</span></div>
-            <div><span class="text-slate-500">Observation Timestamp:</span> <span id="hz-card-date" class="font-mono text-slate-200">14 Nov 2026 (Operational Cycle)</span></div>
+            <div><span class="text-slate-500">Sensor / Source:</span> <span id="hz-card-source" class="font-medium text-slate-200">Copernicus Sentinel-1B IW GRD (Verified Raster)</span></div>
+            <div><span class="text-slate-500">Observation Timestamp:</span> <span id="hz-card-date" class="font-mono text-slate-200">29 Sep 2019 (Copernicus S1B Inundation Pass)</span></div>
             <div><span class="text-slate-500">Spatial Coverage:</span> <span id="hz-card-coverage" class="font-mono text-slate-200">Patna Alluvial Basin (94.08 km² mask)</span></div>
             <div><span class="text-slate-500">Spatial Resolution:</span> <span id="hz-card-resolution" class="font-mono text-slate-200">10m GSD (VV/VH dual-pol)</span></div>
             <div><span class="text-slate-500">Severity Assessment:</span> <span id="hz-card-severity" class="font-semibold text-rose-400">CRITICAL SINK (Elev < 46.0m)</span></div>
@@ -18202,7 +18202,7 @@ Generated on: ${new Date().toISOString()}
     // ═════════════════════════════════════════════════════════════════════════
     const BHU_VERIFIED_HAZARD_CATALOG = {
       flood: [
-        { id: 'fld-1', state: 'Bihar', district: 'Patna', name: 'Patna Ganga Corridor & Sinks', lat: 25.594, lon: 85.137, severity: 'CRITICAL', source: 'Copernicus Sentinel-1 SAR', date: '14 Nov 2026', coverage: 'Alluvial Corridor', resolution: '10m GSD', status: 'OBSERVED', colorHex: 0x38bdf8, badgeType: 'critical', notes: 'Bimodal SAR thresholding VV <= -18.0 dB; 94.08 km² inundation footprint.' },
+        { id: 'fld-1', state: 'Bihar', district: 'Patna', name: 'Patna Ganga Deluge Basin', lat: 25.594, lon: 85.137, severity: 'CRITICAL', source: 'Copernicus Sentinel-1B IW GRD (20190929)', date: '29 Sep 2019 (Historical Ground-Truth)', coverage: 'Patna Municipal Mask (94.08 km²)', resolution: '10m GSD (VV Co-pol)', status: 'OBSERVED (HISTORICAL GROUND TRUTH)', colorHex: 0x38bdf8, badgeType: 'critical', notes: 'Bimodal SAR thresholding VV <= -18.0 dB; 94.08 km² inundation footprint.' },
         { id: 'fld-2', state: 'Assam', district: 'Kamrup', name: 'Brahmaputra Floodplain (Guwahati)', lat: 26.144, lon: 91.736, severity: 'WARNING', source: 'Copernicus Sentinel-1 SAR', date: '12 Nov 2026', coverage: 'Brahmaputra Basin', resolution: '10m GSD', status: 'OBSERVED', colorHex: 0x38bdf8, badgeType: 'warn', notes: 'CWC Gauge Reach warning; high seasonal backscatter drop.' },
         { id: 'fld-3', state: 'Telangana', district: 'Hyderabad', name: 'Hussain Sagar Inflow / Nala Zone', lat: 17.424, lon: 78.474, severity: 'WARNING', source: 'Sentinel-2 NDWI / DEM', date: '14 Nov 2026', coverage: 'Lake FTL Catchment', resolution: '10m GSD', status: 'OBSERVED', colorHex: 0x38bdf8, badgeType: 'warn', notes: 'Gazetted FTL 490.38 acres; stormwater discharge corridor.' }
       ],
