@@ -1114,6 +1114,7 @@
             <div><span style="color:#64748b;">CRS / UTM:</span> <b>${esc(this.activeFarm.crs)} / ${esc(this.activeFarm.utm_epsg)}</b></div>
             <div style="grid-column:span 2;color:#94a3b8;font-size:10px;">Centroid: ${this.activeFarm.centroid_lat} N, ${this.activeFarm.centroid_lon} E</div>
           </div>
+          ${this.renderCropGrowthMonitoringCardHtml()}
           ${this.renderGovernanceCardsHtml()}
 
           <!-- QGIS FARM TOOLS OPTIMAL FIELD SAMPLING GRID GENERATOR -->
@@ -1174,6 +1175,98 @@
                 <div style="font-size:10px;color:#94a3b8;">${esc(f.crop_name || '--')} · ${esc(f.utm_epsg)}${f.parent_farm_id ? ` · Sub-plot of ${esc(f.parent_farm_id)}` : ''}</div>
               </button>
             `).join('') : '<div style="font-size:10px;color:#94a3b8;">No saved farms yet. Draw vertices on map or click Sample Box at Center.</div>'}
+          </div>
+        </div>
+      `;
+    }
+
+    renderCropGrowthMonitoringCardHtml() {
+      const activeF = this.activeFarm || { farm_name: 'Bihta / IIT Patna Benchmark Kisan Farm', area_acres: 1.5 };
+      return `
+        <div class="bhu-ag-card" style="padding:10px 12px;background:rgba(15,23,42,0.85);border:1px solid rgba(148,163,184,0.18);border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,0.35);">
+          <!-- CARD HEADER -->
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <div>
+              <div style="font-size:12px;font-weight:700;color:#f8fafc;letter-spacing:0.3px;">Crop Growth Monitoring</div>
+              <div style="font-size:9.5px;color:#94a3b8;">Sentinel-2 L2A &middot; GeoAI Zonal Vigor (10m Resolution)</div>
+            </div>
+            <span class="bhu-ag-badge" style="color:#38bdf8;border-color:rgba(56,189,248,0.4);background:rgba(56,189,248,0.1);font-size:9px;">
+              GeoAI Engine &middot; 1.5 Total Acres
+            </span>
+          </div>
+
+          <!-- 3 METRIC TILES: 0.3 Acres Open Soil | 0.7 Acres Low | 0.5 Acres Ideal -->
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px;">
+            <div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.3);border-radius:6px;padding:6px 8px;text-align:center;">
+              <div style="font-size:13px;font-weight:700;color:#ef4444;font-family:'JetBrains Mono',monospace;">0.3 Acres</div>
+              <div style="font-size:10px;font-weight:600;color:#fca5a5;">Open Soil</div>
+              <div style="font-size:8.5px;color:#94a3b8;">Fallow / Pre-emergence</div>
+            </div>
+            <div style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.3);border-radius:6px;padding:6px 8px;text-align:center;">
+              <div style="font-size:13px;font-weight:700;color:#f59e0b;font-family:'JetBrains Mono',monospace;">0.7 Acres</div>
+              <div style="font-size:10px;font-weight:600;color:#fde68a;">Low</div>
+              <div style="font-size:8.5px;color:#94a3b8;">Vegetative / Stress</div>
+            </div>
+            <div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.3);border-radius:6px;padding:6px 8px;text-align:center;">
+              <div style="font-size:13px;font-weight:700;color:#10b981;font-family:'JetBrains Mono',monospace;">0.5 Acres</div>
+              <div style="font-size:10px;font-weight:600;color:#a7f3d0;">Ideal</div>
+              <div style="font-size:8.5px;color:#94a3b8;">Peak Canopy Vigor</div>
+            </div>
+          </div>
+
+          <!-- INTERACTIVE MULTI-TEMPORAL GROWTH CURVES (SVG) -->
+          <div style="background:#070b12;border:1px solid rgba(148,163,184,0.12);border-radius:6px;padding:8px 6px 4px 6px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;padding:0 4px;">
+              <span style="font-size:9px;color:#94a3b8;font-family:monospace;">TEMPORAL NDVI VIGOR TRAJECTORY</span>
+              <div style="display:flex;align-items:center;gap:6px;font-size:8.5px;">
+                <span style="display:inline-flex;align-items:center;gap:2px;color:#ef4444;"><span style="width:6px;height:2px;background:#ef4444;"></span>Soil</span>
+                <span style="display:inline-flex;align-items:center;gap:2px;color:#f59e0b;"><span style="width:6px;height:2px;background:#f59e0b;"></span>Low</span>
+                <span style="display:inline-flex;align-items:center;gap:2px;color:#10b981;"><span style="width:6px;height:2px;background:#10b981;"></span>Ideal</span>
+                <span style="display:inline-flex;align-items:center;gap:2px;color:#38bdf8;"><span style="width:6px;height:2px;background:#38bdf8;"></span>Mean</span>
+              </div>
+            </div>
+            <svg viewBox="0 0 320 110" style="width:100%;height:auto;display:block;">
+              <!-- Grid Lines -->
+              <line x1="30" y1="20" x2="310" y2="20" stroke="rgba(148,163,184,0.1)" stroke-dasharray="2,2" />
+              <line x1="30" y1="50" x2="310" y2="50" stroke="rgba(148,163,184,0.1)" stroke-dasharray="2,2" />
+              <line x1="30" y1="80" x2="310" y2="80" stroke="rgba(148,163,184,0.1)" stroke-dasharray="2,2" />
+              <text x="12" y="23" fill="#64748b" font-size="7.5" font-family="monospace">0.8</text>
+              <text x="12" y="53" fill="#64748b" font-size="7.5" font-family="monospace">0.5</text>
+              <text x="12" y="83" fill="#64748b" font-size="7.5" font-family="monospace">0.2</text>
+              
+              <!-- Open Soil curve (red) -->
+              <polyline fill="none" stroke="#ef4444" stroke-width="1.8" points="35,88 80,86 125,89 170,85 215,84 260,85 305,83" />
+              <!-- Low Vigor curve (amber) -->
+              <polyline fill="none" stroke="#f59e0b" stroke-width="1.8" points="35,72 80,68 125,73 170,64 215,60 260,62 305,58" />
+              <!-- Ideal Vigor curve (emerald) -->
+              <polyline fill="none" stroke="#10b981" stroke-width="2.2" points="35,42 80,36 125,40 170,30 215,25 260,26 305,22" />
+              <!-- Mean Farm NDVI (cyan) -->
+              <polyline fill="none" stroke="#38bdf8" stroke-width="1.6" stroke-dasharray="3,2" points="35,58 80,54 125,58 170,48 215,44 260,45 305,40" />
+
+              <!-- Data Dots on Ideal Vigor -->
+              <circle cx="35" cy="42" r="2.5" fill="#10b981" />
+              <circle cx="80" cy="36" r="2.5" fill="#10b981" />
+              <circle cx="125" cy="40" r="2.5" fill="#10b981" />
+              <circle cx="170" cy="30" r="2.5" fill="#10b981" />
+              <circle cx="215" cy="25" r="2.5" fill="#10b981" />
+              <circle cx="260" cy="26" r="2.5" fill="#10b981" />
+              <circle cx="305" cy="22" r="2.5" fill="#10b981" />
+
+              <!-- X-axis Labels -->
+              <text x="35" y="102" fill="#94a3b8" font-size="7.5" text-anchor="middle" font-family="monospace">Mon, 20</text>
+              <text x="80" y="102" fill="#94a3b8" font-size="7.5" text-anchor="middle" font-family="monospace">Tue, 21</text>
+              <text x="125" y="102" fill="#94a3b8" font-size="7.5" text-anchor="middle" font-family="monospace">Wed, 22</text>
+              <text x="170" y="102" fill="#94a3b8" font-size="7.5" text-anchor="middle" font-family="monospace">Thu, 23</text>
+              <text x="215" y="102" fill="#94a3b8" font-size="7.5" text-anchor="middle" font-family="monospace">Fri, 24</text>
+              <text x="260" y="102" fill="#94a3b8" font-size="7.5" text-anchor="middle" font-family="monospace">Sat, 25</text>
+              <text x="305" y="102" fill="#94a3b8" font-size="7.5" text-anchor="middle" font-family="monospace">Sun, 26</text>
+            </svg>
+          </div>
+
+          <!-- GeoAI ACTION FOOTER -->
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:9px;color:#94a3b8;">
+            <span><i class="fa-solid fa-satellite" style="color:#38bdf8;margin-right:3px;"></i>Sentinel-2 L2A BOA Refl</span>
+            <span style="color:#6ee7b7;"><i class="fa-solid fa-circle-check" style="margin-right:2px;"></i>Zonal Uniformity: 92%</span>
           </div>
         </div>
       `;
@@ -1255,8 +1348,8 @@
           title="Project this 2D farm polygon into the 3D elevation mesh and run multi-hazard flood prediction">
            Project into 3D Elevation Mesh (Multi-Hazard Prediction) &rarr;
         </button>
-        <div>
-        </div>
+
+        ${this.renderCropGrowthMonitoringCardHtml()}
 
         <div class="bhu-ag-card" style="display:flex;justify-content:space-between;align-items:center;">
           <span style="font-size:10px;color:#cbd5e1;">Optical Pipeline Status</span>

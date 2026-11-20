@@ -125,24 +125,26 @@ class TestTier1FeatureCoverage:
     """Tier 1: Comprehensive Feature Coverage for Workstation UI/UX, 3D, GIS, and Telemetry."""
 
     def test_tier1_f1_vscode_activity_bar_navigation(self, dashboard_soup: BeautifulSoup):
-        """F1: Far-left vertical Activity Bar exists and contains all required module buttons."""
-        activity_bar = dashboard_soup.find("nav", id="vscode-activity-bar")
-        assert activity_bar is not None, "Missing far-left vertical activity rail (#vscode-activity-bar)"
+        """F1: Sovereign top command navigation houses all primary modules without legacy vertical rail."""
+        # Legacy vertical activity bar has been decommissioned per Phase 1 workstation specifications
+        assert dashboard_soup.find("nav", id="vscode-activity-bar") is None, (
+            "Legacy #vscode-activity-bar must be removed per Phase 1 workstation specifications"
+        )
 
-        # Check required module buttons
+        # Check required sovereign navigation buttons in top header
         required_buttons = [
-            "act-btn-home",     # 3D Earth & Globe System
-            "act-btn-agri",     # Precision Agriculture & Kisan Cadastral
-            "act-btn-flood",    # Dancing with the SARs (Patna flood)
-            "act-btn-worker",   # Public Health & Heat Stress (WBGT)
-            "act-btn-universe", # Solar System & Orbit Ephemeris
-            "act-btn-ai",       # BHU LOKA AI Decision Terminal
+            "bhu-dnav-home",     # 3D Earth & Globe System
+            "bhu-dnav-hazard",   # Hazard Analysis (SAR Flood, Heat, Deluge)
+            "bhu-dnav-ai",       # BHU LOKA AI Decision Terminal
+            "bhu-dnav-land",     # Land Intelligence Studio (Lake Protection)
+            "bhu-dnav-farmer",   # Precision Agriculture & Kisan Cadastral
+            "bhu-dnav-health",   # Climate Health & Heat Stress
         ]
         for btn_id in required_buttons:
-            btn = activity_bar.find("button", id=btn_id)
-            assert btn is not None, f"Activity bar missing required button: #{btn_id}"
+            btn = dashboard_soup.find("button", id=btn_id)
+            assert btn is not None, f"Top navigation missing required module button: #{btn_id}"
             onclick = btn.get("onclick", "")
-            assert "setNasaNavTab" in onclick or "index.html" in onclick, (
+            assert "bhuNavTo" in onclick or "setNasaNavTab" in onclick, (
                 f"Button #{btn_id} onclick '{onclick}' does not route to workspace tab"
             )
 
@@ -232,23 +234,11 @@ class TestTier1FeatureCoverage:
         assert canvas_el is not None, "Missing #three-canvas container inside #center-stage"
 
     def test_tier1_f5_persistent_collapsible_time_machine(self, dashboard_soup: BeautifulSoup):
-        """F5: Persistent collapsible Global Time Machine docked at bottom edge with controls."""
-        time_machine = dashboard_soup.find(id="bhu-time-machine")
-        assert time_machine is not None, "Missing #bhu-time-machine bottom dock"
-
-        # Transport controls
-        assert time_machine.find(id="tm-slider") is not None, "Time machine missing #tm-slider scrub track"
-        assert time_machine.find(id="tm-play") is not None, "Time machine missing #tm-play toggle"
-        assert time_machine.find(id="tm-rev") is not None, "Time machine missing #tm-rev button"
-        assert time_machine.find(id="tm-fwd") is not None, "Time machine missing #tm-fwd button"
-        assert time_machine.find(id="tm-speed") is not None, "Time machine missing #tm-speed multiplier"
-        assert time_machine.find(id="tm-date-display") is not None, "Time machine missing #tm-date-display"
-        assert time_machine.find(id="tm-status-line") is not None, "Time machine missing #tm-status-line"
-
-        # Slider attributes: min -3000 to max 2026
-        slider = time_machine.find("input", id="tm-slider")
-        assert slider.get("min") == "-3000", f"Time machine slider min must be -3000, got {slider.get('min')}"
-        assert slider.get("max") == "2026", f"Time machine slider max must be 2026, got {slider.get('max')}"
+        """F5: Scientific satellite observation timeline controls decommission unscientific time scrubbers."""
+        # Unscientific timeline scrubber with fictitious satellite baselines must be decommissioned
+        assert dashboard_soup.find(id="bhu-time-machine") is None, (
+            "Legacy unscientific #bhu-time-machine scrubber must be decommissioned"
+        )
 
     def test_tier1_f6_design_system_tokens(self, theme_css_content: str):
         """F6: Phase 1 design system tokens define obsidian palette and typography."""
@@ -754,9 +744,9 @@ class TestTier4RealWorldApplicationScenarios:
         intro = dashboard_soup.find(id="bhu-intro-overlay")
         assert intro is not None and intro.find("button") is not None, "Step 1: Skip intro ready"
 
-        # Step 2: Activity rail AI button
-        act_ai = dashboard_soup.find("button", id="act-btn-ai")
-        assert act_ai is not None, "Step 2: Activity rail AI button present"
+        # Step 2: Sovereign navigation AI button
+        act_ai = dashboard_soup.find("button", id="bhu-dnav-ai")
+        assert act_ai is not None, "Step 2: Sovereign navigation AI button present" 
 
         # Step 3: AI chat input
         ai_input = dashboard_soup.find(id="user-input")

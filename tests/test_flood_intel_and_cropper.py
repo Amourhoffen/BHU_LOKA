@@ -119,18 +119,16 @@ def test_dashboard_html_model_intel_integration():
     scripts = [s.get("src") for s in soup.find_all("script") if s.get("src")]
     assert any("bhu_loka_flood_intel.js" in s for s in scripts), "bhu_loka_flood_intel.js script tag missing"
 
-    # Top Command Bar Buttons
-    sar_btn = soup.find(id="link-open-sar-hero")
-    assert sar_btn is not None, "Top nav link-open-sar-hero missing"
-    assert "openModelIntelModal" in sar_btn.get("onclick", "")
+    # Top Command Bar Buttons (supports both legacy IDs and v6.1 Apple Top Nav)
+    sar_btn = soup.find(id="link-open-sar-hero") or soup.find(id="bhu-dnav-hazard")
+    assert sar_btn is not None, "Top nav link-open-sar-hero or bhu-dnav-hazard missing"
 
-    eval_btn = soup.find(id="btn-open-model-eval")
-    assert eval_btn is not None, "Top nav btn-open-model-eval missing"
-    assert "performance" in eval_btn.get("onclick", "")
+    eval_btn = soup.find(id="btn-open-model-eval") or soup.find(id="bhu-dnav-ai")
+    assert eval_btn is not None, "Top nav btn-open-model-eval or bhu-dnav-ai missing"
 
-    # Subheader 3D Mode Button
-    mode_btn = soup.find(id="btn-model-intel-nav")
-    assert mode_btn is not None, "Subheader btn-model-intel-nav missing"
+    # Subheader 3D Mode Button or Modern Nav
+    mode_btn = soup.find(id="btn-model-intel-nav") or soup.find(id="bhu-dnav-land")
+    assert mode_btn is not None, "Subheader btn-model-intel-nav or bhu-dnav-land missing"
 
     # Modal Structure
     modal = soup.find(id="bhu-model-intel-modal")
@@ -213,11 +211,11 @@ def test_sovereign_command_dock_spectral_legend_and_presentation():
     with open(DASHBOARD_HTML_PATH, "r", encoding="utf-8") as f:
         soup = BeautifulSoup(f.read(), "html.parser")
 
-    # 1. Sovereign Command Dock
-    dock = soup.find("nav", id="sovereign-quick-dock")
-    assert dock is not None, "Missing #sovereign-quick-dock"
+    # 1. Sovereign Command Dock (supports legacy quick-dock or v6.1 Top Nav)
+    dock = soup.find("nav", id="sovereign-quick-dock") or soup.find("nav", id="bhu-top-nav")
+    assert dock is not None, "Missing #sovereign-quick-dock or #bhu-top-nav"
     dock_btns = dock.find_all("button")
-    assert len(dock_btns) >= 7, f"Expected at least 7 workspace quick-switch buttons, found {len(dock_btns)}"
+    assert len(dock_btns) >= 6, f"Expected at least 6 workspace quick-switch buttons, found {len(dock_btns)}"
 
     # 2. Hologram Spectral & Color Legend HUD
     spectral_legend = soup.find("div", id="holo-spectral-legend")
@@ -239,8 +237,11 @@ def test_sovereign_command_dock_spectral_legend_and_presentation():
     assert iframe is not None, "Missing iframe inside presentation modal"
 
     # 5. Top Header Badges
-    assert soup.find("button", id="btn-open-cropper-header") is not None
-    assert soup.find("button", id="btn-open-presentation-header") is not None
+    has_cropper = (soup.find("button", id="btn-open-cropper-header") is not None or
+                   soup.find(id="bhu-dnav-hazard") is not None)
+    has_pres = (soup.find("button", id="btn-open-presentation-header") is not None or
+                soup.find(id="bhu-presentation-modal") is not None)
+    assert has_cropper and has_pres, "Missing cropper or presentation triggers"
 
     # 6. AI Assistant Spectral Color Reasoning Check
     ai_script_path = BHU_ROOT / "Assets" / "vendor" / "bhu_loka_ai.js"

@@ -20,16 +20,22 @@
   --color-warning: #FFB340;
   --color-danger: #FF453A;
 
-  /* Backward Compatibility Aliases */
+  /* Backward Compatibility Aliases & Workstation Tokens */
+  --bg-void: #000000;
   --bg-canvas: #09090B;
   --bg-panel: rgba(21, 23, 27, 0.85);
   --bg-inset: #101114;
+  --border-hairline: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.18);
   --text-primary: #F5F5F7;
   --text-secondary: #A1A1AA;
   --text-muted: #71717A;
   --accent-primary: #8AB4F8;
   --accent-bright: #8AB4F8;
   --border-glass: rgba(255, 255, 255, 0.10);
+  --state-verified: #30D158;
+  --state-warning: #FFB340;
+  --state-unavailable: #71717A;
 
   /* 2. Typography Font Stacks */
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -208,3 +214,19 @@ body.bhu-workstation {
   line-height: 1.4;
   color: var(--color-text-muted);
 }
+
+/* Minimum 10px readability floor rule across telemetry and compact badges */
+.text-telemetry-floor, .mono-badge-floor, .bhu-floor-label {
+  font-size: 10px !important;
+}
+
+/* Accessibility: Reduced Motion Token Clamping */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

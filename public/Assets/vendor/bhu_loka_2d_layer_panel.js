@@ -208,7 +208,7 @@
             if (typeof parsed[k].opacity === 'number') def[k].opacity = parsed[k].opacity;
           }
         });
-      } catch (_) { }
+      } catch (_) {}
       return def;
     }
 
@@ -220,7 +220,7 @@
     }
 
     _saveState() {
-      try { localStorage.setItem(STORAGE_LAYERS_KEY, JSON.stringify(this.state)); } catch (_) { }
+      try { localStorage.setItem(STORAGE_LAYERS_KEY, JSON.stringify(this.state)); } catch (_) {}
     }
 
     getMeta(id) {
@@ -250,7 +250,7 @@
       try {
         if (aoiObj) localStorage.setItem(STORAGE_AOI_KEY, JSON.stringify(aoiObj));
         else localStorage.removeItem(STORAGE_AOI_KEY);
-      } catch (_) { }
+      } catch (_) {}
       this._emit('aoi');
       window.dispatchEvent(new CustomEvent('bhu-loka:aoi-changed', { detail: aoiObj }));
     }
@@ -264,7 +264,7 @@
 
     _emit(type, id) {
       this.listeners.forEach((fn) => {
-        try { fn({ type, id, state: this.state, aoi: this.aoi }); } catch (_) { }
+        try { fn({ type, id, state: this.state, aoi: this.aoi }); } catch (_) {}
       });
     }
   }
@@ -501,23 +501,23 @@
         const buckets = { building: [], road: [], water: [], greenery: [], infrastructure: [] };
         json.elements.forEach((el) => {
           const tags = el.tags || {};
-            if (el.type === 'node' && (tags.amenity || tags.railway || tags.power)) {
-              buckets.infrastructure.push({
-                type: 'Feature', properties: tags,
-                geometry: { type: 'Point', coordinates: [el.lon, el.lat] }
-              });
-            } else if (el.type === 'way' && el.nodes) {
-              const coords = el.nodes.map((id) => nodes[id]).filter(Boolean);
-              if (coords.length < 2) return;
-              const closed = coords.length >= 4 && coords[0][0] === coords[coords.length - 1][0] && coords[0][1] === coords[coords.length - 1][1];
-              const geom = closed ? { type: 'Polygon', coordinates: [coords] } : { type: 'LineString', coordinates: coords };
-              if (tags.building) buckets.building.push({ type: 'Feature', properties: tags, geometry: geom });
-              else if (tags.highway) buckets.road.push({ type: 'Feature', properties: tags, geometry: geom });
-              else if (tags.waterway || tags.natural === 'water' || tags.water) buckets.water.push({ type: 'Feature', properties: tags, geometry: geom });
-              else if (['park', 'garden', 'pitch'].includes(tags.leisure) || tags.natural === 'wood' || ['forest', 'grass'].includes(tags.landuse)) buckets.greenery.push({ type: 'Feature', properties: tags, geometry: geom });
-              else if (tags.amenity) buckets.infrastructure.push({ type: 'Feature', properties: tags, geometry: geom });
-            }
-          });
+          if (el.type === 'node' && (tags.amenity || tags.railway || tags.power)) {
+            buckets.infrastructure.push({
+              type: 'Feature', properties: tags,
+              geometry: { type: 'Point', coordinates: [el.lon, el.lat] }
+            });
+          } else if (el.type === 'way' && el.nodes) {
+            const coords = el.nodes.map((id) => nodes[id]).filter(Boolean);
+            if (coords.length < 2) return;
+            const closed = coords.length >= 4 && coords[0][0] === coords[coords.length - 1][0] && coords[0][1] === coords[coords.length - 1][1];
+            const geom = closed ? { type: 'Polygon', coordinates: [coords] } : { type: 'LineString', coordinates: coords };
+            if (tags.building) buckets.building.push({ type: 'Feature', properties: tags, geometry: geom });
+            else if (tags.highway) buckets.road.push({ type: 'Feature', properties: tags, geometry: geom });
+            else if (tags.waterway || tags.natural === 'water' || tags.water) buckets.water.push({ type: 'Feature', properties: tags, geometry: geom });
+            else if (['park', 'garden', 'pitch'].includes(tags.leisure) || tags.natural === 'wood' || ['forest', 'grass'].includes(tags.landuse)) buckets.greenery.push({ type: 'Feature', properties: tags, geometry: geom });
+            else if (tags.amenity) buckets.infrastructure.push({ type: 'Feature', properties: tags, geometry: geom });
+          }
+        });
         osmCache = { key, data: buckets };
         const total = Object.values(buckets).reduce((s, a) => s + a.length, 0);
         setStatus(`OSM API v0.6 loaded: ${total} observed features`, '#34d399');
