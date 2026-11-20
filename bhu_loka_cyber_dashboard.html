@@ -14486,22 +14486,22 @@
       const btnVitals = document.getElementById('left-tab-btn-vitals');
 
       if (aiView) {
-        aiView.style.display = (tab === 'ai') ? 'flex' : 'none';
-        aiView.classList.toggle('hidden', tab !== 'ai');
+        aiView.style.setProperty('display', (tab === 'ai') ? 'flex' : 'none', 'important');
+        if (tab === 'ai') aiView.classList.remove('hidden'); else aiView.classList.add('hidden');
       }
       if (insightsView) {
-        insightsView.style.display = (tab === 'insights') ? 'flex' : 'none';
-        insightsView.classList.toggle('hidden', tab !== 'insights');
+        insightsView.style.setProperty('display', (tab === 'insights') ? 'flex' : 'none', 'important');
+        if (tab === 'insights') insightsView.classList.remove('hidden'); else insightsView.classList.add('hidden');
       }
       if (vitalsView) {
-        vitalsView.style.display = (tab === 'vitals') ? 'flex' : 'none';
-        vitalsView.classList.toggle('hidden', tab !== 'vitals');
+        vitalsView.style.setProperty('display', (tab === 'vitals') ? 'flex' : 'none', 'important');
+        if (tab === 'vitals') vitalsView.classList.remove('hidden'); else vitalsView.classList.add('hidden');
       }
       const hazardsView = document.getElementById('left-hazards-view');
       const btnHazards = document.getElementById('left-tab-btn-hazards');
       if (hazardsView) {
-        hazardsView.style.display = (tab === 'hazards') ? 'flex' : 'none';
-        hazardsView.classList.toggle('hidden', tab !== 'hazards');
+        hazardsView.style.setProperty('display', (tab === 'hazards') ? 'flex' : 'none', 'important');
+        if (tab === 'hazards') hazardsView.classList.remove('hidden'); else hazardsView.classList.add('hidden');
       }
       if (btnHazards) {
         btnHazards.setAttribute('aria-selected', tab === 'hazards' ? 'true' : 'false');
@@ -14523,6 +14523,10 @@
     }
 
     function switchLeftDockTab(tab) {
+      const left = document.getElementById('left-rail');
+      if (left && typeof _expandRail === 'function' && left.classList.contains('rail-collapsed')) {
+        _expandRail(left);
+      }
       _applyLeftDockTab(tab);
     }
 
@@ -17032,6 +17036,14 @@ Generated on: ${new Date().toISOString()}
         window.skipBhuIntro();
         if (typeof open2DCropStudio === 'function') open2DCropStudio();
       }
+      if (qp.get('hazard')) {
+        window.skipBhuIntro();
+        const splash = document.getElementById('bhu-intro-overlay');
+        if (splash) splash.style.display = 'none';
+        if (typeof switchLeftDockTab === 'function') switchLeftDockTab('hazards');
+        if (typeof selectBhuHazardCategory === 'function') selectBhuHazardCategory(qp.get('hazard'));
+        if (typeof focusActiveHazardOnGlobe === 'function') setTimeout(focusActiveHazardOnGlobe, 600);
+      }
       if (qp.get('agriTab')) {
         window.skipBhuIntro();
         if (window.BhuLokaAgri) {
@@ -18395,6 +18407,31 @@ Generated on: ${new Date().toISOString()}
       targetCameraDistance = 18.5;
       targetCameraY = Math.sin((lat * Math.PI) / 180) * 8.0;
     };
+
+    // Synchronous initialization for instant headless capture & interaction
+    function initBhuHazardFromUrl() {
+      try {
+        const qp = new URLSearchParams(window.location.search);
+        const hzParam = qp.get('hazard');
+        if (hzParam) {
+          if (typeof window.skipBhuIntro === 'function') window.skipBhuIntro();
+          const splash = document.getElementById('bhu-intro-overlay');
+          if (splash) splash.style.display = 'none';
+          const left = document.getElementById('left-rail');
+          if (left) {
+            left.classList.remove('rail-collapsed');
+            left.style.display = 'flex';
+          }
+          if (typeof _applyLeftDockTab === 'function') _applyLeftDockTab('hazards');
+          if (typeof selectBhuHazardCategory === 'function') selectBhuHazardCategory(hzParam);
+          if (typeof focusActiveHazardOnGlobe === 'function') focusActiveHazardOnGlobe();
+        } else {
+          renderBhuHazardObservation();
+          renderEarthHazardPinsOnGlobe();
+        }
+      } catch (e) {}
+    }
+    initBhuHazardFromUrl();
 
 </script>
 </body>

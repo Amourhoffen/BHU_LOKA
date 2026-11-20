@@ -263,7 +263,7 @@
   // and Dense Urban Mohallas (20–500 m², Patna Kankarbagh 1,701 roofs).
   // CrossOrigin-safe with ?bhu_ml=1 (zero canvas taint, $0 cost, 100% in-browser).
   // ═══════════════════════════════════════════════════════════════
-  function detectRooftopsFromSatellite(bounds, aoiGeoJson, existingOsmBuildings = [], existingOsmRoads = [], mode = 'balanced') {
+  function detectRooftopsFromSatellite(bounds, aoiGeoJson, existingOsmBuildings = [], existingOsmRoads = [], mode = 'balanced', existingOsmInfra = [], existingOsmWater = [], existingOsmGreen = []) {
     return new Promise((resolve) => {
       const cLat = (bounds.south + bounds.north) / 2;
       const spanY_m = Math.max(20, (bounds.north - bounds.south) * 111132.92);
