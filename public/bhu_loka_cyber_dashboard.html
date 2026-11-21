@@ -57,7 +57,7 @@
       import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js").then(({ initializeApp }) => {
         import("https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js").then(({ getAnalytics }) => {
           const firebaseConfig = {
-            apiKey: "AIzaSyAAkKgYx1u-1KwTK3C4FVxYjamx2newU3I",
+            apiKey: (typeof window !== "undefined" && window.__BHU_FIREBASE_KEY__) || "",
             authDomain: "bhu-loka.firebaseapp.com",
             projectId: "bhu-loka",
             storageBucket: "bhu-loka.firebasestorage.app",

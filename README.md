@@ -55,8 +55,8 @@ If you find BHU LOKA inspiring, useful for your research, or valuable for geospa
 | **Live 2D GIS Deluge Explorer** | [https://bhu-loka.web.app/2d](https://bhu-loka.web.app/2d) | Pan-India 2D GIS: Interactive 28 States & 8 UTs selector, Sentinel-1 SAR Deluge layer, DEM profiles |
 | **Land Intelligence Studio** | [https://bhu-loka.web.app/studio](https://bhu-loka.web.app?view=studio) | BSA 2023 §63 screening: Cadastral FTL review, 4-quadrant audit, bi-temporal swipe, 3D buffer |
 | **Interactive Presentation Deck** | [https://bhu-loka.web.app/presentation](https://bhu-loka.web.app/presentation) | Interactive research slide deck with live Chart.js radar curves, DEM profiles, and KPIs |
-| **Presentation Deck PDF** | [`BHU-LOKA (2).pptx.pdf`](./BHU-LOKA%20(2).pptx.pdf) | High-definition research presentation deck (`88.3 MB`) |
-| **12-Page Research Paper PDF** | [`Sequential_Compound_Hydro_Thermal_Risk_...pdf`](./Sequential_Compound_Hydro_Thermal_Risk_and_Urban_Corner_Reflector_Flood_Mapping_in_Continental_Alluvial_Metropolises__Empirical_Earth_Observation___3_.pdf) | Complete peer-review manuscript with equations, Otsu calibration, and SBCV benchmarks |
+| **Research Presentation Deck** | [https://bhu-loka.web.app/presentation](https://bhu-loka.web.app/presentation) | High-definition interactive research presentation deck |
+| **Peer-Review Manuscript** | [Manuscript Elsevier Format](Research_Paper_Workflow/MANUSCRIPT_ELSEVIER_FORMAT.html) | Complete peer-review manuscript with equations, Otsu calibration, and SBCV benchmarks |
 | **Verified Inundation GeoJSON** | [`sar_flood_inundation_patna_2019.geojson`](./Data/08_Processed_Outputs/sar_flood_inundation_patna_2019.geojson) | Vector polygon layer ($26.54\text{ km}^2$) ready for instant QGIS/ArcGIS import |
 | **Trained Spatial ML Checkpoints** | [`bhu_loka_spatial_rf_v1.joblib`](./Models/Checkpoints/bhu_loka_spatial_rf_v1.joblib) & [`mera_pehle_model.joblib`](./mera_pehle_model.joblib) | 7-feature (21.9 MB) & 3-feature (168 KB) trained Random Forest classifiers with 5-fold spatial cross-validation |
 

@@ -56,3 +56,28 @@ Thumbs.db
 firebase-debug.log
 
 
+
+# ==============================================================================
+# Enhanced Security, Private Research & Binary File Exclusions
+# ==============================================================================
+_private_research_archive_local/
+Final_Research_Work/
+IITP Research/
+Research_Papers/
+*.zip
+*.tar
+*.gz
+*.pptx
+*.ppt
+*.pdf
+*.docx
+*.doc
+
+# Secret keys, credentials & service accounts
+*.key
+*.pem
+*.secret
+*.token
+*serviceAccountKey*.json
+.env*
+!BhuLoka_API_Config.env.example
