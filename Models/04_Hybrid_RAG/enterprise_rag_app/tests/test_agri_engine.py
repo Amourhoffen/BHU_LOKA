@@ -644,6 +644,73 @@ class TestAgriEngineCore(unittest.TestCase):
             agri.delete_farm(root_farm["farm_id"], db_path=self.test_db_path)
             agri.delete_farm(foreign_farm["farm_id"], db_path=self.test_db_path)
 
+    def test_agribusiness_aiag_and_crop_growth_monitoring(self):
+        farm = agri.create_farm(
+            farm_name="Bihta Agri AIAG Test Plot",
+            geometry=_patna_box(0.0008),
+            crop_name="Wheat",
+            growth_stage="Tillering",
+            state_name="Bihar",
+            district_name="Patna",
+            db_path=self.test_db_path,
+        )
+        try:
+            fid = farm["farm_id"]
+            # 1. Direct Python function tests
+            dem = agri.get_crop_demand_advisory(season="rabi", elevation_m=52.0)
+            self.assertGreaterEqual(len(dem["recommendations"]), 4)
+            self.assertIn("Maize", dem["recommendations"][0]["crop_name"])
+            self.assertGreater(dem["recommendations"][0]["mandi_price_inr_qtl"], 2000.0)
+
+            zones = agri.get_safe_investment_zones()
+            self.assertEqual(len(zones["zones"]), 6)
+            for z in zones["zones"]:
+                self.assertEqual(z["flood_hazard_score"], 0.0)
+                self.assertIn("SAFE", z["flood_safety_rating"])
+
+            growth = agri.get_crop_growth_monitoring(fid, db_path=self.test_db_path)
+            self.assertEqual(growth["status"], "LIVE")
+            self.assertIn("open_soil", growth["zonal_classes"])
+            self.assertIn("low_vigor", growth["zonal_classes"])
+            self.assertIn("ideal_vigor", growth["zonal_classes"])
+            self.assertEqual(len(growth["temporal_trajectory"]), 7)
+
+            aiag = agri.compute_farm_aiag_business_intelligence(fid, db_path=self.test_db_path)
+            self.assertEqual(aiag["status"], "LIVE")
+            self.assertIn("yield_prediction", aiag)
+            self.assertEqual(len(aiag["mandi_price_radar"]["mandis"]), 4)
+            self.assertIn("PMFBY", aiag["pmfby_crop_insurance"]["scheme_name"])
+            self.assertGreater(aiag["carbon_credit_potential"]["annual_carbon_offset_tco2e"], 0.0)
+
+            # 2. FastAPI ASGI endpoint routing verification (confirming no route conflicts)
+            async def _run():
+                async with httpx.AsyncClient(
+                    transport=httpx.ASGITransport(app=main.app), base_url="http://testserver"
+                ) as client:
+                    r1 = await client.get("/api/v1/agri/farms/crop-demand-advisor?elevation_m=52.0")
+                    self.assertEqual(r1.status_code, 200)
+                    self.assertGreaterEqual(len(r1.json().get("recommendations", [])), 4)
+
+                    r2 = await client.get("/api/v1/agri/farms/safe-investment-zones")
+                    self.assertEqual(r2.status_code, 200)
+                    self.assertEqual(len(r2.json().get("zones", [])), 6)
+
+                    r3 = await client.get("/api/v1/agri/crop-growth-monitoring")
+                    self.assertEqual(r3.status_code, 200)
+                    self.assertEqual(r3.json().get("status"), "LIVE")
+
+                    r4 = await client.get(f"/api/v1/agri/farms/{fid}/crop-growth-monitoring")
+                    self.assertEqual(r4.status_code, 200)
+                    self.assertEqual(r4.json().get("status"), "LIVE")
+
+                    r5 = await client.get(f"/api/v1/agri/farms/{fid}/agribusiness-aiag")
+                    self.assertEqual(r5.status_code, 200)
+                    self.assertEqual(r5.json().get("status"), "LIVE")
+
+            asyncio.run(_run())
+        finally:
+            agri.delete_farm(farm["farm_id"], db_path=self.test_db_path)
+
 
 if __name__ == "__main__":
     unittest.main()

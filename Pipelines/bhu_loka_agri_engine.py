@@ -2445,6 +2445,34 @@ def api_create_farm(req: FarmCreateRequest):
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
+@router.get("/farms/crop-demand-advisor")
+@router.get("/crop-demand-advisor")
+def api_crop_demand_advisor(season: str = "current", elevation_m: float = 52.0):
+    """
+    Zero-hallucination Crop Demand & Market Advisor.
+    Evaluates real Mandi prices vs MSP, agro-climatic suitability, and elevation-linked flood risk.
+    """
+    return get_crop_demand_advisory(season=season, elevation_m=elevation_m)
+
+
+@router.get("/farms/safe-investment-zones")
+@router.get("/safe-investment-zones")
+def api_safe_investment_zones():
+    """
+    Verified, zero-hallucination safe agricultural land parcels in India with 0% flood hazard.
+    """
+    return get_safe_investment_zones()
+
+
+@router.get("/farms/crop-growth-monitoring")
+@router.get("/crop-growth-monitoring")
+def api_global_crop_growth_monitoring(farm_id: Optional[str] = None):
+    try:
+        return get_crop_growth_monitoring(farm_id=farm_id)
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+
 @router.get("/farms/{farm_id}")
 def api_get_farm(farm_id: str):
     try:
@@ -2833,23 +2861,6 @@ def compute_farm_aiag_business_intelligence(
             "waypoints": sampling_points
         }
     }
-
-
-@router.get("/farms/crop-demand-advisor")
-def api_crop_demand_advisor(season: str = "current", elevation_m: float = 52.0):
-    """
-    Zero-hallucination Crop Demand & Market Advisor.
-    Evaluates real Mandi prices vs MSP, agro-climatic suitability, and elevation-linked flood risk.
-    """
-    return get_crop_demand_advisory(season=season, elevation_m=elevation_m)
-
-
-@router.get("/farms/safe-investment-zones")
-def api_safe_investment_zones():
-    """
-    Verified, zero-hallucination safe agricultural land parcels in India with 0% flood hazard.
-    """
-    return get_safe_investment_zones()
 
 
 @router.get("/farms/{farm_id}/agribusiness-aiag")
