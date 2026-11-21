@@ -3809,7 +3809,7 @@
         <div class="header">
           <div>
             <div class="title">BHU LOKA &middot; LAND &amp; WATER GOVERNANCE INTELLIGENCE</div>
-            <div class="subtitle">CHALLENGE 03: PROTECTING LAKES AND GOVERNMENT LAND (FTL / WATER BUFFER AUDIT)</div>
+            <div class="subtitle">CADASTRAL WATERBODY PROTECTION & FTL BUFFER AUDIT (BSA 2023 §63)</div>
             <div style="font-size: 10px; color: #64748b; margin-top: 2px;">Departments: Revenue, Municipal Administration &amp; Urban Development, Irrigation</div>
           </div>
           <div style="text-align: right;">
@@ -3865,7 +3865,7 @@
           </tbody>
         </table>
 
-        <div class="section-title">2. CHALLENGE 03: LAKE FULL TANK LEVEL (FTL) &amp; BUFFER ENCROACHMENT AUDIT</div>
+        <div class="section-title">2. CADASTRAL SURVEY: LAKE FULL TANK LEVEL (FTL) &amp; BUFFER SPATIAL AUDIT</div>
         <div style="font-size: 11px; margin-bottom: 6px; color: ${encroachments.length > 0 ? '#b91c1c' : '#15803d'}; font-weight: 700;">
           ${encroachments.length > 0 ? `🚨 ALERT: ${encroachments.reduce((s, h) => s + h.bldgCount, 0)} illegal structures detected inside legally designated No-Construction 30m lake buffer!` : '✅ COMPLIANT: Zero illegal structures detected inside the 30m statutory lake buffer.'}
         </div>
@@ -4019,9 +4019,9 @@
         <div style="background:linear-gradient(135deg, rgba(8,14,26,0.95) 0%, rgba(15,23,42,0.92) 100%);border:1px solid rgba(56,189,248,0.3);border-radius:12px;padding:12px 16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;box-shadow:0 8px 30px rgba(0,0,0,0.5);">
           <div>
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;flex-wrap:wrap;">
-              <span style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:800;color:#f8fafc;letter-spacing:0.02em;">🛰️ TELANGANA SATELLITE LAKE &amp; LAND ENFORCEMENT ENGINE</span>
-              <span style="font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;background:rgba(239,68,68,0.18);color:#fca5a5;border:1px solid rgba(239,68,68,0.4);padding:2px 7px;border-radius:4px;">CHALLENGE 03 &bull; HYDRAA</span>
-              <span style="font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;background:rgba(2,132,199,0.18);color:#38bdf8;border:1px solid rgba(56,189,248,0.4);padding:2px 7px;border-radius:4px;">REVENUE &bull; MA&amp;UD &bull; IRRIGATION</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:800;color:#f8fafc;letter-spacing:0.02em;">🛰️ BHU LOKA &bull; CADASTRAL &amp; WATERBODY SCREENING ENGINE</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;background:rgba(56,189,248,0.18);color:#7dd3fc;border:1px solid rgba(56,189,248,0.4);padding:2px 7px;border-radius:4px;">SOVEREIGN SPATIAL AUDIT</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;background:rgba(16,185,129,0.18);color:#6ee7b7;border:1px solid rgba(16,185,129,0.4);padding:2px 7px;border-radius:4px;">BSA 2023 §63 COMPLIANT SCREENING</span>
             </div>
             <div style="display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#94a3b8;flex-wrap:wrap;">
               <span style="color:#ffffff;font-weight:600;"><i class="fa-solid fa-location-dot text-rose-400"></i> ${activeSite.name}</span>
@@ -4036,8 +4036,8 @@
 
           <div style="display:flex;align-items:center;gap:8px;">
             <div style="text-align:right;font-family:'JetBrains Mono',monospace;font-size:9.5px;">
-              <div style="color:#fca5a5;font-weight:700;">🚨 10.95 ACRES ENCROACHMENT FLAGGED</div>
-              <div style="color:#94a3b8;font-size:8.5px;">Section 23 Demolition Notices Prepared</div>
+              <div style="color:#fde047;font-weight:700;">⚠️ POTENTIAL SPATIAL OVERLAP IDENTIFIED</div>
+              <div style="color:#94a3b8;font-size:8.5px;">Requires Official Cadastral &amp; Revenue Field Survey</div>
             </div>
           </div>
         </div>
@@ -4080,16 +4080,16 @@
           </div>
         </div>
 
-        <!-- STATUTORY ENFORCEMENT CALLOUT -->
-        <div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.35);border-radius:8px;padding:8px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:#cbd5e1;flex-wrap:wrap;">
+        <!-- SOVEREIGN SPATIAL SCREENING CALLOUT -->
+        <div style="background:rgba(234,179,8,0.08);border:1px solid rgba(234,179,8,0.35);border-radius:8px;padding:8px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:#cbd5e1;flex-wrap:wrap;">
           <div style="display:flex;align-items:center;gap:8px;">
-            <span style="font-size:16px;">🚨</span>
+            <span style="font-size:16px;">⚠️</span>
             <div>
-              <strong style="color:#fca5a5;">STATUTORY 30m LAKE FULL TANK LEVEL (FTL) VIOLATION DETECTED:</strong>
-              <span> 3 illegal encroachments identified in Sy. Nos. 104/A, 108/2 &amp; 112 within the gazetted non-construction perimeter of ${activeSite.name}. Evidentiary Hash: <code style="color:#38bdf8;">SHA256:7f83b1657ff1fc53...</code></span>
+              <strong style="color:#fde047;">POTENTIAL SPATIAL OVERLAP DETECTED (TECHNICAL SCREENING):</strong>
+              <span> Potential boundary overlap observed in proximity to ${activeSite.name}. Official boundary status: <em>LEGAL BOUNDARY UNVERIFIED &mdash; Requires State Gazette &amp; Revenue Field Demarcation</em>. Evidentiary Hash: <code style="color:#38bdf8;">SHA256:7f83b1657ff1fc53...</code></span>
             </div>
           </div>
-          <span style="background:#ef4444;color:#ffffff;padding:2px 7px;border-radius:3px;font-weight:700;font-size:8.5px;white-space:nowrap;">DEMOLITION / NOTICE MANDATED</span>
+          <span style="background:rgba(234,179,8,0.2);color:#fde047;border:1px solid rgba(234,179,8,0.5);padding:2px 7px;border-radius:3px;font-weight:700;font-size:8.5px;white-space:nowrap;">REQUIRES OFFICIAL VERIFICATION</span>
         </div>
 
         <!-- MAIN SCIENTIFIC STAGE -->
@@ -4257,7 +4257,7 @@
             </div>
             <div style="text-align:right;">
               <span class="us3-badge us3-st-OBSERVED">REVENUE GAZETTE COMPLIANT</span>
-              <div style="font-size:8.5px;color:#94a3b8;margin-top:2px;">Ref: Challenge 03 &bull; Revenue Dept, Telangana</div>
+              <div style="font-size:8.5px;color:#94a3b8;margin-top:2px;">Ref: Cadastral Screening &bull; Revenue Dept &amp; WALTA Guidelines</div>
             </div>
           </div>
 
@@ -4344,18 +4344,18 @@
             <canvas id="site-ai-perspective-live-canvas" width="960" height="440" style="width:100%;height:100%;display:block;"></canvas>
             <div style="position:absolute;top:12px;left:14px;background:rgba(5,8,17,0.88);border:1px solid rgba(255,255,255,0.2);padding:6px 10px;border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:9px;color:#e2e8f0;">
               <div><strong>SPATIAL RAYCASTING &bull; ${site.name}</strong></div>
-              <div style="color:#fca5a5;margin-top:2px;">■ RED SHIELD: PROTECTED 30m FTL ZONE (NO DEVELOPMENT)</div>
+              <div style="color:#fca5a5;margin-top:2px;">■ AMBER/RED SHIELD: POTENTIAL PROXIMAL WATERBODY BUFFER (PENDING SURVEY)</div>
             </div>
             <div style="position:absolute;bottom:14px;left:18%;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:800;color:#34d399;background:rgba(5,8,17,0.85);padding:4px 10px;border-radius:6px;border:1px solid #34d399;">
               ✓ (BUILDABLE ZONE)
             </div>
             <div style="position:absolute;bottom:14px;right:22%;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:800;color:#ef4444;background:rgba(5,8,17,0.85);padding:4px 10px;border-radius:6px;border:1px solid #ef4444;">
-              ✗ (ILLEGAL FTL VIOLATION)
+              ⚠️ (POTENTIAL BUFFER OVERLAP)
             </div>
           </div>
           <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(5,8,17,0.85);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:8px 12px;font-family:'JetBrains Mono',monospace;font-size:10px;">
             <div><span style="color:#10b981;font-weight:700;">✓ BUILDABLE ZONE:</span> Outside 30m Statutory Non-Construction Perimeter</div>
-            <div><span style="color:#ef4444;font-weight:700;">✗ ILLEGAL FTL ZONE:</span> Protected Water-Spread &bull; Demolition Mandated</div>
+            <div><span style="color:#fde047;font-weight:700;">⚠️ POTENTIAL BUFFER OVERLAP:</span> Protected Water-Spread &bull; Requires Field Demarcation</div>
             <div style="color:#38bdf8;">Copernicus DEM: 53.8m AOD</div>
           </div>
         </div>`;
@@ -4521,13 +4521,13 @@
           encPoly.bindPopup(`
             <div style="font-family:'JetBrains Mono',monospace;font-size:11px;min-width:240px;">
               <div style="background:#ef4444;color:#ffffff;font-weight:bold;padding:4px 8px;border-radius:4px;margin-bottom:6px;">
-                🚨 STATUTORY FTL VIOLATION FLAGGED
+                ⚠️ POTENTIAL SPATIAL OVERLAP IDENTIFIED
               </div>
               <div style="margin-bottom:3px;"><strong>Survey No:</strong> <span style="color:#facc15;font-weight:bold;">Sy. ${enc.sy}</span></div>
               <div style="margin-bottom:3px;"><strong>Encroached Area:</strong> <span style="color:#ef4444;font-weight:bold;">${enc.extent}</span></div>
               <div style="margin-bottom:3px;"><strong>Structure Type:</strong> ${enc.type}</div>
               <div style="margin-bottom:3px;"><strong>Violation:</strong> Within 30m Statutory FTL Buffer</div>
-              <div style="margin-bottom:3px;"><strong>Action:</strong> Section 23 Demolition Mandated</div>
+              <div style="margin-bottom:3px;"><strong>Action:</strong> Field Ground-Truthing & Joint Inspection Recommended</div>
               <div style="font-size:9px;color:#94a3b8;margin-top:6px;border-top:1px solid rgba(255,255,255,0.2);padding-top:4px;">
                 Cryptographic Hash: SHA256:${enc.hash}...
               </div>
@@ -4863,7 +4863,7 @@
   <div class="header">
     <div>
       <div class="title">GOVERNMENT LAND & LAKE PROTECTION AUDIT DOSSIER</div>
-      <div class="sub">BHU LOKA (भूलोक) &bull; Pan-India Sovereign Geospatial AI Platform &bull; Challenge 03</div>
+      <div class="sub">BHU LOKA (भूलोक) &bull; Pan-India Sovereign Geospatial AI Platform &bull; Cadastral Screening</div>
       <div style="font-size: 12px; color: #334155; margin-top: 6px;">
         <strong>Target Location:</strong> ${site.name} &bull; <strong>Enforcement Departments:</strong> Revenue, MA&UD, Irrigation
       </div>
@@ -4905,12 +4905,16 @@
   </table>
 
   <div class="action-box">
-    <strong style="color: #0369a1; font-size: 13px;">Mandated Statutory Action Plan for Enforcement Officers:</strong>
+    <strong style="color: #0369a1; font-size: 13px;">Recommended Protocol for Official Field Ground-Truthing:</strong>
     <ol style="margin: 6px 0 0 0; padding-left: 20px; font-size: 12px; color: #1e293b;">
       <li><strong>Immediate Ground-Truthing:</strong> Revenue Inspector and Assistant Executive Engineer (Irrigation) dispatched with georeferenced coordinates.</li>
-      <li><strong>Notice Issuance:</strong> Serve Statutory Section 23/24 Show-Cause Notices to unauthorized structures identified in the 30m perimeter.</li>
+      <li><strong>Notice Issuance:</strong> Conduct Joint Physical Survey with Revenue Inspector & Cadastral Surveyor to unauthorized structures identified in the 30m perimeter.</li>
       <li><strong>Monthly Satellite & SAR Delta Surveillance:</strong> 5-day revisit monitoring active to detect new slab work before construction advances.</li>
     </ol>
+  </div>
+  <div style="background:#f8fafc;border:1px solid #cbd5e1;border-radius:6px;padding:10px 14px;margin-top:16px;font-size:11px;color:#475569;line-height:1.4;">
+    <strong>LEGAL &amp; SCIENTIFIC DISCLAIMER (Bharatiya Sakshya Adhiniyam, 2023 &bull; Section 63):</strong><br>
+    This audit dossier is an automated preliminary spatial screening analysis derived from public Earth observation satellite imagery (Sentinel-2, Sentinel-1) and OpenStreetMap building/road vectors. It does NOT constitute a legal decree, conclusive cadastral determination, or proof of illegal encroachment. Statutory lake Full Tank Level (FTL) boundaries and buffer perimeters vary by state legislation (e.g. Telangana WALTA Act 2002, Karnataka KLCDA Act, state-specific irrigation gazettes). Official action requires joint field demarcation, verification of village revenue cadastral sheets (naksha / pahani), and formal electronic evidence certification under BSA 2023 §63.
   </div>
 </body>
 </html>`;
@@ -4925,7 +4929,7 @@
       }
 
       // Also trigger Markdown download for archival
-      const md = `# GOVERNMENT LAND & LAKE PROTECTION AUDIT DOSSIER (CHALLENGE 03)
+      const md = `# GOVERNMENT LAND & LAKE PROTECTION AUDIT DOSSIER (BSA 2023 §63)
 **Platform:** BHU LOKA (भूलोक) &bull; Pan-India Sovereign AI Engine  
 **Target Waterbody / Area:** ${site.name}  
 **Statutory Enforcement Departments:** Revenue Department, Municipal Administration & Urban Development (MA&UD), Irrigation Department  
@@ -4937,9 +4941,9 @@
 ---
 
 ## 1. EXECUTIVE SUMMARY & STATUTORY COMPLIANCE STATUS
-- **Compliance Status:** **CRITICAL BUFFER VIOLATION**
+- **Compliance Status:** **POTENTIAL SPATIAL OVERLAP (SCREENING LEVEL)**
 - **Statutory FTL Boundary Buffer Radius:** 30.0 Meters (Mandated under Telangana Water Bodies Protection Act)
-- **Detected Buffer Encroachments:** **3 Unauthorized Permanent / Semi-Permanent Structures**
+- **Detected Buffer Encroachments:** **Potential Spatial Overlaps Identified (Requires Ground Verification)**
 - **Evidentiary Integrity Hash:** \`SHA256:7f83b1657ff1fc53b92dc18148a1d65dfc2d4b1fa3d677284addd200126d9069\`
 
 ---

@@ -25,7 +25,7 @@
       title: "Sequential Compound Hydro-Thermal Risk and Urban Corner-Reflector Flood Mapping in Continental Alluvial Metropolises",
       shortTitle: "BHU LOKA · Scientific Flood Model Intelligence",
       teamName: "Amour Hoffen",
-      challenge: "NASA Space Apps Challenge 2026 · Dancing with the SARs",
+      challenge: "BHU LOKA Sovereign Earth System & Multi-Hazard Research Workstation",
       institution: "Indian Institute of Technology Patna (IITP) & IIITDM Jabalpur",
       authors: [
         { name: "Prince Kumar", role: "Team Lead & Lead Researcher", affiliation: "Indian Institute of Technology Patna (IITP)", roll: "PA2511CDH37", email: "prince_pa2511cdh37@iitp.ac.in" },
@@ -381,7 +381,7 @@
             <div class="p-3.5 rounded-xl bg-gradient-to-r from-[#0c1424] via-[#091120] to-[#080d18] border border-cyan-500/30">
               <div class="flex items-center justify-between gap-2 border-b border-slate-800 pb-2 mb-2">
                 <div class="flex items-center gap-2">
-                  <span class="text-[11px] font-mono text-cyan-400 font-bold uppercase tracking-wider">NASA Space Apps Challenge 2026 &middot; Dancing with the SARs</span>
+                  <span class="text-[11px] font-mono text-cyan-400 font-bold uppercase tracking-wider">BHU LOKA Sovereign Earth System &middot; IIT Patna</span>
                   <span class="px-2 py-0.5 rounded text-[9.5px] font-mono bg-amber-500/20 text-amber-300 border border-amber-500/40 font-bold">TEAM: AMOUR HOFFEN</span>
                 </div>
                 <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold">PEER-REVIEW COMPLIANT</span>
@@ -1277,11 +1277,11 @@
             <!-- ACADEMIC CITATION CARD -->
             <div class="p-3 rounded-lg bg-[#080d16] border border-cyan-500/30 space-y-1 font-mono text-[10.5px]">
               <div class="text-cyan-300 font-bold flex items-center justify-between">
-                <span>OFFICIAL NASA CHALLENGE CITATION:</span>
+                <span>OFFICIAL RESEARCH CITATION:</span>
                 <span class="text-amber-400">TEAM: AMOUR HOFFEN</span>
               </div>
               <div class="p-2 rounded bg-black/60 text-slate-200 select-all border border-slate-800 text-[10px]">
-                Prince Kumar and Payal Priyadarshini (Team Amour Hoffen, 2026). <em>Sequential Compound Hydro-Thermal Risk and Urban Corner-Reflector Flood Mapping in Continental Alluvial Metropolises: Empirical Earth Observation and Spatial Validation Sensitivity over Patna, India</em>. NASA Space Apps Challenge 2026: Dancing with the SARs. Indian Institute of Technology Patna &amp; IIITDM Jabalpur.
+                Prince Kumar and Payal Priyadarshini (Team Amour Hoffen, 2026). <em>Sequential Compound Hydro-Thermal Risk and Urban Corner-Reflector Flood Mapping in Continental Alluvial Metropolises: Empirical Earth Observation and Spatial Validation Sensitivity over Patna, India</em>. BHU LOKA Sovereign Earth System: Urban Dihedral SAR Mapping. Indian Institute of Technology Patna &amp; IIITDM Jabalpur.
               </div>
             </div>
 
@@ -1324,7 +1324,7 @@
     const s = data.safeShelters;
 
     const reportContent = `# BHU LOKA (भूलोक) · SCIENTIFIC RESEARCH & FLOOD MODEL INTELLIGENCE REPORT
-NASA Space Apps Challenge 2026: Dancing with the SARs
+BHU LOKA Sovereign Earth System: Urban Dihedral SAR Mapping
 Team: Amour Hoffen
 Lead Author: Prince Kumar (IIT Patna)
 Team Member: Payal Priyadarshini (IIITDM Jabalpur)
@@ -1332,7 +1332,7 @@ Team Member: Payal Priyadarshini (IIITDM Jabalpur)
 
 ## Citation & Authorship
 **Title:** Sequential Compound Hydro-Thermal Risk and Urban Corner-Reflector Flood Mapping in Continental Alluvial Metropolises: Empirical Earth Observation and Spatial Validation Sensitivity over Patna, India
-**Challenge:** NASA Space Apps Challenge 2026 (Category: Dancing with the SARs)
+**Research Mission:** Sovereign Earth System & Multi-Hazard Geospatial Intelligence Workstation
 **Team Name:** Amour Hoffen
 **Team Lead:** Prince Kumar (M.S. Computer Science & Data Analytics, Roll No. PA2511CDH37, Department of Computer Science and Engineering, Indian Institute of Technology Patna, Bihta, Bihar 801106, India. Email: prince_pa2511cdh37@iitp.ac.in)
 **Team Member:** Payal Priyadarshini (Indian Institute of Information Technology, Design and Manufacturing Jabalpur, Dumna Nature Reserve, Jabalpur 482005, India. Email: payal_priyadarshini@iiitdmj.ac.in)

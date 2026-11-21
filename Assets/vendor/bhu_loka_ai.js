@@ -596,7 +596,7 @@
       if (typeof window.openModelIntelModal === 'function') {
         setTimeout(() => window.openModelIntelModal(tab), 300);
       }
-      tools.push({ name: 'open_flood_model_intel', args: { activeTab: tab, challenge: 'Dancing with the SARs (NASA 2026)' } });
+      tools.push({ name: 'open_flood_model_intel', args: { activeTab: tab, mission: 'Sentinel-1 SAR Deluge (Patna 2019)' } });
     }
 
     // NASA Presentation Deck (9 Slides)
@@ -635,7 +635,7 @@
       if (typeof window.openModelIntelModal === 'function') {
         setTimeout(() => window.openModelIntelModal(tab), 300);
       }
-      tools.push({ name: 'open_flood_model_intel', args: { activeTab: tab, challenge: 'Dancing with the SARs (NASA 2026)' } });
+      tools.push({ name: 'open_flood_model_intel', args: { activeTab: tab, mission: 'Sentinel-1 SAR Deluge (Patna 2019)' } });
     }
 
     // NASA Presentation Deck (9 Slides)
@@ -1009,7 +1009,7 @@
         };
       } else {
         return {
-          answer: `NASA Space Apps Challenge 2026: 'Dancing with the SARs' — Scientific Model Audit:\n\n` +
+          answer: `BHU LOKA Sovereign Earth System — Scientific Model Audit (Sentinel-1 SAR Deluge):\n\n` +
             `1. **What the Model Learned from Historical SAR Physics:**\n` +
             `   • Standard satellite rapid mapping (UN-SPIDER) assumes open floodwaters scatter microwave energy away (Specular Drop: Δσ⁰ ≤ -2.0 dB).\n` +
             `   • Our research identified that dense urban street corridors act as **90° dihedral corner retro-reflectors**, bouncing radar energy off standing water into building facades and directly back to the sensor (Double-Bounce: Δσ⁰ ≥ +1.5 dB)!\n\n` +
@@ -1127,7 +1127,7 @@
     // 11. NASA Presentation Deck
     if (q.includes('presentation') || q.includes('ppt') || q.includes('slide') || q.includes('deck')) {
       return {
-        answer: `BHU LOKA Official 9-Slide Presentation Deck (NASA Space Apps Challenge 2026):\n\n` +
+        answer: `BHU LOKA Official Research Presentation Deck (IIT Patna & IIITDM Jabalpur):\n\n` +
           `• **Slide 1:** Mission & Team (Prince Kumar - IIT Patna & Payal Priyadarshini - IIITDM Jabalpur)\n` +
           `• **Slide 2:** 96% Urban Radar Blindspot Solved (UN-SPIDER vs Dihedral Double-Bounce)\n` +
           `• **Slide 3:** Patna Saucer Basin & 47.24 km² Topographic Sinks\n` +
@@ -1139,7 +1139,7 @@
           `• **Slide 9:** Official Deliverables & Team Signoff\n\n` +
           `*Click the 'NASA PRESENTATION' button in the top bar to launch the interactive deck.*`,
         citations: [GROUNDED_KNOWLEDGE.sar_flood, GROUNDED_KNOWLEDGE.elevation],
-        sourceTag: 'NASA Space Apps Challenge 2026: Team Amour Hoffen'
+        sourceTag: 'BHU LOKA Sovereign Research Workstation: Team Amour Hoffen'
       };
     }
 

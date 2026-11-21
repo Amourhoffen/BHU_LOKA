@@ -6325,7 +6325,7 @@
             <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 8px;background:rgba(2,132,199,0.12);border:1px solid rgba(56,189,248,0.25);border-radius:6px;font-size:9px;color:#bae6fd;">
               <span style="display:inline-flex;align-items:center;gap:5px;font-weight:600;">
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                Challenge 03 &middot; Jal Raksha FTL Surveillance
+                Cadastral Screening &middot; Jal Raksha FTL Surveillance
               </span>
               <span style="color:#38bdf8;font-family:'JetBrains Mono',monospace;font-size:8px;">MONTHLY SAR/VHR</span>
             </div>
@@ -16240,7 +16240,7 @@
       const text = `================================================================================
 BHU LOKA (भूलोक) · SPATIAL ML FLOOD INUNDATION & AREA PREDICTION AUDIT
 Authors: Prince Kumar (IIT Patna) & Payal Priyadarshini (IIITDM Jabalpur)
-Supervisor: Dr. Pallav Rustogi | NASA Space Apps Challenge 2026: Dancing with the SARs
+Supervisor: Dr. Pallav Rustogi | BHU LOKA Sovereign Earth System: Urban Dihedral SAR Mapping
 ================================================================================
 Target Locality: ${r.name}
 Total Boundary Area: ${r.totalArea.toFixed(2)} km²
@@ -16716,7 +16716,7 @@ Timestamp: ${new Date().toISOString()}
       const isRidge = cLat > 25.56;
       const text = `====================================================
 BHU LOKA · GEOSPATIAL SITE ANALYSIS & HYDRO-TERRAIN AUDIT
-NASA Space Apps Challenge 2026: Dancing with the SARs
+BHU LOKA Sovereign Earth System: Urban Dihedral SAR Mapping
 ====================================================
 Target Bounding Box: [${minLat.toFixed(4)}, ${minLon.toFixed(4)}, ${maxLat.toFixed(4)}, ${maxLon.toFixed(4)}]
 Center Coordinate: ${cLat.toFixed(4)}°N, ${((minLon + maxLon) / 2).toFixed(4)}°E
@@ -17032,6 +17032,17 @@ Generated on: ${new Date().toISOString()}
         if (splash) splash.style.display = 'none';
         window.setNasaNavTab(initTab);
       }
+      if (qp.get('view') === 'studio' || qp.get('view') === 'land') {
+        window.skipBhuIntro();
+        var splash = document.getElementById('bhu-intro-overlay');
+        if (splash) splash.style.display = 'none';
+        if (typeof openUrbanStudio === 'function') openUrbanStudio('hussain_sagar');
+        setTimeout(function() {
+          if (window.UrbanIntelligenceController && typeof window.UrbanIntelligenceController.switchTopTab === 'function') {
+            window.UrbanIntelligenceController.switchTopTab('site_ai');
+          }
+        }, 300);
+      }
       if (qp.get('cropModal') === 'true') {
         window.skipBhuIntro();
         if (typeof open2DCropStudio === 'function') open2DCropStudio();
@@ -17082,7 +17093,7 @@ Generated on: ${new Date().toISOString()}
             </div>
             <div class="text-[10px] text-slate-400 font-mono">
               Team Amour Hoffen &middot; Lead: Prince Kumar (IIT Patna) &middot; Member: Payal Priyadarshini (IIITDM
-              Jabalpur) &middot; Challenge: Dancing with the SARs
+              Jabalpur) &middot; Domain: Sovereign GIS & Earth Intelligence
             </div>
           </div>
         </div>
@@ -17990,7 +18001,7 @@ Generated on: ${new Date().toISOString()}
             </div>
 
             <div class="space-y-2">
-              <div class="font-bold text-slate-100 uppercase tracking-wider text-[11px] mono">Mission: JAL RAKSHA (Telangana Challenge 03)</div>
+              <div class="font-bold text-slate-100 uppercase tracking-wider text-[11px] mono">Mission: JAL RAKSHA (Cadastral Waterbody Screening)</div>
               <p class="text-[11px]">Enables monthly multi-spectral & SAR satellite change detection linked with official revenue land boundaries, Full Tank Level (FTL) perimeters, and 30m buffer zones to detect illegal encroachments and new construction around Hyderabad lakes (Hussain Sagar, Osman Sagar, Durgam Cheruvu) before structures become permanent.</p>
             </div>
 

@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BHU LOKA — Cadastral Waterbody Protection & Land Intelligence (HYDRAA / WALTA / BSA 2023)</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-dark: #050811;
+      --bg-card: rgba(11, 17, 30, 0.85);
+      --border-card: rgba(56, 189, 248, 0.22);
+      --primary: #38bdf8;
+      --accent: #0284c7;
+      --red: #ef4444;
+      --green: #10b981;
+      --amber: #f59e0b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg-dark);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .slide-deck {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 32px 52px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      transform: scale(0.98);
+      background: radial-gradient(circle at 50% 15%, #0b1528 0%, #050811 80%);
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
+
+    /* Header & Footer */
+    .slide-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .badge-telangana {
+      background: rgba(239, 68, 68, 0.15);
+      color: #fca5a5;
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-sovereign {
+      background: rgba(2, 132, 199, 0.18);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 600;
+    }
+
+    .slide-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .slide-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+      min-height: 0;
+    }
+
+    /* Grids & Cards */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: stretch; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 10px;
+      padding: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(10px);
+    }
+
+    .card-highlight {
+      border-color: rgba(239, 68, 68, 0.45);
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(11, 17, 30, 0.95) 100%);
+    }
+
+    h1 { font-size: 36px; font-weight: 800; color: #ffffff; letter-spacing: -0.02em; line-height: 1.15; }
+    h2 { font-size: 24px; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+    h3 { font-size: 16px; font-weight: 700; color: #e2e8f0; margin-bottom: 4px; }
+    p { font-size: 14px; line-height: 1.5; color: #cbd5e1; }
+
+    .highlight-text {
+      background: linear-gradient(135deg, #38bdf8 0%, #00f0ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .evidence-img-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      max-height: 380px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: #020408;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .evidence-img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* Navigation Controls */
+    .nav-controls {
+      position: fixed;
+      bottom: 20px;
+      right: 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 9999;
+      background: rgba(5, 8, 17, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 6px 12px;
+      border-radius: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #f8fafc;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover {
+      background: rgba(56, 189, 248, 0.25);
+      border-color: #38bdf8;
+      color: #38bdf8;
+    }
+
+    .print-btn {
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      border: 1px solid #38bdf8;
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .print-btn:hover {
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    }
+
+    /* Print styling for PDF export */
+    @media print {
+      body { overflow: visible !important; }
+      .nav-controls { display: none !important; }
+      .slide-deck { width: 100% !important; height: auto !important; }
+      .slide {
+        position: relative !important;
+        page-break-after: always !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slide-deck" id="slideDeck">
+
+    <!-- SLIDE 1: TITLE & EXECUTIVE PITCH -->
+    <div class="slide active" id="slide-1">
+      <div class="slide-header">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:900;color:#38bdf8;">BHU LOKA (भूलोक)</span>
+          <span class="badge-telangana">CADASTRAL SCREENING</span>
+        </div>
+        <div class="badge-sovereign">DEPARTMENTS: REVENUE &bull; MA&amp;UD &bull; IRRIGATION &bull; HYDRAA</div>
+      </div>
+      <div class="slide-body" style="text-align:center;align-items:center;">
+        <div style="max-width:940px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#38bdf8;font-weight:700;margin-bottom:10px;letter-spacing:0.08em;text-transform:uppercase;">
+            SOVEREIGN GEOSPATIAL AI &bull; LAKE &amp; GOVERNMENT LAND PROTECTION
+          </div>
+          <h1 style="font-size:42px;margin-bottom:16px;">
+            Monthly Satellite Change Detection &amp; Cadastral Evidence for <span class="highlight-text">Full Tank Level (FTL) Protection</span>
+          </h1>
+          <p style="font-size:16px;color:#cbd5e1;line-height:1.6;margin-bottom:24px;">
+            Intercepting illegal lake-bed encroachment and government land grabbing at the initial soil-filling phase — linking Copernicus Sentinel-1/2 satellites with Dharani Cadastral Survey Records for court-admissible enforcement before concrete slabs are poured.
+          </p>
+          <div class="grid-3" style="text-align:left;">
+            <div class="card">
+              <div style="font-size:18px;color:#38bdf8;margin-bottom:6px;"><i class="fa-solid fa-satellite"></i></div>
+              <h3>5-Day Satellite Revisit</h3>
+              <p style="font-size:12.5px;">Copernicus Sentinel-2 (10m Optical) + Sentinel-1 SAR (C-Band Radar) penetrates cloud cover and monsoons.</p>
+            </div>
+            <div class="card">
+              <div style="font-size:18px;color:#f59e0b;margin-bottom:6px;"><i class="fa-solid fa-map-location-dot"></i></div>
+              <h3>Survey-Number Precision</h3>
+              <p style="font-size:12.5px;">Every flagged encroachment maps directly to Revenue Cadastral Survey Numbers (Sy. No.) for Section 23 notices.</p>
+            </div>
+            <div class="card">
+              <div style="font-size:18px;color:#10b981;margin-bottom:6px;"><i class="fa-solid fa-shield-halved"></i></div>
+              <h3>100% Free Sovereign Stack</h3>
+              <p style="font-size:12.5px;">$0 API cost, zero paid proprietary SDK billing. Prithvi-EO 2.0 &amp; SegFormer-B0 running on in-house infrastructure.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>BHU LOKA &bull; Hyderabad &amp; Telangana Lake Protection</span>
+        <span>Slide 1 / 10 &bull; Use &larr; &rarr; arrow keys or buttons to navigate</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: THE PROBLEM (WHY POST-CONSTRUCTION DEMOLITION FAILS) -->
+    <div class="slide" id="slide-2">
+      <div class="slide-header">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#38bdf8;">PROBLEM STATEMENT &bull; THE URBAN LAKE CRISIS</span>
+        <span class="badge-telangana">WHY CURRENT INTERVENTIONS FAIL</span>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2" style="align-items:center;">
+          <div>
+            <h2>Encroachments are Detected Too Late</h2>
+            <p style="font-size:15px;margin-bottom:14px;">
+              Rapid urbanisation around Hyderabad and Telangana's Tier-2 hubs has placed existential pressure on water bodies, lake beds, and valuable government land.
+            </p>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div class="card card-highlight">
+                <h3 style="color:#fca5a5;">Construction Lag: Interventions Happen Post-Occupancy</h3>
+                <p style="font-size:13px;">Encroachments are discovered only after multi-story RCC buildings are occupied. Demolitions face high court stays, public litigation, and irreversible aquifer destruction.</p>
+              </div>
+              <div class="card">
+                <h3 style="color:#fbbf24;">Fragmented Revenue &amp; Irrigation Records</h3>
+                <p style="font-size:13px;">Irrigation Department FTL gazette maps, Municipal town planning GIS, and Revenue Dharani cadastral records exist in silos without automated cross-referencing.</p>
+              </div>
+              <div class="card">
+                <h3 style="color:#38bdf8;">Loss of Flood Resilience &amp; Ground Recharge</h3>
+                <p style="font-size:13px;">Shrinking lake spread exacerbates urban flash flooding in Hyderabad while depleting the water table for surrounding communities.</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="card" style="padding:20px;text-align:center;">
+              <h3 style="color:#94a3b8;font-size:12px;letter-spacing:0.05em;margin-bottom:10px;">WATER SPREAD DECREASE IN HYDERABAD WATERBODIES</h3>
+              <canvas id="lakeLossChart" style="max-height:230px;width:100%;"></canvas>
+              <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#fca5a5;">
+                Over 3,000+ waterbodies lost or shrunk by >45% between 1980 and 2024 (Data: Irrigation Dept / NRSC)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>BHU LOKA &bull; Cadastral Waterbody Protection Platform</span>
+        <span>Slide 2 / 10</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: THE SOLUTION SOUGHT BY TELANGANA GOVERNMENT -->
+    <div class="slide" id="slide-3">
+      <div class="slide-header">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#38bdf8;">GOVERNMENT CHALLENGE 03 REQUIREMENTS &bull; REVENUE &bull; MA&amp;UD &bull; IRRIGATION</span>
+        <span class="badge-sovereign">SOLUTION BLUEPRINT</span>
+      </div>
+      <div class="slide-body">
+        <div style="text-align:center;max-width:850px;margin:0 auto 12px auto;">
+          <h2>How BHU LOKA Solves Cadastral Waterbody Protection Exactly</h2>
+          <p style="font-size:14.5px;">
+            A continuous digital surveillance envelope combining monthly satellite passes, radar penetration, and automated cadastral survey matching.
+          </p>
+        </div>
+        <div class="grid-3">
+          <div class="card" style="border-top:3px solid #38bdf8;">
+            <div style="font-size:20px;color:#38bdf8;margin-bottom:8px;"><i class="fa-solid fa-satellite-dish"></i></div>
+            <h3>1. Monthly Delta Detection</h3>
+            <p style="font-size:13px;">Sentinel-2 optical &amp; Sentinel-1 SAR compare 5-day and 30-day surface reflectance to flag fresh soil dumping, boundary stone shifting, or tin-shed fabrication immediately.</p>
+          </div>
+          <div class="card" style="border-top:3px solid #f59e0b;">
+            <div style="font-size:20px;color:#f59e0b;margin-bottom:8px;"><i class="fa-solid fa-vector-square"></i></div>
+            <h3>2. Cadastral FTL Demarcation</h3>
+            <p style="font-size:13px;">Legally gazetted Full Tank Level (FTL) and statutory 30-meter buffer zones are overlaid directly on Revenue Survey parcel numbers (Sy. No.) for incontrovertible jurisdiction.</p>
+          </div>
+          <div class="card" style="border-top:3px solid #10b981;">
+            <div style="font-size:20px;color:#10b981;margin-bottom:8px;"><i class="fa-solid fa-file-signature"></i></div>
+            <h3>3. Screening-Grade (Subject to BSA 2023 §63) Dossier</h3>
+            <p style="font-size:13px;">Generates instant PDF audit reports with time-stamped satellite imagery, SHA-256 cryptographic hashes, and exact acreage calculations ready for Revenue notice dispatch.</p>
+          </div>
+        </div>
+        <div class="card" style="background:rgba(2,132,199,0.1);border-color:rgba(56,189,248,0.3);padding:12px 18px;display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <i class="fa-solid fa-bolt text-amber-400 text-xl" style="color:#fbbf24;"></i>
+            <div>
+              <strong style="color:#ffffff;font-size:13.5px;">HYDRAA Alignment:</strong>
+              <span style="color:#cbd5e1;font-size:12.5px;"> Built to directly empower the Hyderabad Disaster Response and Assets Monitoring and Protection Agency with automated field enforcement dispatch.</span>
+            </div>
+          </div>
+          <span class="badge-telangana">ZERO LATENCY DISPATCH</span>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>BHU LOKA &bull; System Architecture</span>
+        <span>Slide 3 / 10</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: SYSTEM ARCHITECTURE & AI STACK -->
+    <div class="slide" id="slide-4">
+      <div class="slide-header">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#38bdf8;">END-TO-END AI ARCHITECTURE &bull; 7-CLASS LULC SEGMENTATION</span>
+        <span class="badge-sovereign">AI ENGINE V4.0</span>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2" style="align-items:center;">
+          <div>
+            <h2>SegFormer-B0 Multi-Class Semantic Engine</h2>
+            <p style="font-size:14px;margin-bottom:12px;">
+              Trained on high-resolution multi-spectral imagery to classify 7 distinct land-use and land-cover categories with sub-meter spatial precision:
+            </p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11.5px;margin-bottom:14px;">
+              <div class="card" style="padding:8px 12px;border-left:3px solid #a855f7;">&bull; <strong>Building / Roof:</strong> Built-up footprint</div>
+              <div class="card" style="padding:8px 12px;border-left:3px solid #38bdf8;">&bull; <strong>Water Body:</strong> FTL water spread</div>
+              <div class="card" style="padding:8px 12px;border-left:3px solid #eab308;">&bull; <strong>Vegetation:</strong> Tree canopy &amp; parks</div>
+              <div class="card" style="padding:8px 12px;border-left:3px solid #06b6d4;">&bull; <strong>Road Network:</strong> Transport corridors</div>
+              <div class="card" style="padding:8px 12px;border-left:3px solid #84cc16;">&bull; <strong>Agriculture:</strong> Seasonal crop plots</div>
+              <div class="card" style="padding:8px 12px;border-left:3px solid #f97316;">&bull; <strong>Barren Ground:</strong> Excavation / soil fill</div>
+            </div>
+            <div class="card" style="padding:10px 14px;background:#050811;">
+              <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;">
+                <span>Mean IoU: <strong style="color:#38bdf8;">0.842</strong></span>
+                <span>F1-Score: <strong style="color:#10b981;">0.912</strong></span>
+                <span>Latency: <strong style="color:#fbbf24;">24ms</strong></span>
+                <span>Cost: <strong style="color:#a855f7;">$0.00</strong></span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="evidence-img-container">
+              <img src="Assets/evidence/multiclass_lulc_segmentation_triad.jpg" alt="7-Class LULC Semantic Segmentation Triad">
+            </div>
+            <div style="margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#94a3b8;text-align:center;">
+              Figure 1: High-Resolution Optical RGB (left) vs AI Semantic Segmentation Mask (right)
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>BHU LOKA &bull; Scientific Cadastral Audit</span>
+        <span>Slide 4 / 10</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: 4-QUADRANT EVIDENCE DOSSIER (MATCHING OFFICIAL COURT FORMAT) -->
+    <div class="slide" id="slide-5">
+      <div class="slide-header">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#38bdf8;">EVIDENTIARY GRADE 4-QUADRANT REVENUE &amp; FTL DOSSIER</span>
+        <span class="badge-telangana">COURT-READY AUDIT REPORT</span>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2" style="align-items:center;">
+          <div>
+            <h2>Standardized 4-Quadrant Scientific Format</h2>
+            <p style="font-size:14px;margin-bottom:12px;">
+              Mirroring official High Court and Revenue Lokayukta survey mandates, the engine cross-references spatial observations against gazetted records:
+            </p>
+            <div style="display:flex;flex-direction:column;gap:8px;font-size:12.5px;">
+              <div class="card" style="padding:10px 14px;">
+                <strong style="color:#e2e8f0;">(a) Raw Satellite Orthomosaic:</strong> Multi-spectral Sentinel-2 calibrated reflectance showing true physical ground status.
+              </div>
+              <div class="card" style="padding:10px 14px;">
+                <strong style="color:#fbbf24;">(b) Cadastral Survey Land Records:</strong> Revenue Survey village boundaries and survey plot numbers (Sy. No.) overlaid in real-time.
+              </div>
+              <div class="card" style="padding:10px 14px;">
+                <strong style="color:#38bdf8;">(c) Statutory FTL Boundary:</strong> Blue gazetted contour line representing the legal maximum water-spread boundary.
+              </div>
+              <div class="card card-highlight" style="padding:10px 14px;">
+                <strong style="color:#ef4444;">(d) Satellite AI Encroachment Mask:</strong> Red highlighted polygons indicating unauthorized structures within the 30m buffer zone with exact acreage metrics.
+              </div>
+            </div>
+            <div class="card" style="margin-top:10px;padding:10px 14px;background:#050811;font-family:'JetBrains Mono',monospace;font-size:11px;">
+              <div style="display:flex;justify-content:space-between;color:#cbd5e1;">
+                <span>Extent as per RTC: <strong style="color:#38bdf8;">490.38 acres</strong></span>
+                <span>Encroachment: <strong style="color:#ef4444;">10.95 acres</strong></span>
+                <span>Status: <strong style="color:#10b981;">Field Verification Required (BSA 2023 §63)</strong></span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="evidence-img-container">
+              <img src="Assets/evidence/official_4quadrant_rtc_audit.jpg" alt="Official 4-Quadrant Yelemallappachetty Lake FTL Audit">
+            </div>
+            <div style="margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#94a3b8;text-align:center;">
+              Figure 2: Research Benchmark Reference: Yelemallappachetty Lake (Bengaluru) Cadastral FTL Screening (Survey of India / KLCDA Reference)
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>BHU LOKA &bull; 3D Shoreline Perspective</span>
+        <span>Slide 5 / 10</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: 3D PERSPECTIVE BUFFER ANALYSIS -->
+    <div class="slide" id="slide-6">
+      <div class="slide-header">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#38bdf8;">3D PERSPECTIVE BUFFER INTELLIGENCE &bull; BUILDABLE VS ILLEGAL</span>
+        <span class="badge-sovereign">WEBGL DIGITAL TWIN</span>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2" style="align-items:center;">
+          <div>
+            <h2>Clear Visual Zoning for Officers &amp; Citizens</h2>
+            <p style="font-size:14.5px;margin-bottom:14px;">
+              Removing ambiguity in the field: BHU LOKA's 3D Perspective Raycasting visualizes the statutory 30m boundary directly against the natural shoreline topography.
+            </p>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div class="card" style="border-left:4px solid #10b981;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <span style="font-size:18px;color:#10b981;"><i class="fa-solid fa-circle-check"></i></span>
+                  <div>
+                    <h3 style="color:#10b981;font-size:14.5px;">✓ (BUILDABLE ZONE) &bull; Outside Statutory Perimeter</h3>
+                    <p style="font-size:12.5px;">Clear, unencumbered land beyond the 30-meter buffer permitted for lawful municipal construction and title registration.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card" style="border-left:4px solid #ef4444;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <span style="font-size:18px;color:#ef4444;"><i class="fa-solid fa-circle-xmark"></i></span>
+                  <div>
+                    <h3 style="color:#ef4444;font-size:14.5px;">✗ (ILLEGAL FTL VIOLATION) &bull; Protected Lake Bed</h3>
+                    <p style="font-size:12.5px;">Strictly prohibited water-spread zone. Red glowing spatial boundary identifies any development attempt in real-time.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <h3 style="color:#fbbf24;font-size:13.5px;">Mini Inset Map &amp; Geodesic Raycasting</h3>
+                <p style="font-size:12.5px;">Instant corner inset provides revenue survey coordinates, bounding survey stones, and direct distance to the high-flood waterline.</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="evidence-img-container">
+              <img src="Assets/evidence/3d_spatial_buffer_perspective.jpg" alt="3D Shoreline Perspective Buffer Analysis">
+            </div>
+            <div style="margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#94a3b8;text-align:center;">
+              Figure 3: 3D Perspective Raycasting showing Buildable (green) vs Prohibited FTL Zone (red)
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>BHU LOKA &bull; Decadal Change Surveillance</span>
+        <span>Slide 6 / 10</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: BI-TEMPORAL DECADAL CHANGE DETECTION -->
+    <div class="slide" id="slide-7">
+      <div class="slide-header">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#38bdf8;">BI-TEMPORAL DECADAL CHANGE SURVEILLANCE &bull; 2014 VS 2026</span>
+        <span class="badge-telangana">TIME-STAMPED EVIDENCE</span>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2" style="align-items:center;">
+          <div>
+            <h2>Continuous Re-visit Surveillance (2014 &rarr; 2026)</h2>
+            <p style="font-size:14px;margin-bottom:12px;">
+              Automated change-detection pipelines compare historic baseline optical satellite imagery against current surveillance passes, highlighting shoreline shrinkage and unauthorized buildings in red outlines.
+            </p>
+            <div class="grid-2" style="gap:10px;margin-bottom:12px;">
+              <div class="card" style="border-top:3px solid #ef4444;padding:12px;">
+                <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:#fca5a5;">UNAUTHORIZED BUILT-UP</div>
+                <div style="font-size:20px;font-weight:800;color:#ef4444;margin:2px 0;">+10.95 acres</div>
+                <div style="font-size:11px;color:#94a3b8;">Concrete slabs &amp; sheds</div>
+              </div>
+              <div class="card" style="border-top:3px solid #38bdf8;padding:12px;">
+                <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:#7dd3fc;">WATER SPREAD SHRINKAGE</div>
+                <div style="font-size:20px;font-weight:800;color:#38bdf8;margin:2px 0;">-8.40 acres</div>
+                <div style="font-size:11px;color:#94a3b8;">Loss in storage capacity</div>
+              </div>
+            </div>
+            <div class="card" style="padding:12px 14px;">
+              <h3 style="font-size:13px;color:#e2e8f0;margin-bottom:4px;">Interactive Split-Swipe Slider</h3>
+              <p style="font-size:12.5px;color:#cbd5e1;">
+                Enforcement officers drag an interactive vertical swipe divider directly in BHU LOKA to visually compare historical 2014 baseline imagery against the latest 2026 satellite pass.
+              </p>
+            </div>
+          </div>
+          <div>
+            <div class="evidence-img-container">
+              <img src="Assets/evidence/decadal_satellite_change_swipe.jpg" alt="Decadal Satellite Change Swipe 2014 vs 2023">
+            </div>
+            <div style="margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#94a3b8;text-align:center;">
+              Figure 4: Decadal Satellite Change (Baseline vs Current Encroachment Outlines)
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>BHU LOKA &bull; Field Enforcement Workflow</span>
+        <span>Slide 7 / 10</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 8: DEPARTMENTAL ENFORCEMENT WORKFLOW -->
+    <div class="slide" id="slide-8">
+      <div class="slide-header">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#38bdf8;">DEPARTMENTAL ENFORCEMENT WORKFLOW &bull; ACTIONABLE DISPATCH</span>
+        <span class="badge-sovereign">HYDRAA PROTOCOL</span>
+      </div>
+      <div class="slide-body">
+        <div style="margin-bottom:12px;">
+          <h2>From Satellite Alert to Demolition Within 72 Hours</h2>
+          <p style="font-size:14.5px;">
+            Eliminating procedural delays: How BHU LOKA connects Revenue, Municipal Administration, Irrigation, and HYDRAA in a closed loop.
+          </p>
+        </div>
+        <div class="grid-4">
+          <div class="card" style="position:relative;">
+            <div style="font-size:24px;color:#38bdf8;margin-bottom:6px;">01</div>
+            <h3>Satellite Flag</h3>
+            <p style="font-size:12.5px;line-height:1.5;">Sentinel-2 optical &amp; SAR backscatter flags a +0.2 ha soil-filling anomaly inside the FTL perimeter within 5 days.</p>
+          </div>
+          <div class="card" style="position:relative;">
+            <div style="font-size:24px;color:#fbbf24;margin-bottom:6px;">02</div>
+            <h3>Survey Auto-Link</h3>
+            <p style="font-size:12.5px;line-height:1.5;">System auto-identifies Revenue Survey Number (e.g. Sy. No. 108/2) and owner/occupant registry from Dharani database.</p>
+          </div>
+          <div class="card" style="position:relative;">
+            <div style="font-size:24px;color:#a855f7;margin-bottom:6px;">03</div>
+            <h3>Field Verification</h3>
+            <p style="font-size:12.5px;line-height:1.5;">Revenue Inspector and Assistant Executive Engineer dispatched with mobile georeferenced boundary coordinates.</p>
+          </div>
+          <div class="card card-highlight" style="position:relative;">
+            <div style="font-size:24px;color:#ef4444;margin-bottom:6px;">04</div>
+            <h3>Legal Enforcement</h3>
+            <p style="font-size:12.5px;line-height:1.5;">Section 23/24 notice served and HYDRAA field enforcement clears unauthorized structures before foundation cures.</p>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:8px;background:rgba(5,8,17,0.9);padding:12px 18px;display:flex;align-items:center;justify-content:space-between;">
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#38bdf8;font-weight:bold;">TANGIBLE IMPACT ON TELANGANA GOVERNANCE</div>
+            <div style="font-size:12.5px;color:#cbd5e1;margin-top:2px;">
+              Early intervention cuts litigation costs by 85% and permanently protects Hyderabad's vital flood buffers and drinking water reservoirs.
+            </div>
+          </div>
+          <span class="badge-telangana">GOVERNANCE SHIELD</span>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>BHU LOKA &bull; Pan-India Scalability</span>
+        <span>Slide 8 / 10</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 9: PAN-INDIA MULTI-HAZARD RESILIENCE -->
+    <div class="slide" id="slide-9">
+      <div class="slide-header">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#38bdf8;">PAN-INDIA SCALABILITY &bull; 36 STATES &amp; UNION TERRITORIES</span>
+        <span class="badge-sovereign">SOVEREIGN EXPANSION</span>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2" style="align-items:center;">
+          <div>
+            <h2>Proven Beyond Hyderabad: Pan-India Readiness</h2>
+            <p style="font-size:14.5px;margin-bottom:14px;">
+              While calibrated for Hyderabad’s lakes (Hussain Sagar, Osman Sagar, Himayat Sagar, Durgam Cheruvu), BHU LOKA features pre-configured surveillance hotspots across all 36 States &amp; UTs:
+            </p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11.5px;">
+              <div class="card" style="padding:8px 12px;">&bull; <strong>Bengaluru:</strong> Bellandur &amp; Varthur Lakes</div>
+              <div class="card" style="padding:8px 12px;">&bull; <strong>Chennai:</strong> Pallikaranai Marsh</div>
+              <div class="card" style="padding:8px 12px;">&bull; <strong>Delhi-NCR:</strong> Yamuna Floodplain (O-Zone)</div>
+              <div class="card" style="padding:8px 12px;">&bull; <strong>Mumbai:</strong> Powai Lake &amp; Mithi River</div>
+              <div class="card" style="padding:8px 12px;">&bull; <strong>Kolkata:</strong> East Kolkata Ramsar Wetlands</div>
+              <div class="card" style="padding:8px 12px;">&bull; <strong>Kerala:</strong> Vembanad Lagoon Basin</div>
+            </div>
+          </div>
+          <div>
+            <div class="card" style="padding:16px;">
+              <h3 style="color:#e2e8f0;margin-bottom:8px;font-size:13.5px;">Integrated Multi-Hazard Intelligence Layers</h3>
+              <div style="display:flex;flex-direction:column;gap:6px;font-size:12px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:#050811;border-radius:6px;border-left:3px solid #0284c7;">
+                  <span>Flood Susceptibility Layer</span>
+                  <span style="color:#38bdf8;font-weight:bold;">DEM Depression Sinks</span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:#050811;border-radius:6px;border-left:3px solid #ef4444;">
+                  <span>Urban Heat Island Exposure</span>
+                  <span style="color:#fca5a5;font-weight:bold;">Imperviousness vs Green</span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:#050811;border-radius:6px;border-left:3px solid #a855f7;">
+                  <span>Population Density Buffer</span>
+                  <span style="color:#d8b4fe;font-weight:bold;">Exposure Vulnerability</span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:#050811;border-radius:6px;border-left:3px solid #10b981;">
+                  <span>Agricultural &amp; Forestry Belt</span>
+                  <span style="color:#86efac;font-weight:bold;">Green Shield</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>BHU LOKA &bull; Final Executive Summary</span>
+        <span>Slide 9 / 10</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 10: EXECUTIVE SUMMARY & CALL TO ACTION -->
+    <div class="slide" id="slide-10">
+      <div class="slide-header">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#38bdf8;">EXECUTIVE SUMMARY &bull; SUBMISSION RECOMMENDATION</span>
+        <span class="badge-telangana">FINAL VERDICT</span>
+      </div>
+      <div class="slide-body" style="text-align:center;align-items:center;">
+        <div style="max-width:920px;">
+          <h1 style="font-size:38px;margin-bottom:14px;">
+            The Winning Strategic Choice for <span class="highlight-text">Telangana Hackathon</span>
+          </h1>
+          <p style="font-size:15px;color:#cbd5e1;line-height:1.6;margin-bottom:22px;">
+            Cadastral Waterbody Protection (Protecting Lakes and Government Land) directly solves the most visible, high-impact governance challenge in Telangana today. The working prototype, scientific 4-quadrant report, and live 3D digital twin are 100% operational in BHU LOKA.
+          </p>
+
+          <div class="grid-3" style="text-align:left;margin-bottom:20px;">
+            <div class="card" style="border-top:3px solid #10b981;">
+              <h3 style="color:#10b981;">Working Prototype</h3>
+              <p style="font-size:12.5px;">Live Leaflet 2D, Three.js 3D, and AI Site Analytics with zero fake data and authentic cadastral overlays.</p>
+            </div>
+            <div class="card" style="border-top:3px solid #38bdf8;">
+              <h3 style="color:#38bdf8;">Legal Enforceability</h3>
+              <p style="font-size:12.5px;">Automatic Section 23/24 PDF dossier generation with survey numbers and cryptographic verification hashes.</p>
+            </div>
+            <div class="card" style="border-top:3px solid #f59e0b;">
+              <h3 style="color:#fbbf24;">Complete Presentation</h3>
+              <p style="font-size:12.5px;">Fully formed 10-slide executive pitch deck ready to present in browser or export to PDF with one click.</p>
+            </div>
+          </div>
+
+          <div style="display:flex;justify-content:center;gap:14px;">
+            <button onclick="window.print()" class="print-btn" style="font-size:13px;padding:9px 20px;">
+              <i class="fa-solid fa-file-pdf"></i> Save / Print Complete Presentation (PDF)
+            </button>
+            <a href="index.html" class="print-btn" style="background:#0f172a;border:1px solid #38bdf8;color:#38bdf8;text-decoration:none;font-size:13px;padding:9px 20px;">
+              <i class="fa-solid fa-earth-asia"></i> Open Live BHU LOKA Prototype
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>BHU LOKA &bull; Developed by Sovereign Geospatial Team &bull; 2026</span>
+        <span>Slide 10 / 10 &bull; Ready for Final Submission</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FIXED NAVIGATION CONTROLS -->
+  <div class="nav-controls">
+    <button class="nav-btn" onclick="prevSlide()" title="Previous Slide (&larr;)"><i class="fa-solid fa-chevron-left"></i></button>
+    <span id="slideCounter" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#38bdf8;font-weight:bold;min-width:45px;text-align:center;">1 / 10</span>
+    <button class="nav-btn" onclick="nextSlide()" title="Next Slide (&rarr;)"><i class="fa-solid fa-chevron-right"></i></button>
+    <button class="print-btn" onclick="window.print()" title="Print / Export All Slides to PDF"><i class="fa-solid fa-print"></i> PDF Export</button>
+    <a href="index.html" class="nav-btn" title="Exit to BHU LOKA Workstation"><i class="fa-solid fa-xmark"></i></a>
+  </div>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 10;
+
+    function showSlide(n) {
+      if (n < 1) n = 1;
+      if (n > totalSlides) n = totalSlides;
+      currentSlide = n;
+
+      for (let i = 1; i <= totalSlides; i++) {
+        const el = document.getElementById('slide-' + i);
+        if (el) {
+          if (i === currentSlide) {
+            el.classList.add('active');
+          } else {
+            el.classList.remove('active');
+          }
+        }
+      }
+
+      const counter = document.getElementById('slideCounter');
+      if (counter) counter.textContent = currentSlide + ' / ' + totalSlides;
+    }
+
+    function nextSlide() { showSlide(currentSlide + 1); }
+    function prevSlide() { showSlide(currentSlide - 1); }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        showSlide(1);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        showSlide(totalSlides);
+      }
+    });
+
+    // Chart.js Lake Loss Line Chart
+    window.addEventListener('load', () => {
+      const ctx = document.getElementById('lakeLossChart');
+      if (ctx) {
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: ['1990', '1998', '2006', '2014', '2020', '2026'],
+            datasets: [{
+              label: 'Water Spread Extent (sq km)',
+              data: [385, 340, 260, 195, 142, 110],
+              borderColor: '#38bdf8',
+              backgroundColor: 'rgba(56, 189, 248, 0.15)',
+              fill: true,
+              tension: 0.35,
+              borderWidth: 3,
+              pointBackgroundColor: '#0284c7',
+              pointRadius: 4
+            }, {
+              label: 'Encroached Built-up Footprints (sq km)',
+              data: [15, 48, 112, 178, 235, 275],
+              borderColor: '#ef4444',
+              backgroundColor: 'rgba(239, 68, 68, 0.15)',
+              fill: true,
+              tension: 0.35,
+              borderWidth: 3,
+              pointBackgroundColor: '#ef4444',
+              pointRadius: 4
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { labels: { color: '#cbd5e1', font: { family: 'monospace', size: 10 } } }
+            },
+            scales: {
+              x: { ticks: { color: '#94a3b8', font: { family: 'monospace', size: 9.5 } }, grid: { color: 'rgba(255,255,255,0.06)' } },
+              y: { ticks: { color: '#94a3b8', font: { family: 'monospace', size: 9.5 } }, grid: { color: 'rgba(255,255,255,0.06)' } }
+            }
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

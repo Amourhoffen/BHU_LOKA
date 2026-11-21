@@ -146,17 +146,19 @@
       </div>
     </div>
 
-    <!-- CLEAN SEGMENTED MAP SWITCHERS & ADDRESS JUMP -->
-    <div class="flex items-center gap-1 text-[10px] mono shrink-0 max-w-full overflow-x-auto whitespace-nowrap">
+        <!-- CLEAN SEGMENTED SOVEREIGN MAP SWITCHERS & 28 STATES / 8 UTS SELECTOR -->
+    <div class="flex items-center gap-1.5 text-[10px] mono shrink-0 max-w-full overflow-x-auto whitespace-nowrap">
       <div class="hidden xl:flex items-center gap-1 mr-1 shrink-0">
         <input id="gis-addr-input" type="text" placeholder="Place or lat, lon (Mumbai, 34.15, 77.58)..."
-          class="bg-[#070b12] border border-slate-700/80 rounded px-2 py-1 text-[10px] text-slate-100 w-32 2xl:w-48 focus:outline-none focus:border-sky-500"
+          class="bg-[#070b12] border border-slate-700/80 rounded px-2 py-1 text-[10px] text-slate-100 w-32 2xl:w-44 focus:outline-none focus:border-sky-500"
           onkeydown="if(event.key==='Enter') searchAndFlyAddress()">
         <button type="button" onclick="searchAndFlyAddress()"
           class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-2 py-1 rounded font-medium transition">
           Go
         </button>
       </div>
+
+      <!-- Basemap Toggles -->
       <button onclick="setBaseMode('sat')" id="btn-base-sat"
         class="bg-sky-500/20 text-sky-300 border border-sky-500/45 px-2 py-1 rounded font-medium transition">
         Esri Satellite
@@ -169,117 +171,77 @@
         class="bg-[#070b12] hover:bg-slate-800 text-slate-300 border border-slate-700 px-2 py-1 rounded font-medium transition">
         Dark Slate
       </button>
-      <button onclick="setBaseMode('gibs')" id="btn-base-gibs"
-        class="bg-[#070b12] hover:bg-slate-800 text-slate-300 border border-slate-700 px-2 py-1 rounded font-medium transition">
-        NASA GIBS
-      </button>
+
       <span class="h-5 w-px bg-slate-800 mx-0.5"></span>
+
+      <!-- 28 STATES & 8 UNION TERRITORIES INTERACTIVE SELECTOR -->
+      <div class="flex items-center gap-1 bg-[#070b12] border border-sky-500/40 rounded px-2 py-1 shrink-0">
+        <span class="text-sky-400 font-semibold text-[10px] flex items-center gap-1"><i class="fa-solid fa-landmark-flag"></i> State / UT:</span>
+        <select id="sovereign-state-select" onchange="selectSovereignState(this.value)"
+          class="bg-transparent text-[10.5px] text-slate-100 font-mono focus:outline-none cursor-pointer max-w-[180px]">
+          <option value="" disabled selected>-- 28 States &amp; 8 UTs --</option>
+          <optgroup label="28 Indian States" id="optgroup-states"></optgroup>
+          <optgroup label="8 Union Territories" id="optgroup-uts"></optgroup>
+        </select>
+        <button type="button" id="btn-toggle-districts" onclick="toggleCurrentStateDistricts()" title="Toggle Verified District Boundaries"
+          class="hidden px-1.5 py-0.5 bg-slate-800 hover:bg-slate-700 text-amber-300 rounded text-[9px] border border-amber-500/30">
+          Districts
+        </button>
+      </div>
+
+      <span class="h-5 w-px bg-slate-800 mx-0.5"></span>
+
+      <!-- Macro Boundaries -->
       <button onclick="focusIndiaMacro()"
-        class="bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 px-2 py-1 rounded font-medium transition">
-        India 36
+        class="bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 px-2 py-1 rounded font-medium transition"
+        title="Zoom to complete Sovereign India boundary (6.75°N to 37.10°N)">
+        Pan-India (36)
       </button>
-      <button onclick="focusBiharDistricts()"
-        class="bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 px-2 py-1 rounded font-medium transition">
-        Bihar 38
+
+      <!-- Scientific Sentinel-1 Deluge Layer (Ground Truth Benchmark) -->
+      <button onclick="activatePatnaSarDeluge()" id="btn-sar-deluge"
+        class="bg-sky-500/20 hover:bg-sky-500/30 text-sky-200 border border-sky-500/50 px-2 py-1 rounded font-semibold transition flex items-center gap-1 shadow-[0_0_8px_rgba(56,189,248,0.2)]"
+        title="Copernicus Sentinel-1 SAR Patna Deluge 2019 (Verified Empirical Ground Truth)">
+        <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse"></span>
+        <span>Sentinel-1 SAR Deluge (Patna 2019)</span>
       </button>
-      <button onclick="focusHeritageAndLand()"
-        class="bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 px-2 py-1 rounded font-medium transition">
-        Heritage &amp; Land
-      </button>
-      <button onclick="activateDancingWithSARs()" id="btn-dancing-sars"
-        class="bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/50 px-2.5 py-1 rounded font-semibold transition flex items-center gap-1.5 shadow-[0_0_10px_rgba(245,158,11,0.2)]"
-        title="Activate NASA Space Apps 2026: Dancing with the SARs (Patna Inundation Radar)">
-        <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
-        <span>Dancing with the SARs</span>
-      </button>
+
+      <!-- DEM Topography -->
       <button onclick="focusPatnaDEM()"
-        class="bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 px-2 py-1 rounded font-medium transition">
-        DEM / ULSI
+        class="bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 px-2 py-1 rounded font-medium transition"
+        title="Copernicus 30m Global DEM">
+        Copernicus DEM 30m
       </button>
-      <button id="btn-site-350" type="button" onclick="focusSiteStudio350m()"
-        class="bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/40 px-2 py-1 rounded font-medium transition">
-        Site 350m
-      </button>
+
+      <!-- Extrude to 3D -->
       <button id="btn-crop-to-3d" type="button" onclick="cropCurrentBoundsTo3D()"
-        class="bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/50 px-2.5 py-1 rounded font-semibold transition flex items-center gap-1 shadow-[0_0_10px_rgba(16,185,129,0.2)]"
-        title="Crop current Leaflet view bounding box and extrude directly into 3D DEM Terrain Workstation">
-        <span><i class="fa-solid fa-crop-simple mr-1"></i> Crop Bounds to 3D</span>
+        class="bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/50 px-2 py-1 rounded font-semibold transition flex items-center gap-1 shadow-[0_0_8px_rgba(16,185,129,0.2)]"
+        title="Crop current Leaflet view bounding box and extrude into 3D DEM Terrain Workstation">
+        <span><i class="fa-solid fa-crop-simple mr-0.5"></i> Crop to 3D</span>
       </button>
+
       <a id="link-open-3d-workstation" href="bhu_loka_cyber_dashboard.html"
         class="bg-sky-500 hover:bg-sky-400 text-slate-950 px-2.5 py-1 rounded font-semibold transition">
         3D Workstation &rarr;
       </a>
-      <a id="link-open-sar-hero" href="index.html" target="_blank"
-        class="bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/50 px-2.5 py-1 rounded font-semibold transition flex items-center gap-1"
-        title="Open NASA Space Apps 2026: Dancing with the SARs Hero Application">
-        <i class="fa-solid fa-satellite mr-1"></i> SAR Hero (NASA 2026) &rarr;
-      </a>
-    </div>
-  </header>
 
-  <!-- MAIN NAVIGATION SECTION: INDIA LOCATION & STREET INTELLIGENCE (MODULES A-F) -->
-  <nav id="india-intel-main-nav" aria-label="INDIA LOCATION &amp; STREET INTELLIGENCE"
-    class="h-9 shrink-0 bg-[#090d13] border-b border-slate-800 px-2 flex items-center justify-between gap-1 mono text-[10px] overflow-x-auto">
-    <div class="flex flex-nowrap items-center gap-1 min-w-0 shrink-0">
-      <button type="button" id="btn-india-intel-nav"
-        onclick="window.BhuLokaIndiaIntel && window.BhuLokaIndiaIntel.toggleWorkspace('A')"
-        class="px-2 py-0.5 rounded bg-sky-500/15 hover:bg-sky-500/25 text-sky-300 border border-sky-500/35 font-semibold transition-colors cursor-pointer shrink-0 whitespace-nowrap">
-        INDIA LOCATION &amp; STREET INTELLIGENCE
-      </button>
-      <button type="button" title="A. Administrative Location Explorer"
-        onclick="window.BhuLokaIndiaIntel && window.BhuLokaIndiaIntel.openTab('A')"
-        class="px-1.5 py-0.5 rounded bg-[#0b1019] hover:bg-slate-800 text-slate-200 border border-slate-700/80 transition-colors cursor-pointer shrink-0 whitespace-nowrap">
-        A. Admin Explorer
-      </button>
-      <button type="button" title="B. Land Parcel &amp; Plot Search"
-        onclick="window.BhuLokaIndiaIntel && window.BhuLokaIndiaIntel.openTab('B')"
-        class="px-1.5 py-0.5 rounded bg-[#0b1019] hover:bg-slate-800 text-slate-200 border border-slate-700/80 transition-colors cursor-pointer shrink-0 whitespace-nowrap">
-        B. Land Parcel
-      </button>
-      <button type="button" title="C. Police Station Jurisdiction"
-        onclick="window.BhuLokaIndiaIntel && window.BhuLokaIndiaIntel.openTab('C')"
-        class="px-1.5 py-0.5 rounded bg-[#0b1019] hover:bg-slate-800 text-slate-200 border border-slate-700/80 transition-colors cursor-pointer shrink-0 whitespace-nowrap">
-        C. Police PS
-      </button>
-      <button type="button" title="D. Street CCTV Intelligence"
-        onclick="window.BhuLokaIndiaIntel && window.BhuLokaIndiaIntel.openTab('D')"
-        class="px-1.5 py-0.5 rounded bg-[#0b1019] hover:bg-slate-800 text-slate-200 border border-slate-700/80 transition-colors cursor-pointer shrink-0 whitespace-nowrap">
-        D. Street CCTV
-      </button>
-      <button type="button" title="E. Local News Intelligence"
-        onclick="window.BhuLokaIndiaIntel && window.BhuLokaIndiaIntel.openTab('E')"
-        class="px-1.5 py-0.5 rounded bg-[#0b1019] hover:bg-slate-800 text-slate-200 border border-slate-700/80 transition-colors cursor-pointer shrink-0 whitespace-nowrap">
-        E. Local News
-      </button>
-      <button type="button" title="F. Traffic &amp; Emergency Intelligence"
-        onclick="window.BhuLokaIndiaIntel && window.BhuLokaIndiaIntel.openTab('F')"
-        class="px-1.5 py-0.5 rounded bg-[#0b1019] hover:bg-slate-800 text-slate-200 border border-slate-700/80 transition-colors cursor-pointer shrink-0 whitespace-nowrap">
-        F. Traffic &amp; Emergency
-      </button>
-      <button type="button" id="btn-agri-intel-nav" title="Precision Agriculture Intelligence"
-        onclick="window.BhuLokaAgri && window.BhuLokaAgri.toggleWorkspace('MAP')"
-        class="px-2 py-0.5 rounded bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/35 font-semibold transition-colors cursor-pointer shrink-0 whitespace-nowrap">
-        AGRICULTURE
-      </button>
-    </div>
-
-    <div class="flex items-center gap-1 shrink-0 ml-auto">
+      <!-- Map Display Controls -->
       <button type="button" id="btn-2d-legend-toggle" onclick="toggleGisLegend()" title="Show/Hide Map Legend"
-        class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700 font-medium transition cursor-pointer shrink-0">
+        class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700 font-medium transition cursor-pointer shrink-0">
         Legend
       </button>
       <button type="button" id="btn-2d-theater" onclick="toggle2DTheaterMode()" aria-pressed="false"
         title="Expand Map (Hide header &amp; legend card)"
-        class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-sky-500/15 hover:bg-sky-500/25 text-sky-300 border border-sky-500/40 font-semibold transition cursor-pointer shrink-0">
+        class="inline-flex items-center gap-1 px-2 py-1 rounded bg-sky-500/15 hover:bg-sky-500/25 text-sky-300 border border-sky-500/40 font-semibold transition cursor-pointer shrink-0">
         <span id="btn-2d-theater-label">Expand</span>
       </button>
       <button type="button" id="btn-2d-fullscreen" onclick="toggle2DFullscreen()" aria-pressed="false"
         title="Toggle Browser Fullscreen (ESC to exit)"
-        class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold transition cursor-pointer shrink-0">
+        class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold transition cursor-pointer shrink-0">
         <span id="btn-2d-fullscreen-label">Fullscreen</span>
       </button>
     </div>
-  </nav>
+  </header>
 
   <!-- DOCKED 2D CARTOGRAPHIC WORKSTATION -->
   <main id="gis-workstation-main" class="flex-1 min-h-0 flex overflow-hidden relative">
@@ -291,15 +253,43 @@
 
     <!-- CENTER STAGE: LEAFLET INTERACTIVE MAP + COMPACT LEGEND -->
     <div id="gis-center-stage" class="flex-1 min-w-0 relative flex flex-col h-full overflow-hidden">
-      <!-- DANCING WITH THE SARS DEDICATED RADAR BAR (FLOATING TOP DOCK) -->
+      <!-- SOVEREIGN STATE & UNION TERRITORY CARD (DYNAMIC) -->
+      <div id="state-sovereign-card"
+        class="hidden absolute top-3 left-4 bg-[#090e18]/95 border border-sky-500/50 rounded-xl p-3 shadow-2xl backdrop-blur-md z-[980] max-w-sm w-full font-mono text-[11px] text-slate-200">
+        <div class="flex items-center justify-between border-b border-slate-700/80 pb-2 mb-2">
+          <div>
+            <div id="ssc-name-vernacular" class="text-xs font-bold text-sky-400">राज्य / State</div>
+            <div id="ssc-name-en" class="text-sm font-extrabold text-slate-100">State Name</div>
+          </div>
+          <div class="flex items-center gap-1">
+            <span id="ssc-unit-type" class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-500/40 text-[9px] font-semibold">State</span>
+            <button type="button" onclick="closeSovereignStateCard()" class="text-slate-400 hover:text-rose-400 p-1 font-bold text-xs" title="Close Card">✕</button>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-2 text-[10px] text-slate-300 mb-2.5">
+          <div>Capital: <strong id="ssc-capital" class="text-slate-100">--</strong></div>
+          <div>Districts: <strong id="ssc-districts" class="text-emerald-300">--</strong></div>
+          <div>Centroid: <span id="ssc-centroid" class="text-sky-300">--</span></div>
+          <div>State Code: <span id="ssc-code" class="text-amber-300">--</span></div>
+        </div>
+        <div class="text-[9.5px] text-slate-400 border-t border-slate-800 pt-2 mb-2">
+          <div class="font-semibold text-slate-300 mb-0.5">Administrative Hierarchy:</div>
+          <div id="ssc-hierarchy" class="text-slate-400 leading-tight">Country → State → District → Tehsil → Block → Panchayat → Village</div>
+        </div>
+        <div class="text-[8.5px] text-slate-500 border-t border-slate-800/80 pt-1.5 flex items-center justify-between">
+          <span>Survey of India · data.gov.in · GADM v4.1</span>
+          <button type="button" onclick="focusIndiaMacro()" class="text-sky-400 hover:underline">Reset Pan-India</button>
+        </div>
+      </div>
+
+      <!-- SENTINEL-1 SAR DELUGE (GROUND TRUTH) DEDICATED RADAR BAR (FLOATING TOP DOCK) -->
       <div id="sar-floating-dock"
         class="hidden absolute top-3 left-1/2 -translate-x-1/2 bg-[#090e18]/95 border border-sky-500/40 rounded-lg p-2 shadow-2xl backdrop-blur-md flex flex-wrap items-center gap-2 z-[990] max-w-[96vw]">
         <div class="flex items-center gap-1.5 pr-2 border-r border-slate-700/80">
           <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-          <span class="font-bold text-slate-100 text-xs tracking-wide">DANCING WITH THE SARS</span>
+          <span class="font-bold text-slate-100 text-xs tracking-wide">SENTINEL-1 SAR DELUGE (GROUND TRUTH)</span>
           <span
-            class="px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 font-mono text-[9px] border border-amber-500/40">NASA
-            2026</span>
+            class="px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 font-mono text-[9px] border border-amber-500/40">10m GRD</span>
         </div>
 
         <!-- Layer switcher -->
@@ -621,6 +611,9 @@
       },
       onEachFeature: (feat, layer) => {
         layer.bindTooltip(`${feat.properties.name} (${feat.properties.type || 'State/UT'})`, { sticky: true });
+        layer.on('click', () => {
+          selectSovereignState(feat.properties.name);
+        });
       }
     }).addTo(map) : L.layerGroup();
 
@@ -1062,6 +1055,220 @@
       }
     })();
 
+    
+    // ==========================================
+    // ALL 28 STATES + 8 UNION TERRITORIES SOVEREIGN ENGINE
+    // ==========================================
+    const STATE_CAPITALS = {
+      "Andaman and Nicobar Islands": "Port Blair",
+      "Andhra Pradesh": "Amaravati",
+      "Arunachal Pradesh": "Itanagar",
+      "Assam": "Dispur",
+      "Bihar": "Patna",
+      "Chandigarh": "Chandigarh",
+      "Chhattisgarh": "Raipur",
+      "Dadra and Nagar Haveli and Daman and Diu": "Daman",
+      "Delhi": "New Delhi",
+      "Goa": "Panaji",
+      "Gujarat": "Gandhinagar",
+      "Haryana": "Chandigarh",
+      "Himachal Pradesh": "Shimla",
+      "Jammu and Kashmir": "Srinagar / Jammu",
+      "Jharkhand": "Ranchi",
+      "Karnataka": "Bengaluru",
+      "Kerala": "Thiruvananthapuram",
+      "Ladakh": "Leh",
+      "Lakshadweep": "Kavaratti",
+      "Madhya Pradesh": "Bhopal",
+      "Maharashtra": "Mumbai",
+      "Manipur": "Imphal",
+      "Meghalaya": "Shillong",
+      "Mizoram": "Aizawl",
+      "Nagaland": "Kohima",
+      "Odisha": "Bhubaneswar",
+      "Puducherry": "Puducherry",
+      "Punjab": "Chandigarh",
+      "Rajasthan": "Jaipur",
+      "Sikkim": "Gangtok",
+      "Tamil Nadu": "Chennai",
+      "Telangana": "Hyderabad",
+      "Tripura": "Agartala",
+      "Uttar Pradesh": "Lucknow",
+      "Uttarakhand": "Dehradun",
+      "West Bengal": "Kolkata"
+    };
+
+    let activeSelectedStateLayer = null;
+    let activeSelectedStateName = null;
+
+    function populateSovereignStateDropdown() {
+      const optStates = document.getElementById('optgroup-states');
+      const optUts = document.getElementById('optgroup-uts');
+      if (!optStates || !optUts) return;
+
+      if (!window.BHU_LOKA_INDIA_INDEX || !window.BHU_LOKA_INDIA_INDEX.states) return;
+
+      optStates.innerHTML = '';
+      optUts.innerHTML = '';
+
+      const list = window.BHU_LOKA_INDIA_INDEX.states.slice();
+      list.sort((a, b) => a.name_en.localeCompare(b.name_en));
+
+      list.forEach(u => {
+        const opt = document.createElement('option');
+        opt.value = u.name_en;
+        const vern = u.local_name ? ` · ${u.local_name}` : '';
+        opt.textContent = `${u.name_en}${vern}`;
+        if (u.unit_type === 'State') {
+          optStates.appendChild(opt);
+        } else {
+          optUts.appendChild(opt);
+        }
+      });
+    }
+
+    function highlightSovereignStatePolygon(stateName) {
+      if (activeSelectedStateLayer) {
+        map.removeLayer(activeSelectedStateLayer);
+        activeSelectedStateLayer = null;
+      }
+      if (!window.BHU_LOKA_REAL_DATA || !window.BHU_LOKA_REAL_DATA.india_states) return;
+
+      const feat = window.BHU_LOKA_REAL_DATA.india_states.features.find(
+        f => f.properties && f.properties.name && f.properties.name.toLowerCase() === stateName.toLowerCase()
+      );
+      if (!feat) return;
+
+      activeSelectedStateLayer = L.geoJSON(feat, {
+        style: {
+          color: '#38bdf8',
+          weight: 3.2,
+          fillColor: '#38bdf8',
+          fillOpacity: 0.22,
+          dashArray: null
+        }
+      }).addTo(map);
+    }
+
+    function selectSovereignState(stateName) {
+      if (!stateName) return;
+      activeSelectedStateName = stateName;
+      const sel = document.getElementById('sovereign-state-select');
+      if (sel && sel.value !== stateName) sel.value = stateName;
+
+      let unit = null;
+      if (window.BHU_LOKA_INDIA_INDEX && window.BHU_LOKA_INDIA_INDEX.states) {
+        unit = window.BHU_LOKA_INDIA_INDEX.states.find(s => s.name_en.toLowerCase() === stateName.toLowerCase());
+      }
+
+      if (unit) {
+        if (unit.bbox && unit.bbox.length === 4) {
+          map.flyToBounds([[unit.bbox[1], unit.bbox[0]], [unit.bbox[3], unit.bbox[2]]], { padding: [36, 36], duration: 1.2 });
+        } else if (unit.centroid) {
+          map.flyTo([unit.centroid[0], unit.centroid[1]], 7.5, { duration: 1.0 });
+        }
+        displaySovereignStateCard(unit);
+      }
+
+      highlightSovereignStatePolygon(stateName);
+
+      const distBtn = document.getElementById('btn-toggle-districts');
+      if (distBtn) {
+        if (stateName.toLowerCase() === 'bihar') {
+          distBtn.classList.remove('hidden');
+          distBtn.textContent = 'Toggle 38 Districts';
+        } else {
+          distBtn.classList.add('hidden');
+        }
+      }
+
+      const legTitle = document.getElementById('legend-title');
+      if (legTitle) {
+        legTitle.innerText = `${stateName.toUpperCase()} · SOVEREIGN BOUNDARY`;
+      }
+    }
+
+    function displaySovereignStateCard(unit) {
+      const card = document.getElementById('state-sovereign-card');
+      if (!card) return;
+
+      const capital = STATE_CAPITALS[unit.name_en] || 'Verified Administrative Seat';
+      document.getElementById('ssc-name-en').innerText = unit.name_en;
+      document.getElementById('ssc-name-vernacular').innerText = unit.local_name ? `${unit.local_name} (${unit.unit_type})` : unit.unit_type;
+      document.getElementById('ssc-unit-type').innerText = unit.unit_type;
+      document.getElementById('ssc-capital').innerText = capital;
+      document.getElementById('ssc-code').innerText = unit.state_code || unit.unit_id || 'IND';
+
+      let distStr = '--';
+      if (unit.hierarchy && unit.hierarchy.hierarchy_note) {
+        const m = unit.hierarchy.hierarchy_note.match(/(\d+)\s+Districts/i);
+        if (m) distStr = `${m[1]} Districts`;
+        else distStr = unit.hierarchy.hierarchy_note.split(',')[0];
+      } else if (unit.name_en === 'Bihar') {
+        distStr = '38 Districts';
+      }
+      document.getElementById('ssc-districts').innerText = distStr;
+
+      if (unit.centroid) {
+        document.getElementById('ssc-centroid').innerText = `${unit.centroid[0].toFixed(2)}°N, ${unit.centroid[1].toFixed(2)}°E`;
+      }
+
+      if (unit.hierarchy && unit.hierarchy.levels) {
+        const labels = unit.hierarchy.levels.slice(1, 6).map(l => l.key.replace(/_/g, ' '));
+        document.getElementById('ssc-hierarchy').innerText = labels.join(' → ');
+      } else {
+        document.getElementById('ssc-hierarchy').innerText = 'State → District → Sub-Division / Tehsil → Block → Panchayat / Ward';
+      }
+
+      card.classList.remove('hidden');
+    }
+
+    function closeSovereignStateCard() {
+      const card = document.getElementById('state-sovereign-card');
+      if (card) card.classList.add('hidden');
+      if (activeSelectedStateLayer) {
+        map.removeLayer(activeSelectedStateLayer);
+        activeSelectedStateLayer = null;
+      }
+      const sel = document.getElementById('sovereign-state-select');
+      if (sel) sel.value = '';
+      activeSelectedStateName = null;
+    }
+
+    let districtsLayerVisible = false;
+    function toggleCurrentStateDistricts() {
+      if (activeSelectedStateName && activeSelectedStateName.toLowerCase() === 'bihar') {
+        if (!districtsLayerVisible) {
+          map.addLayer(biharDistrictsLayer);
+          districtsLayerVisible = true;
+          document.getElementById('btn-toggle-districts').classList.add('bg-amber-500/30');
+        } else {
+          map.removeLayer(biharDistrictsLayer);
+          districtsLayerVisible = false;
+          document.getElementById('btn-toggle-districts').classList.remove('bg-amber-500/30');
+        }
+      }
+    }
+
+    function activatePatnaSarDeluge() {
+      sarModeActive = true;
+      map.flyTo([25.61, 85.14], 12.5, { duration: 1.0 });
+
+      const dock = document.getElementById('sar-floating-dock');
+      if (dock) dock.classList.remove('hidden');
+      const hud = document.getElementById('sar-pixel-hud');
+      if (hud) hud.classList.remove('hidden');
+
+      setSarDisplayMode('post');
+      if (!map.hasLayer(sarGainLayer)) map.addLayer(sarGainLayer);
+      if (!map.hasLayer(sarPermWaterLayer)) map.addLayer(sarPermWaterLayer);
+
+      const legTitle = document.getElementById('legend-title');
+      if (legTitle) legTitle.innerText = "COPERNICUS SENTINEL-1 SAR · PATNA DELUGE (GROUND TRUTH)";
+    }
+    window.activatePatnaSarDeluge = activatePatnaSarDeluge;
+    window.activateDancingWithSARs = activatePatnaSarDeluge; // backward compatibility
+
     function focusIndiaMacro() {
       map.flyToBounds([[6.5, 67.8], [37.4, 97.6]], { padding: [16, 16], duration: 1.0 });
       map.addLayer(indiaCountryLayer);
@@ -1087,7 +1294,7 @@
     }
 
     // ==========================================
-    // DANCING WITH THE SARS (NASA SPACE APPS 2026) 2D RADAR ENGINE
+    // SENTINEL-1 SAR DELUGE (GROUND TRUTH) (NASA SPACE APPS 2026) 2D RADAR ENGINE
     // ==========================================
     const SAR_PATNA_BBOX = [[25.45, 84.85], [25.75, 85.35]];
     const sarPreLayer = L.imageOverlay('Data/08_Processed_Outputs/sar_pre_flood_20190923.png', SAR_PATNA_BBOX, { opacity: 1.0 });
@@ -1116,7 +1323,7 @@
 
       // Update legend title
       const legTitle = document.getElementById('legend-title');
-      if (legTitle) legTitle.innerText = "DANCING WITH THE SARS · PATNA DELUGE";
+      if (legTitle) legTitle.innerText = "SENTINEL-1 SAR DELUGE (GROUND TRUTH) · PATNA DELUGE";
     }
 
     function closeDancingWithSARs() {
@@ -1253,6 +1460,14 @@
 
     try {
       const qp = new URLSearchParams(window.location.search);
+      if (qp.get('state')) {
+        setTimeout(function() {
+          selectSovereignState(qp.get('state'));
+          if (qp.get('districts') === '1') {
+            toggleCurrentStateDistricts();
+          }
+        }, 200);
+      }
       if (qp.get('sar') === '1' || qp.get('mode') === 'sar') {
         setTimeout(activateDancingWithSARs, 500);
       }
@@ -1274,10 +1489,13 @@
 
       if (!satPayload || !satPayload.live_online) {
         try {
+          const ctrl2 = new AbortController();
+          const tid2 = setTimeout(() => ctrl2.abort(), 1200);
           const [issRes, resRes] = await Promise.all([
-            fetch('https://api.wheretheiss.at/v1/satellites/25544'),
-            fetch('https://celestrak.org/NORAD/elements/gp.php?GROUP=resource&FORMAT=tle')
+            fetch('https://api.wheretheiss.at/v1/satellites/25544', { signal: ctrl2.signal }).catch(() => ({ ok: false })),
+            fetch('https://celestrak.org/NORAD/elements/gp.php?GROUP=resource&FORMAT=tle', { signal: ctrl2.signal }).catch(() => ({ ok: false }))
           ]);
+          clearTimeout(tid2);
           const sats = [];
           let issLive = null;
           if (issRes.ok) {
