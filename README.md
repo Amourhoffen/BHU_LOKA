@@ -102,21 +102,21 @@ End-to-end radiometric calibration, $5 \times 5$ speckle filtering, logarithmic 
 ### Figure 3: 5-Fold Spatial Block Cross-Validation (SBCV) Architecture
 Dividing the study domain into 5 geographically contiguous spatial folds to guarantee zero spatial data leakage between training and testing blocks ($N = 60,000$ spatial samples).
 
-![Figure 3: Spatial Block Cross Validation Architecture](Research_Paper_Workflow/plots/Figure3_Spatial_Block_CrossValidation_Architecture.png)
+![Figure 3: Spatial Block Cross Validation Architecture](Research_Paper_Workflow/plots/Figure3_Spatial_Block_Cross_Validation_Architecture.png)
 
 ---
 
 ### Figure 4: Explainable AI (Tree-SHAP) Feature Attributions
 Quantitative SHAP contribution weights demonstrating that Sentinel-1 radar change ($\Delta\sigma^0$) ($38\%$) and Copernicus GLO-30 DEM elevation ($31\%$) govern inundation physics, supported by depression sinks ($17\%$) and slope gradient ($9\%$).
 
-![Figure 4: SHAP Feature Importance Attribution](Research_Paper_Workflow/plots/Figure4_SHAP_Feature_Importance_Attribution.png)
+![Figure 4: SHAP Feature Importance Attribution](Research_Paper_Workflow/plots/Figure4_Explainable_AI_Feature_Attributions.png)
 
 ---
 
 ### Figure 5: Empirical Earth Observation Validation
 Spatial intersection between verified Sentinel-1 flood extents, depression sinks, and municipal ward infrastructure.
 
-![Figure 5: Empirical Inundation Validation](Research_Paper_Workflow/plots/Figure5_Empirical_Inundation_Validation.png)
+![Figure 5: Empirical Inundation Validation](Research_Paper_Workflow/plots/Figure_Empirical_EO_Validation.png)
 
 ---
 
