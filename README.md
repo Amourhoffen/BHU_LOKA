@@ -251,6 +251,14 @@ $$A = \frac{R^2}{2} \left| \sum_{i=1}^{n} (\lambda_{i+1} - \lambda_i) \cdot (\si
 * **Pixel Backscatter HUD:** Real-time on-hover radar backscatter readout displaying calibrated $\sigma^0_{\text{dB}}$ values and flood probabilities.
 * **QGIS/ArcGIS Export:** One-click export of observed inundation and parcel vectors in standard GeoJSON format.
 
+<div align="center">
+
+<img width="1200" alt="2D Workspace: Understand the Lake and Its Surroundings in One View" src="Assets/images/bhu_loka_2d_workspace_overview.jpg" />
+
+*Figure: 2D GIS Workspace integrating Satellite Basemaps, Water & FTL Boundary Layers, Building Footprints, Road Corridors, Green Spaces, and Dynamic AOI Selection.*
+
+</div>
+
 ### Module 3: Multi-Hazard Location Intelligence Explorer
 * **8 Sovereign Disaster Categories:** Pluvial/Fluvial Flood, Extreme Heatwave, Landslide Vulnerability, Active Forest Fire, Agricultural Drought, Tropical Cyclone, Glacial Lake Outburst Flood (GLOF), and Severe Air Pollution.
 * **Zero Synthetic Data Policy:** Strict fail-closed architecture ensures that whenever a real-time sensor feed is offline, the UI clearly displays `UNAVAILABLE` rather than generating fabricated data.
@@ -268,6 +276,14 @@ $$A = \frac{R^2}{2} \left| \sum_{i=1}^{n} (\lambda_{i+1} - \lambda_i) \cdot (\si
 * **Bi-Temporal Decadal Satellite Swipe:** Interactive before/after split-screen swipe comparing historical baseline imagery against modern satellite passes.
 * **3D Shoreline Perspective:** WebGL-rendered 3D elevation buffer visualizing building elevations relative to lake bed contours.
 * **Bharatiya Sakshya Adhiniyam, 2023 (BSA §63) Compliance:** Generates official government-ready electronic evidence dossiers containing cryptographic SHA-256 hashes, acquisition timestamps, sensor calibration levels, and statutory technical screening disclaimers. Completely eliminates speculative automated demolition claims in favor of objective `POTENTIAL SPATIAL OVERLAP — REQUIRES OFFICIAL VERIFICATION`.
+
+<div align="center">
+
+<img width="1200" alt="3D Exploded Layers & Multi-Source Analysis Board" src="Assets/images/bhu_loka_3d_exploded_layers_analysis.jpg" />
+
+*Figure: Exploded 3D Layer-by-Layer Visualization (Terrain DEM, Contours, Flood/SAR, Land Use, Water, Greenery, Roads, Buildings, Infrastructure) alongside the Multi-Source Analysis Board for granular spatial screening.*
+
+</div>
 
 ### Module 5: Farmer Intelligence & Mandi Market Engine (`Pipelines/bhu_loka_agri_engine.py`)
 * **Complete Land Intelligence for Farmers:**
