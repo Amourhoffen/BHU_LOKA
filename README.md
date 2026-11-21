@@ -420,7 +420,7 @@ If you utilize BHU LOKA, its empirical SAR methodology, spatial machine learning
 ---
 
 <img width="1460" height="768" alt="Sovereign GIS Platform View" src="https://github.com/user-attachments/assets/b737f31c-cf9e-43ab-bbef-486fec786c2f" />
-<img width="1460" height="815" alt="3D Workstation View" src="https://github.com/user-attachments/assets/8c9d59bf-795d-4151-ba35-2368b9b251bc" />
+
 
 ## ⚖️ License & Open-Source Sovereignty
 
