@@ -20,16 +20,22 @@
   --color-warning: #FFB340;
   --color-danger: #FF453A;
 
-  /* Backward Compatibility Aliases */
+  /* Backward Compatibility Aliases & Workstation Tokens */
+  --bg-void: #000000;
   --bg-canvas: #09090B;
   --bg-panel: rgba(21, 23, 27, 0.85);
   --bg-inset: #101114;
+  --border-hairline: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.18);
   --text-primary: #F5F5F7;
   --text-secondary: #A1A1AA;
   --text-muted: #71717A;
   --accent-primary: #8AB4F8;
   --accent-bright: #8AB4F8;
   --border-glass: rgba(255, 255, 255, 0.10);
+  --state-verified: #30D158;
+  --state-warning: #FFB340;
+  --state-unavailable: #71717A;
 
   /* 2. Typography Font Stacks */
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -208,3 +214,437 @@ body.bhu-workstation {
   line-height: 1.4;
   color: var(--color-text-muted);
 }
+
+/* Minimum 10px readability floor rule across telemetry and compact badges */
+.text-telemetry-floor, .mono-badge-floor, .bhu-floor-label {
+  font-size: 10px !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   BHU LOKA UNSLOP + UI-UX-PRO-MAX DESIGN SYSTEM (PASSES 1 TO 7)
+   Minimalism + Glassmorphism + Zero-Overlap Responsive Spec
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── PASS 1 & 5: SPACING, TYPOGRAPHY & ZERO OVERLAP SANITIZATION ── */
+.bhu-workstation, .bhu-workstation * {
+  box-sizing: border-box;
+}
+
+.bhu-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bhu-no-overlap {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+
+/* Minimum 44px touch targets on mobile touch devices */
+@media (pointer: coarse) {
+  button, .apple-btn, .us3-btn, .qgis-btn, .bhu-drawer-link, .bhu-drawer-item {
+    min-height: 44px;
+  }
+}
+
+/* ── PASS 2 & 7: GLASSMORPHISM TOKENS ── */
+.bhu-glass-card {
+  background: rgba(18, 21, 26, 0.75) !important;
+  backdrop-filter: blur(16px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(150%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45) !important;
+}
+
+.bhu-glass-card-elevated {
+  background: rgba(22, 27, 34, 0.85) !important;
+  backdrop-filter: blur(20px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 16px 48px 0 rgba(0, 0, 0, 0.55) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   1. HAZARD THEME (DARK + RED)
+   Multi-Hazard Explorer, Seismic, Deluge & 3D SAR Disaster Viewer
+   ══════════════════════════════════════════════════════════════════════════ */
+#left-hazards-view,
+.theme-hazard,
+[data-domain="hazard"],
+#bhu-crop-3d-modal .crop-studio-shell,
+.hazard-panel {
+  background: linear-gradient(160deg, #0e0508 0%, #060204 100%) !important;
+  border-color: rgba(239, 68, 68, 0.25) !important;
+}
+
+#left-hazards-view .bhu-hz-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 9px;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.22);
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+#left-hazards-view .bhu-hz-chip:hover {
+  background: rgba(239, 68, 68, 0.18);
+  border-color: rgba(239, 68, 68, 0.45);
+  color: #fee2e2;
+  transform: translateY(-1px);
+}
+
+#left-hazards-view .bhu-hz-chip.active {
+  background: rgba(239, 68, 68, 0.28) !important;
+  border-color: rgba(239, 68, 68, 0.7) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  box-shadow: 0 0 14px rgba(239, 68, 68, 0.4) !important;
+}
+
+/* Hazard Risk Metrics & Threat Levels */
+.hazard-card-critical {
+  background: rgba(239, 68, 68, 0.12) !important;
+  border: 1px solid rgba(239, 68, 68, 0.35) !important;
+  color: #fecaca !important;
+}
+.hazard-badge-high {
+  background: rgba(239, 68, 68, 0.2) !important;
+  border: 1px solid rgba(239, 68, 68, 0.5) !important;
+  color: #fca5a5 !important;
+  font-family: var(--font-mono);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   2. AI ASSISTANT THEME (DARK + CHATGPT UI)
+   Dual-Agent RAG Assistant, History Modal & Prompt Composer
+   ══════════════════════════════════════════════════════════════════════════ */
+#left-ai-view,
+.theme-ai,
+[data-domain="ai"],
+#bhu-chat-history-modal .chat-history-shell {
+  background: #0d1117 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ChatGPT Styled Chat Feed & Message Bubbles */
+#chat-feed {
+  background: #0d1117 !important;
+  padding: 6px 2px;
+}
+
+/* Assistant Message Card (Clean obsidian slate, quiet chrome) */
+#chat-feed .panel-inset,
+.chatgpt-msg-assistant {
+  background: rgba(22, 27, 34, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  padding: 12px 14px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+  color: #e6edf3 !important;
+  line-height: 1.55 !important;
+}
+
+/* User Message Card */
+.chatgpt-msg-user {
+  background: #1f2937 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  padding: 10px 14px !important;
+  color: #f9fafb !important;
+  margin-left: auto !important;
+  max-width: 85% !important;
+}
+
+/* ChatGPT Style Role Selector Chips */
+#cyber-role-selector .bhu-role-chip {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  color: #94a3b8 !important;
+  border-radius: 8px !important;
+  padding: 4px 10px !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  transition: all 0.16s ease !important;
+}
+
+#cyber-role-selector .bhu-role-chip:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #f1f5f9 !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+#cyber-role-selector .bhu-role-chip.active {
+  background: rgba(16, 163, 127, 0.16) !important;
+  border-color: rgba(16, 163, 127, 0.5) !important;
+  color: #34d399 !important;
+  font-weight: 600 !important;
+  box-shadow: 0 0 10px rgba(16, 163, 127, 0.25) !important;
+}
+
+/* ChatGPT Style Input Composer */
+#left-ai-view input#user-input {
+  background: #161b22 !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: 12px !important;
+  padding: 10px 14px !important;
+  color: #f8fafc !important;
+  font-size: 12.5px !important;
+  line-height: 1.4 !important;
+  transition: all 0.16s ease !important;
+}
+
+#left-ai-view input#user-input:focus {
+  border-color: #10a37f !important;
+  box-shadow: 0 0 0 2px rgba(16, 163, 127, 0.25) !important;
+  outline: none !important;
+}
+
+#left-ai-view button[onclick*="submitQuery"] {
+  background: #10a37f !important;
+  color: #ffffff !important;
+  border-radius: 10px !important;
+  border: none !important;
+  font-weight: 600 !important;
+  padding: 0 14px !important;
+  transition: all 0.16s ease !important;
+}
+
+#left-ai-view button[onclick*="submitQuery"]:hover {
+  background: #0d8a6a !important;
+  box-shadow: 0 0 12px rgba(16, 163, 127, 0.35) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   3. LAND STUDIO THEME (DARK + MINIMALISM + BLUE)
+   Urban Cadastral Studio, QGIS Web GIS Workspace & Hologram Switcher
+   ══════════════════════════════════════════════════════════════════════════ */
+#bhu-urban-studio-modal,
+.theme-land-studio,
+[data-domain="land-studio"],
+#us3-modal-shell {
+  background: rgba(3, 7, 18, 0.96) !important;
+}
+
+#us3-modal-shell {
+  border: 1px solid rgba(56, 189, 248, 0.25) !important;
+  backdrop-filter: blur(24px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(56, 189, 248, 0.15) !important;
+}
+
+.us3-topbar {
+  background: rgba(6, 14, 28, 0.9) !important;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.2) !important;
+}
+
+.us3-card {
+  background: rgba(7, 16, 32, 0.75) !important;
+  border: 1px solid rgba(56, 189, 248, 0.18) !important;
+  backdrop-filter: blur(14px) !important;
+  border-radius: 10px !important;
+}
+
+.us3-btn, .qgis-btn {
+  background: rgba(56, 189, 248, 0.08) !important;
+  border: 1px solid rgba(56, 189, 248, 0.24) !important;
+  color: #bae6fd !important;
+  border-radius: 6px !important;
+  transition: all 0.16s ease !important;
+}
+
+.us3-btn:hover, .qgis-btn:hover {
+  background: rgba(56, 189, 248, 0.18) !important;
+  border-color: rgba(56, 189, 248, 0.5) !important;
+  color: #38bdf8 !important;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.25) !important;
+}
+
+.us3-tab.active, .qgis-tab.active {
+  background: rgba(56, 189, 248, 0.2) !important;
+  border-color: rgba(56, 189, 248, 0.55) !important;
+  color: #38bdf8 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.3) !important;
+}
+
+.qgis-ribbon {
+  background: rgba(5, 11, 23, 0.95) !important;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.22) !important;
+}
+
+.qgis-bottom-dock {
+  background: #030712 !important;
+  border-top: 1px solid rgba(56, 189, 248, 0.3) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   4. FARMER THEME (DARK + GREEN)
+   Precision Agriculture, STAC Indices & Mandi Market Intelligence
+   ══════════════════════════════════════════════════════════════════════════ */
+#right-agri-view,
+.theme-agri,
+[data-domain="farmer"],
+#bhu-agri-dock-slot,
+.bhu-ag-workspace {
+  background: linear-gradient(160deg, #05160d 0%, #020b06 100%) !important;
+  border-color: rgba(16, 185, 129, 0.25) !important;
+}
+
+.bhu-ag-card {
+  background: linear-gradient(145deg, rgba(6, 26, 15, 0.85) 0%, rgba(3, 14, 8, 0.95) 100%) !important;
+  border: 1px solid rgba(16, 185, 129, 0.22) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(16, 185, 129, 0.15) !important;
+}
+
+.bhu-ag-tab {
+  background: rgba(16, 185, 129, 0.06) !important;
+  border: 1px solid rgba(16, 185, 129, 0.18) !important;
+  color: #a7f3d0 !important;
+  border-radius: 8px !important;
+  transition: all 0.16s ease !important;
+}
+
+.bhu-ag-tab:hover {
+  background: rgba(16, 185, 129, 0.15) !important;
+  border-color: rgba(16, 185, 129, 0.4) !important;
+  color: #6ee7b7 !important;
+}
+
+.bhu-ag-tab.active {
+  background: rgba(16, 185, 129, 0.25) !important;
+  border-color: rgba(16, 185, 129, 0.65) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.35) !important;
+}
+
+.bhu-ag-btn {
+  background: #059669 !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  transition: all 0.16s ease !important;
+}
+
+.bhu-ag-btn:hover {
+  background: #10b981 !important;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.4) !important;
+}
+
+.bhu-ag-badge {
+  background: rgba(16, 185, 129, 0.15) !important;
+  border: 1px solid rgba(16, 185, 129, 0.35) !important;
+  color: #34d399 !important;
+  font-family: var(--font-mono) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   5. HEALTH THEME (FEEL SAFE + CALM DARK THEME)
+   Public Health, Spatial Epidemiology & Levee Safe Shelters
+   ══════════════════════════════════════════════════════════════════════════ */
+#right-health-view,
+.theme-health,
+[data-domain="health"],
+.bhu-worker-suite {
+  background: linear-gradient(160deg, #03121c 0%, #01090f 100%) !important;
+  border-color: rgba(20, 184, 166, 0.25) !important;
+}
+
+#right-health-view .bhu-nasa-glass,
+.bhu-worker-card {
+  background: linear-gradient(145deg, rgba(4, 22, 34, 0.85) 0%, rgba(2, 12, 19, 0.95) 100%) !important;
+  border: 1px solid rgba(20, 184, 166, 0.22) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(20, 184, 166, 0.15) !important;
+}
+
+.bhu-organ-btn {
+  background: rgba(20, 184, 166, 0.08) !important;
+  border: 1px solid rgba(20, 184, 166, 0.2) !important;
+  color: #99f6e4 !important;
+  border-radius: 8px !important;
+  transition: all 0.16s ease !important;
+}
+
+.bhu-organ-btn:hover {
+  background: rgba(20, 184, 166, 0.18) !important;
+  border-color: rgba(20, 184, 166, 0.45) !important;
+  color: #5eead4 !important;
+}
+
+.bhu-organ-btn.active {
+  background: rgba(20, 184, 166, 0.26) !important;
+  border-color: rgba(20, 184, 166, 0.65) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  box-shadow: 0 0 14px rgba(20, 184, 166, 0.35) !important;
+}
+
+.bhu-worker-badge, .bhu-safe-shelter-pill {
+  background: rgba(20, 184, 166, 0.14) !important;
+  border: 1px solid rgba(20, 184, 166, 0.35) !important;
+  color: #5eead4 !important;
+  font-family: var(--font-mono) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   6. RESPONSIVE MOBILE & DESKTOP ANTI-OVERLAP RULES
+   ══════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Prevent side rails from colliding on mobile */
+  #left-rail, #right-rail {
+    max-width: 100vw !important;
+    width: 100% !important;
+  }
+  
+  /* Full screen AI on mobile without overlap */
+  .ai-mobile-fullscreen {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 9998 !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+  }
+  
+  /* Top Nav scrollable without clipping */
+  #bhu-top-nav {
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+  }
+  
+  /* Bottom Nav touch target safety */
+  #bhu-mobile-bottom-nav {
+    padding-bottom: max(10px, env(safe-area-inset-bottom)) !important;
+  }
+}
+
+/* Accessibility: Reduced Motion Token Clamping */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
