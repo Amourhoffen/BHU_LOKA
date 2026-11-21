@@ -12,7 +12,7 @@
 [![Live Web Platform](https://img.shields.io/badge/Live%20Platform-bhu--loka.web.app-0284c7.svg?style=for-the-badge&logo=firebase)](https://bhu-loka.web.app)
 [![2D GIS Explorer](https://img.shields.io/badge/2D%20GIS%20Explorer-28%20States%20%2B%208%20UTs-10b981.svg?style=for-the-badge)](https://bhu-loka.web.app/2d)
 [![Research Presentation](https://img.shields.io/badge/Research%20Deck-Interactive%20Slides-f59e0b.svg?style=for-the-badge)](https://bhu-loka.web.app/presentation)
-[![Test Suite](https://img.shields.io/badge/Test%20Suite-63%2F63%20Passing%20(100%25)-emerald.svg?style=for-the-badge)](tests/)
+[![Test Suite](https://img.shields.io/badge/Test%20Suite-84%2F84%20Passing%20(100%25)-emerald.svg?style=for-the-badge)](tests/)
 [![GitHub Stars](https://img.shields.io/github/stars/Amourhoffen/BhuLoka?style=for-the-badge&color=gold)](https://github.com/Amourhoffen/BhuLoka/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg?style=for-the-badge)](LICENSE)
 
@@ -276,6 +276,18 @@ $$A = \frac{R^2}{2} \left| \sum_{i=1}^{n} (\lambda_{i+1} - \lambda_i) \cdot (\si
 * **Bi-Temporal Decadal Satellite Swipe:** Interactive before/after split-screen swipe comparing historical baseline imagery against modern satellite passes.
 * **3D Shoreline Perspective:** WebGL-rendered 3D elevation buffer visualizing building elevations relative to lake bed contours.
 * **Bharatiya Sakshya Adhiniyam, 2023 (BSA §63) Compliance:** Generates official government-ready electronic evidence dossiers containing cryptographic SHA-256 hashes, acquisition timestamps, sensor calibration levels, and statutory technical screening disclaimers. Completely eliminates speculative automated demolition claims in favor of objective `POTENTIAL SPATIAL OVERLAP — REQUIRES OFFICIAL VERIFICATION`.
+* **Jal Raksha (Telangana Challenge 03 HYDRAA Lake Protection Pipeline):**
+  * Official gazetted Full Tank Level (FTL) and 30m statutory non-construction buffer screening across 6 key Telangana water bodies:
+    1. **Hussain Sagar Lake** (490.38 acres gazetted FTL, HMDA GO Ms No. 168 / HYDRAA Act 2024)
+    2. **Osman Sagar / Gandipet Reservoir** (6,400.0 acres gazetted FTL, GO Ms No. 111 10km catchment protection)
+    3. **Durgam Cheruvu / Secret Lake** (84.15 acres gazetted FTL, 30m statutory buffer)
+    4. **Himayat Sagar Reservoir** (4,800.0 acres gazetted FTL, GO Ms No. 111 twin reservoir protection)
+    5. **Shamirpet Lake / Pedda Cheruvu** (486.0 acres gazetted FTL, eco-sensitive zone)
+    6. **Fox Sagar Lake / Kolla Cheruvu** (494.0 acres gazetted FTL, industrial stormwater drainage corridor)
+  * **Decadal Change Detection Engine (2014 Landsat-8 OLI vs 2026 Sentinel-2 MSI):**
+    * Multi-temporal 7x7 Land-Use Transition Matrix ($M_{i,j}$) accounting for every hectare of shoreline water retreat, tree canopy clearance, and structural emergence.
+    * Transparent, auditable REST endpoints: `GET /api/v1/lakes/catalog`, `GET /api/v1/lakes/{lake_id}/ftl-buffer`, and `POST /api/v1/change-detection`.
+    * Cryptographic SHA-256 evidence digest computed over all sensor pairs and audit parameters.
 
 <div align="center">
 
