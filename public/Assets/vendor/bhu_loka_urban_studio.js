@@ -3138,6 +3138,11 @@
       if (mapEl && !this.leaflet && typeof L !== 'undefined') {
         this.leaflet = new UrbanLeafletEngine(mapEl, (bounds, gj) => this.extractForBounds(bounds, this.activeSite.name, gj));
         this._bindSearch();
+        if (window.qgisWorkspace && this.leaflet && this.leaflet.map) {
+          window.qgisWorkspace.init(this.leaflet.map);
+        }
+      } else if (this.leaflet && this.leaflet.map && window.qgisWorkspace && !window.qgisWorkspace.map) {
+        window.qgisWorkspace.init(this.leaflet.map);
       }
       this.switchTab('2d');
       if (window.innerWidth < 768) {
@@ -3329,6 +3334,37 @@
 
       // Automatically augment dataset with Google Open Buildings + Microsoft Global ML Footprints
       await this.applyDensityMode(this.visionMode || 'strict');
+
+      // Synchronize extracted layers with QGIS Layer Tree & Attribute Table
+      if (window.qgisWorkspace && this.leaflet && this.leaflet.map) {
+        if (!window.qgisWorkspace.map) window.qgisWorkspace.init(this.leaflet.map);
+        if (this.dataset.buckets.buildings && this.dataset.buckets.buildings.length > 0) {
+          window.qgisWorkspace.addLayer('Buildings (OSM + ML)', {
+            type: 'FeatureCollection',
+            features: this.dataset.buckets.buildings
+          }, { color: '#f8fafc', fillColor: '#cbd5e1', fillOpacity: 0.35, source: 'OSM + Vision ML' });
+        }
+        if (this.dataset.buckets.roads && this.dataset.buckets.roads.length > 0) {
+          window.qgisWorkspace.addLayer('Road Networks', {
+            type: 'FeatureCollection',
+            features: this.dataset.buckets.roads
+          }, { color: '#38bdf8', fillColor: '#38bdf8', weight: 2.2, source: 'OSM Highway Network' });
+        }
+        if (this.dataset.buckets.water && this.dataset.buckets.water.length > 0) {
+          window.qgisWorkspace.addLayer('Water Bodies & FTL', {
+            type: 'FeatureCollection',
+            features: this.dataset.buckets.water
+          }, { color: '#0284c7', fillColor: '#38bdf8', fillOpacity: 0.5, source: 'OSM Water + WALTA 2002' });
+        }
+        if (this.dataset.buckets.greenery && this.dataset.buckets.greenery.length > 0) {
+          window.qgisWorkspace.addLayer('Vegetation & Canopy', {
+            type: 'FeatureCollection',
+            features: this.dataset.buckets.greenery
+          }, { color: '#059669', fillColor: '#34d399', fillOpacity: 0.4, source: 'OSM Landcover' });
+        }
+        window.qgisWorkspace.refreshLayerTree();
+        window.qgisWorkspace.refreshAttributeTable();
+      }
 
       if (window.BhuLokaLayerRegistry) window.BhuLokaLayerRegistry.setAOI({ name: this.dataset.metrics.locationName, bounds, center: this.dataset.center });
       const m = this.dataset.metrics;
