@@ -243,12 +243,12 @@
       if (rightPanel && !document.getElementById('qgis-rtab-bar')) {
         const tabHeader = document.createElement('div');
         tabHeader.id = 'qgis-rtab-bar';
-        tabHeader.style.cssText = 'display:flex;align-items:center;gap:3px;border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:6px;margin-bottom:6px;flex-shrink:0;';
+        tabHeader.style.cssText = 'display:flex;align-items:center;gap:3px;border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:6px;margin-bottom:6px;flex-shrink:0;white-space:nowrap;';
         tabHeader.innerHTML = `
-          <button type="button" id="qgis-rtab-toolbox" class="qgis-tab active" onclick="window.qgisWorkspace.switchRightTab('toolbox')" style="flex:1;text-align:center;">Toolbox</button>
-          <button type="button" id="qgis-rtab-inspector" class="qgis-tab" onclick="window.qgisWorkspace.switchRightTab('inspector')" style="flex:1;text-align:center;">Inspector</button>
-          <button type="button" id="qgis-rtab-symbology" class="qgis-tab" onclick="window.qgisWorkspace.switchRightTab('symbology')" style="flex:1;text-align:center;">Symbology</button>
-          <button type="button" id="qgis-rtab-metrics" class="qgis-tab" onclick="window.qgisWorkspace.switchRightTab('metrics')" style="flex:1;text-align:center;">3D Metrics</button>
+          <button type="button" id="qgis-rtab-toolbox" class="qgis-tab active" onclick="window.qgisWorkspace.switchRightTab('toolbox')" style="flex:1;text-align:center;padding:4px 3px;font-size:10px;white-space:nowrap;">Toolbox</button>
+          <button type="button" id="qgis-rtab-inspector" class="qgis-tab" onclick="window.qgisWorkspace.switchRightTab('inspector')" style="flex:1;text-align:center;padding:4px 3px;font-size:10px;white-space:nowrap;">Inspector</button>
+          <button type="button" id="qgis-rtab-symbology" class="qgis-tab" onclick="window.qgisWorkspace.switchRightTab('symbology')" style="flex:1;text-align:center;padding:4px 3px;font-size:10px;white-space:nowrap;">Symbology</button>
+          <button type="button" id="qgis-rtab-metrics" class="qgis-tab" onclick="window.qgisWorkspace.switchRightTab('metrics')" style="flex:1;text-align:center;padding:4px 3px;font-size:10px;white-space:nowrap;">Metrics</button>
         `;
         rightPanel.prepend(tabHeader);
 

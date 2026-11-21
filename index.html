@@ -6251,14 +6251,46 @@
         </div>
 
         <div style="display:flex;align-items:center;gap:5px;flex-shrink:0;">
-          <div class="hidden xl:flex" style="align-items:center;gap:4px;background:#050811;padding:3px;border-radius:7px;border:1px solid rgba(255,255,255,0.07);">
-            <button type="button" onclick="setUrbanStudioSite('hussain_sagar')" class="us3-btn" style="border-color:rgba(56,189,248,0.4);color:#38bdf8;">Hussain Sagar</button>
-            <button type="button" onclick="setUrbanStudioSite('rajendra_nagar')" class="us3-btn">Rajendra Nagar</button>
-            <button type="button" onclick="setUrbanStudioSite('gandhi_maidan')" class="us3-btn">Gandhi Maidan</button>
-            <button type="button" onclick="setUrbanStudioSite('iit_bihta')" class="us3-btn">IIT Patna</button>
-            <button type="button" onclick="setUrbanStudioSite('varanasi_ghats')" class="us3-btn">Varanasi</button>
-            <button type="button" onclick="setUrbanStudioSite('hampi_valley')" class="us3-btn">Hampi</button>
+          <!-- REAL WORKING TOPBAR SEARCH BAR -->
+          <div style="position:relative;display:flex;align-items:center;min-width:240px;max-width:380px;flex:1;">
+            <div style="display:flex;align-items:center;width:100%;background:#060a14;border:1px solid rgba(56,189,248,0.4);border-radius:8px;padding:3px 8px;gap:6px;box-shadow:0 2px 10px rgba(0,0,0,0.5);">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input id="us3-topbar-search-input" type="text"
+                placeholder="Search lake, city, place, lat/lon (e.g. Durgam Cheruvu, Patna)..."
+                style="flex:1;background:transparent;border:none;color:#f1f5f9;font-size:11px;font-family:'JetBrains Mono',monospace;outline:none;"
+                autocomplete="off" spellcheck="false"
+                onkeydown="if(event.key==='Enter') window.executeUrbanStudioSearch()">
+              <button type="button" onclick="window.executeUrbanStudioSearch()"
+                class="us3-btn us3-btn-primary"
+                style="padding:2px 8px;font-size:10px;height:22px;border-radius:5px;flex-shrink:0;">
+                Search
+              </button>
+            </div>
+            <!-- Live Autocomplete Dropdown -->
+            <div id="us3-topbar-search-dropdown" style="display:none;position:absolute;top:100%;left:0;right:0;margin-top:4px;background:#0b111e;border:1px solid rgba(56,189,248,0.4);border-radius:8px;box-shadow:0 12px 36px rgba(0,0,0,0.9);max-height:280px;overflow-y:auto;z-index:10050;"></div>
           </div>
+
+          <!-- Quick Lake Selector Dropdown -->
+          <select id="us3-topbar-lake-select" onchange="if(this.value) setUrbanStudioSite(this.value)"
+            class="hidden md:inline-flex us3-btn"
+            style="background:#090e1a;color:#38bdf8;border-color:rgba(56,189,248,0.4);font-size:10px;padding:3px 8px;border-radius:6px;outline:none;cursor:pointer;">
+            <option value="">Quick Presets...</option>
+            <optgroup label="Telangana Jal Raksha Lakes">
+              <option value="hussain_sagar" selected>Hussain Sagar Lake, Hyd</option>
+              <option value="durgam_cheruvu">Durgam Cheruvu, Hyd</option>
+              <option value="osman_sagar">Osman Sagar (Gandipet)</option>
+              <option value="himayat_sagar">Himayat Sagar</option>
+              <option value="shamirpet_lake">Shamirpet Lake</option>
+              <option value="fox_sagar">Fox Sagar</option>
+            </optgroup>
+            <optgroup label="National Reference Sites">
+              <option value="rajendra_nagar">Rajendra Nagar, Patna</option>
+              <option value="gandhi_maidan">Gandhi Maidan, Patna</option>
+              <option value="iit_bihta">IIT Patna Campus</option>
+              <option value="varanasi_ghats">Varanasi Ghats</option>
+              <option value="hampi_valley">Hampi Valley</option>
+            </optgroup>
+          </select>
           <a href="CHALLENGE_03_HYDRAA_LAKE_PROTECTION_PITCH_DECK.html" target="_blank" class="us3-btn" style="border-color:rgba(168,85,247,0.5);color:#d8b4fe;background:rgba(168,85,247,0.15);font-weight:700;display:inline-flex;align-items:center;gap:5px;" title="Open Challenge 03 Pitch Deck (HYDRAA)">
             <span>📊 Pitch Deck</span>
           </a>
@@ -6514,7 +6546,7 @@
 
         <!-- COLUMN 3: COLLAPSIBLE RIGHT INSPECTOR -->
         <div id="us3-right-panel" class="us3-right">
-          <div id="us3-card-extrusion" class="us3-card" style="display:flex;flex-direction:column;gap:6px;">
+          <div id="us3-card-extrusion" class="us3-card" style="display:none;flex-direction:column;gap:6px;">
             <div class="us3-sec-title">
               <span>3D Extrusion &amp; Scale</span>
               <span style="font-weight:400;color:#64748b;">Meters</span>
@@ -6540,7 +6572,7 @@
             </div>
           </div>
 
-          <div id="us3-card-metrics" class="us3-card">
+          <div id="us3-card-metrics" class="us3-card" style="display:none;">
             <div class="us3-sec-title" style="margin-bottom:6px;">
               <span>Computed AOI Metrics</span>
               <span class="us3-badge us3-st-DERIVED">LIVE CALC</span>
@@ -6582,7 +6614,7 @@
             </div>
           </div>
 
-          <div id="us3-card-composite" class="us3-card" style="display:flex;flex-direction:column;gap:7px;">
+          <div id="us3-card-composite" class="us3-card" style="display:none;flex-direction:column;gap:7px;">
             <div class="us3-sec-title">
               <span>Composite Index</span>
               <span id="urban-composite-grade" class="text-[9px] font-bold text-slate-400">PENDING</span>
@@ -6636,7 +6668,7 @@
             </div>
           </div>
 
-          <div id="us3-card-export" class="us3-card" style="display:flex;flex-direction:column;gap:6px;">
+          <div id="us3-card-export" class="us3-card" style="display:none;flex-direction:column;gap:6px;">
             <div class="us3-sec-title"><span>Export Centre</span></div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
               <button type="button" onclick="exportUrbanGeoJSON('all')" class="us3-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> GeoJSON</button>

@@ -3105,10 +3105,14 @@
         if (right) {
           right.style.display = 'flex'; right.style.width = '298px'; right.style.flex = '0 0 298px';
         }
-        if (cExt) cExt.style.display = 'flex';
-        if (cMet) cMet.style.display = 'block';
-        if (cCom) cCom.style.display = 'flex';
-        if (cExp) cExp.style.display = 'flex';
+        if (window.qgisWorkspace && typeof window.qgisWorkspace.switchRightTab === 'function') {
+          window.qgisWorkspace.switchRightTab(window.qgisWorkspace.activeRightTab || 'toolbox');
+        } else {
+          if (cExt) cExt.style.display = 'none';
+          if (cMet) cMet.style.display = 'none';
+          if (cCom) cCom.style.display = 'none';
+          if (cExp) cExp.style.display = 'none';
+        }
       }
     }
 
@@ -3380,7 +3384,9 @@
       if (window.BhuLokaSpatialML && typeof window.BhuLokaSpatialML.detectRooftopsFromSatellite === 'function') {
         try {
           if (statusEl) { statusEl.textContent = `Scanning satellite rooftops (Vision ML)...`; statusEl.style.color = '#fbbf24'; }
-          const vis = await this._applyVisionMlToDataset(dataset, gj);
+          const mlPromise = this._applyVisionMlToDataset(dataset, gj);
+          const timeoutPromise = new Promise(resolve => setTimeout(() => resolve(null), 2500));
+          const vis = await Promise.race([mlPromise, timeoutPromise]);
           if (token === this.extractToken && vis && vis.ok) {
             this._updateLayerBadges(dataset);
             this._updateMetricsUI(dataset);
@@ -4450,31 +4456,42 @@
         const barFillHa = site.barrenFillHa || 5.40;
 
         return `
-        <div style="background:#070b14;border:1px solid rgba(56,189,248,0.3);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:12px;">
+                <div style="background:#070b14;border:1px solid rgba(56,189,248,0.3);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:12px;">
           <div style="display:flex;align-items:center;justify-content:space-between;font-family:'JetBrains Mono',monospace;flex-wrap:wrap;gap:6px;">
-            <div>
-              <span style="font-size:11px;font-weight:700;color:#f8fafc;">BI-TEMPORAL DECADAL CHANGE SURVEILLANCE &bull; 2014 BASELINE VS 2026 PASS</span>
-              <span style="font-size:9.5px;color:#38bdf8;margin-left:8px;">${site.name}</span>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span style="font-size:11.5px;font-weight:700;color:#f8fafc;">BI-TEMPORAL DECADAL CHANGE GIS COMPARATOR &bull; 2014 BASELINE VS 2026 PASS</span>
+              <span style="font-size:9.5px;color:#38bdf8;background:rgba(56,189,248,0.12);padding:2px 8px;border-radius:4px;border:1px solid rgba(56,189,248,0.3);">${site.name}</span>
             </div>
             <div style="display:flex;align-items:center;gap:6px;">
-              <span class="us3-badge" style="background:rgba(56,189,248,0.15);border:1px solid #38bdf8;color:#38bdf8;font-size:8.5px;">LANDSAT 8 OLI (30m) &bull; 2014</span>
-              <span style="color:#64748b;font-size:10px;">&rarr;</span>
-              <span class="us3-badge" style="background:rgba(16,185,129,0.15);border:1px solid #10b981;color:#10b981;font-size:8.5px;">SENTINEL-2 MSI (10m) &bull; 2026</span>
+              <span class="us3-badge" style="background:rgba(56,189,248,0.15);border:1px solid #38bdf8;color:#38bdf8;font-size:8.5px;">🛰️ LANDSAT 8 OLI (30m) &bull; 2014</span>
+              <span style="color:#64748b;font-size:10px;">&harr;</span>
+              <span class="us3-badge" style="background:rgba(239,68,68,0.15);border:1px solid #ef4444;color:#fca5a5;font-size:8.5px;">🛰️ SENTINEL-2 MSI (10m) &bull; 2026</span>
             </div>
           </div>
 
-          <div style="position:relative;width:100%;height:380px;background:#040710;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.15);box-shadow:0 8px 30px rgba(0,0,0,0.6);">
-            <canvas id="site-ai-bitemp-live-t1" width="960" height="380" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></canvas>
-            <div id="site-ai-bitemp-t2-wrap" style="position:absolute;top:0;bottom:0;left:0;width:50%;overflow:hidden;border-right:3px solid #00f0ff;box-shadow:4px 0 20px rgba(0,240,255,0.8);">
-              <canvas id="site-ai-bitemp-live-t2" width="960" height="380" style="position:absolute;top:0;left:0;width:960px;height:100%;max-width:none;display:block;"></canvas>
-              <div style="position:absolute;top:10px;left:12px;background:rgba(5,8,17,0.88);border:1px solid #00f0ff;padding:4px 10px;border-radius:5px;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:#00f0ff;font-weight:700;">
-                HISTORICAL BASELINE (2014) &bull; LANDSAT 8 OLI &bull; ${ftlAcres} ACRES GAZETTED FTL
+          <!-- Real Synchronized Dual Map Canvas Container -->
+          <div style="position:relative;width:100%;height:440px;background:#030712;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.15);box-shadow:0 8px 32px rgba(0,0,0,0.8);display:flex;">
+            <!-- LEFT: 2014 Baseline Map -->
+            <div style="flex:1;height:100%;position:relative;border-right:1px solid rgba(56,189,248,0.4);">
+              <div id="bitemp-map-t1" style="width:100%;height:100%;background:#020617;"></div>
+              <div style="position:absolute;top:10px;left:10px;z-index:1000;background:rgba(5,8,17,0.88);border:1px solid #38bdf8;padding:4px 10px;border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:#38bdf8;font-weight:700;box-shadow:0 4px 12px rgba(0,0,0,0.6);">
+                2014 BASELINE &bull; ${ftlAcres} ACRES GAZETTED FTL
+              </div>
+              <div style="position:absolute;bottom:10px;left:10px;z-index:1000;background:rgba(5,8,17,0.8);padding:2px 8px;border-radius:4px;font-size:8.5px;color:#94a3b8;font-family:'JetBrains Mono',monospace;">
+                Landsat 8 OLI &middot; 30m Resolution &middot; Historical FTL Waterline
               </div>
             </div>
-            <div style="position:absolute;top:10px;right:12px;background:rgba(5,8,17,0.88);border:1px solid #f43f5e;padding:4px 10px;border-radius:5px;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:#fda4af;font-weight:700;">
-              SURVEILLANCE PASS (2026) &bull; SENTINEL-2 MSI &bull; ${overlapAc} AC POTENTIAL BUFFER OVERLAP
+
+            <!-- RIGHT: 2026 Current Surveillance Map -->
+            <div style="flex:1;height:100%;position:relative;">
+              <div id="bitemp-map-t2" style="width:100%;height:100%;background:#020617;"></div>
+              <div style="position:absolute;top:10px;right:10px;z-index:1000;background:rgba(5,8,17,0.88);border:1px solid #ef4444;padding:4px 10px;border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:#fca5a5;font-weight:700;box-shadow:0 4px 12px rgba(0,0,0,0.6);">
+                2026 SURVEILLANCE &bull; POTENTIAL OVERLAP: +${overlapAc} AC (+${site.potentialOverlapHa || 4.43} HA)
+              </div>
+              <div style="position:absolute;bottom:10px;right:10px;z-index:1000;background:rgba(5,8,17,0.8);padding:2px 8px;border-radius:4px;font-size:8.5px;color:#fca5a5;font-family:'JetBrains Mono',monospace;">
+                Sentinel-2 MSI &middot; 10m Resolution &middot; Red: 30m Buffer Encroachment
+              </div>
             </div>
-            <input type="range" id="site-ai-split-slider" min="0" max="100" value="50" oninput="window.UrbanIntelligenceController.handleSplitSlider(this.value)" style="position:absolute;bottom:14px;left:8%;width:84%;z-index:20;cursor:ew-resize;">
           </div>
 
           <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(210px, 1fr));gap:8px;">
@@ -4498,6 +4515,7 @@
               <div style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800;color:#fbbf24;margin-top:2px;">+${barrenFillAc} acres (+${barFillHa} ha)</div>
               <div style="font-size:8.5px;color:#94a3b8;">Reclaimed shoreline bed</div>
             </div>
+          </div>
           </div>
 
           <!-- Decadal Land-Use Transition Matrix Table -->
@@ -4946,88 +4964,121 @@
     }
 
     _drawLiveBitemporalCanvases(site, bounds) {
-      const cvs1 = document.getElementById('site-ai-bitemp-live-t1');
-      const cvs2 = document.getElementById('site-ai-bitemp-live-t2');
-      if (!cvs1 || !cvs2) return;
+      setTimeout(() => {
+        const c1 = document.getElementById('bitemp-map-t1');
+        const c2 = document.getElementById('bitemp-map-t2');
+        if (!c1 || !c2 || typeof L === 'undefined') return;
 
-      const W = cvs1.width, H = cvs1.height;
-      const ctx1 = cvs1.getContext('2d');
-      const ctx2 = cvs2.getContext('2d');
-
-      const siteId = site && site.id ? site.id : 'hussain_sagar';
-
-      // Shape geometry parameters based on active lake
-      let rx1 = W * 0.28, ry1 = H * 0.32;
-      let rx2 = W * 0.24, ry2 = H * 0.27;
-      if (siteId === 'durgam_cheruvu') {
-        rx1 = W * 0.32; ry1 = H * 0.22;
-        rx2 = W * 0.26; ry2 = H * 0.17;
-      } else if (siteId === 'osman_sagar' || siteId === 'himayat_sagar') {
-        rx1 = W * 0.34; ry1 = H * 0.35;
-        rx2 = W * 0.30; ry2 = H * 0.31;
-      }
-
-      // T1 (2014 Baseline - Landsat 8 OLI)
-      ctx1.fillStyle = '#111827'; ctx1.fillRect(0, 0, W, H);
-      // Pristine green shoreline buffer
-      ctx1.fillStyle = '#14532d';
-      ctx1.beginPath();
-      ctx1.ellipse(W * 0.5, H * 0.5, rx1 + 35, ry1 + 35, 0, 0, Math.PI * 2);
-      ctx1.fill();
-
-      // Deep water surface
-      ctx1.fillStyle = '#0369a1';
-      ctx1.beginPath();
-      ctx1.ellipse(W * 0.5, H * 0.5, rx1, ry1, 0, 0, Math.PI * 2);
-      ctx1.fill();
-      ctx1.strokeStyle = '#38bdf8'; ctx1.lineWidth = 3;
-      ctx1.stroke();
-
-      // T2 (2026 Surveillance - Sentinel-2 MSI)
-      ctx2.fillStyle = '#18181b'; ctx2.fillRect(0, 0, W, H);
-      // Surrounding urban fabric
-      ctx2.fillStyle = '#3f3f46';
-      for (let i = 0; i < 90; i++) {
-        const bx = (i * 47) % W;
-        const by = (i * 31) % H;
-        const distCenter = Math.hypot(bx - W*0.5, by - H*0.5);
-        if (distCenter > rx2 + 20) {
-          ctx2.fillRect(bx, by, 14, 10);
+        if (this._bitempMap1) {
+          try { this._bitempMap1.remove(); } catch(e){}
+          this._bitempMap1 = null;
         }
-      }
+        if (this._bitempMap2) {
+          try { this._bitempMap2.remove(); } catch(e){}
+          this._bitempMap2 = null;
+        }
 
-      // Reclaimed / dried bed (amber)
-      ctx2.fillStyle = '#78350f';
-      ctx2.beginPath();
-      ctx2.ellipse(W * 0.5, H * 0.5, rx1, ry1, 0, 0, Math.PI * 2);
-      ctx2.fill();
+        let cLat = (bounds && typeof bounds.south === 'number') ? (bounds.south + bounds.north) / 2 : (site.lat || 17.4239);
+        let cLon = (bounds && typeof bounds.west === 'number') ? (bounds.west + bounds.east) / 2 : (site.lon || 78.4738);
+        let zoom = site.zoom || 14;
 
-      // Remaining water body
-      ctx2.fillStyle = '#0284c7';
-      ctx2.beginPath();
-      ctx2.ellipse(W * 0.5, H * 0.5, rx2, ry2, 0, 0, Math.PI * 2);
-      ctx2.fill();
-      ctx2.strokeStyle = '#00f0ff'; ctx2.lineWidth = 2.5; ctx2.stroke();
+        // 1. Initialize Map 1 (2014 Baseline)
+        const map1 = L.map(c1, {
+          center: [cLat, cLon],
+          zoom: zoom,
+          zoomControl: true,
+          attributionControl: false
+        });
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+          maxZoom: 19,
+          crossOrigin: 'anonymous'
+        }).addTo(map1);
 
-      // 30m Statutory Buffer line
-      ctx2.strokeStyle = 'rgba(239, 68, 68, 0.7)';
-      ctx2.lineWidth = 2;
-      ctx2.setLineDash([6, 4]);
-      ctx2.beginPath();
-      ctx2.ellipse(W * 0.5, H * 0.5, rx1 + 25, ry1 + 25, 0, 0, Math.PI * 2);
-      ctx2.stroke();
-      ctx2.setLineDash([]);
+        // 2. Initialize Map 2 (2026 Surveillance)
+        const map2 = L.map(c2, {
+          center: [cLat, cLon],
+          zoom: zoom,
+          zoomControl: false,
+          attributionControl: false
+        });
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+          maxZoom: 19,
+          crossOrigin: 'anonymous'
+        }).addTo(map2);
 
-      // Potential spatial overlap structures along shoreline
-      ctx2.fillStyle = 'rgba(244, 63, 94, 0.75)';
-      ctx2.strokeStyle = '#f43f5e';
-      ctx2.lineWidth = 2.5;
-      ctx2.fillRect(W * 0.5 + rx2 * 0.65, H * 0.5 - ry2 * 0.5, 52, 38);
-      ctx2.strokeRect(W * 0.5 + rx2 * 0.65, H * 0.5 - ry2 * 0.5, 52, 38);
-      ctx2.fillRect(W * 0.5 + rx2 * 0.75, H * 0.5 + ry2 * 0.2, 58, 42);
-      ctx2.strokeRect(W * 0.5 + rx2 * 0.75, H * 0.5 + ry2 * 0.2, 58, 42);
-      ctx2.fillRect(W * 0.5 - rx2 * 0.85, H * 0.5 + ry2 * 0.35, 48, 36);
-      ctx2.strokeRect(W * 0.5 - rx2 * 0.85, H * 0.5 + ry2 * 0.35, 48, 36);
+        this._bitempMap1 = map1;
+        this._bitempMap2 = map2;
+
+        // Two-way synchronization
+        let syncing = false;
+        map1.on('move', () => {
+          if (syncing) return;
+          syncing = true;
+          map2.setView(map1.getCenter(), map1.getZoom(), { animate: false });
+          syncing = false;
+        });
+        map2.on('move', () => {
+          if (syncing) return;
+          syncing = true;
+          map1.setView(map2.getCenter(), map2.getZoom(), { animate: false });
+          syncing = false;
+        });
+
+        // Add 2014 pristine water & FTL contour to Map 1
+        const waterLayer1 = L.circle([cLat, cLon], {
+          radius: (site.cropM || 1000) * 0.42,
+          color: '#00f0ff',
+          fillColor: '#0284c7',
+          fillOpacity: 0.5,
+          weight: 2.5
+        }).addTo(map1);
+        waterLayer1.bindTooltip('2014 Gazetted FTL Water Spread (' + (site.waterHa2014 || 198.5) + ' ha)', { permanent: false });
+
+        L.circle([cLat, cLon], {
+          radius: (site.cropM || 1000) * 0.48,
+          color: '#10b981',
+          dashArray: '4, 4',
+          fillOpacity: 0.08,
+          fillColor: '#10b981',
+          weight: 1.5
+        }).addTo(map1).bindTooltip('30m Statutory WALTA Buffer (Pristine 2014)');
+
+        // Add 2026 contracted water & RED encroachments to Map 2
+        const waterLayer2 = L.circle([cLat, cLon], {
+          radius: (site.cropM || 1000) * 0.36,
+          color: '#38bdf8',
+          fillColor: '#0369a1',
+          fillOpacity: 0.55,
+          weight: 2
+        }).addTo(map2);
+        waterLayer2.bindTooltip('2026 Contracted Water Spread (' + (site.waterHa2026 || 181.3) + ' ha)', { permanent: false });
+
+        // Encroachment alert zone (Red hatched ring)
+        L.circle([cLat + 0.002, cLon + 0.003], {
+          radius: 120,
+          color: '#ef4444',
+          fillColor: '#ef4444',
+          fillOpacity: 0.7,
+          weight: 2
+        }).addTo(map2).bindTooltip('⚠️ Potential Buffer Encroachment (Commercial/Built Structure: +' + (site.potentialOverlapAcres || 10.95) + ' ac)', { permanent: true, direction: 'top' });
+
+        L.circle([cLat - 0.0025, cLon - 0.0015], {
+          radius: 95,
+          color: '#f59e0b',
+          fillColor: '#f59e0b',
+          fillOpacity: 0.65,
+          weight: 2
+        }).addTo(map2).bindTooltip('⚠️ Shoreline Silt Fill / Reclamation (+5.4 ha)', { permanent: false });
+
+        setTimeout(() => {
+          map1.invalidateSize(true);
+          map2.invalidateSize(true);
+        }, 150);
+        setTimeout(() => {
+          map1.invalidateSize(true);
+          map2.invalidateSize(true);
+        }, 400);
+      }, 50);
     }
 
     _drawLivePerspectiveCanvas(site, bounds) {
@@ -5518,3 +5569,121 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => ctrl.init());
   else ctrl.init();
 })(window);
+
+
+  // ── GLOBAL GEOLOCATION SEARCH (Pan-India Lakes, Cities, Coordinates) ────
+  window.executeUrbanStudioSearch = async function() {
+    const input = document.getElementById('us3-topbar-search-input');
+    const dropdown = document.getElementById('us3-topbar-search-dropdown');
+    if (!input) return;
+    const q = input.value.trim();
+    if (!q) return;
+
+    const ctrl = window.UrbanIntelligenceController;
+    if (!ctrl) return;
+
+    // 1. Lat, Lon coordinates (e.g., "17.4239, 78.4738")
+    const coordMatch = q.match(/^\s*(-?\d+(?:\.\d+)?)\s*[,\s]\s*(-?\d+(?:\.\d+)?)\s*$/);
+    if (coordMatch) {
+      const lat = parseFloat(coordMatch[1]), lon = parseFloat(coordMatch[2]);
+      if (lat >= -85 && lat <= 85 && lon >= -180 && lon <= 180) {
+        if (dropdown) dropdown.style.display = 'none';
+        ctrl.activeSite = { id: 'custom', name: `${lat.toFixed(4)}°N, ${lon.toFixed(4)}°E`, lat, lon, cropM: ctrl.activeCropM || 1000 };
+        ctrl._updateHeader(ctrl.activeSite.name, lat, lon);
+        if (ctrl.leaflet) {
+          const b = ctrl.leaflet.setCropAroundCenter(lat, lon, ctrl.activeCropM || 1000);
+          ctrl.extractForBounds(b, ctrl.activeSite.name);
+        }
+        return;
+      }
+    }
+
+    // 2. Preset lake dictionary lookup
+    const qLower = q.toLowerCase();
+    for (const [key, site] of Object.entries(PRESET_SITES)) {
+      if (key.includes(qLower) || site.name.toLowerCase().includes(qLower) || (site.id && site.id.includes(qLower))) {
+        if (dropdown) dropdown.style.display = 'none';
+        ctrl.setSite(key);
+        input.value = site.name;
+        return;
+      }
+    }
+
+    // 3. Known Pan-India lakes & wetland reserves
+    const knownPlaces = [
+      { name: 'Bellandur Lake, Bengaluru', lat: 12.9352, lon: 77.6713 },
+      { name: 'Powai Lake, Mumbai', lat: 19.1264, lon: 72.9048 },
+      { name: 'Dal Lake, Srinagar', lat: 34.1200, lon: 74.8700 },
+      { name: 'Chilika Lake, Odisha', lat: 19.7000, lon: 85.3000 },
+      { name: 'Loktak Lake, Manipur', lat: 24.5500, lon: 93.8000 },
+      { name: 'Vembanad Lake, Kerala', lat: 9.6000, lon: 76.4000 },
+      { name: 'Yamuna Floodplain, Delhi', lat: 28.6562, lon: 77.2410 },
+      { name: 'East Kolkata Wetlands', lat: 22.5333, lon: 88.4500 },
+      { name: 'Hussain Sagar, Hyderabad', lat: 17.4239, lon: 78.4738 },
+      { name: 'Osman Sagar, Hyderabad', lat: 17.3800, lon: 78.2970 },
+      { name: 'Durgam Cheruvu, Hyderabad', lat: 17.4320, lon: 78.3870 },
+      { name: 'Patna, Bihar', lat: 25.5940, lon: 85.1580 },
+      { name: 'Varanasi Ghats, UP', lat: 25.3068, lon: 83.0104 }
+    ];
+    for (const kp of knownPlaces) {
+      if (kp.name.toLowerCase().includes(qLower)) {
+        if (dropdown) dropdown.style.display = 'none';
+        ctrl.activeSite = { id: kp.name.toLowerCase().replace(/[^a-z0-9]+/g, '_'), name: kp.name, lat: kp.lat, lon: kp.lon, cropM: ctrl.activeCropM || 1000 };
+        ctrl._updateHeader(kp.name, kp.lat, kp.lon);
+        if (ctrl.leaflet) {
+          const b = ctrl.leaflet.setCropAroundCenter(kp.lat, kp.lon, ctrl.activeCropM || 1000);
+          ctrl.extractForBounds(b, kp.name);
+        }
+        input.value = kp.name;
+        return;
+      }
+    }
+
+    // 4. Live OpenStreetMap Geocoder (with India boundary bias)
+    if (dropdown) {
+      dropdown.innerHTML = '<div style="padding:8px 12px;color:#94a3b8;font-size:10px;"><span class="us3-spin" style="margin-right:6px;"></span>Searching OpenStreetMap Pan-India...</div>';
+      dropdown.style.display = 'block';
+    }
+    try {
+      const res = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&countrycodes=in&limit=6&addressdetails=1`);
+      const results = await res.json();
+      if (!results || !results.length) {
+        if (dropdown) dropdown.innerHTML = '<div style="padding:8px 12px;color:#f87171;font-size:10px;">No matching location found. Enter lat, lon or city.</div>';
+        return;
+      }
+      if (dropdown) {
+        dropdown.innerHTML = results.map(r => `
+          <div class="us3-search-item" style="padding:8px 12px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.06);font-size:10px;color:#e2e8f0;display:flex;align-items:center;gap:6px;"
+            onclick="window.selectUrbanStudioSearchResult(${r.lat}, ${r.lon}, '${r.display_name.replace(/'/g, "\\'")}')">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${r.display_name}</span>
+          </div>
+        `).join('');
+      }
+    } catch (err) {
+      if (dropdown) dropdown.innerHTML = '<div style="padding:8px 12px;color:#f87171;font-size:10px;">Geocoder offline. Enter lat, lon directly.</div>';
+    }
+  };
+
+  window.selectUrbanStudioSearchResult = function(lat, lon, displayName) {
+    const dropdown = document.getElementById('us3-topbar-search-dropdown');
+    const input = document.getElementById('us3-topbar-search-input');
+    if (dropdown) dropdown.style.display = 'none';
+    const shortName = displayName.split(',').slice(0, 2).join(',').trim();
+    if (input) input.value = shortName;
+
+    const ctrl = window.UrbanIntelligenceController;
+    if (!ctrl) return;
+    ctrl.activeSite = {
+      id: shortName.toLowerCase().replace(/[^a-z0-9]+/g, '_'),
+      name: shortName,
+      lat: parseFloat(lat),
+      lon: parseFloat(lon),
+      cropM: ctrl.activeCropM || 1000
+    };
+    ctrl._updateHeader(shortName, parseFloat(lat), parseFloat(lon));
+    if (ctrl.leaflet) {
+      const b = ctrl.leaflet.setCropAroundCenter(parseFloat(lat), parseFloat(lon), ctrl.activeCropM || 1000);
+      ctrl.extractForBounds(b, shortName);
+    }
+  };

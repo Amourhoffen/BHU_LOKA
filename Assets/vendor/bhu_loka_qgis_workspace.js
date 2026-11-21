@@ -243,12 +243,12 @@
       if (rightPanel && !document.getElementById('qgis-rtab-bar')) {
         const tabHeader = document.createElement('div');
         tabHeader.id = 'qgis-rtab-bar';
-        tabHeader.style.cssText = 'display:flex;align-items:center;gap:3px;border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:6px;margin-bottom:6px;flex-shrink:0;';
+        tabHeader.style.cssText = 'display:flex;align-items:center;gap:3px;border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:6px;margin-bottom:6px;flex-shrink:0;white-space:nowrap;';
         tabHeader.innerHTML = `
-          <button type="button" id="qgis-rtab-toolbox" class="qgis-tab active" onclick="window.qgisWorkspace.switchRightTab('toolbox')" style="flex:1;text-align:center;">Toolbox</button>
-          <button type="button" id="qgis-rtab-inspector" class="qgis-tab" onclick="window.qgisWorkspace.switchRightTab('inspector')" style="flex:1;text-align:center;">Inspector</button>
-          <button type="button" id="qgis-rtab-symbology" class="qgis-tab" onclick="window.qgisWorkspace.switchRightTab('symbology')" style="flex:1;text-align:center;">Symbology</button>
-          <button type="button" id="qgis-rtab-metrics" class="qgis-tab" onclick="window.qgisWorkspace.switchRightTab('metrics')" style="flex:1;text-align:center;">3D Metrics</button>
+          <button type="button" id="qgis-rtab-toolbox" class="qgis-tab active" onclick="window.qgisWorkspace.switchRightTab('toolbox')" style="flex:1;text-align:center;padding:4px 3px;font-size:10px;white-space:nowrap;">Toolbox</button>
+          <button type="button" id="qgis-rtab-inspector" class="qgis-tab" onclick="window.qgisWorkspace.switchRightTab('inspector')" style="flex:1;text-align:center;padding:4px 3px;font-size:10px;white-space:nowrap;">Inspector</button>
+          <button type="button" id="qgis-rtab-symbology" class="qgis-tab" onclick="window.qgisWorkspace.switchRightTab('symbology')" style="flex:1;text-align:center;padding:4px 3px;font-size:10px;white-space:nowrap;">Symbology</button>
+          <button type="button" id="qgis-rtab-metrics" class="qgis-tab" onclick="window.qgisWorkspace.switchRightTab('metrics')" style="flex:1;text-align:center;padding:4px 3px;font-size:10px;white-space:nowrap;">Metrics</button>
         `;
         rightPanel.prepend(tabHeader);
 
@@ -631,7 +631,7 @@
               isect.properties = Object.assign({}, f.properties, { _clipped_by: ov.name });
               clippedFeats.push(isect);
             }
-          } catch (_) {}
+          } catch (_) { }
         });
         resultGj = { type: 'FeatureCollection', features: clippedFeats };
       } else {
@@ -722,7 +722,7 @@
             _orig_geom_type: f.geometry ? f.geometry.type : 'Unknown'
           });
           centroidFeats.push(c);
-        } catch (_) {}
+        } catch (_) { }
       });
 
       const outName = `${l.name} (Centroids)`;
@@ -1046,40 +1046,40 @@
 
     switchRightTab(tab) {
       this.activeRightTab = tab;
-      const tabs = ['toolbox', 'inspector', 'symbology', 'metrics'];
-      tabs.forEach(t => {
-        const tabBtn = document.getElementById(`qgis-rtab-${t}`);
-        const panel = document.getElementById(`qgis-rpanel-${t}`);
-        if (tabBtn) tabBtn.classList.toggle('active', t === tab);
-        if (panel) panel.style.display = t === tab ? 'flex' : 'none';
-      });
+        const tabs = ['toolbox', 'inspector', 'symbology', 'metrics'];
+        tabs.forEach(t => {
+          const tabBtn = document.getElementById(`qgis-rtab-${t}`);
+          const panel = document.getElementById(`qgis-rpanel-${t}`);
+          if (tabBtn) tabBtn.classList.toggle('active', t === tab);
+          if (panel) panel.style.display = t === tab ? 'flex' : 'none';
+        });
 
-      // Show extrusion & computed metrics ONLY when metrics tab is active
-      const legacyCardIds = ['us3-card-extrusion', 'us3-card-metrics', 'us3-card-composite', 'us3-card-export'];
-      legacyCardIds.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-          el.style.display = (tab === 'metrics') ? 'flex' : 'none';
-        }
-      });
-    }
+        // Strict: Show extrusion & computed metrics ONLY when metrics tab is active, NEVER during toolbox/inspector/symbology
+        const legacyCardIds = ['us3-card-extrusion', 'us3-card-metrics', 'us3-card-composite', 'us3-card-export'];
+        legacyCardIds.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.style.setProperty('display', (tab === 'metrics') ? 'flex' : 'none', 'important');
+          }
+        });
+      }
 
     switchBottomTab(tab) {
-      this.activeBottomTab = tab;
-      ['table', 'log', 'console'].forEach(t => {
-        const tabBtn = document.getElementById(`qgis-btab-${t}`);
-        const panel = document.getElementById(`qgis-bpanel-${t}`);
-        if (tabBtn) tabBtn.classList.toggle('active', t === tab);
-        if (panel) panel.style.display = t === tab ? 'flex' : 'none';
-      });
-    }
+        this.activeBottomTab = tab;
+        ['table', 'log', 'console'].forEach(t => {
+          const tabBtn = document.getElementById(`qgis-btab-${t}`);
+          const panel = document.getElementById(`qgis-bpanel-${t}`);
+          if (tabBtn) tabBtn.classList.toggle('active', t === tab);
+          if (panel) panel.style.display = t === tab ? 'flex' : 'none';
+        });
+      }
 
     toggleBottomDock() {
-      const dock = document.getElementById('qgis-bottom-dock');
-      if (!dock) return;
-      const isHidden = dock.style.display === 'none';
-      dock.style.display = isHidden ? 'flex' : 'none';
-      if (this.map) setTimeout(() => this.map.invalidateSize(), 100);
+        const dock = document.getElementById('qgis-bottom-dock');
+        if(!dock) return;
+        const isHidden = dock.style.display === 'none';
+        dock.style.display = isHidden ? 'flex' : 'none';
+        if(this.map) setTimeout(() => this.map.invalidateSize(), 100);
     }
 
     // ─────────────────────────────────────────────────────────────
@@ -1097,7 +1097,7 @@
 
     _computeExtent(gj) {
       if (typeof window.turf !== 'undefined') {
-        try { return window.turf.bbox(gj); } catch (_) {}
+        try { return window.turf.bbox(gj); } catch (_) { }
       }
       return [-180, -90, 180, 90];
     }
