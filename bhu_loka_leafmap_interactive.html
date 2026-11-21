@@ -178,6 +178,7 @@
       <div class="flex items-center gap-1 bg-[#070b12] border border-sky-500/40 rounded px-2 py-1 shrink-0">
         <span class="text-sky-400 font-semibold text-[10px] flex items-center gap-1"><i class="fa-solid fa-landmark-flag"></i> State / UT:</span>
         <select id="sovereign-state-select" onchange="selectSovereignState(this.value)"
+          onfocus="if (this.options.length <= 1) populateSovereignStateDropdown();"
           class="bg-transparent text-[10.5px] text-slate-100 font-mono focus:outline-none cursor-pointer max-w-[180px]">
           <option value="" disabled selected>-- 28 States &amp; 8 UTs --</option>
           <optgroup label="28 Indian States" id="optgroup-states"></optgroup>
@@ -1108,6 +1109,9 @@
 
       if (!window.BHU_LOKA_INDIA_INDEX || !window.BHU_LOKA_INDIA_INDEX.states) return;
 
+      // Prevent redundant clearing if already populated
+      if (optStates.children.length > 0 && optUts.children.length > 0) return;
+
       optStates.innerHTML = '';
       optUts.innerHTML = '';
 
@@ -1126,6 +1130,24 @@
         }
       });
     }
+
+    // Auto-populate sovereign dropdown immediately and via event listeners
+    populateSovereignStateDropdown();
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', populateSovereignStateDropdown);
+    }
+    window.addEventListener('load', () => {
+      populateSovereignStateDropdown();
+      try {
+        const uParams = new URLSearchParams(window.location.search);
+        const st = uParams.get('state');
+        if (st) {
+          setTimeout(() => selectSovereignState(st), 350);
+        }
+      } catch(e) {}
+    });
+    setTimeout(populateSovereignStateDropdown, 300);
+    setTimeout(populateSovereignStateDropdown, 1200);
 
     function highlightSovereignStatePolygon(stateName) {
       if (activeSelectedStateLayer) {
@@ -1178,9 +1200,25 @@
           distBtn.classList.remove('hidden');
           distBtn.textContent = 'Toggle 38 Districts';
         } else {
-          distBtn.classList.add('hidden');
+          let distStr = '';
+          if (unit && unit.hierarchy && unit.hierarchy.hierarchy_note) {
+            const m = unit.hierarchy.hierarchy_note.match(/(\d+)\s+Districts/i);
+            if (m) distStr = `${m[1]} Districts`;
+          }
+          if (distStr) {
+            distBtn.classList.remove('hidden');
+            distBtn.textContent = `${distStr} · ${stateName}`;
+          } else {
+            distBtn.classList.add('hidden');
+          }
         }
       }
+
+      try {
+        const u = new URL(window.location);
+        u.searchParams.set('state', stateName);
+        window.history.replaceState({}, '', u.toString());
+      } catch(e) {}
 
       const legTitle = document.getElementById('legend-title');
       if (legTitle) {
@@ -1233,6 +1271,11 @@
       const sel = document.getElementById('sovereign-state-select');
       if (sel) sel.value = '';
       activeSelectedStateName = null;
+      try {
+        const u = new URL(window.location);
+        u.searchParams.delete('state');
+        window.history.replaceState({}, '', u.toString());
+      } catch(e) {}
     }
 
     let districtsLayerVisible = false;

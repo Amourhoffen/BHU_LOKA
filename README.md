@@ -12,7 +12,7 @@
 [![Live Web Platform](https://img.shields.io/badge/Live%20Platform-bhu--loka.web.app-0284c7.svg?style=for-the-badge&logo=firebase)](https://bhu-loka.web.app)
 [![2D GIS Explorer](https://img.shields.io/badge/2D%20GIS%20Explorer-28%20States%20%2B%208%20UTs-10b981.svg?style=for-the-badge)](https://bhu-loka.web.app/2d)
 [![Research Presentation](https://img.shields.io/badge/Research%20Deck-Interactive%20Slides-f59e0b.svg?style=for-the-badge)](https://bhu-loka.web.app/presentation)
-[![Test Suite](https://img.shields.io/badge/Test%20Suite-84%2F84%20Passing%20(100%25)-emerald.svg?style=for-the-badge)](tests/)
+[![Test Suite](https://img.shields.io/badge/Test%20Suite-88%2F88%20Passing%20(100%25)-emerald.svg?style=for-the-badge)](tests/)
 [![GitHub Stars](https://img.shields.io/github/stars/Amourhoffen/BhuLoka?style=for-the-badge&color=gold)](https://github.com/Amourhoffen/BhuLoka/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg?style=for-the-badge)](LICENSE)
 
@@ -88,35 +88,35 @@ Crucially, standard SAR thresholding assumes water causes a steep backscatter dr
 ### Figure 1: Patna Multi-Hazard Spatial Inundation & Micro-Elevation Map
 The $444.68\text{ km}^2$ study domain spanning the perennial Ganga River Channel ($113.82\text{ km}^2$), the low-lying southern saucer basins (Rajendra Nagar, Kankarbagh at $44.5\text{m} - 45.1\text{m}$ AMSL), and the elevated natural levee terraces (Danapur, Boring Road at $>52\text{m}$ AMSL).
 
-![Figure 1: Patna Multi-Hazard Spatial Inundation & Elevation Map](Research_Paper_Workflow/plots/Figure1_Patna_MultiHazard_Spatial_Map.png)
+![Figure 1: Patna Multi-Hazard Spatial Inundation & Elevation Map](Assets/images/Figure1_Patna_MultiHazard_Spatial_Map.png)
 
 ---
 
 ### Figure 2: Copernicus Sentinel-1 Dual-Date SAR Processing Pipeline
 End-to-end radiometric calibration, $5 \times 5$ speckle filtering, logarithmic backscatter difference, and automated bimodal Otsu thresholding ($\tau^* = -3.80\text{ dB}$).
 
-![Figure 2: Sentinel-1 SAR Dual-Date Processing Pipeline](Research_Paper_Workflow/plots/Figure2_Sentinel1_SAR_Processing_Pipeline.png)
+![Figure 2: Sentinel-1 SAR Dual-Date Processing Pipeline](Assets/images/Figure2_Sentinel1_SAR_Processing_Pipeline.png)
 
 ---
 
 ### Figure 3: 5-Fold Spatial Block Cross-Validation (SBCV) Architecture
 Dividing the study domain into 5 geographically contiguous spatial folds to guarantee zero spatial data leakage between training and testing blocks ($N = 60,000$ spatial samples).
 
-![Figure 3: Spatial Block Cross Validation Architecture](Research_Paper_Workflow/plots/Figure3_Spatial_Block_Cross_Validation_Architecture.png)
+![Figure 3: Spatial Block Cross Validation Architecture](Assets/images/Figure3_Spatial_Block_Cross_Validation_Architecture.png)
 
 ---
 
 ### Figure 4: Explainable AI (Tree-SHAP) Feature Attributions
 Quantitative SHAP contribution weights demonstrating that Sentinel-1 radar change ($\Delta\sigma^0$) ($38\%$) and Copernicus GLO-30 DEM elevation ($31\%$) govern inundation physics, supported by depression sinks ($17\%$) and slope gradient ($9\%$).
 
-![Figure 4: SHAP Feature Importance Attribution](Research_Paper_Workflow/plots/Figure4_Explainable_AI_Feature_Attributions.png)
+![Figure 4: SHAP Feature Importance Attribution](Assets/images/Figure4_Explainable_AI_Feature_Attributions.png)
 
 ---
 
 ### Figure 5: Empirical Earth Observation Validation
 Spatial intersection between verified Sentinel-1 flood extents, depression sinks, and municipal ward infrastructure.
 
-![Figure 5: Empirical Inundation Validation](Research_Paper_Workflow/plots/Figure_Empirical_EO_Validation.png)
+![Figure 5: Empirical Inundation Validation](Assets/images/Figure5_Empirical_Inundation_Validation.png)
 
 ---
 
@@ -365,7 +365,7 @@ Double-click `Launch_BhuLoka_FullStack.bat` in the repository root. This automat
 .\Launch_BhuLoka_FullStack.bat
 ```
 
-### Option B: Standalone Python Server & Pytest Suite (63/63 Passing)
+### Option B: Standalone Python Server & Pytest Suite (88/88 Passing)
 
 ```bash
 # 1. Clone repository
@@ -375,7 +375,7 @@ cd BhuLoka
 # 2. Install dependencies
 pip install fastapi uvicorn numpy scikit-learn joblib httpx faiss-cpu pytest beautifulsoup4
 
-# 3. Run the automated test suite (63/63 passing with 100% pass rate)
+# 3. Run the automated test suite (88/88 passing with 100% pass rate)
 pytest tests/ -v
 
 # 4. Start the FastAPI backend
