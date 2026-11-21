@@ -96,24 +96,24 @@
         const ribbon = document.createElement('div');
         ribbon.id = 'qgis-menu-ribbon';
         ribbon.className = 'qgis-ribbon';
-        ribbon.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:4px 8px;background:#060b16;border-bottom:1px solid rgba(56,189,248,0.2);flex-shrink:0;gap:6px;overflow-x:auto;font-size:10px;';
+        ribbon.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:5px 10px;background:rgba(4,9,20,0.92);border-bottom:1px solid rgba(56,189,248,0.22);flex-shrink:0;gap:6px;overflow-x:auto;scrollbar-width:none;';
         ribbon.innerHTML = `
           <div style="display:flex;align-items:center;gap:4px;flex-shrink:0;">
             <input type="file" id="qgis-file-input" style="display:none;" accept=".geojson,.json,.csv,.kml" onchange="window.handleQgisFileUpload(this)">
             <button type="button" class="qgis-btn" onclick="document.getElementById('qgis-file-input').click()" title="Import GeoJSON, CSV, KML vector layers">
-              <i class="fa-solid fa-folder-open" style="color:#38bdf8;"></i> Ingest Vector
+              <i class="fa-solid fa-folder-open" style="color:#38bdf8;"></i> Ingest
             </button>
             <button type="button" class="qgis-btn" onclick="window.qgisWorkspace.exportActiveGeoJson()" title="Export active layer as GeoJSON">
-              <i class="fa-solid fa-download" style="color:#34d399;"></i> Export GeoJSON
+              <i class="fa-solid fa-download" style="color:#34d399;"></i> GeoJSON
             </button>
-            <span style="color:rgba(255,255,255,0.2);margin:0 2px;">|</span>
+            <span style="color:rgba(56,189,248,0.25);margin:0 2px;">|</span>
             <button type="button" class="qgis-btn" onclick="window.qgisWorkspace.startDistanceMeasurement()" title="Geodesic distance measurement ruler">
               <i class="fa-solid fa-ruler" style="color:#f59e0b;"></i> Ruler
             </button>
             <button type="button" class="qgis-btn" onclick="window.qgisWorkspace.startAreaMeasurement()" title="Geodesic polygon area measurement">
               <i class="fa-solid fa-draw-polygon" style="color:#10b981;"></i> Area
             </button>
-            <span style="color:rgba(255,255,255,0.2);margin:0 2px;">|</span>
+            <span style="color:rgba(56,189,248,0.25);margin:0 2px;">|</span>
             <button type="button" class="qgis-btn" onclick="window.promptQgisBuffer()" title="Calculate metric UTM buffer">
               <i class="fa-solid fa-bullseye" style="color:#fbbf24;"></i> Buffer
             </button>
@@ -124,18 +124,18 @@
               <i class="fa-solid fa-crosshairs" style="color:#06b6d4;"></i> Centroids
             </button>
             <button type="button" class="qgis-btn" onclick="window.promptQgisZonalStats()" title="Calculate Copernicus DEM topographic zonal statistics">
-              <i class="fa-solid fa-mountain" style="color:#a855f7;"></i> Zonal Stats
+              <i class="fa-solid fa-mountain" style="color:#a855f7;"></i> Zonal
             </button>
             <button type="button" class="qgis-btn" onclick="window.promptQgisSiteDossier()" title="Compile multi-source site intelligence dossier (BSA §63)">
-              <i class="fa-solid fa-file-shield" style="color:#38bdf8;"></i> Site Dossier
+              <i class="fa-solid fa-file-shield" style="color:#38bdf8;"></i> Dossier
             </button>
           </div>
           <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">
-            <div id="qgis-crs-pill" onclick="window.promptQgisCrsSelect()" title="Click to transform Project CRS" style="font-family:monospace;font-size:9.5px;padding:2px 8px;border-radius:4px;background:rgba(56,189,248,0.12);border:1px solid rgba(56,189,248,0.3);color:#38bdf8;cursor:pointer;font-weight:700;">
+            <div id="qgis-crs-pill" onclick="window.promptQgisCrsSelect()" title="Click to transform Project CRS" style="font-family:monospace;font-size:9.5px;padding:3px 8px;border-radius:6px;background:rgba(56,189,248,0.12);border:1px solid rgba(56,189,248,0.35);color:#38bdf8;cursor:pointer;font-weight:700;">
               EPSG:4326
             </div>
             <button type="button" class="qgis-btn" onclick="window.qgisWorkspace.toggleBottomDock()" title="Toggle Attribute Table & Processing Dock">
-              <i class="fa-solid fa-table-columns"></i> Dock
+              <i class="fa-solid fa-table-columns"></i> Table Dock
             </button>
           </div>
         `;
@@ -248,6 +248,7 @@
           <button type="button" id="qgis-rtab-toolbox" class="qgis-tab active" onclick="window.qgisWorkspace.switchRightTab('toolbox')" style="flex:1;text-align:center;">Toolbox</button>
           <button type="button" id="qgis-rtab-inspector" class="qgis-tab" onclick="window.qgisWorkspace.switchRightTab('inspector')" style="flex:1;text-align:center;">Inspector</button>
           <button type="button" id="qgis-rtab-symbology" class="qgis-tab" onclick="window.qgisWorkspace.switchRightTab('symbology')" style="flex:1;text-align:center;">Symbology</button>
+          <button type="button" id="qgis-rtab-metrics" class="qgis-tab" onclick="window.qgisWorkspace.switchRightTab('metrics')" style="flex:1;text-align:center;">3D Metrics</button>
         `;
         rightPanel.prepend(tabHeader);
 
@@ -303,6 +304,7 @@
           </div>
         `;
         rightPanel.insertBefore(pSymbology, rightPanel.children[3]);
+        this.switchRightTab('toolbox');
       }
     }
 
@@ -1044,11 +1046,21 @@
 
     switchRightTab(tab) {
       this.activeRightTab = tab;
-      ['toolbox', 'inspector', 'symbology'].forEach(t => {
+      const tabs = ['toolbox', 'inspector', 'symbology', 'metrics'];
+      tabs.forEach(t => {
         const tabBtn = document.getElementById(`qgis-rtab-${t}`);
         const panel = document.getElementById(`qgis-rpanel-${t}`);
         if (tabBtn) tabBtn.classList.toggle('active', t === tab);
         if (panel) panel.style.display = t === tab ? 'flex' : 'none';
+      });
+
+      // Show extrusion & computed metrics ONLY when metrics tab is active
+      const legacyCardIds = ['us3-card-extrusion', 'us3-card-metrics', 'us3-card-composite', 'us3-card-export'];
+      legacyCardIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.style.display = (tab === 'metrics') ? 'flex' : 'none';
+        }
       });
     }
 

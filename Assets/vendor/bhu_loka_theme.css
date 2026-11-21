@@ -76,6 +76,30 @@
 
 * {
   box-sizing: border-box;
+  color-scheme: dark;
+}
+
+/* Universal Dark Glass Select & Options */
+select {
+  background-color: #0b1322 !important;
+  color: #f1f5f9 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 8px !important;
+  padding: 6px 10px !important;
+  color-scheme: dark !important;
+}
+
+select option,
+select optgroup {
+  background-color: #0b1322 !important;
+  color: #f1f5f9 !important;
+  padding: 8px 12px !important;
+}
+
+select option:checked,
+select option:hover {
+  background-color: #0284c7 !important;
+  color: #ffffff !important;
 }
 
 body.bhu-workstation {
@@ -228,6 +252,30 @@ body.bhu-workstation {
 /* ── PASS 1 & 5: SPACING, TYPOGRAPHY & ZERO OVERLAP SANITIZATION ── */
 .bhu-workstation, .bhu-workstation * {
   box-sizing: border-box;
+  color-scheme: dark;
+}
+
+/* Universal Dark Glass Select & Options */
+select {
+  background-color: #0b1322 !important;
+  color: #f1f5f9 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 8px !important;
+  padding: 6px 10px !important;
+  color-scheme: dark !important;
+}
+
+select option,
+select optgroup {
+  background-color: #0b1322 !important;
+  color: #f1f5f9 !important;
+  padding: 8px 12px !important;
+}
+
+select option:checked,
+select option:hover {
+  background-color: #0284c7 !important;
+  color: #ffffff !important;
 }
 
 .bhu-ellipsis {

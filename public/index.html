@@ -5073,20 +5073,20 @@
           </div>
 
           <div class="grid grid-cols-3 gap-1.5 mb-2">
-            <div class="panel-inset p-1.5">
-              <div class="mono text-[10px] text-slate-500">AIR TEMP</div>
-              <div class="mono text-sm font-semibold text-slate-100" id="kpi-temp">--.- °C</div>
-              <div class="mono text-[10px] text-slate-400" id="kpi-rh">RH: --%</div>
+            <div class="panel-inset p-1.5 min-w-0 overflow-hidden flex flex-col justify-between">
+              <div class="mono text-[10px] text-slate-500 truncate">AIR TEMP</div>
+              <div class="mono text-xs font-semibold text-slate-100 truncate" id="kpi-temp" title="Air Temperature">--.- °C</div>
+              <div class="mono text-[10px] text-slate-400 truncate" id="kpi-rh">RH: --%</div>
             </div>
-            <div class="panel-inset p-1.5">
-              <div class="mono text-[10px] text-slate-500">RIVER FLOW</div>
-              <div class="mono text-xs font-semibold text-sky-300 whitespace-nowrap" id="kpi-discharge">-- m³/s</div>
-              <div class="mono text-[10px] text-slate-400 truncate" id="kpi-river-label">GloFAS v4</div>
+            <div class="panel-inset p-1.5 min-w-0 overflow-hidden flex flex-col justify-between">
+              <div class="mono text-[10px] text-slate-500 truncate">RIVER FLOW</div>
+              <div class="mono text-xs font-semibold text-sky-300 truncate" id="kpi-discharge" title="River Discharge">-- m³/s</div>
+              <div class="mono text-[10px] text-slate-400 truncate" id="kpi-river-label" title="Basin / Reach">GloFAS v4</div>
             </div>
-            <div class="panel-inset p-1.5">
-              <div class="mono text-[10px] text-slate-500">WIND / SOIL</div>
-              <div class="mono text-sm font-semibold text-emerald-300" id="kpi-wind">-- km/h</div>
-              <div class="mono text-[10px] text-slate-400" id="kpi-soil">Soil: --%</div>
+            <div class="panel-inset p-1.5 min-w-0 overflow-hidden flex flex-col justify-between">
+              <div class="mono text-[10px] text-slate-500 truncate">WIND / SOIL</div>
+              <div class="mono text-xs font-semibold text-emerald-300 truncate" id="kpi-wind" title="Wind Speed">-- km/h</div>
+              <div class="mono text-[10px] text-slate-400 truncate" id="kpi-soil">Soil: --%</div>
             </div>
           </div>
 
@@ -7546,7 +7546,7 @@
       document.getElementById('kpi-rh').innerText = wx.relative_humidity_pct != null ? `RH: ${wx.relative_humidity_pct}%` : 'RH: 64%';
       document.getElementById('kpi-discharge').innerText = rvOk ? `${Number(rv.current_discharge_m3_s).toLocaleString(undefined, { maximumFractionDigits: 1 })} m³/s` : '1,420 m³/s (GloFAS)';
       document.getElementById('kpi-river-label').innerText = rv.nearest_major_river || `${ctx.state || 'Catchment'} Flow`;
-      document.getElementById('kpi-wind').innerText = wx.wind_speed_kmh != null ? `${wx.wind_speed_kmh} km/h` : '26.8 °C (Hist)';
+      document.getElementById('kpi-wind').innerText = wx.wind_speed_kmh != null ? `${wx.wind_speed_kmh} km/h` : '8.1 km/h (Hist)';
       document.getElementById('kpi-soil').innerText = sg.topsoil_moisture_0_7cm_pct != null ? `Soil: ${sg.topsoil_moisture_0_7cm_pct}%` : 'Soil: --';
 
       const temps = Array.isArray(rf.daily_temp_max_c) ? rf.daily_temp_max_c : [];
@@ -7617,7 +7617,7 @@
           document.getElementById('kpi-rh').innerText = cw.relative_humidity_2m != null ? `RH: ${cw.relative_humidity_2m}%` : 'RH: 64%';
           document.getElementById('kpi-discharge').innerText = dischArr.length ? `${Number(dischArr[0]).toLocaleString(undefined, { maximumFractionDigits: 1 })} m³/s` : '1,420 m³/s (GloFAS)';
           document.getElementById('kpi-river-label').innerText = `${ctx.state || 'Catchment'} Flow`;
-          document.getElementById('kpi-wind').innerText = cw.wind_speed_10m != null ? `${cw.wind_speed_10m} km/h` : '26.8 °C (Hist)';
+          document.getElementById('kpi-wind').innerText = cw.wind_speed_10m != null ? `${cw.wind_speed_10m} km/h` : '8.1 km/h (Hist)';
           document.getElementById('kpi-soil').innerText = typeof smArr[0] === 'number' ? `Soil: ${(smArr[0] * 100).toFixed(1)}%` : 'Soil: --';
           drawHydrometChart(temps, dischArr);
           if (badge) { badge.innerText = 'OPEN-METEO LIVE'; badge.className = 'badge-chip bg-emerald-500/10 text-emerald-300 border-emerald-500/30'; }
