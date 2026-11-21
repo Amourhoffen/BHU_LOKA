@@ -696,3 +696,82 @@ select option:hover {
   }
 }
 
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   7. PREMIUM GEOSPATIAL DESIGN SYSTEM & DEEP FOREST GREEN TOKENS
+   ══════════════════════════════════════════════════════════════════════════ */
+:root {
+  --color-forest-950: #04140d;
+  --color-forest-900: #072216;
+  --color-forest-800: #0e3b26;
+  --color-emerald-500: #10b981;
+  --color-emerald-400: #34d399;
+  --color-charcoal-950: #06090e;
+  --color-charcoal-900: #0a0f16;
+  --color-charcoal-800: #101620;
+  --color-offwhite-50: #fbfcf9;
+  --color-offwhite-100: #f2f5ee;
+  --color-offwhite-200: #e5eae0;
+}
+
+/* Master Navigation Buttons */
+.bhu-top-nav-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 6px 12px !important;
+  border-radius: 8px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.03em !important;
+  color: #94a3b8 !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  white-space: nowrap !important;
+}
+
+.bhu-top-nav-btn:hover {
+  color: #f8fafc !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.10) !important;
+}
+
+.bhu-top-nav-btn.active {
+  color: #34d399 !important;
+  background: rgba(16, 185, 129, 0.12) !important;
+  border-color: rgba(16, 185, 129, 0.4) !important;
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.16) !important;
+}
+
+/* Modern Brand Title Styling */
+.bhu-brand-title {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+  background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Sovereign AI & Mission Badges */
+.bhu-sovereign-badge {
+  background: rgba(16, 185, 129, 0.15) !important;
+  border: 1px solid rgba(16, 185, 129, 0.4) !important;
+  color: #34d399 !important;
+  font-family: var(--font-mono) !important;
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  padding: 2px 7px !important;
+  border-radius: 9999px !important;
+}
+
+/* Restrained Floating Map Control Dock */
+.bhu-map-floating-ctrl {
+  background: rgba(10, 15, 22, 0.88) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6) !important;
+  border-radius: 10px !important;
+}
