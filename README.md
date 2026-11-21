@@ -1,24 +1,37 @@
-# BHU LOKA (भूलोक) — Sovereign Earth System, Multi-Hazard Intelligence & Sovereign GIS Workstation
+# BHU LOKA — Sovereign Earth System, Multi-Hazard Intelligence & Planetary GIS Workstation
+
+<div align="center">
+
 <img width="1461" height="820" alt="BHU LOKA Workstation" src="https://github.com/user-attachments/assets/8edad3ee-72f4-4035-8a97-aa90c676a495" />
 
-## Sovereign Dual-Date SAR Flood Inundation, Urban Corner-Reflector Mapping, Cadastral Screening, Precision Agriculture & Spatial Health Intelligence Workstation
+### An Autonomous Sovereign 2D/3D Earth Observation Workstation Integrating Dual-Date Synthetic Aperture Radar (SAR), Micro-DEM Terrain Holography, Cadastral Legal Screening (BSA 2023 §63), Precision Agro-Meteorology & 3D Spatial Epidemiological Intelligence
 
-### Developed at Indian Institute of Technology Patna (IIT Patna) · Department of Computer Science & Data Analytics
-#### In Academic Collaboration with Indian Institute of Information Technology, Design and Manufacturing Jabalpur (IIITDM Jabalpur)
+**Developed at Indian Institute of Technology Patna (IIT Patna) · Department of Computer Science & Data Analytics**  
+*In Academic Collaboration with Indian Institute of Information Technology, Design and Manufacturing Jabalpur (IIITDM Jabalpur)*
 
 [![Live Web Platform](https://img.shields.io/badge/Live%20Platform-bhu--loka.web.app-0284c7.svg?style=for-the-badge&logo=firebase)](https://bhu-loka.web.app)
 [![2D GIS Explorer](https://img.shields.io/badge/2D%20GIS%20Explorer-28%20States%20%2B%208%20UTs-10b981.svg?style=for-the-badge)](https://bhu-loka.web.app/2d)
 [![Research Presentation](https://img.shields.io/badge/Research%20Deck-Interactive%20Slides-f59e0b.svg?style=for-the-badge)](https://bhu-loka.web.app/presentation)
 [![Test Suite](https://img.shields.io/badge/Test%20Suite-63%2F63%20Passing%20(100%25)-emerald.svg?style=for-the-badge)](tests/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg)](LICENSE)
-[![SAR Platform](https://img.shields.io/badge/Sensor-Copernicus%20Sentinel--1%20C--SAR%20(5.405%20GHz)-0284c7.svg)](https://search.asf.alaska.edu/)
-[![Elevation](https://img.shields.io/badge/DEM-Copernicus%20GLO--30%20(30m)-6366f1.svg)](https://registry.opendata.aws/copernicus-dem/)
-[![Geographic Extent](https://img.shields.io/badge/Coverage-Pan--India%20(36%20States%2FUTs%2C%20724%20Districts)-amber.svg)](Data/08_Processed_Outputs/bhu_loka_india_admin_index.js)
-[![Legal Framework](https://img.shields.io/badge/Cadastral%20Screening-BSA%202023%20§63%20Compliant-purple.svg)](Assets/vendor/bhu_loka_urban_studio.js)
-[![Agri & Mandi](https://img.shields.io/badge/Agri--Intelligence-STAC%20%2B%20Mandi%20Market-22c55e.svg)](Pipelines/bhu_loka_agri_engine.py)
-[![Health Intelligence](https://img.shields.io/badge/Health%20Intelligence-3D%20Spatial%20Epidemiology-rose.svg)](bhu_loka_cyber_dashboard.html)
+[![GitHub Stars](https://img.shields.io/github/stars/Amourhoffen/BhuLoka?style=for-the-badge&color=gold)](https://github.com/Amourhoffen/BhuLoka/stargazers)
+[![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg?style=for-the-badge)](LICENSE)
+
+[![Sensor Platform](https://img.shields.io/badge/Sensor-Copernicus%20Sentinel--1%20C--SAR%20(5.405%20GHz)-0284c7.svg)](https://search.asf.alaska.edu/)
+[![Elevation Model](https://img.shields.io/badge/DEM-Copernicus%20GLO--30%20(30m)-6366f1.svg)](https://registry.opendata.aws/copernicus-dem/)
+[![Geographic Coverage](https://img.shields.io/badge/Coverage-Pan--India%20(36%20States%2FUTs%2C%20724%20Districts)-amber.svg)](Data/08_Processed_Outputs/bhu_loka_india_admin_index.js)
+[![Cadastral Framework](https://img.shields.io/badge/Cadastral%20Screening-BSA%202023%20§63%20Compliant-purple.svg)](Assets/vendor/bhu_loka_urban_studio.js)
+[![Precision Agriculture](https://img.shields.io/badge/Agri--Intelligence-STAC%20Sentinel--2%20%2B%20Mandi%20Market-22c55e.svg)](Pipelines/bhu_loka_agri_engine.py)
+[![Public Health](https://img.shields.io/badge/Public%20Health-3D%20Spatial%20Epidemiology-rose.svg)](bhu_loka_cyber_dashboard.html)
+
+</div>
 
 ---
+
+## 🌟 Support Open Source Science: Star This Repository!
+If you find BHU LOKA inspiring, useful for your research, or valuable for geospatial disaster resilience, **please star this repository** on GitHub! Your star helps more researchers, agricultural communities, and emergency disaster teams discover open-source geospatial intelligence worldwide.
+
+---
+
 <img width="1467" height="820" alt="BHU LOKA Team and Core Mission" src="https://github.com/user-attachments/assets/04ae7501-3aa7-4d8a-a19b-6426189e5412" />
 
 ## Research Team & Academic Authorship
@@ -46,6 +59,17 @@
 | **12-Page Research Paper PDF** | [`Sequential_Compound_Hydro_Thermal_Risk_...pdf`](./Sequential_Compound_Hydro_Thermal_Risk_and_Urban_Corner_Reflector_Flood_Mapping_in_Continental_Alluvial_Metropolises__Empirical_Earth_Observation___3_.pdf) | Complete peer-review manuscript with equations, Otsu calibration, and SBCV benchmarks |
 | **Verified Inundation GeoJSON** | [`sar_flood_inundation_patna_2019.geojson`](./Data/08_Processed_Outputs/sar_flood_inundation_patna_2019.geojson) | Vector polygon layer ($26.54\text{ km}^2$) ready for instant QGIS/ArcGIS import |
 | **Trained Spatial ML Checkpoints** | [`bhu_loka_spatial_rf_v1.joblib`](./Models/Checkpoints/bhu_loka_spatial_rf_v1.joblib) & [`mera_pehle_model.joblib`](./mera_pehle_model.joblib) | 7-feature (21.9 MB) & 3-feature (168 KB) trained Random Forest classifiers with 5-fold spatial cross-validation |
+
+---
+
+## ⚡ Why BHU LOKA? (The Core Geospatial Problems We Solved)
+
+1. **The Optical Cloud Blindness Problem:** During extreme monsoon cloudbursts, optical satellites (Sentinel-2, Landsat, MODIS) suffer 100% cloud cover. BHU LOKA utilizes active Copernicus Sentinel-1 C-band Synthetic Aperture Radar ($5.405\text{ GHz}$), penetrating dense clouds, heavy rainfall, and night-time darkness.
+2. **The Urban Corner-Reflector Paradox:** Standard flood detection algorithms expect water to cause dark specular absorption ($\Delta\sigma^0 \le -3.80\text{ dB}$). In densely built cities, floodwater forms $90^\circ$ dihedral retro-reflectors with vertical masonry walls, causing an anomalous **backscatter surge ($\\Delta\\sigma^0 \\ge +1.5\\text{ dB}$ to $+4.8\\text{ dB}$)**. BHU LOKA models this physical double-bounce phenomenon to isolate urban deluge in narrow street canyons.
+3. **Eliminating Spatial Autocorrelation Bias:** Random cross-validation on spatial pixels causes severe data leakage due to Tobler's First Law of Geography, creating falsely inflated accuracies. BHU LOKA implements 5-Fold Spatial Block Cross-Validation (SBCV) using spatially contiguous blocks to report genuine real-world generalization.
+4. **Legally Defensible Cadastral Screening:** Rather than generating speculative, legally invalid automated "demolition mandates", BHU LOKA formulates an objective technical screening protocol under **Section 63 of the Bharatiya Sakshya Adhiniyam, 2023 (BSA §63)**, providing SHA-256 cryptographic hashes and chain-of-custody metadata for court and administrative reviews.
+5. **End-to-End Operational Continuum:** Connecting space observations directly to on-ground impact:
+   $$\text{EARTH} \longrightarrow \text{SATELLITE} \longrightarrow \text{GIS} \longrightarrow \text{HAZARDS} \longrightarrow \text{LAND STUDIO} \longrightarrow \text{FARMER} \longrightarrow \text{HEALTH} \longrightarrow \text{MARKET}$$
 
 ---
 
@@ -163,7 +187,7 @@ $$A = \frac{R^2}{2} \left| \sum_{i=1}^{n} (\lambda_{i+1} - \lambda_i) \cdot (\si
 | **Rajendra Nagar Basin** | $44.5\text{ m}$ | $4.11\text{ km}^2$ | $96.8\%$ | $+4.8\text{ dB}$ | Dihedral Double-Bounce | **Critical Emergency Deluge** |
 | **Kankarbagh Silt Pond** | $45.1\text{ m}$ | $5.28\text{ km}^2$ | $94.2\%$ | $+3.6\text{ dB}$ | Dihedral Double-Bounce | **Severe Waterlogging** |
 | **Patna City / East Core** | $47.2\text{ m}$ | $3.25\text{ km}^2$ | $47.8\%$ | $+2.1\text{ dB}$ | Mixed Urban Silt | **Moderate Pluvial Silt** |
-| **Patliputra / Boring Rd** | $48.3\text{ m}$ | $0.85\text{ km}^2$ | $25.0\%$ | $+1.3\text{ dB}$ | Peripheral Surface Ponding | **Low / Surface Runoff** |
+| **Patliputra / Boring Rd** | $48.3\text{ m}$ | $0.85\text{ km}^2$ | $25.0\%$ | $+1.3\text{ dB}$ | Peripheral Surface Runoff | **Low / Surface Runoff** |
 | **Gandhi Maidan Levee** | $50.1\text{ m}$ | $0.21\text{ km}^2$ | $10.0\%$ | $+0.4\text{ dB}$ | Natural Levee Crown | **Resilient Natural Terrace** |
 | **Danapur Cantt Terrace** | $52.8\text{ m}$ | $0.15\text{ km}^2$ | $2.1\%$ | $-0.3\text{ dB}$ | Elevated Safe Ridge | **High Elevation Safe Zone** |
 | **Bihta / IIT Patna Ridge** | $55.2\text{ m}$ | $0.00\text{ km}^2$ | $0.0\%$ | $-0.4\text{ dB}$ | Alluvial Highland | **Zero Inundation Benchmark** |
@@ -172,11 +196,8 @@ $$A = \frac{R^2}{2} \left| \sum_{i=1}^{n} (\lambda_{i+1} - \lambda_i) \cdot (\si
 
 ## 5. What BHU LOKA Does: Core Workstation Modules
 
-BHU LOKA (भूलोक) bridges the entire operational continuum:
-$$\text{EARTH} \longrightarrow \text{SATELLITE} \longrightarrow \text{GIS} \longrightarrow \text{HAZARDS} \longrightarrow \text{LAND STUDIO} \longrightarrow \text{FARMER} \longrightarrow \text{HEALTH} \longrightarrow \text{MARKET}$$
-
 ```
-                                      BHU LOKA (भूलोक) SYSTEM OVERVIEW
+                                      BHU LOKA SYSTEM ARCHITECTURE
                                       
   ┌────────────────────────────────────────────────────────────────────────────────────────────────────────┐
   │                                   WORKSTATION INTERFACES & MODULES                                     │
@@ -249,7 +270,7 @@ $$\text{EARTH} \longrightarrow \text{SATELLITE} \longrightarrow \text{GIS} \long
 * **Bharatiya Sakshya Adhiniyam, 2023 (BSA §63) Compliance:** Generates official government-ready electronic evidence dossiers containing cryptographic SHA-256 hashes, acquisition timestamps, sensor calibration levels, and statutory technical screening disclaimers. Completely eliminates speculative automated demolition claims in favor of objective `POTENTIAL SPATIAL OVERLAP — REQUIRES OFFICIAL VERIFICATION`.
 
 ### Module 5: Farmer Intelligence & Mandi Market Engine (`Pipelines/bhu_loka_agri_engine.py`)
-* **Complete Land Intelligence for Farmers (किसान अपने खेत की पूरी जानकारी लें):**
+* **Complete Land Intelligence for Farmers:**
   * *Interactive Plot Drawer:* Draw parcel boundaries directly on high-resolution satellite imagery with vertex undo and edit tools.
   * *Accurate Geodesic Area Calculation:* Implements spherical Shoelace mathematics computing exact land parcel acreage and hectares.
   * *Sentinel-2 L2A STAC Multi-Spectral Indices:*
@@ -260,21 +281,21 @@ $$\text{EARTH} \longrightarrow \text{SATELLITE} \longrightarrow \text{GIS} \long
     * **NDWI (Canopy Moisture & Liquid Water):** $(B08 - B11) / (B08 + B11)$ tracking foliar water stress.
   * *Agro-Meteorology & Soil Moisture:* Integrates Open-Meteo $ET_0$ FAO evapotranspiration, Vapor Pressure Deficit (VPD), surface and root-zone volumetric soil moisture, 7-day cumulative water balance, and Copernicus 30m DEM slope drainage profiles.
   * *Crop Growth Stage Tracking:* Monitor fields across active phenological stages: Vegetative, Flowering, Harvesting, and Fallow.
-* **Mandi Market Intelligence & Crop Selling Guidance (मंडी में क्या और कब सेल करें):**
+* **Mandi Market Intelligence & Crop Selling Guidance:**
   * *Harvest Timing Optimization:* Combines radar dry-spell forecasts with crop maturity indices to advise farmers on the ideal harvesting window, preventing post-harvest monsoon rot.
   * *Mandi Price & Demand Trends:* Correlates local mandi market demand, historical modal prices, and crop yield estimations ($kg/ha$) to guide farmers on what crops to market and when to sell for maximum profitability.
   * *Official Scheme Ready:* Instant 1-click export of field boundaries into RFC 7946 GeoJSON format for PM-KISAN registration, digital land records, and parametric crop insurance claims.
 
 ### Module 6: Public Health, Citizen Safety & 3D Spatial Epidemiological Suite
-* **Location-Aware 3D Impact Visualization (लोग अपनी लोकेशन 3D में देखकर इम्पैक्ट समझें):**
+* **Location-Aware 3D Impact Visualization:**
   * *Hyper-Local 3D Risk Assessment:* Residents and emergency workers can inspect their exact GPS/ward location on the 3D Copernicus DEM relief to see how multi-hazards compound in their micro-topography.
   * *Stagnant Floodwater & Vector Breeding:* Visualizes critical depression sinks (<46m AMSL) where post-deluge floodwaters remain trapped, highlighting high-risk breeding zones for dengue, malaria, and waterborne pathogens.
   * *Severe Air Pollution & Inversion Stress:* Visualizes Sentinel-5P TROPOMI $\text{NO}_2$ plumes, surface $\text{PM}_{2.5}$ inversion layers, and fine silt re-suspension ($142\ \mu\text{g/m}^3$) causing alveolar mucosal and respiratory stress.
   * *Extreme Heatwave Thermal Exposure:* Drapes NASA MODIS Land Surface Temperature ($>42^\circ\text{C}$) over high-density tenements to identify urban heat islands.
-* **Actionable Citizen Protection Advisories (उससे कैसे बचना है):**
+* **Actionable Citizen Protection Advisories:**
   * *Tailored Health Protocols:* Real-time advisories on avoiding contaminated floodwater, boil-water notices, N95 mask usage during silt/aerosol inversions, and hydration protocols during peak heat hours.
   * *Vulnerability Profiling:* Specific safety warnings tailored for high-risk demographics, including the elderly, infants, and individuals with pre-existing cardiopulmonary conditions.
-* **Healthcare & Emergency Logistics Locator (कहाँ क्या है):**
+* **Healthcare & Emergency Logistics Locator:**
   * *Emergency Medical Centers:* Geocoded locations and phone directories of operational government hospitals, trauma centers, and mobile medical dispensaries.
   * *Safe Levee Evacuation Shelters:* Highlights elevated natural terraces (>52m AMSL) safe from flood inundation (e.g. Danapur Cantonment Ridge, Gandhi Maidan high-ground).
   * *Clean Water & Ration Hubs:* Identifies designated municipal relief camps, potable water tankers, and motorable evacuation routes.
@@ -326,7 +347,7 @@ cd BhuLoka
 # 2. Install dependencies
 pip install fastapi uvicorn numpy scikit-learn joblib httpx faiss-cpu pytest beautifulsoup4
 
-# 3. Run the automated test suite (63/63 passing in 100% pass rate)
+# 3. Run the automated test suite (63/63 passing with 100% pass rate)
 pytest tests/ -v
 
 # 4. Start the FastAPI backend
@@ -381,10 +402,20 @@ If you utilize BHU LOKA, its empirical SAR methodology, spatial machine learning
 ```
 
 ---
+
 <img width="1460" height="768" alt="Sovereign GIS Platform View" src="https://github.com/user-attachments/assets/b737f31c-cf9e-43ab-bbef-486fec786c2f" />
 <img width="1460" height="815" alt="3D Workstation View" src="https://github.com/user-attachments/assets/8c9d59bf-795d-4151-ba35-2368b9b251bc" />
 
-## License & Open-Source Sovereignty
+## ⚖️ License & Open-Source Sovereignty
 
-This project is licensed under the **MIT Open Source License** — see the [LICENSE](https://github.com/Amourhoffen/BhuLoka/blob/main/LICENSE) file for details.  
-*Dedicated to the citizens of Patna, Bihar and open-source scientific disaster resilience worldwide.*
+This project is licensed under the **MIT Open Source License** — see the [LICENSE](LICENSE) file for details.  
+*Dedicated to open-source scientific disaster resilience, sovereign geospatial intelligence, and empowering agricultural and urban communities worldwide.*
+
+---
+
+<div align="center">
+
+### ⭐ If you find BHU LOKA inspiring or useful, please give this repository a star!
+**Built with passion by Prince Kumar, Payal Priyadarshini & Team Amour Hoffen at IIT Patna**
+
+</div>
