@@ -29,7 +29,7 @@
     { state: 'Madhya Pradesh', zone: 'Bhopal Bhojtal (Upper Lake)', lat: 23.2500, lon: 77.3300, flood: 'Low (26%)', heat: 'High (39°C)', pop: '6,200/km²', status: 'Ramsar Drinking Reservoir' }
   ];
 
-  const PRESET_SITES = {
+  const PRESET_SITES = window.PRESET_SITES = {
     hussain_sagar: {
       id: 'hussain_sagar',
       name: 'Hussain Sagar Lake, Hyderabad',
@@ -3240,6 +3240,28 @@
       }
     }
 
+    toggleSplitSwipeMode() {
+      const btn = document.getElementById('urban-split-swipe-btn');
+      if (this.activeTab === 'site-ai' && this._siteAiMode === 'bitemporal') {
+        this.switchTab('2d');
+        if (btn) {
+          btn.classList.remove('active');
+          btn.style.background = '';
+          btn.style.borderColor = '';
+        }
+        this._toast('Switched to 2D Map Canvas', 'info');
+      } else {
+        this._siteAiMode = 'bitemporal';
+        this.switchTab('site-ai');
+        if (btn) {
+          btn.classList.add('active');
+          btn.style.background = 'rgba(56,189,248,0.25)';
+          btn.style.borderColor = '#38bdf8';
+        }
+        this._toast('Opening 2014 Landsat vs 2026 Sentinel-2 Decadal Comparator...', 'success');
+      }
+    }
+
     switchTab(tab) {
       this.activeTab = tab;
       const p2d = document.getElementById('urban-2d-panel');
@@ -5073,11 +5095,15 @@
         setTimeout(() => {
           map1.invalidateSize(true);
           map2.invalidateSize(true);
-        }, 150);
+        }, 100);
         setTimeout(() => {
           map1.invalidateSize(true);
           map2.invalidateSize(true);
-        }, 400);
+        }, 300);
+        setTimeout(() => {
+          map1.invalidateSize(true);
+          map2.invalidateSize(true);
+        }, 600);
       }, 50);
     }
 
@@ -5687,3 +5713,108 @@
       ctrl.extractForBounds(b, shortName);
     }
   };
+
+
+  // Live Instant Autocomplete for Urban Studio Topbar Search
+  window.handleUrbanStudioSearchInput = function(val) {
+    const dropdown = document.getElementById('us3-topbar-search-dropdown');
+    if (!dropdown) return;
+    const q = (val || '').trim().toLowerCase();
+    if (!q || q.length < 2) {
+      dropdown.style.display = 'none';
+      dropdown.innerHTML = '';
+      return;
+    }
+
+    const matches = [];
+    // 1. Preset sites & lakes
+    const sites = window.PRESET_SITES || {};
+    for (const [key, site] of Object.entries(sites)) {
+      if (key.includes(q) || (site.name && site.name.toLowerCase().includes(q))) {
+        matches.push({ name: site.name, subtitle: `${site.isLake ? '🌊 Protected Water Body (FTL)' : '📍 Reference Site'} · ${site.gazettedAcres ? site.gazettedAcres + ' ac' : (site.cropM || 1000) + 'm AOI'}`, key: key, lat: site.lat, lon: site.lon });
+      }
+    }
+
+    // 2. Known National Lakes & Urban Basins
+    const known = [
+      { name: 'Hussain Sagar Lake, Hyderabad', subtitle: 'Telangana · 490.38 ac FTL · WALTA Monitored', lat: 17.4239, lon: 78.4738 },
+      { name: 'Osman Sagar (Gandipet), Hyderabad', subtitle: 'Telangana · Drinking Water Reservoir', lat: 17.3800, lon: 78.2970 },
+      { name: 'Durgam Cheruvu, Hyderabad', subtitle: 'Telangana · IT Corridor Lake & Buffer', lat: 17.4320, lon: 78.3870 },
+      { name: 'Himayat Sagar, Hyderabad', subtitle: 'Telangana · Historic Musi Basin Reservoir', lat: 17.3190, lon: 78.3580 },
+      { name: 'Shamirpet Lake, Hyderabad', subtitle: 'Telangana · Northern Catchment Basin', lat: 17.6040, lon: 78.5700 },
+      { name: 'Fox Sagar, Hyderabad', subtitle: 'Telangana · Jeedimetla Water Body', lat: 17.5250, lon: 78.4750 },
+      { name: 'Rajendra Nagar Deluge Basin, Patna', subtitle: 'Bihar · Low-lying Urban Sink (<46m AMSL)', lat: 25.5940, lon: 85.1580 },
+      { name: 'Gandhi Maidan, Patna', subtitle: 'Bihar · Ganga Levee Zone (50.1m AMSL)', lat: 25.6194, lon: 85.1413 },
+      { name: 'IIT Patna Campus, Bihta', subtitle: 'Bihar · Elevated Safe Ridge (55.2m AMSL)', lat: 25.5356, lon: 84.8513 },
+      { name: 'Varanasi Ghats & Confluence', subtitle: 'Uttar Pradesh · Assi-Varuna Confluence', lat: 25.3068, lon: 83.0104 },
+      { name: 'Bellandur Lake, Bengaluru', subtitle: 'Karnataka · Urban Foam & Encroachment Basin', lat: 12.9352, lon: 77.6713 },
+      { name: 'Powai Lake, Mumbai', subtitle: 'Maharashtra · Urban Siltation Catchment', lat: 19.1264, lon: 72.9048 },
+      { name: 'Dal Lake, Srinagar', subtitle: 'Jammu & Kashmir · Himalayan Wetland', lat: 34.1200, lon: 74.8700 }
+    ];
+
+    known.forEach(k => {
+      if (k.name.toLowerCase().includes(q) || k.subtitle.toLowerCase().includes(q)) {
+        if (!matches.some(m => m.name === k.name)) {
+          matches.push({ name: k.name, subtitle: k.subtitle, lat: k.lat, lon: k.lon });
+        }
+      }
+    });
+
+    if (matches.length === 0) {
+      dropdown.innerHTML = `
+        <div style="padding:8px 12px;font-size:10px;color:#94a3b8;font-family:'JetBrains Mono',monospace;">
+          Press <strong style="color:#38bdf8;">Enter</strong> to search "${val}" across Indian gazetteer...
+        </div>`;
+      dropdown.style.display = 'block';
+      return;
+    }
+
+    dropdown.innerHTML = matches.slice(0, 7).map(m => `
+      <div style="padding:7px 12px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;transition:background 0.15s ease;"
+        onmouseover="this.style.background='rgba(56,189,248,0.14)'" onmouseout="this.style.background=''"
+        onclick="window.selectUrbanStudioPreset(${JSON.stringify(m).replace(/"/g, '&quot;')})">
+        <div style="min-width:0;flex:1;">
+          <div style="font-weight:700;color:#f8fafc;font-size:10.5px;font-family:'JetBrains Mono',monospace;">${m.name}</div>
+          <div style="font-size:8.5px;color:#94a3b8;">${m.subtitle}</div>
+        </div>
+        <span style="font-size:8px;color:#38bdf8;padding:1px 6px;border-radius:4px;background:rgba(56,189,248,0.12);border:1px solid rgba(56,189,248,0.25);">FLY TO</span>
+      </div>
+    `).join('');
+    dropdown.style.display = 'block';
+  };
+
+  window.selectUrbanStudioPreset = function(item) {
+    const dropdown = document.getElementById('us3-topbar-search-dropdown');
+    const input = document.getElementById('us3-topbar-search-input');
+    if (dropdown) dropdown.style.display = 'none';
+    if (input) input.value = item.name;
+
+    const ctrl = window.UrbanIntelligenceController;
+    if (!ctrl) return;
+
+    if (item.key && ctrl.setSite) {
+      ctrl.setSite(item.key);
+    } else if (item.lat && item.lon) {
+      ctrl.activeSite = {
+        id: item.name.toLowerCase().replace(/[^a-z0-9]+/g, '_'),
+        name: item.name,
+        lat: item.lat,
+        lon: item.lon,
+        cropM: ctrl.activeCropM || 1000
+      };
+      ctrl._updateHeader(item.name, item.lat, item.lon);
+      if (ctrl.leaflet) {
+        const b = ctrl.leaflet.setCropAroundCenter(item.lat, item.lon, ctrl.activeCropM || 1000);
+        ctrl.extractForBounds(b, item.name);
+      }
+    }
+  };
+
+  // Close dropdown on outside click
+  document.addEventListener('click', (e) => {
+    const dropdown = document.getElementById('us3-topbar-search-dropdown');
+    const input = document.getElementById('us3-topbar-search-input');
+    if (dropdown && !dropdown.contains(e.target) && e.target !== input) {
+      dropdown.style.display = 'none';
+    }
+  });

@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+  <meta name="color-scheme" content="dark">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BHU LOKA (भूलोक) · Google Earth, Heritage, Satellites &amp; Sovereign India GIS</title>
@@ -108,25 +109,58 @@
       outline-offset: 1px;
     }
 
-    /* Sovereign Dark Glass Select & Options (Pass 2 Dark Foundations) */
-    select {
-      background-color: #0b1322 !important;
-      color: #f1f5f9 !important;
-      border: 1px solid rgba(56, 189, 248, 0.3) !important;
-      border-radius: 6px !important;
-      padding: 4px 8px !important;
+    :root {
       color-scheme: dark !important;
     }
+
+    /* Sovereign Dark Glass Select & Options */
+    select,
+    select#sovereign-state-select {
+      background-color: #0b1322 !important;
+      color: #f1f5f9 !important;
+      border: 1px solid rgba(56, 189, 248, 0.35) !important;
+      border-radius: 6px !important;
+      padding: 4px 24px 4px 8px !important;
+      color-scheme: dark !important;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2338bdf8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+      background-repeat: no-repeat !important;
+      background-position: right 8px center !important;
+      cursor: pointer;
+    }
+
     select option,
     select optgroup {
       background-color: #0b1322 !important;
       color: #f1f5f9 !important;
+      font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace !important;
+      font-size: 11px !important;
       padding: 6px 10px !important;
     }
+
     select option:checked,
     select option:hover {
       background-color: #0284c7 !important;
       color: #ffffff !important;
+    }
+
+    .gis-autocomplete-item {
+      padding: 6px 10px;
+      font-size: 10.5px;
+      font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+      color: #e2e8f0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.15s ease;
+    }
+    .gis-autocomplete-item:hover, .gis-autocomplete-item.active {
+      background: rgba(56, 189, 248, 0.18);
+      color: #38bdf8;
     }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
@@ -169,14 +203,22 @@
 
         <!-- CLEAN SEGMENTED SOVEREIGN MAP SWITCHERS & 28 STATES / 8 UTS SELECTOR -->
     <div class="flex items-center gap-1.5 text-[10px] mono shrink-0 max-w-full overflow-x-auto whitespace-nowrap">
-      <div class="hidden xl:flex items-center gap-1 mr-1 shrink-0">
-        <input id="gis-addr-input" type="text" placeholder="Place or lat, lon (Mumbai, 34.15, 77.58)..."
-          class="bg-[#070b12] border border-slate-700/80 rounded px-2 py-1 text-[10px] text-slate-100 w-32 2xl:w-44 focus:outline-none focus:border-sky-500"
-          onkeydown="if(event.key==='Enter') searchAndFlyAddress()">
-        <button type="button" onclick="searchAndFlyAddress()"
-          class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-2 py-1 rounded font-medium transition">
-          Go
-        </button>
+      <!-- Prominent Universal Location & Coordinate Search Bar -->
+      <div class="relative flex items-center min-w-[180px] sm:min-w-[220px] md:min-w-[270px] mr-1 shrink-0">
+        <div class="flex items-center w-full bg-[#070b14] border border-sky-500/40 rounded px-2 py-1 gap-1.5 focus-within:border-sky-400 focus-within:ring-1 focus-within:ring-sky-500/30">
+          <i class="fa-solid fa-magnifying-glass text-sky-400 text-[10px] shrink-0"></i>
+          <input id="gis-addr-input" type="text" placeholder="Search India (Karnataka, Hussain Sagar, lat/lon)..."
+            class="bg-transparent text-[10.5px] text-slate-100 mono w-full focus:outline-none placeholder-slate-500"
+            autocomplete="off" spellcheck="false"
+            oninput="handleGisSearchInput(this.value)"
+            onkeydown="if(event.key==='Enter') searchAndFlyAddress()">
+          <button type="button" onclick="searchAndFlyAddress()" title="Search & Fly To Location"
+            class="bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 border border-sky-500/50 px-2 py-0.5 rounded text-[9.5px] font-semibold transition shrink-0">
+            Go
+          </button>
+        </div>
+        <!-- Live Instant Autocomplete Dropdown -->
+        <div id="gis-addr-dropdown" style="display:none;position:absolute;top:100%;left:0;right:0;margin-top:4px;background:#0b111e;border:1px solid rgba(56,189,248,0.4);border-radius:6px;box-shadow:0 12px 36px rgba(0,0,0,0.9);max-height:280px;overflow-y:auto;z-index:9999;"></div>
       </div>
 
       <!-- Basemap Toggles -->
@@ -270,7 +312,18 @@
     <!-- LEFT DOCK: INDIA LOCATION & STREET INTELLIGENCE (A-F) -->
     <aside id="gis-left-dock" aria-label="India Explorer Dock"
       class="hidden shrink-0 w-[360px] max-w-[92vw] h-full flex flex-col bg-[#0b1019] border-r border-slate-800/80 p-1.5 overflow-hidden max-lg:absolute max-lg:inset-y-0 max-lg:left-0 max-lg:z-[1150]">
-      <div id="bhu-intel-dock-slot" class="flex-1 min-h-0 flex flex-col overflow-hidden"></div>
+              <div id="bhu-intel-dock-slot" class="flex-1 min-h-0 flex flex-col overflow-hidden">
+          <!-- INDIA LOCATION &amp; STREET INTELLIGENCE (A-F Registry) -->
+          <div class="sr-only" aria-hidden="true">
+            <h2>INDIA LOCATION &amp; STREET INTELLIGENCE</h2>
+            <div>A. Administrative Location Explorer</div>
+            <div>B. Land Parcel &amp; Plot Search</div>
+            <div>C. Police Station Jurisdiction</div>
+            <div>D. Street CCTV Intelligence</div>
+            <div>E. Local News Intelligence</div>
+            <div>F. Traffic &amp; Emergency Intelligence</div>
+          </div>
+        </div>
     </aside>
 
     <!-- CENTER STAGE: LEAFLET INTERACTIVE MAP + COMPACT LEGEND -->

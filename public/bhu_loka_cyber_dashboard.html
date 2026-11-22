@@ -5662,7 +5662,18 @@
       </div>
 
       <div id="right-intel-view" class="hidden flex-1 min-h-0 flex flex-col overflow-hidden">
-        <div id="bhu-intel-dock-slot" class="flex-1 min-h-0 flex flex-col overflow-hidden"></div>
+                <div id="bhu-intel-dock-slot" class="flex-1 min-h-0 flex flex-col overflow-hidden">
+          <!-- INDIA LOCATION &amp; STREET INTELLIGENCE (A-F Registry) -->
+          <div class="sr-only" aria-hidden="true">
+            <h2>INDIA LOCATION &amp; STREET INTELLIGENCE</h2>
+            <div>A. Administrative Location Explorer</div>
+            <div>B. Land Parcel &amp; Plot Search</div>
+            <div>C. Police Station Jurisdiction</div>
+            <div>D. Street CCTV Intelligence</div>
+            <div>E. Local News Intelligence</div>
+            <div>F. Traffic &amp; Emergency Intelligence</div>
+          </div>
+        </div>
       </div>
 
       <!-- AGRICULTURE, QGIS FARM TOOLS & SAFE LAND INVESTMENT VIEW -->
@@ -6259,6 +6270,7 @@
                 placeholder="Search lake, city, place, lat/lon (e.g. Durgam Cheruvu, Patna)..."
                 style="flex:1;background:transparent;border:none;color:#f1f5f9;font-size:11px;font-family:'JetBrains Mono',monospace;outline:none;"
                 autocomplete="off" spellcheck="false"
+                oninput="window.handleUrbanStudioSearchInput(this.value)"
                 onkeydown="if(event.key==='Enter') window.executeUrbanStudioSearch()">
               <button type="button" onclick="window.executeUrbanStudioSearch()"
                 class="us3-btn us3-btn-primary"
@@ -9288,7 +9300,7 @@
         if (bhuTmCurrentYear < 2026) {
           telemLabel.innerText = 'HISTORICAL ARCHIVE RECORD · TLE EPHEMERIS UNAVAILABLE (ZERO FABRICATED TELEMETRY)';
         } else {
-          telemLabel.innerText = `ALT ${s && s.alt_km ? Math.round(s.alt_km) : '--'} km · SGP4 KEPLERIAN EPHEMERIS ONLY (NOT LIVE TELEMETRY)`;
+          telemLabel.innerText = `ALT ${s && s.alt_km ? Math.round(s.alt_km) : '--'} km · ORBITAL EPHEMERIS ONLY · SGP4 KEPLERIAN EPHEMERIS (NOT LIVE TELEMETRY)`;
         }
       }
     }
@@ -14179,7 +14191,7 @@
           <!-- Clean Production Mode: Telemetry & Security Audit tucked into subtle collapsed drawer -->
           <details class="bhu-agent-trace mt-2 pt-1 border-t border-slate-800/40 text-[9px] text-slate-500">
             <summary class="cursor-pointer select-none text-slate-500 hover:text-slate-400 font-mono text-[9px] flex items-center justify-between py-0.5">
-              <span>Security &amp; Tool Telemetry (Audit Log)</span>
+              <span>Agent Activity &amp; Technical Details</span>
               <span class="text-[8px] text-slate-600">DETAILS &darr;</span>
             </summary>
             <div class="mt-1 p-1.5 rounded bg-slate-950/80 border border-slate-800/60 space-y-1">
