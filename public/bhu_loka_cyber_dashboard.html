@@ -15,7 +15,7 @@
   <!-- BHU LOKA Design System Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <!-- Font Awesome 6 Free -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="Assets/vendor/bhu_loka_theme.css" />
@@ -50,8 +50,8 @@
   <script src="https://unpkg.com/@turf/turf@7.1.0/turf.min.js"></script>
   <script src="Assets/vendor/bhu_loka_ml_inference.js?v=57"></script>
   <script src="Assets/vendor/bhu_loka_2d_layer_panel.js?v=50"></script>
-  <script src="Assets/vendor/bhu_loka_qgis_workspace.js?v=60"></script>
-  <script src="Assets/vendor/bhu_loka_urban_studio.js?v=60"></script>
+  <script src="Assets/vendor/bhu_loka_qgis_workspace.js?v=75"></script>
+  <script src="Assets/vendor/bhu_loka_urban_studio.js?v=75"></script>
   <!-- Firebase App & Analytics SDK (Project: bhu-loka) -->
   <script type="module">
     if (typeof window !== 'undefined' && window.location && (window.location.protocol === 'http:' || window.location.protocol === 'https:')) {
@@ -131,11 +131,104 @@
         radial-gradient(ellipse at 20% 50%, rgba(45,156,219,0.04) 0%, transparent 60%),
         radial-gradient(ellipse at 80% 20%, rgba(16,185,129,0.03) 0%, transparent 50%);
       color: var(--text-primary);
-      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif !important;
       overflow-x: hidden;
       overflow-anchor: none;
       margin: 0;
       -webkit-font-smoothing: antialiased;
+    }
+
+    /* ══════════════════════════════════════════════════════════════════════
+       BHU LOKA DOMAIN COLOR PALETTES & AMBIENT GLASSMORPHISM
+       ══════════════════════════════════════════════════════════════════════ */
+    /* 1. HAZARD: DARK + RED */
+    body[data-domain="hazard"] {
+      --bg-canvas: #09090b !important;
+      --accent-primary: #ef4444 !important;
+      --accent-bright: #f87171 !important;
+      --border-glass: rgba(239, 68, 68, 0.28) !important;
+      background-image: radial-gradient(ellipse at 50% 20%, rgba(239, 68, 68, 0.10) 0%, #09090b 70%) !important;
+    }
+    body[data-domain="hazard"] #bhu-top-nav {
+      border-bottom: 1px solid rgba(239, 68, 68, 0.35) !important;
+    }
+    body[data-domain="hazard"] .bhu-top-nav-btn.active {
+      color: #fca5a5 !important;
+      background: rgba(239, 68, 68, 0.16) !important;
+      border-color: rgba(239, 68, 68, 0.5) !important;
+      box-shadow: 0 0 16px rgba(239, 68, 68, 0.25) !important;
+    }
+
+    /* 2. AI: DARK + LIKE CHATGPT (Obsidian + Emerald #10a37f) */
+    body[data-domain="ai"] {
+      --bg-canvas: #0d1117 !important;
+      --accent-primary: #10a37f !important;
+      --accent-bright: #34d399 !important;
+      --border-glass: rgba(16, 163, 127, 0.25) !important;
+      background-image: radial-gradient(ellipse at 30% 30%, rgba(16, 163, 127, 0.08) 0%, #0d1117 70%) !important;
+    }
+    body[data-domain="ai"] #bhu-top-nav {
+      border-bottom: 1px solid rgba(16, 163, 127, 0.3) !important;
+    }
+    body[data-domain="ai"] .bhu-top-nav-btn.active {
+      color: #6ee7b7 !important;
+      background: rgba(16, 163, 127, 0.16) !important;
+      border-color: rgba(16, 163, 127, 0.5) !important;
+      box-shadow: 0 0 16px rgba(16, 163, 127, 0.25) !important;
+    }
+
+    /* 3. LAND STUDIO: DARK + MINIMALISM + BLUE */
+    body[data-domain="land-studio"] {
+      --bg-canvas: #040812 !important;
+      --accent-primary: #0284c7 !important;
+      --accent-bright: #38bdf8 !important;
+      --border-glass: rgba(56, 189, 248, 0.25) !important;
+      background-image: radial-gradient(ellipse at 50% 20%, rgba(56, 189, 248, 0.10) 0%, #040812 70%) !important;
+    }
+    body[data-domain="land-studio"] #bhu-top-nav {
+      border-bottom: 1px solid rgba(56, 189, 248, 0.35) !important;
+    }
+    body[data-domain="land-studio"] .bhu-top-nav-btn.active {
+      color: #7dd3fc !important;
+      background: rgba(56, 189, 248, 0.16) !important;
+      border-color: rgba(56, 189, 248, 0.5) !important;
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.25) !important;
+    }
+
+    /* 4. FARMER: DARK + GREEN */
+    body[data-domain="farmer"] {
+      --bg-canvas: #04150e !important;
+      --accent-primary: #059669 !important;
+      --accent-bright: #10b981 !important;
+      --border-glass: rgba(16, 185, 129, 0.25) !important;
+      background-image: radial-gradient(ellipse at 50% 20%, rgba(16, 185, 129, 0.10) 0%, #04150e 70%) !important;
+    }
+    body[data-domain="farmer"] #bhu-top-nav {
+      border-bottom: 1px solid rgba(16, 185, 129, 0.35) !important;
+    }
+    body[data-domain="farmer"] .bhu-top-nav-btn.active {
+      color: #86efac !important;
+      background: rgba(16, 185, 129, 0.16) !important;
+      border-color: rgba(16, 185, 129, 0.5) !important;
+      box-shadow: 0 0 16px rgba(16, 185, 129, 0.25) !important;
+    }
+
+    /* 5. HEALTH: FEEL SAFE + DARK THEME */
+    body[data-domain="health"] {
+      --bg-canvas: #04131a !important;
+      --accent-primary: #0d9488 !important;
+      --accent-bright: #14b8a6 !important;
+      --border-glass: rgba(20, 184, 166, 0.25) !important;
+      background-image: radial-gradient(ellipse at 50% 20%, rgba(20, 184, 166, 0.10) 0%, #04131a 70%) !important;
+    }
+    body[data-domain="health"] #bhu-top-nav {
+      border-bottom: 1px solid rgba(20, 184, 166, 0.35) !important;
+    }
+    body[data-domain="health"] .bhu-top-nav-btn.active {
+      color: #99f6e4 !important;
+      background: rgba(20, 184, 166, 0.16) !important;
+      border-color: rgba(20, 184, 166, 0.5) !important;
+      box-shadow: 0 0 16px rgba(20, 184, 166, 0.25) !important;
     }
 
     .mono {
@@ -1465,6 +1558,16 @@
     .lp-btn:active { transform:scale(.97); }
     .lp-btn-enable { background:linear-gradient(135deg,rgba(2,132,199,.9),rgba(16,185,129,.85));color:#fff; }
     .lp-btn-clear { background:rgba(255,255,255,.08);color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.1); }
+    /* Universal Dark Select & Dropdown Styling (Zero White Popup Glitches) */
+    select, select option, select optgroup {
+      background-color: #0b1322 !important;
+      color: #f1f5f9 !important;
+      border-color: rgba(56, 189, 248, 0.3) !important;
+    }
+    select option:hover, select option:checked {
+      background-color: #1e293b !important;
+      color: #38bdf8 !important;
+    }
   </style>
 
 
@@ -1839,6 +1942,16 @@
       display: none !important;
     }
 
+    /* Universal Dark Select & Dropdown Styling (Zero White Popup Glitches) */
+    select, select option, select optgroup {
+      background-color: #0b1322 !important;
+      color: #f1f5f9 !important;
+      border-color: rgba(56, 189, 248, 0.3) !important;
+    }
+    select option:hover, select option:checked {
+      background-color: #1e293b !important;
+      color: #38bdf8 !important;
+    }
   </style>
 
 
@@ -2087,6 +2200,16 @@
       transition: all 0.14s !important;
     }
 
+    /* Universal Dark Select & Dropdown Styling (Zero White Popup Glitches) */
+    select, select option, select optgroup {
+      background-color: #0b1322 !important;
+      color: #f1f5f9 !important;
+      border-color: rgba(56, 189, 248, 0.3) !important;
+    }
+    select option:hover, select option:checked {
+      background-color: #1e293b !important;
+      color: #38bdf8 !important;
+    }
   </style>
 
 
@@ -2339,6 +2462,16 @@
       position: absolute !important;
       inset: 0 !important;
       background: #09090B !important;
+    }
+    /* Universal Dark Select & Dropdown Styling (Zero White Popup Glitches) */
+    select, select option, select optgroup {
+      background-color: #0b1322 !important;
+      color: #f1f5f9 !important;
+      border-color: rgba(56, 189, 248, 0.3) !important;
+    }
+    select option:hover, select option:checked {
+      background-color: #1e293b !important;
+      color: #38bdf8 !important;
     }
   </style>
 
@@ -2669,6 +2802,16 @@
         margin: 0 !important;
       }
     }
+    /* Universal Dark Select & Dropdown Styling (Zero White Popup Glitches) */
+    select, select option, select optgroup {
+      background-color: #0b1322 !important;
+      color: #f1f5f9 !important;
+      border-color: rgba(56, 189, 248, 0.3) !important;
+    }
+    select option:hover, select option:checked {
+      background-color: #1e293b !important;
+      color: #38bdf8 !important;
+    }
   </style>
 </head>
 
@@ -2677,17 +2820,26 @@
   <!-- ════════════════════════════════════════════════════════════════
        BHU LOKA v6.0 — MOBILE TOP BAR (< 768px)
        ════════════════════════════════════════════════════════════════ -->
-  <div id="bhu-mobile-top-bar" class="md:hidden flex items-center justify-between px-3 py-2 bg-[#050811]/95 backdrop-blur-2xl border-b border-white/10 shrink-0 sticky top-0" style="z-index: 90;">
-    <button type="button" onclick="bhuToggleDrawer()" class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-200 active:scale-95 transition" aria-label="Open menu">
-      <i class="fa-solid fa-bars text-base"></i>
+  <div id="bhu-mobile-top-bar" class="md:hidden flex items-center justify-between px-3 py-2 bg-[#050811]/95 backdrop-blur-2xl border-b border-white/10 shrink-0 sticky top-0 gap-2" style="z-index: 90;">
+    <button type="button" onclick="bhuToggleDrawer()" class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-200 active:scale-95 transition shrink-0" aria-label="Open menu">
+      <i class="fa-solid fa-bars text-sm"></i>
     </button>
-    <div class="flex items-center gap-1.5 cursor-pointer" onclick="bhuNavTo('home')">
-      <span class="text-lg font-bold tracking-widest text-slate-100 uppercase" style="font-family: 'Cormorant Garamond', Georgia, serif; letter-spacing: 2px;">BHU LOKA</span>
-      <span class="text-[8px] px-1.5 py-0.2 rounded-full bg-blue-600/20 text-sky-400 border border-sky-500/40 font-bold mono">IN</span>
+    <div class="relative flex-1">
+      <div class="flex items-center gap-2 bg-[#090d16] border border-slate-700/80 rounded-full px-3 py-1.5 w-full focus-within:border-sky-400 focus-within:ring-1 focus-within:ring-sky-500/30">
+        <i class="fa-solid fa-magnifying-glass text-sky-400 text-xs shrink-0"></i>
+        <input id="mobile-global-location-search" type="text" placeholder="Search India, city, lake, lat, lon..." autocomplete="off"
+          class="bg-transparent text-xs mono text-slate-100 w-full min-w-0 focus:outline-none placeholder-slate-500"
+          oninput="window.handleGlobalOmniboxInput(this.value, 'mobile')"
+          onfocus="window.handleGlobalOmniboxFocus('mobile')"
+          onkeydown="if(event.key==='Enter') { executeUniversalLocationSearch(this.value); window.executeGlobalOmniboxSelect(this.value); }">
+      </div>
+      <div id="mobile-global-search-autocomplete" class="absolute top-full left-0 right-0 mt-1.5 bg-[#0b1322]/98 backdrop-blur-2xl border border-sky-500/30 rounded-xl shadow-[0_16px_40px_rgba(0,0,0,0.85)] z-[9999] overflow-hidden hidden max-h-60 overflow-y-auto">
+      </div>
     </div>
-    <button type="button" onclick="bhuOpenSearchModal()" class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-200 active:scale-95 transition" aria-label="Search">
-      <i class="fa-solid fa-magnifying-glass text-sm"></i>
-    </button>
+    <div class="flex items-center gap-1 shrink-0 cursor-pointer" onclick="bhuNavTo('home')">
+      <span class="text-sm font-bold tracking-wider text-slate-100 uppercase" style="font-family: 'Inter', sans-serif;">BHU</span>
+      <span class="text-[7.5px] px-1 py-0.2 rounded-full bg-blue-600/20 text-sky-400 border border-sky-500/40 font-bold mono">IN</span>
+    </div>
   </div>
 
   <div id="bhu-cursor-dot" aria-hidden="true"></div>
@@ -2735,12 +2887,12 @@
   <!-- ════════════════════════════════════════════════════════════════
      BHU LOKA v6.0 — DESKTOP TOP NAVIGATION BAR (≥ 768px)
      ════════════════════════════════════════════════════════════════ -->
-  <header role="banner"><nav id="bhu-top-nav" class="hidden md:flex px-4 py-2 items-center justify-between gap-3 shrink-0 select-none" style="margin-bottom: 2px;" role="navigation" aria-label="Main Navigation">
+  <header role="banner"><nav id="bhu-top-nav" class="hidden md:flex px-4 py-2 items-center justify-between gap-3 shrink-0 select-none backdrop-blur-2xl border-b border-white/10" style="margin-bottom: 2px;" role="navigation" aria-label="Main Navigation">
     <!-- LEFT: SOVEREIGN BRAND & BADGE -->
     <div class="flex items-center gap-3 shrink-0">
       <div class="flex items-center gap-2 cursor-pointer" onclick="bhuNavTo('home')" title="BHU LOKA Home">
-        <span class="text-2xl font-bold tracking-widest text-slate-100 uppercase bhu-brand-title"
-          style="font-family: 'Cormorant Garamond', Georgia, serif; letter-spacing: 2px;">BHU LOKA</span>
+        <span class="text-2xl font-black tracking-wider text-slate-100 uppercase bhu-brand-title"
+          style="font-family: 'Inter', system-ui, sans-serif; letter-spacing: 1.5px;">BHU LOKA</span>
         <span class="text-[9px] px-2 py-0.5 rounded-full bg-blue-600/20 text-sky-400 border border-sky-500/40 font-bold mono">SOVEREIGN AI</span>
       </div>
       <div class="text-[9.5px] mono text-slate-400 hidden xl:block border-l border-slate-700/80 pl-2.5">
@@ -2776,13 +2928,25 @@
       </button>
     </div>
 
-    <!-- RIGHT: SEARCH BAR + 2D EARTH + HAMBURGER -->
+    <!-- RIGHT: PROMINENT OMNIBOX SEARCH BAR + 2D EARTH + HAMBURGER -->
     <div class="flex items-center gap-2 shrink-0">
-      <div class="flex items-center gap-1.5 bg-[#070b12]/90 border border-slate-700/80 rounded-full px-3 py-1.5 focus-within:border-sky-500/70 focus-within:bg-[#0056D2]/10 transition">
-        <i class="fa-solid fa-magnifying-glass text-slate-400 text-xs"></i>
-        <input id="global-location-search" type="text" placeholder="Search India (place, lat, lon)..." aria-label="Search India location or coordinates" autocomplete="off"
-          class="bg-transparent text-xs mono text-slate-100 w-36 lg:w-44 min-w-0 focus:outline-none placeholder-slate-500"
-          onkeydown="if(event.key==='Enter') executeUniversalLocationSearch(this.value)">
+      <div class="relative">
+        <div class="flex items-center gap-2 bg-[#090d16]/95 border border-slate-700/80 rounded-full px-3.5 py-1.5 focus-within:border-sky-400 focus-within:ring-2 focus-within:ring-sky-500/25 shadow-inner transition w-56 lg:w-72 xl:w-80">
+          <i class="fa-solid fa-magnifying-glass text-sky-400 text-xs shrink-0"></i>
+          <input id="global-location-search" type="text"
+            placeholder="Search India (place, lake, lat, lon)..."
+            aria-label="Search India location or coordinates" autocomplete="off"
+            class="bg-transparent text-xs mono text-slate-100 w-full min-w-0 focus:outline-none placeholder-slate-500"
+            oninput="window.handleGlobalOmniboxInput(this.value, 'desktop')"
+            onfocus="window.handleGlobalOmniboxFocus('desktop')"
+            onkeydown="if(event.key==='Enter') { executeUniversalLocationSearch(this.value); window.executeGlobalOmniboxSelect(this.value); }">
+          <button type="button" id="global-search-clear-btn" style="display:none;" onclick="window.clearGlobalOmnibox()" class="text-slate-400 hover:text-white text-xs shrink-0">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <!-- Live Autocomplete Dropdown Menu -->
+        <div id="global-search-autocomplete" class="absolute top-full left-0 right-0 mt-1.5 bg-[#0b1322]/98 backdrop-blur-2xl border border-sky-500/30 rounded-xl shadow-[0_16px_40px_rgba(0,0,0,0.85)] z-[9999] overflow-hidden hidden max-h-80 overflow-y-auto">
+        </div>
       </div>
       <a href="bhu_loka_leafmap_interactive.html" target="_blank" class="badge-chip hidden lg:inline-flex items-center gap-1" title="Open 2D Earth interactive satellite map">
         <i class="fa-solid fa-globe text-xs"></i>
@@ -2939,37 +3103,37 @@
           </div>
         </div>
 
-        <!-- QUERY OUTPUT STREAM -->
-        <div id="chat-feed" class="flex-1 min-h-0 overflow-y-auto space-y-2 pr-1 text-xs">
-          <div
-            class="panel-inset p-2.5 text-slate-300 leading-relaxed border border-sky-500/20 bg-gradient-to-b from-sky-950/20 to-transparent rounded-lg">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-1.5 mb-2">
-              <div class="mono text-[11px] font-bold text-sky-400 flex items-center gap-1.5">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>NASA SPACE APPS 2026 &bull; DANCING WITH THE SARS</span>
-              </div>
-              <span
-                class="mono text-[9px] text-slate-400 bg-slate-900 px-1.5 py-0.5 rounded border border-slate-800">TEAM
-                AMOUR HOFFEN</span>
+        <!-- QUERY OUTPUT STREAM (ChatGPT Minimalist Flow) -->
+        <div id="chat-feed" class="flex-1 min-h-0 overflow-y-auto space-y-3 pr-1 text-xs">
+          <!-- ChatGPT-style Clean Hero State -->
+          <div class="flex flex-col items-center justify-center text-center p-3 my-auto space-y-3">
+            <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-emerald-600/30 via-sky-500/20 to-teal-400/20 border border-emerald-500/30 flex items-center justify-center shadow-[0_0_24px_rgba(16,185,129,0.25)]">
+              <i class="fa-solid fa-microchip text-emerald-400 text-base"></i>
             </div>
-            <div class="space-y-1.5 text-[10px] font-mono">
-              <div class="bg-black/30 p-2 rounded-lg border border-white/5 flex flex-col gap-0.5">
-                <span class="text-slate-400 text-[9px] uppercase tracking-wider font-semibold">Authors</span>
-                <span class="text-slate-200 font-medium leading-relaxed">Prince Kumar (IIT Patna) &bull; Payal Priyadarshini (IIITDMJ)</span>
-              </div>
-              <div class="bg-black/30 p-2 rounded-lg border border-white/5 flex flex-col gap-0.5">
-                <span class="text-slate-400 text-[9px] uppercase tracking-wider font-semibold">Agent-1 RAG</span>
-                <span class="text-sky-300 font-medium leading-relaxed">Sentinel-1 Bimodal SAR &bull; Copernicus GLO-30 DEM &bull; MODIS LST</span>
-              </div>
-              <div class="bg-black/30 p-2 rounded-lg border border-white/5 flex flex-col gap-0.5">
-                <span class="text-slate-400 text-[9px] uppercase tracking-wider font-semibold">Agent-2 Map</span>
-                <span class="text-emerald-300 font-medium leading-relaxed">3D Earth &bull; India 36 &bull; Bihar 38 &bull; 90m Holograms &bull; CelesTrak Orbits</span>
-              </div>
+            <div>
+              <h2 class="text-xs font-bold text-slate-100 tracking-wide uppercase font-display">BHU LOKA SOVEREIGN AI</h2>
+              <p class="text-[10.5px] text-slate-400 mt-0.5">Earth Observation &bull; Sentinel-1 SAR &bull; Hydrology</p>
             </div>
-            <div class="mt-2 pt-1.5 border-t border-slate-800/80 text-[10px] text-slate-400 leading-normal">
-              Scientific Mission Console active. Select a scientific directive below or query SAR double-bounce physics,
-              depression sinks, 96% omission audits, or evacuation triage.
+            <!-- Quick Prompt Pills -->
+            <div class="w-full grid grid-cols-1 gap-1.5 pt-1 text-left">
+              <button type="button" onclick="quickFillPrompt('Hussain Sagar Lake 2014 vs 2026 decadal change and FTL encroachment')" class="p-2 rounded-xl bg-white/[0.03] hover:bg-white/[0.07] border border-white/10 hover:border-sky-500/40 text-[10.5px] text-slate-300 transition flex items-center justify-between group">
+                <span class="truncate">🌊 Decadal lake change &amp; buffer encroachment</span>
+                <i class="fa-solid fa-arrow-right text-[8.5px] text-slate-500 group-hover:text-sky-400 transition"></i>
+              </button>
+              <button type="button" onclick="quickFillPrompt('Explain Sentinel-1 SAR bimodal backscatter physics and double bounce')" class="p-2 rounded-xl bg-white/[0.03] hover:bg-white/[0.07] border border-white/10 hover:border-emerald-500/40 text-[10.5px] text-slate-300 transition flex items-center justify-between group">
+                <span class="truncate">🛰️ SAR double-bounce &amp; flood backscatter</span>
+                <i class="fa-solid fa-arrow-right text-[8.5px] text-slate-500 group-hover:text-emerald-400 transition"></i>
+              </button>
+              <button type="button" onclick="quickFillPrompt('Copernicus 90m DEM depression sinks in Patna flood benchmark')" class="p-2 rounded-xl bg-white/[0.03] hover:bg-white/[0.07] border border-white/10 hover:border-teal-500/40 text-[10.5px] text-slate-300 transition flex items-center justify-between group">
+                <span class="truncate">🏔️ DEM depression sinks &amp; Patna deluge</span>
+                <i class="fa-solid fa-arrow-right text-[8.5px] text-slate-500 group-hover:text-teal-400 transition"></i>
+              </button>
             </div>
+            <!-- Discreet Provenance Modal Link -->
+            <button type="button" onclick="bhuOpenInfoModal('team')" class="text-[9px] text-slate-500 hover:text-slate-300 mono flex items-center gap-1.5 transition pt-1">
+              <i class="fa-solid fa-circle-info"></i>
+              <span>Research Provenance &amp; Authors (IIT Patna &bull; IIITDMJ)</span>
+            </button>
           </div>
         </div>
 
@@ -18125,8 +18289,11 @@ Generated on: ${new Date().toISOString()}
         if (modal) modal.classList.add('hidden');
       };
 
-      /* ── Universal Module Navigation Router ── */
+      /* ── Universal Module Navigation Router & Domain Scoped Themes ── */
       window.bhuNavTo = function (module) {
+        // Set domain on body to activate scoped theme palette
+        document.body.dataset.domain = module;
+
         // 1. Update Desktop Top Nav active states
         document.querySelectorAll('.bhu-top-nav-btn').forEach(btn => btn.classList.remove('active'));
         const dBtn = document.getElementById(`bhu-dnav-${module === 'land-studio' ? 'land' : module}`);
@@ -18145,18 +18312,19 @@ Generated on: ${new Date().toISOString()}
         // 4. Switch to module view
         if (module === 'home') {
           if (typeof setNasaNavTab === 'function') setNasaNavTab('home');
-          else if (typeof switchView === 'function') switchView('world');
+          if (typeof switchView === 'function') switchView('world');
         } else if (module === 'hazard') {
-          // Route to the multi-hazard 3D studio (crop AOI -> layer-by-layer flood, crime, terrain)
-          if (typeof open2DCropStudio === 'function') {
-            open2DCropStudio();
-          } else if (typeof bhuToggle3D === 'function') {
-            bhuToggle3D(true);
-          } else if (typeof switchView === 'function') {
-            switchView('terrain');
+          // Hazard workstation: Pan-India multi-hazard monitoring, flood, SAR, heat
+          const left = document.getElementById('left-rail');
+          if (left) {
+            left.classList.remove('rail-collapsed');
+            left.classList.add('ios-sheet-open');
           }
+          if (typeof switchLeftDockTab === 'function') switchLeftDockTab('hazards');
+          if (typeof setNasaNavTab === 'function') setNasaNavTab('hazard');
+          if (typeof switchView === 'function') switchView('india');
         } else if (module === 'ai') {
-          // AI Assistant: Full-screen mobile chat on mobile, docked on desktop
+          // AI Assistant: Full-screen mobile chat on mobile, docked ChatGPT view on desktop
           const left = document.getElementById('left-rail');
           if (window.innerWidth < 768 && left) {
             left.classList.remove('rail-collapsed');
@@ -18170,6 +18338,8 @@ Generated on: ${new Date().toISOString()}
             if (typeof setNasaNavTab === 'function') setNasaNavTab('ai');
             if (typeof switchLeftDockTab === 'function') switchLeftDockTab('ai');
           }
+          const inp = document.getElementById('user-input');
+          if (inp) setTimeout(() => inp.focus(), 150);
         } else if (module === 'land-studio') {
           // Explicitly close 2D crop modal if open
           const cropModal = document.getElementById('bhu-crop-3d-modal');
@@ -18193,6 +18363,7 @@ Generated on: ${new Date().toISOString()}
           if (typeof setNasaNavTab === 'function') {
             setNasaNavTab('agri');
           }
+          if (typeof switchView === 'function') switchView('bihar');
         } else if (module === 'health') {
           if (typeof setNasaNavTab === 'function') {
             setNasaNavTab('worker');
@@ -18204,6 +18375,249 @@ Generated on: ${new Date().toISOString()}
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       };
+
+      /* ── Global Omnibox Search Engine (36 States/UTs, Pan-India Lakes, Cities, Coordinates) ── */
+      window.GLOBAL_OMNIBOX_REGISTRY = [
+        // Telangana Water Bodies & Lakes
+        { name: "Hussain Sagar Lake, Hyderabad", category: "FTL WATERBODY", state: "Telangana", lat: 17.4239, lon: 78.4738, zoom: 14, tags: "hussain sagar tank bund lake telangana hyderabad ftl walta decadal" },
+        { name: "Osman Sagar (Gandipet), Hyderabad", category: "FTL WATERBODY", state: "Telangana", lat: 17.3820, lon: 78.2980, zoom: 14, tags: "osman sagar gandipet lake drinking water reservoir buffer" },
+        { name: "Durgam Cheruvu (Secret Lake), Hyderabad", category: "FTL WATERBODY", state: "Telangana", lat: 17.4330, lon: 78.3880, zoom: 15, tags: "durgam cheruvu secret lake hitec city lake encroachment" },
+        { name: "Himayat Sagar, Hyderabad", category: "FTL WATERBODY", state: "Telangana", lat: 17.3240, lon: 78.3580, zoom: 14, tags: "himayat sagar reservoir water" },
+        { name: "Fox Sagar (Jeedimetla Lake)", category: "FTL WATERBODY", state: "Telangana", lat: 17.5250, lon: 78.4750, zoom: 14, tags: "fox sagar jeedimetla water body" },
+        { name: "Shamirpet Lake, Hyderabad", category: "FTL WATERBODY", state: "Telangana", lat: 17.6040, lon: 78.5700, zoom: 14, tags: "shamirpet lake outer ring road" },
+        
+        // National Lakes & Wetlands
+        { name: "Bellandur Lake, Bengaluru", category: "FTL WATERBODY", state: "Karnataka", lat: 12.9352, lon: 77.6713, zoom: 14, tags: "bellandur lake bangalore bengaluru foam wetland" },
+        { name: "Powai Lake, Mumbai", category: "FTL WATERBODY", state: "Maharashtra", lat: 19.1264, lon: 72.9048, zoom: 14, tags: "powai lake iit bombay mumbai catchment" },
+        { name: "Dal Lake, Srinagar", category: "WETLAND", state: "Jammu & Kashmir", lat: 34.1200, lon: 74.8700, zoom: 13, tags: "dal lake srinagar kashmir wetland" },
+        { name: "Chilika Lake Lagoon", category: "RAMSAR SITE", state: "Odisha", lat: 19.7000, lon: 85.3000, zoom: 12, tags: "chilika lake brackish lagoon odisha" },
+        { name: "Vembanad Lake, Kochi", category: "RAMSAR SITE", state: "Kerala", lat: 9.9312, lon: 76.2673, zoom: 13, tags: "vembanad lake kochi backwaters kerala" },
+        { name: "Loktak Lake (Keibul Lamjao)", category: "RAMSAR SITE", state: "Manipur", lat: 24.5500, lon: 93.8000, zoom: 13, tags: "loktak lake phumdis manipur" },
+        { name: "Upper Lake (Bhojtal), Bhopal", category: "RAMSAR SITE", state: "Madhya Pradesh", lat: 23.2500, lon: 77.3300, zoom: 13, tags: "bhojtal upper lake bhopal" },
+
+        // Benchmark Disaster & Reference Zones
+        { name: "Patna Ganga Deluge Basin (2019 Ground Truth)", category: "FLOOD BENCHMARK", state: "Bihar", lat: 25.5940, lon: 85.1370, zoom: 14, tags: "patna ganga deluge 2019 sentinel-1 sar bihar flood ground truth" },
+        { name: "Rajendra Nagar Deluge Sink (<46m AMSL)", category: "DEPRESSION SINK", state: "Bihar", lat: 25.5940, lon: 85.1580, zoom: 15, tags: "rajendra nagar patna depression sink flood bowl" },
+        { name: "Gandhi Maidan Ganga Levee", category: "LEVEE RIDGE", state: "Bihar", lat: 25.6194, lon: 85.1413, zoom: 15, tags: "gandhi maidan patna ganga" },
+        { name: "IIT Patna Campus, Bihta (>52m Safe Ridge)", category: "SAFE HAVEN", state: "Bihar", lat: 25.5356, lon: 84.8513, zoom: 15, tags: "iit patna bihta safe ridge" },
+        { name: "Varanasi Assi-Varuna Ghats", category: "HERITAGE BASIN", state: "Uttar Pradesh", lat: 25.3068, lon: 83.0104, zoom: 14, tags: "varanasi banaras kashi ghats ganga" },
+        { name: "Ayodhya Saryu River Corridor", category: "RIVER CORRIDOR", state: "Uttar Pradesh", lat: 26.7980, lon: 82.2050, zoom: 14, tags: "ayodhya saryu ramayana" },
+        { name: "Hampi Tungabhadra Heritage Basin", category: "HERITAGE BASIN", state: "Karnataka", lat: 15.3350, lon: 76.4600, zoom: 14, tags: "hampi vijayanagara tungabhadra" },
+
+        // 36 Sovereign Indian States & Union Territories
+        { name: "Telangana", category: "STATE", state: "Telangana", lat: 17.8749, lon: 78.1008, zoom: 8, tags: "telangana hyderabad state" },
+        { name: "Andhra Pradesh", category: "STATE", state: "Andhra Pradesh", lat: 15.9129, lon: 79.7400, zoom: 7, tags: "andhra pradesh amaravati state" },
+        { name: "Bihar", category: "STATE", state: "Bihar", lat: 25.0961, lon: 85.3131, zoom: 8, tags: "bihar patna state" },
+        { name: "Karnataka", category: "STATE", state: "Karnataka", lat: 15.3173, lon: 75.7139, zoom: 7, tags: "karnataka bengaluru bangalore state" },
+        { name: "Maharashtra", category: "STATE", state: "Maharashtra", lat: 19.7515, lon: 75.7139, zoom: 7, tags: "maharashtra mumbai state" },
+        { name: "Tamil Nadu", category: "STATE", state: "Tamil Nadu", lat: 11.1271, lon: 78.6569, zoom: 7, tags: "tamil nadu chennai state" },
+        { name: "Kerala", category: "STATE", state: "Kerala", lat: 10.8505, lon: 76.2711, zoom: 8, tags: "kerala thiruvananthapuram state" },
+        { name: "Uttar Pradesh", category: "STATE", state: "Uttar Pradesh", lat: 26.8467, lon: 80.9462, zoom: 7, tags: "uttar pradesh lucknow up state" },
+        { name: "Rajasthan", category: "STATE", state: "Rajasthan", lat: 27.0238, lon: 74.2179, zoom: 6, tags: "rajasthan jaipur state" },
+        { name: "Gujarat", category: "STATE", state: "Gujarat", lat: 22.2587, lon: 71.1924, zoom: 7, tags: "gujarat gandhinagar ahmedabad state" },
+        { name: "Madhya Pradesh", category: "STATE", state: "Madhya Pradesh", lat: 22.9734, lon: 78.6569, zoom: 7, tags: "madhya pradesh bhopal mp state" },
+        { name: "West Bengal", category: "STATE", state: "West Bengal", lat: 22.9868, lon: 87.8550, zoom: 7, tags: "west bengal kolkata state" },
+        { name: "Odisha", category: "STATE", state: "Odisha", lat: 20.9517, lon: 85.0985, zoom: 7, tags: "odisha bhubaneswar orissa state" },
+        { name: "Punjab", category: "STATE", state: "Punjab", lat: 31.1471, lon: 75.3412, zoom: 8, tags: "punjab chandigarh state" },
+        { name: "Haryana", category: "STATE", state: "Haryana", lat: 29.0588, lon: 76.0856, zoom: 8, tags: "haryana chandigarh state" },
+        { name: "Delhi (NCT)", category: "UT", state: "Delhi", lat: 28.7041, lon: 77.1025, zoom: 11, tags: "delhi new delhi nct capital" },
+        { name: "Jammu and Kashmir", category: "UT", state: "J&K", lat: 33.7782, lon: 76.5762, zoom: 7, tags: "jammu kashmir srinagar ut" },
+        { name: "Ladakh", category: "UT", state: "Ladakh", lat: 34.1526, lon: 77.5771, zoom: 7, tags: "ladakh leh kargil ut" },
+        { name: "Assam", category: "STATE", state: "Assam", lat: 26.2006, lon: 92.9376, zoom: 7, tags: "assam guwahati dispur state" },
+        { name: "Uttarakhand", category: "STATE", state: "Uttarakhand", lat: 30.0668, lon: 79.0193, zoom: 8, tags: "uttarakhand dehradun state" },
+        { name: "Himachal Pradesh", category: "STATE", state: "Himachal Pradesh", lat: 31.1048, lon: 77.1734, zoom: 8, tags: "himachal pradesh shimla state" },
+        { name: "Jharkhand", category: "STATE", state: "Jharkhand", lat: 23.6102, lon: 85.2799, zoom: 8, tags: "jharkhand ranchi state" },
+        { name: "Chhattisgarh", category: "STATE", state: "Chhattisgarh", lat: 21.2787, lon: 81.8661, zoom: 7, tags: "chhattisgarh raipur state" },
+        { name: "Goa", category: "STATE", state: "Goa", lat: 15.2993, lon: 74.1240, zoom: 10, tags: "goa panaji state" }
+      ];
+
+      window.handleGlobalOmniboxInput = function (val, device) {
+        const query = (val || '').trim().toLowerCase();
+        const dropId = device === 'mobile' ? 'mobile-global-search-autocomplete' : 'global-search-autocomplete';
+        const dropEl = document.getElementById(dropId);
+        const clearBtn = document.getElementById('global-search-clear-btn');
+        if (clearBtn) clearBtn.style.display = query ? 'inline-block' : 'none';
+
+        if (!dropEl) return;
+        if (!query) {
+          dropEl.innerHTML = '';
+          dropEl.classList.add('hidden');
+          return;
+        }
+
+        // Match coordinates lat, lon (e.g. "17.42, 78.47")
+        const coordMatch = query.match(/^([-+]?[0-9]*\.?[0-9]+)[\s,]+([-+]?[0-9]*\.?[0-9]+)$/);
+        let itemsHtml = '';
+
+        if (coordMatch) {
+          const lat = parseFloat(coordMatch[1]);
+          const lon = parseFloat(coordMatch[2]);
+          itemsHtml += `
+            <div onclick="window.executeGlobalOmniboxSelect('', ${lat}, ${lon}, 'Coordinate: ${lat.toFixed(4)}°N, ${lon.toFixed(4)}°E')"
+              class="p-2.5 hover:bg-sky-500/15 cursor-pointer border-b border-white/5 flex items-center justify-between transition">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-location-crosshairs text-sky-400 text-xs"></i>
+                <div>
+                  <div class="text-xs font-semibold text-slate-100 mono">${lat.toFixed(4)}°N, ${lon.toFixed(4)}°E</div>
+                  <div class="text-[9.5px] text-slate-400">Exact Geodetic Coordinate Target</div>
+                </div>
+              </div>
+              <span class="text-[8.5px] font-bold px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300 mono">FLY TO COORDS</span>
+            </div>
+          `;
+        }
+
+        // Filter registry
+        const matches = window.GLOBAL_OMNIBOX_REGISTRY.filter(r =>
+          r.name.toLowerCase().includes(query) ||
+          r.state.toLowerCase().includes(query) ||
+          r.tags.toLowerCase().includes(query)
+        ).slice(0, 8);
+
+        matches.forEach(item => {
+          itemsHtml += `
+            <div onclick="window.executeGlobalOmniboxSelect('${item.name.replace(/'/g, "\\'")}', ${item.lat}, ${item.lon}, '${item.name.replace(/'/g, "\\'")}')"
+              class="p-2.5 hover:bg-sky-500/15 cursor-pointer border-b border-white/5 flex items-center justify-between transition">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid ${item.category.includes('WATER') ? 'fa-water text-cyan-400' : (item.category.includes('STATE') ? 'fa-landmark-flag text-emerald-400' : 'fa-location-dot text-rose-400')} text-xs"></i>
+                <div>
+                  <div class="text-xs font-semibold text-slate-100">${item.name}</div>
+                  <div class="text-[9.5px] text-slate-400 mono">${item.lat.toFixed(4)}°N, ${item.lon.toFixed(4)}°E &bull; ${item.state}</div>
+                </div>
+              </div>
+              <span class="text-[8px] font-bold px-1.5 py-0.5 rounded ${item.category.includes('WATER') ? 'bg-cyan-500/20 text-cyan-300' : 'bg-slate-800 text-slate-300'} mono">${item.category}</span>
+            </div>
+          `;
+        });
+
+        if (!itemsHtml) {
+          itemsHtml = `
+            <div onclick="window.executeGlobalOmniboxOsmGeocode('${query.replace(/'/g, "\\'")}')"
+              class="p-3 text-center text-slate-400 text-xs hover:bg-white/5 cursor-pointer transition">
+              <i class="fa-solid fa-magnifying-glass text-sky-400 mr-1.5"></i>
+              Search OpenStreetMap India for <strong class="text-sky-300">"${query}"</strong>...
+            </div>
+          `;
+        }
+
+        dropEl.innerHTML = itemsHtml;
+        dropEl.classList.remove('hidden');
+      };
+
+      window.handleGlobalOmniboxFocus = function (device) {
+        const inp = document.getElementById(device === 'mobile' ? 'mobile-global-search-input' : 'global-location-search');
+        if (inp && !inp.value.trim()) {
+          const dropId = device === 'mobile' ? 'mobile-global-search-autocomplete' : 'global-search-autocomplete';
+          const dropEl = document.getElementById(dropId);
+          if (!dropEl) return;
+          const suggestions = [
+            window.GLOBAL_OMNIBOX_REGISTRY[0], // Hussain Sagar
+            window.GLOBAL_OMNIBOX_REGISTRY[13], // Patna Ganga Deluge
+            window.GLOBAL_OMNIBOX_REGISTRY[2], // Durgam Cheruvu
+            window.GLOBAL_OMNIBOX_REGISTRY[6], // Bellandur Lake
+            window.GLOBAL_OMNIBOX_REGISTRY[8]  // Dal Lake
+          ];
+          let html = `<div class="px-3 py-1.5 text-[9px] uppercase tracking-wider text-slate-500 font-bold mono bg-black/40">Suggested Targets</div>`;
+          suggestions.forEach(s => {
+            html += `
+              <div onclick="window.executeGlobalOmniboxSelect('${s.name.replace(/'/g, "\\'")}', ${s.lat}, ${s.lon}, '${s.name.replace(/'/g, "\\'")}')"
+                class="p-2 hover:bg-sky-500/15 cursor-pointer border-b border-white/5 flex items-center justify-between transition">
+                <div class="flex items-center gap-2">
+                  <i class="fa-solid fa-compass text-sky-400 text-xs"></i>
+                  <span class="text-xs text-slate-200 font-medium">${s.name}</span>
+                </div>
+                <span class="text-[8px] mono text-slate-500">${s.state}</span>
+              </div>
+            `;
+          });
+          dropEl.innerHTML = html;
+          dropEl.classList.remove('hidden');
+        }
+      };
+
+      window.clearGlobalOmnibox = function () {
+        const dInp = document.getElementById('global-location-search');
+        const mInp = document.getElementById('mobile-global-search-input');
+        if (dInp) dInp.value = '';
+        if (mInp) mInp.value = '';
+        const dDrop = document.getElementById('global-search-autocomplete');
+        const mDrop = document.getElementById('mobile-global-search-autocomplete');
+        if (dDrop) dDrop.classList.add('hidden');
+        if (mDrop) mDrop.classList.add('hidden');
+        const clearBtn = document.getElementById('global-search-clear-btn');
+        if (clearBtn) clearBtn.style.display = 'none';
+      };
+
+      window.executeGlobalOmniboxSelect = function (query, lat, lon, label) {
+        window.clearGlobalOmnibox();
+
+        // 1. If lat/lon provided: Fly Camera or Map
+        if (typeof lat === 'number' && typeof lon === 'number') {
+          // If 3D Cesium/Globe is loaded
+          if (window.viewer && window.viewer.camera) {
+            try {
+              window.viewer.camera.flyTo({
+                destination: Cesium.Cartesian3.fromDegrees(lon, lat, 25000),
+                duration: 2.0
+              });
+            } catch(e) {}
+          }
+          // If 2D Leaflet is open
+          if (window.bhuLeafletMap) {
+            try { window.bhuLeafletMap.flyTo([lat, lon], 14, { duration: 1.5 }); } catch(e){}
+          }
+          // If Land Studio is open, update its site
+          if (typeof setUrbanStudioSite === 'function') {
+            if (/hussain/i.test(query)) setUrbanStudioSite('hussain_sagar');
+            else if (/osman/i.test(query)) setUrbanStudioSite('osman_sagar');
+            else if (/durgam/i.test(query)) setUrbanStudioSite('durgam_cheruvu');
+            else if (/rajendra/i.test(query)) setUrbanStudioSite('rajendra_nagar');
+            else if (/gandhi/i.test(query)) setUrbanStudioSite('gandhi_maidan');
+            else if (/bihta|iit/i.test(query)) setUrbanStudioSite('iit_bihta');
+          }
+        }
+
+        // If user searched for a lake or lake protection, prompt/switch to Land Studio
+        if (/lake|sagar|cheruvu|wetland|ftl/i.test(query)) {
+          if (typeof openUrbanStudio === 'function') openUrbanStudio();
+        }
+      };
+
+      window.executeGlobalOmniboxOsmGeocode = function (q) {
+        window.clearGlobalOmnibox();
+        fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(q)}&countrycodes=in&limit=1`)
+          .then(res => res.json())
+          .then(data => {
+            if (data && data.length > 0) {
+              const lat = parseFloat(data[0].lat);
+              const lon = parseFloat(data[0].lon);
+              window.executeGlobalOmniboxSelect(q, lat, lon, data[0].display_name);
+            }
+          })
+          .catch(() => {});
+      };
+
+      window.quickFillPrompt = function (q) {
+        const inp = document.getElementById('user-input');
+        if (inp) {
+          inp.value = q;
+          if (typeof submitQuery === 'function') submitQuery();
+        }
+      };
+
+      // Close autocomplete on click outside
+      document.addEventListener('click', function (e) {
+        const dSearch = document.getElementById('global-location-search');
+        const dDrop = document.getElementById('global-search-autocomplete');
+        if (dDrop && !dDrop.contains(e.target) && e.target !== dSearch) {
+          dDrop.classList.add('hidden');
+        }
+        const mSearch = document.getElementById('mobile-global-search-input');
+        const mDrop = document.getElementById('mobile-global-search-autocomplete');
+        if (mDrop && !mDrop.contains(e.target) && e.target !== mSearch) {
+          mDrop.classList.add('hidden');
+        }
+      });
 
       /* ── Universal Land Studio Close Handler & Fallback ── */
       window.closeUrbanStudio = function () {

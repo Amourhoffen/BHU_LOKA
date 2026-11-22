@@ -37,6 +37,21 @@
       overflow: hidden;
     }
 
+    /* Universal Dark Select & Options Styling (No white background popups) */
+    select,
+    select option,
+    select optgroup {
+      background-color: #0b111e !important;
+      color: #f1f5f9 !important;
+      border-color: rgba(56, 189, 248, 0.4) !important;
+    }
+
+    select option:hover,
+    select option:checked {
+      background-color: #1e293b !important;
+      color: #38bdf8 !important;
+    }
+
     .mono {
       font-family: 'IBM Plex Mono', 'Consolas', monospace;
       font-variant-numeric: tabular-nums;
@@ -158,7 +173,9 @@
       align-items: center;
       transition: background 0.15s ease;
     }
-    .gis-autocomplete-item:hover, .gis-autocomplete-item.active {
+
+    .gis-autocomplete-item:hover,
+    .gis-autocomplete-item.active {
       background: rgba(56, 189, 248, 0.18);
       color: #38bdf8;
     }
@@ -201,110 +218,126 @@
       </div>
     </div>
 
-        <!-- CLEAN SEGMENTED SOVEREIGN MAP SWITCHERS & 28 STATES / 8 UTS SELECTOR -->
+    <!-- CLEAN SEGMENTED SOVEREIGN MAP SWITCHERS & 28 STATES / 8 UTS SELECTOR -->
     <div class="flex items-center gap-1.5 text-[10px] mono shrink-0 max-w-full overflow-x-auto whitespace-nowrap">
       <!-- Prominent Universal Location & Coordinate Search Bar -->
       <div class="relative flex items-center min-w-[180px] sm:min-w-[220px] md:min-w-[270px] mr-1 shrink-0">
-        <div class="flex items-center w-full bg-[#070b14] border border-sky-500/40 rounded px-2 py-1 gap-1.5 focus-within:border-sky-400 focus-within:ring-1 focus-within:ring-sky-500/30">
+        <div
+          class="flex items-center w-full bg-[#070b14] border border-sky-500/40 rounded px-2 py-1 gap-1.5 focus-within:border-sky-400 focus-within:ring-1 focus-within:ring-sky-500/30">
           <i class="fa-solid fa-magnifying-glass text-sky-400 text-[10px] shrink-0"></i>
-          <input id="gis-addr-input" type="text" placeholder="Search India (Karnataka, Hussain Sagar, lat/lon)..."
-            class="bg-transparent text-[10.5px] text-slate-100 mono w-full focus:outline-none placeholder-slate-500"
-            autocomplete="off" spellcheck="false"
-            oninput="handleGisSearchInput(this.value)"
-            onkeydown="if(event.key==='Enter') searchAndFlyAddress()">
-          <button type="button" onclick="searchAndFlyAddress()" title="Search & Fly To Location"
-            class="bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 border border-sky-500/50 px-2 py-0.5 rounded text-[9.5px] font-semibold transition shrink-0">
-            Go
+          <!-- Prominent Universal Location & Coordinate Search Omnibox (No separate 'Go' button) -->
+          <div class="relative flex items-center min-w-[200px] sm:min-w-[260px] md:min-w-[320px] mr-1 shrink-0">
+            <div
+              class="flex items-center w-full bg-[#070b14] border border-sky-500/40 rounded-lg px-2.5 py-1 gap-2 focus-within:border-sky-400 focus-within:ring-2 focus-within:ring-sky-500/25 shadow-inner">
+              <i class="fa-solid fa-magnifying-glass text-sky-400 text-xs shrink-0"></i>
+              <input id="gis-addr-input" type="text" placeholder="Search India (Karnataka, Hussain Sagar, lat/lon)..."
+                class="bg-transparent text-[10.5px] text-slate-100 mono w-full focus:outline-none placeholder-slate-500"
+                class="bg-transparent text-[11px] text-slate-100 mono w-full focus:outline-none placeholder-slate-500"
+                autocomplete="off" spellcheck="false" oninput="handleGisSearchInput(this.value)"
+                onkeydown="if(event.key==='Enter') searchAndFlyAddress()">
+              <button type="button" onclick="searchAndFlyAddress()" title="Search & Fly To Location"
+                class="bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 border border-sky-500/50 px-2 py-0.5 rounded text-[9.5px] font-semibold transition shrink-0">
+                Go
+                <button type="button" id="gis-addr-clear-btn" style="display:none;" onclick="clearGisSearchInput()"
+                  class="text-slate-400 hover:text-white text-xs shrink-0" title="Clear">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <!-- Live Instant Autocomplete Dropdown -->
+            <div id="gis-addr-dropdown"
+              style="display:none;position:absolute;top:100%;left:0;right:0;margin-top:4px;background:#0b111e;border:1px solid rgba(56,189,248,0.4);border-radius:6px;box-shadow:0 12px 36px rgba(0,0,0,0.9);max-height:280px;overflow-y:auto;z-index:9999;">
+            </div>
+            <div id="gis-addr-dropdown"
+              style="display:none;position:absolute;top:100%;left:0;right:0;margin-top:4px;background:#0b111e;border:1px solid rgba(56,189,248,0.4);border-radius:8px;box-shadow:0 16px 40px rgba(0,0,0,0.9);max-height:300px;overflow-y:auto;z-index:9999;">
+            </div>
+          </div>
+
+          <!-- Basemap Toggles -->
+          <button onclick="setBaseMode('sat')" id="btn-base-sat"
+            class="bg-sky-500/20 text-sky-300 border border-sky-500/45 px-2 py-1 rounded font-medium transition">
+            Esri Satellite
+          </button>
+          <button onclick="setBaseMode('osm')" id="btn-base-osm"
+            class="bg-[#070b12] hover:bg-slate-800 text-slate-300 border border-slate-700 px-2 py-1 rounded font-medium transition">
+            OpenStreetMap
+          </button>
+          <button onclick="setBaseMode('dark')" id="btn-base-dark"
+            class="bg-[#070b12] hover:bg-slate-800 text-slate-300 border border-slate-700 px-2 py-1 rounded font-medium transition">
+            Dark Slate
+          </button>
+
+          <span class="h-5 w-px bg-slate-800 mx-0.5"></span>
+
+          <!-- 28 STATES & 8 UNION TERRITORIES INTERACTIVE SELECTOR -->
+          <div class="flex items-center gap-1 bg-[#070b12] border border-sky-500/40 rounded px-2 py-1 shrink-0">
+            <span class="text-sky-400 font-semibold text-[10px] flex items-center gap-1"><i
+                class="fa-solid fa-landmark-flag"></i> State / UT:</span>
+            <select id="sovereign-state-select" onchange="selectSovereignState(this.value)"
+              onfocus="if (this.options.length <= 1) populateSovereignStateDropdown();"
+              class="bg-transparent text-[10.5px] text-slate-100 font-mono focus:outline-none cursor-pointer max-w-[180px]">
+              <option value="" disabled selected>-- 28 States &amp; 8 UTs --</option>
+              <optgroup label="28 Indian States" id="optgroup-states"></optgroup>
+              <optgroup label="8 Union Territories" id="optgroup-uts"></optgroup>
+            </select>
+            <button type="button" id="btn-toggle-districts" onclick="toggleCurrentStateDistricts()"
+              title="Toggle Verified District Boundaries"
+              class="hidden px-1.5 py-0.5 bg-slate-800 hover:bg-slate-700 text-amber-300 rounded text-[9px] border border-amber-500/30">
+              Districts
+            </button>
+          </div>
+
+          <span class="h-5 w-px bg-slate-800 mx-0.5"></span>
+
+          <!-- Macro Boundaries -->
+          <button onclick="focusIndiaMacro()"
+            class="bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 px-2 py-1 rounded font-medium transition"
+            title="Zoom to complete Sovereign India boundary (6.75°N to 37.10°N)">
+            Pan-India (36)
+          </button>
+
+          <!-- Scientific Sentinel-1 Deluge Layer (Ground Truth Benchmark) -->
+          <button onclick="activatePatnaSarDeluge()" id="btn-sar-deluge"
+            class="bg-sky-500/20 hover:bg-sky-500/30 text-sky-200 border border-sky-500/50 px-2 py-1 rounded font-semibold transition flex items-center gap-1 shadow-[0_0_8px_rgba(56,189,248,0.2)]"
+            title="Copernicus Sentinel-1 SAR Patna Deluge 2019 (Verified Empirical Ground Truth)">
+            <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse"></span>
+            <span>Sentinel-1 SAR Deluge (Patna 2019)</span>
+          </button>
+
+          <!-- DEM Topography -->
+          <button onclick="focusPatnaDEM()"
+            class="bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 px-2 py-1 rounded font-medium transition"
+            title="Copernicus 30m Global DEM">
+            Copernicus DEM 30m
+          </button>
+
+          <!-- Extrude to 3D -->
+          <button id="btn-crop-to-3d" type="button" onclick="cropCurrentBoundsTo3D()"
+            class="bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/50 px-2 py-1 rounded font-semibold transition flex items-center gap-1 shadow-[0_0_8px_rgba(16,185,129,0.2)]"
+            title="Crop current Leaflet view bounding box and extrude into 3D DEM Terrain Workstation">
+            <span><i class="fa-solid fa-crop-simple mr-0.5"></i> Crop to 3D</span>
+          </button>
+
+          <a id="link-open-3d-workstation" href="bhu_loka_cyber_dashboard.html"
+            class="bg-sky-500 hover:bg-sky-400 text-slate-950 px-2.5 py-1 rounded font-semibold transition">
+            3D Workstation &rarr;
+          </a>
+
+          <!-- Map Display Controls -->
+          <button type="button" id="btn-2d-legend-toggle" onclick="toggleGisLegend()" title="Show/Hide Map Legend"
+            class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700 font-medium transition cursor-pointer shrink-0">
+            Legend
+          </button>
+          <button type="button" id="btn-2d-theater" onclick="toggle2DTheaterMode()" aria-pressed="false"
+            title="Expand Map (Hide header &amp; legend card)"
+            class="inline-flex items-center gap-1 px-2 py-1 rounded bg-sky-500/15 hover:bg-sky-500/25 text-sky-300 border border-sky-500/40 font-semibold transition cursor-pointer shrink-0">
+            <span id="btn-2d-theater-label">Expand</span>
+          </button>
+          <button type="button" id="btn-2d-fullscreen" onclick="toggle2DFullscreen()" aria-pressed="false"
+            title="Toggle Browser Fullscreen (ESC to exit)"
+            class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold transition cursor-pointer shrink-0">
+            <span id="btn-2d-fullscreen-label">Fullscreen</span>
           </button>
         </div>
-        <!-- Live Instant Autocomplete Dropdown -->
-        <div id="gis-addr-dropdown" style="display:none;position:absolute;top:100%;left:0;right:0;margin-top:4px;background:#0b111e;border:1px solid rgba(56,189,248,0.4);border-radius:6px;box-shadow:0 12px 36px rgba(0,0,0,0.9);max-height:280px;overflow-y:auto;z-index:9999;"></div>
-      </div>
-
-      <!-- Basemap Toggles -->
-      <button onclick="setBaseMode('sat')" id="btn-base-sat"
-        class="bg-sky-500/20 text-sky-300 border border-sky-500/45 px-2 py-1 rounded font-medium transition">
-        Esri Satellite
-      </button>
-      <button onclick="setBaseMode('osm')" id="btn-base-osm"
-        class="bg-[#070b12] hover:bg-slate-800 text-slate-300 border border-slate-700 px-2 py-1 rounded font-medium transition">
-        OpenStreetMap
-      </button>
-      <button onclick="setBaseMode('dark')" id="btn-base-dark"
-        class="bg-[#070b12] hover:bg-slate-800 text-slate-300 border border-slate-700 px-2 py-1 rounded font-medium transition">
-        Dark Slate
-      </button>
-
-      <span class="h-5 w-px bg-slate-800 mx-0.5"></span>
-
-      <!-- 28 STATES & 8 UNION TERRITORIES INTERACTIVE SELECTOR -->
-      <div class="flex items-center gap-1 bg-[#070b12] border border-sky-500/40 rounded px-2 py-1 shrink-0">
-        <span class="text-sky-400 font-semibold text-[10px] flex items-center gap-1"><i class="fa-solid fa-landmark-flag"></i> State / UT:</span>
-        <select id="sovereign-state-select" onchange="selectSovereignState(this.value)"
-          onfocus="if (this.options.length <= 1) populateSovereignStateDropdown();"
-          class="bg-transparent text-[10.5px] text-slate-100 font-mono focus:outline-none cursor-pointer max-w-[180px]">
-          <option value="" disabled selected>-- 28 States &amp; 8 UTs --</option>
-          <optgroup label="28 Indian States" id="optgroup-states"></optgroup>
-          <optgroup label="8 Union Territories" id="optgroup-uts"></optgroup>
-        </select>
-        <button type="button" id="btn-toggle-districts" onclick="toggleCurrentStateDistricts()" title="Toggle Verified District Boundaries"
-          class="hidden px-1.5 py-0.5 bg-slate-800 hover:bg-slate-700 text-amber-300 rounded text-[9px] border border-amber-500/30">
-          Districts
-        </button>
-      </div>
-
-      <span class="h-5 w-px bg-slate-800 mx-0.5"></span>
-
-      <!-- Macro Boundaries -->
-      <button onclick="focusIndiaMacro()"
-        class="bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 px-2 py-1 rounded font-medium transition"
-        title="Zoom to complete Sovereign India boundary (6.75°N to 37.10°N)">
-        Pan-India (36)
-      </button>
-
-      <!-- Scientific Sentinel-1 Deluge Layer (Ground Truth Benchmark) -->
-      <button onclick="activatePatnaSarDeluge()" id="btn-sar-deluge"
-        class="bg-sky-500/20 hover:bg-sky-500/30 text-sky-200 border border-sky-500/50 px-2 py-1 rounded font-semibold transition flex items-center gap-1 shadow-[0_0_8px_rgba(56,189,248,0.2)]"
-        title="Copernicus Sentinel-1 SAR Patna Deluge 2019 (Verified Empirical Ground Truth)">
-        <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse"></span>
-        <span>Sentinel-1 SAR Deluge (Patna 2019)</span>
-      </button>
-
-      <!-- DEM Topography -->
-      <button onclick="focusPatnaDEM()"
-        class="bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 px-2 py-1 rounded font-medium transition"
-        title="Copernicus 30m Global DEM">
-        Copernicus DEM 30m
-      </button>
-
-      <!-- Extrude to 3D -->
-      <button id="btn-crop-to-3d" type="button" onclick="cropCurrentBoundsTo3D()"
-        class="bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/50 px-2 py-1 rounded font-semibold transition flex items-center gap-1 shadow-[0_0_8px_rgba(16,185,129,0.2)]"
-        title="Crop current Leaflet view bounding box and extrude into 3D DEM Terrain Workstation">
-        <span><i class="fa-solid fa-crop-simple mr-0.5"></i> Crop to 3D</span>
-      </button>
-
-      <a id="link-open-3d-workstation" href="bhu_loka_cyber_dashboard.html"
-        class="bg-sky-500 hover:bg-sky-400 text-slate-950 px-2.5 py-1 rounded font-semibold transition">
-        3D Workstation &rarr;
-      </a>
-
-      <!-- Map Display Controls -->
-      <button type="button" id="btn-2d-legend-toggle" onclick="toggleGisLegend()" title="Show/Hide Map Legend"
-        class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700 font-medium transition cursor-pointer shrink-0">
-        Legend
-      </button>
-      <button type="button" id="btn-2d-theater" onclick="toggle2DTheaterMode()" aria-pressed="false"
-        title="Expand Map (Hide header &amp; legend card)"
-        class="inline-flex items-center gap-1 px-2 py-1 rounded bg-sky-500/15 hover:bg-sky-500/25 text-sky-300 border border-sky-500/40 font-semibold transition cursor-pointer shrink-0">
-        <span id="btn-2d-theater-label">Expand</span>
-      </button>
-      <button type="button" id="btn-2d-fullscreen" onclick="toggle2DFullscreen()" aria-pressed="false"
-        title="Toggle Browser Fullscreen (ESC to exit)"
-        class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold transition cursor-pointer shrink-0">
-        <span id="btn-2d-fullscreen-label">Fullscreen</span>
-      </button>
-    </div>
   </header>
 
   <!-- DOCKED 2D CARTOGRAPHIC WORKSTATION -->
@@ -312,18 +345,18 @@
     <!-- LEFT DOCK: INDIA LOCATION & STREET INTELLIGENCE (A-F) -->
     <aside id="gis-left-dock" aria-label="India Explorer Dock"
       class="hidden shrink-0 w-[360px] max-w-[92vw] h-full flex flex-col bg-[#0b1019] border-r border-slate-800/80 p-1.5 overflow-hidden max-lg:absolute max-lg:inset-y-0 max-lg:left-0 max-lg:z-[1150]">
-              <div id="bhu-intel-dock-slot" class="flex-1 min-h-0 flex flex-col overflow-hidden">
-          <!-- INDIA LOCATION &amp; STREET INTELLIGENCE (A-F Registry) -->
-          <div class="sr-only" aria-hidden="true">
-            <h2>INDIA LOCATION &amp; STREET INTELLIGENCE</h2>
-            <div>A. Administrative Location Explorer</div>
-            <div>B. Land Parcel &amp; Plot Search</div>
-            <div>C. Police Station Jurisdiction</div>
-            <div>D. Street CCTV Intelligence</div>
-            <div>E. Local News Intelligence</div>
-            <div>F. Traffic &amp; Emergency Intelligence</div>
-          </div>
+      <div id="bhu-intel-dock-slot" class="flex-1 min-h-0 flex flex-col overflow-hidden">
+        <!-- INDIA LOCATION &amp; STREET INTELLIGENCE (A-F Registry) -->
+        <div class="sr-only" aria-hidden="true">
+          <h2>INDIA LOCATION &amp; STREET INTELLIGENCE</h2>
+          <div>A. Administrative Location Explorer</div>
+          <div>B. Land Parcel &amp; Plot Search</div>
+          <div>C. Police Station Jurisdiction</div>
+          <div>D. Street CCTV Intelligence</div>
+          <div>E. Local News Intelligence</div>
+          <div>F. Traffic &amp; Emergency Intelligence</div>
         </div>
+      </div>
     </aside>
 
     <!-- CENTER STAGE: LEAFLET INTERACTIVE MAP + COMPACT LEGEND -->
@@ -337,8 +370,10 @@
             <div id="ssc-name-en" class="text-sm font-extrabold text-slate-100">State Name</div>
           </div>
           <div class="flex items-center gap-1">
-            <span id="ssc-unit-type" class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-500/40 text-[9px] font-semibold">State</span>
-            <button type="button" onclick="closeSovereignStateCard()" class="text-slate-400 hover:text-rose-400 p-1 font-bold text-xs" title="Close Card">✕</button>
+            <span id="ssc-unit-type"
+              class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-500/40 text-[9px] font-semibold">State</span>
+            <button type="button" onclick="closeSovereignStateCard()"
+              class="text-slate-400 hover:text-rose-400 p-1 font-bold text-xs" title="Close Card">✕</button>
           </div>
         </div>
         <div class="grid grid-cols-2 gap-2 text-[10px] text-slate-300 mb-2.5">
@@ -349,11 +384,13 @@
         </div>
         <div class="text-[9.5px] text-slate-400 border-t border-slate-800 pt-2 mb-2">
           <div class="font-semibold text-slate-300 mb-0.5">Administrative Hierarchy:</div>
-          <div id="ssc-hierarchy" class="text-slate-400 leading-tight">Country → State → District → Tehsil → Block → Panchayat → Village</div>
+          <div id="ssc-hierarchy" class="text-slate-400 leading-tight">Country → State → District → Tehsil → Block →
+            Panchayat → Village</div>
         </div>
         <div class="text-[8.5px] text-slate-500 border-t border-slate-800/80 pt-1.5 flex items-center justify-between">
           <span>Survey of India · data.gov.in · GADM v4.1</span>
-          <button type="button" onclick="focusIndiaMacro()" class="text-sky-400 hover:underline">Reset Pan-India</button>
+          <button type="button" onclick="focusIndiaMacro()" class="text-sky-400 hover:underline">Reset
+            Pan-India</button>
         </div>
       </div>
 
@@ -364,7 +401,8 @@
           <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
           <span class="font-bold text-slate-100 text-xs tracking-wide">SENTINEL-1 SAR DELUGE (GROUND TRUTH)</span>
           <span
-            class="px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 font-mono text-[9px] border border-amber-500/40">10m GRD</span>
+            class="px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 font-mono text-[9px] border border-amber-500/40">10m
+            GRD</span>
         </div>
 
         <!-- Layer switcher -->
@@ -904,6 +942,115 @@
       if (lt) lt.innerText = `REAL EARTH: ${String(label).toUpperCase().slice(0, 28)}`;
     }
 
+    function clearGisSearchInput() {
+      const inp = document.getElementById('gis-addr-input');
+      const drop = document.getElementById('gis-addr-dropdown');
+      const btn = document.getElementById('gis-addr-clear-btn');
+      if (inp) inp.value = '';
+      if (drop) { drop.innerHTML = ''; drop.style.display = 'none'; }
+      if (btn) btn.style.display = 'none';
+    }
+
+    function handleGisSearchInput(val) {
+      const query = (val || '').trim().toLowerCase();
+      const drop = document.getElementById('gis-addr-dropdown');
+      const clearBtn = document.getElementById('gis-addr-clear-btn');
+      if (clearBtn) clearBtn.style.display = query ? 'inline-block' : 'none';
+      if (!drop) return;
+      if (!query) {
+        drop.innerHTML = '';
+        drop.style.display = 'none';
+        return;
+      }
+
+      // Check coordinates pattern
+      const coordMatch = query.match(/^([-+]?[0-9]*\.?[0-9]+)[\s,]+([-+]?[0-9]*\.?[0-9]+)$/);
+      let itemsHtml = '';
+      if (coordMatch) {
+        const lat = parseFloat(coordMatch[1]);
+        const lon = parseFloat(coordMatch[2]);
+        itemsHtml += `
+          <div onclick="selectGisSearchTarget('${lat.toFixed(4)}°N, ${lon.toFixed(4)}°E', ${lat}, ${lon})"
+            style="padding:8px 12px;border-bottom:1px solid rgba(255,255,255,0.06);cursor:pointer;display:flex;align-items:center;justify-content:space-between;background:rgba(56,189,248,0.08);">
+            <div>
+              <div style="color:#ffffff;font-weight:600;font-size:11px;">📍 ${lat.toFixed(4)}°N, ${lon.toFixed(4)}°E</div>
+              <div style="color:#94a3b8;font-size:9.5px;">Direct Geodetic Coordinates</div>
+            </div>
+            <span style="background:rgba(56,189,248,0.2);color:#38bdf8;padding:2px 6px;border-radius:4px;font-size:8.5px;font-weight:700;">FLY</span>
+          </div>
+        `;
+      }
+
+      // Query known India landmarks, lakes, states
+      const targets = (window.GLOBAL_OMNIBOX_REGISTRY || [
+        { name: "Hussain Sagar Lake, Hyderabad", category: "LAKE FTL", state: "Telangana", lat: 17.4239, lon: 78.4738 },
+        { name: "Osman Sagar (Gandipet), Hyderabad", category: "LAKE FTL", state: "Telangana", lat: 17.3820, lon: 78.2980 },
+        { name: "Durgam Cheruvu, Hyderabad", category: "LAKE FTL", state: "Telangana", lat: 17.4330, lon: 78.3880 },
+        { name: "Bellandur Lake, Bengaluru", category: "LAKE FTL", state: "Karnataka", lat: 12.9352, lon: 77.6713 },
+        { name: "Powai Lake, Mumbai", category: "LAKE FTL", state: "Maharashtra", lat: 19.1264, lon: 72.9048 },
+        { name: "Dal Lake, Srinagar", category: "WETLAND", state: "J&K", lat: 34.1200, lon: 74.8700 },
+        { name: "Patna Ganga Deluge Basin", category: "SAR FLOOD", state: "Bihar", lat: 25.5940, lon: 85.1370 },
+        { name: "Rajendra Nagar Deluge Sink", category: "SINK", state: "Bihar", lat: 25.5940, lon: 85.1580 },
+        { name: "Gandhi Maidan, Patna", category: "LEVEE", state: "Bihar", lat: 25.6194, lon: 85.1413 },
+        { name: "IIT Patna Campus, Bihta", category: "SAFE RIDGE", state: "Bihar", lat: 25.5356, lon: 84.8513 },
+        { name: "Varanasi Ghats", category: "HERITAGE", state: "Uttar Pradesh", lat: 25.3068, lon: 83.0104 },
+        { name: "Ayodhya Saryu Corridor", category: "HERITAGE", state: "Uttar Pradesh", lat: 26.7980, lon: 82.2050 },
+        { name: "Hampi Valley", category: "HERITAGE", state: "Karnataka", lat: 15.3350, lon: 76.4600 },
+        { name: "Karnataka", category: "STATE", state: "Karnataka", lat: 15.3173, lon: 75.7139 },
+        { name: "Telangana", category: "STATE", state: "Telangana", lat: 17.8749, lon: 78.1008 },
+        { name: "Bihar", category: "STATE", state: "Bihar", lat: 25.0961, lon: 85.3131 },
+        { name: "Maharashtra", category: "STATE", state: "Maharashtra", lat: 19.7515, lon: 75.7139 },
+        { name: "Tamil Nadu", category: "STATE", state: "Tamil Nadu", lat: 11.1271, lon: 78.6569 },
+        { name: "Kerala", category: "STATE", state: "Kerala", lat: 10.8505, lon: 76.2711 }
+      ]).filter(t =>
+        t.name.toLowerCase().includes(query) ||
+        (t.state && t.state.toLowerCase().includes(query))
+      ).slice(0, 8);
+
+      targets.forEach(t => {
+        itemsHtml += `
+          <div onclick="selectGisSearchTarget('${t.name.replace(/'/g, "\\'")}', ${t.lat}, ${t.lon})"
+            style="padding:8px 12px;border-bottom:1px solid rgba(255,255,255,0.06);cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:background 0.15s;"
+            onmouseenter="this.style.background='rgba(56,189,248,0.12)'" onmouseleave="this.style.background='transparent'">
+            <div>
+              <div style="color:#ffffff;font-weight:600;font-size:11px;">${t.name}</div>
+              <div style="color:#94a3b8;font-size:9.5px;font-family:monospace;">${t.lat.toFixed(4)}°N, ${t.lon.toFixed(4)}°E &bull; ${t.state || 'India'}</div>
+            </div>
+            <span style="background:rgba(255,255,255,0.08);color:#e2e8f0;padding:2px 6px;border-radius:4px;font-size:8px;font-weight:600;font-family:monospace;">${t.category || 'LOCATION'}</span>
+          </div>
+        `;
+      });
+
+      if (!itemsHtml) {
+        itemsHtml = `
+          <div onclick="searchAndFlyAddress()" style="padding:10px;text-align:center;color:#38bdf8;cursor:pointer;font-size:10.5px;">
+            <i class="fa-solid fa-magnifying-glass mr-1"></i> Search OpenStreetMap for "${query}"...
+          </div>
+        `;
+      }
+
+      drop.innerHTML = itemsHtml;
+      drop.style.display = 'block';
+    }
+
+    function selectGisSearchTarget(label, lat, lon) {
+      clearGisSearchInput();
+      const inp = document.getElementById('gis-addr-input');
+      if (inp) inp.value = label;
+      if (window.map) {
+        window.map.flyTo([lat, lon], 14, { duration: 1.5 });
+      }
+      dropPinAtCoords(lat, lon, label);
+    }
+
+    document.addEventListener('click', function (e) {
+      const drop = document.getElementById('gis-addr-dropdown');
+      const inp = document.getElementById('gis-addr-input');
+      if (drop && !drop.contains(e.target) && e.target !== inp) {
+        drop.style.display = 'none';
+      }
+    });
+
     async function searchAndFlyAddress(rawQuery) {
       const inp = document.getElementById('gis-addr-input');
       const q = (rawQuery || (inp ? inp.value : '') || '').trim();
@@ -1130,7 +1277,7 @@
       }
     })();
 
-    
+
     // ==========================================
     // ALL 28 STATES + 8 UNION TERRITORIES SOVEREIGN ENGINE
     // ==========================================
@@ -1218,7 +1365,7 @@
         if (st) {
           setTimeout(() => selectSovereignState(st), 350);
         }
-      } catch(e) {}
+      } catch (e) { }
     });
     setTimeout(populateSovereignStateDropdown, 300);
     setTimeout(populateSovereignStateDropdown, 1200);
@@ -1292,7 +1439,7 @@
         const u = new URL(window.location);
         u.searchParams.set('state', stateName);
         window.history.replaceState({}, '', u.toString());
-      } catch(e) {}
+      } catch (e) { }
 
       const legTitle = document.getElementById('legend-title');
       if (legTitle) {
@@ -1349,7 +1496,7 @@
         const u = new URL(window.location);
         u.searchParams.delete('state');
         window.history.replaceState({}, '', u.toString());
-      } catch(e) {}
+      } catch (e) { }
     }
 
     let districtsLayerVisible = false;
@@ -1578,7 +1725,7 @@
     try {
       const qp = new URLSearchParams(window.location.search);
       if (qp.get('state')) {
-        setTimeout(function() {
+        setTimeout(function () {
           selectSovereignState(qp.get('state'));
           if (qp.get('districts') === '1') {
             toggleCurrentStateDistricts();
