@@ -56,14 +56,16 @@
         z-index: 1210;
         width: min(472px, calc(100vw - 32px));
         max-height: calc(100vh - 144px);
-        background: #0b1019;
+        background: rgba(4, 21, 14, 0.94);
+        backdrop-filter: blur(24px) saturate(160%);
+        -webkit-backdrop-filter: blur(24px) saturate(160%);
         color: #f8fafc;
-        border: 1px solid rgba(148, 163, 184, 0.22);
-        border-radius: 6px;
-        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55);
+        border: 1px solid rgba(16, 185, 129, 0.28);
+        border-radius: 14px;
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(16, 185, 129, 0.12);
         display: none;
         flex-direction: column;
-        font-family: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+        font-family: 'JetBrains Mono', 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
         font-variant-numeric: tabular-nums;
         font-size: 11px;
       }
@@ -72,74 +74,88 @@
       #bhu-agri-panel input:focus-visible,
       #bhu-agri-panel select:focus-visible,
       #bhu-agri-panel textarea:focus-visible {
-        outline: 1.5px solid #38bdf8;
+        outline: 1.5px solid #10b981;
         outline-offset: 1px;
       }
       .bhu-ag-tab {
-        padding: 4px 8px;
-        border-radius: 4px;
-        border: 1px solid rgba(148, 163, 184, 0.14);
-        background: #070b12;
-        color: #94a3b8;
+        padding: 5px 10px;
+        border-radius: 8px;
+        border: 1px solid rgba(16, 185, 129, 0.18);
+        background: rgba(16, 185, 129, 0.06);
+        color: #a7f3d0;
         cursor: pointer;
         font-size: 10px;
         font-weight: 500;
         white-space: nowrap;
-        transition: background-color 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out;
+        transition: all 160ms cubic-bezier(0.16, 1, 0.3, 1);
       }
-      .bhu-ag-tab:hover { color: #e2e8f0; border-color: rgba(148, 163, 184, 0.28); }
+      .bhu-ag-tab:hover { color: #ffffff; background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.4); transform: translateY(-1px); }
       .bhu-ag-tab.bhu-active {
-        background: #131c2b;
-        border-color: rgba(16, 185, 129, 0.55);
-        color: #6ee7b7;
-        font-weight: 600;
+        background: rgba(16, 185, 129, 0.25);
+        border-color: rgba(16, 185, 129, 0.65);
+        color: #ffffff;
+        font-weight: 700;
+        box-shadow: 0 0 14px rgba(16, 185, 129, 0.35);
       }
       .bhu-ag-card {
-        background: #070b12;
-        border: 1px solid rgba(148, 163, 184, 0.14);
-        border-radius: 4px;
-        padding: 8px 10px;
+        background: linear-gradient(145deg, rgba(6, 26, 15, 0.88) 0%, rgba(3, 14, 8, 0.96) 100%);
+        border: 1px solid rgba(16, 185, 129, 0.22);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-radius: 10px;
+        padding: 9px 12px;
         flex-shrink: 0;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(16, 185, 129, 0.12);
       }
       .bhu-ag-input, .bhu-ag-select, .bhu-ag-textarea {
         width: 100%;
-        background: #0b0f17;
+        background: rgba(2, 10, 6, 0.85);
         color: #f8fafc;
-        border: 1px solid rgba(148, 163, 184, 0.24);
-        border-radius: 4px;
-        padding: 4px 8px;
+        border: 1px solid rgba(16, 185, 129, 0.28);
+        border-radius: 6px;
+        padding: 5px 8px;
         font-size: 11px;
         font-family: inherit;
+        outline: none;
+        transition: border-color 0.16s ease, box-shadow 0.16s ease;
+      }
+      .bhu-ag-input:focus, .bhu-ag-select:focus, .bhu-ag-textarea:focus {
+        border-color: #10b981;
+        box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
       }
       .bhu-ag-btn {
-        background: #132524;
-        color: #6ee7b7;
-        border: 1px solid rgba(16, 185, 129, 0.45);
-        border-radius: 4px;
-        padding: 4px 8px;
-        font-size: 10px;
+        background: #059669;
+        color: #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        padding: 5px 10px;
+        font-size: 10.5px;
         font-weight: 600;
         cursor: pointer;
-        transition: background-color 140ms ease-out, border-color 140ms ease-out;
+        transition: all 160ms cubic-bezier(0.16, 1, 0.3, 1);
       }
-      .bhu-ag-btn:hover { background: #193230; }
+      .bhu-ag-btn:hover { background: #10b981; box-shadow: 0 0 14px rgba(16, 185, 129, 0.4); transform: translateY(-1px); }
       .bhu-ag-btn.secondary {
-        background: #111827;
+        background: rgba(255, 255, 255, 0.06);
         color: #cbd5e1;
-        border-color: rgba(148, 163, 184, 0.22);
+        border-color: rgba(255, 255, 255, 0.12);
       }
-      .bhu-ag-btn.secondary:hover { background: #1e293b; }
+      .bhu-ag-btn.secondary:hover { background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.22); color: #ffffff; }
       .bhu-ag-btn.danger {
-        background: #231219;
-        color: #fda4af;
-        border-color: rgba(244, 63, 94, 0.45);
+        background: rgba(239, 68, 68, 0.2);
+        color: #fca5a5;
+        border-color: rgba(239, 68, 68, 0.45);
       }
+      .bhu-ag-btn.danger:hover { background: rgba(239, 68, 68, 0.35); color: #ffffff; }
       .bhu-ag-badge {
         font-size: 10px;
-        padding: 2px 6px;
-        border-radius: 4px;
-        border: 1px solid rgba(148, 163, 184, 0.22);
+        padding: 2px 7px;
+        border-radius: 6px;
+        background: rgba(16, 185, 129, 0.15);
+        border: 1px solid rgba(16, 185, 129, 0.35);
+        color: #34d399;
         display: inline-block;
+        font-family: inherit;
       }
     `;
     document.head.appendChild(st);
